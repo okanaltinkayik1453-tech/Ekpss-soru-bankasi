@@ -84,7 +84,7 @@ const tumTestler = {
             soru: "13. Aşağıdaki bilgilerden hangileri Uygur Devleti’ne aittir? 1.  Orta Asya’da demir işçiliğiyle ünlenen ilk Türk topluluğudur. 2.  Maniheizm dinini kabul etmişlerdir. 3.  14–18 harfli bir alfabeye sahiptirler. 4.  İlk kez Türk tarihinde “ordu-millet” anlayışını resmî hâle getirmişlerdir.5.  Yerleşik hayata geçen ilk Türk topluluklarından biridir.6.  Çin’le yaptığı savaşlar sonrasında İpek Yolu’nun tamamına hâkim olmuştur.",
             siklar: ["1 ve 3", "1 ve 5", "4 ve 6", "2, 3 ve 5", "2, 4 ve 6"],
             dogruCevap: 3, 
-            aciklama: Uygurlar; Maniheizm’i benimseyen, 14–18 harfli alfabeyi kullanan ve yerleşik hayata geçen ilk Türk devletidir."
+            aciklama: "Uygurlar; Maniheizm’i benimseyen, 14–18 harfli alfabeyi kullanan ve yerleşik hayata geçen ilk Türk devletidir."
         },
         {
             soru: "14. Hangisi Uygurlara ait değildir?",
@@ -126,11 +126,12 @@ const tumTestler = {
             soru: "20. Hangi Türk topluluğu devlet kuramamıştır?",
             siklar: ["Peçenekler", "Türgişler", "Karluklar", "Hazarlar", "Avarlar"],
             dogruCevap: 0, 
-            aciklama: "Peçenekler devlet kuramamış, boylar halinde yaşamıştır."
+aciklama: "Peçenekler devlet kuramamış, boylar halinde yaşamıştır."
         }
-    ],
+    ]
+};
 
-    // --- BÖLÜM 2: İLK TÜRK İSLAM DEVLETLERİ - TEST 1 ---
+// --- BÖLÜM 2: İLK TÜRK İSLAM DEVLETLERİ - TEST 1 ---// --- BÖLÜM 2: İLK TÜRK İSLAM DEVLETLERİ - TEST 1 ---};    // --- BÖLÜM 2: İLK TÜRK İSLAM DEVLETLERİ - TEST 1 ---
     "turk_islam_test1": [
         {
             soru: "1. Peçeneklerle ilgili hangisi doğrudur?",
