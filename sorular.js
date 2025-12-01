@@ -1637,7 +1637,7 @@ const tumTestler = {
             soru: "1. İslam öncesi Türk devletlerinde "Hükümet" (Bakanlar Kurulu) anlamına gelen kavram aşağıdakilerden hangisidir?",
             siklar: ["Kurultay", "Ayukı", "Yargu", "Kenetçi", "Oksızlık"],
             dogruCevap: 1, 
-            aciklama: "Ayukı: İslam öncesi Türklerde bugünkü anlamıyla "Hükümet" demektir. Hükümetin başında ise "Ayguci" (veya Üge) adı verilen Başbakan bulunur."
+            aciklama: "Ayukı: İslam öncesi Türklerde bugünkü anlamıyla 'Hükümet' demektir. Hükümetin başında ise 'Ayguci' (veya Üge) adı verilen Başbakan bulunur."
         },
         {
             soru: "2. Cengiz Han'a itaat eden ilk müslüman Türk topluluğu hangisidir?",
