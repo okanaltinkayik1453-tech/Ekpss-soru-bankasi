@@ -1634,10 +1634,10 @@ const tumTestler = {
     // --- TEST 13: İSLAMİYET ÖNCESİ KÜLTÜR VE TEŞKİLAT (Tam 20 Soru) ---
     "turk_islam_test13": [
         {
-            soru: "1. Ülkeyi 11 ile ayırarak her il başına Tutug adlı görevli atayan Türk devleti hangisidir?",
-            siklar: ["Karluklar", "Kırgızlar", "İtil Bulgarları", "Tuna Bulgarları", "Kimekler"],
-            dogruCevap: 4, 
-            aciklama: "Kimekler ülkeyi 11 ile ayırmış ve başlarına Tutug (vali) atamıştır."
+            soru: "1. İslam öncesi Türk devletlerinde "Hükümet" (Bakanlar Kurulu) anlamına gelen kavram aşağıdakilerden hangisidir?",
+            siklar: ["Kurultay", "Ayukı", "Yargu", "Kenetçi", "Oksızlık"],
+            dogruCevap: 1, 
+            aciklama: "Ayukı: İslam öncesi Türklerde bugünkü anlamıyla "Hükümet" demektir. Hükümetin başında ise "Ayguci" (veya Üge) adı verilen Başbakan bulunur."
         },
         {
             soru: "2. Cengiz Han'a itaat eden ilk müslüman Türk topluluğu hangisidir?",
@@ -1676,10 +1676,10 @@ const tumTestler = {
             aciklama: "Tudun, vergi toplamakla görevli devlet memurudur."
         },
         {
-            soru: "8. Hangisi tek başına yerleşik hayata geçildiğinin kanıtı olamaz?",
-            siklar: ["Sulama kanalları", "Duvar resimleri (freskler)", "Tapınak mimarisi", "Tarım aletleri", "Kütüphane"],
-            dogruCevap: 1, 
-            aciklama: "Duvar resimleri göçebeler tarafından (mağara/çadır) da yapılabilir."
+            soru: "8. Türk devletlerinde hükümdara yönetme yetkisinin Gök Tanrı tarafından verildiğine inanılırdı. Bu yetki kan yoluyla babadan oğula geçerdi. Bu anlayışa verilen isim aşağıdakilerden hangisidir?",
+            siklar: ["Ülüş", "Töre", "Kut", "Şad", "yarlığ"],
+            dogruCevap: 2, 
+            aciklama: "Bu Kut anlayışıdır."
         },
         {
             soru: "9. Türk sosyal yapısında 'aile' anlamına gelen kavram hangisidir?",
@@ -1694,7 +1694,7 @@ const tumTestler = {
             aciklama: "Zenginleşen Hazarlar, ordusunda ücretli askerler kullanmıştır."
         },
         {
-            soru: "11. Farklı dinlerin barış içinde yaşadığı 'Hazar Barış Çağı'nı yaşatan devlet hangisidir?",
+            soru: "11. Farklı dinlerin barış içinde yaşadığı hoşgörü Çağı'nı yaşatan devlet hangisidir?",
             siklar: ["İtil Bulgarları", "Tuna Bulgarları", "Uygurlar", "Hazarlar", "Avarlar"],
             dogruCevap: 3, 
             aciklama: "Hazarlar, dini hoşgörüsüyle (Pax Khazarica) tanınır."
