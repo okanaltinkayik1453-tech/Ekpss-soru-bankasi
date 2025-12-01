@@ -1,7 +1,6 @@
 /* SORU BANKASI DOSYASI
    İçerik:
    1. İslamiyet Öncesi Türk Devletleri - Test 1
-   2. İlk Türk İslam Devletleri - Test 1
 */
 
 const tumTestler = {
@@ -11,126 +10,125 @@ const tumTestler = {
         {
             soru: "1. Çin kaynaklarına göre Orta Asya'da kurulan Asya Hunları evlerini topraktan yapmış, Volga kıyılarıyla Kırım arasında kurulan Hazarların evleri ise hep ahşap olup yalnız Hakan Sarayı ve kale taştan yapılmıştır. 1. Doğa şartları insanların yaşam biçimini etkilemiştir. 2. Türklerde daha çok göçebe yaşantı vardır. 3. Türkler mimaride Çinlilerden etkilenmiştir. yargılarından hangilerine ulaşılabilir?",
             siklar: ["Yalnız 1", "Yalnız 2", "Yalnız 3", "1 ve 2", "1, 2 ve 3"],
-            dogruCevap: 0, 
+            dogruCevap: 0,
             aciklama: "Hunların toprağı, Hazarların ahşabı kullanması, mimarinin coğrafi şartlara göre şekillendiğini gösterir."
         },
         {
             soru: "2. Anav'daki bir kurganda yapılan kazıda; el değirmenleri, kömürleşmiş buğday, süslemeli çömlekler bulunmuştur. Bu durumla ilgili hangisi söylenemez?",
             siklar: ["Sanatla uğraşıldığı", "Bir yerleşim alanı olduğu", "Tahıl ürünlerinin tanındığı", "Topluluk halinde yaşanıldığı", "Üretim gereçlerinin ortak kullanıldığı"],
-            dogruCevap: 4, 
+            dogruCevap: 4,
             aciklama: "Evlerde değirmen bulunması özel mülkiyeti gösterir, ortak kullanımı değil."
         },
         {
             soru: "3. Orta Asya'nın sert iklimi Türklerin hızlı hareket etmesini gerektirmiştir. Bu durum Türklerle ilgili; 1. Yerleşik hayata geç geçmişlerdir. 2. Ata önem vermişlerdir. 3. Doğayla mücadele etmişlerdir. yargılarından hangilerini doğrular?",
             siklar: ["Yalnız 1", "Yalnız 2", "Yalnız 3", "1 ve 2", "2 ve 3"],
-            dogruCevap: 4, 
+            dogruCevap: 4,
             aciklama: "Hızlı hareket atı, sert iklim mücadeleyi gerektirir."
         },
         {
             soru: "4. Pazırık Halısı ve Altın Elbiseli Adam zırhı hangi Türk devletine aittir?",
             siklar: ["Tabgaçlar", "Göktürkler", "Uygurlar", "Sakalar", "Kırgızlar"],
-            dogruCevap: 3, 
+            dogruCevap: 3,
             aciklama: "Bu eserler Sakalar' a aittir."
         },
         {
             soru: "5. Doğu Roma İmparatorluğu (Bizans), aşağıdaki Türk devletlerinden hangisiyle çağdaş (aynı dönemde) olmamıştır?",
             siklar: ["Asya Hun", "Avar", "Uygur", "Akhun", "Hazar"],
-            dogruCevap: 0, 
+            dogruCevap: 0,
             aciklama: "Asya Hun Devleti, Bizans kurulmadan önce yıkılmıştır."
         },
         {
             soru: "6. I. Göktürk Devleti'ne en parlak dönemini yaşatan ve Avarları yıkan hükümdar kimdir?",
             siklar: ["Mukan Kağan", "Bögü Kağan", "Tapo Kağan", "Bilge Kağan", "İlteriş Kağan"],
-            dogruCevap: 0, 
+            dogruCevap: 0,
             aciklama: "En parlak dönemi yaşatan Mukan Kağan'dır."
         },
         {
             soru: "7. 1. Teoman 2. Mete Han 3. Kutluk Kağan. Hangileri Asya Hun hükümdarıdır?",
             siklar: ["Yalnız 1", "Yalnız 2", "Yalnız 3", "1 ve 2", "2 ve 3"],
-            dogruCevap: 3, 
+            dogruCevap: 3,
             aciklama: "Teoman ve Mete Han Asya Hun, Kutluk Kağan ise II. Göktürk hükümdarıdır."
         },
         {
             soru: "8. Avar egemenliğine son vererek 552 yılında kurulan devlet hangisidir?",
             siklar: ["Göktürk", "Uygur", "Hun", "Moğol", "Akhun"],
-            dogruCevap: 0, 
+            dogruCevap: 0,
             aciklama: "552 yılında Bumin Kağan tarafından kurulan devlet I. Göktürk Devleti'dir."
         },
         {
             soru: "9. Göktürklerle ilgili bilgilerden bazıları şunlardır: 1. İlk kez Türk adını taşıyan kavim olarak ortaya çıkmışlardır. 2. Doğu-batı olmak üzere iki koldan yönetilmişlerdir. 3. Kendilerine özgü yazıya geçmişlerdir. 4. Orta Asya'da devlet kurmuşlardır. 5. Hükümdarları komşu ülke hanedanlarıyla akrabalık kurmuştur. Bu bilgilerden hangilerine dayanarak Göktürkler'de ulusçu (milliyetçi) bir devlet anlayışı olduğu söylenebilir?",
             siklar: ["1 ve 3", "2 ve 3", "2 ve 4", "3 ve 4", "4 ve 5"],
-            dogruCevap: 0, 
+            dogruCevap: 0,
             aciklama: "Türk adını kullanmak ve milli alfabe (Göktürk alfabesi) ulusçuluk göstergesidir."
         },
         {
             soru: "10. Türk tarihinde görülen Kürşat Ayaklanması'yla ilgili olarak aşağıda verilen; 1. Türklerin bağımsızlığı amaçlayan hareketlerinden biridir. 2. Doğu Göktürk Devleti'nin Çin egemenliği altında bulunduğu dönemde gerçekleşmiştir. 3. Türklerin İslamiyet'i kabul etmelerinde etkili olmuştur. bilgilerinden hangileri doğrudur?",
             siklar: ["Yalnız 1", "Yalnız 2", "Yalnız 3", "1 ve 2", "1, 2 ve 3"],
-            dogruCevap: 3, 
+            dogruCevap: 3,
             aciklama: "Çin esaretindeki Türklerin bağımsızlık hareketidir, İslamiyet ile ilgisi yoktur."
         },
         {
             soru: "11. Aşağıdakilerden hangisi Türk tarihiyle ilgili doğru bir bilgidir?",
             siklar: ["Türkistan'ın Sincan bölgesinde Uygurlar yaşar.", "İlk Türk devleti Göktürklerdir.", "Avrupa Hun devletinin kurucusu Mete Han'dır.", "Karluklar Avrupa'da devlet kurmuştur.", "Alparslan Malazgirt zaferini Haçlılara karşı kazandı."],
-            dogruCevap: 0, 
+            dogruCevap: 0,
             aciklama: "Doğu Türkistan'da yaşayanlar Uygurlardır. Diğer bilgiler yanlıştır."
         },
         {
             soru: "12. Uygurların Karluk ve Basmillerle birleşip devlet kurması hangisini gösterir?",
             siklar: ["Göçebe yaşamı", "Farklı toplulukları birleştirdiklerini", "Batıya göçü", "Karlukların önce kurulduğunu", "Orta Asya egemenliğini"],
-            dogruCevap: 1, 
+            dogruCevap: 1,
             aciklama: "Farklı boyları (Karluk, Basmil) bir araya getirmişlerdir."
         },
         {
-            soru: "13. Aşağıdaki bilgilerden hangileri Uygur Devleti’ne aittir? 1.  Orta Asya’da demir işçiliğiyle ünlenen ilk Türk topluluğudur. 2.  Maniheizm dinini kabul etmişlerdir. 3.  14–18 harfli bir alfabeye sahiptirler. 4.  İlk kez Türk tarihinde “ordu-millet” anlayışını resmî hâle getirmişlerdir.5.  Yerleşik hayata geçen ilk Türk topluluklarından biridir.6.  Çin’le yaptığı savaşlar sonrasında İpek Yolu’nun tamamına hâkim olmuştur.",
+            soru: "13. Aşağıdaki bilgilerden hangileri Uygur Devleti’ne aittir? 1.  Orta Asya’da demir işçiliğiyle ünlenen ilk Türk topluluğudur. 2.  Maniheizm dinini kabul etmişlerdir. 3.  14–18 harfli bir alfabeye sahiptirler. 4.  İlk kez Türk tarihinde “ordu-millet” anlayışını resmî hâle getirmişlerdir. 5.  Yerleşik hayata geçen ilk Türk topluluklarından biridir. 6.  Çin’le yaptığı savaşlar sonrasında İpek Yolu’nun tamamına hâkim olmuştur.",
             siklar: ["1 ve 3", "1 ve 5", "4 ve 6", "2, 3 ve 5", "2, 4 ve 6"],
-            dogruCevap: 3, 
+            dogruCevap: 3,
             aciklama: "Uygurlar; Maniheizm’i benimseyen, 14–18 harfli alfabeyi kullanan ve yerleşik hayata geçen ilk Türk devletidir."
         },
         {
             soru: "14. Hangisi Uygurlara ait değildir?",
             siklar: ["Çin Seddi'nin yapılması", "Tapınak yapımı", "Karabalgasun Yazıtları", "Maniheizm dini", "Yerleşik hayat"],
-            dogruCevap: 0, 
+            dogruCevap: 0,
             aciklama: "Çin Seddi Hunlar döneminde yapılmıştır."
         },
         {
             soru: "15. 1. Karluklar 2. Hazarlar 3. Avarlar 4. Hunlar Yukarıdaki Türk topluluklarından hangileri Avrupa'da teşkilatlı bir devlet kurmuşlardır?",
             siklar: ["Yalnız 1", "Yalnız 2", "Yalnız 4", "2 ve 3", "3 ve 4"],
-            dogruCevap: 4, 
+            dogruCevap: 4,
             aciklama: "Avrupa Hunları ve Avarlar hem Asya hem Avrupa'da devlet kurmuştur."
         },
         {
             soru: "16. Aşağıdakilerden hangisi Avarların tarihteki etkilerinden biridir?",
             siklar: ["Dede Korkut hikâyelerinin ortaya çıkması", "Anadolu'nun kapılarının Türklere açılması", "Slav topluluklarının birbirleriyle kaynaşıp bütünleşmesi", "Türkler arasında İslamiyet'in yayılmaya başlaması", "Kuruldukları bölgenin adının onların adıyla günümüze kadar gelmesi"],
-            dogruCevap: 2, 
+            dogruCevap: 2,
             aciklama: "Avarlar Slavları yönetim ve askerlik konusunda eğitmişlerdir."
         },
         {
             soru: "17. İstanbul'u kuşatan ilk Türk devleti hangisidir?",
             siklar: ["Avar", "Bulgar", "Kuman", "İskit", "Karluk"],
-            dogruCevap: 0, 
+            dogruCevap: 0,
             aciklama: "İstanbul'u ilk kuşatanlar Avarlardır."
         },
         {
             soru: "18. Maniheizm'i kabul eden, matbaayı kullanan ve Kırgızlar tarafından yıkılan devlet hangisidir?",
             siklar: ["Uygurlar", "Göktürkler", "Kumanlar", "Karahitaylar", "Hazarlar"],
-            dogruCevap: 0, 
+            dogruCevap: 0,
             aciklama: "Bu özellikler Uygurlara aittir."
         },
         {
             soru: "19. Selçuklu ve Osmanlı'nın kurulmasında rol oynayan 24 boyluk Türk topluluğu hangisidir?",
             siklar: ["Kırgızlar", "Uygurlar", "Oğuzlar", "Tatarlar", "Bulgarlar"],
-            dogruCevap: 2, 
+            dogruCevap: 2,
             aciklama: "Kınık ve Kayı boylarının mensup olduğu Oğuzlardır."
         },
         {
             soru: "20. Hangi Türk topluluğu devlet kuramamıştır?",
             siklar: ["Peçenekler", "Türgişler", "Karluklar", "Hazarlar", "Avarlar"],
-            dogruCevap: 0, 
-aciklama: "Peçenekler devlet kuramamış, boylar halinde yaşamıştır."
+            dogruCevap: 0,
+            aciklama: "Peçenekler devlet kuramamış, boylar halinde yaşamıştır."
         }
     ]
 };
-
 // --- BÖLÜM 2: İLK TÜRK İSLAM DEVLETLERİ - TEST 1 ---// --- BÖLÜM 2: İLK TÜRK İSLAM DEVLETLERİ - TEST 1 ---};    // --- BÖLÜM 2: İLK TÜRK İSLAM DEVLETLERİ - TEST 1 ---
     "turk_islam_test1": [
         {
