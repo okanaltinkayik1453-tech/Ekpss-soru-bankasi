@@ -1492,16 +1492,16 @@ const tumTestler = {
             aciklama: "Ziya Gökalp, Türk milliyetçiliğinin teorisyenidir."
         },
         {
-            soru: "19. Kır Kız Destanı kime aittir?",
-            siklar: ["Kırgızlar", "Kimekler", "Uygurlar", "Asya Hunları", "Avarlar"],
-            dogruCevap: 0, 
-            aciklama: "Manas ve Kırk Kız destanları Kırgızlara aittir."
+            soru: "19. Aşağıdaki Türk devletleri ve destan eşleştirmelerinden hangisi yanlıştır?",
+            siklar: ["İskitler. Alpertunga Destanı", "Asya Hun Devleti. Oğuz Kağan Destanı", "Göktürkler. Bozkurt Destanı", "Uygurlar. Ergenekon Destanı", "Kırgızlar. Manas Destanı"],
+            dogruCevap: 3, 
+            aciklama: "Ergenekon :Destanı Göktürkler'e aittir."
         },
         {
-            soru: "20. İki Tegin Hikayesi adlı destan kime aittir?",
-            siklar: ["Kırgızlar", "Kimekler", "Uygurlar", "Asya Hunları", "Avarlar"],
+            soru: "20. Aşağıdakilerden hangisinde Uygurlar'a ait 2 destan birlikte verilmiştir?",
+            siklar: ["Bozkurt-Ergenekon", "Alpertunga-Şu", "Türeyiş-Göç", "Manas-Oğuz Kağan", "Yaratılış-Türeyiş"],
             dogruCevap: 2, 
-            aciklama: "Maniheizm etkisindeki Uygurlara ait bir hikayedir."
+            aciklama: "Türeyiş ve Göç destanları uygurlar'a aittir."
         }
     ],
 
