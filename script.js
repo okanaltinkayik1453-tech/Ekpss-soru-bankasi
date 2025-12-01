@@ -4,12 +4,10 @@ let mevcutSoruIndex = 0;
 let kullaniciCevaplari = [];
 let isaretlemeKilitli = false;
 
-// --- SES MOTORU (HAFİFLETİLMİŞ) ---
-// Sadece Doğru/Yanlış/Bitiş sesleri kaldı.
+// --- SES MOTORU (HAFİFLETİLMİŞ & SENTETİK) ---
 const AudioContext = window.AudioContext || window.webkitAudioContext;
 const sesMotoru = new AudioContext();
 
-// iPhone için ses motorunu uyandırma (Kasma yapmaz, sadece hazırda bekletir)
 function motoruUyandir() {
     if (sesMotoru.state === 'suspended') {
         sesMotoru.resume();
@@ -30,17 +28,15 @@ function sesUret(tur) {
     const suan = sesMotoru.currentTime;
 
     if (tur === "dogru") {
-        // Doğru Sesi: Temiz, yüksek frekanslı 'Ping'
         osilator.type = "sine";
         osilator.frequency.setValueAtTime(600, suan);
         osilator.frequency.exponentialRampToValueAtTime(1200, suan + 0.1);
-        kazanc.gain.setValueAtTime(0.2, suan); // Ses seviyesi düşük (Okuyucuyu bastırmaz)
+        kazanc.gain.setValueAtTime(0.2, suan);
         kazanc.gain.exponentialRampToValueAtTime(0.01, suan + 0.5);
         osilator.start(suan);
         osilator.stop(suan + 0.5);
     } 
     else if (tur === "yanlis") {
-        // Yanlış Sesi: Tok, alçak frekanslı 'Bop'
         osilator.type = "triangle";
         osilator.frequency.setValueAtTime(150, suan);
         osilator.frequency.linearRampToValueAtTime(100, suan + 0.2);
@@ -50,7 +46,6 @@ function sesUret(tur) {
         osilator.stop(suan + 0.3);
     } 
     else if (tur === "bitis") {
-        // Bitiş Melodisi
         notaCal(523.25, suan, 0.2);
         notaCal(659.25, suan + 0.2, 0.2);
         notaCal(783.99, suan + 0.4, 0.6);
@@ -68,6 +63,27 @@ function notaCal(frekans, zaman, sure) {
     gn.gain.exponentialRampToValueAtTime(0.01, zaman + sure);
     osc.start(zaman);
     osc.stop(zaman + sure);
+}
+
+// --- AKILLI METİN FORMATLAYICI (TÜRK RAKAMLARI İÇİN) ---
+function metniFormatla(metin) {
+    if (!metin) return "";
+    
+    // Sorunun en başındaki numarayı (Örn: "15.") korumak için,
+    // sadece BOŞLUKTAN SONRA gelen numaraları yakalıyoruz.
+    // Örn: "özelliklerdir? 1. Madde" -> "özelliklerdir?<br><br>1. Madde"
+    
+    let yeniMetin = metin
+        .replace(/ 1\./g, "<br><br>1.") // İlk maddeyi biraz daha ayırır
+        .replace(/ 2\./g, "<br>2.")
+        .replace(/ 3\./g, "<br>3.")
+        .replace(/ 4\./g, "<br>4.")
+        .replace(/ 5\./g, "<br>5.");
+
+    // İsteğe bağlı: "Buna göre", "Yukarıdakilerden" gibi kökleri de ayırabilirsin.
+    // yeniMetin = yeniMetin.replace("Buna göre", "<br><br>Buna göre");
+
+    return yeniMetin;
 }
 
 // --- TEST YÖNETİMİ ---
@@ -130,7 +146,10 @@ function soruyuGoster(index) {
     const soruObj = mevcutSorular[index];
     isaretlemeKilitli = false; 
     
-    document.getElementById("soru-metni").innerText = soruObj.soru;
+    // FORMATLANMIŞ METNİ YAZDIR
+    const soruBaslik = document.getElementById("soru-metni");
+    soruBaslik.innerHTML = metniFormatla(soruObj.soru);
+    
     document.getElementById("soru-sayac").innerText = `Soru ${index + 1} / ${mevcutSorular.length}`;
 
     const siklarKutusu = document.getElementById("siklar-alani");
@@ -166,9 +185,8 @@ function soruyuGoster(index) {
     document.getElementById("btn-onceki").disabled = (index === 0);
     document.getElementById("btn-sonraki").disabled = (index === mevcutSorular.length - 1);
 
-    // ODAK KAYMASINI ÖNLEMEK İÇİN SADECE BOŞ İSE ODAKLA
     if (kullaniciCevaplari[index] === null) {
-        document.getElementById("soru-metni").focus();
+        soruBaslik.focus();
     }
 }
 
@@ -183,9 +201,8 @@ function cevapIsaretle(secilenIndex, btnElement) {
     const gorselUyari = document.getElementById("gorsel-uyari-alani");
     
     if (secilenIndex === dogruCevapIndex) {
-        // DOĞRU
         btnElement.classList.add("dogru");
-        sesUret("dogru"); // SADECE BURADA SES VAR
+        sesUret("dogru");
 
         gorselUyari.innerText = "DOĞRU CEVAP!";
         gorselUyari.classList.add("uyari-dogru");
@@ -194,9 +211,8 @@ function cevapIsaretle(secilenIndex, btnElement) {
         setTimeout(() => { uyariKutusu.innerText = "Doğru Cevap!"; }, 300);
 
     } else {
-        // YANLIŞ
         btnElement.classList.add("yanlis");
-        sesUret("yanlis"); // SADECE BURADA SES VAR
+        sesUret("yanlis");
 
         gorselUyari.innerText = "YANLIŞ CEVAP!";
         gorselUyari.classList.add("uyari-yanlis");
