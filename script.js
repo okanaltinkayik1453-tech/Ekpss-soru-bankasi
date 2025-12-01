@@ -4,23 +4,22 @@ let mevcutSoruIndex = 0;
 let kullaniciCevaplari = [];
 let isaretlemeKilitli = false;
 
-// --- SES MOTORU (SENTETİK - DOSYASIZ) ---
-// Bu sistem dışarıdan mp3 yüklemez, sesi işlemci üretir. %100 Garantilidir.
+// --- SES MOTORU (HAFİFLETİLMİŞ) ---
+// Sadece Doğru/Yanlış/Bitiş sesleri kaldı.
 const AudioContext = window.AudioContext || window.webkitAudioContext;
 const sesMotoru = new AudioContext();
 
-// Ses Motorunu Uyandırma (iPhone için Kritik)
+// iPhone için ses motorunu uyandırma (Kasma yapmaz, sadece hazırda bekletir)
 function motoruUyandir() {
     if (sesMotoru.state === 'suspended') {
         sesMotoru.resume();
     }
 }
-// Sayfaya ilk dokunuşta motoru uyandır
 document.addEventListener('click', motoruUyandir);
 document.addEventListener('touchstart', motoruUyandir);
 
 function sesUret(tur) {
-    motoruUyandir(); // Her seferinde garanti olsun diye tetikle
+    motoruUyandir(); 
 
     const osilator = sesMotoru.createOscillator();
     const kazanc = sesMotoru.createGain();
@@ -30,38 +29,28 @@ function sesUret(tur) {
 
     const suan = sesMotoru.currentTime;
 
-    if (tur === "tik") {
-        // Tıklama Sesi (Kısa, Mekanik Çıt)
-        osilator.type = "square";
-        osilator.frequency.setValueAtTime(150, suan);
-        osilator.frequency.exponentialRampToValueAtTime(40, suan + 0.05);
-        kazanc.gain.setValueAtTime(0.1, suan); // Çok kısık ses
-        kazanc.gain.exponentialRampToValueAtTime(0.01, suan + 0.05);
-        osilator.start(suan);
-        osilator.stop(suan + 0.05);
-    } 
-    else if (tur === "dogru") {
-        // Doğru Sesi (Yüksek, Temiz 'Ping')
+    if (tur === "dogru") {
+        // Doğru Sesi: Temiz, yüksek frekanslı 'Ping'
         osilator.type = "sine";
         osilator.frequency.setValueAtTime(600, suan);
         osilator.frequency.exponentialRampToValueAtTime(1200, suan + 0.1);
-        kazanc.gain.setValueAtTime(0.3, suan);
+        kazanc.gain.setValueAtTime(0.2, suan); // Ses seviyesi düşük (Okuyucuyu bastırmaz)
         kazanc.gain.exponentialRampToValueAtTime(0.01, suan + 0.5);
         osilator.start(suan);
         osilator.stop(suan + 0.5);
     } 
     else if (tur === "yanlis") {
-        // Yanlış Sesi (Kalın, Tok 'Bop')
+        // Yanlış Sesi: Tok, alçak frekanslı 'Bop'
         osilator.type = "triangle";
         osilator.frequency.setValueAtTime(150, suan);
         osilator.frequency.linearRampToValueAtTime(100, suan + 0.2);
-        kazanc.gain.setValueAtTime(0.3, suan);
+        kazanc.gain.setValueAtTime(0.2, suan);
         kazanc.gain.linearRampToValueAtTime(0.01, suan + 0.3);
         osilator.start(suan);
         osilator.stop(suan + 0.3);
     } 
     else if (tur === "bitis") {
-        // Bitiş Melodisi (Do-Mi-Sol)
+        // Bitiş Melodisi
         notaCal(523.25, suan, 0.2);
         notaCal(659.25, suan + 0.2, 0.2);
         notaCal(783.99, suan + 0.4, 0.6);
@@ -75,25 +64,11 @@ function notaCal(frekans, zaman, sure) {
     osc.frequency.value = frekans;
     osc.connect(gn);
     gn.connect(sesMotoru.destination);
-    gn.gain.setValueAtTime(0.2, zaman);
+    gn.gain.setValueAtTime(0.1, zaman);
     gn.gain.exponentialRampToValueAtTime(0.01, zaman + sure);
     osc.start(zaman);
     osc.stop(zaman + sure);
 }
-
-// --- GENEL TIKLAMA SESİ EKLEME ---
-document.addEventListener("DOMContentLoaded", () => {
-    // Sayfadaki tüm tıklanabilir öğelere 'çıt' sesi ekle
-    const tumTiklanabilirler = document.querySelectorAll("a, button, summary, .ana-menu-karti");
-    tumTiklanabilirler.forEach(elem => {
-        elem.addEventListener("click", () => {
-            // Cevap şıkları kendi sesini çıkaracağı için onlara ekleme yapma
-            if (!elem.classList.contains("sik-butonu")) {
-                sesUret("tik");
-            }
-        });
-    });
-});
 
 // --- TEST YÖNETİMİ ---
 document.addEventListener("DOMContentLoaded", () => {
@@ -191,12 +166,12 @@ function soruyuGoster(index) {
     document.getElementById("btn-onceki").disabled = (index === 0);
     document.getElementById("btn-sonraki").disabled = (index === mevcutSorular.length - 1);
 
+    // ODAK KAYMASINI ÖNLEMEK İÇİN SADECE BOŞ İSE ODAKLA
     if (kullaniciCevaplari[index] === null) {
         document.getElementById("soru-metni").focus();
     }
 }
 
-// --- CEVAP İŞARETLEME ---
 function cevapIsaretle(secilenIndex, btnElement) {
     if (isaretlemeKilitli) return;
     isaretlemeKilitli = true;
@@ -210,7 +185,7 @@ function cevapIsaretle(secilenIndex, btnElement) {
     if (secilenIndex === dogruCevapIndex) {
         // DOĞRU
         btnElement.classList.add("dogru");
-        sesUret("dogru"); // Sentetik Ses
+        sesUret("dogru"); // SADECE BURADA SES VAR
 
         gorselUyari.innerText = "DOĞRU CEVAP!";
         gorselUyari.classList.add("uyari-dogru");
@@ -221,7 +196,7 @@ function cevapIsaretle(secilenIndex, btnElement) {
     } else {
         // YANLIŞ
         btnElement.classList.add("yanlis");
-        sesUret("yanlis"); // Sentetik Ses
+        sesUret("yanlis"); // SADECE BURADA SES VAR
 
         gorselUyari.innerText = "YANLIŞ CEVAP!";
         gorselUyari.classList.add("uyari-yanlis");
