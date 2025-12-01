@@ -1526,10 +1526,10 @@ const tumTestler = {
             aciklama: "Kırgızlarda kremasyon (ölü yakma) geleneği vardır."
         },
         {
-            soru: "4. Manas destanındaki Manas'ın müttefiki (veya mensubu) olduğu devlet hangisidir?",
-            siklar: ["Karahanlılar", "Kırgızlar", "Avarlar", "Karahitaylılar", "Moğollar"],
-            dogruCevap: 0, 
-            aciklama: "Manas, Karahitaylılara karşı Karahanlılarla ittifak yapmıştır."
+            soru: "4. Ticaretin gelişmesiyle birlikte takas usulünün yanı sıra çeşitli ödeme araçları kullanan Uygurlar, Türk tarihinde kağıt parayı kullanan ilk devlettir. Aşağıdakilerden hangisi Uygurların kullandığı para birimlerinden veya ödeme araçlarından biri değildir?",
+            siklar: ["Çav", "Böz", "Kuanpo", "Yarmak", "Akçe"],
+            dogruCevap: 4, 
+            aciklama: "Akçe Osmanlı Devletinde kullanılan para birimidir."
         },
         {
             soru: "5. 'Bozkırların Kuyumcuları' olarak bilinen topluluk hangisidir?",
@@ -1544,16 +1544,16 @@ const tumTestler = {
             aciklama: "Avarlar, Cücenler olarak da bilinir."
         },
         {
-            soru: "7. Asya Avarlarına son veren devlet hangisidir?",
-            siklar: ["Uygurlar", "İskitler", "Göktürkler", "Başkurtlar", "Macarlar"],
-            dogruCevap: 2, 
-            aciklama: "Bumin Kağan, Avarları yıkarak Göktürkleri kurmuştur."
+            soru: "7. Uygurlarda hükümet üyelerine (bakanlara) verilen unvan aşağıdakilerden hangisidir?",
+            siklar: ["Buyruk", "Aygucı", "Tigin", "Şad", "Ataman"],
+            dogruCevap: 0, 
+            aciklama: "Uygurlarda Buyruk bakan düzeyindeki görevlidir."
         },
         {
-            soru: "8. Avrupa Avarlarına son veren devlet hangisidir?",
-            siklar: ["Franklar", "Altın Orda", "Kubilay Hanlığı", "Roma", "Alanlar"],
+            soru: "8. Avarların Avrupa harp tarihine yaptıkları en önemli katkı, Avrupa uluslarına 'üzengi'yi ve süvari kılıcını tanıtmaları olmuştur. Bu durumun Avrupa'da aşağıdakilerden hangisinin gelişmesine doğrudan ortam hazırladığı savunulabilir?",
+            siklar: ["Şövalyelik ruhu ve zırhlı süvari birlikleri", "Feodalite sisteminin yıkılması", "Haçlı Seferlerinin başlaması", "Skolastik düşüncenin zayıflaması", "Rönesans hareketlerinin başlaması"],
             dogruCevap: 0, 
-            aciklama: "Şarlman liderliğindeki Franklar Avarları yıkmıştır."
+            aciklama: "Üzengi, at üzerinde dengede durmayı ve silah kullanmayı kolaylaştırdığı için Avrupa'da ağır zırhlı süvarilerin ve şövalyelik sisteminin teknik altyapısını oluşturmuştur."
         },
         {
             soru: "9. Avrupa'ya üzengiyi tanıtan Türk devleti hangisidir?",
@@ -1568,22 +1568,22 @@ const tumTestler = {
             aciklama: "Avrupa Avar Devleti'nin kurucusu Bayan Han'dır."
         },
         {
-            soru: "11. 'Büyük Bulgarya' devletini kuran lider kimdir?",
-            siklar: ["Uygurlar", "İskitler", "Avarlar", "Başkurtlar", "Bulgarlar (Kubrat Han)"],
-            dogruCevap: 4, 
-            aciklama: "Kubrat Han, Büyük Bulgarya devletini kurmuştur."
+            soru: "11. İslamiyet öncesi Türk devletlerinde ticaret genellikle takas usulüyle yapılsa da, bazı devletler ticarette değişim aracı olarak parayı aktif kullanmışlardır. Buna göre, Türk tarihinde kendi adına para (Yarmak) bastıran ilk hükümdar olarak kabul edilen Türgiş hakanı aşağıdakilerden hangisidir?",
+            siklar: ["Sulukağan", "Bagatarkan", "Mukankağan", "Bögükağan", "Moyençur"],
+            dogruCevap: 1, 
+            aciklama: "Bagatarkan kendi adına para bastıran ilk hükümdardır."
         },
         {
             soru: "12. Tuna Bulgar Devletini kuran kimdir?",
-            siklar: ["Uygurlar", "İskitler", "Avarlar", "Başkurtlar", "Asparuh"],
+            siklar: ["Uldız", "İskitler", "İlteriş", "İstemiyapgu", "Asparuh"],
             dogruCevap: 4, 
             aciklama: "Kubrat Han'ın oğlu Asparuh, Tuna Bulgarlarını kurmuştur."
         },
         {
-            soru: "13. İslamiyet'i kabul eden ilk Türk devleti hangisidir?",
+            soru: "13. Dünyada İslamiyet'i kabul eden ilk Türk devleti hangisidir?",
             siklar: ["Avarlar", "Karahanlılar", "İtil Bulgarları", "Tuna Bulgarları", "Macarlar"],
             dogruCevap: 2, 
-            aciklama: "İtil Bulgarları 922'de İslam'ı devlet dini yapmıştır."
+            aciklama: "İtil Bulgarları 922'de İslam'ı devlet dini yapmıştır. ÖSYM kelime oyunu yapabilir, Dünya derse İtil Bulgarları, Ortaasya derse Karahanlılar, Topluluk derse Karluklar olacaktır."
         },
         {
             soru: "14. Boris Han döneminde Hristiyanlığı kabul eden devlet hangisidir?",
