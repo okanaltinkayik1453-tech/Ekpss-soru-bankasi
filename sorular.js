@@ -9,7 +9,7 @@ const tumTestler = {
     // --- BÖLÜM 1: İSLAMİYET ÖNCESİ - TEST 1 ---
     "islamiyet_test1": [
         {
-            soru: "1. Çin kaynaklarına göre Orta Asya'da kurulan Asya Hunları evlerini topraktan yapmış, Volga kıyılarıyla Kırım arasında kurulan Hazarların evleri ise hep ahşap olup yalnız Hakan Sarayı ve kale taştan yapılmıştır. Bu bilgilere göre hangisine ulaşılabilir?",
+            soru: "1. Çin kaynaklarına göre Orta Asya'da kurulan Asya Hunları evlerini topraktan yapmış, Volga kıyılarıyla Kırım arasında kurulan Hazarların evleri ise hep ahşap olup yalnız Hakan Sarayı ve kale taştan yapılmıştır. 1. Doğa şartları insanların yaşam biçimini etkilemiştir. 2. Türklerde daha çok göçebe yaşantı vardır. 3. Türkler mimaride Çinlilerden etkilenmiştir. yargılarından hangilerine ulaşılabilir?",
             siklar: ["Yalnız 1", "Yalnız 2", "Yalnız 3", "1 ve 2", "1, 2 ve 3"],
             dogruCevap: 0, 
             aciklama: "Hunların toprağı, Hazarların ahşabı kullanması, mimarinin coğrafi şartlara göre şekillendiğini gösterir."
@@ -28,9 +28,9 @@ const tumTestler = {
         },
         {
             soru: "4. Pazırık Halısı ve Altın Elbiseli Adam zırhı hangi Türk devletine aittir?",
-            siklar: ["Tabgaçlar", "Göktürkler", "Uygurlar", "Hunlar", "Kırgızlar"],
+            siklar: ["Tabgaçlar", "Göktürkler", "Uygurlar", "Sakalar", "Kırgızlar"],
             dogruCevap: 3, 
-            aciklama: "Bu eserler Asya Hun Devleti dönemine aittir."
+            aciklama: "Bu eserler Sakalar' a aittir."
         },
         {
             soru: "5. Doğu Roma İmparatorluğu (Bizans), aşağıdaki Türk devletlerinden hangisiyle çağdaş (aynı dönemde) olmamıştır?",
@@ -57,20 +57,20 @@ const tumTestler = {
             aciklama: "552 yılında Bumin Kağan tarafından kurulan devlet I. Göktürk Devleti'dir."
         },
         {
-            soru: "9. Göktürklerin; 1. Türk adını kullanmaları 2. İkili teşkilatla yönetilmeleri 3. Kendi alfabelerini kullanmaları özelliklerinden hangileri ulusçu olduklarını gösterir?",
+            soru: "9. Göktürklerle ilgili bilgilerden bazıları şunlardır: 1. İlk kez Türk adını taşıyan kavim olarak ortaya çıkmışlardır. 2. Doğu-batı olmak üzere iki koldan yönetilmişlerdir. 3. Kendilerine özgü yazıya geçmişlerdir. 4. Orta Asya'da devlet kurmuşlardır. 5. Hükümdarları komşu ülke hanedanlarıyla akrabalık kurmuştur. Bu bilgilerden hangilerine dayanarak Göktürkler'de ulusçu (milliyetçi) bir devlet anlayışı olduğu söylenebilir?",
             siklar: ["1 ve 3", "2 ve 3", "2 ve 4", "3 ve 4", "4 ve 5"],
             dogruCevap: 0, 
             aciklama: "Türk adını kullanmak ve milli alfabe (Göktürk alfabesi) ulusçuluk göstergesidir."
         },
         {
-            soru: "10. Kürşat Ayaklanması ile ilgili hangisi doğrudur?",
+            soru: "10. Türk tarihinde görülen Kürşat Ayaklanması'yla ilgili olarak aşağıda verilen; 1. Türklerin bağımsızlığı amaçlayan hareketlerinden biridir. 2. Doğu Göktürk Devleti'nin Çin egemenliği altında bulunduğu dönemde gerçekleşmiştir. 3. Türklerin İslamiyet'i kabul etmelerinde etkili olmuştur. bilgilerinden hangileri doğrudur?",
             siklar: ["Yalnız 1", "Yalnız 2", "Yalnız 3", "1 ve 2", "1, 2 ve 3"],
             dogruCevap: 3, 
             aciklama: "Çin esaretindeki Türklerin bağımsızlık hareketidir, İslamiyet ile ilgisi yoktur."
         },
         {
-            soru: "11. Türk tarihiyle ilgili hangisi doğrudur?",
-            siklar: ["Türkistan'ın Sincan bölgesinde Uygurlar yaşar.", "İlk Türk devleti Göktürklerdir.", "Avrupa Hun kurucusu Mete Han'dır.", "Karluklar Avrupa'da devlet kurdu.", "Alparslan Malazgirt'i Haçlılara karşı kazandı."],
+            soru: "11. Aşağıdakilerden hangisi Türk tarihiyle ilgili doğru bir bilgidir?",
+            siklar: ["Türkistan'ın Sincan bölgesinde Uygurlar yaşar.", "İlk Türk devleti Göktürklerdir.", "Avrupa Hun devletinin kurucusu Mete Han'dır.", "Karluklar Avrupa'da devlet kurmuştur.", "Alparslan Malazgirt zaferini Haçlılara karşı kazandı."],
             dogruCevap: 0, 
             aciklama: "Doğu Türkistan'da yaşayanlar Uygurlardır. Diğer bilgiler yanlıştır."
         },
@@ -81,10 +81,10 @@ const tumTestler = {
             aciklama: "Farklı boyları (Karluk, Basmil) bir araya getirmişlerdir."
         },
         {
-            soru: "13. 1. Avrupa'da kurulma 2. Maniheizm'i kabul etme 3. 14-18 harfli alfabe. Hangileri Uygurlara aittir?",
+            soru: "13. Aşağıdaki bilgilerden hangileri Uygur Devleti’ne aittir? 1.  Orta Asya’da demir işçiliğiyle ünlenen ilk Türk topluluğudur. 2.  Maniheizm dinini kabul etmişlerdir. 3.  14–18 harfli bir alfabeye sahiptirler. 4.  İlk kez Türk tarihinde “ordu-millet” anlayışını resmî hâle getirmişlerdir.5.  Yerleşik hayata geçen ilk Türk topluluklarından biridir.6.  Çin’le yaptığı savaşlar sonrasında İpek Yolu’nun tamamına hâkim olmuştur.",
             siklar: ["1 ve 3", "1 ve 5", "4 ve 6", "2, 3 ve 5", "2, 4 ve 6"],
             dogruCevap: 3, 
-            aciklama: "Maniheizm, Uygur Alfabesi ve Moğollar üzerindeki kültürel etki (şıkkın orijinali) Uygurlara aittir."
+            aciklama: Uygurlar; Maniheizm’i benimseyen, 14–18 harfli alfabeyi kullanan ve yerleşik hayata geçen ilk Türk devletidir."
         },
         {
             soru: "14. Hangisi Uygurlara ait değildir?",
@@ -93,14 +93,14 @@ const tumTestler = {
             aciklama: "Çin Seddi Hunlar döneminde yapılmıştır."
         },
         {
-            soru: "15. Hangi Türk toplulukları Avrupa'da devlet kurmuştur?",
+            soru: "15. 1. Karluklar 2. Hazarlar 3. Avarlar 4. Hunlar Yukarıdaki Türk topluluklarından hangileri Avrupa'da teşkilatlı bir devlet kurmuşlardır?",
             siklar: ["Yalnız 1", "Yalnız 2", "Yalnız 4", "2 ve 3", "3 ve 4"],
             dogruCevap: 4, 
             aciklama: "Avrupa Hunları ve Avarlar hem Asya hem Avrupa'da devlet kurmuştur."
         },
         {
-            soru: "16. Avarların tarihteki en önemli etkisi nedir?",
-            siklar: ["Dede Korkut hikayeleri", "Anadolu kapılarının açılması", "Slav topluluklarını teşkilatlandırmaları", "İslamiyet'in yayılması", "Bölge adının değişmesi"],
+            soru: "16. Aşağıdakilerden hangisi Avarların tarihteki etkilerinden biridir?",
+            siklar: ["Dede Korkut hikâyelerinin ortaya çıkması", "Anadolu'nun kapılarının Türklere açılması", "Slav topluluklarının birbirleriyle kaynaşıp bütünleşmesi", "Türkler arasında İslamiyet'in yayılmaya başlaması", "Kuruldukları bölgenin adının onların adıyla günümüze kadar gelmesi"],
             dogruCevap: 2, 
             aciklama: "Avarlar Slavları yönetim ve askerlik konusunda eğitmişlerdir."
         },
