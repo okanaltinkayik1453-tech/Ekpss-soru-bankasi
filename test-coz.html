@@ -8,26 +8,31 @@
 </head>
 <body>
 
-    <div id="sesli-uyari" class="sr-only" aria-live="assertive"></div>
+    <div id="sesli-uyari" class="sr-only" aria-live="assertive" aria-atomic="true"></div>
 
     <header role="banner" class="ana-baslik-kutusu">
         <h1>EKPSS</h1>
     </header>
 
-    <main class="container">
+    <main class="container" role="main">
+        
+        <div id="gorsel-uyari-alani" class="gorsel-uyari-kutusu" aria-hidden="true" style="display:none;"></div>
+
         <div class="test-ust-bar">
             <a href="testler.html" class="geri-link" aria-label="Test listesine geri dön">&larr; Geri</a>
-            <span id="soru-sayac" aria-live="polite">Yükleniyor...</span>
+            
+            <span id="soru-sayac" aria-live="polite" aria-atomic="true">Yükleniyor...</span>
         </div>
 
         <div id="soru-alani" class="soru-kutusu">
             <h2 id="soru-metni" tabindex="-1">Soru yükleniyor...</h2>
+            
             <div id="siklar-alani" class="siklar-grid">
                 </div>
         </div>
 
         <div id="sonuc-alani" class="sonuc-kutusu" style="display: none;" tabindex="-1">
-            <h2 style="color:#ffff00;">Test Bitti!</h2>
+            <h2 style="color:#ffff00;" tabindex="-1">Test Bitti!</h2>
             <div id="puan-detay"></div>
             
             <button onclick="yanlislariGoster()" class="aksiyon-butonu" style="background:#b00;">Yanlışları İncele</button>
