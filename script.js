@@ -4,56 +4,92 @@ let mevcutSoruIndex = 0;
 let kullaniciCevaplari = [];
 let isaretlemeKilitli = false;
 
-// --- SES EFEKTLERİ (URL TABANLI - GARANTİLİ) ---
-// Not: Base64 kodları çok uzun olduğu için güvenilir CDN linkleri kullandım.
-// Bunlar iPhone'da daha kararlı çalışır.
+// --- SES MOTORU (SENTETİK - DOSYASIZ) ---
+// Bu sistem dışarıdan mp3 yüklemez, sesi işlemci üretir. %100 Garantilidir.
+const AudioContext = window.AudioContext || window.webkitAudioContext;
+const sesMotoru = new AudioContext();
 
-const sesler = {
-    // Menü/Link Tıklama Sesi (Mekanik Klavye Sesi)
-    tik: new Audio("https://cdn.freesound.org/previews/256/256116_4486188-lq.mp3"),
-    
-    // Doğru Cevap (Temiz 'Ding')
-    dogru: new Audio("https://cdn.freesound.org/previews/171/171671_2437358-lq.mp3"),
-    
-    // Yanlış Cevap (Tok 'Bip')
-    yanlis: new Audio("https://cdn.freesound.org/previews/142/142608_1840739-lq.mp3"),
-    
-    // Test Bitiş (Zafer)
-    bitis: new Audio("https://cdn.freesound.org/previews/270/270404_5123851-lq.mp3")
-};
-
-// Ses Seviyeleri (Ekran okuyucuyu bastırmasın)
-sesler.tik.volume = 0.3;
-sesler.dogru.volume = 0.6;
-sesler.yanlis.volume = 0.5;
-sesler.bitis.volume = 0.5;
-
-// --- iPHONE SES ISITMA (Audio Warm-up) ---
-// Sayfada herhangi bir yere ilk dokunuşta ses motorunu açar.
-let sesMotoruHazir = false;
-document.addEventListener('click', function() {
-    if (!sesMotoruHazir) {
-        // Tüm sesleri 0 saniyede sessizce çal ve durdur (Isıtma)
-        Object.values(sesler).forEach(audio => {
-            audio.play().then(() => {
-                audio.pause();
-                audio.currentTime = 0;
-            }).catch(() => {});
-        });
-        sesMotoruHazir = true;
+// Ses Motorunu Uyandırma (iPhone için Kritik)
+function motoruUyandir() {
+    if (sesMotoru.state === 'suspended') {
+        sesMotoru.resume();
     }
-}, { once: true }); // Sadece bir kez çalışır
+}
+// Sayfaya ilk dokunuşta motoru uyandır
+document.addEventListener('click', motoruUyandir);
+document.addEventListener('touchstart', motoruUyandir);
+
+function sesUret(tur) {
+    motoruUyandir(); // Her seferinde garanti olsun diye tetikle
+
+    const osilator = sesMotoru.createOscillator();
+    const kazanc = sesMotoru.createGain();
+
+    osilator.connect(kazanc);
+    kazanc.connect(sesMotoru.destination);
+
+    const suan = sesMotoru.currentTime;
+
+    if (tur === "tik") {
+        // Tıklama Sesi (Kısa, Mekanik Çıt)
+        osilator.type = "square";
+        osilator.frequency.setValueAtTime(150, suan);
+        osilator.frequency.exponentialRampToValueAtTime(40, suan + 0.05);
+        kazanc.gain.setValueAtTime(0.1, suan); // Çok kısık ses
+        kazanc.gain.exponentialRampToValueAtTime(0.01, suan + 0.05);
+        osilator.start(suan);
+        osilator.stop(suan + 0.05);
+    } 
+    else if (tur === "dogru") {
+        // Doğru Sesi (Yüksek, Temiz 'Ping')
+        osilator.type = "sine";
+        osilator.frequency.setValueAtTime(600, suan);
+        osilator.frequency.exponentialRampToValueAtTime(1200, suan + 0.1);
+        kazanc.gain.setValueAtTime(0.3, suan);
+        kazanc.gain.exponentialRampToValueAtTime(0.01, suan + 0.5);
+        osilator.start(suan);
+        osilator.stop(suan + 0.5);
+    } 
+    else if (tur === "yanlis") {
+        // Yanlış Sesi (Kalın, Tok 'Bop')
+        osilator.type = "triangle";
+        osilator.frequency.setValueAtTime(150, suan);
+        osilator.frequency.linearRampToValueAtTime(100, suan + 0.2);
+        kazanc.gain.setValueAtTime(0.3, suan);
+        kazanc.gain.linearRampToValueAtTime(0.01, suan + 0.3);
+        osilator.start(suan);
+        osilator.stop(suan + 0.3);
+    } 
+    else if (tur === "bitis") {
+        // Bitiş Melodisi (Do-Mi-Sol)
+        notaCal(523.25, suan, 0.2);
+        notaCal(659.25, suan + 0.2, 0.2);
+        notaCal(783.99, suan + 0.4, 0.6);
+    }
+}
+
+function notaCal(frekans, zaman, sure) {
+    const osc = sesMotoru.createOscillator();
+    const gn = sesMotoru.createGain();
+    osc.type = "sine";
+    osc.frequency.value = frekans;
+    osc.connect(gn);
+    gn.connect(sesMotoru.destination);
+    gn.gain.setValueAtTime(0.2, zaman);
+    gn.gain.exponentialRampToValueAtTime(0.01, zaman + sure);
+    osc.start(zaman);
+    osc.stop(zaman + sure);
+}
 
 // --- GENEL TIKLAMA SESİ EKLEME ---
-// Sayfadaki tüm buton ve linklere otomatik ses ekle
 document.addEventListener("DOMContentLoaded", () => {
-    const tumTiklanabilirler = document.querySelectorAll("a, button, summary");
+    // Sayfadaki tüm tıklanabilir öğelere 'çıt' sesi ekle
+    const tumTiklanabilirler = document.querySelectorAll("a, button, summary, .ana-menu-karti");
     tumTiklanabilirler.forEach(elem => {
         elem.addEventListener("click", () => {
-            // Eğer cevap butonu değilse 'tık' sesi çal (cevapların kendi sesi var)
+            // Cevap şıkları kendi sesini çıkaracağı için onlara ekleme yapma
             if (!elem.classList.contains("sik-butonu")) {
-                sesler.tik.currentTime = 0;
-                sesler.tik.play().catch(() => {});
+                sesUret("tik");
             }
         });
     });
@@ -106,11 +142,9 @@ function sonrakiSoru() {
 }
 
 function soruyuGoster(index) {
-    // Temizlik
     const uyariKutusu = document.getElementById("sesli-uyari");
     if(uyariKutusu) uyariKutusu.innerText = "";
     
-    // Görsel uyarı kutusunu gizle/temizle
     const gorselUyari = document.getElementById("gorsel-uyari-alani");
     if (gorselUyari) {
         gorselUyari.style.display = "none";
@@ -127,7 +161,6 @@ function soruyuGoster(index) {
     const siklarKutusu = document.getElementById("siklar-alani");
     siklarKutusu.innerHTML = "";
 
-    // GÖRSEL UYARI ALANI YARAT (Eğer yoksa)
     if (!document.getElementById("gorsel-uyari-alani")) {
         const div = document.createElement("div");
         div.id = "gorsel-uyari-alani";
@@ -158,13 +191,12 @@ function soruyuGoster(index) {
     document.getElementById("btn-onceki").disabled = (index === 0);
     document.getElementById("btn-sonraki").disabled = (index === mevcutSorular.length - 1);
 
-    // Sadece cevaplanmamışsa odağı soruya ver
     if (kullaniciCevaplari[index] === null) {
         document.getElementById("soru-metni").focus();
     }
 }
 
-// --- CEVAP İŞARETLEME (SES + GÖRSEL + EKRAN OKUYUCU) ---
+// --- CEVAP İŞARETLEME ---
 function cevapIsaretle(secilenIndex, btnElement) {
     if (isaretlemeKilitli) return;
     isaretlemeKilitli = true;
@@ -172,59 +204,46 @@ function cevapIsaretle(secilenIndex, btnElement) {
     kullaniciCevaplari[mevcutSoruIndex] = secilenIndex;
     const dogruCevapIndex = mevcutSorular[mevcutSoruIndex].dogruCevap;
     
-    const uyariKutusu = document.getElementById("sesli-uyari"); // Ekran okuyucu için (Görünmez)
-    const gorselUyari = document.getElementById("gorsel-uyari-alani"); // Görenler için (Görünür)
+    const uyariKutusu = document.getElementById("sesli-uyari");
+    const gorselUyari = document.getElementById("gorsel-uyari-alani");
     
     if (secilenIndex === dogruCevapIndex) {
         // DOĞRU
         btnElement.classList.add("dogru");
-        
-        // 1. Ses Çal
-        sesler.dogru.currentTime = 0;
-        sesler.dogru.play().catch(() => {});
+        sesUret("dogru"); // Sentetik Ses
 
-        // 2. Görsel Uyarı Göster (Masaüstü için)
         gorselUyari.innerText = "DOĞRU CEVAP!";
         gorselUyari.classList.add("uyari-dogru");
         gorselUyari.style.display = "block";
 
-        // 3. Ekran Okuyucuya Gönder (Gecikmeli)
-        setTimeout(() => { uyariKutusu.innerText = "Doğru Cevap!"; }, 200);
+        setTimeout(() => { uyariKutusu.innerText = "Doğru Cevap!"; }, 300);
 
     } else {
         // YANLIŞ
         btnElement.classList.add("yanlis");
-        
-        // 1. Ses Çal
-        sesler.yanlis.currentTime = 0;
-        sesler.yanlis.play().catch(() => {});
+        sesUret("yanlis"); // Sentetik Ses
 
-        // 2. Görsel Uyarı Göster
         gorselUyari.innerText = "YANLIŞ CEVAP!";
         gorselUyari.classList.add("uyari-yanlis");
         gorselUyari.style.display = "block";
 
-        // 3. Ekran Okuyucuya Gönder
-        setTimeout(() => { uyariKutusu.innerText = "Yanlış Cevap!"; }, 200);
+        setTimeout(() => { uyariKutusu.innerText = "Yanlış Cevap!"; }, 300);
     }
 
     const tumButonlar = document.querySelectorAll(".sik-butonu");
     tumButonlar.forEach(b => b.disabled = true);
 
-    // 2 SANİYE SONRA GEÇİŞ
     setTimeout(() => {
-        // Geçmeden önce temizlik
         uyariKutusu.innerText = "";
         gorselUyari.style.display = "none";
         
         if (mevcutSoruIndex < mevcutSorular.length - 1) {
             sonrakiSoru();
         } else {
-             sesler.bitis.play().catch(() => {});
+             sesUret("bitis");
              uyariKutusu.innerText = "Test bitti. Sonuçları görmek için bitir düğmesine basınız.";
              
-             // Görsel uyarıyı değiştir
-             gorselUyari.className = "gorsel-uyari-kutusu"; // Renkleri sıfırla
+             gorselUyari.className = "gorsel-uyari-kutusu";
              gorselUyari.style.display = "block";
              gorselUyari.style.backgroundColor = "#000";
              gorselUyari.style.color = "#ffff00";

@@ -1,4 +1,4 @@
-/* --- GENEL AYARLAR (YÜKSEK KARŞITLIK & SARI ŞERİT) --- */
+/* --- GENEL AYARLAR (YÜKSEK KARŞITLIK - İNCE ŞERİT) --- */
 * {
     box-sizing: border-box;
 }
@@ -7,62 +7,74 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-    font-family: 'Verdana', 'Segoe UI', sans-serif; /* Okunaklı kalın font */
+    font-family: 'Verdana', 'Segoe UI', sans-serif;
     background-color: #000000; /* SİYAH ARKA PLAN */
     color: #ffffff; /* BEYAZ YAZI */
     line-height: 1.5;
-    font-size: 105%; /* Yazılar bir tık büyük */
+    font-size: 105%;
+    display: flex;
+    flex-direction: column;
 }
 
 /* --- ERİŞİLEBİLİRLİK --- */
 .skip-link {
     position: absolute; top: -50px; left: 0;
     background: #ffff00; color: #000;
-    padding: 15px; z-index: 2000;
+    padding: 10px; z-index: 2000;
     font-weight: bold; text-decoration: none;
-    border: 4px solid #fff;
+    border: 1px solid #fff;
 }
 .skip-link:focus { top: 0; }
 
-/* ODAKLANMA (KLAVYE KULLANIMI) */
+/* ODAKLANMA (Klavye ile gezenler için) */
 a:focus, button:focus, summary:focus, input:focus {
-    outline: 6px solid #005fcc !important; /* Mavi kalın odak çerçevesi */
-    outline-offset: 4px;
+    outline: 2px solid #ffff00 !important; /* İnce odak çizgisi */
+    outline-offset: 2px;
     z-index: 10;
 }
 
-/* --- ORTAK BUTON STİLİ (SİYAH KUTU - SARI ŞERİT) --- */
-/* Bu sınıf tüm butonlara ve linklere uygulanacak */
+/* --- ORTAK BUTON STİLİ (SİYAH KUTU - İNCE SARI ŞERİT) --- */
+/* İsteğin üzerine kalınlık 1px yapıldı */
 button, .test-link, .ana-menu-karti, .nav-buton, .bitir-butonu, .aksiyon-butonu, .sik-butonu {
     background-color: #000000 !important; /* Siyah Zemin */
     color: #ffffff !important; /* Beyaz Yazı */
-    border: 4px solid #ffff00 !important; /* SARI ŞERİT/ÇERÇEVE */
-    border-radius: 12px; /* Köşeleri yumuşat */
+    border: 1px solid #ffff00 !important; /* İNCE SARI ŞERİT (Burayı değiştirdik) */
+    border-radius: 8px; /* Köşeleri biraz daha keskinleştirdik */
     padding: 15px;
     font-weight: bold;
     font-size: 1.3rem;
     cursor: pointer;
     text-decoration: none;
     display: inline-block;
-    transition: all 0.1s;
-    box-shadow: 0 0 0 0 transparent; /* Reset */
+    transition: transform 0.1s;
+    box-shadow: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
-/* ÜZERİNE GELİNCE (HOVER) */
-button:hover, .test-link:hover, .ana-menu-karti:hover, .nav-buton:hover:not(:disabled), .sik-butonu:hover {
-    background-color: #ffff00 !important; /* Sarı Zemin */
-    color: #000000 !important; /* Siyah Yazı */
-    transform: scale(1.02); /* Hafif büyüme */
-    box-shadow: 0 0 15px #ffff00; /* Parlama efekti */
+/* --- MOBİLDE HOVER SORUNU ÇÖZÜMÜ --- */
+@media (hover: hover) {
+    button:hover, .test-link:hover, .ana-menu-karti:hover, .nav-buton:hover:not(:disabled), .sik-butonu:hover {
+        background-color: #111 !important; /* Üzerine gelince hafif grileşsin */
+        border-color: #ffff00 !important;
+        transform: scale(1.01);
+        box-shadow: 0 0 10px rgba(255, 255, 0, 0.3); /* Hafif sarı parıltı */
+    }
 }
 
-/* DE-AKTİF BUTON */
+/* TIKLAYINCA / BASILI TUTUNCA */
+button:active, .test-link:active, .ana-menu-karti:active, .nav-buton:active:not(:disabled), .sik-butonu:active {
+    background-color: #ffff00 !important; /* Tıklayınca sarı olsun */
+    color: #000000 !important;
+}
+
+/* PASİF BUTON */
 button:disabled, .nav-buton:disabled {
-    border-color: #555 !important;
-    color: #555 !important;
+    border-color: #444 !important;
+    color: #444 !important;
     cursor: not-allowed;
     transform: none;
     box-shadow: none;
+    background-color: #000 !important;
 }
 
 /* --- ÜST ŞERİT --- */
@@ -70,7 +82,7 @@ button:disabled, .nav-buton:disabled {
     background-color: #000;
     padding: 20px 0;
     text-align: center;
-    border-bottom: 4px solid #ffff00; /* Başlık altı sarı çizgi */
+    border-bottom: 1px solid #ffff00; /* İnce çizgi */
     margin-bottom: 20px;
 }
 
@@ -79,25 +91,27 @@ button:disabled, .nav-buton:disabled {
     font-size: 2.5rem;
     font-weight: 900;
     text-transform: uppercase;
-    color: #ffff00; /* Başlık Sarı */
+    color: #ffff00;
 }
 
 .yil-etiketi { color: #fff; margin-left: 10px; }
 
 /* --- ANA İÇERİK --- */
+main#ana-icerik, main#test-listesi { flex: 1; }
+
 .container {
     max-width: 900px;
     margin: 0 auto;
     padding: 0 15px;
     text-align: center;
-    padding-bottom: 60px; /* Footer payı */
+    padding-bottom: 60px;
 }
 
 .alt-baslik {
     font-size: 2rem;
     color: #ffff00;
     margin-bottom: 30px;
-    border-bottom: 2px solid #fff;
+    border-bottom: 1px solid #fff;
     display: inline-block;
     padding-bottom: 10px;
 }
@@ -120,7 +134,7 @@ button:disabled, .nav-buton:disabled {
     font-size: 1.5rem;
 }
 
-/* --- TEST SAYFASI MENÜSÜ --- */
+/* --- TEST LİSTESİ --- */
 .konu-listesi-kapsayici {
     display: flex;
     flex-direction: column;
@@ -128,11 +142,10 @@ button:disabled, .nav-buton:disabled {
 }
 
 .konu-baslik-butonu {
-    /* Summary etiketi olduğu için özel stil */
     background-color: #000;
     color: #fff;
-    border: 4px solid #ffff00;
-    border-radius: 12px;
+    border: 1px solid #ffff00; /* İnce şerit */
+    border-radius: 8px;
     padding: 20px;
     font-size: 1.5rem;
     font-weight: bold;
@@ -141,18 +154,15 @@ button:disabled, .nav-buton:disabled {
     list-style: none;
     position: relative;
 }
-.konu-baslik-butonu:hover {
-    background-color: #ffff00;
-    color: #000;
-}
+
 .konu-baslik-butonu::after {
-    content: "+"; position: absolute; right: 20px; font-size: 2rem;
+    content: "+"; position: absolute; right: 20px; font-size: 2rem; color: #ffff00;
 }
 details[open] .konu-baslik-butonu::after { content: "-"; }
 
 .test-linkleri-alani {
-    background-color: #111;
-    border: 2px solid #ffff00;
+    background-color: #0a0a0a;
+    border: 1px solid #ffff00;
     border-top: none;
     padding: 20px;
     text-align: left;
@@ -177,9 +187,9 @@ details[open] .konu-baslik-butonu::after { content: "-"; }
 
 .soru-kutusu {
     background-color: #000;
-    border: 4px solid #fff; /* Soru kutusu beyaz çerçeve */
+    border: 1px solid #fff; /* Soru kutusu ince beyaz */
     padding: 20px;
-    border-radius: 15px;
+    border-radius: 8px;
     text-align: left;
     margin-bottom: 20px;
 }
@@ -197,35 +207,33 @@ details[open] .konu-baslik-butonu::after { content: "-"; }
     gap: 15px;
 }
 
-/* DOĞRU / YANLIŞ RENKLERİ (ÖNEMLİ) */
+/* DOĞRU / YANLIŞ GÖRÜNÜMÜ */
 .sik-butonu.dogru {
     background-color: #000 !important;
-    border: 6px solid #00ff00 !important; /* Kalın Yeşil */
+    border: 4px solid #00ff00 !important; /* Doğru olunca belirginleşsin (4px) */
     color: #00ff00 !important;
-    box-shadow: 0 0 20px #00ff00;
 }
 .sik-butonu.dogru::after { content: " ✓ DOĞRU"; float: right; font-weight: 900; }
 
 .sik-butonu.yanlis {
     background-color: #000 !important;
-    border: 6px solid #ff0000 !important; /* Kalın Kırmızı */
+    border: 4px solid #ff0000 !important; /* Yanlış olunca belirginleşsin (4px) */
     color: #ff0000 !important;
-    box-shadow: 0 0 20px #ff0000;
 }
 .sik-butonu.yanlis::after { content: " ✕ YANLIŞ"; float: right; font-weight: 900; }
 
-/* UYARI KUTUSU (Görsel Geri Bildirim) */
+/* UYARI KUTUSU */
 .gorsel-uyari-kutusu {
     margin-top: 15px;
     padding: 15px;
     text-align: center;
     font-size: 1.5rem;
     font-weight: bold;
-    border-radius: 10px;
-    display: none; /* JS ile açılacak */
+    border-radius: 8px;
+    display: none;
 }
-.uyari-dogru { background-color: #004d00; color: #00ff00; border: 2px solid #00ff00; }
-.uyari-yanlis { background-color: #4d0000; color: #ff0000; border: 2px solid #ff0000; }
+.uyari-dogru { background-color: #003300; color: #00ff00; border: 1px solid #00ff00; }
+.uyari-yanlis { background-color: #330000; color: #ff0000; border: 1px solid #ff0000; }
 
 /* --- NAVİGASYON --- */
 .navigasyon-alani {
@@ -239,26 +247,31 @@ details[open] .konu-baslik-butonu::after { content: "-"; }
 footer {
     text-align: center;
     padding: 20px;
-    border-top: 2px solid #ffff00;
+    border-top: 1px solid #ffff00;
     margin-top: 40px;
 }
 .netlify-link {
-    font-size: 1rem;
-    border: 2px solid #fff !important;
+    display: inline-block;
+    margin-top: 10px;
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 0.9rem;
+    border: 1px solid #fff !important;
+    padding: 5px 10px;
+    border-radius: 5px;
 }
 
-/* --- MOBİL UYUM (iPhone vb.) --- */
+/* --- MOBİL UYUM --- */
 @media screen and (max-width: 768px) {
     .ana-baslik-kutusu h1 { font-size: 1.8rem; }
     .ana-butonlar-kapsayici { flex-direction: column; }
     .container { padding: 0 10px; margin-top: 10px; }
     
-    /* Soruları Ekrana Sığdırma Ayarları */
     .soru-kutusu { padding: 15px; margin-bottom: 10px; }
     #soru-metni { font-size: 1.2rem; margin-bottom: 10px; line-height: 1.3; }
     .sik-butonu { font-size: 1.1rem; padding: 12px; }
     
-    /* Butonları mobilde daha kolay basılır yap */
     .nav-buton { padding: 12px; font-size: 1rem; }
 }
 
