@@ -127,9 +127,8 @@ const tumTestler = {
             dogruCevap: 0,
             aciklama: "Peçenekler devlet kuramamış, boylar halinde yaşamıştır."
         }
-    ]
-};
-// --- BÖLÜM 2: İLK TÜRK İSLAM DEVLETLERİ - TEST 1 ---// --- BÖLÜM 2: İLK TÜRK İSLAM DEVLETLERİ - TEST 1 ---};    // --- BÖLÜM 2: İLK TÜRK İSLAM DEVLETLERİ - TEST 1 ---
+    ],
+    ],// --- BÖLÜM 2: İLK TÜRK İSLAM DEVLETLERİ - TEST 1 ---// --- BÖLÜM 2: İLK TÜRK İSLAM DEVLETLERİ - TEST 1 ---};    // --- BÖLÜM 2: İLK TÜRK İSLAM DEVLETLERİ - TEST 1 ---
     "turk_islam_test1": [
         {
             soru: "1. Peçeneklerle ilgili hangisi doğrudur?",
