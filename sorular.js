@@ -758,121 +758,121 @@ const tumTestler = {
     // --- TEST 6: KÜLTÜR, MEDENİYET VE SOSYAL YAPI (Sorular 171-190) ---
     "turk_islam_test6": [
         {
-            soru: "1. Hindistan'da Taç Mahal'i inşa eden Türk devleti hangisidir?",
+            soru: "1. Hindistan'da 1526 yılında kurulan, Şah Cihan'ın eşi Mümtaz Mahal için yaptırdığı Taç Mahal adlı yapıtla anılan Türk devleti aşağıdakilerden hangisidir?",
             siklar: ["Babür", "Timur", "Altınorda", "Çağatay", "İlhanlı"],
             dogruCevap: 0, 
             aciklama: "Hindistan'da kurulan Babür İmparatorluğu Taç Mahal'i yapmıştır."
         },
         {
-            soru: "2. Selçuklu mimarisinde hangi süsleme kullanılmamıştır?",
+            soru: "2. Selçuklular mimari alanda birçok önemli eser meydana getirerek bunları süsleme sanatlarının en güzelleriyle bezemişlerdir. Selçuklular mimari alandaki eserlerinde aşağıdaki süsleme sanatlarından hangisini kullanmamışlardır?",
             siklar: ["Geometrik şekiller", "İnsan figürü", "Bitkisel motifler", "Yazı sanatları", "Kabartma sanatları"],
             dogruCevap: 1, 
             aciklama: "İslami etkiden dolayı dini mimaride insan figürü (resim/heykel) kullanılmaz."
         },
         {
-            soru: "3. Hangi devletin resmi dili Türkçe idi? 1. Samanoğulları 2. Karamanoğulları 3. Büyük Selçuklular",
+            soru: "3. Aşağıdaki öncüllerde verilen hangi devletlerin resmi dili Türkçe idi? 1. Samanoğulları 2. Karamanoğulları 3. Büyük Selçuklular",
             siklar: ["Yalnız 1", "Yalnız 2", "Yalnız 3", "1 ve 2", "2 ve 3"],
             dogruCevap: 1, 
             aciklama: "Karamanoğlu Mehmet Bey 1277'de Türkçeyi resmi dil ilan etmiştir."
         },
         {
-            soru: "4. Selçuklularda resmi dilin Farsça, eğitim dilinin Arapça olması neye neden olmuştur?",
-            siklar: ["Asker sayısının azalmasına", "Halkla bağların güçlenmesine", "Türk dilindeki gelişmenin yavaşlamasına", "Siyasal baskıların önlenmesine", "Bilim adamlarının yönetime girmesine"],
+            soru: "4. Selçuklularda resmi yazışma dili Farsça idi. Medreselerde eğitim Arapça yapılıyordu. Halk ve ordu kesimi ise Türkçe konuşuyordu. Bu durum Selçuklularda aşağıdakilerden hangisine neden olmuştur?",
+            siklar: ["Ordudaki asker sayısının azalmasına", "Yöneticiler ile halk arasındaki bağların güçlenmesine", "Türk dilindeki gelişmenin yavaşlamasına", "Siyasal baskıların önlenmesine", "Bilim adamlarının yönetime girmesine"],
             dogruCevap: 2, 
             aciklama: "Türkçenin sadece halk dili olarak kalması edebi gelişimini yavaşlatmıştır."
         },
         {
-            soru: "5. Türkçeyi Araplara öğretmek için yazılan ilk sözlük hangisidir?",
-            siklar: ["Divan-ı Lügati't-Türk", "Atabetü'l Hakayık", "Kutadgu Bilig", "Siyasetname", "Divan-ı Hikmet"],
+            soru: "5. Kültür ve uygarlık tarihimizin ana yapıtlarından biridir. Türkçenin ilk sözlüğü olan yapıt, Araplara Türkçeyi öğretmek amacıyla yazılmıştır. Söz konusu yapıt ve yazarı aşağıdakilerden hangisinde birlikte verilmiştir?",
+            siklar: ["Divan-ı Lügati't-Türk, Kaşgarlı Mahmud", "Atabetü'l Hakayık, Edib Ahmed", "KutadguBilig, Yusuf Has Hacip", "Siyasetname, Nizamülmülk", "Divan-ı Hikmet, Hoca Ahmed yesevi"],
             dogruCevap: 0, 
             aciklama: "Kaşgarlı Mahmud tarafından yazılan eser Divan-ı Lügati't-Türk'tür."
         },
         {
-            soru: "6. Büyük Selçuklularda ekonomiyi canlandırmak için yapılanlar nelerdir? 1. Gümrük vergilerini kaldırmak 2. Sigorta sistemi",
+            soru: "6. Büyük Selçuklularda; 1. Gümrük ve ticaret vergilerinin sık sık kaldırılması, 2. Ticari güvence (sigorta) usulünün uygulanması, 3. Kullandıkları paranın altın veya gümüş olması durumlarından hangilerinin ekonomiye canlılık kazandırmak amaçlı olduğu savunulabilir?",
             siklar: ["Yalnız 1", "Yalnız 2", "Yalnız 3", "1 ve 2", "2 ve 3"],
             dogruCevap: 3, 
             aciklama: "Vergileri düşürmek ve devlet sigortası ticareti teşvik eder."
         },
         {
-            soru: "7. Ticaretin gelişmesinde hangileri etkilidir? 1. Can güvenliği 2. Kervansaraylar",
+            soru: "7. Büyük Selçuklular döneminde; 1. Müslüman olmayan tüccarların can ve malının devlet güvencesine alınması, 2. Kervanların konaklaması için kervansaraylar yapılması, 3. Tuğrul Bey ve diğer Selçuklu Sultanlarının kendi adlarına para bastırması durumlarından hangilerinin ticaretin gelişmesinde etkili olduğu savunulabilir?",
             siklar: ["Yalnız 1", "Yalnız 2", "1 ve 2", "2 ve 3", "1, 2 ve 3"],
             dogruCevap: 2, 
             aciklama: "Güvenlik ve konaklama imkanları ticareti geliştirir. Para bastırmak egemenlik sembolüdür."
         },
         {
-            soru: "8. Selçuklu sultanlarının boş arazileri halka dağıtmasının öncelikli amacı nedir?",
-            siklar: ["Vergi toplama", "Üretimin artışı", "Toprak bütünlüğü", "Asayiş", "Süreklilik"],
+            soru: "8. Selçuklu Sultanları din ve ırk ayrımı gözetmeden halka toprak dağıtarak boş araziyi değerlendirmeyi devletin görevi saymışlardır. Selçuklu Sultanlarının izledikleri bu politika öncelikle aşağıdakilerden hangisini sağlamaya yöneliktir?",
+            siklar: ["Vergi toplama düzeni", "Üretimin artışı", "Toprak bütünlüğünün korunması", "Ülkede asayişi", "Yönetimde süreklilik"],
             dogruCevap: 1, 
             aciklama: "Boş arazilerin işlenmesi tarımsal üretimi artırır."
         },
         {
-            soru: "9. Hangi devlette kervansaray mimarisi yoktur?",
+            soru: "9. Hangi Türk devletinde kervansaray mimarisi yoktur?",
             siklar: ["Karahanlılar", "Gazneliler", "Büyük Selçuklular", "Anadolu Selçukluları", "Göktürkler"],
             dogruCevap: 4, 
             aciklama: "Kervansaray (Ribat) İslamiyet sonrası Türk-İslam devletlerinde görülür."
         },
         {
-            soru: "10. Hangisi toprak yönetimiyle ilgili değildir?",
+            soru: "10. Aşağıdakilerden hangisi Türk İslam devletlerinde toprak yönetimi ile ilgili değildir?",
             siklar: ["İkta", "Ocaklık", "Zeamet", "Has", "Ulak"],
             dogruCevap: 4, 
             aciklama: "Ulak 'haberci' demektir, toprakla ilgisi yoktur."
         },
         {
-            soru: "11. Hangisi toprak çeşidi değildir?",
+            soru: "11. Aşağıdakilerden hangisi Türk-İslam devletlerindeki toprak yönetimiyle ilgili arazi çeşitlerinden biri değildir?",
             siklar: ["Has", "Mülk", "Gulam", "İkta", "Vakıf"],
             dogruCevap: 2, 
             aciklama: "Gulam, asker yetiştirme sistemidir (Kapıkulu)."
         },
         {
-            soru: "12. Kişiler hangisine özel mülk olarak sahip olabilir?",
-            siklar: ["Yalnız 1", "Yalnız 2", "Yalnız 3 (Bahçe)", "1 ve 2", "3 ve 4"],
+            soru: "12. Türk İslam devletlerinde kişiler; 1. Otlak 2. Yaylak 3. Bahçe 4. Orman alanlarından hangilerine sahip olabilmişlerdir?",
+            siklar: ["Yalnız 1", "Yalnız 2", "Yalnız 3", "1 ve 2", "3 ve 4"],
             dogruCevap: 2, 
             aciklama: "Otlak, yaylak, orman devlete aittir; ev ve bahçe özel mülk olabilir."
         },
         {
-            soru: "13. Köylünün hakları nelerdir? 1. Vergi verme 2. İşleme hakkı 3. Miras bırakma",
+            soru: "13. Türk İslam Devletleri'nde köyde yaşayanlarla ilgili olarak; 1. Ürün üzerinden vergi verme, 2. Elindeki toprağı işleyebildiği sürece sahip olma, 3. Ölüm halinde erkek evlada toprağı işleme olanağı tanıma uygulamalarından hangisi ya da hangileri vardır?",
             siklar: ["Yalnız 1", "Yalnız 2", "2 ve 3", "1 ve 3", "1, 2 ve 3"],
             dogruCevap: 4, 
             aciklama: "Köylü toprağı işler, vergisini verir ve işleme hakkını miras bırakabilir."
         },
         {
-            soru: "14. Melikşah döneminde sosyal hayatı olumlu etkileyenler nelerdir? 1. Medrese 2. Pozitif bilimler 3. Celali takvimi",
+            soru: "14. Büyük Selçuklu Sultanı Melikşah döneminde; 1. Yeni bir mezhep olan Batinilerin Vezir Nizamülmülk'ü öldürmeleri, 2. Bağdat'a Nizamiye Medresesi'nin kurulması, 3. Medreselerde din bilimlerinin yanında pozitif bilimlerin de okutulması, 4. Yeni bir takvimin düzenlenmesi gelişmelerinden hangileri sosyal hayatı olumlu yönde etkilemiştir?",
             siklar: ["4", "1 ve 2", "1, 2 ve 3", "2, 3 ve 4", "1, 2, 3 ve 4"],
             dogruCevap: 3, 
             aciklama: "Eğitim ve bilim olumludur; Batinilerin (Hasan Sabbah) faaliyetleri olumsuzdur."
         },
         {
-            soru: "15. Rasathane kurulması hangisini sağlamıştır?",
+            soru: "15. Büyük Selçuklular döneminde görülen aşağıdaki gelişmelerin hangisinde, kurulan rasathanede gök cisimlerinin gözlenmesinin etkili olduğu savunulabilir?",
             siklar: ["Nizamiye Medresesi", "Malazgirt Zaferi", "Kudüs'ün fethi", "Atabeylik", "Celali Takvimi'nin hazırlanması"],
             dogruCevap: 4, 
             aciklama: "Celali Takvimi astronomik gözlemler (rasathane) sonucunda hazırlanmıştır."
         },
         {
-            soru: "16. Bilim ve eğitimin gelişmesi için yapılanlardan hangisi yanlıştır?",
+            soru: "16. Aşağıdakilerden hangisinin Büyük Selçuklu Devleti'nde bilim ve eğitim ortamının gelişmesi amacıyla yapıldığı söylenemez?",
             siklar: ["Alimleri himaye etmek", "Medreseler açmak", "Rasathane kurmak", "Tıp eğitimi vermek", "Kervansaraylar yapmak"],
             dogruCevap: 4, 
             aciklama: "Kervansaraylar ticaret içindir, bilim ve eğitim kurumu değildir."
         },
         {
-            soru: "17. Mülklerin kamu yararı için süresiz bağışlanması sistemine ne denir?",
+            soru: "17. İslam hukukuna göre herhangi bir kişinin mülklerinin veya gelirlerinin bir kısmının kamu yararı için süresiz olarak kullanılması sistemi aşağıdakilerden hangisidir?",
             siklar: ["İltizam", "Dirlik", "Vakıf", "Devşirme", "Saliyane"],
             dogruCevap: 2, 
             aciklama: "Hayır işleri için kurulan sisteme Vakıf denir."
         },
         {
-            soru: "18. Yalnız gayrimüslimlerden alınan vergiler hangileridir? 1. Cizye 2. Haraç",
+            soru: "18. Aşağıdaki vergilerden hangileri Türk İslam devletlerinde yalnız Müslüman olmayanlardan alınan vergilerdir? 1. Cizye 2. Haraç 3. Öşür",
             siklar: ["Yalnız 1", "Yalnız 2", "Yalnız 3", "1 ve 2", "2 ve 3"],
             dogruCevap: 3, 
             aciklama: "Cizye (baş vergisi) ve Haraç (toprak vergisi) gayrimüslimlerden alınır."
         },
         {
-            soru: "19. Karluklarda insan figürünün yerini bitki motiflerinin almasının nedeni nedir?",
+            soru: "19. Talas Savaşı'ndan sonra İslamiyet'i kabul eden Karluklar'da insan figürleri yerini yavaş yavaş bitki motifleri ve geometrik desenlere bırakmıştır. Bu durumun aşağıdakilerden hangisindeki değişikliklerle ilgili olduğu savunulabilir?",
             siklar: ["İnanç sistemi", "Doğa şartları", "Uluslararası ilişkiler", "Ekonomik durum", "Malzeme"],
             dogruCevap: 0, 
             aciklama: "İslamiyet'in (inanç sistemi) etkisiyle resim yasaklanmış, motiflere geçilmiştir."
         },
         {
-            soru: "20. Selçuklu sülalesinin isimlerinden (Mikail, Yusuf, Musa) yola çıkarak hangi inançtan etkilendikleri düşünülür?",
+            soru: "20. Büyük Selçuklu Devleti'ne adını veren Selçuk Bey, oğullarından bazılarına Mikail, Yusuf, Musa, Yunus gibi isimleri koymuştur. Devlet kurulmadan önce Selçuklu sülalesi ve etrafındaki bazı boyların Hazarlara tabi olduğu da bilinmektedir. Bu bilgilere dayalı olarak Selçuklu sülalesinin İslamiyet'in kabulünden önceki dini vaziyeti hakkında farklı görüşler ileri sürülmüştür. Bu bilgilere göre Selçuklu sülalesinin İslamiyet'i kabulünden önce benimsemiş olabileceği düşünülen inanç sisteminin aşağıdakilerden hangisi olduğu söylenilebilir?",
             siklar: ["Budizm", "Musevilik", "Hristiyanlık", "Maniheizm", "Zerdüştlük"],
             dogruCevap: 1, 
             aciklama: "Bu isimler Tevrat kökenlidir ve Hazarların (Musevi) etkisiyle alındığı düşünülür."
@@ -884,13 +884,13 @@ const tumTestler = {
     // --- TEST 7: SANAT, HUKUK, YÖNETİM VE EKONOMİ (Sorular 191-210) ---
     "turk_islam_test7": [
         {
-            soru: "1. Türk İslam uygarlığında resim ve heykelin yasaklanması hangi sanatların gelişmesinde etkili olmuştur?",
+            soru: "1. Türk İslam uygarlığında aşağıdakilerden hangisinin yasaklanması; oymacılık, kakmacılık ve nakkaşlık gibi süsleme sanatlarının gelişmesinde etkili olmuştur?",
             siklar: ["Yazı (Hat) sanatı", "Resim ve heykelcilik", "Duvar çiniciliği", "Figürlü plastik sanat", "Minyatür sanatı"],
             dogruCevap: 1, 
             aciklama: "Putperestliği çağrıştırdığı gerekçesiyle resim ve heykelin (tasviri) yasaklanması sanatçıları soyut sanatlara yöneltmiştir. (Soruda yasaklanan sorulmuş)."
         },
         {
-            soru: "2. Türklerin İslamiyet'e geçişiyle hangi alan bir sanat kolu haline gelmiştir?",
+            soru: "2. Türklerin İslamiyet'e geçmeleriyle aşağıdakilerden hangisi kültürel hayatlarında bir sanat kolu oluşturacak derecede önem kazanmıştır?",
             siklar: ["Hat", "Maden işçiliği", "Heykel", "Oyma", "Dokuma"],
             dogruCevap: 0, 
             aciklama: "Kuran-ı Kerim'i güzel yazma arzusu Hat sanatını geliştirmiştir."
@@ -902,19 +902,19 @@ const tumTestler = {
             aciklama: "Fetva verme yetkisi Müftü'ye aittir; Kadı yargıçtır."
         },
         {
-            soru: "4. Şehzadelerin yanına Atabey verilmesinin temel amacı nedir?",
+            soru: "4. Selçuklular bölge ve eyaletlerin başına idareci olarak atadıkları şehzadelerin yanına Atabey unvanlı kişiler de verirlerdi. Bu uygulamadaki temel amaç aşağıdakilerden hangisidir?",
             siklar: ["Taht kavgalarını önlemek", "Merkeze bağlılığı artırmak", "Eyalet güvenliği", "Devlet yönetimi konusunda yetiştirmek", "Orduyu güçlendirmek"],
             dogruCevap: 3, 
             aciklama: "Atabeyler, tecrübesiz şehzadeleri (Melik) eğitmekle görevlidir."
         },
         {
-            soru: "5. Selçuklularda taht kavgalarına neden olan temel anlayış nedir?",
-            siklar: ["Tanrı adına yönetme", "Ülkenin hanedanın ortak malı sayılması", "Din ve dünya işlerinin ayrılması", "1 ve 2", "2 ve 3"],
+            soru: "5. Selçuklularda; 1. Hükümdarın Tanrı adına insanları yönetme yetkisi olması, 2. Ülkenin hanedan üyelerinin ortak malı sayılması, 3. Din işlerinin halifeye, dünya işlerinin sultana ait olması durumlarından hangileri taht kavgalarına neden olduğu savunulabilir?",
+            siklar: ["Yalnız 1", "Yalnız 2", "Yalnız 3", "1 ve 2", "2 ve 3"],
             dogruCevap: 1, 
             aciklama: "Ülkenin hanedanın ortak malı olması (Veraset), her şehzadeye taht hakkı tanıyarak kavgaya yol açar."
         },
         {
-            soru: "6. 'Fethedilen toprak fethedenin malıdır' anlayışı neye yol açmıştır?",
+            soru: "6. 'Büyük Selçuklularda fethedilen toprak fethedenin malıdır' anlayışı neye yol açmıştır?",
             siklar: ["Feodal beyliklerin ortaya çıkmasına", "Merkeziyetçiliğin güçlenmesine", "Deneyimsiz komutanlara", "Ticarete önem verilmesine", "Bayındırlık işlerinin aksamasına"],
             dogruCevap: 0, 
             aciklama: "Komutanların fethettikleri yerde yarı bağımsız beylikler kurmasına (feodalleşme) neden olmuştur."
@@ -932,25 +932,25 @@ const tumTestler = {
             aciklama: "Yavuz Sultan Selim ile birlikte Osmanlı padişahları Halifelik unvanını da almıştır."
         },
         {
-            soru: "9. Memuriyetin babadan oğula geçmesi neye neden olmuştur?",
+            soru: "9. İlk Müslüman Türk devletlerinde devlet memurluğu çoğunlukla babadan oğula geçer, iktidar (siyasi güç) değişmelerinde de memuriyet çoğu kez aynı ailede kalırdı. Aşağıdakilerden hangisi bu durumun sonuçlarından biridir?",
             siklar: ["İyi yönetime", "İşsizliğin bitmesine", "Başarılı dış siyasete", "Yeni mesleklerin kapanmasına", "Bürokraside egemen bir sınıfın oluşmasına"],
             dogruCevap: 4, 
             aciklama: "Yönetimde belirli ailelerin güçlendiği bir bürokratik sınıf ortaya çıkmıştır."
         },
         {
-            soru: "10. İkta sisteminin sonucu olmayan durum hangisidir?",
+            soru: "10. Büyük Selçuklularda iktalar askeri ve sivil devlet görevlerine hizmetleri karşılığında verilirdi. İkta sahipleri ikta olarak verilen topraklarda oturur, memurlar aracılığıyla vergileri toplardı. Bu vergilerin bir kısmıyla kendi geçimini sağlar, geri kalan kısmıyla da belli sayıda atlı asker beslerdi. Sefere çağrıldığı zaman askerleriyle birlikte sefere katılırdı. Aşağıdakilerden hangisi bu düzenleme ile ortaya çıkan durumlardan biri olduğu savunulamaz?",
             siklar: ["Hazinenin yükünün azalması", "Vergilerin maaş karşılığı olması", "Ordunun tümünün atlı olması", "Atlı asker masrafının karşılanması", "Toprağın mülkiyetinin devlette kalması"],
             dogruCevap: 2, 
             aciklama: "Ordunun tamamı atlı değildir; Gulam gibi piyade birlikleri de vardır."
         },
         {
-            soru: "11. Toprak gelirlerinin hizmet karşılığı verilmesi usulü nedir?",
+            soru: "11. Büyük Selçuklularda ülke topraklarının vergi gelirlerine göre bölümlere ayrılarak bunların askeri ve sivil devlet görevlerine hizmet karşılığında verilmesi usulü aşağıdakilerden hangisidir?",
             siklar: ["İkta Sistemi", "Gulam Sistemi", "Vakıf Sistemi", "İltizam Sistemi", "Devşirme Sistemi"],
             dogruCevap: 0, 
             aciklama: "Hizmet karşılığı toprak geliri tahsisine İkta denir."
         },
         {
-            soru: "12. İkta sistemiyle hangileri sağlanmıştır? 1. Üretim 2. Asker yetiştirme 3. Yargı denetimi",
+            soru: "12.  Selçuklularda İkta sistemiyle Aşağıdakilerden hangileri sağlanmıştır? 1. Belirli bir toprağın işlenmesi 2. Atlı asker yetiştirilmesi 3. Yargı işlerinin denetlenmesi",
             siklar: ["Yalnız 1", "Yalnız 2", "Yalnız 3", "1 ve 2", "1, 2 ve 3"],
             dogruCevap: 3, 
             aciklama: "İkta ile üretim devamlılığı ve asker yetiştirilmesi sağlanır."
@@ -968,7 +968,7 @@ const tumTestler = {
             aciklama: "Küçük yaşta alınan çocukların asker yapılması Devşirme sistemine benzer."
         },
         {
-            soru: "15. Selçuklu paralarının özellikleri nelerdir? 1. Değerli maden 2. Belirli ağırlık 3. Hepsinin aynı değerde olması",
+            soru: "15. Hangisi veya hangileri Selçuklu paralarının özellikleri arasındadır? 1. Değerli madenlerden kesilmesi. 2. Belirli ağırlıklarda olması 3. Tüm para birimlerinin aynı değerde olması",
             siklar: ["Yalnız 1", "Yalnız 2", "Yalnız 3", "1 ve 2", "1, 2 ve 3"],
             dogruCevap: 3, 
             aciklama: "Altın ve gümüşten belirli ağırlıkta basılır; ancak madenine göre değerleri farklıdır."
@@ -980,25 +980,25 @@ const tumTestler = {
             aciklama: "Her üç alan da ekonominin temelini oluşturur."
         },
         {
-            soru: "17. Timur Devleti'nin kurulmasını kolaylaştıran gelişme nedir?",
-            siklar: ["Haçlı Seferlerinin bitmesi", "Büyük Selçuklu'nun yıkılması", "Babürlüler'in yıkılması", "Çağatay Devleti'nin zayıflaması", "Kayı Boyu'nun gelmesi"],
-            dogruCevap: 3, 
-            aciklama: "Timur, zayıflayan Çağatay Hanlığı topraklarında devletini kurmuştur."
-        },
-        {
-            soru: "18. Rusların Karadeniz kuzeyinde güçlenmesine neden olan olay nedir?",
-            siklar: ["Timur'un Altınorda'yı parçalaması", "Yıldırım Beyazıt'ın yenilmesi", "İlhanlı egemenliği", "1 ve 2", "1, 2 ve 3"],
+            soru: "17.Bu gelişmelerden hangisi veya hangileri Rusların Karadeniz'in kuzeyinde güçlerini arttırmalarında etkili olmuştur? 1.Timur'un Altınorda Devleti'nin parçalanmasına neden olması 2. Timur'un Yıldırım Beyazıt'ı yenmesi 3. İlhanlıların Anadolu Selçuklularını egemenliği altına alması ",
+            siklar: ["Yalnız 1", "Yalnız 2", "Yalnız 3", "1 ve 2", "1, 2 ve 3"],
             dogruCevap: 0, 
             aciklama: "Timur'un Altınorda Devleti'ne son vermesi Rusların önünü açmıştır."
         },
         {
-            soru: "19. Karlukların etkisi hangi olayda görülür?",
+            soru: "18. Aşağıdakilerden hangisi Timur Devleti'nin kurulmasını kolaylaştırmıştır?",
+            siklar: ["Haçlı Seferlerinin sona ermesi", "Büyük Selçuklu Devleti'nin yıkılması", "Babürlüler Devleti'nin yıkılması", "Çağatay Devleti'nin zayıflaması", "Oğuzların Kayı Boyu'nun Anadolu'ya gelmesi"],
+            dogruCevap: 3, 
+            aciklama: "Çağtay hanlığının zayıflaması Timurun devlet kurmasını kolaylaştırmıştır."
+        },
+        {
+            soru: "19. Aşağıdaki gelişmelerin hangisinde Karlukların etkisi vardır?",
             siklar: ["Avarların yıkılması", "Çin egemenliği", "İstanbul kuşatması", "Hunların ayrılması", "Talas Savaşı'nın kazanılması"],
             dogruCevap: 4, 
             aciklama: "Talas Savaşı'nda Arapların yanında yer alarak zaferi sağlamışlardır."
         },
         {
-            soru: "20. Talas Savaşı'nın dünya kültür tarihi açısından sonucu nedir?",
+            soru: "20. Çinlilerle Araplar arasında yapılan Talas Savaşı'nın dünya kültür tarihi açısından en önemli sonucu aşağıdakilerden hangisidir?",
             siklar: ["Batı Türkistan'ın kurtulması", "Karlukların bağımsızlığı", "Türk-Arap barışı", "Kağıt üretiminin yayılması", "İslamiyet'in tanınması"],
             dogruCevap: 3, 
             aciklama: "Kağıdın Çin dışına çıkması dünya kültür tarihini etkilemiştir."
@@ -1008,62 +1008,62 @@ const tumTestler = {
     // --- TEST 8: GAZNELİLER, SELÇUKLULAR VE SİYASİ OLAYLAR (Sorular 211-230) ---
     "turk_islam_test8": [
         {
-            soru: "1. Karlukların Talas Savaşı'nda Arapları destekleme nedeni nedir?",
-            siklar: ["Saltanat sistemi", "Çin'in egemenlik isteği", "Türgişlerin yıkılması", "1 ve 2", "2 ve 3"],
+            soru: "1. Karluklar Müslüman olmamalarına karşın İslam ordusuyla birleşip 751 yılında Talas'ta Arapların yanında savaşa girmişler, Çin'in yenilgiye uğratılmasında önemli rol oynamışlardır. Karlukların Arapları Talas Savaşı'nda desteklemelerinde; 1. İslam devletinde saltanat sisteminin devam etmesi, 2. Çin'in Orta Asya'da Türk egemenliğine son vermek istemesi, 3. Türgiş devletinin yıkılmış olması durumlarından hangileri etkili olmuştur?",
+            siklar: ["Yalnız 1", "Yalnız 2", "Yalnız 3", "1 ve 2", "2 ve 3"],
             dogruCevap: 1, 
             aciklama: "Çin'in Orta Asya'daki yayılmacı politikasına karşı Arapları desteklemişlerdir."
         },
         {
-            soru: "2. 1258'de Bağdat'ı alarak Abbasi Devleti'ne son veren devlet hangisidir?",
+            soru: "2. Cengiz Han'ın torunu Hülagü tarafından İran'da kurulan ve 1258 yılında Bağdat'ı alarak Abbasi Devleti'ne son veren devlet aşağıdakilerden hangisidir?",
             siklar: ["İlhanlı Devleti", "Timur Devleti", "Altınorda Devleti", "Çağatay Devleti", "Memlük Devleti"],
             dogruCevap: 0, 
             aciklama: "Hülagü Han liderliğindeki İlhanlılar (Moğol) Abbasileri yıkmıştır."
         },
         {
-            soru: "3. Cengiz Han'ın ölümünden sonra kurulan devletlerden olmayan hangisidir?",
+            soru: "3. Cengiz Han'ın ölümünden sonra merkezi otoritenin zayıflamasıyla Moğol İmparatorluğu topraklarında dört büyük devlet kurulmuştur. Aşağıdakilerden hangisi bu devletlerden biri değildir?",
             siklar: ["Safevi Devleti", "Çağatay Hanlığı", "Altınorda Devleti", "İlhanlı Devleti", "Kubilay Hanlığı"],
             dogruCevap: 0, 
             aciklama: "Safeviler 1501'de kurulan bir Türk devletidir, Moğol devleti değildir."
         },
         {
-            soru: "4. Uç beyleriyle ilgili hangisi söylenebilir? 1. Merkeze genelde bağlıdırlar 2. Savaş bölgesindedirler",
+            soru: "4. Türk İslam devletlerinde Müslüman olmayan devletlere sınır olan bölgelere uç denilirdi. Uçlar güvenilir, bölgeyi tanıyan, askeri gücü olan beylerin yönetimine verilirdi. Beyler sınırlara yönelik saldırılar olduğunda ya da bir düşman kalesinin ele geçirilmesinde sultana sormadan hareket edebilirlerdi. Yalnız bu bilgiyle; 1. Uç beyleri sivil yönetimden sorumlu değildir. 2. Uç beyleri merkezi otoriteye bazı durumlar dışında bağlıdır. 3. Uçlar çoğunlukla savaşların yapıldığı yerlerdir. 4. Uç beyleri öldüğünde beyliğe çoğunlukla varisleri getirilmiştir. yargılarından hangilerine ulaşılabilir?",
             siklar: ["1 ve 2", "2 ve 3", "2 ve 4", "1, 2 ve 3", "2, 3 ve 4"],
             dogruCevap: 1, 
-            aciklama: "Sultana sormadan hareket yetkisi (bazı durumlar) ve savaş bölgesi olmaları (düşman kalesi) özellikleri arasındadır."
+            aciklama: "Sultana sormadan hareket edebilmeleri bazı durumlar dışında merkeze bağlı olduklarını, saldırılar olduğunda ve düşman kalesi ifadeleri ise buraların savaş bölgesi olduğunu gösterir."
         },
         {
-            soru: "5. Türk hükümdarlarının hutbe okutma konusundaki ısrarı neyin göstergesidir?",
+            soru: "5. Pasinler Savaşı'ndan sonra Sultan Tuğrul Bey'in esir aldığı Gürcü Kralı Liparit'i İstanbul'daki camide (adına) hutbe okutmak şartıyla serbest bırakması. 2. Ankara Savaşı'ndan önce Yıldırım Beyazıt'ın İstanbul kuşatmasını kaldırırken İstanbul'daki camide adına hutbe okutmak şartı ileri sürmesi. Bu iki Türk hükümdarının birçok isteklerinin yanında özellikle hutbe okutmak konusundaki ısrarını aşağıdakilerden hangisi daha iyi açıklar?",
             siklar: ["İslamiyet'in üstünlüğünün", "Barış taraftarı olduklarının", "Egemenlik sembolü olduğunun", "Müslümanları çekmek istemelerinin", "Moral vermenin"],
             dogruCevap: 2, 
-            aciklama: "Hutbe okutmak bağımsızlığın ve hükümdarlığın ilanıdır."
+            aciklama: "Türk-İslam devletlerinde Cuma namazlarında Hutbe okutmak (ve para bastırmak), o topraklarda kimin egemen olduğunu gösteren en önemli siyasi semboldür."
         },
         {
-            soru: "6. Göktürkler ile Selçukluların ortak özelliği nedir?",
-            siklar: ["Aynı yüzyıl", "Ülkenin hanedanın ortak malı olması", "Sultan unvanı", "İslamiyet", "Alfabe birliği"],
+            soru: "6. Aşağıdakilerden hangisi Göktürkler ile Selçukluların ortak özelliklerinden biridir?",
+            siklar: ["Aynı yüzyıllarda siyasi varlık göstermeleri", "Ülkenin hükümdar ailesinin ortak malı olması", "Hükümdarlarının sultan unvanını taşıması", "İslam dinini kabul etmeleri", "Alfabe birliğinin olması birliği"],
             dogruCevap: 1, 
             aciklama: "Kut anlayışı ve veraset sistemi ortaktır."
         },
         {
-            soru: "7. Selçuklulardaki Atabey'in Osmanlı'daki karşılığı nedir?",
+            soru: "7. Selçuklulardaki Atabey'in Osmanlı'daki karşılığı hangisidir?",
             siklar: ["Ayan", "Lala", "Vezir", "Mültezim", "Kethüda"],
             dogruCevap: 1, 
             aciklama: "Şehzade eğitmeni olan Atabey'in Osmanlı'daki adı Lala'dır."
         },
         {
-            soru: "8. Atabeylik sistemi hangi devlet zamanında ortaya çıkmıştır?",
+            soru: "8. Devlet yönetimini hanedanın erkek çocuklarına öğretmeyi amaçlayan Atabeylik aşağıdaki Türk devletlerinin hangisi zamanında ortaya çıkmıştır?",
             siklar: ["Karahanlılar", "Gazneliler", "Büyük Selçuklular", "Memlükler", "Harzemşahlar"],
             dogruCevap: 2, 
             aciklama: "İlk kez Büyük Selçuklular (Nizamülmülk) döneminde uygulanmıştır."
         },
         {
-            soru: "9. Hükümdar çocukken devleti yöneten kişiye ne denir?",
+            soru: "9. Aşağıdakilerden hangisi ilk Müslüman Türk devletlerinde hükümdarın çocuk yaşta olması halinde devleti yöneten kişiye verilen unvandır?",
             siklar: ["Atabey", "Naip", "Şahne", "Melik", "Ulak"],
             dogruCevap: 1, 
             aciklama: "Hükümdar vekiline Naip (Saltanat Naibi) denir."
         },
         {
-            soru: "10. Karahanlı Devleti ile ilgili yanlış bilgi hangisidir?",
-            siklar: ["İlk Türk İslam Devletidir (Orta Asya)", "İkiye ayrılmıştır", "Türkçeye önem vermiştir", "Hindistan'da İslam'ı yaymıştır", "Bilim merkezleri vardır"],
+            soru: "10. Karahanlı Devleti ile ilgili olarak aşağıdaki bilgilerden hangisi doğru değildir?",
+            siklar: ["Orta Asya'da kurulan ilk Türk İslam Devletidir.", "1042 yılında ikiye ayrılmıştır.", "Döneminde Türkçeye büyük önem verilmiştir.", "Hindistan'da İslamiyet'in yayılmasına öncülük etmiştir.", "Semerkant, Buhara ve Kaşgar önemli bilim ve kültür merkezleridir."],
             dogruCevap: 3, 
             aciklama: "Hindistan'da İslamiyet'i yayan Gaznelilerdir."
         },
@@ -1074,55 +1074,55 @@ const tumTestler = {
             aciklama: "Gazneli Mahmut, Sultan unvanını kullanan ilk Türk hükümdardır."
         },
         {
-            soru: "12. Afganistan, Hindistan ve Horasan'a hakim olan 963-1187 tarihli devlet hangisidir?",
+            soru: "12. 1187 yılları arasında Afganistan, Özbekistan, İran, Horasan, Pakistan ve Kuzey Hindistan'a kadar uzanan geniş bir coğrafyaya hakim olan devlet aşağıdakilerden hangisidir?",
             siklar: ["Karahanlı", "Akkoyunlu", "Gazneli", "Büyük Selçuklu", "Karakoyunlu"],
             dogruCevap: 2, 
             aciklama: "Gazneliler bu coğrafyada hüküm sürmüştür."
         },
         {
-            soru: "13. 1025'te Karahanlı ve Gaznelilerin önlem almak istediği devlet hangisidir?",
+            soru: "13. 1025 yılında Karahanlılar ve Gazneliler aşağıdakilerden hangisinin güçlenmesine karşı önlem almayı kararlaştırmışlardır?",
             siklar: ["Abbasiler", "Selçuklular", "Bizanslılar", "Tolunoğulları", "İhşidiler"],
             dogruCevap: 1, 
             aciklama: "Selçukluların güçlenmesinden endişe ederek ittifak yapmışlardır."
         },
         {
-            soru: "14. Gazneliler, Selçuklular ve Avarlar neye göre adlandırılmıştır?",
-            siklar: ["Yer - Kurucu - Etnik", "Yer - Etnik - Yer", "Etnik - Yer - Yer", "Kurucu - Etnik - Yer", "Kurucu - Yer - Etnik"],
+            soru: "14. Gazneliler, Selçuklular ve Avarlar adlı Türk devletlerinden hangisi etnik kökenine, hangisi kurucusuna ve hangisi kuruluş yerine göre adlandırılmıştır?",
+            siklar: ["Gazneliler (Kuruluş Yeri), Selçuklular (Kurucusu), Avarlar (Etnik Köken)", "Gazneliler (Kuruluş Yeri), Selçuklular (Etnik Köken), Avarlar (Kuruluş Yeri)", "Gazneliler (Etnik Köken), Selçuklular (Kuruluş Yeri), Avarlar (Kuruluş Yeri)", "Gazneliler (Kurucusu), Selçuklular (Etnik Köken), Avarlar (Kuruluş Yeri)", "Gazneliler (Kurucusu), Selçuklular (Kuruluş Yeri), Avarlar (Etnik Köken)"],
             dogruCevap: 0, 
             aciklama: "Gazneliler (Yer/Gazne), Selçuklular (Kurucu/Selçuk Bey), Avarlar (Etnik/Avar Kavmi)."
         },
         {
-            soru: "15. Dandanakan Zaferi'nin önemi nedir?",
-            siklar: ["Büyük Selçuklu Devleti'nin kurulması", "İslamiyet'i tanıma", "Bizans'la ilk savaş", "Anadolu tarihi", "Harzemşahların yıkılması"],
+            soru: "15. Dandanakan Zaferi'nin Türk tarihindeki önemi aşağıdakilerden hangisidir?",
+            siklar: ["Büyük Selçuklu Devleti'nin kurulması", "Türklerin İslamiyet'i tanıması", "Selçukluların Bizans Devleti'ne yaptığı ilk önemli savaş olması", "Anadolu'da Türk tarihinin başlangıcı", "Harzemşahların yıkılması"],
             dogruCevap: 0, 
             aciklama: "1040 Dandanakan Savaşı ile Büyük Selçuklu resmen kurulmuştur."
         },
         {
-            soru: "16. Tuğrul Bey'in hutbe okutması neyin göstergesidir?",
-            siklar: ["Nizamülmülk'ün vezir olduğunun", "Ortak mal anlayışının", "Ekonominin geliştiğinin", "Devlet başkanlığına geldiğinin", "Anadolu akınlarının"],
+            soru: "16. Dandanakan Savaşı sonrasında Tuğrul Bey'in kendi adına hutbe okutmasının aşağıdakilerden hangisinin göstergesi olduğu savunulabilir?",
+            siklar: ["Nizamülmülk'ün vezir olduğunun", "Ülkenin hanedan üyelerinin ortak malı olduğu anlayışının", "Selçuklularda ekonomik ilişkilerin geliştiğinin", "Tuğrul Bey'in devlet başkanlığına geldiğinin", "Anadolu'ya ilk Türk akınlarının başladığının"],
             dogruCevap: 3, 
             aciklama: "Hutbe okutmak bağımsız devlet başkanı olduğunun ilanıdır."
         },
         {
-            soru: "17. Selçukluların halifenin üstünlüğünü tanıdığının kanıtı nedir? 1. Hutbe okutulması 2. Yetki alınması",
+            soru: "17. Selçuklu hükümdarlarının halifenin üstünlüğünü tanımalarına; 1. Halife adına hutbe okutulması, 2. Halifeden aldıkları yetkiyle devleti yönetmeleri, 3. Tuğrul Bey'in halifeyi Büveyhoğullarının baskısından kurtarması durumlarından hangilerinin kanıt olduğu savunulabilir?",
             siklar: ["Yalnız 1", "Yalnız 2", "Yalnız 3", "1 ve 2", "2 ve 3"],
             dogruCevap: 3, 
             aciklama: "Halife adına hutbe okutmak ve ondan yetki (menşur) almak dini otoritesini tanımaktır."
         },
         {
-            soru: "18. Tuğrul Bey'e 'Doğu'nun ve Batı'nın Sultanı' unvanı neden verilmiştir?",
-            siklar: ["Büveyhileri yenip halifeyi kurtarması", "Gazneli Mesud'u yenmesi", "Pasinler zaferi", "Karahanlı başarısı", "Ani fethi"],
+            soru: "18. 1058 yılında Abbasi halifesinin Tuğrul Bey'e Doğu'nun ve Batı'nın Sultanı unvanı vermesinin sebebi aşağıdakilerden hangisidir?",
+            siklar: ["Şii Büveyhoğullarının  Bağdat'taki hakimiyetine son vererek halifeyi baskıdan kurtarması", "Gazneli Mesud'u Dandanakan Savaşı'nda yenmesi", "Bizans ordusunu Pasinler Savaşı'nda yenmesi", "Karahanlılar'a karşı başarı sağlaması", "Ani Kalesi'ni fethetmesi"],
             dogruCevap: 0, 
             aciklama: "Bağdat Seferi ile Halifeyi Şii Büveyhoğulları baskısından kurtardığı için verilmiştir."
         },
         {
-            soru: "19. Tuğrul Bey'in sultan ilan edilmesiyle ne olmuştur? 1. Halife yetkilerini devretmiştir 2. Selçuklular lider olmuştur",
+            soru: "19. Tuğrul Bey Bağdat'ı alarak Halife Kaimbiemrillah'ı Büveyhoğulları'nın elinden kurtarmıştır. Bunun üzerine Halife, Tuğrul Bey'i Doğu'nun ve Batı'nın Sultanı ilan etmiştir. Buna göre; 1. Halife dünyevi yetkilerini Tuğrul Bey'e vermiştir. 2. Halifelik sadece dini bir makam haline gelmiştir. 3. Selçuklular İslam dünyasının liderliğini ve koruyuculuğunu fiilen üstlenmiştir. yargılarından hangilerine ulaşılabilir?",
             siklar: ["Yalnız 1", "Yalnız 2", "Yalnız 3", "1 ve 2", "1, 2 ve 3"],
             dogruCevap: 4, 
             aciklama: "Halifelik dini bir makama dönüşmüş, siyasi liderlik Selçuklulara geçmiştir."
         },
         {
-            soru: "20. Din işlerini halifeye, devlet işlerini sultana bırakan (laik) anlayış hangi devlette görülür?",
+            soru: "20. Eski Türk devletlerinde kamu yararını korumakla görevli olan devlet otoritesi her şeyden üstün tutulmuştur. Aşağıdaki Türk İslam devletlerinin hangisinde hükümdar, din işlerini halifeye bırakıp devlet işlerini tümüyle kendi üzerine almakla bu eski Türk geleneğini tekrar başlatmıştır?",
             siklar: ["Osmanlılar", "Gazneliler", "Karahanlılar", "Memlükler", "Selçuklular"],
             dogruCevap: 4, 
             aciklama: "Tuğrul Bey'in başlattığı bu uygulama Selçuklulara özgü bir yönetim modelidir."
@@ -1134,8 +1134,8 @@ const tumTestler = {
     // --- TEST 9: MEMLÜKLER, KARAHANLILAR VE İSLAMİYET'E GEÇİŞ (Sorular 231-250) ---
     "turk_islam_test9": [
         {
-            soru: "1. Memlüklerde hükümdar değişikliklerinin Osmanlılardan daha fazla olmasının nedeni nedir?",
-            siklar: ["Etnik çeşitlilik", "Her emirin sultan olma hakkı", "Türkçe imtiyazı", "Kuruluş tarihi", "Halife onayı"],
+            soru: "1. Memlükler devletinin siyasi varlığı Osmanlı devletinden daha kısa sürdüğü halde Memlüklerde tahta geçen hükümdar sayısı Osmanlılardan daha çoktur. Memlüklerde hükümdar değişikliklerinin Osmanlılardan daha fazla olmasının nedeni aşağıdakilerden hangisidir?",
+            siklar: ["Etnik çeşitlilik", "Her emirin sultan olma hakkı", "Türkçe bilenlerin imtiyazlı olması", "Osmanlı Devleti'nden önce kurulmuş olması", "Hükümdarlığın halifenin onayına bağlı olması"],
             dogruCevap: 1, 
             aciklama: "Saltanat babadan oğula geçmez, en güçlü komutan (Emir) sultan olur; bu da darbeye neden olur."
         },
@@ -1152,7 +1152,7 @@ const tumTestler = {
             aciklama: "Halifenin dini nüfuzundan yararlanarak kendi iktidarını yasal (meşru) hale getirmek istemiştir."
         },
         {
-            soru: "4. Türklerin İslamiyet'i kabulünün etkisi olmayan durum hangisidir?",
+            soru: "4. Türklerin İslamiyet'i kabul etmesinin aşağıdakilerden hangisi üzerinde etkili olduğu söylenemez?",
             siklar: ["İslam hukukunun yayılması", "Müslümanlığın Hindistan'a ulaşması", "İslam dünyasının güçlenmesi", "İslamiyet'in İspanya'da yayılması", "Türk-İslam sanatının oluşması"],
             dogruCevap: 3, 
             aciklama: "İspanya'ya (Endülüs) İslamiyet'i Türkler değil, Emeviler (Araplar) yaymıştır."
@@ -1164,37 +1164,37 @@ const tumTestler = {
             aciklama: "Abbasilerin hoşgörülü politikası sayesinde Türkler İslam'a girmiş ve hizmet etmiştir."
         },
         {
-            soru: "6. Türklerin İslamiyet'e girmekte direnmesinin nedeni olmayan hangisidir?",
-            siklar: ["Toplumsal değişiklik korkusu", "Haraç ve cizye vergisi alınması", "Kılıç zoru", "Emevi milliyetçiliği", "Bağımsızlık korkusu"],
+            soru: "6. Türkler uzun süre direndikten sonra ancak 10. yüzyılda topluca İslamiyet'e girmişlerdir. Aşağıdakilerden hangisi bu direnmeyi doğuran nedenler arasında sayılmaz?",
+            siklar: ["Toplumsal değişim endişesi", "Müslüman olmayanlardan haraç ve cizye vergisinin alınması", "İslamiyet'in kılıç zoruyla kabul ettirilmek istenmesi", "Emevilerin yaptığı Arap milliyetçiliği", "Bağımsızlığı kaybetme korkusu"],
             dogruCevap: 1, 
             aciklama: "Vergi (Cizye) alınması direniş nedeni değil, İslam'a girmek için teşviktir (Müslüman olunca vergi kalkar)."
         },
         {
-            soru: "7. Mısır'da kurulan ilk iki Türk devleti hangisidir?",
+            soru: "7. Mısır'da kurulan ilk iki Türk devleti aşağıdakilerden hangisidir?",
             siklar: ["İhşidiler, Tolunoğulları", "Memlükler, İhşidiler", "Tolunoğulları, İhşidiler", "İhşidiler, Memlükler", "Tolunoğulları, Memlükler"],
             dogruCevap: 2, 
             aciklama: "Sırasıyla Tolunoğulları (868) ve İhşidiler (Akşitler) (935) kurulmuştur."
         },
         {
-            soru: "8. 840-1212 yılları arasında Türkistan'da varlık gösteren devlet hangisidir?",
+            soru: "8. 840-1212 yılları arasında Türkistan'da varlık gösteren ve ulusçu yapısıyla öne çıkan Türk devleti hangisidir?",
             siklar: ["Gazneliler", "Uygurlar", "Karahanlılar", "Harzemşahlar", "Göktürkler"],
             dogruCevap: 2, 
-            aciklama: "Orta Asya'da (Türkistan) kurulan Karahanlılardır."
+            aciklama: "Orta Asya'da kurulan bahsi geçen devlet Karahanlılardır."
         },
         {
             soru: "9. Karahanlıların Türk tarihindeki önemi nedir?",
-            siklar: ["Çeşitli kavimler barındırması", "Doğu Türkistan'da kurulması", "Adını yerden almaması", "İkiye ayrılması", "İlk Müslüman Türk Devleti olması"],
+            siklar: ["Çeşitli kavimler barındırması", "Doğu Türkistan'da kurulması", "Adını kurulduğu yerden almaması", "İkiye bölünmesi", "Orta Asya'da kurulan İlk Müslüman Türk Devleti olması"],
             dogruCevap: 4, 
             aciklama: "Orta Asya'da İslamiyet'i kabul eden ilk büyük Türk devleti olmalarıdır."
         },
         {
-            soru: "10. Karahanlıların milli kimliklerini koruduğunun göstergesi nedir? 3. Türk dilini korumaları 4. Türkçe eser vermeleri",
+            soru: "10. Aşağıdaki bilgilerden hangileri Karahanlıların milli kimliklerini koruduklarının göstergesidir?1. İslamiyet'i kabul etmişler. 2. Hakanları Satuk Buğra, adını Abdülkerim olarak değiştirmiştir. 3. Türk dilinin korunması için tedbirler almışlar. 4. Hakaniye Türkçesi ile kitap yazmışlar. 5. İslam devletlerindeki teşkilatlanmaları örnek almışlar.",
             siklar: ["1 ve 2", "3 ve 4", "4 ve 5", "2, 3 ve 4", "3, 4 ve 5"],
             dogruCevap: 1, 
             aciklama: "Resmi dilin Türkçe olması ve Türkçe eserler (Kutadgu Bilig vb.) vermeleri milliyetçiliktir."
         },
         {
-            soru: "11. Satuk Buğra Han'ın İslamiyet'i resmi din yapmasıyla hangisine ulaşılır? 1. Yönetim hanedanındır 2. Yayılma hızlanmıştır",
+            soru: "11. Satuk Buğra Han, İslamiyet'i benimsemiş, amcasından sonra hükümdar olunca da İslamiyet'i resmi din olarak kabul etmiştir. Bu bilgiyle Karahanlılarda; 1. Devlet yönetme yetkisinin hanedana ait olduğu, 2. İslamiyet'in Türkler arasında yayılmasının hızlandığı, 3. Arapçanın resmi dil olarak kabul edildiği yargılarından hangilerine ulaşılabilir?",
             siklar: ["Yalnız 1", "Yalnız 2", "Yalnız 3", "1 ve 2", "1, 2 ve 3"],
             dogruCevap: 3, 
             aciklama: "Hükümdarın dini kabul etmesi halk arasında yayılmayı hızlandırır; yönetim hanedana aittir."
@@ -1206,49 +1206,49 @@ const tumTestler = {
             aciklama: "Eski Türk kültürü ile İslam'ın birleşimi 'Türk-İslam Sentezi'ni doğurmuştur."
         },
         {
-            soru: "13. Karahanlılar ve Göktürkler arasındaki ortak özellik olmayan hangisidir?",
+            soru: "13. Aşağıdakilerden hangisi Karahanlılar ve Göktürkler arasındaki ortak özellikler arasında gösterilemez?",
             siklar: ["Orta Asya'da kurulma", "İkili yönetim", "İslamiyet'i yayma", "Ortak mal anlayışı", "Kültürel eser verme"],
             dogruCevap: 2, 
             aciklama: "Göktürkler İslamiyet öncesidir, İslam'ı yaymamışlardır."
         },
         {
-            soru: "14. Manas Destanı hangi Türk topluluğuna aittir?",
-            siklar: ["Alp Er Tunga", "Bozkurt", "Manas (Kırgızlar)", "Ergenekon", "Oğuz Kağan"],
+            soru: "14. Manas Destanı hangi Türk devletine aittir?",
+            siklar: ["Sakalar", "Uygurlar", "Kırgızlar", "Göktürkler", "Akhunlar"],
             dogruCevap: 2, 
-            aciklama: "Kırgızlara aittir. (Şıklarda destan isimleri verilmiş, doğru cevap Manas)."
+            aciklama: "Manas destanı Kırgızlara aittir."
         },
         {
-            soru: "15. Orhun Kitabelerindeki halkın refahı ve hesap verme anlayışı neyi gösterir?",
-            siklar: ["Yalnız 1", "Yalnız 2", "Yalnız 3", "1 ve 2", "1, 2 ve 3 (Sosyal Devlet)"],
+            soru: "15. Orhun Alfabesiyle yazılmış Göktürk Kitabelerinde; 1. Devletin ve halkın karşılıklı olarak görevlerinin belirtilmesi 2. Hakanın her işi halkın refahı için yapmasının vurgulanması 3. Devlet adamlarının milletine hesap vermesinden söz edilmesi durumlarından hangilerinin adli (adaletli) devlet anlayışıyla benzerlik gösterdiği savunulabilir?",
+            siklar: ["Yalnız 1", "Yalnız 2", "Yalnız 3", "1 ve 2", "1, 2 ve 3"],
             dogruCevap: 4, 
             aciklama: "Halkı doyurmak ve halka hesap vermek 'Sosyal Devlet' anlayışıdır."
         },
         {
-            soru: "16. Kavimler Göçü'nün sonucu olmayan hangisidir?",
-            siklar: ["Etnik yapının değişmesi", "Avrupa Hun devletinin kurulması", "Roma'nın yıkılması", "Skolastik düşünce", "Göktürk devletinin yıkılması"],
+            soru: "16. Aşağıdakilerin hangisi Hunların neden olduğu kavimler göçünün sonuçlarından biri değildir?",
+            siklar: ["Avrupa'nın etnik yapısının değişmesi", "Avrupa Hun devletinin kurulması", "Roma İmparatorluğu'nun bütünlüğü ve üstünlüğünü yitirmesi", "Avrupa'da skolastik düşüncenin egemen olması", "Göktürk devletinin yıkılması"],
             dogruCevap: 4, 
-            aciklama: "Göktürk Devleti Kavimler Göçü'nden (375) çok sonra (552) kurulmuştur."
+            aciklama: "Göktürk Devleti Kavimler Göçü'nden (375) çok sonra (552) yılında kurulmuştur."
         },
         {
             soru: "17. İslam öncesi Türklerde ölülerin eşyalarıyla gömüldüğü mezara ne denir?",
             siklar: ["Yuğ", "Şad", "Kurgan", "Toy", "Tigin"],
             dogruCevap: 2, 
-            aciklama: "Mezara Kurgan denir. (Yuğ cenaze törenidir)."
+            aciklama: "Mezara Kurgan denir."
         },
         {
             soru: "18. Museviliği benimseyen tek Türk devleti hangisidir?",
-            siklar: ["Hristiyanlık", "Musevilik (Hazarlar)", "Budizm", "Şamanizm", "Naturizm"],
+            siklar: ["Kırgızlar", "Hazarlar", "Macarlar", "Avarlar", "Asya Hun Devleti"],
             dogruCevap: 1, 
             aciklama: "Hazar Hakanlığı Museviliği benimsemiştir."
         },
         {
-            soru: "19. Uygurların tarıma önem vermesinin nedeni nedir?",
-            siklar: ["Yönetim biçimi", "El sanatları", "Çin mücadelesi", "Yerleşik hayata geçmeleri", "Orta Asya"],
+            soru: "19. Uygurlar ekonomik alanda tarıma büyük önem vermişlerdir. Bu durumun nedeninin aşağıdakilerden hangisi olduğu savunulabilir?",
+            siklar: ["Devleti yönetme biçimleri", "El sanatlarıyla uğraşmaları", "Çinlilerle mücadele etmeleri", "Yerleşik hayata geçmeleri", "Orta Asya'da kurulmuş olmaları"],
             dogruCevap: 3, 
             aciklama: "Tarım (sulu tarım) yerleşik hayatın bir sonucudur."
         },
         {
-            soru: "20. Vezir Tonyukuk'un Budizm'e karşı çıkması neyi gösterir? 2. Sorgulanabilirlik 3. Yaşam biçimi etkisi",
+            soru: "20. Göktürk Devleti'nde Bilge Kağan'ın Budist tapınağı yaptırma isteğine Vezir Tonyukuk, Budizm'i benimsemenin Türklerin mücadeleci ruhunu kaybetmelerine neden olacağı düşüncesiyle karşı çıkmıştır. Yalnız bu bilgiyle; 1. Toplumun dini arayış içerisinde olduğu, 2. Kağanın kararlarının sorgulanabildiği, 3. Din değiştirmenin yaşam biçimini etkilediği durumlarından hangilerine ulaşılabilir?",
             siklar: ["Yalnız 1", "Yalnız 2", "1 ve 2", "2 ve 3", "1, 2 ve 3"],
             dogruCevap: 3, 
             aciklama: "Kağanın kararını eleştirmesi sorgulanabilirliği, dinin savaşçılığı bozacağı endişesi yaşam biçimi etkisini gösterir."
@@ -1264,7 +1264,7 @@ const tumTestler = {
             aciklama: "Tuna Bulgarları ve Macarlar Avrupa'da Hristiyanlaşmıştır."
         },
         {
-            soru: "2. Uygurların matbaayı kullandığının kanıtı nedir?",
+            soru: "2. Aşağıdakilerden hangisinin uygulanması Uygurların matbaalarının olduğuna ve baskı yaptıklarına bir kanıt olduğu savunulabilir?",
             siklar: ["Tahtadan yapılmış harfler", "Çivili eserler", "18 harfli alfabe", "Taş kitabe", "Kağıt belgeler"],
             dogruCevap: 0, 
             aciklama: "Hareketli harf sistemi (tahta harfler) matbaanın temelidir."
@@ -1501,7 +1501,7 @@ const tumTestler = {
             soru: "20. Aşağıdakilerden hangisinde Uygurlar'a ait 2 destan birlikte verilmiştir?",
             siklar: ["Bozkurt-Ergenekon", "Alpertunga-Şu", "Türeyiş-Göç", "Manas-Oğuz Kağan", "Yaratılış-Türeyiş"],
             dogruCevap: 2, 
-            aciklama: "Türeyiş ve Göç destanları uygurlar'a aittir."
+            aciklama: "Türeyiş ve Göç destanları Uygurlar'a aittir."
         }
     ],
 
@@ -1583,7 +1583,7 @@ const tumTestler = {
             soru: "13. Dünyada İslamiyet'i kabul eden ilk Türk devleti hangisidir?",
             siklar: ["Avarlar", "Karahanlılar", "İtil Bulgarları", "Tuna Bulgarları", "Macarlar"],
             dogruCevap: 2, 
-            aciklama: "İtil Bulgarları 922'de İslam'ı devlet dini yapmıştır. ÖSYM kelime oyunu yapabilir, Dünya derse İtil Bulgarları, Ortaasya derse Karahanlılar, Topluluk derse Karluklar olacaktır."
+            aciklama: "İtil Bulgarları 922'de İslam'ı devlet dini yapmıştır. ÖSYM kelime oyunu yapabilir, Dünya derse İtil Bulgarları, Orta Asya derse Karahanlılar, Topluluk derse Karluklar olacaktır."
         },
         {
             soru: "14. Boris Han döneminde Hristiyanlığı kabul eden devlet hangisidir?",
