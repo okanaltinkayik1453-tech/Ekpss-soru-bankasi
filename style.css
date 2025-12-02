@@ -95,27 +95,55 @@ details[open] .konu-baslik-butonu::after { content: "-"; }
     border-radius: 8px; text-align: left; margin-bottom: 25px; width: 100%;
 }
 
-/* SORU METNİ VE ÖNCÜL AYARLARI */
+/* === ÖZEL SORU FORMATI (ESTETİK DÜZENLEME) === */
 #soru-metni {
     font-size: 1.8rem; line-height: 1.6; margin: 0;
-    color: #fff; font-weight: 500; white-space: pre-wrap;
-}
-/* Soru kökünü (Buna göre...) Kalın ve Sarı Yap */
-.soru-koku-vurgu {
-    display: block;
-    margin-top: 20px;
-    font-weight: 900;
-    color: #ffff00;
-    font-size: 1.9rem;
-}
-/* Öncül Maddelerini Düzenle */
-.oncul-maddesi {
-    display: block;
-    margin-bottom: 5px;
-    padding-left: 10px;
-    border-left: 3px solid #555;
+    color: #fff; font-weight: 500;
 }
 
+/* Öncül Kutusu: Tüm maddeleri içine alır */
+.oncul-kapsayici {
+    background-color: #111; /* Hafif gri zemin */
+    border-left: 4px solid #ffff00; /* Sol taraf sarı çizgi */
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 0 8px 8px 0;
+}
+
+/* Tek bir madde satırı (Hizalama için Flexbox) */
+.oncul-satir {
+    display: flex;
+    align-items: baseline; /* Numarayla yazıyı hizala */
+    margin-bottom: 10px;
+}
+
+/* Numara kısmı (I. II. 1. 2.) */
+.oncul-no {
+    font-weight: bold;
+    color: #ffff00;
+    min-width: 40px; /* Numara için sabit genişlik (Hiza kaymaz) */
+    margin-right: 10px;
+    text-align: right;
+}
+
+/* Metin kısmı */
+.oncul-yazi {
+    flex: 1; /* Kalan boşluğu doldur */
+    color: #fff;
+}
+
+/* Soru Kökü (Buna göre... Ulaşılabilir?) */
+.soru-koku-vurgu {
+    display: block;
+    margin-top: 25px;
+    font-weight: 900;
+    color: #ffff00; /* Sarı */
+    font-size: 1.9rem;
+    border-top: 1px solid #333; /* Üstüne ince çizgi */
+    padding-top: 15px;
+}
+
+/* Şıklar */
 .siklar-grid { display: flex; flex-direction: column; gap: 15px; width: 100%; }
 .sik-butonu { text-align: left; font-size: 1.4rem; padding: 20px; width: 100%; }
 .sik-butonu.dogru { border: 4px solid #00ff00 !important; color: #00ff00 !important; }

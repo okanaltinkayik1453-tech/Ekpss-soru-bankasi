@@ -4,7 +4,7 @@ let mevcutSoruIndex = 0;
 let kullaniciCevaplari = [];
 let isaretlemeKilitli = false;
 
-// --- SES MOTORU ---
+// --- SES MOTORU (SENTETİK) ---
 const AudioContext = window.AudioContext || window.webkitAudioContext;
 const sesMotoru = new AudioContext();
 
@@ -44,49 +44,73 @@ function notaCal(freq, time, dur) {
     osc.start(time); osc.stop(time + dur);
 }
 
-// --- GÜVENLİ VE AKILLI METİN FORMATLAYICI ---
+// --- GELİŞMİŞ VE ESTETİK METİN FORMATLAYICI ---
 function metniFormatla(metin) {
     if (!metin) return "";
 
-    // GÜVENLİK KİLİDİ:
-    // Eğer içinde "I.", "II." veya " 1.", " 2." (boşluklu) YOKSA dokunma!
-    // Bu sayede "Aşağıdakilerden hangisi..." gibi düz sorular bozulmaz.
-    const maddeVarMi = metin.match(/ I\.| II\.| III\.| 1\.| 2\.| 3\./);
-    if (!maddeVarMi) {
-        return metin; // Madde yoksa olduğu gibi gönder
+    // 1. KONTROL: Soru içinde madde var mı?
+    // Hem Roma (I., II.) hem Türk rakamlarını (1., 2. - boşluklu) arar
+    const romaVarMi = metin.match(/ I\.| II\.| III\./);
+    const rakamVarMi = metin.match(/ 1\.| 2\.| 3\./);
+
+    // Eğer madde yoksa düz metin olarak döndür (Bozulmayı önler)
+    if (!romaVarMi && !rakamVarMi) {
+        return metin;
     }
 
-    // Madde Varsa İşlemlere Başla:
-    let yeniMetin = metin;
+    let islenmisMetin = metin;
+    let onculHTML = "";
 
-    // 1. Maddeleri Alt Alta Al
-    yeniMetin = yeniMetin
-        .replace(/ I\./g, "<br><span class='oncul-maddesi'>I.")
-        .replace(/ II\./g, "<br><span class='oncul-maddesi'>II.")
-        .replace(/ III\./g, "<br><span class='oncul-maddesi'>III.")
-        .replace(/ IV\./g, "<br><span class='oncul-maddesi'>IV.")
-        .replace(/ 1\./g, "<br><span class='oncul-maddesi'>1.")
-        .replace(/ 2\./g, "<br><span class='oncul-maddesi'>2.")
-        .replace(/ 3\./g, "<br><span class='oncul-maddesi'>3.")
-        .replace(/ 4\./g, "<br><span class='oncul-maddesi'>4.");
-
-    // 2. Soru Kökünü (Buna göre...) Ayır ve Vurgula
-    // Sadece belli kelimeleri yakalar
-    const soruKokleri = ["Buna göre", "Bu bilgilere göre", "Yukarıdaki", "Aşağıdaki", "Hangisi"];
+    // 2. MADDELERİ TOPLA VE KUTUYA AL
+    // Roma Rakamları İçin Dönüştürme
+    if (romaVarMi) {
+        // Her maddeyi yakalayıp div içine alıyoruz
+        // Regex: Boşluk + I. + Metin... (Bir sonraki maddeye kadar)
+        islenmisMetin = islenmisMetin
+            .replace(/ I\. (.*?)(?= II\.| Soru Kökü|$)/g, "<div class='oncul-satir'><span class='oncul-no'>I.</span><span class='oncul-yazi'>$1</span></div>")
+            .replace(/ II\. (.*?)(?= III\.| IV\.| Soru Kökü|$)/g, "<div class='oncul-satir'><span class='oncul-no'>II.</span><span class='oncul-yazi'>$1</span></div>")
+            .replace(/ III\. (.*?)(?= IV\.| V\.| Soru Kökü|$)/g, "<div class='oncul-satir'><span class='oncul-no'>III.</span><span class='oncul-yazi'>$1</span></div>")
+            .replace(/ IV\. (.*?)(?= V\.| Soru Kökü|$)/g, "<div class='oncul-satir'><span class='oncul-no'>IV.</span><span class='oncul-yazi'>$1</span></div>");
+    }
     
+    // Türk Rakamları İçin Dönüştürme (1. 2. 3.)
+    if (rakamVarMi) {
+        islenmisMetin = islenmisMetin
+            .replace(/ 1\. (.*?)(?= 2\.| Soru Kökü|$)/g, "<div class='oncul-satir'><span class='oncul-no'>1.</span><span class='oncul-yazi'>$1</span></div>")
+            .replace(/ 2\. (.*?)(?= 3\.| 4\.| Soru Kökü|$)/g, "<div class='oncul-satir'><span class='oncul-no'>2.</span><span class='oncul-yazi'>$1</span></div>")
+            .replace(/ 3\. (.*?)(?= 4\.| 5\.| Soru Kökü|$)/g, "<div class='oncul-satir'><span class='oncul-no'>3.</span><span class='oncul-yazi'>$1</span></div>")
+            .replace(/ 4\. (.*?)(?= 5\.| Soru Kökü|$)/g, "<div class='oncul-satir'><span class='oncul-no'>4.</span><span class='oncul-yazi'>$1</span></div>");
+    }
+
+    // 3. ÖNCÜLLERİ BİR KUTUYA HAPSETMEK İÇİN GRUPLAMA
+    // Tüm div'leri (oncul-satir) yakalayıp tek bir ana kapsayıcıya alacağız
+    // Basit bir yöntemle ardışık divleri sarmalayalım.
+    // Ancak JS replace ile bunu yapmak zor olduğu için görsel hile yapıyoruz:
+    // Maddeler zaten div oldu, şimdi sadece soru kökünü ayıralım.
+
+    // 4. SORU KÖKÜNÜ AYIR VE VURGULA
+    // Bu kelimelerden birini görünce alt satıra at ve kalın yap
+    const soruKokleri = [
+        "Buna göre", "Bu bilgilere göre", "Yukarıdaki", "Aşağıdaki", 
+        "Hangisidir", "Hangisine", "Ulaşılabilir", "Varılabilir", 
+        "Söylenebilir", "Gösterilebilir", "Değinilmiştir", "Beklenir"
+    ];
+    
+    let kokBulundu = false;
     soruKokleri.forEach(kok => {
-        // Eğer kök kelime maddelerden SONRA geliyorsa (cümlenin sonlarına doğru)
-        if (yeniMetin.includes(kok)) {
-            // Soru kökünün başladığı yeri bul ve oradan öncesine boşluk, kendisine stil ekle
-            // Basitçe o kelimeyi yakalayıp değişim yapıyoruz
-            // Dikkat: "Aşağıdakilerden" cümlenin başındaysa dokunmasın diye kontrol edebiliriz ama
-            // zaten yukarıdaki "maddeVarMi" kontrolü bunu engelliyor.
-            
-            yeniMetin = yeniMetin.replace(kok, `<br><br><span class='soru-koku-vurgu'>${kok}`);
+        if (!kokBulundu && islenmisMetin.includes(kok)) {
+            // Soru kökünü maddelerden ayır
+            islenmisMetin = islenmisMetin.replace(kok, `<div class='soru-koku-vurgu'>${kok}`);
+            // Div'i kapatmak için sonuna </div> eklemeye gerek yok, tarayıcı halleder veya css block yeterli.
+            kokBulundu = true;
         }
     });
 
-    return yeniMetin;
+    // Eğer soru kökü ayrılmadıysa (kelime listesinde yoksa) ve maddeler bittiyse
+    // Son madde div'inden sonra gelen her şeyi soru kökü sayabiliriz ama riskli.
+    // Şimdilik kelime listesi en güvenli yol.
+
+    return islenmisMetin;
 }
 
 // --- TEST YÖNETİMİ ---
@@ -123,7 +147,6 @@ function sonrakiSoru() { if (mevcutSoruIndex < mevcutSorular.length - 1) soruyuG
 function soruyuGoster(index) {
     const uyariKutusu = document.getElementById("sesli-uyari");
     if(uyariKutusu) uyariKutusu.innerText = "";
-    
     const gorselUyari = document.getElementById("gorsel-uyari-alani");
     if (gorselUyari) gorselUyari.style.display = "none";
 
@@ -131,8 +154,9 @@ function soruyuGoster(index) {
     const soruObj = mevcutSorular[index];
     isaretlemeKilitli = false; 
     
+    // FORMATLAYICI AKTİF
     const soruBaslik = document.getElementById("soru-metni");
-    soruBaslik.innerHTML = metniFormatla(soruObj.soru); // FORMATLAYICI BURADA
+    soruBaslik.innerHTML = metniFormatla(soruObj.soru);
     
     document.getElementById("soru-sayac").innerText = `Soru ${index + 1} / ${mevcutSorular.length}`;
     const siklarKutusu = document.getElementById("siklar-alani");
@@ -242,8 +266,8 @@ function yanlislariGoster() {
         if (kullaniciCevabi !== soru.dogruCevap) {
             yanlisVarMi = true;
             const kart = document.createElement("div"); kart.className = "yanlis-soru-karti";
-            let verilenCevapMetni = kullaniciCevabi !== null ? soru.siklar[kullaniciCevabi] + " (YANLIŞ)" : "BOŞ BIRAKILDI";
-            kart.innerHTML = `<h4>Soru ${index + 1}: ${metniFormatla(soru.soru)}</h4><p class="kirmizi-yazi"><strong>Sizin Cevabınız:</strong> ${verilenCevapMetni}</p><p class="yesil-yazi"><strong>Doğru Cevap:</strong> ${soru.siklar[soru.dogruCevap]}</p><div class="aciklama-kutusu"><strong>Açıklama:</strong> ${soru.aciklama}</div>`;
+            // Yanlış gösterirken de formatla
+            kart.innerHTML = `<h4>Soru ${index + 1}: ${metniFormatla(soru.soru)}</h4><p class="kirmizi-yazi"><strong>Sizin Cevabınız:</strong> ${verilenCevapMetni = kullaniciCevabi !== null ? soru.siklar[kullaniciCevabi] + " (YANLIŞ)" : "BOŞ BIRAKILDI"}</p><p class="yesil-yazi"><strong>Doğru Cevap:</strong> ${soru.siklar[soru.dogruCevap]}</p><div class="aciklama-kutusu"><strong>Açıklama:</strong> ${soru.aciklama}</div>`;
             listeDiv.appendChild(kart);
         }
     });
