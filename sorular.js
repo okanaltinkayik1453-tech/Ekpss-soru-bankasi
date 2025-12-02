@@ -144,7 +144,7 @@ const tumTestler = {
             aciklama: "Vandallar bir Germen kavmidir."
         },
         {
-            soru: "3. Moğolların; Kurultay, Veraset ve Onlu Sistemi kullanması neyi gösterir?",
+            soru: "3. Moğolların; 1. En önemli devlet organlarının kurultay olması 2. Ülke topraklarının hanedan üyeleri arasında paylaştırılması 3. Ordularının onlu sisteme göre oluşturulması durumlarından hangileri Türklerden etkilendiklerini gösterir?",
             siklar: ["Yalnız 1", "Yalnız 2", "Yalnız 3", "1 ve 2", "1, 2 ve 3"],
             dogruCevap: 4, 
             aciklama: "Bunların hepsi Türk devlet geleneğidir, Moğolların Türklerden etkilendiğini gösterir."
@@ -174,7 +174,7 @@ const tumTestler = {
             aciklama: "Toprak devletindir (Miri arazi), satılamaz. Sadece kullanım hakkı devredilir."
         },
         {
-            soru: "8. Anadolu Selçuklularında saltanat kavgalarına neden olan durumlar nelerdir? 1. Hanedan üyelerinin ortak hakkı olması 2. Babadan oğula geçişteki belirsizlik",
+            soru: "8. Aşağıdaki maddelerden hangilerinin Anadolu Selçuklularında saltanat kavgalarına neden olduğu savunulabilir? 1. Yönetici aile bireylerinin devlet yönetme hakkının olması 2. Hükümdarlığın babadan oğla geçmesi 3. Hükümdarların bilim adamlarının yanında eğitim görerek yetişmesi",
             siklar: ["Yalnız 1", "Yalnız 2", "1 ve 2", "1 ve 3", "1, 2 ve 3"],
             dogruCevap: 2, 
             aciklama: "Kut anlayışı ve veraset sistemindeki belirsizlik taht kavgalarının temel nedenidir."
@@ -186,10 +186,10 @@ const tumTestler = {
             aciklama: "Anadolu'da esnaf dayanışma örgütü Ahilik'tir."
         },
         {
-            soru: "10. Ticarette İtalyan ve Bizans paralarının/ölçülerinin kullanılması neyi gösterir?",
+            soru: "10. Anadolu Beylikleri döneminde İtalyan devletleriyle yapılan ticarette Bizans ve İtalyan paralarının ölçü birimlerinin kullanıldığı görülmektedir. Bu durumun aşağıdakilerden hangisinin bir sonucu olduğu savunulabilir?",
             siklar: ["Bağımsızlık sembolünü", "Para birliğini", "Anadolu'nun önemli bir ticaret merkezi olduğunu", "Ölçü birliğini", "Ticaret açığını"],
             dogruCevap: 2, 
-            aciklama: "Uluslararası paraların geçmesi, bölgenin uluslararası bir pazar olduğunu kanıtlar."
+            aciklama: "İtalya ve Bizans paralarının geçmesi, Anadolu'nun uluslararası bir pazar olduğunu kanıtlar."
         },
         {
             soru: "11. Fütüvvet anlayışı hangi teşkilatın temelini oluşturur?",
@@ -198,58 +198,58 @@ const tumTestler = {
             aciklama: "Ahilik teşkilatının ahlaki temeli Fütüvvetname'ye dayanır."
         },
         {
-            soru: "12. Şehirlerin ekonomik hayatında en etkili grup kimdir?",
+            soru: "12. Anadolu Selçuklu Devletinde Şehirlerin ekonomik hayatında en etkili grup kimdir?",
             siklar: ["Memurlar", "Ahiler", "Ayanlar", "Bilim Adamları", "Askerler"],
             dogruCevap: 1, 
             aciklama: "Üretim ve ticareti kontrol eden Ahilerdir."
         },
         {
-            soru: "13. Anadolu Selçuklularında ekonomik refahın kanıtı nedir? 1. İmar çalışmaları 2. Şehirleşme",
+            soru: "13. Sultan 2. Kılıç Arslan döneminde Anadolu Selçuklularında ekonomik durum yüksek düzeye ulaşmıştır. Bu dönemde görülen; 1. İmar çalışmalarının fazla olması 2. Surlar içinde birer kaleden ibaret olan kasabaların büyümesi 3. Loncalar tarzındaki Ahilik teşkilatının Müslüman olmayanlara kapalı olması durumlarından hangileri ekonomideki bu başarının kanıtları arasındadır?",
             siklar: ["Yalnız 1", "Yalnız 2", "Yalnız 3", "1 ve 2", "1, 2 ve 3"],
             dogruCevap: 3, 
             aciklama: "İmar faaliyetleri ve şehirlerin büyümesi ekonomik gücü gösterir."
         },
         {
-            soru: "14. Ticaretin güvenliği için yapılanlar nelerdir? 1. Sigorta sistemi 2. Kervansaraylar",
+            soru: "14. Anadolu Selçukluları döneminde; 1. Kervanların soyulmaması ve tüccarların zarar görmemesi için önlemler alınması 2. Belli aralıklarla kervansaraylar yapılması 3. Gümrük vergilerinin düşük olması durumlarından hangilerinin ticaretin güvenle yapılmasında önemli olduğu savunulabilir?",
             siklar: ["Yalnız 1", "Yalnız 2", "1 ve 2", "2 ve 3", "1, 2 ve 3"],
             dogruCevap: 2, 
             aciklama: "Devlet sigortası ve kervansaraylar güvenliği sağlar. Gümrük vergisi ise teşviktir."
         },
         {
-            soru: "15. Yabancı tüccarlara düşük gümrük vergisi uygulanmasının amacı nedir?",
-            siklar: ["Ticari ilişkileri geliştirmek", "Avrupa birliğini önlemek", "Nüfuz kurmak", "Deniz üstünlüğü", "Siyasi birlik"],
+            soru: "15. Anadolu Selçukluları Antalya, Alanya ve Sinop gibi limanları ele geçirdikten sonra bu limanlarda Avrupalı tüccarlara düşük gümrük tarifesi uygulamışlardır. Anadolu Selçuklularındaki bu uygulamanın amacı aşağıdakilerden hangisidir?",
+            siklar: ["Ticari ilişkileri geliştirmek", "Avrupa'nın Türklere karşı birleşmesini önlemek", "Avrupa'da nüfuz bölgeleri kurmak", "Denizlerde üstünlük sağlamak", "Anadolu'da siyasi birliği sağlamak"],
             dogruCevap: 0, 
             aciklama: "Tüccarları ülkeye çekmek ve ticareti canlandırmak içindir."
         },
         {
-            soru: "16. Veliahtların merkeze yakın şehirlere atanmasının amacı hangisi değildir?",
-            siklar: ["İç karışıklığı önlemek", "Yönetime hazırlamak", "Başkent güvenliği", "Merkezi yapıyı korumak", "Valilerin yetkisini artırmak"],
+            soru: "16. Anadolu Selçuklu Devleti'nde veliaht ilan edilen kişi ya başkentte bulunur ya da merkeze yakın bir şehre melik olarak görevlendirilirdi. Bu uygulamanın aşağıdakilerden hangisiyle ilgili olduğu savunulamaz?",
+            siklar: ["Sultanın ölümü durumunda ülkede iç karışıklıkların çıkmasını önlemek", "Veliahtı devlet yönetimine hazırlamak", "Sultanın sefere çıkması halinde başkentin güvenliğini sağlamak", "Merkezi yapıyı korumak", "Şehirlerde Valilerin yetkisini artırmak"],
             dogruCevap: 4, 
             aciklama: "Valilerin yetkisini artırmak değil, tam tersine merkezi denetimde tutmak amaçlanır."
         },
         {
-            soru: "17. Yabancıların ve Türklerin ticaret şehirlerine yerleşmesinin temel nedeni nedir?",
+            soru: "17. Anadolu Selçuklu Devleti döneminde İtalyan, Fransız, İranlı, Suriyeli ve Yahudilerin bazı grupları Antalya, Konya, Kayseri ve Sivas gibi şehirlerde, bazı Türkler ise Kıbrıs, Suriye ve Kırım'a yerleşmişlerdi. Bu durumun başlıca nedeni aşağıdaki alanlardan hangisinde görülen gelişmelerdir?",
             siklar: ["Ticaret", "Savunma", "Eğitim", "Mimari", "Tarım"],
             dogruCevap: 0, 
             aciklama: "Konya, Kayseri, Sivas gibi şehirler ticaret yolları üzerindedir."
         },
         {
-            soru: "18. Hangisi ticaretin gelişmesinde doğrudan etkili değildir?",
-            siklar: ["Yollar", "Medreseler", "Kervansaraylar", "Ahilik", "Can güvenliği"],
+            soru: "18. Anadolu Selçukluları döneminde aşağıdakilerden hangisinin ticaretin gelişmesinde etkili olduğu savunulamaz?",
+            siklar: ["Yeni yollar yapılması", "Medreselerin açılması", "Kervansaraylar yapılması", "Ahilik teşkilatının kurulması", "Müslüman olmayan tüccarların can ve mal güvenliğinin devlet güvencesine alınması"],
             dogruCevap: 1, 
             aciklama: "Medreseler eğitim kurumudur, ticaretle doğrudan ilgisi yoktur."
         },
         {
-            soru: "19. Paranın bakırdan altına dönüşmesi neyi göstermez?",
-            siklar: ["Ekonomik gücün arttığını", "Tarımın ticaretten önemli olduğunu", "Değişim aracı olduğunu", "İlk başta para olmadığını", "Değer kazandığını"],
+            soru: "19. Anadolu Selçuklu Devleti'nde 1. Mesut zamanında ilk kez basılan para bakır, 2. Kılıç Arslan zamanında basılan para gümüş, 13. yüzyılda basılan para ise altındır. Bu duruma dayanılarak Anadolu Selçuklu Devleti ile ilgili aşağıdaki yargılardan hangisine ulaşılamaz?",
+            siklar: ["Devletin ekonomik ve siyasal gücü giderek artmıştır", "Tarımın gelişmesine ticaretten daha fazla önem verilmiştir", "Para bir değişim aracı olarak kullanılmaktadır", "Yeni kurulduğunda devletin kendine özgü parası yoktur", "Para giderek değer kazanmıştır"],
             dogruCevap: 1, 
             aciklama: "Ekonomik güçlenmeyi gösterir ancak tarım ve ticaret karşılaştırması yapılamaz."
         },
         {
-            soru: "20. Anadolu Selçukluları nerelerde tersane kurmuştur?",
-            siklar: ["Sinop", "Alanya", "Trabzon", "1 ve 2", "2 ve 3"],
+            soru: "20. Anadolu Selçukluları; 1. Sinop 2. Alanya 3. Trabzon limanlarından hangilerine tersane kurmuştur?",
+            siklar: ["Yalnız 1", "Yalnız 2", "Yalnız 3", "1 ve 2", "2 ve 3"],
             dogruCevap: 3, 
-            aciklama: "Sinop (Karadeniz) ve Alanya (Akdeniz) tersaneleri meşhurdur."
+            aciklama: "Anadolu Selçukluları denizciliği geliştirmek için fethettikleri deniz kentlerinde tersaneler kurmuştur. Sinop ve Alanya tersaneleri doğru cevaptır. Trabzon bu dönemde Rum imparatorluğunun elindedir."
         }
     ]
 
@@ -300,14 +300,14 @@ const tumTestler = {
             aciklama: "Bu durum devletin istimalet (hoşgörü) politikası izlediğini gösterir."
         },
         {
-            soru: "8. Sarayda ve bilimde farklı diller kullanılsa da halk arasında Türkçe konuşulması neyin göstergesidir?",
+            soru: "8. Anadolu Selçukluları'nda edebi dil olarak Farsça, din dili olarak Arapça kullanılırdı. Sarayda, orduda ve halk arasında Türkçe konuşuluyordu. Bu durum aşağıdakilerden hangisinin bir göstergesidir?",
             siklar: ["Ülkede çok sayıda etnik grup bulunduğunun", "Türkçede Farsça sözcüklerin Arapça sözcüklerden daha fazla bulunduğunun", "Yönetim ile halk arasında kopukluk olduğunun", "Bilimsel çalışmaların hız kazandığının", "Ülkede Türkçenin daha yaygın kullanıldığının"],
             dogruCevap: 4, 
             aciklama: "Halkın Türkçe konuşması, Türkçenin gündelik yaşamdaki hakimiyetini ve yaygınlığını gösterir."
         },
         {
             soru: "9. Anadolu Selçuklu dönemiyle ilgili olarak aşağıda verilen bilgilerden hangisi doğru değildir?",
-            siklar: ["İlk altın para II. Kılıç Arslan döneminde bastırılmıştır.", "Anadolu'daki ilk kervansaray II. Kılıç Arslan döneminde yaptırılmıştır.", "Gevher Nesibe Darüşşifası, I. Gıyaseddin Keyhüsrev döneminde açılmıştır.", "Kubadabad Sarayı, Alaaddin Keykubad döneminde yapılmıştır.", "Türkçe resmi dil olarak Alaaddin Keykubad döneminde kabul edilmiştir."],
+            siklar: ["İlk altın para 2. Kılıç Arslan döneminde bastırılmıştır.", "Anadolu'daki ilk kervansaray 2. Kılıç Arslan döneminde yaptırılmıştır.", "Gevher Nesibe Darüşşifası, 1. Gıyaseddin Keyhüsrev döneminde açılmıştır.", "Kubadabad Sarayı, Alaaddin Keykubad döneminde yapılmıştır.", "Türkçe resmi dil olarak Alaaddin Keykubad döneminde kabul edilmiştir."],
             dogruCevap: 4, 
             aciklama: "Türkçe'nin resmi dil olması Anadolu Selçuklu değil, Karamanoğulları dönemindedir (Karamanoğlu Mehmet Bey)."
         },
@@ -366,7 +366,7 @@ const tumTestler = {
             aciklama: "Çift başlı kartal gibi hayvan figürleri, bitkiler ve hat sanatı (yazı) kullanılmıştır."
         },
         {
-            soru: "19. Anadolu Selçukluları mimaride hangi malzemeleri süsleme için kullanmıştır?",
+            soru: "19. Anadolu Selçukluları mimari yapıların iç ve dış süslemelerinde aşağıdakilerden hangisini kullanmıştır? 1. Çini 2. Taş 3. Ahşap",
             siklar: ["Yalnız bir", "Yalnız 2", "Yalnız 3", "1 ve 2", "1, 2 ve 3"],
             dogruCevap: 4, 
             aciklama: "Çini, Taş ve Ahşap işçiliği Selçuklu sanatının temelidir."
@@ -426,7 +426,7 @@ const tumTestler = {
             aciklama: "Anadolu Selçuklu Devleti'nin Moğollara yenilerek yıkılma sürecine girdiği savaş Kösedağ Savaşı'dır."
         },
         {
-            soru: "8. Kösedağ Savaşı'ndan sonra Selçuklu paralarının İlhanlılara göre ayarlanması neyin göstergesi olamaz?",
+            soru: "8. Anadolu Selçuklularında 1243 Kösedağ Savaşı'ndan sonra Selçuklu sikkeleri İlhanlı paralarına göre ayarlanmış, daha sonra Moğollarca basılmaya başlanmıştır. Bu durumun Anadolu Selçuklularında aşağıdakilerden hangisinin göstergesi olduğu savunulamaz?",
             siklar: ["Devletin yıkıldığının", "Merkezi otoritenin bozulduğunun", "Sikkelerin kalkmadığının", "Moğol egemenliğinin", "Ekonomik bağımlılığın"],
             dogruCevap: 0, 
             aciklama: "Ekonomik bağımlılığı gösterir ancak devlet hemen yıkılmamış, bir süre daha Moğollara bağlı yaşamıştır."
@@ -444,38 +444,38 @@ const tumTestler = {
             aciklama: "Selçuklu sultanları Moğollara (İlhanlılar) bağlı birer vali gibi hareket etmek zorunda kalmıştır."
         },
         {
-            soru: "11. Anadolu Selçuklu dönemindeki savaşların (Kösedağ, Yassıçemen, Miryokefalon) kronolojik sırası nasıldır?",
+            soru: "11. Anadolu Selçuklu dönemindeki savaşların 1.Kösedağ,2. Yassıçemen, 3. Miryokefalon kronolojik sırası nasıldır?",
             siklar: ["1-3-2", "3-2-1", "2-3-1", "2-1-3", "3-1-2"],
             dogruCevap: 1, 
             aciklama: "1176 Miryokefalon (3) -> 1230 Yassıçemen (2) -> 1243 Kösedağ (1)."
         },
         {
-            soru: "12. Babailer Ayaklanması ve Kösedağ Savaşı hangisinin kanıtı olamaz?",
+            soru: "12. Anadolu Selçuklu Devleti; 1. 1240'ta Türkmenlerin başlattığı Babailer ayaklanması nedeniyle yıpranma sürecine girdi. 2. 1243'te Moğollarla yaptığı Kösedağ Savaşı'nı kaybedince beyliklere bölündü. Yukarıda verilenler aşağıdakilerden hangilerinin kanıtı olamaz?",
             siklar: ["Siyasi birliğin bozulduğunun", "Moğol baskısının arttığının", "Moğolların Babailer ayaklanmasını çıkarttığının", "Siyasal egemenliğin zayıfladığının", "Yeni yapılanmaların oluştuğunun"],
             dogruCevap: 2, 
             aciklama: "Babailer isyanı iç sorundur, Moğolların çıkardığına dair kanıt yoktur."
         },
         {
-            soru: "13. 13. yy sonlarında Moğol baskısının azalmasıyla uç beylerinin güçlenmesi neye hız kazandırmıştır?",
+            soru: "13. 13. yüzyılın sonlarında Moğol baskısının azalmasıyla uç beylerinin güçlenmesi neye hız kazandırmıştır?",
             siklar: ["Ticaretin gelişmesine", "Bizans entrikalarına", "Nüfus artışına", "Karışıklıkların bitmesine", "Beyliklerin ortaya çıkmasına"],
             dogruCevap: 4, 
             aciklama: "Selçuklu otoritesi zayıflayınca uç beyleri bağımsızlıklarını ilan etmiş (İkinci Beylikler) ortaya çıkmıştır."
         },
         {
-            soru: "14. Moğol tahribatı ve Türkmenlerin batıya göçü hangi savaşın sonucudur?",
+            soru: "14. Anadolu Selçuklu Devleti zayıflamaya başladı. Savaş sonrasında Moğolların Anadolu'yu tahrip etmesi ticareti olumsuz etkiledi. Moğolların önünden kaçan Türkmenler daha batıdaki bölgelere yerleşti. Bazı sonuçları verilen bu savaş aşağıdakilerden hangisidir?",
             siklar: ["Malazgirt", "Miryokefalon", "Yassıçemen", "Kösedağ", "Dandanakan"],
             dogruCevap: 3, 
             aciklama: "Kösedağ Savaşı sonrası Moğol istilası Anadolu'yu tahrip etmiştir."
         },
         {
-            soru: "15. Necmettin Razi'nin Alaaddin Keykubad dönemindeki refahı anlatan sözlerinden hangisine ulaşılamaz?",
+            soru: "15. Moğol istilasından kaçıp Alaaddin Keykubad'a sığınan Necmettin Razi, Müslümanlar emniyet, asayişi ve rahatı Selçuklu Hanedanı'nın mübarek çetri gölgesinde buldular. Bu dindar padişahlar zamanında yapılan medreseler, camiler, köprüler ve diğer hayır müesseseleri hiçbir devirde yapılmamış; alimlere ve halka gösterilen şefkat ve merhamet, girişilen gazalar ve kazanılan zaferler hiçbir zamanda vuku bulmamıştır. demiştir. Buna göre Türkiye Selçuklu Devleti ile ilgili olarak aşağıdakilerden hangisine ulaşılamaz?",
             siklar: ["İmar çalışmalarına", "Vakıf kurma geleneğini başlattıklarına", "Güçlü ordularının olduğuna", "Bilim adamlarını himaye ettiklerine", "Güçlü sosyal yapıya"],
             dogruCevap: 1, 
             aciklama: "Vakıf geleneği Selçuklularla başlamamış, daha öncesinde de (Karahanlılar vb.) vardı."
         },
         {
-            soru: "16. Alaaddin Keykubad dönemiyle ilgili hangisi söylenemez?",
-            siklar: ["Sınır güvenliği sağlanmıştır", "Deniz ticaretine önem verilmiştir", "Karadeniz Türk Gölü olmuştur", "Moğol tedbirleri alınmıştır", "Deniz gücü artmıştır"],
+            soru: "16. Anadolu Selçuklu Devleti hükümdarı Alaaddin Keykubad döneminde bugünkü Alanya fethedilip önemli bir liman şehri haline getirilmiştir. Ayrıca Kırım'daki Suğdak da bu dönemde ele geçirilmiştir. Eyyubiler ve Moğollar ile barış girişimlerine önem verilmişti. Harap durumda olan eski kaleler tahkim edilmiş, Doğu Anadolu'daki Harzemli beyler Selçuklu hizmetine alınmıştı. Bu bilgiyle Alaaddin Keykubad dönemiyle ilgili olarak aşağıdakilerden hangisi söylenemez?",
+            siklar: ["Doğu ve Güney sınırlarının güvenliği sağlanmaya çalışılmıştır", "Deniz ticaretinin geliştirilmesine önem verilmiştir", "Karadeniz Türk Gölü olmuştur", "Moğollara karşı  tedbirler alınmıştır", "Denizlerdeki askeri güç artmıştır"],
             dogruCevap: 2, 
             aciklama: "Karadeniz'in Türk Gölü olması Fatih Sultan Mehmet (Osmanlı) dönemindedir."
         },
@@ -508,10 +508,10 @@ const tumTestler = {
     // --- TEST 4: TÜRK İSLAM BİLGİNLERİ VE KÜLTÜR (Sorular 131-150) ---
     "turk_islam_test4": [
         {
-            soru: "1. Hangi Türk devleti denizcilikle uğraşmamıştır?",
-            siklar: ["Karahanlılar", "Aydınoğulları", "Anadolu Selçukluları", "Menteşoğulları", "Candaroğulları"],
-            dogruCevap: 0, 
-            aciklama: "Orta Asya'da kurulan Karahanlıların denizle bağlantısı yoktur."
+            soru: "1. Büyük Selçuklu Devleti döneminde yaşamış, Celali Takvimi'nin hazırlanmasına başkanlık etmiş, matematik ve astronomi alanındaki çalışmalarıyla tanınan ve Rubailer adlı eseriyle edebiyat dünyasında da önemli bir yere sahip olan ünlü bilim insanı ve şair aşağıdakilerden hangisidir?",
+            siklar: ["Harezmi", "Uluğ Bey", "Ömer Hayyam", "Biruni", "Farabi"],
+            dogruCevap: 1, 
+            aciklama: "Sorunun doğru cevabı Ömer Hayyamdır."
         },
         {
             soru: "2. Anadolu Selçuklularında hükümdara vekalet eden kişiye ne denir?",
@@ -520,25 +520,25 @@ const tumTestler = {
             aciklama: "Hükümdar yokken devleti yöneten kişiye Naip (Saltanat Naibi) denir."
         },
         {
-            soru: "3. Yusuf Has Hacip'in 'Kutadgu Bilig' adlı eseri hangi türdedir?",
+            soru: "3. Yusuf Has Hacip'in 'Kutadgubilig' adlı eseri hangi türdedir?",
             siklar: ["Siyasetname", "Vekayiname", "Menakıbname", "Seyahatname", "Gazavatname"],
             dogruCevap: 0, 
             aciklama: "İdeal devlet yönetimini anlattığı için ilk Siyasetname örneğidir."
         },
         {
-            soru: "4. Nizamülmülk'ün Siyasetname eserinin önemi nedir? 1. Devlet adamı tarafından yazılması 2. Yönetim bilgileri vermesi",
+            soru: "4. Nizamülmülk'ün Siyasetname adlı eserinin Türk İslam tarihindeki önemi; 1. Yazarın Selçuklu devlet yönetiminde söz sahibi olması, 2. Devlet yönetimine ilişkin bilgiler vermesi, 3. Türklerin İslamiyet'i kabulünden sonra kendi türünde yazılan ilk eser olması durumlarının hangilerinden kaynaklandığı savunulabilir?",
             siklar: ["Yalnız 1", "Yalnız 2", "Yalnız 3", "1 ve 2", "1, 2 ve 3"],
             dogruCevap: 3, 
             aciklama: "Büyük vezir tarafından yazılması ve pratik bilgiler içermesi önemlidir."
         },
         {
-            soru: "5. 'Muallim-i Sani' (İkinci Öğretmen) olarak bilinen bilgin kimdir?",
+            soru: "5. Muallim-i Sani (İkinci Öğretmen) unvanıyla bilinen, eserleri Batı dillerine çevrilerek Avrupa bilim dünyasını etkileyen bilgin aşağıdakilerden hangisidir?",
             siklar: ["Farabi", "Gazali", "Harezmi", "Cüveyni", "İbn-i Rüşd"],
             dogruCevap: 0, 
             aciklama: "Aristo felsefesini en iyi açıkladığı için Farabi'ye bu unvan verilmiştir."
         },
         {
-            soru: "6. Akılcılığı ve pozitif bilimleri ön plana çıkaran Türk filozofu kimdir?",
+            soru: "6. Türk İslam devletlerinde akılcılığı ön plana alan ve pozitif bilimlerin gelişmesine katkı sağlayan bilim adamı kimdir?",
             siklar: ["Gazali", "Eşari", "İbn-i Rüşd", "Farabi", "Zemahşehri"],
             dogruCevap: 3, 
             aciklama: "Farabi, rasyonalizmi (akılcılığı) savunmuştur."
@@ -556,19 +556,19 @@ const tumTestler = {
             aciklama: "El-Kanun fi't-Tıb adlı eseriyle tıbbın babası sayılan İbn-i Sina'dır."
         },
         {
-            soru: "9. Semerkant Rasathanesini kuran Timurlu hükümdarı ve astronom kimdir?",
+            soru: "9. Timurlular Devleti döneminde bilim adamlarına önem verilmiş, hükümdarlar bilim ve edebiyat çalışmalarını bizzat desteklemiştir. Bu dönemde yaşamış, Semerkant'ta kendi adına yaptırdığı rasathanesiyle ünlü astronomi bilgini ve devlet adamı aşağıdakilerden hangisidir?",
             siklar: ["Uluğ Bey", "Ali Kuşçu", "Hüseyin Baykara", "Ali Şir Nevai", "Şahruh"],
             dogruCevap: 0, 
             aciklama: "Uluğ Bey, hem hükümdar hem de büyük bir astronomdur."
         },
         {
-            soru: "10. Celali Takvimi'ni hazırlayan, matematikçi ve şair (Rubaiyat) kimdir?",
-            siklar: ["Nizami", "Ömer Hayyam", "Firdevsi", "Enveri", "Gazali"],
-            dogruCevap: 1, 
-            aciklama: "Ömer Hayyam hem rubaileriyle hem de Celali Takvimi ile ünlüdür."
+            soru: "10. Gazneli Devleti döneminde yaşamış, matematik, astronomi, coğrafya ve tarih gibi pek çok alanda eserler vermiş, Asarü'l Bakiye adlı kitabın yazarı olan ve Gazneli Mahmut’un hakkında Sarayımın en değerli hazinesi ifadesini kullandığı ünlü bilim insanı aşağıdakilerden hangisidir?",
+            siklar: ["Farabi", "Ömer Hayyam", "Firdevsi", "Biruni", "Gazali"],
+            dogruCevap: 3, 
+            aciklama: "Bahsi geçen bilim insanı Birunidir."
         },
         {
-            soru: "11. Hangisi Türk İslam bilim adamı değildir?",
+            soru: "11. Aşağıdakilerden hangisi Türk İslam dünyasının önde gelen bilim adamlarından biri değildir?",
             siklar: ["Farabi", "İbn-i Sina", "Biruni", "Ömer Hayyam", "Kuyucu Murat Paşa"],
             dogruCevap: 4, 
             aciklama: "Kuyucu Murat Paşa 17. yy Osmanlı sadrazamıdır, bilim adamı değildir."
@@ -581,18 +581,18 @@ const tumTestler = {
         },
         {
             soru: "13. Karahanlıların resmi yazışmalarda Uygur Türkçesi kullanması neyi gösterir?",
-            siklar: ["Türkçenin diplomatik dil olduğunu", "Arapçanın etkisini", "Sınırların genişlemesini", "Sentezi", "Yaygınlığı"],
+            siklar: ["Türkçenin diplomatik dil olduğunu", "Arapçanın Türkçeyi etkilemesine", "Karahanlı Devleti'nin egemenlik alanının hızla genişlemesine", "Karahanlıların Türk-İslam sentezini gerçekleştirmesine", "Diğer devletlerde Türkçenin yaygın olarak kullanılmasına"],
             dogruCevap: 0, 
             aciklama: "Kendi dillerini devlet dili yapmaları Türkçeyi diplomatik dil olarak kullandıklarını gösterir."
         },
         {
-            soru: "14. Malazgirt Savaşı'nın sonucu olmayan hangisidir?",
+            soru: "14. Aşağıdakilerden hangisinin 1071'de yapılan Malazgirt Savaşı'nın sonuçları arasında olduğu savunulamaz?",
             siklar: ["Ticaret yollarının değişmesi", "Anadolu kapılarının açılması", "Beyliklerin kurulması", "Bizans baskısının azalması", "Haçlı seferlerinin başlaması"],
             dogruCevap: 0, 
             aciklama: "Ticaret yollarının değişmesi Coğrafi Keşiflerin sonucudur."
         },
         {
-            soru: "15. Nizamülmülk'ün ikta sahiplerinin yerini değiştirmeyi önermesinin amacı nedir? 1. Feodalleşmeyi önlemek 2. Halka baskıyı engellemek",
+            soru: "15. Nizamülmülk, Siyasetname adlı eserinde askeri ve idari görevlilerin kendilerine verilen ıktalarda sürekli tutulmayıp belirli sürelerle değiştirilmesini önermiştir. Nizamülmülk'ün bu önerisiyle; 1. Ülkede feodal güçlerin ortaya çıkmasını önlemek, 2. İkta sahiplerinin halka baskı yapmasını engellemek, 3. Tarım ürünü çeşitlerini arttırmak durumlarından hangilerini amaçladığı savunulabilir?",
             siklar: ["Yalnız 1", "Yalnız 2", "Yalnız 3", "1 ve 2", "1, 2 ve 3"],
             dogruCevap: 3, 
             aciklama: "Yerel güçlerin (feodal) oluşmasını ve halka zulmedilmesini engellemek için rotasyon uygulanır."
@@ -604,14 +604,14 @@ const tumTestler = {
             aciklama: "Nizamiye Medreseleri dönemin en ünlü üniversiteleridir."
         },
         {
-            soru: "17. Hangi devlet Haçlılara karşı mücadele etmemiştir?",
+            soru: "17. Aşağıdakilerden hangisi Haçlılara karşı mücadele eden Türk Devlet veya Beyliklerinden biri değildir?",
             siklar: ["Danişmentliler", "Saltuklular", "Anadolu Selçukluları", "Artuklular", "İhşidîler"],
             dogruCevap: 4, 
             aciklama: "Mısır'da kurulan İhşidîler, Haçlı Seferlerinden önce yıkılmıştır."
         },
         {
-            soru: "18. Akkoyunlu Devleti ile ilgili hangisi doğrudur?",
-            siklar: ["Trabzon Rum İmparatorluğu'na son vermiştir.", "Osmanlı'yı desteklemiştir.", "Timur tarafından yıkılmıştır.", "15. yüzyılda kurulan Türkmen devletidir.", "Celali isyanlarını desteklemiştir."],
+            soru: "18. Akkoyunlu Devleti ile ilgili olarak aşağıdakilerden hangisi doğrudur?",
+            siklar: ["Trabzon Rum İmparatorluğu'na son vermiştir.", "Timur Devleti'ne karşı Osmanlı Devleti'ni desteklemiştir", "Timur tarafından yıkılmıştır", "15. yüzyılda kurulan Türkmen devletidir", "Osmanlı Devleti'ndeki Celali ayaklanmalarını desteklemiştir"],
             dogruCevap: 3, 
             aciklama: "Doğu Anadolu'da Uzun Hasan tarafından 15. yüzyılda kurulmuştur."
         },
@@ -622,7 +622,7 @@ const tumTestler = {
             aciklama: "İbn-i Rüşd, Aristo yorumlarıyla Rönesans'ı etkilemiştir."
         },
         {
-            soru: "20. Büyük Selçuklu Devleti'nin son büyük sultanı kimdir?",
+            soru: "20. 1118-1157 yılları arasında hükümdarlık yapmış olan ve Büyük Selçuklu Devleti'nin son sultanı olarak bilinen kişi aşağıdakilerden hangisidir?",
             siklar: ["Sencer", "Melikşah", "Berkyaruk", "Muhammed Tapar", "Kutalmış"],
             dogruCevap: 0, 
             aciklama: "Sultan Sencer'in ölümüyle Büyük Selçuklu Devleti yıkılmıştır."
@@ -700,14 +700,14 @@ const tumTestler = {
             aciklama: "Malazgirt kapıyı açmış, Miryokefalon tapuyu almıştır."
         },
         {
-            soru: "12. Bizans ve Haçlı savaşlarının sonucu nedir? 1. Üretimin azalması 2. Yerleşimin boşalması",
+            soru: "12. Anadolu Selçukluları 11. yüzyıl sonlarından 12. yüzyıl sonlarına kadar Bizanslılar ve Haçlılarla savaşlar yapmışlardır. Bu savaşların; 1. Anadolu'da üretimin ve vergi gelirlerinin azalması, 2. Anadolu'da yerleşim alanlarının boşalması, 3. Anadolu'dan geçen dünya ticaret yollarının önem kazanması durumlarından hangileri üzerinde etkili olduğu savunulmuştur?",
             siklar: ["Yalnız 1", "Yalnız 2", "Yalnız 3", "1 ve 2", "1, 2 ve 3"],
             dogruCevap: 3, 
             aciklama: "Savaşlar Anadolu'da yıkıma, üretimin düşmesine ve nüfusun azalmasına neden olmuştur."
         },
         {
-            soru: "13. Voltaire'in 'Batı her şeyini Doğu'ya borçludur' sözüne en iyi örnek hangisidir?",
-            siklar: ["Talas Savaşı ve İslamiyet", "Kralların güçlenmesi", "Tımar sistemi", "Haçlı seferleriyle buluşların taşınması", "Çifte Gül Savaşı"],
+            soru: "13. Voltaire Eğer ki biri dünya üzerinde olup biteni anlamak istiyorsa, önce bütün saltanatların beşiği, Batı'nın her şeyini borçlu olduğu Doğu'ya bakmalıdır. demiştir. Aşağıdakilerden hangisi bu duruma bir örnek olarak gösterilebilir?",
+            siklar: ["Talas Savaşı'nın ardından Türkler arasında İslamiyet'in yayılması", "Avrupa'da kralların Papalara karşı güçlenmesi", "Anadolu Selçuklularındaki ikta sisteminin Osmanlılar tarafından geliştirilerek tımar sistemi adıyla uygulanması", "Haçlı seferleriyle İslam dünyasındaki birçok buluşun Avrupa'ya taşınması", "İngiltere'deki Çifte Gül Savaşı sonrasında feodalitenin zayıflayarak mutlakiyet rejiminin ortaya çıkması"],
             dogruCevap: 3, 
             aciklama: "Kağıt, barut, pusula gibi buluşların Haçlı Seferleriyle Avrupa'ya geçmesi buna örnektir."
         },
@@ -730,7 +730,7 @@ const tumTestler = {
             aciklama: "Cami dini yapıdır; diğerleri sivil mimaridir."
         },
         {
-            soru: "17. Anıt mezar niteliğindeki yapı hangisidir?",
+            soru: "17. Türk-İslam mimarisinde medrese, cami, mescit, han, saray, kümbet, külliye ve darüşşifa gibi önemli mimari eserler yapılmıştır. Bu eserlerin hangisi anıt mezar niteliğinde yapılmıştır?",
             siklar: ["Kümbetler", "Külliyeler", "Cami ve medreseler", "Han ve saraylar", "Darüşşifalar"],
             dogruCevap: 0, 
             aciklama: "Kümbetler, İslamiyet öncesi kurgan geleneğinin devamı olan anıt mezarlardır."
@@ -748,7 +748,7 @@ const tumTestler = {
             aciklama: "Afganistan'daki Leşker-i Bazar sarayı Gaznelilere aittir."
         },
         {
-            soru: "20. Büyük Selçukluların medrese açma nedenleri nedir? 1. Yönetici ihtiyacı 2. Zararlı akımlarla mücadele",
+            soru: "20. Büyük Selçuklular döneminde; 1. Selçuklu Sultanlarının halife sanını (unvanını) almaması, 2. Yönetici sayısının arttırılmasına gerek duyulması, 3. Yetenekli öğrencilerin okutulmasının ve topluma kazandırılmasının amaçlanması durumlarından hangilerinin Selçuklu Sultanlarının medreseleri kurup yaygınlaştırılmasına önem vermelerinde etkili olduğu savunulabilir?",
             siklar: ["Yalnız 1", "Yalnız 2", "Yalnız 3", "1 ve 2", "2 ve 3"],
             dogruCevap: 4, 
             aciklama: "Devlete memur yetiştirmek ve Batınilik gibi zararlı akımlara karşı Sünni İslam'ı savunmak içindir."
