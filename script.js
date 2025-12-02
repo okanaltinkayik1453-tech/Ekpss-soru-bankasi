@@ -4,7 +4,7 @@ let mevcutSoruIndex = 0;
 let kullaniciCevaplari = [];
 let isaretlemeKilitli = false;
 
-// --- SES MOTORU (SENTETİK) ---
+// --- SES MOTORU (HAFİF) ---
 const AudioContext = window.AudioContext || window.webkitAudioContext;
 const sesMotoru = new AudioContext();
 
@@ -16,8 +16,7 @@ function sesUret(tur) {
     motoruUyandir(); 
     const osilator = sesMotoru.createOscillator();
     const kazanc = sesMotoru.createGain();
-    osilator.connect(kazanc);
-    kazanc.connect(sesMotoru.destination);
+    osilator.connect(kazanc); kazanc.connect(sesMotoru.destination);
     const suan = sesMotoru.currentTime;
 
     if (tur === "dogru") {
@@ -44,36 +43,24 @@ function notaCal(freq, time, dur) {
     osc.start(time); osc.stop(time + dur);
 }
 
-// --- GELİŞMİŞ VE ESTETİK METİN FORMATLAYICI ---
+// --- AKILLI FORMATLAYICI (ÖNCÜL & KÖK AYIRMA) ---
 function metniFormatla(metin) {
     if (!metin) return "";
-
-    // 1. KONTROL: Soru içinde madde var mı?
-    // Hem Roma (I., II.) hem Türk rakamlarını (1., 2. - boşluklu) arar
     const romaVarMi = metin.match(/ I\.| II\.| III\./);
     const rakamVarMi = metin.match(/ 1\.| 2\.| 3\./);
 
-    // Eğer madde yoksa düz metin olarak döndür (Bozulmayı önler)
-    if (!romaVarMi && !rakamVarMi) {
-        return metin;
-    }
+    if (!romaVarMi && !rakamVarMi) return metin;
 
     let islenmisMetin = metin;
-    let onculHTML = "";
-
-    // 2. MADDELERİ TOPLA VE KUTUYA AL
-    // Roma Rakamları İçin Dönüştürme
+    
+    // Öncülleri Kutuya Al
     if (romaVarMi) {
-        // Her maddeyi yakalayıp div içine alıyoruz
-        // Regex: Boşluk + I. + Metin... (Bir sonraki maddeye kadar)
         islenmisMetin = islenmisMetin
             .replace(/ I\. (.*?)(?= II\.| Soru Kökü|$)/g, "<div class='oncul-satir'><span class='oncul-no'>I.</span><span class='oncul-yazi'>$1</span></div>")
             .replace(/ II\. (.*?)(?= III\.| IV\.| Soru Kökü|$)/g, "<div class='oncul-satir'><span class='oncul-no'>II.</span><span class='oncul-yazi'>$1</span></div>")
             .replace(/ III\. (.*?)(?= IV\.| V\.| Soru Kökü|$)/g, "<div class='oncul-satir'><span class='oncul-no'>III.</span><span class='oncul-yazi'>$1</span></div>")
             .replace(/ IV\. (.*?)(?= V\.| Soru Kökü|$)/g, "<div class='oncul-satir'><span class='oncul-no'>IV.</span><span class='oncul-yazi'>$1</span></div>");
     }
-    
-    // Türk Rakamları İçin Dönüştürme (1. 2. 3.)
     if (rakamVarMi) {
         islenmisMetin = islenmisMetin
             .replace(/ 1\. (.*?)(?= 2\.| Soru Kökü|$)/g, "<div class='oncul-satir'><span class='oncul-no'>1.</span><span class='oncul-yazi'>$1</span></div>")
@@ -82,33 +69,16 @@ function metniFormatla(metin) {
             .replace(/ 4\. (.*?)(?= 5\.| Soru Kökü|$)/g, "<div class='oncul-satir'><span class='oncul-no'>4.</span><span class='oncul-yazi'>$1</span></div>");
     }
 
-    // 3. ÖNCÜLLERİ BİR KUTUYA HAPSETMEK İÇİN GRUPLAMA
-    // Tüm div'leri (oncul-satir) yakalayıp tek bir ana kapsayıcıya alacağız
-    // Basit bir yöntemle ardışık divleri sarmalayalım.
-    // Ancak JS replace ile bunu yapmak zor olduğu için görsel hile yapıyoruz:
-    // Maddeler zaten div oldu, şimdi sadece soru kökünü ayıralım.
-
-    // 4. SORU KÖKÜNÜ AYIR VE VURGULA
-    // Bu kelimelerden birini görünce alt satıra at ve kalın yap
-    const soruKokleri = [
-        "Buna göre", "Bu bilgilere göre", "Yukarıdaki", "Aşağıdaki", 
-        "Hangisidir", "Hangisine", "Ulaşılabilir", "Varılabilir", 
-        "Söylenebilir", "Gösterilebilir", "Değinilmiştir", "Beklenir"
-    ];
+    // Soru Kökünü Ayır
+    const soruKokleri = ["Buna göre", "Bu bilgilere göre", "Yukarıdaki", "Aşağıdaki", "Hangisidir", "Hangisine", "Ulaşılabilir", "Varılabilir", "Söylenebilir", "Gösterilebilir", "Değinilmiştir", "Beklenir"];
     
     let kokBulundu = false;
     soruKokleri.forEach(kok => {
         if (!kokBulundu && islenmisMetin.includes(kok)) {
-            // Soru kökünü maddelerden ayır
             islenmisMetin = islenmisMetin.replace(kok, `<div class='soru-koku-vurgu'>${kok}`);
-            // Div'i kapatmak için sonuna </div> eklemeye gerek yok, tarayıcı halleder veya css block yeterli.
             kokBulundu = true;
         }
     });
-
-    // Eğer soru kökü ayrılmadıysa (kelime listesinde yoksa) ve maddeler bittiyse
-    // Son madde div'inden sonra gelen her şeyi soru kökü sayabiliriz ama riskli.
-    // Şimdilik kelime listesi en güvenli yol.
 
     return islenmisMetin;
 }
@@ -154,7 +124,11 @@ function soruyuGoster(index) {
     const soruObj = mevcutSorular[index];
     isaretlemeKilitli = false; 
     
-    // FORMATLAYICI AKTİF
+    // İLERLEME ÇUBUĞUNU GÜNCELLE
+    const yuzde = ((index + 1) / mevcutSorular.length) * 100;
+    const cubuk = document.getElementById("ilerleme-cubugu");
+    if(cubuk) cubuk.style.width = `${yuzde}%`;
+
     const soruBaslik = document.getElementById("soru-metni");
     soruBaslik.innerHTML = metniFormatla(soruObj.soru);
     
@@ -266,8 +240,8 @@ function yanlislariGoster() {
         if (kullaniciCevabi !== soru.dogruCevap) {
             yanlisVarMi = true;
             const kart = document.createElement("div"); kart.className = "yanlis-soru-karti";
-            // Yanlış gösterirken de formatla
-            kart.innerHTML = `<h4>Soru ${index + 1}: ${metniFormatla(soru.soru)}</h4><p class="kirmizi-yazi"><strong>Sizin Cevabınız:</strong> ${verilenCevapMetni = kullaniciCevabi !== null ? soru.siklar[kullaniciCevabi] + " (YANLIŞ)" : "BOŞ BIRAKILDI"}</p><p class="yesil-yazi"><strong>Doğru Cevap:</strong> ${soru.siklar[soru.dogruCevap]}</p><div class="aciklama-kutusu"><strong>Açıklama:</strong> ${soru.aciklama}</div>`;
+            let verilenCevapMetni = kullaniciCevabi !== null ? soru.siklar[kullaniciCevabi] + " (YANLIŞ)" : "BOŞ BIRAKILDI";
+            kart.innerHTML = `<h4>Soru ${index + 1}: ${metniFormatla(soru.soru)}</h4><p class="kirmizi-yazi"><strong>Sizin Cevabınız:</strong> ${verilenCevapMetni}</p><p class="yesil-yazi"><strong>Doğru Cevap:</strong> ${soru.siklar[soru.dogruCevap]}</p><div class="aciklama-kutusu"><strong>Açıklama:</strong> ${soru.aciklama}</div>`;
             listeDiv.appendChild(kart);
         }
     });
