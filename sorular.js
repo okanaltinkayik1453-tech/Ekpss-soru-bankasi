@@ -2380,4 +2380,130 @@ const tumTestler = {
             aciklama: "Sadece askeri değil; idari, sanatsal ve kültürel eğitim de verir."
         }
     ]
-}; // KAPILARI KAPATTIK
+
+, // ÖNCEKİ TESTLE BAĞLANTIYI SAĞLAR (DOKUNMA)
+
+    // --- OSMANLI KURULUŞ DÖNEMİ - TEST 1 (2. Beylikler Dönemi) ---
+    "osmanli_kurulus_test1": [
+        {
+            soru: "1. 1243 Kösedağ Savaşı'ndan sonra kurulan, kendisini Selçuklu'nun mirasçısı gören ve Osmanlı'yı en çok uğraştıran beylik hangisidir?",
+            siklar: ["Germiyanoğulları", "Candaroğulları", "Karamanoğulları", "Karesioğulları", "Hamitoğulları"],
+            dogruCevap: 2, 
+            aciklama: "Karamanoğulları, Konya'ya hakim oldukları için kendilerini mirasçı görmüşlerdir."
+        },
+        {
+            soru: "2. Batı Anadolu'da kurulan beyliklerden hangisinin denizcilikle uğraştığı söylenemez?",
+            siklar: ["Karesioğulları", "Saruhanoğulları", "Aydınoğulları", "Menteşeoğulları", "Germiyanoğulları"],
+            dogruCevap: 4, 
+            aciklama: "Germiyanoğulları Kütahya merkezli bir kara beyliğidir."
+        },
+        {
+            soru: "3. Osmanlı Devleti'nin Anadolu Türk birliğini sağlamak için kattığı ilk beylik hangisidir?",
+            siklar: ["Hamitoğulları", "Karesioğulları", "Aydınoğulları", "Germiyanoğulları", "Menteşeoğulları"],
+            dogruCevap: 1, 
+            aciklama: "Orhan Bey döneminde alınan Karesioğulları ilk beyliktir."
+        },
+        {
+            soru: "4. Karesioğulları'nın alınmasının en önemli stratejik sonucu nedir?",
+            siklar: ["Türk birliğinin sağlanması", "İpek Yolu denetimi", "Rumeli'ye geçişin kolaylaşması ve donanma gücü", "Bizans savaşı", "Haçlı ittifakı"],
+            dogruCevap: 2, 
+            aciklama: "Karesi donanması sayesinde Rumeli'ye geçiş kolaylaşmıştır."
+        },
+        {
+            soru: "5. Aşağıdaki beylik-merkez eşleştirmelerinden hangisi yanlıştır?",
+            siklar: ["Saruhanoğulları - Manisa", "Menteşeoğulları - Muğla", "Aydınoğulları - Birgi", "Candaroğulları - Kütahya", "Ramazanoğulları - Adana"],
+            dogruCevap: 3, 
+            aciklama: "Candaroğulları Kastamonu/Sinop merkezlidir. Kütahya Germiyanoğulları'nındır."
+        },
+        {
+            soru: "6. 1. Murat döneminde topraklarını para karşılığı Osmanlı'ya satan beylik hangisidir?",
+            siklar: ["Germiyanoğulları", "Hamitoğulları", "Candaroğulları", "Eretna Devleti", "Aydınoğulları"],
+            dogruCevap: 1, 
+            aciklama: "Hamitoğulları, topraklarını 80 bin altına satmıştır."
+        },
+        {
+            soru: "7. Ankara Savaşı'ndan sonra tekrar kurulmayan (toprakları Osmanlı'da kalan) beylik hangisidir?",
+            siklar: ["Karamanoğulları", "Karesioğulları", "Germiyanoğulları", "Aydınoğulları", "Saruhanoğulları"],
+            dogruCevap: 1, 
+            aciklama: "Karesioğulları ve Eşrefoğulları tekrar kurulmamıştır."
+        },
+        {
+            soru: "8. Türkçeyi resmi dil ilan eden Anadolu beyi kimdir?",
+            siklar: ["Osman Gazi", "Karamanoğlu Mehmet Bey", "Germiyanoğlu Yakup Bey", "Aydınoğlu Umur Bey", "Kadı Burhaneddin"],
+            dogruCevap: 1, 
+            aciklama: "1277 yılında Türkçeyi resmi dil ilan etmiştir."
+        },
+        {
+            soru: "9. Sinop çevresinde kurulan ve Fatih döneminde alınan, Karadeniz gücü olan beylik hangisidir?",
+            siklar: ["Pervaneoğulları", "İsfendiyaroğulları (Candaroğulları)", "Tacettinoğulları", "Canik Beylikleri", "Çobanoğulları"],
+            dogruCevap: 1, 
+            aciklama: "Candaroğulları (İsfendiyaroğulları) Karadeniz ticaretinde etkiliydi."
+        },
+        {
+            soru: "10. Yavuz Sultan Selim'in Turnadağ Savaşı ile son verdiği beylik hangisidir?",
+            siklar: ["Ramazanoğulları", "Dulkadiroğulları", "Eretna", "Kadı Burhaneddin", "Ahlatşahlar"],
+            dogruCevap: 1, 
+            aciklama: "Dulkadiroğulları'nın alınmasıyla Anadolu Türk birliği kesin olarak sağlanmıştır."
+        },
+        {
+            soru: "11. Osmanlı'nın çeyiz yoluyla toprak kazandığı beylik hangisidir?",
+            siklar: ["Hamitoğulları", "Germiyanoğulları", "Karesioğulları", "Menteşeoğulları", "Saruhanoğulları"],
+            dogruCevap: 1, 
+            aciklama: "Germiyanoğulları, kızlarını Yıldırım Bayezid'e vererek Kütahya çevresini çeyiz olarak vermiştir."
+        },
+        {
+            soru: "12. Sivas-Kayseri merkezli kurulan ve İlhanlı valisi tarafından kurulan devlet hangisidir?",
+            siklar: ["Kadı Burhaneddin", "Eretna Devleti", "Danişmentliler", "Saltuklular", "Mengücekliler"],
+            dogruCevap: 1, 
+            aciklama: "Eretna Bey tarafından kurulan devlettir."
+        },
+        {
+            soru: "13. Hangisi İkinci Beylikler dönemine ait bir eser değildir?",
+            siklar: ["İsa Bey Camii", "Yeşil Türbe", "Hatuniye Medresesi", "Divriği Ulu Camii", "İlyas Bey Camii"],
+            dogruCevap: 3, 
+            aciklama: "Divriği Ulu Camii, Birinci Beylikler (Mengücekliler) dönemine aittir."
+        },
+        {
+            soru: "14. Adana ve Çukurova'da hüküm süren, Osmanlı-Memlük ilişkilerini etkileyen beylik hangisidir?",
+            siklar: ["Ramazanoğulları", "Dulkadiroğulları", "Tekeoğulları", "Hamitoğulları", "İnançoğulları"],
+            dogruCevap: 0, 
+            aciklama: "Ramazanoğulları Adana merkezlidir."
+        },
+        {
+            soru: "15. Aydınoğulları'nın ünlü denizcisi ve Ege fatihi kimdir?",
+            siklar: ["Mehmet Bey", "Umur Bey", "İsa Bey", "Cüneyt Bey", "Çaka Bey"],
+            dogruCevap: 1, 
+            aciklama: "Gazi Umur Bey, dönemin en büyük denizcilerinden biridir."
+        },
+        {
+            soru: "16. Osmanlı'nın Anadolu beyliklerine karşı izlediği politikalardan biri değildir?",
+            siklar: ["Cihat ve gaza ile saldırmak", "Akrabalık kurmak", "Toprak satın almak", "İç karışıklıklardan yararlanmak", "Vasiyet yoluyla almak"],
+            dogruCevap: 0, 
+            aciklama: "Cihat ve Gaza sadece gayrimüslimlere karşı yapılır, Müslüman beyliklere yapılmaz."
+        },
+        {
+            soru: "17. Vasiyet yoluyla 2. Murat döneminde Osmanlı'ya katılan beylik hangisidir?",
+            siklar: ["Germiyanoğulları", "Karesioğulları", "Hamitoğulları", "Menteşeoğulları", "Candaroğulları"],
+            dogruCevap: 0, 
+            aciklama: "Germiyanoğlu Yakup Bey, beyliğini vasiyet etmiştir."
+        },
+        {
+            soru: "18. Ankara Savaşı'ndan sonra yeniden kurulmayan beylik hangisidir?",
+            siklar: ["Germiyanoğulları", "Aydınoğulları", "Eşrefoğulları", "Karamanoğulları", "Saruhanoğulları"],
+            dogruCevap: 2, 
+            aciklama: "Eşrefoğulları (ve Karesioğulları) tekrar kurulmamıştır."
+        },
+        {
+            soru: "19. Orta Karadeniz (Samsun) çevresindeki küçük beyliklere ne ad verilir?",
+            siklar: ["Canik Beylikleri", "Teke Beylikleri", "Uç Beylikleri", "Ege Beylikleri", "Bozok Beylikleri"],
+            dogruCevap: 0, 
+            aciklama: "Samsun, Bafra çevresindeki beyliklere Canik Beylikleri denir."
+        },
+        {
+            soru: "20. Sivas hükümdarı olan ve Timur'un gelmesine zemin hazırlayan lider kimdir?",
+            siklar: ["Kadı Burhaneddin", "Eretna Bey", "Uzun Hasan", "Kara Yülük Osman", "Alaaddin Keykubat"],
+            dogruCevap: 0, 
+            aciklama: "Kadı Burhaneddin, Osmanlı ile mücadele etmiş ve Timur tehlikesini artırmıştır."
+        }
+    ]
+}; // KAPILARI KAPATTIK 
