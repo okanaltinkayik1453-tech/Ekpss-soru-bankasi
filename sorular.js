@@ -1634,7 +1634,7 @@ const tumTestler = {
     // --- TEST 13: İSLAMİYET ÖNCESİ KÜLTÜR VE TEŞKİLAT (Tam 20 Soru) ---
     "turk_islam_test13": [
         {
-            soru: "1. İslam öncesi Türk devletlerinde devlet yönetimi, töre adı verilen yazılı olmayan hukuk kurallarına göre şekillenirdi. Törenin değişmez hükümleri arasında adalet, eşitlik, iyilik ve insanlık gibi kavramlar yer alırdı. Buna göre, aşağıdakilerden hangisi törede "adalet" kavramını ifade eden terimdir?",
+            soru: "1. İslam öncesi Türk devletlerinde devlet yönetimi, töre adı verilen yazılı olmayan hukuk kurallarına göre şekillenirdi. Törenin değişmez hükümleri arasında adalet, eşitlik, iyilik ve insanlık gibi kavramlar yer alırdı. Buna göre, aşağıdakilerden hangisi törede adalet kavramını ifade eden terimdir?",
             siklar: ["Tüzlük", "Uzluk", "Könilik", "Yargucı", "Yarlık"],
             dogruCevap: 2, 
             aciklama: "Könilik Adalet anlamında kullanılmaktadır."
