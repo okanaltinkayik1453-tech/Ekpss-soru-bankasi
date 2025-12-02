@@ -4,7 +4,7 @@ let mevcutSoruIndex = 0;
 let kullaniciCevaplari = [];
 let isaretlemeKilitli = false;
 
-// --- SES MOTORU (HAFİF) ---
+// --- SES MOTORU (SENTETİK) ---
 const AudioContext = window.AudioContext || window.webkitAudioContext;
 const sesMotoru = new AudioContext();
 
@@ -115,6 +115,9 @@ function oncekiSoru() { if (mevcutSoruIndex > 0) soruyuGoster(mevcutSoruIndex - 
 function sonrakiSoru() { if (mevcutSoruIndex < mevcutSorular.length - 1) soruyuGoster(mevcutSoruIndex + 1); }
 
 function soruyuGoster(index) {
+    // --- BURASI DÜZELTİLDİ: SAYFAYI EN TEPEYE IŞINLA ---
+    window.scrollTo({ top: 0, behavior: 'auto' });
+
     const uyariKutusu = document.getElementById("sesli-uyari");
     if(uyariKutusu) uyariKutusu.innerText = "";
     const gorselUyari = document.getElementById("gorsel-uyari-alani");

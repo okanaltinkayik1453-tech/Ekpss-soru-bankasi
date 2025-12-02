@@ -39,7 +39,7 @@ const tumTestler = {
             aciklama: "Asya Hun Devleti, Bizans kurulmadan önce yıkılmıştır."
         },
         {
-            soru: "6. I. Göktürk Devleti'ne en parlak dönemini yaşatan ve Avarları yıkan hükümdar kimdir?",
+            soru: "6. 1. Göktürk Devleti'ne en parlak dönemini yaşatan ve Avarları yıkan hükümdar kimdir?",
             siklar: ["Mukan Kağan", "Bögü Kağan", "Tapo Kağan", "Bilge Kağan", "İlteriş Kağan"],
             dogruCevap: 0,
             aciklama: "En parlak dönemi yaşatan Mukan Kağan'dır."
