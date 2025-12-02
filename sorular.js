@@ -1634,10 +1634,10 @@ const tumTestler = {
     // --- TEST 13: İSLAMİYET ÖNCESİ KÜLTÜR VE TEŞKİLAT (Tam 20 Soru) ---
     "turk_islam_test13": [
         {
-            soru: "1. Ülkeyi 11 ile ayırarak her il başına Tutug adlı görevli atayan Türk devleti hangisidir?",
-            siklar: ["Karluklar", "Kırgızlar", "İtil Bulgarları", "Tuna Bulgarları", "Kimekler"],
-            dogruCevap: 4, 
-            aciklama: "Kimekler ülkeyi 11 ile ayırmış ve başlarına Tutug (vali) atamıştır."
+            soru: "1. İslam öncesi Türk devletlerinde devlet yönetimi, töre adı verilen yazılı olmayan hukuk kurallarına göre şekillenirdi. Törenin değişmez hükümleri arasında "adalet", "eşitlik", "iyilik" ve "insanlık" gibi kavramlar yer alırdı. Buna göre, aşağıdakilerden hangisi törede "adalet" kavramını ifade eden terimdir?",
+            siklar: ["Tüzlük", "Uzluk", "Könilik", "Yargucı", "Yarlık"],
+            dogruCevap: 2, 
+            aciklama: "Könilik Adalet anlamında kullanılmaktadır."
         },
         {
             soru: "2. Cengiz Han'a itaat eden ilk müslüman Türk topluluğu hangisidir?",
@@ -1646,7 +1646,7 @@ const tumTestler = {
             aciklama: "Karluklar, Moğollara (Cengiz Han) itaat eden ilk Müslüman Türk topluluğudur."
         },
         {
-            soru: "3. Orta Asya'nın ilk kültürü (en eski) hangisidir?",
+            soru: "3. Orta Asya'nın (en eski) kültür merkezi aşağıdakilerden hangisidir?",
             siklar: ["Anav", "Karasuk", "Tagar", "Taştık", "Kelteminar"],
             dogruCevap: 0, 
             aciklama: "Anav kültürü (MÖ 4000) Orta Asya'nın en eski kültürüdür."
@@ -1664,7 +1664,7 @@ const tumTestler = {
             aciklama: "İskitler (Sakalar) atlı göçebe kültürünün öncüsüdür."
         },
         {
-            soru: "6. Kavimler Göçü'nün sonucu olmayan hangisidir?",
+            soru: "6. Aşağıdakilerden hangisi Kavimler Göçü'nün sonuçları arasında gösterilemez?",
             siklar: ["Roma'nın ikiye ayrılması", "Avrupa'nın etnik yapısı", "Feodalite", "Kilise otoritesinin zayıflaması", "Orta Çağ'ın başlaması"],
             dogruCevap: 3, 
             aciklama: "Kilise otoritesi zayıflamamış, aksine güçlenerek Skolastik düşünceyi doğurmuştur."
@@ -1676,10 +1676,10 @@ const tumTestler = {
             aciklama: "Tudun, vergi toplamakla görevli devlet memurudur."
         },
         {
-            soru: "8. Hangisi tek başına yerleşik hayata geçildiğinin kanıtı olamaz?",
-            siklar: ["Sulama kanalları", "Duvar resimleri (freskler)", "Tapınak mimarisi", "Tarım aletleri", "Kütüphane"],
-            dogruCevap: 1, 
-            aciklama: "Duvar resimleri göçebeler tarafından (mağara/çadır) da yapılabilir."
+            soru: "8. Yerleşik hayata geçen ilk Türk devleti olmalarıyla birlikte, Türk tarihinde mimari, kütüphanecilik ve bankacılık gibi alanlarda ilk örnekleri veren devlet aşağıdakilerden hangisidir?",
+            siklar: ["Göktürkler", "Kırgızlar", "Karahanlılar", "Uygurlar", "Macarlar"],
+            dogruCevap: 3, 
+            aciklama: "Doğru cevap Uygurlardır."
         },
         {
             soru: "9. Türk sosyal yapısında 'aile' anlamına gelen kavram hangisidir?",
@@ -1694,10 +1694,10 @@ const tumTestler = {
             aciklama: "Zenginleşen Hazarlar, ordusunda ücretli askerler kullanmıştır."
         },
         {
-            soru: "11. Farklı dinlerin barış içinde yaşadığı 'Hazar Barış Çağı'nı yaşatan devlet hangisidir?",
+            soru: "11. Farklı dinlerin barış ve hoşgörü içinde yaşadığı Türk devleti hangisidir?",
             siklar: ["İtil Bulgarları", "Tuna Bulgarları", "Uygurlar", "Hazarlar", "Avarlar"],
             dogruCevap: 3, 
-            aciklama: "Hazarlar, dini hoşgörüsüyle (Pax Khazarica) tanınır."
+            aciklama: "Hazarlar, dini hoşgörüsüyle tanınır."
         },
         {
             soru: "12. Malazgirt Savaşı'nda Bizans'tan Selçuklu tarafına geçen topluluk hangisidir?",
@@ -1706,10 +1706,10 @@ const tumTestler = {
             aciklama: "Peçenekler (ve Uzlar) savaş sırasında saf değiştirmiştir."
         },
         {
-            soru: "13. İlk kez kütüphane kuran ve vakıf sistemini başlatan devlet hangisidir?",
-            siklar: ["Göktürkler", "Asya Hunları", "Uygurlar", "Karahanlılar", "Türgişler"],
+            soru: "13. Orta Asya Türk devletlerinde, ölen kişinin mezarına hayatta iken öldürdüğü düşman sayısı kadar dikilen ve hem kahramanlık simgesi hem de ahirette o kişiye hizmet edeceğine inanılan taşlara ne ad verilir?",
+            siklar: ["Kurgan", "Uçmağ", "Balbal", "Sagu", "Yuğ"],
             dogruCevap: 2, 
-            aciklama: "Yerleşik hayata geçen Uygurlar kütüphane ve vakıf sistemini başlatmıştır."
+            aciklama: "Mezarının başına öldürdüğü insan sayısı kadar dikilen taşlara Balbal denir."
         },
         {
             soru: "14. Yazışmalardan sorumlu devlet görevlisi (katip) kimdir?",
@@ -2375,7 +2375,7 @@ const tumTestler = {
         },
         {
             soru: "20. Enderun Mektebi ile ilgili hangisi yanlıştır?",
-            siklar: ["Saray okuludur", "Devşirmeler eğitilir", "Yönetici yetiştirir", "Sadece askeri eğitim verir", "Kültüre katkısı vardır"],
+            siklar: ["Saray okuludur", "Devşirmeler eğitilir", "Yönetici yetiştirir", "Sadece askeri eğitim verir"],
             dogruCevap: 3, 
             aciklama: "Sadece askeri değil; idari, sanatsal ve kültürel eğitim de verir."
         }
