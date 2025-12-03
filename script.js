@@ -154,7 +154,7 @@ function soruyuGoster(index) {
     }
 }
 
-// --- CEVAP İŞARETLEME (MOBİL İÇİN KISA VE NET GERİ BİLDİRİM) ---
+// --- CEVAP İŞARETLEME (GÜNCELLENDİ: Mobilde MP3 sesi yok) ---
 function cevapIsaretle(secilenIndex, btnElement) {
     if (isaretlemeKilitli) return;
     isaretlemeKilitli = true;
@@ -172,7 +172,12 @@ function cevapIsaretle(secilenIndex, btnElement) {
     
     if (secilenIndex === dogruCevapIndex) {
         btnElement.classList.add("dogru"); 
-        sesUret("dogru"); 
+        
+        // GÜNCELLEME: Mobil değilse ses çal, mobilse ses çalma.
+        if (!isMobile) {
+            sesUret("dogru"); 
+        }
+
         gorselUyari.innerText = "DOĞRU CEVAP!"; 
         gorselUyari.classList.add("uyari-dogru"); 
         gorselUyari.style.display = "block";
@@ -186,7 +191,12 @@ function cevapIsaretle(secilenIndex, btnElement) {
 
     } else {
         btnElement.classList.add("yanlis"); 
-        sesUret("yanlis"); 
+        
+        // GÜNCELLEME: Mobil değilse ses çal, mobilse ses çalma.
+        if (!isMobile) {
+            sesUret("yanlis"); 
+        }
+
         gorselUyari.innerText = "YANLIŞ CEVAP!"; 
         gorselUyari.classList.add("uyari-yanlis"); 
         gorselUyari.style.display = "block";
