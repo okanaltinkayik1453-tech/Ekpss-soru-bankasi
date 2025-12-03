@@ -4,14 +4,14 @@ let mevcutSoruIndex = 0;
 let kullaniciCevaplari = [];
 let isaretlemeKilitli = false;
 
-// --- SES MOTORU (MP3 SİSTEMİ - SES AYARLI) ---
+// --- SES MOTORU (MP3 SİSTEMİ) ---
 const sesler = {
     dogru: new Audio('dogru.mp3'),
     yanlis: new Audio('yanlis.mp3'),
     bitis: new Audio('bitis.mp3')
 };
 
-// --- SES SEVİYESİ AYARLARI ---
+// Ses Seviyeleri
 sesler.dogru.volume = 1.0; 
 sesler.yanlis.volume = 0.3; 
 sesler.bitis.volume = 0.3;
@@ -59,10 +59,10 @@ function sonrakiSoru() { if (mevcutSoruIndex < mevcutSorular.length - 1) soruyuG
 function soruyuGoster(index) {
     window.scrollTo({ top: 0, behavior: 'auto' });
 
+    // Uyarı kutularını temizle
     const uyariKutusu = document.getElementById("sesli-uyari");
     if(uyariKutusu) {
         uyariKutusu.innerText = "";
-        // "role" kaldırıldı, sadece içerik değişince okutacağız
         uyariKutusu.removeAttribute("role");
         uyariKutusu.removeAttribute("aria-live");
     }
@@ -80,7 +80,7 @@ function soruyuGoster(index) {
 
     const soruBaslik = document.getElementById("soru-metni");
 
-    // NVDA Başlık Düzeltmesi (Bilgisayar İçin Korundu)
+    // Bilgisayar (NVDA) için ayarlar korundu
     soruBaslik.setAttribute("role", "presentation");
     soruBaslik.setAttribute("tabindex", "-1");
     
@@ -117,10 +117,12 @@ function soruyuGoster(index) {
     const siklarKutusu = document.getElementById("siklar-alani");
     siklarKutusu.innerHTML = "";
     
+    // Şıkların uzunluğuna göre düzen
     const uzunSikVar = soruObj.siklar.some(sik => sik.length > 40);
     if (uzunSikVar) siklarKutusu.classList.add("tek-sutun");
     else siklarKutusu.classList.remove("tek-sutun");
 
+    // Görsel uyarı alanı yoksa oluştur
     if (!document.getElementById("gorsel-uyari-alani")) {
         const div = document.createElement("div");
         div.id = "gorsel-uyari-alani"; div.className = "gorsel-uyari-kutusu";
@@ -143,6 +145,7 @@ function soruyuGoster(index) {
         siklarKutusu.appendChild(btn);
     });
 
+    // İleri/Geri buton durumları
     document.getElementById("btn-onceki").disabled = (index === 0);
     document.getElementById("btn-sonraki").disabled = (index === mevcutSorular.length - 1);
 
@@ -151,49 +154,67 @@ function soruyuGoster(index) {
     }
 }
 
-// --- CEVAP İŞARETLEME (MOBİL DÜZELTMESİ EKLENDİ) ---
+// --- CEVAP İŞARETLEME (MOBİL İÇİN KISA VE NET GERİ BİLDİRİM) ---
 function cevapIsaretle(secilenIndex, btnElement) {
     if (isaretlemeKilitli) return;
     isaretlemeKilitli = true;
     kullaniciCevaplari[mevcutSoruIndex] = secilenIndex;
     const dogruCevapIndex = mevcutSorular[mevcutSoruIndex].dogruCevap;
+    
     const uyariKutusu = document.getElementById("sesli-uyari");
     const gorselUyari = document.getElementById("gorsel-uyari-alani");
-    
     const sikHarfi = ["A", "B", "C", "D", "E"][secilenIndex];
-    let durumMetni = "";
-
-    if (secilenIndex === dogruCevapIndex) {
-        btnElement.classList.add("dogru"); 
-        sesUret("dogru"); 
-        gorselUyari.innerText = "DOĞRU CEVAP!"; gorselUyari.classList.add("uyari-dogru"); gorselUyari.style.display = "block";
-        durumMetni = "Doğru cevap.";
-    } else {
-        btnElement.classList.add("yanlis"); 
-        sesUret("yanlis"); 
-        gorselUyari.innerText = "YANLIŞ CEVAP!"; gorselUyari.classList.add("uyari-yanlis"); gorselUyari.style.display = "block";
-        durumMetni = "Yanlış cevap.";
-    }
 
     // --- AKILLI CİHAZ ALGILAMA ---
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || window.innerWidth < 768;
 
-    // Telefonlar için süreler UZATILDI
-    // okumaGecikmesi: Sesli yanıtın başlaması için bekleme (mobil için daha uzun ki ekran okuyucu nefes alsın)
-    const okumaGecikmesi = isMobile ? 1200 : 250; 
-    // gecisSuresi: Diğer soruya geçmeden önceki toplam bekleme (mobil için çok daha uzun)
-    const gecisSuresi = isMobile ? 5500 : 3000;
+    let sesliMetin = "";
+    
+    if (secilenIndex === dogruCevapIndex) {
+        btnElement.classList.add("dogru"); 
+        sesUret("dogru"); 
+        gorselUyari.innerText = "DOĞRU CEVAP!"; 
+        gorselUyari.classList.add("uyari-dogru"); 
+        gorselUyari.style.display = "block";
+        
+        // MOBİL İSE SADECE "DOĞRU CEVAP" DE, PC İSE DETAYLI SÖYLE
+        if (isMobile) {
+            sesliMetin = "DOĞRU CEVAP";
+        } else {
+            sesliMetin = sikHarfi + " şıkkını işaretlediniz. Doğru cevap.";
+        }
 
+    } else {
+        btnElement.classList.add("yanlis"); 
+        sesUret("yanlis"); 
+        gorselUyari.innerText = "YANLIŞ CEVAP!"; 
+        gorselUyari.classList.add("uyari-yanlis"); 
+        gorselUyari.style.display = "block";
+        
+        // MOBİL İSE SADECE "YANLIŞ CEVAP" DE, PC İSE DETAYLI SÖYLE
+        if (isMobile) {
+            sesliMetin = "YANLIŞ CEVAP";
+        } else {
+            sesliMetin = sikHarfi + " şıkkını işaretlediniz. Yanlış cevap.";
+        }
+    }
+
+    // Mobil için süre ayarları (Ekran okuyucu "Doğru Cevap" diyebilsin diye)
+    const okumaGecikmesi = isMobile ? 1000 : 200; 
+    const gecisSuresi = isMobile ? 4500 : 2500;
+
+    // Önce temizle
     uyariKutusu.innerText = "";
     uyariKutusu.removeAttribute("role");
     
     setTimeout(() => {
-        // "assertive" ile ekran okuyucuyu susturup bunu okutuyoruz
+        // Ekran okuyucuya "Sus ve bunu oku" komutu (assertive)
         uyariKutusu.setAttribute("role", "alert"); 
         uyariKutusu.setAttribute("aria-live", "assertive");
-        uyariKutusu.innerText = sikHarfi + " şıkkını işaretlediniz. " + durumMetni;
+        uyariKutusu.innerText = sesliMetin;
     }, okumaGecikmesi); 
 
+    // Şıklara tekrar basılmasını engelle
     const tumButonlar = document.querySelectorAll(".sik-butonu");
     tumButonlar.forEach(b => b.disabled = true);
 
@@ -207,6 +228,7 @@ function cevapIsaretle(secilenIndex, btnElement) {
             sonrakiSoru(); 
         } 
         else {
+             // Test bittiğinde
              sesUret("bitis"); 
              setTimeout(() => {
                  uyariKutusu.setAttribute("role", "alert");
@@ -225,7 +247,7 @@ function cevapIsaretle(secilenIndex, btnElement) {
 
 function getSikHarfi(index) { return ["A", "B", "C", "D", "E"][index]; }
 
-// --- TEST BİTİRME (SADELEŞTİRİLDİ - SADECE CEVAP ANAHTARI) ---
+// --- TEST BİTİRME (GARANTİ BUTON TEMİZLİĞİ) ---
 function testiBitir() {
     let dogruSayisi = 0; let yanlisSayisi = 0; let bosSayisi = 0;
     for (let i = 0; i < mevcutSorular.length; i++) {
@@ -241,11 +263,13 @@ function testiBitir() {
     else if (puan >= 50) { motivasyonMesaji = "👍 Gayet iyisin! Biraz daha tekrarla harika olursun."; mesajRengi = "#ffff00"; } 
     else { motivasyonMesaji = "💪 Pes etmek yok! Tekrar yaparak başaracaksın."; mesajRengi = "#ff9999"; }
 
+    // Soruları gizle, sonuç alanını aç
     document.getElementById("soru-alani").style.display = "none";
     document.getElementById("bitir-buton").style.display = "none";
     document.getElementById("sonuc-alani").style.display = "block";
 
-    // "Yanlışları Gör" butonu kaldırıldı, sadece "Cevap Anahtarı" var
+    // BURADA ESKİ HTML'İ TAMAMEN SİLİP YENİSİNİ YAZIYORUZ
+    // SADECE "CEVAP ANAHTARI" BUTONU EKLENDİ. BAŞKA BUTON YOK.
     const sonucHTML = `
         <div style="border: 4px solid #fff; padding: 20px; border-radius: 10px; margin-bottom: 20px; background:#000;">
             <h3 style="color:${mesajRengi}; font-size: 1.8rem; margin: 0 0 10px 0;">${motivasyonMesaji}</h3>
@@ -256,11 +280,15 @@ function testiBitir() {
         <br>
         <button class="nav-buton" onclick="cevapAnahtariniGoster()" style="width:100%; padding:20px; font-size:1.4rem; border:2px solid #ffff00; color:#ffff00; background:#000; font-weight:bold;">📝 CEVAP ANAHTARI (Tüm Soruları İncele)</button>
     `;
+    
+    // HTML içeriğini tamamen değiştiriyoruz, eski butonlar kalmaz.
     document.getElementById("puan-detay").innerHTML = sonucHTML;
+    
+    // Odağı sonuç alanına taşı
     document.getElementById("sonuc-alani").focus();
 }
 
-// --- CEVAP ANAHTARI (DÜZENLENDİ) ---
+// --- CEVAP ANAHTARI DETAYLARI ---
 function cevapAnahtariniGoster() {
     const listeDiv = document.getElementById("yanlis-detaylari");
     listeDiv.innerHTML = "";
