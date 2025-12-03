@@ -125,9 +125,8 @@ const tumTestler = {
         { soru: "Akkoyunlu Devleti ile ilgili olarak aşağıdakilerden hangisi doğrudur?", siklar: ["Trabzon Rum İmparatorluğu'na son vermiştir.", "Timur Devleti'ne karşı Osmanlı Devleti'ni desteklemiştir", "Timur tarafından yıkılmıştır", "15. yüzyılda kurulan Türkmen devletidir", "Osmanlı Devleti'ndeki Celali ayaklanmalarını desteklemiştir"], dogruCevap: 3, aciklama: "Doğu Anadolu'da Uzun Hasan tarafından 15. yüzyılda kurulmuştur." },
         { soru: "'Averroes' olarak bilinen ve Avrupa'yı etkileyen Müslüman filozof kimdir?", siklar: ["İbn-i Rüşd", "İbn-i Sina", "Farabi", "Gazali", "Biruni"], dogruCevap: 0, aciklama: "İbn-i Rüşd, Aristo yorumlarıyla Rönesans'ı etkilemiştir." },
         { soru: "1118-1157 yılları arasında hükümdarlık yapmış olan ve Büyük Selçuklu Devleti'nin son sultanı olarak bilinen kişi aşağıdakilerden hangisidir?", siklar: ["Sencer", "Melikşah", "Berkyaruk", "Muhammed Tapar", "Kutalmış"], dogruCevap: 0, aciklama: "Sultan Sencer'in ölümüyle Büyük Selçuklu Devleti yıkılmıştır." }
-    ],
+],
 
-    // --- TEST 5: BEYLİKLER VE MİMARİ (Sorular 151-170) ---
     "turk_islam_test5": [
         { soru: "Aşağıdakilerden hangisi 1071 Malazgirt Savaşı sonucunda Anadolu'da kurulan ilk Türk beylikleri arasında yer almaz?", siklar: ["Menteşeoğulları", "Mengücekliler", "Saltuklular", "Danişmentliler", "Artuklular"], dogruCevap: 0, aciklama: "Menteşeoğulları, 1243 Kösedağ Savaşı sonrası kurulan İkinci Beyliklerdendir." },
         { soru: "Aşağıdakilerden hangisi Anadolu'da kurulan Türk devletlerinden biri değildir?", siklar: ["Gazneliler", "Danişmentliler", "Saltuklular", "Artuklular", "Mengücekliler"], dogruCevap: 0, aciklama: "Gazneliler Afganistan, Horasan ve Hindistan'da kurulmuştur; Anadolu'da kurulmamıştır." },
