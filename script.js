@@ -4,7 +4,7 @@ let mevcutSoruIndex = 0;
 let kullaniciCevaplari = [];
 let isaretlemeKilitli = false;
 
-// --- SES MOTORU (SENTETİK) ---
+// --- SES MOTORU ---
 const AudioContext = window.AudioContext || window.webkitAudioContext;
 const sesMotoru = new AudioContext();
 
@@ -43,37 +43,54 @@ function notaCal(freq, time, dur) {
     osc.start(time); osc.stop(time + dur);
 }
 
-// --- AKILLI FORMATLAYICI ---
+// --- AKILLI VE ESNEK FORMATLAYICI ---
 function metniFormatla(metin) {
     if (!metin) return "";
-    const romaVarMi = metin.match(/ I\.| II\.| III\./);
-    const rakamVarMi = metin.match(/ 1\.| 2\.| 3\./);
+
+    // Daha esnek arama (Boşluk zorunluluğu kalktı)
+    const romaVarMi = metin.match(/(^|\s)(I\.|II\.|III\.)/);
+    const rakamVarMi = metin.match(/(^|\s)(1\.|2\.|3\.)/);
 
     if (!romaVarMi && !rakamVarMi) return metin;
 
     let islenmisMetin = metin;
     
+    // Roma Rakamları (Daha basit regex)
     if (romaVarMi) {
         islenmisMetin = islenmisMetin
-            .replace(/ I\. (.*?)(?= II\.| Soru Kökü|$)/g, "<div class='oncul-satir'><span class='oncul-no'>I.</span><span class='oncul-yazi'>$1</span></div>")
-            .replace(/ II\. (.*?)(?= III\.| IV\.| Soru Kökü|$)/g, "<div class='oncul-satir'><span class='oncul-no'>II.</span><span class='oncul-yazi'>$1</span></div>")
-            .replace(/ III\. (.*?)(?= IV\.| V\.| Soru Kökü|$)/g, "<div class='oncul-satir'><span class='oncul-no'>III.</span><span class='oncul-yazi'>$1</span></div>")
-            .replace(/ IV\. (.*?)(?= V\.| Soru Kökü|$)/g, "<div class='oncul-satir'><span class='oncul-no'>IV.</span><span class='oncul-yazi'>$1</span></div>");
+            .replace(/(^|\s)I\. /g, "<div class='oncul-satir'><span class='oncul-no'>I.</span><span class='oncul-yazi'>")
+            .replace(/(^|\s)II\. /g, "</span></div><div class='oncul-satir'><span class='oncul-no'>II.</span><span class='oncul-yazi'>")
+            .replace(/(^|\s)III\. /g, "</span></div><div class='oncul-satir'><span class='oncul-no'>III.</span><span class='oncul-yazi'>")
+            .replace(/(^|\s)IV\. /g, "</span></div><div class='oncul-satir'><span class='oncul-no'>IV.</span><span class='oncul-yazi'>")
+            + "</span></div>"; // Sonuncuyu kapat
     }
+    
+    // Türk Rakamları
     if (rakamVarMi) {
         islenmisMetin = islenmisMetin
-            .replace(/ 1\. (.*?)(?= 2\.| Soru Kökü|$)/g, "<div class='oncul-satir'><span class='oncul-no'>1.</span><span class='oncul-yazi'>$1</span></div>")
-            .replace(/ 2\. (.*?)(?= 3\.| 4\.| Soru Kökü|$)/g, "<div class='oncul-satir'><span class='oncul-no'>2.</span><span class='oncul-yazi'>$1</span></div>")
-            .replace(/ 3\. (.*?)(?= 4\.| 5\.| Soru Kökü|$)/g, "<div class='oncul-satir'><span class='oncul-no'>3.</span><span class='oncul-yazi'>$1</span></div>")
-            .replace(/ 4\. (.*?)(?= 5\.| Soru Kökü|$)/g, "<div class='oncul-satir'><span class='oncul-no'>4.</span><span class='oncul-yazi'>$1</span></div>");
+            .replace(/(^|\s)1\. /g, "<div class='oncul-satir'><span class='oncul-no'>1.</span><span class='oncul-yazi'>")
+            .replace(/(^|\s)2\. /g, "</span></div><div class='oncul-satir'><span class='oncul-no'>2.</span><span class='oncul-yazi'>")
+            .replace(/(^|\s)3\. /g, "</span></div><div class='oncul-satir'><span class='oncul-no'>3.</span><span class='oncul-yazi'>")
+            .replace(/(^|\s)4\. /g, "</span></div><div class='oncul-satir'><span class='oncul-no'>4.</span><span class='oncul-yazi'>")
+            + "</span></div>";
     }
 
+    // Öncülleri Kapsayıcıya Al (Görsel Sarı Çizgi İçin)
+    // Tüm oncul-satir divlerini yakalayıp başına ve sonuna container ekliyoruz
+    if (islenmisMetin.includes("oncul-satir")) {
+        // İlk oncul-satir'in başına açılış div'i, metnin sonuna kapanış
+        islenmisMetin = islenmisMetin.replace("<div class='oncul-satir'>", "<div class='oncul-kapsayici'><div class='oncul-satir'>");
+        islenmisMetin += "</div>";
+    }
+
+    // Soru Kökünü Ayır (Kelime Listesi Genişletildi)
     const soruKokleri = ["Buna göre", "Bu bilgilere göre", "Yukarıdaki", "Aşağıdaki", "Hangisidir", "Hangisine", "Ulaşılabilir", "Varılabilir", "Söylenebilir", "Gösterilebilir", "Değinilmiştir", "Beklenir", "İfadelerinden", "Yargılarından", "Durumlarından"];
     
     let kokBulundu = false;
     soruKokleri.forEach(kok => {
         if (!kokBulundu && islenmisMetin.includes(kok)) {
-            islenmisMetin = islenmisMetin.replace(kok, `<div class='soru-koku-vurgu'>${kok}`);
+            // Soru kökünü divden çıkarıp aşağı at
+            islenmisMetin = islenmisMetin.replace(kok, `</div></div><div class='soru-koku-vurgu'>${kok}`);
             kokBulundu = true;
         }
     });
@@ -136,6 +153,7 @@ function soruyuGoster(index) {
     const siklarKutusu = document.getElementById("siklar-alani");
     siklarKutusu.innerHTML = "";
     
+    // Uzun şık varsa tek sütuna düş
     const uzunSikVar = soruObj.siklar.some(sik => sik.length > 40);
     if (uzunSikVar) siklarKutusu.classList.add("tek-sutun");
     else siklarKutusu.classList.remove("tek-sutun");
@@ -166,7 +184,7 @@ function soruyuGoster(index) {
     if (kullaniciCevaplari[index] === null) soruBaslik.focus();
 }
 
-// --- NVDA / JAWS İÇİN ÖZEL GÜNCELLEME ---
+// --- SES VE ONAY İPTAL MEKANİZMASI ---
 function cevapIsaretle(secilenIndex, btnElement) {
     if (isaretlemeKilitli) return;
     isaretlemeKilitli = true;
@@ -175,33 +193,31 @@ function cevapIsaretle(secilenIndex, btnElement) {
     const uyariKutusu = document.getElementById("sesli-uyari");
     const gorselUyari = document.getElementById("gorsel-uyari-alani");
     
-    // Şık Harfini Bul
     const sikHarfi = ["A", "B", "C", "D", "E"][secilenIndex];
-    let okunacakMetin = "";
+    let durumMetni = "";
 
     if (secilenIndex === dogruCevapIndex) {
         btnElement.classList.add("dogru"); sesUret("dogru");
         gorselUyari.innerText = "DOĞRU CEVAP!"; 
         gorselUyari.classList.add("uyari-dogru"); 
         gorselUyari.style.display = "block";
-        
-        okunacakMetin = sikHarfi + " şıkkını işaretlediniz. Doğru.";
+        durumMetni = "Doğru.";
     } else {
         btnElement.classList.add("yanlis"); sesUret("yanlis");
         gorselUyari.innerText = "YANLIŞ CEVAP!"; 
         gorselUyari.classList.add("uyari-yanlis"); 
         gorselUyari.style.display = "block";
-        
-        okunacakMetin = sikHarfi + " şıkkını işaretlediniz. Yanlış.";
+        durumMetni = "Yanlış.";
     }
 
-    // 1. ÖNCE TEMİZLE (NVDA/JAWS'ı tetiklemek için)
-    uyariKutusu.innerText = "";
+    // 1. ADIM: HEMEN ARAYA GİR (Onay sesini keser)
+    uyariKutusu.innerText = sikHarfi + " şıkkını işaretlediniz.";
 
-    // 2. KISA BİR SÜRE SONRA YAZ (Dürtme)
+    // 2. ADIM: 1 SANİYE SONRA SONUCU SÖYLE
     setTimeout(() => { 
-        uyariKutusu.innerText = okunacakMetin; 
-    }, 250); // 250ms gecikme idealdir
+        // Mevcut metnin yanına ekle
+        uyariKutusu.innerText = sikHarfi + " şıkkını işaretlediniz. " + durumMetni; 
+    }, 1000);
 
     const tumButonlar = document.querySelectorAll(".sik-butonu");
     tumButonlar.forEach(b => b.disabled = true);
@@ -217,7 +233,7 @@ function cevapIsaretle(secilenIndex, btnElement) {
              gorselUyari.style.border = "2px solid #fff"; gorselUyari.innerText = "TEST BİTTİ";
              document.getElementById("bitir-buton").focus();
         }
-    }, 2000); 
+    }, 2500); // Geçiş süresini biraz uzattık ki "Doğru" lafı kesilmesin
 }
 
 function getSikHarfi(index) { return ["A", "B", "C", "D", "E"][index]; }
