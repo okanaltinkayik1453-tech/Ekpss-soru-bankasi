@@ -154,7 +154,7 @@ function soruyuGoster(index) {
     }
 }
 
-// --- CEVAP İŞARETLEME (MOBİL İÇİN ÖZELLEŞTİRİLMİŞ ERİŞİLEBİLİRLİK) ---
+// --- CEVAP İŞARETLEME (HIZLI MOBİL GEÇİŞ VERSİYONU) ---
 function cevapIsaretle(secilenIndex, btnElement) {
     if (isaretlemeKilitli) return;
     isaretlemeKilitli = true;
@@ -204,21 +204,21 @@ function cevapIsaretle(secilenIndex, btnElement) {
         }
     }
 
-    // --- ZAMANLAMA AYARLARI ---
-    // Mobilde 1000ms (1 saniye) bekle, sonra konuş. PC'de hemen (200ms).
-    const okumaBaslangicSuresi = isMobile ? 1000 : 200; 
+    // --- ZAMANLAMA AYARLARI (GÜNCELLENEN KISIM) ---
+    // Mobilde 150ms bekle (Hemen konuşsun)
+    // PC'de 200ms bekle (Eski ayar)
+    const okumaBaslangicSuresi = isMobile ? 150 : 200; 
     
-    // Konuşma bittikten sonra diğer soruya geçiş süresi. 
-    // Mobilde konuşma süresi için +2.5 saniye ekliyoruz ki sözü kesilmesin.
-    const toplamGecisSuresi = isMobile ? 3500 : 2500;
+    // Mobilde toplam 1200ms bekle (Konuşma biter bitmez geçsin)
+    // PC'de 2500ms bekle (Eski ayar)
+    const toplamGecisSuresi = isMobile ? 1200 : 2500;
 
-    // Önce uyarı kutusunu temizle (Ekran okuyucuyu resetle)
+    // Önce uyarı kutusunu temizle
     uyariKutusu.innerText = "";
     uyariKutusu.removeAttribute("role");
     
-    // 1. AŞAMA: BELİRLENEN SÜRE SONRA BİLDİRİMİ OKU
+    // 1. AŞAMA: BİLDİRİMİ OKU
     setTimeout(() => {
-        // "alert" rolü ekran okuyucunun o an ne yapıyorsa bırakıp bunu okumasını sağlar
         uyariKutusu.setAttribute("role", "alert"); 
         uyariKutusu.setAttribute("aria-live", "assertive");
         uyariKutusu.innerText = sesliMetin;
@@ -258,7 +258,7 @@ function cevapIsaretle(secilenIndex, btnElement) {
 
 function getSikHarfi(index) { return ["A", "B", "C", "D", "E"][index]; }
 
-// --- TEST BİTİRME (GARANTİ BUTON TEMİZLİĞİ) ---
+// --- TEST BİTİRME ---
 function testiBitir() {
     let dogruSayisi = 0; let yanlisSayisi = 0; let bosSayisi = 0;
     for (let i = 0; i < mevcutSorular.length; i++) {
@@ -279,7 +279,6 @@ function testiBitir() {
     document.getElementById("bitir-buton").style.display = "none";
     document.getElementById("sonuc-alani").style.display = "block";
 
-    // BURADA ESKİ HTML'İ TAMAMEN SİLİP YENİSİNİ YAZIYORUZ
     const sonucHTML = `
         <div style="border: 4px solid #fff; padding: 20px; border-radius: 10px; margin-bottom: 20px; background:#000;">
             <h3 style="color:${mesajRengi}; font-size: 1.8rem; margin: 0 0 10px 0;">${motivasyonMesaji}</h3>
