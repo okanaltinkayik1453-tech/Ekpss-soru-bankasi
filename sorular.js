@@ -1498,9 +1498,8 @@ const tumTestler = {
             siklar: ["Kadı Burhaneddin", "Eretna Bey", "Uzun Hasan", "Kara Yülük Osman", "Alaaddin Keykubat"],
             dogruCevap: 0,
             aciklama: "Kadı Burhaneddin, Osmanlı ile mücadele etmiş ve Timur tehlikesini artırmıştır."
-}
-]
-    // --- OSMANLI KURULUŞ DÖNEMİ - TEST 2 (Osman ve Orhan Bey Dönemi) ---
+        }
+    ],
     "osmanli_kurulus_test2": [
         {
             soru: "Tarihçi Halil İnalcık, Osmanlı Devleti'nin kuruluşunu 1299 yılı yerine Bizans ile yapılan ilk büyük savaş olan 1302 yılındaki zaferle başlatır. Bu savaş aşağıdakilerden hangisidir?",
@@ -1623,8 +1622,6 @@ const tumTestler = {
             aciklama: "İznik Orhaniyesi ilk medrese, Davud-u Kayseri ise ilk müderristir. Bu, eğitime verilen önemi gösterir."
         }
     ],
-
-    // --- OSMANLI KURULUŞ DÖNEMİ - TEST 3 (I. Murat Dönemi ve Fetihler) ---
     "osmanli_kurulus_test3": [
         {
             soru: "I. Murat döneminde savaş esirlerinin beşte birinin asker olarak yetiştirilmesi esasına dayanan sistem hangisidir?",
