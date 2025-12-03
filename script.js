@@ -62,7 +62,9 @@ function soruyuGoster(index) {
     const uyariKutusu = document.getElementById("sesli-uyari");
     if(uyariKutusu) {
         uyariKutusu.innerText = "";
+        // "role" kaldırıldı, sadece içerik değişince okutacağız
         uyariKutusu.removeAttribute("role");
+        uyariKutusu.removeAttribute("aria-live");
     }
     
     const gorselUyari = document.getElementById("gorsel-uyari-alani");
@@ -149,7 +151,7 @@ function soruyuGoster(index) {
     }
 }
 
-// --- CEVAP İŞARETLEME (MOBİL VE PC AYRIMLI) ---
+// --- CEVAP İŞARETLEME (MOBİL DÜZELTMESİ EKLENDİ) ---
 function cevapIsaretle(secilenIndex, btnElement) {
     if (isaretlemeKilitli) return;
     isaretlemeKilitli = true;
@@ -174,17 +176,21 @@ function cevapIsaretle(secilenIndex, btnElement) {
     }
 
     // --- AKILLI CİHAZ ALGILAMA ---
-    const isMobile = window.innerWidth < 768;
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || window.innerWidth < 768;
 
-    // Bekleme Süreleri
-    const okumaGecikmesi = isMobile ? 750 : 150;
-    const gecisSuresi = isMobile ? 3500 : 2500;
+    // Telefonlar için süreler UZATILDI
+    // okumaGecikmesi: Sesli yanıtın başlaması için bekleme (mobil için daha uzun ki ekran okuyucu nefes alsın)
+    const okumaGecikmesi = isMobile ? 1200 : 250; 
+    // gecisSuresi: Diğer soruya geçmeden önceki toplam bekleme (mobil için çok daha uzun)
+    const gecisSuresi = isMobile ? 5500 : 3000;
 
     uyariKutusu.innerText = "";
     uyariKutusu.removeAttribute("role");
     
     setTimeout(() => {
+        // "assertive" ile ekran okuyucuyu susturup bunu okutuyoruz
         uyariKutusu.setAttribute("role", "alert"); 
+        uyariKutusu.setAttribute("aria-live", "assertive");
         uyariKutusu.innerText = sikHarfi + " şıkkını işaretlediniz. " + durumMetni;
     }, okumaGecikmesi); 
 
@@ -194,6 +200,7 @@ function cevapIsaretle(secilenIndex, btnElement) {
     setTimeout(() => {
         uyariKutusu.innerText = ""; 
         uyariKutusu.removeAttribute("role"); 
+        uyariKutusu.removeAttribute("aria-live");
         gorselUyari.style.display = "none";
         
         if (mevcutSoruIndex < mevcutSorular.length - 1) { 
@@ -203,6 +210,7 @@ function cevapIsaretle(secilenIndex, btnElement) {
              sesUret("bitis"); 
              setTimeout(() => {
                  uyariKutusu.setAttribute("role", "alert");
+                 uyariKutusu.setAttribute("aria-live", "assertive");
                  uyariKutusu.innerText = "Test bitti. Sonuçları görmek için bitir düğmesine basınız.";
              }, okumaGecikmesi);
              
@@ -217,7 +225,7 @@ function cevapIsaretle(secilenIndex, btnElement) {
 
 function getSikHarfi(index) { return ["A", "B", "C", "D", "E"][index]; }
 
-// --- TEST BİTİRME ---
+// --- TEST BİTİRME (SADELEŞTİRİLDİ - SADECE CEVAP ANAHTARI) ---
 function testiBitir() {
     let dogruSayisi = 0; let yanlisSayisi = 0; let bosSayisi = 0;
     for (let i = 0; i < mevcutSorular.length; i++) {
@@ -237,7 +245,7 @@ function testiBitir() {
     document.getElementById("bitir-buton").style.display = "none";
     document.getElementById("sonuc-alani").style.display = "block";
 
-    // GEREKSİZ BUTONLARI KALDIRDIM, SADECE SONUÇ VE CEVAP ANAHTARI KALDI
+    // "Yanlışları Gör" butonu kaldırıldı, sadece "Cevap Anahtarı" var
     const sonucHTML = `
         <div style="border: 4px solid #fff; padding: 20px; border-radius: 10px; margin-bottom: 20px; background:#000;">
             <h3 style="color:${mesajRengi}; font-size: 1.8rem; margin: 0 0 10px 0;">${motivasyonMesaji}</h3>
@@ -246,13 +254,13 @@ function testiBitir() {
         <p style="font-size:1.2rem; color:#ccc;">Doğru: ${dogruSayisi} | Yanlış: ${yanlisSayisi} | Boş: ${bosSayisi}</p>
         <p style="font-size:1.4rem; color:#ffff00;">Net: ${net.toFixed(2)}</p>
         <br>
-        <button class="nav-buton" onclick="cevapAnahtariniGoster()" style="width:100%; padding:20px; font-size:1.2rem; border:2px solid #ffff00; color:#ffff00; background:#000;">📝 CEVAP ANAHTARI (Tüm Soruları İncele)</button>
+        <button class="nav-buton" onclick="cevapAnahtariniGoster()" style="width:100%; padding:20px; font-size:1.4rem; border:2px solid #ffff00; color:#ffff00; background:#000; font-weight:bold;">📝 CEVAP ANAHTARI (Tüm Soruları İncele)</button>
     `;
     document.getElementById("puan-detay").innerHTML = sonucHTML;
     document.getElementById("sonuc-alani").focus();
 }
 
-// --- CEVAP ANAHTARI ---
+// --- CEVAP ANAHTARI (DÜZENLENDİ) ---
 function cevapAnahtariniGoster() {
     const listeDiv = document.getElementById("yanlis-detaylari");
     listeDiv.innerHTML = "";
