@@ -1476,14 +1476,12 @@ const tumTestler = {
             siklar: ["Canik Beylikleri", "Teke Beylikleri", "Uç Beylikleri", "Ege Beylikleri", "Bozok Beylikleri"],
             dogruCevap: 0,
             aciklama: "Samsun, Bafra çevresindeki beyliklere Canik Beylikleri denir."
-        },
+},
         {
-{
             soru: "Sivas hükümdarı olan ve Timur'un gelmesine zemin hazırlayan lider kimdir?",
             siklar: ["Kadı Burhaneddin", "Eretna Bey", "Uzun Hasan", "Kara Yülük Osman", "Alaaddin Keykubat"],
             dogruCevap: 0,
             aciklama: "Kadı Burhaneddin, Osmanlı ile mücadele etmiş ve Timur tehlikesini artırmıştır."
-        }
-    ]
-
-}; // KAPILARI KAPATTIK
+}
+]
+};
