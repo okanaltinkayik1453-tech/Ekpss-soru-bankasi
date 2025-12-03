@@ -4,21 +4,23 @@ let mevcutSoruIndex = 0;
 let kullaniciCevaplari = [];
 let isaretlemeKilitli = false;
 
-// --- SES MOTORU (MP3 SİSTEMİ) ---
-// Bu dosyaların (dogru.mp3, yanlis.mp3, bitis.mp3) ana klasörde olduğundan emin olun.
+// --- SES MOTORU (MP3 SİSTEMİ - SES AYARLI) ---
 const sesler = {
     dogru: new Audio('dogru.mp3'),
     yanlis: new Audio('yanlis.mp3'),
     bitis: new Audio('bitis.mp3')
 };
 
+// Ses Seviyeleri
+sesler.dogru.volume = 1.0; 
+sesler.yanlis.volume = 0.3; 
+sesler.bitis.volume = 0.3;
+
 function sesUret(tur) {
-    // Seslerin üst üste binmemesi için önce durdurup başa sarıyoruz
     if (sesler[tur]) {
         sesler[tur].pause();
         sesler[tur].currentTime = 0;
-        // Tarayıcı izin verirse sesi çal
-        sesler[tur].play().catch(e => console.log("Ses çalma hatası (otomatik oynatma izni gerekebilir):", e));
+        sesler[tur].play().catch(e => console.log("Ses hatası:", e));
     }
 }
 
@@ -57,7 +59,6 @@ function sonrakiSoru() { if (mevcutSoruIndex < mevcutSorular.length - 1) soruyuG
 function soruyuGoster(index) {
     window.scrollTo({ top: 0, behavior: 'auto' });
 
-    // Uyarı kutusunu ve rolünü temizle (NVDA sıfırlaması)
     const uyariKutusu = document.getElementById("sesli-uyari");
     if(uyariKutusu) {
         uyariKutusu.innerText = "";
@@ -71,15 +72,23 @@ function soruyuGoster(index) {
     const soruObj = mevcutSorular[index];
     isaretlemeKilitli = false; 
     
-    // İlerleme Çubuğu
     const yuzde = ((index + 1) / mevcutSorular.length) * 100;
     const cubuk = document.getElementById("ilerleme-cubugu");
     if(cubuk) cubuk.style.width = `${yuzde}%`;
 
     const soruBaslik = document.getElementById("soru-metni");
+
+    // --- NVDA DÜZELTMESİ (BAŞLIK TEKRARINI ENGELLEME) ---
+    // Eğer HTML'de soru-metni bir h2 ise, içindeki div'ler okuma sorunu yaratır.
+    // Bu yüzden kapsayıcının "başlık" rolünü iptal ediyoruz.
+    soruBaslik.setAttribute("role", "presentation");
+    // Odaklanabilmesi için tabindex ekliyoruz (tek parça okumayı kolaylaştırır)
+    soruBaslik.setAttribute("tabindex", "-1");
     
-    // Soru İçeriği (Öncüllü/Normal)
     let finalHTML = "";
+
+    // GİZLİ BAŞLIK: H tuşu ile gezmek için görünmez ama okunabilir başlık ekliyoruz.
+    finalHTML += `<h2 class="sr-only">Soru ${index + 1}</h2>`;
 
     if (soruObj.onculler && soruObj.onculler.length > 0) {
         if (soruObj.onculGiris) {
@@ -102,7 +111,7 @@ function soruyuGoster(index) {
     } 
     else {
         let metin = soruObj.soru || "";
-        finalHTML = metin;
+        finalHTML += metin;
     }
 
     soruBaslik.innerHTML = finalHTML;
@@ -125,7 +134,6 @@ function soruyuGoster(index) {
         const btn = document.createElement("button");
         const sikHarfi = getSikHarfi(i);
         btn.innerText = sikHarfi + ") " + sik;
-        // NVDA için buton etiketi
         btn.setAttribute("aria-label", sikHarfi + " şıkkı: " + sik);
         btn.className = "sik-butonu";
         if (kullaniciCevaplari[index] !== null) {
@@ -141,10 +149,13 @@ function soruyuGoster(index) {
     document.getElementById("btn-onceki").disabled = (index === 0);
     document.getElementById("btn-sonraki").disabled = (index === mevcutSorular.length - 1);
 
-    if (kullaniciCevaplari[index] === null) soruBaslik.focus();
+    // ODAK YÖNETİMİ: Soruyu açınca direkt metne odaklan (Tek parça okuma ihtimalini artırır)
+    if (kullaniciCevaplari[index] === null) {
+        soruBaslik.focus();
+    }
 }
 
-// --- CEVAP İŞARETLEME VE GERİ BİLDİRİM ---
+// --- CEVAP İŞARETLEME ---
 function cevapIsaretle(secilenIndex, btnElement) {
     if (isaretlemeKilitli) return;
     isaretlemeKilitli = true;
@@ -158,33 +169,29 @@ function cevapIsaretle(secilenIndex, btnElement) {
 
     if (secilenIndex === dogruCevapIndex) {
         btnElement.classList.add("dogru"); 
-        sesUret("dogru"); // MP3 çal
+        sesUret("dogru"); 
         gorselUyari.innerText = "DOĞRU CEVAP!"; gorselUyari.classList.add("uyari-dogru"); gorselUyari.style.display = "block";
         durumMetni = "Doğru cevap.";
     } else {
         btnElement.classList.add("yanlis"); 
-        sesUret("yanlis"); // MP3 çal
+        sesUret("yanlis"); 
         gorselUyari.innerText = "YANLIŞ CEVAP!"; gorselUyari.classList.add("uyari-yanlis"); gorselUyari.style.display = "block";
         durumMetni = "Yanlış cevap.";
     }
 
-    // --- NVDA VE MOBİL İÇİN KRİTİK DÜZELTME ---
-    // 1. Önce içeriği ve rolü tamamen temizliyoruz.
+    // Telefon ve PC uyumlu bildirim
     uyariKutusu.innerText = "";
     uyariKutusu.removeAttribute("role");
     
-    // 2. Kısa bir süre sonra rolü 'alert' yapıp metni tek seferde basıyoruz.
-    // Bu, ekran okuyucuyu "yeni bir uyarı geldi" diye dürtmek gibidir.
     setTimeout(() => {
         uyariKutusu.setAttribute("role", "alert"); 
         uyariKutusu.innerText = sikHarfi + " şıkkını işaretlediniz. " + durumMetni;
-    }, 150);
+    }, 250); 
 
     const tumButonlar = document.querySelectorAll(".sik-butonu");
     tumButonlar.forEach(b => b.disabled = true);
 
     setTimeout(() => {
-        // Geçiş yaparken uyarıları temizle
         uyariKutusu.innerText = ""; 
         uyariKutusu.removeAttribute("role"); 
         gorselUyari.style.display = "none";
@@ -193,14 +200,11 @@ function cevapIsaretle(secilenIndex, btnElement) {
             sonrakiSoru(); 
         } 
         else {
-             // Test Bittiğinde
-             sesUret("bitis"); // MP3 çal
-             
-             // Bitiş uyarısını agresif şekilde okut
+             sesUret("bitis"); 
              setTimeout(() => {
                  uyariKutusu.setAttribute("role", "alert");
                  uyariKutusu.innerText = "Test bitti. Sonuçları görmek için bitir düğmesine basınız.";
-             }, 100);
+             }, 250);
              
              gorselUyari.className = "gorsel-uyari-kutusu"; gorselUyari.style.display = "block";
              gorselUyari.style.backgroundColor = "#000"; gorselUyari.style.color = "#ffff00";
@@ -213,7 +217,7 @@ function cevapIsaretle(secilenIndex, btnElement) {
 
 function getSikHarfi(index) { return ["A", "B", "C", "D", "E"][index]; }
 
-// --- TEST BİTİRME VE SONUÇ ---
+// --- TEST BİTİRME ---
 function testiBitir() {
     let dogruSayisi = 0; let yanlisSayisi = 0; let bosSayisi = 0;
     for (let i = 0; i < mevcutSorular.length; i++) {
@@ -247,7 +251,7 @@ function testiBitir() {
     document.getElementById("sonuc-alani").focus();
 }
 
-// --- YENİ CEVAP ANAHTARI FONKSİYONU ---
+// --- CEVAP ANAHTARI ---
 function cevapAnahtariniGoster() {
     const listeDiv = document.getElementById("yanlis-detaylari");
     listeDiv.innerHTML = "";
@@ -261,27 +265,25 @@ function cevapAnahtariniGoster() {
         const kullaniciCevabi = kullaniciCevaplari[index];
         const dogruCevap = soru.dogruCevap;
         const kart = document.createElement("div"); 
-        kart.className = "yanlis-soru-karti"; // Mevcut CSS stilini kullanır
+        kart.className = "yanlis-soru-karti"; 
         
         let durumRengi = "";
         let durumMetni = "";
         
-        // Kullanıcının cevabına göre renklendirme
         if (kullaniciCevabi === null) {
-            durumRengi = "#ffff00"; // Boş: Sarı
+            durumRengi = "#ffff00"; 
             durumMetni = "BOŞ BIRAKILDI";
             kart.style.borderLeft = "6px solid #ffff00";
         } else if (kullaniciCevabi === dogruCevap) {
-            durumRengi = "#00ff00"; // Doğru: Yeşil
+            durumRengi = "#00ff00"; 
             durumMetni = soru.siklar[kullaniciCevabi] + " (DOĞRU)";
             kart.style.borderLeft = "6px solid #00ff00";
         } else {
-            durumRengi = "#ff0000"; // Yanlış: Kırmızı
+            durumRengi = "#ff0000"; 
             durumMetni = soru.siklar[kullaniciCevabi] + " (YANLIŞ)";
             kart.style.borderLeft = "6px solid #ff0000";
         }
 
-        // Soru metnini (öncüllü/normal) düzgün oluşturma
         let soruMetniGoster = "";
         if (soru.onculler) {
             if(soru.onculGiris) soruMetniGoster += `<div style="margin-bottom:5px;">${soru.onculGiris}</div>`;
