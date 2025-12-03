@@ -4,43 +4,24 @@ let mevcutSoruIndex = 0;
 let kullaniciCevaplari = [];
 let isaretlemeKilitli = false;
 
-// --- SES MOTORU ---
-const AudioContext = window.AudioContext || window.webkitAudioContext;
-const sesMotoru = new AudioContext();
+// --- SES MOTORU (PC KUSURSUZ ÇALIŞAN MP3 SİSTEMİ GERİ GETİRİLDİ) ---
+const sesler = {
+    dogru: new Audio('dogru.mp3'),
+    yanlis: new Audio('yanlis.mp3'),
+    bitis: new Audio('bitis.mp3')
+};
 
-function motoruUyandir() { if (sesMotoru.state === 'suspended') sesMotoru.resume(); }
-document.addEventListener('click', motoruUyandir);
-document.addEventListener('touchstart', motoruUyandir);
+// Ses Seviyeleri
+sesler.dogru.volume = 1.0; 
+sesler.yanlis.volume = 0.3; 
+sesler.bitis.volume = 0.3;
 
 function sesUret(tur) {
-    motoruUyandir(); 
-    const osilator = sesMotoru.createOscillator();
-    const kazanc = sesMotoru.createGain();
-    osilator.connect(kazanc); kazanc.connect(sesMotoru.destination);
-    const suan = sesMotoru.currentTime;
-
-    if (tur === "dogru") {
-        osilator.type = "sine"; osilator.frequency.setValueAtTime(600, suan);
-        osilator.frequency.exponentialRampToValueAtTime(1200, suan + 0.1);
-        kazanc.gain.setValueAtTime(0.2, suan); kazanc.gain.exponentialRampToValueAtTime(0.01, suan + 0.5);
-        osilator.start(suan); osilator.stop(suan + 0.5);
-    } 
-    else if (tur === "yanlis") {
-        osilator.type = "triangle"; osilator.frequency.setValueAtTime(150, suan);
-        osilator.frequency.linearRampToValueAtTime(100, suan + 0.2);
-        kazanc.gain.setValueAtTime(0.2, suan); kazanc.gain.linearRampToValueAtTime(0.01, suan + 0.3);
-        osilator.start(suan); osilator.stop(suan + 0.3);
-    } 
-    else if (tur === "bitis") {
-        notaCal(523.25, suan, 0.2); notaCal(659.25, suan + 0.2, 0.2); notaCal(783.99, suan + 0.4, 0.6);
+    if (sesler[tur]) {
+        sesler[tur].pause();
+        sesler[tur].currentTime = 0;
+        sesler[tur].play().catch(e => console.log("Ses hatası:", e));
     }
-}
-
-function notaCal(freq, time, dur) {
-    const osc = sesMotoru.createOscillator(); const gn = sesMotoru.createGain();
-    osc.type = "sine"; osc.frequency.value = freq; osc.connect(gn); gn.connect(sesMotoru.destination);
-    gn.gain.setValueAtTime(0.1, time); gn.gain.exponentialRampToValueAtTime(0.01, time + dur);
-    osc.start(time); osc.stop(time + dur);
 }
 
 // --- TEST YÖNETİMİ ---
@@ -79,7 +60,6 @@ function soruyuGoster(index) {
     window.scrollTo({ top: 0, behavior: 'auto' });
 
     const uyariKutusu = document.getElementById("sesli-uyari");
-    // Uyarı kutusu temizlenirken attribute'ları silmiyoruz, PC tarafında yoktu.
     if(uyariKutusu) uyariKutusu.innerText = "";
     
     const gorselUyari = document.getElementById("gorsel-uyari-alani");
@@ -173,7 +153,7 @@ function soruyuGoster(index) {
     if (kullaniciCevaplari[index] === null) soruBaslik.focus();
 }
 
-// --- CEVAP İŞARETLEME (HİBRİD HIZ VE SES GÜVENİLİRLİĞİ) ---
+// --- CEVAP İŞARETLEME (HİBRİD HIZ VE MP3 DESTEĞİ) ---
 function cevapIsaretle(secilenIndex, btnElement) {
     if (isaretlemeKilitli) return;
     isaretlemeKilitli = true;
@@ -198,33 +178,31 @@ function cevapIsaretle(secilenIndex, btnElement) {
 
     if (secilenIndex === dogruCevapIndex) {
         btnElement.classList.add("dogru"); 
-        durumMetni = "Doğru.";
+        durumMetni = "Doğru cevap.";
     } else {
         btnElement.classList.add("yanlis"); 
-        durumMetni = "Yanlış.";
+        durumMetni = "Yanlış cevap.";
     }
 
     // --- PC/MOBİL ANNOUNCEMENT AYRIMI ---
 
     if (!isMobile) {
-        // PC (Kusursuz Çalışan Kısım): Ses çalınır ve metin hemen eklenir.
+        // PC (KUSURSUZ AYAR): MP3 çalınır ve metin tek seferde eklenir (2500ms bekleme).
         sesUret(secilenIndex === dogruCevapIndex ? "dogru" : "yanlis"); 
         uyariKutusu.innerText = sikHarfi + " şıkkını işaretlediniz. " + durumMetni;
     } 
     else {
-        // MOBİL (Garanti Sesli Okuma Çözümü):
-        // 1. Aşama: Metin eklenir (VoiceOver'ın metin okuma modunu tetiklemesi için)
+        // MOBİL (HIZLI VE GARANTİLİ): İki aşamalı metin ile okuma garantilenir (1350ms bekleme).
+        // 1. Aşama: Metin eklenir.
         uyariKutusu.innerText = sikHarfi + " şıkkını işaretlediniz.";
         
-        // 2. Aşama: 350ms sonra (Hızlı ama garanti bir bekleme) esas sonuç eklenir. 
-        // VoiceOver bu metin değişikliğini yakalayıp okumaya başlar.
+        // 2. Aşama: 350ms sonra esas sonuç eklenir. 
         setTimeout(() => { 
             uyariKutusu.innerText = sikHarfi + " şıkkını işaretlediniz. " + durumMetni; 
         }, 350); 
     }
 
     // --- GENEL ZAMANLAMA VE GEÇİŞ ---
-    // PC (2500ms) korunur. MOBİL (1350ms) hızı uygulanır.
     const toplamGecisSuresi = isMobile ? 1350 : 2500; 
 
     const tumButonlar = document.querySelectorAll(".sik-butonu");
