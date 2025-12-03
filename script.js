@@ -154,7 +154,7 @@ function soruyuGoster(index) {
     }
 }
 
-// --- CEVAP İŞARETLEME (GÜNCELLENDİ: Mobilde MP3 sesi yok) ---
+// --- CEVAP İŞARETLEME (MOBİL İÇİN ÖZELLEŞTİRİLMİŞ ERİŞİLEBİLİRLİK) ---
 function cevapIsaretle(secilenIndex, btnElement) {
     if (isaretlemeKilitli) return;
     isaretlemeKilitli = true;
@@ -165,69 +165,70 @@ function cevapIsaretle(secilenIndex, btnElement) {
     const gorselUyari = document.getElementById("gorsel-uyari-alani");
     const sikHarfi = ["A", "B", "C", "D", "E"][secilenIndex];
 
-    // --- AKILLI CİHAZ ALGILAMA ---
+    // --- CİHAZ TESPİTİ ---
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || window.innerWidth < 768;
 
     let sesliMetin = "";
     
+    // Doğru/Yanlış durumunu ayarla
     if (secilenIndex === dogruCevapIndex) {
         btnElement.classList.add("dogru"); 
         
-        // GÜNCELLEME: Mobil değilse ses çal, mobilse ses çalma.
-        if (!isMobile) {
-            sesUret("dogru"); 
-        }
-
         gorselUyari.innerText = "DOĞRU CEVAP!"; 
         gorselUyari.classList.add("uyari-dogru"); 
         gorselUyari.style.display = "block";
         
-        // MOBİL İSE SADECE "DOĞRU CEVAP" DE, PC İSE DETAYLI SÖYLE
         if (isMobile) {
+            // MOBİL: Sadece net ifade, MP3 yok
             sesliMetin = "DOĞRU CEVAP";
         } else {
+            // PC: Detaylı ifade + MP3
+            sesUret("dogru");
             sesliMetin = sikHarfi + " şıkkını işaretlediniz. Doğru cevap.";
         }
 
     } else {
         btnElement.classList.add("yanlis"); 
         
-        // GÜNCELLEME: Mobil değilse ses çal, mobilse ses çalma.
-        if (!isMobile) {
-            sesUret("yanlis"); 
-        }
-
         gorselUyari.innerText = "YANLIŞ CEVAP!"; 
         gorselUyari.classList.add("uyari-yanlis"); 
         gorselUyari.style.display = "block";
         
-        // MOBİL İSE SADECE "YANLIŞ CEVAP" DE, PC İSE DETAYLI SÖYLE
         if (isMobile) {
+            // MOBİL: Sadece net ifade, MP3 yok
             sesliMetin = "YANLIŞ CEVAP";
         } else {
+            // PC: Detaylı ifade + MP3
+            sesUret("yanlis");
             sesliMetin = sikHarfi + " şıkkını işaretlediniz. Yanlış cevap.";
         }
     }
 
-    // Mobil için süre ayarları (Ekran okuyucu "Doğru Cevap" diyebilsin diye)
-    const okumaGecikmesi = isMobile ? 1000 : 200; 
-    const gecisSuresi = isMobile ? 4500 : 2500;
+    // --- ZAMANLAMA AYARLARI ---
+    // Mobilde 1000ms (1 saniye) bekle, sonra konuş. PC'de hemen (200ms).
+    const okumaBaslangicSuresi = isMobile ? 1000 : 200; 
+    
+    // Konuşma bittikten sonra diğer soruya geçiş süresi. 
+    // Mobilde konuşma süresi için +2.5 saniye ekliyoruz ki sözü kesilmesin.
+    const toplamGecisSuresi = isMobile ? 3500 : 2500;
 
-    // Önce temizle
+    // Önce uyarı kutusunu temizle (Ekran okuyucuyu resetle)
     uyariKutusu.innerText = "";
     uyariKutusu.removeAttribute("role");
     
+    // 1. AŞAMA: BELİRLENEN SÜRE SONRA BİLDİRİMİ OKU
     setTimeout(() => {
-        // Ekran okuyucuya "Sus ve bunu oku" komutu (assertive)
+        // "alert" rolü ekran okuyucunun o an ne yapıyorsa bırakıp bunu okumasını sağlar
         uyariKutusu.setAttribute("role", "alert"); 
         uyariKutusu.setAttribute("aria-live", "assertive");
         uyariKutusu.innerText = sesliMetin;
-    }, okumaGecikmesi); 
+    }, okumaBaslangicSuresi); 
 
     // Şıklara tekrar basılmasını engelle
     const tumButonlar = document.querySelectorAll(".sik-butonu");
     tumButonlar.forEach(b => b.disabled = true);
 
+    // 2. AŞAMA: OKUMA BİTİNCE DİĞER SORUYA GEÇ
     setTimeout(() => {
         uyariKutusu.innerText = ""; 
         uyariKutusu.removeAttribute("role"); 
@@ -244,7 +245,7 @@ function cevapIsaretle(secilenIndex, btnElement) {
                  uyariKutusu.setAttribute("role", "alert");
                  uyariKutusu.setAttribute("aria-live", "assertive");
                  uyariKutusu.innerText = "Test bitti. Sonuçları görmek için bitir düğmesine basınız.";
-             }, okumaGecikmesi);
+             }, 1000);
              
              gorselUyari.className = "gorsel-uyari-kutusu"; gorselUyari.style.display = "block";
              gorselUyari.style.backgroundColor = "#000"; gorselUyari.style.color = "#ffff00";
@@ -252,7 +253,7 @@ function cevapIsaretle(secilenIndex, btnElement) {
              
              document.getElementById("bitir-buton").focus();
         }
-    }, gecisSuresi); 
+    }, toplamGecisSuresi); 
 }
 
 function getSikHarfi(index) { return ["A", "B", "C", "D", "E"][index]; }
@@ -279,7 +280,6 @@ function testiBitir() {
     document.getElementById("sonuc-alani").style.display = "block";
 
     // BURADA ESKİ HTML'İ TAMAMEN SİLİP YENİSİNİ YAZIYORUZ
-    // SADECE "CEVAP ANAHTARI" BUTONU EKLENDİ. BAŞKA BUTON YOK.
     const sonucHTML = `
         <div style="border: 4px solid #fff; padding: 20px; border-radius: 10px; margin-bottom: 20px; background:#000;">
             <h3 style="color:${mesajRengi}; font-size: 1.8rem; margin: 0 0 10px 0;">${motivasyonMesaji}</h3>
@@ -291,10 +291,7 @@ function testiBitir() {
         <button class="nav-buton" onclick="cevapAnahtariniGoster()" style="width:100%; padding:20px; font-size:1.4rem; border:2px solid #ffff00; color:#ffff00; background:#000; font-weight:bold;">📝 CEVAP ANAHTARI (Tüm Soruları İncele)</button>
     `;
     
-    // HTML içeriğini tamamen değiştiriyoruz, eski butonlar kalmaz.
     document.getElementById("puan-detay").innerHTML = sonucHTML;
-    
-    // Odağı sonuç alanına taşı
     document.getElementById("sonuc-alani").focus();
 }
 
