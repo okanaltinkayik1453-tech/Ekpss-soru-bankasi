@@ -25,7 +25,7 @@ const tumTestler = {
         { soru: "Uygurların Karluk ve Basmillerle birleşip devlet kurması hangisini gösterir?", siklar: ["Göçebe yaşamı", "Farklı toplulukları birleştirdiklerini", "Batıya göçü", "Karlukların önce kurulduğunu", "Orta Asya egemenliğini"], dogruCevap: 1, aciklama: "Farklı boyları (Karluk, Basmil) bir araya getirmişlerdir." },
         { soruKoku: "Aşağıdaki bilgilerden hangileri Uygur Devleti’ne aittir?", onculler: [ "1. Orta Asya’da demir işçiliğiyle ünlenen ilk Türk topluluğudur.", "2. Maniheizm dinini kabul etmişlerdir.", "3. 14–18 harfli bir alfabeye sahiptirler.", "4. İlk kez Türk tarihinde “ordu-millet” anlayışını resmî hâle getirmişlerdir.", "5. Yerleşik hayata geçen ilk Türk topluluklarından biridir.", "6. Çin’le yaptığı savaşlar sonrasında İpek Yolu’nun tamamına hâkim olmuştur." ], siklar: ["1 ve 3", "1 ve 5", "4 ve 6", "2, 3 ve 5", "2, 4 ve 6"], dogruCevap: 3, aciklama: "Uygurlar; Maniheizm’i benimseyen, 14–18 harfli alfabeyi kullanan ve yerleşik hayata geçen ilk Türk devletidir." },
         { soru: "Hangisi Uygurlara ait değildir?", siklar: ["Çin Seddi'nin yapılması", "Tapınak yapımı", "Karabalgasun Yazıtları", "Maniheizm dini", "Yerleşik hayat"], dogruCevap: 0, aciklama: "Çin Seddi Hunlar döneminde yapılmıştır." },
-        { soruKoku: "Yukarıdaki Türk topluluklarından hangileri Avrupa'da teşkilatlı bir devlet kurmuşlardır?", onculler: [ "1. Karluklar", "2. Hazarlar", "3. Avarlar", "4. Hunlar" ], siklar: ["Yalnız 1", "Yalnız 2", "Yalnız 4", "2 ve 3", "3 ve 4"], dogruCevap: 4, aciklama: "Avrupa Hunları ve Avarlar hem Asya hem Avrupa'da devlet kurmuştur." },
+        { soruKoku: "Yukarıdaki Türk topluluklarından hangileri Avrupa'da teşkilatlı bir devlet kurmuşlardır?", onculler: [ "1. Karluklar", "2. Hazarlar", "3. Avarlar", "4. Avrupa Hun Devleti" ], siklar: ["Yalnız 1", "Yalnız 2", "Yalnız 4", "2 ve 3", "3 ve 4"], dogruCevap: 4, aciklama: "Avrupa Hunları ve Avarlar hem Asya hem Avrupa'da devlet kurmuştur." },
         { soru: "Aşağıdakilerden hangisi Avarların tarihteki etkilerinden biridir?", siklar: ["Dede Korkut hikâyelerinin ortaya çıkması", "Anadolu'nun kapılarının Türklere açılması", "Slav topluluklarının birbirleriyle kaynaşıp bütünleşmesi", "Türkler arasında İslamiyet'in yayılmaya başlaması", "Kuruldukları bölgenin adının onların adıyla günümüze kadar gelmesi"], dogruCevap: 2, aciklama: "Avarlar Slavları yönetim ve askerlik konusunda eğitmişlerdir." },
         { soru: "İstanbul'u kuşatan ilk Türk devleti hangisidir?", siklar: ["Avar", "Bulgar", "Kuman", "İskit", "Karluk"], dogruCevap: 0, aciklama: "İstanbul'u ilk kuşatanlar Avarlardır." },
         { soru: "Maniheizm'i kabul eden, matbaayı kullanan ve Kırgızlar tarafından yıkılan devlet hangisidir?", siklar: ["Uygurlar", "Göktürkler", "Kumanlar", "Karahitaylar", "Hazarlar"], dogruCevap: 0, aciklama: "Bu özellikler Uygurlara aittir." },
@@ -38,7 +38,7 @@ const tumTestler = {
         { soru: "Peçeneklerle ilgili hangisi doğrudur?", siklar: ["Malazgirt'te saf değiştirip Selçuklu tarafına geçmişlerdir.", "Eyyubi ordusunda görev almışlardır.", "Asya Hunlarına bağlı yaşamışlardır.", "Manas Destanı onlara aittir.", "Emevilerle savaşmışlardır."], dogruCevap: 0, aciklama: "Malazgirt Savaşı'nda Bizans ordusundan Selçuklu tarafına geçerek savaşın kaderini değiştirmişlerdir." },
         { soru: "Aşağıdakilerden hangisi bir Türk topluluğu değildir?", siklar: ["Kıpçaklar", "Vandallar", "Sabirler", "Karluklar", "Avarlar"], dogruCevap: 1, aciklama: "Vandallar bir Germen kavmidir." },
         { soruKoku: "Moğolların; bu durumlarından hangileri Türklerden etkilendiklerini gösterir?", onculler: [ "1. En önemli devlet organlarının kurultay olması", "2. Ülke topraklarının hanedan üyeleri arasında paylaştırılması", "3. Ordularının onlu sisteme göre oluşturulması" ], siklar: ["Yalnız 1", "Yalnız 2", "Yalnız 3", "1 ve 2", "1, 2 ve 3"], dogruCevap: 4, aciklama: "Bunların hepsi Türk devlet geleneğidir, Moğolların Türklerden etkilendiğini gösterir." },
-        { soru: "Hangi devlet adını kurucusundan almıştır?", siklar: ["Selçuklu", "Göktürk", "Uygur", "1 ve 2", "1, 2 ve 3"], dogruCevap: 0, aciklama: "Selçuklu Devleti adını Selçuk Bey'den almıştır." },
+        { soru: "Hangi devlet adını kurucusundan almıştır?", siklar: ["Selçuklu", "Göktürkler", "Uygurlar", "Avarlar", "Kırgızlar"], dogruCevap: 0, aciklama: "Selçuklu Devleti adını Selçuk Bey'den almıştır." },
         { soru: "Anadolu Selçuklularında Subaşıların hem yönetici hem askerlerin amiri olması neyi gösterir?", siklar: ["Toprak mülkiyetini", "Yönetim ve askerliğin birlikte yürütüldüğünü", "Sultana bağlılığı", "2 ve 3", "1, 2 ve 3"], dogruCevap: 1, aciklama: "Hem yönetici hem komutan olmaları iki görevi birlikte yürüttüklerini gösterir." },
         { soru: "Meliklerin (Hanedan üyeleri) para bastırma ve savaş açma yetkisinin olmaması neyin göstergesidir?", siklar: ["Sınır güvenliğinin", "Ekonomik durumun", "Ülke bütünlüğünün korunmasının", "Yerleşik hayatın", "Dış ilişkilerin"], dogruCevap: 2, aciklama: "Merkezi otoriteyi korumak ve devletin parçalanmasını önlemek içindir." },
         { soru: "Toprağın ekilip biçildiği sürece köylüde kalması neye karşı bir önlemdir?", siklar: ["Toprağın devlet denetimi dışında el değiştirmesine", "Ayaklanmalara", "El sanatlarına", "Kaçak göçe", "Yöneticilere"], dogruCevap: 0, aciklama: "Toprak devletindir (Miri arazi), satılamaz. Sadece kullanım hakkı devredilir." },
@@ -48,7 +48,7 @@ const tumTestler = {
         { soru: "Fütüvvet anlayışı hangi teşkilatın temelini oluşturur?", siklar: ["Ahilik Teşkilatı", "Tımar Sistemi", "İltizam Sistemi", "Devşirme", "Enderun"], dogruCevap: 0, aciklama: "Ahilik teşkilatının ahlaki temeli Fütüvvetname'ye dayanır." },
         { soru: "Anadolu Selçuklu Devletinde Şehirlerin ekonomik hayatında en etkili grup kimdir?", siklar: ["Memurlar", "Ahiler", "Ayanlar", "Bilim Adamları", "Askerler"], dogruCevap: 1, aciklama: "Üretim ve ticareti kontrol eden Ahilerdir." },
         { onculGiris: "Sultan 2. Kılıç Arslan döneminde Anadolu Selçuklularında ekonomik durum yüksek düzeye ulaşmıştır. Bu dönemde görülen;", soruKoku: "durumlarından hangileri ekonomideki bu başarının kanıtları arasındadır?", onculler: [ "1. İmar çalışmalarının fazla olması", "2. Surlar içinde birer kaleden ibaret olan kasabaların büyümesi", "3. Loncalar tarzındaki Ahilik teşkilatının Müslüman olmayanlara kapalı olması" ], siklar: ["Yalnız 1", "Yalnız 2", "Yalnız 3", "1 ve 2", "1, 2 ve 3"], dogruCevap: 3, aciklama: "İmar faaliyetleri ve şehirlerin büyümesi ekonomik gücü gösterir." },
-        { onculGiris: "Anadolu Selçukluları döneminde;", soruKoku: "durumlarından hangilerinin ticaretin güvenle yapılmasında önemli olduğu savunulabilir?", onculler: [ "1. Kervanların soyulmaması ve tüccarların zarar görmemesi için önlemler alınması", "2. Belli aralıklarla kervansaraylar yapılması", "3. Gümrük vergilerinin düşük olması" ], siklar: ["Yalnız 1", "Yalnız 2", "1 ve 2", "2 ve 3", "1, 2 ve 3"], dogruCevap: 2, aciklama: "Devlet sigortası ve kervansaraylar güvenliği sağlar. Gümrük vergisi ise teşviktir." },
+        { onculGiris: "Anadolu Selçukluları döneminde;", soruKoku: "durumlarından hangilerinin ticaretin güvenle yapılmasında önemli olduğu savunulabilir?", onculler: [ "1. Kervanların soyulmaması ve tüccarların zarar görmemesi için önlemler alınması", "2. Belli aralıklarla kervansaraylar yapılması", "3. Gümrük vergilerinin düşük olması" ], siklar: ["Yalnız 1", "Yalnız 2", "1 ve 2", "2 ve 3", "1, 2 ve 3"], dogruCevap: 2, aciklama: "Devlet sigortası ve kervansaraylar güvenliği sağlar. Gümrük vergisi ise teşviktir. Güvenlikle ilgisi yoktur" },
         { soru: "Anadolu Selçukluları Antalya, Alanya ve Sinop gibi limanları ele geçirdikten sonra bu limanlarda Avrupalı tüccarlara düşük gümrük tarifesi uygulamışlardır. Anadolu Selçuklularındaki bu uygulamanın amacı aşağıdakilerden hangisidir?", siklar: ["Ticari ilişkileri geliştirmek", "Avrupa'nın Türklere karşı birleşmesini önlemek", "Avrupa'da nüfuz bölgeleri kurmak", "Denizlerde üstünlük sağlamak", "Anadolu'da siyasi birliği sağlamak"], dogruCevap: 0, aciklama: "Tüccarları ülkeye çekmek ve ticareti canlandırmak içindir." },
         { soru: "Anadolu Selçuklu Devleti'nde veliaht ilan edilen kişi ya başkentte bulunur ya da merkeze yakın bir şehre melik olarak görevlendirilirdi. Bu uygulamanın aşağıdakilerden hangisiyle ilgili olduğu savunulamaz?", siklar: ["Sultanın ölümü durumunda ülkede iç karışıklıkların çıkmasını önlemek", "Veliahtı devlet yönetimine hazırlamak", "Sultanın sefere çıkması halinde başkentin güvenliğini sağlamak", "Merkezi yapıyı korumak", "Şehirlerde Valilerin yetkisini artırmak"], dogruCevap: 4, aciklama: "Valilerin yetkisini artırmak değil, tam tersine merkezi denetimde tutmak amaçlanır." },
         { soru: "Anadolu Selçuklu Devleti döneminde İtalyan, Fransız, İranlı, Suriyeli ve Yahudilerin bazı grupları Antalya, Konya, Kayseri ve Sivas gibi şehirlerde, bazı Türkler ise Kıbrıs, Suriye ve Kırım'a yerleşmişlerdi. Bu durumun başlıca nedeni aşağıdaki alanlardan hangisinde görülen gelişmelerdir?", siklar: ["Ticaret", "Savunma", "Eğitim", "Mimari", "Tarım"], dogruCevap: 0, aciklama: "Konya, Kayseri, Sivas gibi şehirler ticaret yolları üzerindedir." },
@@ -104,7 +104,6 @@ const tumTestler = {
         { soruKoku: "Hangi beyliklerin donanması vardır?", onculler: [ "1. Aydınoğulları", "2. Menteşeoğulları", "3. Karamanoğulları" ], siklar: ["Yalnız 1", "Yalnız 2", "Yalnız 3", "1 ve 2", "2 ve 3"], dogruCevap: 3, aciklama: "Aydınoğulları ve Menteşeoğulları denizci, Karamanoğulları kara beyliğidir." },
         { soru: "Hangi beylik denizcilikle uğraşmamıştır?", siklar: ["Dulkadiroğulları", "Aydınoğulları", "Saruhanoğulları", "Menteşoğulları", "Karesioğulları"], dogruCevap: 0, aciklama: "Maraş ve Elbistan'da kurulan Dulkadiroğulları'nın denize kıyısı yoktur." }
     ],
-// --- TEST 4: TÜRK İSLAM BİLGİNLERİ VE KÜLTÜR (Sorular 131-150) ---
     "turk_islam_test4": [
         { soru: "Büyük Selçuklu Devleti döneminde yaşamış, Celali Takvimi'nin hazırlanmasına başkanlık etmiş, matematik ve astronomi alanındaki çalışmalarıyla tanınan ve Rubailer adlı eseriyle edebiyat dünyasında da önemli bir yere sahip olan ünlü bilim insanı ve şair aşağıdakilerden hangisidir?", siklar: ["Harezmi", "Uluğ Bey", "Ömer Hayyam", "Biruni", "Farabi"], dogruCevap: 2, aciklama: "Sorunun doğru cevabı Ömer Hayyamdır." },
         { soru: "Anadolu Selçuklularında hükümdara vekalet eden kişiye ne denir?", siklar: ["Subaşı", "Atabey", "Naip", "Muhtesip", "Melik"], dogruCevap: 2, aciklama: "Hükümdar yokken devleti yöneten kişiye Naip (Saltanat Naibi) denir." },
@@ -270,7 +269,7 @@ const tumTestler = {
             soru: "Türk adını 'güç ve kuvvet' olarak tanımlayan devlet (veya kaynak) hangisidir?",
             siklar: ["Göktürkler", "Uygurlar", "Asya Hunları", "Kimekler", "Karluklar"],
             dogruCevap: 1,
-            aciklama: "Uygur metinlerinde Türk adı güç/kuvvet olarak geçer."
+            aciklama: "Uygur metinlerinde Türk adı güç/kuvvet olarak geçer, Kaşkarlı Mahmut'ta eserlerinde bu anlamlarda kullanır."
         },
         {
             soru: "Türk adını 'kanun ve nizam sahibi' (Töreli) olarak tanımlayan kimdir?",
@@ -906,7 +905,7 @@ const tumTestler = {
             soru: "Devşirme çocuklarının eğitildiği ve Padişahın özel hayatının geçtiği bölüm hangisidir?",
             siklar: ["Birun", "Harem", "Enderun", "Kubbealtı"],
             dogruCevap: 2,
-            aciklama: "Enderun (İç Saray), hem Padişahın özel alanı hem de saray okuludur."
+            aciklama: "Enderun (İç Saray), Devşirme çocuklarının yönetici olarak yetiştirildiği okul ve padişahın özel hizmetlilerinin bulunduğu alandır. Padişahın aile hayatı Harem'de geçer."
         },
         {
             soru: "Devletin üst düzey yönetici kadrolarını yetiştiren kurum hangisidir?",
@@ -972,7 +971,7 @@ const tumTestler = {
             soru: "Kapıkulu Piyadelerinin en etkili gücü olan ve Padişahı koruyan birlik hangisidir?",
             siklar: ["Cebeci", "Acemi", "Yeniçeri Ocağı", "Topçu"],
             dogruCevap: 2,
-            aciklama: "Yeniçeriler, merkez ordusunun en kalabalık ve en önemli yaya birliğidir."
+            aciklama: "Yeniçeriler, merkez ordusunun en kalabalık ve önemli yaya birliğidir ve dolaylı olarak padişahı korur. Ancak doğrudan yakın koruma görevi Kapıkulu Süvarilerinindir."
         },
         {
             soru: "Yeniçeri Ocağı'na asker yetiştiren okul niteliğindeki ocak hangisidir?",
@@ -1501,8 +1500,6 @@ const tumTestler = {
             aciklama: "Kadı Burhaneddin, Osmanlı ile mücadele etmiş ve Timur tehlikesini artırmıştır."
 }
 ]
-, // ÖNCEKİ TESTLE BAĞLANTI VİRGÜLÜ
-
     // --- OSMANLI KURULUŞ DÖNEMİ - TEST 2 (Osman ve Orhan Bey Dönemi) ---
     "osmanli_kurulus_test2": [
         {
@@ -1593,7 +1590,7 @@ const tumTestler = {
             soru: "Osman Bey'in mezarı (Gümüşlü Kümbet) hangi şehrimizdedir?",
             siklar: ["Söğüt", "Bilecik", "Bursa", "Domaniç", "İznik"],
             dogruCevap: 2,
-            aciklama: "Osman Bey Söğüt'te vefat etse de vasiyeti üzerine Bursa'nın fethinden sonra naaşı Bursa'ya taşınmıştır."
+            aciklama: "Osman Bey Söğüt'te vefat etmiştir, ancak vasiyeti üzerine naaşı Bursa'nın fethinden sonra Gümüşlü Kümbet'e taşınmıştır."
         },
         {
             soru: "Osmanlı Devleti'nin Rumeli'ye geçişini sağlayan ve Avrupa kıtasında elde ettiği ilk askeri üs neresidir?",
@@ -1626,7 +1623,6 @@ const tumTestler = {
             aciklama: "İznik Orhaniyesi ilk medrese, Davud-u Kayseri ise ilk müderristir. Bu, eğitime verilen önemi gösterir."
         }
     ]
-, // Önceki testle bağlantı virgülü
 
     // --- OSMANLI KURULUŞ DÖNEMİ - TEST 3 (I. Murat Dönemi ve Fetihler) ---
     "osmanli_kurulus_test3": [
@@ -1670,7 +1666,7 @@ const tumTestler = {
             soru: "Aşağıdaki kurumlardan hangisi 1. Murat döneminde kurulmamıştır?",
             siklar: ["Yeniçeri Ocağı", "Tımar Sistemi (Uygulanması)", "Rumeli Beylerbeyliği", "Divan-ı Hümayun", "Defterdarlık"],
             dogruCevap: 3,
-            aciklama: "Divan-ı Hümayun Orhan Bey döneminde kurulmuştur. Diğerleri 1. Murat dönemi gelişmeleridir."
+            aciklama: "Divan-ı Hümayun Orhan Bey döneminde kurulmuştur. Yeniçeri Ocağı, Tımar, Rumeli Beylerbeyliği ve Defterdarlık 1. Murat dönemi gelişmeleridir."
         },
         {
             soru: "Edirne'nin fethini sağlayan Osmanlı-Bizans savaşı hangisidir?",
@@ -1794,7 +1790,7 @@ const tumTestler = {
             soru: "Ankara Savaşı'nın sonuçları dikkate alındığında aşağıdakilerden hangisi yanlıştır?",
             siklar: ["Anadolu Türk siyasi birliği bozulmuştur.", "İstanbul'un fethi gecikmiştir.", "Osmanlı Devleti yıkılmıştır.", "Fetret Devri başlamıştır.", "Balkanlardaki fetihler durmuştur."],
             dogruCevap: 2,
-            aciklama: "Devlet yıkılma tehlikesi geçirmiş ancak yıkılmamıştır. Fetret Devri sonunda toparlanmıştır."
+            aciklama: "Osmanlı Devleti bu savaşta yıkılmamış, 11 yıl süren Fetret Devri'ne girmiştir."
         },
         {
             soru: "Osmanlı Devleti'nde ilk 'Cülus Bahşişi' dağıtan padişah kimdir?",
@@ -2000,8 +1996,6 @@ const tumTestler = {
         }
     ]
 
-, // ÖNCEKİ TESTLE BAĞLANTI VİRGÜLÜ
-
     // --- OSMANLI KURULUŞ DÖNEMİ - TEST 6 (2. Murat ve Genel Tekrar) ---
     "osmanli_kurulus_test6": [
         {
@@ -2083,8 +2077,8 @@ const tumTestler = {
             aciklama: "Çelebi Mehmet döneminde Haremeyn'e (Mekke-Medine) hediye gönderme geleneği başlamıştır."
         },
         {
-            soru: "Kuruluş döneminde 'Müsadere' (Mallara el koyma) sisteminin ilk izleri hangi dönemde görülür? (Genel bilgi sorusu)",
-            siklar: ["Fatih (Yasalaşması)", "Osman Gazi", "1. Murat", "2. Murat", "Çelebi Mehmet"],
+            soru: "Kuruluş döneminde 'Müsadere' (Mallara el koyma) sisteminin ilk izleri hangi dönemde görülür?",
+            siklar: ["Fatih", "Osman Gazi", "1. Murat", "2. Murat", "Çelebi Mehmet"],
             dogruCevap: 0,
             aciklama: "Müsadere Fatih döneminde Çandarlı ailesinin mallarına el konulmasıyla belirginleşir, ancak kuruluşta nadirdir."
         },
@@ -2122,7 +2116,7 @@ const tumTestler = {
             soru: "Kuruluş Dönemi (1299-1453) hangi olayla sona erer?",
             siklar: ["Ankara Savaşı", "2. Kosova Savaşı", "Varna Savaşı", "İstanbul'un Fethi", "Otlukbeli Savaşı"],
             dogruCevap: 3,
-            aciklama: "1453 İstanbul'un Fethi ile devlet 'İmparatorluk' (Yükselme) aşamasına geçer."
+            aciklama: "Kuruluş dönemi, 1453 yılında Fatih Sultan Mehmet'in İstanbul'u fethiyle biter yükselme başlar."
         }
     ]
 
