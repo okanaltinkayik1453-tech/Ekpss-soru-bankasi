@@ -11,7 +11,7 @@ const sesler = {
     bitis: new Audio('bitis.mp3')
 };
 
-// Ses Seviyeleri
+// --- SES SEVİYESİ AYARLARI ---
 sesler.dogru.volume = 1.0; 
 sesler.yanlis.volume = 0.3; 
 sesler.bitis.volume = 0.3;
@@ -78,16 +78,11 @@ function soruyuGoster(index) {
 
     const soruBaslik = document.getElementById("soru-metni");
 
-    // --- NVDA DÜZELTMESİ (BAŞLIK TEKRARINI ENGELLEME) ---
-    // Eğer HTML'de soru-metni bir h2 ise, içindeki div'ler okuma sorunu yaratır.
-    // Bu yüzden kapsayıcının "başlık" rolünü iptal ediyoruz.
+    // NVDA Başlık Düzeltmesi (Bilgisayar İçin Korundu)
     soruBaslik.setAttribute("role", "presentation");
-    // Odaklanabilmesi için tabindex ekliyoruz (tek parça okumayı kolaylaştırır)
     soruBaslik.setAttribute("tabindex", "-1");
     
     let finalHTML = "";
-
-    // GİZLİ BAŞLIK: H tuşu ile gezmek için görünmez ama okunabilir başlık ekliyoruz.
     finalHTML += `<h2 class="sr-only">Soru ${index + 1}</h2>`;
 
     if (soruObj.onculler && soruObj.onculler.length > 0) {
@@ -149,13 +144,12 @@ function soruyuGoster(index) {
     document.getElementById("btn-onceki").disabled = (index === 0);
     document.getElementById("btn-sonraki").disabled = (index === mevcutSorular.length - 1);
 
-    // ODAK YÖNETİMİ: Soruyu açınca direkt metne odaklan (Tek parça okuma ihtimalini artırır)
     if (kullaniciCevaplari[index] === null) {
         soruBaslik.focus();
     }
 }
 
-// --- CEVAP İŞARETLEME ---
+// --- CEVAP İŞARETLEME (MOBİL VE PC AYRIMLI) ---
 function cevapIsaretle(secilenIndex, btnElement) {
     if (isaretlemeKilitli) return;
     isaretlemeKilitli = true;
@@ -179,14 +173,20 @@ function cevapIsaretle(secilenIndex, btnElement) {
         durumMetni = "Yanlış cevap.";
     }
 
-    // Telefon ve PC uyumlu bildirim
+    // --- AKILLI CİHAZ ALGILAMA ---
+    const isMobile = window.innerWidth < 768;
+
+    // Bekleme Süreleri
+    const okumaGecikmesi = isMobile ? 750 : 150;
+    const gecisSuresi = isMobile ? 3500 : 2500;
+
     uyariKutusu.innerText = "";
     uyariKutusu.removeAttribute("role");
     
     setTimeout(() => {
         uyariKutusu.setAttribute("role", "alert"); 
         uyariKutusu.innerText = sikHarfi + " şıkkını işaretlediniz. " + durumMetni;
-    }, 250); 
+    }, okumaGecikmesi); 
 
     const tumButonlar = document.querySelectorAll(".sik-butonu");
     tumButonlar.forEach(b => b.disabled = true);
@@ -204,7 +204,7 @@ function cevapIsaretle(secilenIndex, btnElement) {
              setTimeout(() => {
                  uyariKutusu.setAttribute("role", "alert");
                  uyariKutusu.innerText = "Test bitti. Sonuçları görmek için bitir düğmesine basınız.";
-             }, 250);
+             }, okumaGecikmesi);
              
              gorselUyari.className = "gorsel-uyari-kutusu"; gorselUyari.style.display = "block";
              gorselUyari.style.backgroundColor = "#000"; gorselUyari.style.color = "#ffff00";
@@ -212,7 +212,7 @@ function cevapIsaretle(secilenIndex, btnElement) {
              
              document.getElementById("bitir-buton").focus();
         }
-    }, 2500); 
+    }, gecisSuresi); 
 }
 
 function getSikHarfi(index) { return ["A", "B", "C", "D", "E"][index]; }
@@ -237,6 +237,7 @@ function testiBitir() {
     document.getElementById("bitir-buton").style.display = "none";
     document.getElementById("sonuc-alani").style.display = "block";
 
+    // GEREKSİZ BUTONLARI KALDIRDIM, SADECE SONUÇ VE CEVAP ANAHTARI KALDI
     const sonucHTML = `
         <div style="border: 4px solid #fff; padding: 20px; border-radius: 10px; margin-bottom: 20px; background:#000;">
             <h3 style="color:${mesajRengi}; font-size: 1.8rem; margin: 0 0 10px 0;">${motivasyonMesaji}</h3>

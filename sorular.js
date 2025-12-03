@@ -1485,3 +1485,632 @@ const tumTestler = {
 }
 ]
 };
+, // ÖNCEKİ TESTLE BAĞLANTI VİRGÜLÜ
+
+    // --- OSMANLI KURULUŞ DÖNEMİ - TEST 2 (Osman ve Orhan Bey Dönemi) ---
+    "osmanli_kurulus_test2": [
+        {
+            soru: "Tarihçi Halil İnalcık, Osmanlı Devleti'nin kuruluşunu 1299 yılı yerine Bizans ile yapılan ilk büyük savaş olan 1302 yılındaki zaferle başlatır. Bu savaş aşağıdakilerden hangisidir?",
+            siklar: ["Pelekanon (Maltepe)", "Sırpsındığı", "Koyunhisar (Bapheus)", "Çirmen", "I. Kosova"],
+            dogruCevap: 2,
+            aciklama: "Halil İnalcık'a göre Koyunhisar Zaferi, Osman Gazi'nin liderliğini perçinlemiş ve beyliğin bağımsızlığını kanıtlamıştır."
+        },
+        {
+            soru: "Osman Bey döneminde fethedilen ve beyliğin merkezi yapılarak demir madeni ihtiyacının karşılandığı şehir hangisidir?",
+            siklar: ["İznik", "Bilecik", "Bursa", "Edirne", "Kütahya"],
+            dogruCevap: 1,
+            aciklama: "Bilecik'in fethi, hem stratejik konumu hem de demir madenleri nedeniyle askeri kapasiteyi artırmıştır."
+        },
+        {
+            soru: "Osmanlı Beyliği'nin kısa sürede büyüyüp gelişmesinde etkili olan faktörlerden hangisi 'Gaza ve Cihat' anlayışıyla doğrudan ilgilidir?",
+            siklar: ["Merkezi otoritenin güçlü tutulması", "Bizans sınırında (Uç Beyliği) kurulmuş olması", "Yetenekli padişahların yetişmesi", "Ahilerin desteğinin alınması", "İskan politikasının uygulanması"],
+            dogruCevap: 1,
+            aciklama: "Bizans sınırında bulunmak, gaza (kutsal savaş) ideolojisiyle hareket etmeyi ve diğer beyliklerden asker (alp) toplamasını kolaylaştırmıştır."
+        },
+        {
+            soru: "Osman Bey'in Şeyh Edebali'nin kızıyla evlenmesi, devletin kuruluş sürecinde hangi sosyal grubun desteğini sağlamıştır?",
+            siklar: ["Yeniçeriler", "Ahiler", "Abdalan-ı Rum", "Gaziyan-ı Rum", "Bacıyan-ı Rum"],
+            dogruCevap: 1,
+            aciklama: "Şeyh Edebali Ahi teşkilatının lideridir. Bu evlilik, esnaf ve zanaatkâr örgütü olan Ahilerin manevi ve iktisadi desteğini sağlamıştır."
+        },
+        {
+            soru: "Osmanlı Devleti'nde ilk vergi olan 'Bac-ı Pazar' (Pazar Vergisi) hangi hükümdar döneminde alınmaya başlanmıştır?",
+            siklar: ["Orhan Gazi", "I. Murat", "Osman Gazi", "Yıldırım Bayezid", "I. Mehmet"],
+            dogruCevap: 2,
+            aciklama: "Devletin egemenlik alameti olan vergi toplama, Osman Gazi döneminde pazarlardan alınan bac vergisiyle başlamıştır."
+        },
+        {
+            soru: "Osman Bey döneminde Karacahisar'ın fethinden sonra Dursun Fakih'in ilk kadı olarak atanması aşağıdakilerden hangisinin göstergesidir?",
+            siklar: ["Askeri teşkilatlanmanın tamamlandığının", "Adalet ve idari teşkilatlanmaya gidildiğinin", "Ekonomik bağımsızlığın kazanıldığının", "Halifeliğin siyasi gücünden yararlanıldığının", "Rumeli'ye geçişin başladığının"],
+            dogruCevap: 1,
+            aciklama: "Kadı ataması, fethedilen yerlerde İslam hukukunun ve idari düzenin kurulduğuna işarettir."
+        },
+        {
+            soru: "Osman Bey'in bölgedeki Hristiyan halka iyi davranarak onları devlete ısındırma politikasına ne ad verilir?",
+            siklar: ["İskan", "Devşirme", "İstimalet", "Müsadere", "Millet Sistemi"],
+            dogruCevap: 2,
+            aciklama: "İstimalet, 'gönül alma, meylettirme' demektir. Osmanlı'nın fetihlerinin kalıcı olmasını sağlayan temel politikalardan biridir."
+        },
+        {
+            soru: "Aşağıdaki yerlerden hangisi Osman Bey döneminde fethedilmemiştir?",
+            siklar: ["Yarhisar", "İnegöl", "Yenişehir", "Bursa", "Karacahisar"],
+            dogruCevap: 3,
+            aciklama: "Bursa, Osman Bey döneminde kuşatılmış ancak fethedilememiştir. Fetih, oğlu Orhan Bey'e nasip olmuştur."
+        },
+        {
+            soru: "Osman Gazi döneminde, Bizans tekfurları ile ilişkilerde bazen savaş bazen barış yapılmıştır. Osman Gazi'nin yakın dostu olan ve sonradan Müslüman olarak Osmanlı hizmetine giren Bizans tekfuru kimdir?",
+            siklar: ["Evrenos Bey", "Köse Mihal", "Konuralp", "Turgut Alp", "Samsa Çavuş"],
+            dogruCevap: 1,
+            aciklama: "Harmankaya Tekfuru Köse Mihal, Osman Bey ile dostluk kurmuş, Müslüman olmuş ve Mihaloğulları akıncı ailesinin atası olmuştur."
+        },
+        {
+            soru: "Osmanlı tarihinde 'Aşiretten Beyliğe geçiş' hangi dönemde gerçekleşmiştir?",
+            siklar: ["Ertuğrul Gazi", "Osman Gazi", "Orhan Gazi", "I. Murat", "II. Murat"],
+            dogruCevap: 1,
+            aciklama: "Ertuğrul Gazi dönemi aşiret, Osman Gazi dönemi beylik, Orhan Gazi dönemi devletleşme olarak nitelenir."
+        },
+        {
+            soru: "Osman Bey döneminde basılan ilk para hangi madenden yapılmıştır?",
+            siklar: ["Altın (Sikke-i Hasene)", "Gümüş (Akçe)", "Bakır (Mangır)", "Kağıt (Kaime)", "Bronz"],
+            dogruCevap: 2,
+            aciklama: "Osman Bey döneminde basılan paralar bakırdır, bu da yerel ölçekte bir ekonomiye sahip olunduğunu gösterir. Gümüş para Orhan Bey dönemindedir."
+        },
+        {
+            soru: "Osman Gazi'nin soyu Oğuzların hangi koluna ve boyuna dayanmaktadır?",
+            siklar: ["Üçoklar - Kınık", "Bozoklar - Kayı", "Bozoklar - Avşar", "Üçoklar - Çepni", "Bozoklar - Dodurga"],
+            dogruCevap: 1,
+            aciklama: "Osmanlı hanedanı, Oğuz Han'ın Bozok kolunun Günhan soyunun Kayı boyuna mensuptur."
+        },
+        {
+            soru: "1302 Koyunhisar Savaşı'nın en önemli siyasi sonucu nedir?",
+            siklar: ["Bursa'nın fethedilmesi", "Osmanlı'nın bölgedeki diğer beylikler ve Bizans tarafından siyasi bir güç olarak tanınması", "Rumeli'ye geçişin sağlanması", "Haçlı ittifakının kurulması", "Anadolu Türk birliğinin sağlanması"],
+            dogruCevap: 1,
+            aciklama: "Bu zaferle Osmanlı, yerel bir aşiret reisi olmaktan çıkıp bölgesel bir siyasi aktör haline gelmiştir."
+        },
+        {
+            soru: "Osman Bey döneminde fetih hareketlerinde yer alan 'Alp' ve 'Gazi' unvanlı komutanlardan hangisi yoktur?",
+            siklar: ["Konuralp", "Turgut Alp", "Samsa Çavuş", "Akçakoca", "Çandarlı Halil Paşa"],
+            dogruCevap: 4,
+            aciklama: "Çandarlı Halil Paşa, I. Murat döneminde vezir-i azamlık yapmış bir devlet adamıdır. Diğerleri Osman Bey'in silah arkadaşlarıdır."
+        },
+        {
+            soru: "Osman Bey'in mezarı (Gümüşlü Kümbet) hangi şehrimizdedir?",
+            siklar: ["Söğüt", "Bilecik", "Bursa", "Domaniç", "İznik"],
+            dogruCevap: 2,
+            aciklama: "Osman Bey Söğüt'te vefat etse de vasiyeti üzerine Bursa'nın fethinden sonra naaşı Bursa'ya taşınmıştır."
+        },
+        {
+            soru: "Osmanlı Devleti'nin Rumeli'ye geçişini sağlayan ve Avrupa kıtasında elde ettiği ilk askeri üs neresidir?",
+            siklar: ["Gelibolu Kalesi", "Çimpe Kalesi", "Selanik", "Edirne", "Rodos"],
+            dogruCevap: 1,
+            aciklama: "Bizans'a yapılan yardım karşılığında alınan Çimpe Kalesi, Rumeli fetihlerinin başlangıç noktasıdır."
+        },
+        {
+            soru: "1329 yılında Bizans İmparatoru I1. Andronikos ile Orhan Bey arasında yapılan, Bizans'ın Anadolu'daki son direnişini kıran savaş hangisidir?",
+            siklar: ["Koyunhisar", "Sırpsındığı", "Palekanon (Maltepe)", "Çirmen", "Niğbolu"],
+            dogruCevap: 2,
+            aciklama: "Maltepe Savaşı ile Bizans ordusu yenilmiş, İznik ve İzmit'in fethi kesinleşmiştir."
+        },
+        {
+            soru: "Orhan Bey döneminde oluşturulan, devlet işlerinin görüşüldüğü meclise ne ad verilir?",
+            siklar: ["Kurultay", "Divan-ı Hümayun", "Pankuş", "Senato", "Lonca"],
+            dogruCevap: 1,
+            aciklama: "Devlet yönetimini kurumsallaştırmak amacıyla Divan örgütü kurulmuştur."
+        },
+        {
+            soru: "'Beylikten Devlete Geçiş' sürecinde Orhan Bey zamanında kurulan ilk düzenli ordu birliği hangisidir?",
+            siklar: ["Yeniçeriler", "Tımarlı Sipahiler", "Yaya ve Müsellem", "Akıncılar", "Azaplar"],
+            dogruCevap: 2,
+            aciklama: "Gönüllü birliklerin yetersizliği üzerine maaşlı ve vergiden muaf Yaya (piyade) ve Müsellem (atlı) birlikleri kurulmuştur."
+        },
+        {
+            soru: "Osmanlı Devleti'nde ilk medrese nerede açılmış ve başına ilk müderris olarak kim getirilmiştir?",
+            siklar: ["Bursa - Molla Fenari", "İznik - Davud-u Kayseri", "Edirne - Ali Kuşçu", "Söğüt - Dursun Fakih", "İstanbul - Akşemseddin"],
+            dogruCevap: 1,
+            aciklama: "İznik Orhaniyesi ilk medrese, Davud-u Kayseri ise ilk müderristir. Bu, eğitime verilen önemi gösterir."
+        }
+    ]
+
+};
+, // Önceki testle bağlantı virgülü
+
+    // --- OSMANLI KURULUŞ DÖNEMİ - TEST 3 (I. Murat Dönemi ve Fetihler) ---
+    "osmanli_kurulus_test3": [
+        {
+            soru: "I. Murat döneminde savaş esirlerinin beşte birinin asker olarak yetiştirilmesi esasına dayanan sistem hangisidir?",
+            siklar: ["Devşirme", "İltizam", "Pençik", "Müsadere", "Dirlik"],
+            dogruCevap: 2,
+            aciklama: "Pençik sistemi, Yeniçeri Ocağı'nın insan kaynağını oluşturmuştur. Devşirme sistemi daha sonra (1. Mehmet, 2. Murat) uygulanacaktır."
+        },
+        {
+            soru: "Osmanlı tarihinde savaş meydanında şehit düşen ilk ve tek padişah kimdir?",
+            siklar: ["1. Bayezid", "1. Murat", "Fatih Sultan Mehmet", "2. Murat", "Yavuz Sultan Selim"],
+            dogruCevap: 1,
+            aciklama: "1. Murat, 1. Kosova Savaşı'nın kazanılmasının ardından savaş alanında şehit edilmiştir."
+        },
+        {
+            soru: "1. Murat döneminde merkezi otoriteyi güçlendirmek amacıyla veraset anlayışında yapılan değişiklik aşağıdakilerden hangisidir?",
+            siklar: ["Ülke hanedan üyelerinin ortak malıdır.", "Ülke padişah ve oğullarınındır.", "Ülke en yaşlı üyenindir (Ekber ve Erşed).", "Padişah seçimle belirlenir.", "Kadınlar saltanat naibi olabilir."],
+            dogruCevap: 1,
+            aciklama: "Taht kavgalarını azaltmak için hanedanın diğer erkek üyelerinin (amcalar, kardeşler) hakkı kısıtlanmıştır."
+        },
+        {
+            soru: "Osmanlı Devleti'nde kurulan ilk Beylerbeyliği hangisidir ve merkezi neresidir?",
+            siklar: ["Anadolu - Kütahya", "Rumeli - Manastır/Edirne", "Mısır - Kahire", "Bosna - Saraybosna", "Budin - Budin"],
+            dogruCevap: 1,
+            aciklama: "Fetihlerin batı yönünde olması nedeniyle ilk olarak Rumeli Beylerbeyliği kurulmuş, Lala Şahin Paşa atanmıştır."
+        },
+        {
+            soru: "Osmanlı ordusunda topun ilk kez kullanıldığı savaş hangisidir?",
+            siklar: ["Sazlıdere", "Sırpsındığı", "1. Kosova", "Niğbolu", "Ankara"],
+            dogruCevap: 2,
+            aciklama: "1. Kosova Savaşı'nda düşman atlarını ürkütmek ve ses etkisi yaratmak amacıyla top kullanılmıştır."
+        },
+        {
+            soru: "Germiyanoğulları'ndan çeyiz yoluyla, Hamitoğulları'ndan satın alma yoluyla toprak kazanan padişah kimdir?",
+            siklar: ["Orhan Gazi", "Yıldırım Bayezid", "1. Murat", "2. Murat", "1. Mehmet"],
+            dogruCevap: 2,
+            aciklama: "1. Murat, Anadolu Türk birliğini sağlamak için barışçıl yöntemleri de kullanmıştır."
+        },
+        {
+            soru: "Aşağıdaki kurumlardan hangisi 1. Murat döneminde kurulmamıştır?",
+            siklar: ["Yeniçeri Ocağı", "Tımar Sistemi (Uygulanması)", "Rumeli Beylerbeyliği", "Divan-ı Hümayun", "Defterdarlık"],
+            dogruCevap: 3,
+            aciklama: "Divan-ı Hümayun Orhan Bey döneminde kurulmuştur. Diğerleri 1. Murat dönemi gelişmeleridir."
+        },
+        {
+            soru: "Edirne'nin fethini sağlayan Osmanlı-Bizans savaşı hangisidir?",
+            siklar: ["Koyunhisar", "Sazlıdere", "Palekanon", "Varna", "Çirmen"],
+            dogruCevap: 1,
+            aciklama: "1363 Sazlıdere Savaşı ile Edirne alınmış ve Balkan fetihleri için stratejik bir merkez olmuştur."
+        },
+        {
+            soru: "1. Murat döneminde 'Kazaskerlik' makamının kurulması hangi alanda teşkilatlanmaya gidildiğini gösterir?",
+            siklar: ["Maliye", "Askeri ve Adli", "Diplomasi", "Mimari", "Denizcilik"],
+            dogruCevap: 1,
+            aciklama: "Kazasker, askeri davalara bakan ve kadı/müderris atamalarını yapan en yüksek adli makamdır."
+        },
+        {
+            soru: "Karamanoğulları ile yapılan ilk savaş (Frenkyazısı Savaşı) hangi padişah döneminde gerçekleşmiştir?",
+            siklar: ["1. Murat", "Orhan Gazi", "Yıldırım Bayezid", "Fatih Sultan Mehmet", "2. Bayezid"],
+            dogruCevap: 0,
+            aciklama: "Osmanlı-Karaman mücadelesi 1. Murat döneminde başlamış, 1. Murat damadı olan Karaman beyini yenmiştir."
+        },
+        {
+            soru: "Tımar sisteminin sistemli bir şekilde uygulanmaya başlaması hangi padişah dönemine atfedilir?",
+            siklar: ["Osman Gazi", "1. Murat", "Orhan Gazi", "Fatih", "Kanuni"],
+            dogruCevap: 1,
+            aciklama: "Tımar sistemi (toprağa dayalı asker yetiştirme) 1. Murat döneminde sistemleştirilerek Tımarlı Sipahiler ordunun asıl gücü haline gelmiştir."
+        },
+        {
+            soru: "1. Murat'ın annesi kimdir?",
+            siklar: ["Hayme Ana", "Nilüfer Hatun", "Gülçiçek Hatun", "Halime Hatun", "Malhun Hatun"],
+            dogruCevap: 1,
+            aciklama: "Orhan Bey'in eşi, Yarhisar tekfurunun kızı Nilüfer Hatun'dur."
+        },
+        {
+            soru: "1. Kosova Savaşı'nda Haçlı ordusuna komutanlık eden Sırp Kralı kimdir?",
+            siklar: ["Lazar", "Stefan Duşan", "Miloş", "Vlad", "Sigmund"],
+            dogruCevap: 0,
+            aciklama: "Kral Lazar, savaşta esir alınarak idam edilmiştir."
+        },
+        {
+            soru: "Aşağıdaki şehirlerden hangisi 1. Murat döneminde fethedilmemiştir?",
+            siklar: ["Edirne", "Filibe", "Gümülcine", "Sofya", "İstanbul"],
+            dogruCevap: 4,
+            aciklama: "İstanbul kuşatmaları Yıldırım Bayezid ve sonrası dönemlerdedir."
+        },
+        {
+            soru: "Acemi Ocağı'nın kurulmasıyla asker ihtiyacının karşılanması hangi ocak için hazırlık niteliğindedir?",
+            siklar: ["Tımarlı Sipahiler", "Akıncılar", "Yeniçeri Ocağı", "Azaplar", "Leventler"],
+            dogruCevap: 2,
+            aciklama: "Pençik veya devşirme ile alınan çocuklar önce Acemi Ocağı'nda eğitilir, sonra Yeniçeri Ocağı'na geçer."
+        },
+        {
+            soru: "1. Murat döneminde mali işlerden sorumlu olarak kurulan makam hangisidir?",
+            siklar: ["Nişancı", "Reisülküttab", "Defterdar", "Kazasker", "Sadrazam"],
+            dogruCevap: 2,
+            aciklama: "Devlet gelir ve giderlerini düzenlemek için Defterdarlık makamı kurulmuştur."
+        },
+        {
+            soru: "Rumeli'deki fetihlerde önemli rol oynayan ve bir akıncı ailesi olan Evrenos Bey, hangi padişah döneminde hizmete girmiştir?",
+            siklar: ["Osman Gazi", "Orhan Gazi", "1. Murat", "Yıldırım Bayezid", "2. Murat"],
+            dogruCevap: 1,
+            aciklama: "Karesi Beyliği'nin alınmasıyla (Orhan Gazi dönemi) Osmanlı hizmetine girmiş, 1. Murat döneminde büyük yararlılıklar göstermiştir."
+        },
+        {
+            soru: "Sırpsındığı Savaşı'nın diğer adı nedir?",
+            siklar: ["1. Meriç", "Çirmen", "Varna", "Kosova", "Niğbolu"],
+            dogruCevap: 0,
+            aciklama: "Kaynaklarda 1. Meriç Muharebesi olarak da geçer."
+        },
+        {
+            soru: "1. Murat'ın türbesi (iç organlarının gömüldüğü meşhed) nerede bulunmaktadır?",
+            siklar: ["Bursa", "Edirne", "Kosova", "İstanbul", "Söğüt"],
+            dogruCevap: 2,
+            aciklama: "Şehit edildiği Kosova ovasında iç organlarının gömüldüğü türbe (Meşhed-i Hüdavendigar) bulunmaktadır."
+        },
+        {
+            soru: "1. Murat döneminde Osmanlı ordusunun Rumeli'de yaptığı savaşlardan hangisi Haçlı ittifakı ile yapılmamıştır?",
+            siklar: ["Sırpsındığı", "1. Kosova", "Çirmen", "Niğbolu", "Varna"],
+            dogruCevap: 2,
+            aciklama: "Çirmen Savaşı Sırp kuvvetleriyle yapılmıştır, organize bir Haçlı ittifakı (Sırpsındığı veya Kosova gibi) değildir."
+        }
+    ],
+
+    // --- OSMANLI KURULUŞ DÖNEMİ - TEST 4 (Yıldırım Bayezid ve Ankara Savaşı) ---
+    "osmanli_kurulus_test4": [
+        {
+            soru: "İstanbul'u kuşatan ilk Osmanlı padişahı kimdir?",
+            siklar: ["Orhan Gazi", "1. Murat", "Yıldırım Bayezid", "Fatih Sultan Mehmet", "2. Murat"],
+            dogruCevap: 2,
+            aciklama: "Yıldırım Bayezid İstanbul'u dört kez kuşatmış ancak Haçlı ve Timur tehlikeleri nedeniyle kuşatmaları kaldırmıştır."
+        },
+        {
+            soru: "1396 Niğbolu Savaşı'nın kazanılmasından sonra Abbasi Halifesi Yıldırım Bayezid'e hangi unvanı vermiştir?",
+            siklar: ["Sultan-ı İklim-i Rum", "Emirü'l Müminin", "Gazi Hünkar", "Kayser-i Rum", "Hadimül Harameyn"],
+            dogruCevap: 0,
+            aciklama: "'Anadolu'nun Sultanı' unvanı, Osmanlı'nın İslam dünyasındaki meşruiyetini artırmıştır."
+        },
+        {
+            soru: "Ankara Savaşı'nın (1402) nedenleri arasında aşağıdakilerden hangisi yer almaz?",
+            siklar: ["Timur ile Bayezid arasındaki sert mektuplaşmalar", "Anadolu beylerinin Timur'a sığınması", "Karakoyunlu ve Celayir hükümdarlarının Bayezid'e sığınması", "Timur'un Çin seferi öncesi batıyı güvenceye almak istemesi", "Şeyh Bedrettin İsyanı'nın çıkması"],
+            dogruCevap: 4,
+            aciklama: "Şeyh Bedrettin İsyanı, Fetret Devri sonrasında 1. Mehmet zamanında çıkmıştır. Diğerleri savaşın sebebidir."
+        },
+        {
+            soru: "Yıldırım Bayezid döneminde Anadolu Türk siyasi birliğinin büyük ölçüde sağlanması üzerine kurulan idari birim ve merkezi hangisidir?",
+            siklar: ["Rumeli Beylerbeyliği - Manastır", "Anadolu Beylerbeyliği - Kütahya", "Kaptan-ı Deryalık - Gelibolu", "Cezayir-i Garp - Cezayir", "Bosna Beylerbeyliği - Saraybosna"],
+            dogruCevap: 1,
+            aciklama: "Sınırların doğuya genişlemesiyle Kara Timurtaş Paşa ilk Anadolu Beylerbeyi olmuştur."
+        },
+        {
+            soru: "İstanbul kuşatmalarını desteklemek amacıyla boğazın Anadolu yakasına yaptırılan hisar hangisidir?",
+            siklar: ["Rumeli Hisarı", "Anadolu Hisarı (Güzelcehisar)", "Kilitbahir", "Seddülbahir", "Çimenlik Kalesi"],
+            dogruCevap: 1,
+            aciklama: "Yıldırım Bayezid tarafından yaptırılmıştır. Karşısına Fatih, Rumeli Hisarı'nı yapacaktır."
+        },
+        {
+            soru: "Niğbolu Savaşı'ndan elde edilen ganimetlerle inşa edilen, Osmanlı'nın ilk ulu cami tipindeki anıtsal eseri hangisidir?",
+            siklar: ["Edirne Selimiye", "İstanbul Süleymaniye", "Bursa Ulu Camii", "İznik Yeşil Camii", "Fatih Camii"],
+            dogruCevap: 2,
+            aciklama: "1396-1400 yılları arasında Bursa'da inşa edilmiştir."
+        },
+        {
+            soru: "Ankara Savaşı'nın sonuçları dikkate alındığında aşağıdakilerden hangisi yanlıştır?",
+            siklar: ["Anadolu Türk siyasi birliği bozulmuştur.", "İstanbul'un fethi gecikmiştir.", "Osmanlı Devleti yıkılmıştır.", "Fetret Devri başlamıştır.", "Balkanlardaki fetihler durmuştur."],
+            dogruCevap: 2,
+            aciklama: "Devlet yıkılma tehlikesi geçirmiş ancak yıkılmamıştır. Fetret Devri sonunda toparlanmıştır."
+        },
+        {
+            soru: "Osmanlı Devleti'nde ilk 'Cülus Bahşişi' dağıtan padişah kimdir?",
+            siklar: ["1. Murat", "Yıldırım Bayezid", "Fatih", "Yavuz", "Kanuni"],
+            dogruCevap: 1,
+            aciklama: "Askerin desteğini almak için tahta çıkışta bahşiş dağıtma geleneğini başlatmıştır."
+        },
+        {
+            soru: "Osmanlı'da ilk tam teşekküllü hastane (Darüşşifa) hangi külliye içinde yer alır?",
+            siklar: ["Fatih Külliyesi", "Süleymaniye Külliyesi", "Yıldırım Bayezid Külliyesi (Bursa)", "2. Bayezid Külliyesi (Edirne)", "Yeşil Külliye"],
+            dogruCevap: 2,
+            aciklama: "Bursa'daki Yıldırım Darüşşifası, Osmanlı tıbbının erken dönem merkezlerindendir."
+        },
+        {
+            soru: "Yıldırım Bayezid'in Haçlılarla yaptığı Niğbolu Savaşı hangi bugünkü ülke sınırları içindedir?",
+            siklar: ["Yunanistan", "Bulgaristan", "Sırbistan", "Macaristan", "Romanya"],
+            dogruCevap: 1,
+            aciklama: "Niğbolu kalesi Tuna nehri kıyısında, bugünkü Bulgaristan sınırlarındadır."
+        },
+        {
+            soru: "Ankara Savaşı'nda Osmanlı ordusundaki hangi birliklerin taraf değiştirmesi savaşın kaybedilmesinde etkili olmuştur?",
+            siklar: ["Yeniçeriler", "Kara Tatarlar ve Anadolu Beylikleri askerleri", "Kapıkulu Süvarileri", "Akıncılar", "Azaplar"],
+            dogruCevap: 1,
+            aciklama: "Timur'un ordusundaki boylarla akrabalıkları olan Kara Tatarlar ve eski beylerini Timur'un yanında gören Anadolu askerleri taraf değiştirmiştir."
+        },
+        {
+            soru: "1. Bayezid döneminde Gelibolu'da inşa edilen yapı, Osmanlı'nın denizcilikteki hangi aşamasını temsil eder?",
+            siklar: ["İlk tersane (Büyük ölçekli)", "İlk deniz savaşı", "İlk denizaltı", "İlk buharlı gemi", "İlk donanma komutanlığı"],
+            dogruCevap: 0,
+            aciklama: "Gelibolu Tersanesi, Osmanlı'nın organize gemi inşasına başladığı yerdir (İmparatorluk tersanesi)."
+        },
+        {
+            soru: "Aşağıdakilerden hangisi 1. Bayezid'in oğullarından biri değildir?",
+            siklar: ["Süleyman", "İsa", "Musa", "Mehmet", "Orhan"],
+            dogruCevap: 4,
+            aciklama: "Orhan Çelebi, Süleyman Çelebi'nin oğludur (torundur). Fetret devrindeki mücadele İsa, Musa, Süleyman ve Mehmet arasındadır."
+        },
+        {
+            soru: "Yıldırım Bayezid döneminde İstanbul kuşatması sırasında Bizans'a yardıma gelen Fransız mareşali kimdir (Niğbolu Savaşı'nda esir düşmüştür)?",
+            siklar: ["Jean Korkusuz (Korkusuz Jan)", "Napolyon", "Şarlken", "Jüstinyen", "Barbarossa"],
+            dogruCevap: 0,
+            aciklama: "Korkusuz Jan (Jean sans Peur), Niğbolu'da Haçlı ordusunun önde gelen komutanlarındandır."
+        },
+        {
+            soru: "'Yıldırım' unvanı 1. Bayezid'e hangi savaştaki hızı ve başarısı nedeniyle verilmiştir?",
+            siklar: ["Niğbolu", "Frenkyazısı (Karaman Seferi)", "Ankara", "Kosova", "Varna"],
+            dogruCevap: 1,
+            aciklama: "Karamanoğulları ile yapılan Frenkyazısı Savaşı'ndaki sürati nedeniyle bu unvanı aldığı rivayet edilir."
+        },
+        {
+            soru: "Ankara Savaşı'ndan sonra Timur, Osmanlı başkenti Bursa'yı işgal etmiş ve neyi Semerkant'a götürmüştür?",
+            siklar: ["Osmanlı hazinesini ve arşivlerini", "Kutsal Emanetleri", "Sadece Bayezid'i", "Osmanlı donanmasını", "Yeniçerileri"],
+            dogruCevap: 0,
+            aciklama: "Bursa'nın yağmalanması ve arşivlerin götürülmesi/yakılması nedeniyle Kuruluş dönemine ait yazılı belge sayısı azdır."
+        },
+        {
+            soru: "Aşağıdaki beyliklerden hangisi Yıldırım Bayezid döneminde Osmanlı'ya katılanlar arasında yer alır?",
+            siklar: ["Karesioğulları", "Candaroğulları", "Eşrefoğulları", "Mengücekliler", "Artuklular"],
+            dogruCevap: 1,
+            aciklama: "Candaroğulları'nın Kastamonu kolu Yıldırım döneminde alınmıştır."
+        },
+        {
+            soru: "Ankara Savaşı'nda Timur'un ordusunda bulunan ve savaşın sonucunu etkileyen zırhlı hayvanlar hangisidir?",
+            siklar: ["Atlar", "Develer", "Filler", "Kaplanlar", "Ayılar"],
+            dogruCevap: 2,
+            aciklama: "Timur'un Hindistan seferinden getirdiği zırhlı filler, Osmanlı ordusunu dağıtmıştır."
+        },
+        {
+            soru: "Yıldırım Bayezid'in vefatı nerede gerçekleşmiştir?",
+            siklar: ["Bursa", "Edirne", "Akşehir", "Semerkant", "İstanbul"],
+            dogruCevap: 2,
+            aciklama: "Esaret altındayken Akşehir'de vefat etmiştir."
+        },
+        {
+            soru: "Yıldırım Bayezid döneminde Osmanlı sınırları doğuda nereye kadar ulaşmıştır?",
+            siklar: ["Fırat Nehri", "Hazar Denizi", "Basra Körfezi", "Çin Seddi", "Tuna Nehri"],
+            dogruCevap: 0,
+            aciklama: "Malatya ve Elbistan'ın alınmasıyla Fırat nehrine dayanılmıştır."
+        }
+    ],
+
+    // --- OSMANLI KURULUŞ DÖNEMİ - TEST 5 (Fetret Devri ve Yükselişe Geçiş) ---
+    "osmanli_kurulus_test5": [
+        {
+            soru: "Ankara Savaşı'ndan sonra Yıldırım Bayezid'in oğulları arasında yaşanan taht kavgaları dönemine ne ad verilir?",
+            siklar: ["Lale Devri", "Fetret Devri", "Duraklama Devri", "Tanzimat Dönemi", "Meşrutiyet Dönemi"],
+            dogruCevap: 1,
+            aciklama: "1402-1413 yılları arasındaki fasıla-i saltanat (saltanat arası) dönemidir."
+        },
+        {
+            soru: "Fetret Devri'ni sona erdirerek devletin birliğini yeniden sağladığı için Osmanlı'nın 'İkinci Kurucusu' kabul edilen padişah kimdir?",
+            siklar: ["1. Murat", "1. Mehmet (Çelebi)", "2. Murat", "Orhan Gazi", "Yavuz Sultan Selim"],
+            dogruCevap: 1,
+            aciklama: "Devleti dağılmaktan kurtardığı için bu unvanla anılır."
+        },
+        {
+            soru: "Osmanlı tarihinde çıkan ilk dini ve sosyal nitelikli isyan hangisidir?",
+            siklar: ["Babai İsyanı", "Celali İsyanları", "Şeyh Bedrettin İsyanı", "Buçuktepe İsyanı", "Patrona Halil İsyanı"],
+            dogruCevap: 2,
+            aciklama: "Kazasker Şeyh Bedrettin tarafından 1. Mehmet döneminde çıkarılmıştır."
+        },
+        {
+            soru: "Osmanlı Devleti ile Venedik arasında yapılan ilk deniz savaşı (1416) hangisidir?",
+            siklar: ["Preveze", "Çalıbey Savaşı", "İnebahtı", "Cerbe", "Navarin"],
+            dogruCevap: 1,
+            aciklama: "Çalıbey Deniz Savaşı'nda Osmanlı donanması yenilmiştir, bu da deniz gücünün henüz yetersiz olduğunu göstermiştir."
+        },
+        {
+            soru: "Fetret Devri'nde Musa Çelebi'nin İstanbul'u kuşatması, Bizans'ın hangi politikasına bir tepkidir?",
+            siklar: ["Ortodoks ve Katolikleri birleştirmesi", "Osmanlı şehzadelerini birbirine karşı kışkırtması", "Haçlı seferi düzenlemesi", "Anadolu beyliklerini işgal etmesi", "Ticaret yollarını kapatması"],
+            dogruCevap: 1,
+            aciklama: "Bizans'ın taht kavgalarını körüklemesi üzerine Musa Çelebi İstanbul'u kuşatmıştır."
+        },
+        {
+            soru: "Fetret Devri'nde Balkan milletlerinin Osmanlı'ya isyan etmemesinin temel nedeni nedir?",
+            siklar: ["Timur korkusu", "Bizans'ın baskısı", "İstimalet (Adalet ve Hoşgörü) politikası", "Ekonomik kriz", "Veba salgını"],
+            dogruCevap: 2,
+            aciklama: "Osmanlı yönetimi altındaki halkın, feodal derebeylerine kıyasla daha adil bir yönetim bulması sadakati artırmıştır."
+        },
+        {
+            soru: "'Düzmece Mustafa' olayı olarak bilinen isyan hareketi, hangi padişahlar döneminde sorun olmuştur?",
+            siklar: ["1. Murat - Yıldırım Bayezid", "1. Mehmet - 2. Murat", "2. Murat - Fatih", "Orhan - 1. Murat", "Fatih - 2. Bayezid"],
+            dogruCevap: 1,
+            aciklama: "1. Mehmet döneminde çıkıp Bizans'a sığınmış, 2. Murat döneminde tekrar isyan edip idam edilmiştir."
+        },
+        {
+            soru: "Şeyh Bedrettin isyanının Ege bölgesindeki en önemli destekçileri (müritleri) kimlerdir?",
+            siklar: ["Börklüce Mustafa - Torlak Kemal", "Kalender Çelebi - Baba Zünnun", "Şahkulu - Karayazıcı", "Canberdi Gazali - Ahmet Paşa", "Köroğlu - Dadaloğlu"],
+            dogruCevap: 0,
+            aciklama: "İzmir/Aydın çevresinde Börklüce Mustafa, Manisa çevresinde Torlak Kemal isyan etmiştir."
+        },
+        {
+            soru: "1. Mehmet döneminde Anadolu Türk birliğini sağlamak için tekrar Osmanlı'ya katılan beylik hangisidir?",
+            siklar: ["Karesioğulları", "Saruhanoğulları", "Dulkadiroğulları", "Ramazanoğulları", "Eretna"],
+            dogruCevap: 1,
+            aciklama: "Saruhanoğulları beyliğine 1. Mehmet döneminde son verilmiştir."
+        },
+        {
+            soru: "1. Mehmet'in türbesi (Yeşil Türbe) hangi şehirdedir?",
+            siklar: ["Edirne", "İstanbul", "Bursa", "Amasya", "İznik"],
+            dogruCevap: 2,
+            aciklama: "Bursa'daki Yeşil Külliye içindedir. Osmanlı mimarisinin çini sanatındaki şaheseridir."
+        },
+        {
+            soru: "Aşağıdakilerden hangisi Fetret Devri şehzadelerinden biri değildir?",
+            siklar: ["İsa Çelebi", "Musa Çelebi", "Süleyman Çelebi", "Mehmet Çelebi", "Yakup Çelebi"],
+            dogruCevap: 4,
+            aciklama: "Yakup Çelebi, 1. Murat'ın oğludur ve 1. Kosova Savaşı sonrası Bayezid tahta çıkınca öldürülmüştür."
+        },
+        {
+            soru: "Çelebi Mehmet, Fetret Devri mücadelesini yürütürken hangi şehri merkez üssü olarak kullanmıştır?",
+            siklar: ["Edirne", "Amasya", "Manisa", "Trabzon", "Konya"],
+            dogruCevap: 1,
+            aciklama: "Çelebi Mehmet, Amasya sancak beyi iken mücadeleyi başlatmıştır."
+        },
+        {
+            soru: "1. Mehmet döneminde Samsun ve çevresinin Osmanlı'ya katılmasıyla hangi beyliklerin hakimiyetine son verilmiştir?",
+            siklar: ["Canik Beylikleri", "Teke Beylikleri", "Menteşe Beylikleri", "Hamit Beylikleri", "Germiyan Beylikleri"],
+            dogruCevap: 0,
+            aciklama: "Kubadoğulları, Taşanoğulları gibi Canik beylikleri itaat altına alınmıştır."
+        },
+        {
+            soru: "Fetret Devri'nde Süleyman Çelebi'nin (Emir Süleyman) kültürel hayata katkısı olarak, Süleyman Çelebi (şair) tarafından yazılan ünlü eser hangisidir?",
+            siklar: ["Mesnevi", "Vesiletü'n Necat (Mevlid)", "Garibname", "Yunus Emre Divanı", "Risaletü'n Nushiyye"],
+            dogruCevap: 1,
+            aciklama: "Mevlid (Vesiletü'n Necat), Süleyman Çelebi tarafından bu dönemde Bursa'da yazılmıştır."
+        },
+        {
+            soru: "1. Mehmet'in 'Kirişçi' lakabı ne anlama gelir veya neden verilmiştir?",
+            siklar: ["Yay kirişi yapımcısı / Güreşçi", "İnşaat ustası", "Denizci", "Hattat", "Okçu"],
+            dogruCevap: 0,
+            aciklama: "Güçlü fiziği ve yay kirişlerini çekebilmesi nedeniyle bu lakapla anıldığı rivayet edilir."
+        },
+        {
+            soru: "Osmanlı'da devşirme sistemi yasal olarak hangi padişah döneminde kanunlaştırılmıştır?",
+            siklar: ["1. Murat", "1. Mehmet / 2. Murat", "Fatih", "Yavuz", "Kanuni"],
+            dogruCevap: 1,
+            aciklama: "Pençik sistemi işlevsiz kalınca, 1. Mehmet ve 2. Murat dönemlerinde Devşirme sistemi uygulanmaya başlanmıştır."
+        },
+        {
+            soru: "Şeyh Bedrettin'in ünlü eseri hangisidir?",
+            siklar: ["Varidat", "Makalat", "Mektubat", "Fihi Mafih", "Kabusname"],
+            dogruCevap: 0,
+            aciklama: "Şeyh Bedrettin'in tasavvufi ve felsefi görüşlerini içeren eseri 'Varidat'tır."
+        },
+        {
+            soru: "Osmanlı Devleti'nin Macaristan ile imzaladığı ve batı sınırında barışı sağlamayı amaçlayan, ancak Haçlılar tarafından bozulan 1444 tarihli antlaşma hangisidir?",
+            siklar: ["Karlofça", "Edirne-Segedin", "İstanbul", "Vasvar", "Zitvatorok"],
+            dogruCevap: 1,
+            aciklama: "Edirne-Segedin Antlaşması, Osmanlı'nın imzaladığı ilk büyük barış antlaşmalarındandır."
+        },
+        {
+            soru: "2. Murat'ın tahtı gönüllü olarak oğlu 2. Mehmet'e bırakması üzerine Haçlıların düzenlediği ve Osmanlı zaferiyle sonuçlanan savaş hangisidir?",
+            siklar: ["1. Kosova", "2. Kosova", "Varna", "Niğbolu", "Sırpsındığı"],
+            dogruCevap: 2,
+            aciklama: "Varna Savaşı (1444), 2. Murat'ın tekrar ordunun başına geçerek kazandığı zaferdir."
+        },
+        {
+            soru: "Balkanların kesin olarak Türk yurdu haline gelmesini sağlayan ve Haçlıların taarruz gücünü kıran savaş hangisidir?",
+            siklar: ["Sırpsındığı", "1. Kosova", "Niğbolu", "Varna", "2. Kosova"],
+            dogruCevap: 4,
+            aciklama: "2. Kosova (1448) ile Avrupalıların Türkleri Balkanlardan atma ümidi sona ermiştir."
+        }
+    ]
+
+};
+, // ÖNCEKİ TESTLE BAĞLANTI VİRGÜLÜ
+
+    // --- OSMANLI KURULUŞ DÖNEMİ - TEST 6 (2. Murat ve Genel Tekrar) ---
+    "osmanli_kurulus_test6": [
+        {
+            soru: "2. Murat'ın lakabı olan 'Ebu'l Hayrat' ne anlama gelir?",
+            siklar: ["Fetihlerin Babası", "Hayırların Babası", "Gazilerin Babası", "Sultanların Babası", "Denizlerin Hakimi"],
+            dogruCevap: 1,
+            aciklama: "Çok sayıda cami, medrese, köprü ve imaret yaptırdığı için bu unvan verilmiştir."
+        },
+        {
+            soru: "Kendi isteğiyle tahttan çekilen ilk ve tek Osmanlı padişahı kimdir?",
+            siklar: ["2. Bayezid", "1. Ahmet", "2. Murat", "Genç Osman", "4. Murat"],
+            dogruCevap: 2,
+            aciklama: "Barış ortamına güvenerek tahtı 2. Mehmet'e bırakmış, ancak tehditler üzerine geri dönmüştür."
+        },
+        {
+            soru: "2. Murat döneminde yaşamış, tasavvuf ve halk edebiyatının önemli ismi, 'Bayramiye' tarikatının kurucusu kimdir?",
+            siklar: ["Hacı Bayram Veli", "Yunus Emre", "Mevlana", "Hacı Bektaş Veli", "Somuncu Baba"],
+            dogruCevap: 0,
+            aciklama: "Hacı Bayram Veli, 2. Murat ile görüşmüş ve devlet-tarikat ilişkilerinde ılımlı bir yol izlemiştir."
+        },
+        {
+            soru: "Şehzade Mustafa (Küçük Mustafa) isyanı hangi padişah döneminde yaşanmıştır?",
+            siklar: ["1. Mehmet", "2. Murat", "Fatih", "Yıldırım Bayezid", "1. Murat"],
+            dogruCevap: 1,
+            aciklama: "2. Murat'ın kardeşi Mustafa, Karaman ve Germiyan desteğiyle isyan etmiş ancak idam edilmiştir."
+        },
+        {
+            soru: "Osmanlı donanmasının Venedik ablukasını yararak Selanik'i (kısa süreliğine Venedik eline geçmişti) geri alması hangi padişah dönemindedir?",
+            siklar: ["1. Murat", "2. Murat", "Fatih", "Kanuni", "Yavuz"],
+            dogruCevap: 1,
+            aciklama: "2. Murat, Selanik'i 1430'da Venediklilerden geri almıştır."
+        },
+        {
+            soru: "2. Murat döneminde ilk Şeyhülislam olarak atanan (makamın kurucusu sayılan) alim kimdir?",
+            siklar: ["Ebusuud Efendi", "Molla Fenari", "Zenbilli Ali Efendi", "İbni Kemal", "Akşemseddin"],
+            dogruCevap: 1,
+            aciklama: "Molla Fenari, ilk Şeyhülislam (Müftiü'l-enam) olarak kabul edilir."
+        },
+        {
+            soru: "Buçuktepe İsyanı'nın temel ekonomik sebebi nedir?",
+            siklar: ["Ganimetlerin azalması", "Paranın (Akçe) değerinin düşürülmesi (Tağşiş)", "Tımar sisteminin bozulması", "Vergilerin artırılması", "Kapitülasyonlar"],
+            dogruCevap: 1,
+            aciklama: "Akçenin içindeki gümüş oranının azaltılması (tağşiş) alım gücünü düşürmüş ve askeri isyana sürüklemiştir."
+        },
+        {
+            soru: "Varna Savaşı sırasında 2. Murat'ın ordunun başına geçmesini sağlayan, 'Eğer padişah iseniz geliniz ordunuzun başına geçiniz...' mektubunu yazan (veya yazdıran) kişi kimdir?",
+            siklar: ["2. Mehmet (Fatih)", "Çandarlı Halil Paşa", "Zağanos Paşa", "Akşemseddin", "Molla Gürani"],
+            dogruCevap: 0,
+            aciklama: "2. Mehmet'in (henüz çocuk yaşta) babasını göreve çağıran bu meşhur mektubu yazdığı rivayet edilir."
+        },
+        {
+            soru: "2. Murat döneminde 'Devşirme Kanunu'nun uygulanmaya başlamasıyla orduda hangi unsurun ağırlığı artmıştır?",
+            siklar: ["Türkmenler", "Kapıkulu (Yeniçeri)", "Tımarlı Sipahi", "Akıncılar", "Yayalar"],
+            dogruCevap: 1,
+            aciklama: "Türkmen aristokrasisine karşı Padişah'a bağlı Kapıkulu kökenli devlet adamları ve askerler güçlenmiştir."
+        },
+        {
+            soru: "Aşağıdaki savaşlardan hangisi 2. Murat dönemine ait değildir?",
+            siklar: ["Varna", "2. Kosova", "İzladin Derbendi", "Niğbolu", "Güvercinlik Kuşatması"],
+            dogruCevap: 3,
+            aciklama: "Niğbolu Savaşı 1. Bayezid dönemindedir."
+        },
+        {
+            soru: "Osmanlı Devleti'nin Kuruluş Dönemi boyunca başkentlik yapan şehirlerin kronolojik sırası nasıldır?",
+            siklar: ["Söğüt - İznik - Bursa - Edirne", "İznik - Bursa - Edirne - İstanbul", "Söğüt - Bursa - İznik - Edirne - İstanbul (Fetihle)", "Bursa - Edirne - İstanbul", "Söğüt - Domaniç - Kütahya"],
+            dogruCevap: 2,
+            aciklama: "İznik kısa süreli merkez olsa da ana hat Söğüt -> Bursa -> Edirne şeklindedir. İstanbul Yükselme devri başkentidir."
+        },
+        {
+            soru: "Osmanlı'da 'Uç Beyi' kavramı neyi ifade eder?",
+            siklar: ["Donanma komutanı", "Sınır bölgelerinde güvenliği sağlayan ve fetih yapan komutan", "Divan üyesi", "Maliye bakanı", "Medrese hocası"],
+            dogruCevap: 1,
+            aciklama: "Bizans sınırında görev yapan, akıncı birliklerini yöneten beylerdir (Evrenos Bey, Turahan Bey gibi)."
+        },
+        {
+            soru: "Osmanlı'da ilk 'Sürre Alayı' hangi padişah zamanında düzenlenmiştir?",
+            siklar: ["Orhan Gazi", "1. Murat", "Yıldırım Bayezid", "Çelebi Mehmet", "2. Murat"],
+            dogruCevap: 3,
+            aciklama: "Çelebi Mehmet döneminde Haremeyn'e (Mekke-Medine) hediye gönderme geleneği başlamıştır."
+        },
+        {
+            soru: "Kuruluş döneminde 'Müsadere' (Mallara el koyma) sisteminin ilk izleri hangi dönemde görülür? (Genel bilgi sorusu)",
+            siklar: ["Fatih (Yasalaşması)", "Osman Gazi", "1. Murat", "2. Murat", "Çelebi Mehmet"],
+            dogruCevap: 0,
+            aciklama: "Müsadere Fatih döneminde Çandarlı ailesinin mallarına el konulmasıyla belirginleşir, ancak kuruluşta nadirdir."
+        },
+        {
+            soru: "Osmanlı devlet teşkilatında 'Nişancı'nın görevi nedir?",
+            siklar: ["Orduyu yönetmek", "Padişahın tuğrasını çekmek ve arazi kayıtlarını tutmak", "Maliyeyi yönetmek", "Adalet işlerine bakmak", "Donanmayı yönetmek"],
+            dogruCevap: 1,
+            aciklama: "Nişancı, bürokrasinin başıdır, fermanlara tuğra çeker ve Tımar kayıtlarını (Tahrir defterleri) tutar."
+        },
+        {
+            soru: "Kuruluş döneminin en ünlü Türk-İslam alimi ve mutasavvıfı, 'Somuncu Baba' olarak bilinen kişi kimdir?",
+            siklar: ["Hacı Bayram Veli", "Şeyh Hamid-i Veli", "Akşemseddin", "Molla Gürani", "Emir Sultan"],
+            dogruCevap: 1,
+            aciklama: "Şeyh Hamid-i Veli (Somuncu Baba), Bursa Ulu Camii açılışında hutbe okumuş, Hacı Bayram Veli'nin hocasıdır."
+        },
+        {
+            soru: "Osmanlı'da 'Yaya ve Müsellem' ordusundan sonra kurulan, savaş zamanı orduya katılan, barışta tarımla uğraşan askerlere ne ad verilir?",
+            siklar: ["Azaplar", "Tımarlı Sipahiler", "Akıncılar", "Yeniçeriler", "Deliler"],
+            dogruCevap: 0,
+            aciklama: "Azaplar, bekar Türk gençlerinden oluşan hafif piyade birlikleridir."
+        },
+        {
+            soru: "Osmanlı Devleti'nin kuruluş döneminde doğu sınırındaki en büyük rakibi (Timur öncesi) kimdi?",
+            siklar: ["Akkoyunlular", "Safeviler", "Kadı Burhaneddin / Eretna", "İlhanlılar", "Memlükler"],
+            dogruCevap: 2,
+            aciklama: "Orta Anadolu'da Eretna ve sonrasında Kadı Burhaneddin, Osmanlı'nın doğuya genişlemesini engelleyen en büyük güçtü."
+        },
+        {
+            soru: "Osmanlı'da padişahın yetkilerini kısıtlayan veya denetleyen bir kurum kuruluş döneminde var mıdır?",
+            siklar: ["Evet, Divan-ı Hümayun karar merciidir.", "Hayır, Divan sadece danışma meclisidir, son söz padişahındır.", "Evet, Ulema meclisi veto edebilir.", "Evet, Yeniçeri Ağası onaylamalıdır.", "Evet, Beylerbeyi divanı kısıtlar."],
+            dogruCevap: 1,
+            aciklama: "Osmanlı mutlak monarşidir. Divan danışma kuruludur, son karar padişaha aittir."
+        },
+        {
+            soru: "Kuruluş Dönemi (1299-1453) hangi olayla sona erer?",
+            siklar: ["Ankara Savaşı", "2. Kosova Savaşı", "Varna Savaşı", "İstanbul'un Fethi", "Otlukbeli Savaşı"],
+            dogruCevap: 3,
+            aciklama: "1453 İstanbul'un Fethi ile devlet 'İmparatorluk' (Yükselme) aşamasına geçer."
+        }
+    ]
+
+}; // KAPILARI KAPATTIK 
