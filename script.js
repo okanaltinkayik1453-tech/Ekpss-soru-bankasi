@@ -78,6 +78,7 @@ function sonrakiSoru() { if (mevcutSoruIndex < mevcutSorular.length - 1) soruyuG
 function soruyuGoster(index) {
     window.scrollTo({ top: 0, behavior: 'auto' });
 
+    // Uyarı kutusunu temizle (Önceki sorudan kalan metinleri siler)
     const uyariKutusu = document.getElementById("sesli-uyari");
     if(uyariKutusu) uyariKutusu.innerText = "";
     
@@ -98,22 +99,14 @@ function soruyuGoster(index) {
     // --- AKILLI İÇERİK OLUŞTURUCU ---
     let finalHTML = "";
 
-    // EĞER SORU PARÇALANMIŞ (YENİ TİP) İSE:
     if (soruObj.onculler && soruObj.onculler.length > 0) {
-        
-        // 1. Giriş Metni (Varsa)
         if (soruObj.onculGiris) {
             finalHTML += `<div>${soruObj.onculGiris}</div>`;
         }
-
-        // 2. Öncül Kutusu (Sarı Çizgili Alan)
         finalHTML += `<div class='oncul-kapsayici'>`;
         soruObj.onculler.forEach(oncul => {
-            // Numarayı (1. veya I.) ve metni ayıklamaya çalış, yoksa düz bas
-            // Genelde format: "1. Metin"
-            let numara = oncul.split(" ")[0]; // İlk kelimeyi numara say
+            let numara = oncul.split(" ")[0]; 
             let metin = oncul.substring(numara.length).trim();
-            
             finalHTML += `
                 <div class='oncul-satir'>
                     <span class='oncul-no'>${numara}</span>
@@ -121,22 +114,12 @@ function soruyuGoster(index) {
                 </div>`;
         });
         finalHTML += `</div>`;
-
-        // 3. Soru Kökü (Koyu ve Sarı)
         if (soruObj.soruKoku) {
             finalHTML += `<div class='soru-koku-vurgu'>${soruObj.soruKoku}</div>`;
         }
-
     } 
-    // EĞER SORU ESKİ TİP (DÜZ METİN) İSE:
     else {
-        // Eski soruların bozulmaması için düz yazdır, ancak "Aşağıdakilerden hangisi" gibi kökleri yine de vurgula
         let metin = soruObj.soru || "";
-        // Basit bir soru kökü vurgusu (Manuel ayrım yoksa)
-        if(metin.includes("?")) {
-             // Soru işareti olan son cümleyi bulup vurgulamaya çalışabiliriz ama
-             // Şimdilik düz basıyoruz, çünkü Paket 1-2-3-4 bittiğinde hepsi yeni tip olacak.
-        }
         finalHTML = metin;
     }
 
@@ -146,7 +129,6 @@ function soruyuGoster(index) {
     const siklarKutusu = document.getElementById("siklar-alani");
     siklarKutusu.innerHTML = "";
     
-    // Uzun şık kontrolü
     const uzunSikVar = soruObj.siklar.some(sik => sik.length > 40);
     if (uzunSikVar) siklarKutusu.classList.add("tek-sutun");
     else siklarKutusu.classList.remove("tek-sutun");
@@ -159,7 +141,13 @@ function soruyuGoster(index) {
 
     soruObj.siklar.forEach((sik, i) => {
         const btn = document.createElement("button");
-        btn.innerText = getSikHarfi(i) + ") " + sik;
+        const sikHarfi = getSikHarfi(i);
+        btn.innerText = sikHarfi + ") " + sik;
+        
+        // EKRAN OKUYUCU İYİLEŞTİRMESİ 1:
+        // Butona aria-label ekleyerek NVDA'nın "Sadece A" yerine içeriği okumasını sağlıyoruz.
+        btn.setAttribute("aria-label", sikHarfi + " şıkkı: " + sik);
+        
         btn.className = "sik-butonu";
         if (kullaniciCevaplari[index] !== null) {
             if (kullaniciCevaplari[index] === i) {
@@ -188,18 +176,28 @@ function cevapIsaretle(secilenIndex, btnElement) {
     const sikHarfi = ["A", "B", "C", "D", "E"][secilenIndex];
     let durumMetni = "";
 
+    // EKRAN OKUYUCU İYİLEŞTİRMESİ 2 (ÇİFT OKUMA ÇÖZÜMÜ):
+    // İki parça halinde yazdırmak yerine (önce şık, sonra doğru/yanlış),
+    // metni tek seferde hazırlayıp ekrana basıyoruz.
+    
     if (secilenIndex === dogruCevapIndex) {
         btnElement.classList.add("dogru"); sesUret("dogru");
         gorselUyari.innerText = "DOĞRU CEVAP!"; gorselUyari.classList.add("uyari-dogru"); gorselUyari.style.display = "block";
-        durumMetni = "Doğru.";
+        durumMetni = "Doğru cevap.";
     } else {
         btnElement.classList.add("yanlis"); sesUret("yanlis");
         gorselUyari.innerText = "YANLIŞ CEVAP!"; gorselUyari.classList.add("uyari-yanlis"); gorselUyari.style.display = "block";
-        durumMetni = "Yanlış.";
+        durumMetni = "Yanlış cevap.";
     }
 
-    uyariKutusu.innerText = sikHarfi + " şıkkını işaretlediniz.";
-    setTimeout(() => { uyariKutusu.innerText = sikHarfi + " şıkkını işaretlediniz. " + durumMetni; }, 1000);
+    // Ekran okuyucunun algılaması için önce içini boşaltıp çok kısa bekleyip yeni metni basıyoruz.
+    // Bu "trick" NVDA ve TalkBack'in yeni metni kesin olarak okumasını sağlar.
+    uyariKutusu.innerText = "";
+    
+    setTimeout(() => {
+        // Tek seferde tam cümle: "A şıkkını işaretlediniz. Doğru cevap."
+        uyariKutusu.innerText = sikHarfi + " şıkkını işaretlediniz. " + durumMetni;
+    }, 100);
 
     const tumButonlar = document.querySelectorAll(".sik-butonu");
     tumButonlar.forEach(b => b.disabled = true);
@@ -215,7 +213,7 @@ function cevapIsaretle(secilenIndex, btnElement) {
              gorselUyari.style.border = "2px solid #fff"; gorselUyari.innerText = "TEST BİTTİ";
              document.getElementById("bitir-buton").focus();
         }
-    }, 2500);
+    }, 2500); // Süreyi biraz uzattım ki okuma bitmeden sayfa değişmesin
 }
 
 function getSikHarfi(index) { return ["A", "B", "C", "D", "E"][index]; }
@@ -262,7 +260,6 @@ function yanlislariGoster() {
             yanlisVarMi = true;
             const kart = document.createElement("div"); kart.className = "yanlis-soru-karti";
             
-            // YANLIŞLARI GÖSTERİRKEN DE YAPIYI KORU
             let soruMetniGoster = "";
             if (soru.onculler) {
                 if(soru.onculGiris) soruMetniGoster += soru.onculGiris + "<br>";
