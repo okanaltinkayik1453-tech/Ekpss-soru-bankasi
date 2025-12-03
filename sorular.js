@@ -1996,7 +1996,7 @@ const tumTestler = {
     // --- OSMANLI KURULUŞ DÖNEMİ - TEST 6 (2. Murat ve Genel Tekrar) ---
     "osmanli_kurulus_test6": [
         {
-            soru: "2. Murat'ın lakabı olan 'Ebu'l Hayrat' ne anlama gelir?",
+            soru: "2. Murat'ın lakabı olan Ebu'l Hayrat ne anlama gelir?",
             siklar: ["Fetihlerin Babası", "Hayırların Babası", "Gazilerin Babası", "Sultanların Babası", "Denizlerin Hakimi"],
             dogruCevap: 1,
             aciklama: "Çok sayıda cami, medrese, köprü ve imaret yaptırdığı için bu unvan verilmiştir."
