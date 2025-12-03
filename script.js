@@ -4,7 +4,7 @@ let mevcutSoruIndex = 0;
 let kullaniciCevaplari = [];
 let isaretlemeKilitli = false;
 
-// --- SES MOTORU ---
+// --- SES MOTORU (SENTETİK) ---
 const AudioContext = window.AudioContext || window.webkitAudioContext;
 const sesMotoru = new AudioContext();
 
@@ -53,7 +53,6 @@ function metniFormatla(metin) {
 
     let islenmisMetin = metin;
     
-    // Öncülleri Kutuya Al
     if (romaVarMi) {
         islenmisMetin = islenmisMetin
             .replace(/ I\. (.*?)(?= II\.| Soru Kökü|$)/g, "<div class='oncul-satir'><span class='oncul-no'>I.</span><span class='oncul-yazi'>$1</span></div>")
@@ -69,13 +68,11 @@ function metniFormatla(metin) {
             .replace(/ 4\. (.*?)(?= 5\.| Soru Kökü|$)/g, "<div class='oncul-satir'><span class='oncul-no'>4.</span><span class='oncul-yazi'>$1</span></div>");
     }
 
-    // Soru Kökünü ve Anahtar Kelimeleri Ayır
     const soruKokleri = ["Buna göre", "Bu bilgilere göre", "Yukarıdaki", "Aşağıdaki", "Hangisidir", "Hangisine", "Ulaşılabilir", "Varılabilir", "Söylenebilir", "Gösterilebilir", "Değinilmiştir", "Beklenir", "İfadelerinden", "Yargılarından", "Durumlarından"];
     
     let kokBulundu = false;
     soruKokleri.forEach(kok => {
         if (!kokBulundu && islenmisMetin.includes(kok)) {
-            // Küçük/Büyük harf duyarlılığı için basit replace, ama kelimenin sorunun sonunda olduğunu varsayıyoruz
             islenmisMetin = islenmisMetin.replace(kok, `<div class='soru-koku-vurgu'>${kok}`);
             kokBulundu = true;
         }
@@ -116,13 +113,11 @@ function oncekiSoru() { if (mevcutSoruIndex > 0) soruyuGoster(mevcutSoruIndex - 
 function sonrakiSoru() { if (mevcutSoruIndex < mevcutSorular.length - 1) soruyuGoster(mevcutSoruIndex + 1); }
 
 function soruyuGoster(index) {
-    // --- SAYFAYI BAŞA SAR ---
     window.scrollTo({ top: 0, behavior: 'auto' });
 
     const uyariKutusu = document.getElementById("sesli-uyari");
     if(uyariKutusu) uyariKutusu.innerText = "";
     
-    // Görsel uyarıyı gizle
     const gorselUyari = document.getElementById("gorsel-uyari-alani");
     if (gorselUyari) gorselUyari.style.display = "none";
 
@@ -130,7 +125,6 @@ function soruyuGoster(index) {
     const soruObj = mevcutSorular[index];
     isaretlemeKilitli = false; 
     
-    // İLERLEME ÇUBUĞU
     const yuzde = ((index + 1) / mevcutSorular.length) * 100;
     const cubuk = document.getElementById("ilerleme-cubugu");
     if(cubuk) cubuk.style.width = `${yuzde}%`;
@@ -139,18 +133,12 @@ function soruyuGoster(index) {
     soruBaslik.innerHTML = metniFormatla(soruObj.soru);
     
     document.getElementById("soru-sayac").innerText = `Soru ${index + 1} / ${mevcutSorular.length}`;
-    
-    // --- AKILLI ŞIK DÜZENİ (Uzun Şık Kontrolü) ---
     const siklarKutusu = document.getElementById("siklar-alani");
     siklarKutusu.innerHTML = "";
     
-    // Eğer şıklardan herhangi biri 40 karakterden uzunsa, "tek-sutun" sınıfını ekle
     const uzunSikVar = soruObj.siklar.some(sik => sik.length > 40);
-    if (uzunSikVar) {
-        siklarKutusu.classList.add("tek-sutun");
-    } else {
-        siklarKutusu.classList.remove("tek-sutun");
-    }
+    if (uzunSikVar) siklarKutusu.classList.add("tek-sutun");
+    else siklarKutusu.classList.remove("tek-sutun");
 
     if (!document.getElementById("gorsel-uyari-alani")) {
         const div = document.createElement("div");
@@ -178,6 +166,7 @@ function soruyuGoster(index) {
     if (kullaniciCevaplari[index] === null) soruBaslik.focus();
 }
 
+// --- NVDA / JAWS İÇİN ÖZEL GÜNCELLEME ---
 function cevapIsaretle(secilenIndex, btnElement) {
     if (isaretlemeKilitli) return;
     isaretlemeKilitli = true;
@@ -186,19 +175,33 @@ function cevapIsaretle(secilenIndex, btnElement) {
     const uyariKutusu = document.getElementById("sesli-uyari");
     const gorselUyari = document.getElementById("gorsel-uyari-alani");
     
+    // Şık Harfini Bul
+    const sikHarfi = ["A", "B", "C", "D", "E"][secilenIndex];
+    let okunacakMetin = "";
+
     if (secilenIndex === dogruCevapIndex) {
         btnElement.classList.add("dogru"); sesUret("dogru");
         gorselUyari.innerText = "DOĞRU CEVAP!"; 
         gorselUyari.classList.add("uyari-dogru"); 
-        gorselUyari.style.display = "block"; // GÖRÜNÜR YAP
-        setTimeout(() => { uyariKutusu.innerText = "Doğru Cevap!"; }, 300);
+        gorselUyari.style.display = "block";
+        
+        okunacakMetin = sikHarfi + " şıkkını işaretlediniz. Doğru.";
     } else {
         btnElement.classList.add("yanlis"); sesUret("yanlis");
         gorselUyari.innerText = "YANLIŞ CEVAP!"; 
         gorselUyari.classList.add("uyari-yanlis"); 
-        gorselUyari.style.display = "block"; // GÖRÜNÜR YAP
-        setTimeout(() => { uyariKutusu.innerText = "Yanlış Cevap!"; }, 300);
+        gorselUyari.style.display = "block";
+        
+        okunacakMetin = sikHarfi + " şıkkını işaretlediniz. Yanlış.";
     }
+
+    // 1. ÖNCE TEMİZLE (NVDA/JAWS'ı tetiklemek için)
+    uyariKutusu.innerText = "";
+
+    // 2. KISA BİR SÜRE SONRA YAZ (Dürtme)
+    setTimeout(() => { 
+        uyariKutusu.innerText = okunacakMetin; 
+    }, 250); // 250ms gecikme idealdir
 
     const tumButonlar = document.querySelectorAll(".sik-butonu");
     tumButonlar.forEach(b => b.disabled = true);
