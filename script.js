@@ -154,7 +154,7 @@ function soruyuGoster(index) {
     }
 }
 
-// --- CEVAP İŞARETLEME (HIZLI MOBİL GEÇİŞ VERSİYONU) ---
+// --- CEVAP İŞARETLEME (MOBİL İÇİN GARANTİ SES DÜZELTMESİ) ---
 function cevapIsaretle(secilenIndex, btnElement) {
     if (isaretlemeKilitli) return;
     isaretlemeKilitli = true;
@@ -179,7 +179,7 @@ function cevapIsaretle(secilenIndex, btnElement) {
         gorselUyari.style.display = "block";
         
         if (isMobile) {
-            // MOBİL: Sadece net ifade, MP3 yok
+            // MOBİL: Net ifade
             sesliMetin = "DOĞRU CEVAP";
         } else {
             // PC: Detaylı ifade + MP3
@@ -195,7 +195,7 @@ function cevapIsaretle(secilenIndex, btnElement) {
         gorselUyari.style.display = "block";
         
         if (isMobile) {
-            // MOBİL: Sadece net ifade, MP3 yok
+            // MOBİL: Net ifade
             sesliMetin = "YANLIŞ CEVAP";
         } else {
             // PC: Detaylı ifade + MP3
@@ -204,14 +204,14 @@ function cevapIsaretle(secilenIndex, btnElement) {
         }
     }
 
-    // --- ZAMANLAMA AYARLARI (GÜNCELLENEN KISIM) ---
-    // Mobilde 150ms bekle (Hemen konuşsun)
+    // --- ZAMANLAMA AYARLARI (KRİTİK GÜNCELLEME) ---
+    // Mobilde 250ms bekle. (VoiceOver'ın 'tık' sesinden sıyrılması için şart)
     // PC'de 200ms bekle (Eski ayar)
-    const okumaBaslangicSuresi = isMobile ? 150 : 200; 
+    const okumaBaslangicSuresi = isMobile ? 250 : 200; 
     
-    // Mobilde toplam 1200ms bekle (Konuşma biter bitmez geçsin)
+    // Mobilde 1350ms bekle. (Bu süre metnin okunması için yeterli ve hızlı)
     // PC'de 2500ms bekle (Eski ayar)
-    const toplamGecisSuresi = isMobile ? 1200 : 2500;
+    const toplamGecisSuresi = isMobile ? 1350 : 2500;
 
     // Önce uyarı kutusunu temizle
     uyariKutusu.innerText = "";
@@ -230,9 +230,17 @@ function cevapIsaretle(secilenIndex, btnElement) {
 
     // 2. AŞAMA: OKUMA BİTİNCE DİĞER SORUYA GEÇ
     setTimeout(() => {
-        uyariKutusu.innerText = ""; 
-        uyariKutusu.removeAttribute("role"); 
-        uyariKutusu.removeAttribute("aria-live");
+        // ÖNEMLİ DÜZELTME: Mobilde metni buradan manuel olarak SİLMİYORUZ. 
+        // Silme işlemini 'soruyuGoster' fonksiyonuna bırakıyoruz.
+        // Böylece geçiş anında VoiceOver susmuyor.
+        
+        if(!isMobile) {
+             // PC'de eski usul temizlik yapabiliriz, sorun yok.
+             uyariKutusu.innerText = ""; 
+             uyariKutusu.removeAttribute("role"); 
+             uyariKutusu.removeAttribute("aria-live");
+        }
+
         gorselUyari.style.display = "none";
         
         if (mevcutSoruIndex < mevcutSorular.length - 1) { 
