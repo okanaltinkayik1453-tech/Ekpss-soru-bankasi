@@ -4,7 +4,7 @@ let mevcutSoruIndex = 0;
 let kullaniciCevaplari = [];
 let isaretlemeKilitli = false;
 
-// --- SES MOTORU (PC KUSURSUZ ÇALIŞAN MP3 SİSTEMİ GERİ GETİRİLDİ) ---
+// --- SES MOTORU (PC AYARLARI KORUNDU - MP3 SİSTEMİ) ---
 const sesler = {
     dogru: new Audio('dogru.mp3'),
     yanlis: new Audio('yanlis.mp3'),
@@ -153,7 +153,7 @@ function soruyuGoster(index) {
     if (kullaniciCevaplari[index] === null) soruBaslik.focus();
 }
 
-// --- CEVAP İŞARETLEME (HİBRİD HIZ VE MP3 DESTEĞİ) ---
+// --- CEVAP İŞARETLEME (PC: DETAYLI, MOBİL: HIZLI VE SADE) ---
 function cevapIsaretle(secilenIndex, btnElement) {
     if (isaretlemeKilitli) return;
     isaretlemeKilitli = true;
@@ -163,7 +163,8 @@ function cevapIsaretle(secilenIndex, btnElement) {
     const gorselUyari = document.getElementById("gorsel-uyari-alani");
     
     const sikHarfi = ["A", "B", "C", "D", "E"][secilenIndex];
-    let durumMetni = "";
+    let durumMetniDetayli = ""; // PC için
+    let durumMetniKisa = ""; // Mobil için
 
     // --- CİHAZ TESPİTİ ---
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || window.innerWidth < 768;
@@ -178,32 +179,35 @@ function cevapIsaretle(secilenIndex, btnElement) {
 
     if (secilenIndex === dogruCevapIndex) {
         btnElement.classList.add("dogru"); 
-        durumMetni = "Doğru cevap.";
+        durumMetniDetayli = "Doğru cevap."; // PC'de "A şıkkını işaretlediniz. Doğru cevap." olur.
+        durumMetniKisa = "Doğru cevap."; // Mobilde sadece "Doğru cevap" olur.
     } else {
         btnElement.classList.add("yanlis"); 
-        durumMetni = "Yanlış cevap.";
+        durumMetniDetayli = "Yanlış cevap."; 
+        durumMetniKisa = "Yanlış cevap."; 
     }
 
-    // --- PC/MOBİL ANNOUNCEMENT AYRIMI ---
+    // --- PC/MOBİL ANNOUNCEMENT AYRIMI (AYARLARINIZ %100 GERİ YÜKLENDİ) ---
 
     if (!isMobile) {
-        // PC (KUSURSUZ AYAR): MP3 çalınır ve metin tek seferde eklenir (2500ms bekleme).
+        // PC AYARI KORUNDU: MP3 çalınır ve metin tek seferde detaylı eklenir (2500ms bekleme).
         sesUret(secilenIndex === dogruCevapIndex ? "dogru" : "yanlis"); 
-        uyariKutusu.innerText = sikHarfi + " şıkkını işaretlediniz. " + durumMetni;
+        uyariKutusu.innerText = sikHarfi + " şıkkını işaretlediniz. " + durumMetniDetayli;
     } 
     else {
-        // MOBİL (HIZLI VE GARANTİLİ): İki aşamalı metin ile okuma garantilenir (1350ms bekleme).
-        // 1. Aşama: Metin eklenir.
-        uyariKutusu.innerText = sikHarfi + " şıkkını işaretlediniz.";
+        // MOBİL AYARI YAPILDI: İşaretleme metni atlandı, sadece sonuç okundu.
+        // 1. Aşama: Metin eklenir (Sadece sonucu içerir).
+        uyariKutusu.innerText = durumMetniKisa;
         
-        // 2. Aşama: 350ms sonra esas sonuç eklenir. 
+        // 2. Aşama: 350ms sonra (eski dosyanızdaki güvenilir beklemeye benzer, hızlandırılmış) sonuç tekrar eklenir. 
+        // VoiceOver'ın okumayı garantilemesi için.
         setTimeout(() => { 
-            uyariKutusu.innerText = sikHarfi + " şıkkını işaretlediniz. " + durumMetni; 
+            uyariKutusu.innerText = durumMetniKisa; 
         }, 350); 
     }
 
     // --- GENEL ZAMANLAMA VE GEÇİŞ ---
-    const toplamGecisSuresi = isMobile ? 1350 : 2500; 
+    const toplamGecisSuresi = isMobile ? 1350 : 2500; // PC (2500ms) korundu.
 
     const tumButonlar = document.querySelectorAll(".sik-butonu");
     tumButonlar.forEach(b => b.disabled = true);
@@ -250,7 +254,7 @@ function testiBitir() {
     document.getElementById("sonuc-alani").style.display = "block";
 
     const sonucHTML = `
-        <div style="border: 4px solid #fff; padding: 20px; border-radius: 10px; margin-bottom: 20px; background:#000;">
+        <div style="border: 4px solid #fff; padding: 20 px; border-radius: 10px; margin-bottom: 20px; background:#000;">
             <h3 style="color:${mesajRengi}; font-size: 1.8rem; margin: 0 0 10px 0;">${motivasyonMesaji}</h3>
         </div>
         <p style="font-size:1.5rem; color:#fff;"><strong>TOPLAM PUAN: ${puan.toFixed(2)} / 100</strong></p>
