@@ -1484,7 +1484,6 @@ const tumTestler = {
             aciklama: "Kadı Burhaneddin, Osmanlı ile mücadele etmiş ve Timur tehlikesini artırmıştır."
 }
 ]
-};
 , // ÖNCEKİ TESTLE BAĞLANTI VİRGÜLÜ
 
     // --- OSMANLI KURULUŞ DÖNEMİ - TEST 2 (Osman ve Orhan Bey Dönemi) ---
@@ -1610,8 +1609,6 @@ const tumTestler = {
             aciklama: "İznik Orhaniyesi ilk medrese, Davud-u Kayseri ise ilk müderristir. Bu, eğitime verilen önemi gösterir."
         }
     ]
-
-};
 , // Önceki testle bağlantı virgülü
 
     // --- OSMANLI KURULUŞ DÖNEMİ - TEST 3 (I. Murat Dönemi ve Fetihler) ---
@@ -1986,7 +1983,6 @@ const tumTestler = {
         }
     ]
 
-};
 , // ÖNCEKİ TESTLE BAĞLANTI VİRGÜLÜ
 
     // --- OSMANLI KURULUŞ DÖNEMİ - TEST 6 (2. Murat ve Genel Tekrar) ---
@@ -2113,4 +2109,4 @@ const tumTestler = {
         }
     ]
 
-}; // KAPILARI KAPATTIK 
+};
