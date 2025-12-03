@@ -43,61 +43,6 @@ function notaCal(freq, time, dur) {
     osc.start(time); osc.stop(time + dur);
 }
 
-// --- AKILLI VE ESNEK FORMATLAYICI ---
-function metniFormatla(metin) {
-    if (!metin) return "";
-
-    // Daha esnek arama (Boşluk zorunluluğu kalktı)
-    const romaVarMi = metin.match(/(^|\s)(I\.|II\.|III\.)/);
-    const rakamVarMi = metin.match(/(^|\s)(1\.|2\.|3\.)/);
-
-    if (!romaVarMi && !rakamVarMi) return metin;
-
-    let islenmisMetin = metin;
-    
-    // Roma Rakamları (Daha basit regex)
-    if (romaVarMi) {
-        islenmisMetin = islenmisMetin
-            .replace(/(^|\s)I\. /g, "<div class='oncul-satir'><span class='oncul-no'>I.</span><span class='oncul-yazi'>")
-            .replace(/(^|\s)II\. /g, "</span></div><div class='oncul-satir'><span class='oncul-no'>II.</span><span class='oncul-yazi'>")
-            .replace(/(^|\s)III\. /g, "</span></div><div class='oncul-satir'><span class='oncul-no'>III.</span><span class='oncul-yazi'>")
-            .replace(/(^|\s)IV\. /g, "</span></div><div class='oncul-satir'><span class='oncul-no'>IV.</span><span class='oncul-yazi'>")
-            + "</span></div>"; // Sonuncuyu kapat
-    }
-    
-    // Türk Rakamları
-    if (rakamVarMi) {
-        islenmisMetin = islenmisMetin
-            .replace(/(^|\s)1\. /g, "<div class='oncul-satir'><span class='oncul-no'>1.</span><span class='oncul-yazi'>")
-            .replace(/(^|\s)2\. /g, "</span></div><div class='oncul-satir'><span class='oncul-no'>2.</span><span class='oncul-yazi'>")
-            .replace(/(^|\s)3\. /g, "</span></div><div class='oncul-satir'><span class='oncul-no'>3.</span><span class='oncul-yazi'>")
-            .replace(/(^|\s)4\. /g, "</span></div><div class='oncul-satir'><span class='oncul-no'>4.</span><span class='oncul-yazi'>")
-            + "</span></div>";
-    }
-
-    // Öncülleri Kapsayıcıya Al (Görsel Sarı Çizgi İçin)
-    // Tüm oncul-satir divlerini yakalayıp başına ve sonuna container ekliyoruz
-    if (islenmisMetin.includes("oncul-satir")) {
-        // İlk oncul-satir'in başına açılış div'i, metnin sonuna kapanış
-        islenmisMetin = islenmisMetin.replace("<div class='oncul-satir'>", "<div class='oncul-kapsayici'><div class='oncul-satir'>");
-        islenmisMetin += "</div>";
-    }
-
-    // Soru Kökünü Ayır (Kelime Listesi Genişletildi)
-    const soruKokleri = ["Buna göre", "Bu bilgilere göre", "Yukarıdaki", "Aşağıdaki", "Hangisidir", "Hangisine", "Ulaşılabilir", "Varılabilir", "Söylenebilir", "Gösterilebilir", "Değinilmiştir", "Beklenir", "İfadelerinden", "Yargılarından", "Durumlarından"];
-    
-    let kokBulundu = false;
-    soruKokleri.forEach(kok => {
-        if (!kokBulundu && islenmisMetin.includes(kok)) {
-            // Soru kökünü divden çıkarıp aşağı at
-            islenmisMetin = islenmisMetin.replace(kok, `</div></div><div class='soru-koku-vurgu'>${kok}`);
-            kokBulundu = true;
-        }
-    });
-
-    return islenmisMetin;
-}
-
 // --- TEST YÖNETİMİ ---
 document.addEventListener("DOMContentLoaded", () => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -129,6 +74,7 @@ function navigasyonButonlariniEkle() {
 function oncekiSoru() { if (mevcutSoruIndex > 0) soruyuGoster(mevcutSoruIndex - 1); }
 function sonrakiSoru() { if (mevcutSoruIndex < mevcutSorular.length - 1) soruyuGoster(mevcutSoruIndex + 1); }
 
+// --- YENİ SORU GÖSTERME MOTORU (YAPISAL FORMAT) ---
 function soruyuGoster(index) {
     window.scrollTo({ top: 0, behavior: 'auto' });
 
@@ -142,18 +88,65 @@ function soruyuGoster(index) {
     const soruObj = mevcutSorular[index];
     isaretlemeKilitli = false; 
     
+    // İlerleme Çubuğu
     const yuzde = ((index + 1) / mevcutSorular.length) * 100;
     const cubuk = document.getElementById("ilerleme-cubugu");
     if(cubuk) cubuk.style.width = `${yuzde}%`;
 
     const soruBaslik = document.getElementById("soru-metni");
-    soruBaslik.innerHTML = metniFormatla(soruObj.soru);
+    
+    // --- AKILLI İÇERİK OLUŞTURUCU ---
+    let finalHTML = "";
+
+    // EĞER SORU PARÇALANMIŞ (YENİ TİP) İSE:
+    if (soruObj.onculler && soruObj.onculler.length > 0) {
+        
+        // 1. Giriş Metni (Varsa)
+        if (soruObj.onculGiris) {
+            finalHTML += `<div>${soruObj.onculGiris}</div>`;
+        }
+
+        // 2. Öncül Kutusu (Sarı Çizgili Alan)
+        finalHTML += `<div class='oncul-kapsayici'>`;
+        soruObj.onculler.forEach(oncul => {
+            // Numarayı (1. veya I.) ve metni ayıklamaya çalış, yoksa düz bas
+            // Genelde format: "1. Metin"
+            let numara = oncul.split(" ")[0]; // İlk kelimeyi numara say
+            let metin = oncul.substring(numara.length).trim();
+            
+            finalHTML += `
+                <div class='oncul-satir'>
+                    <span class='oncul-no'>${numara}</span>
+                    <span class='oncul-yazi'>${metin}</span>
+                </div>`;
+        });
+        finalHTML += `</div>`;
+
+        // 3. Soru Kökü (Koyu ve Sarı)
+        if (soruObj.soruKoku) {
+            finalHTML += `<div class='soru-koku-vurgu'>${soruObj.soruKoku}</div>`;
+        }
+
+    } 
+    // EĞER SORU ESKİ TİP (DÜZ METİN) İSE:
+    else {
+        // Eski soruların bozulmaması için düz yazdır, ancak "Aşağıdakilerden hangisi" gibi kökleri yine de vurgula
+        let metin = soruObj.soru || "";
+        // Basit bir soru kökü vurgusu (Manuel ayrım yoksa)
+        if(metin.includes("?")) {
+             // Soru işareti olan son cümleyi bulup vurgulamaya çalışabiliriz ama
+             // Şimdilik düz basıyoruz, çünkü Paket 1-2-3-4 bittiğinde hepsi yeni tip olacak.
+        }
+        finalHTML = metin;
+    }
+
+    soruBaslik.innerHTML = finalHTML;
     
     document.getElementById("soru-sayac").innerText = `Soru ${index + 1} / ${mevcutSorular.length}`;
     const siklarKutusu = document.getElementById("siklar-alani");
     siklarKutusu.innerHTML = "";
     
-    // Uzun şık varsa tek sütuna düş
+    // Uzun şık kontrolü
     const uzunSikVar = soruObj.siklar.some(sik => sik.length > 40);
     if (uzunSikVar) siklarKutusu.classList.add("tek-sutun");
     else siklarKutusu.classList.remove("tek-sutun");
@@ -184,7 +177,6 @@ function soruyuGoster(index) {
     if (kullaniciCevaplari[index] === null) soruBaslik.focus();
 }
 
-// --- SES VE ONAY İPTAL MEKANİZMASI ---
 function cevapIsaretle(secilenIndex, btnElement) {
     if (isaretlemeKilitli) return;
     isaretlemeKilitli = true;
@@ -198,26 +190,16 @@ function cevapIsaretle(secilenIndex, btnElement) {
 
     if (secilenIndex === dogruCevapIndex) {
         btnElement.classList.add("dogru"); sesUret("dogru");
-        gorselUyari.innerText = "DOĞRU CEVAP!"; 
-        gorselUyari.classList.add("uyari-dogru"); 
-        gorselUyari.style.display = "block";
+        gorselUyari.innerText = "DOĞRU CEVAP!"; gorselUyari.classList.add("uyari-dogru"); gorselUyari.style.display = "block";
         durumMetni = "Doğru.";
     } else {
         btnElement.classList.add("yanlis"); sesUret("yanlis");
-        gorselUyari.innerText = "YANLIŞ CEVAP!"; 
-        gorselUyari.classList.add("uyari-yanlis"); 
-        gorselUyari.style.display = "block";
+        gorselUyari.innerText = "YANLIŞ CEVAP!"; gorselUyari.classList.add("uyari-yanlis"); gorselUyari.style.display = "block";
         durumMetni = "Yanlış.";
     }
 
-    // 1. ADIM: HEMEN ARAYA GİR (Onay sesini keser)
     uyariKutusu.innerText = sikHarfi + " şıkkını işaretlediniz.";
-
-    // 2. ADIM: 1 SANİYE SONRA SONUCU SÖYLE
-    setTimeout(() => { 
-        // Mevcut metnin yanına ekle
-        uyariKutusu.innerText = sikHarfi + " şıkkını işaretlediniz. " + durumMetni; 
-    }, 1000);
+    setTimeout(() => { uyariKutusu.innerText = sikHarfi + " şıkkını işaretlediniz. " + durumMetni; }, 1000);
 
     const tumButonlar = document.querySelectorAll(".sik-butonu");
     tumButonlar.forEach(b => b.disabled = true);
@@ -233,7 +215,7 @@ function cevapIsaretle(secilenIndex, btnElement) {
              gorselUyari.style.border = "2px solid #fff"; gorselUyari.innerText = "TEST BİTTİ";
              document.getElementById("bitir-buton").focus();
         }
-    }, 2500); // Geçiş süresini biraz uzattık ki "Doğru" lafı kesilmesin
+    }, 2500);
 }
 
 function getSikHarfi(index) { return ["A", "B", "C", "D", "E"][index]; }
@@ -279,8 +261,19 @@ function yanlislariGoster() {
         if (kullaniciCevabi !== soru.dogruCevap) {
             yanlisVarMi = true;
             const kart = document.createElement("div"); kart.className = "yanlis-soru-karti";
+            
+            // YANLIŞLARI GÖSTERİRKEN DE YAPIYI KORU
+            let soruMetniGoster = "";
+            if (soru.onculler) {
+                if(soru.onculGiris) soruMetniGoster += soru.onculGiris + "<br>";
+                soru.onculler.forEach(o => soruMetniGoster += o + "<br>");
+                if(soru.soruKoku) soruMetniGoster += "<strong>" + soru.soruKoku + "</strong>";
+            } else {
+                soruMetniGoster = soru.soru;
+            }
+
             let verilenCevapMetni = kullaniciCevabi !== null ? soru.siklar[kullaniciCevabi] + " (YANLIŞ)" : "BOŞ BIRAKILDI";
-            kart.innerHTML = `<h4>Soru ${index + 1}: ${metniFormatla(soru.soru)}</h4><p class="kirmizi-yazi"><strong>Sizin Cevabınız:</strong> ${verilenCevapMetni}</p><p class="yesil-yazi"><strong>Doğru Cevap:</strong> ${soru.siklar[soru.dogruCevap]}</p><div class="aciklama-kutusu"><strong>Açıklama:</strong> ${soru.aciklama}</div>`;
+            kart.innerHTML = `<h4>Soru ${index + 1}: ${soruMetniGoster}</h4><p class="kirmizi-yazi"><strong>Sizin Cevabınız:</strong> ${verilenCevapMetni}</p><p class="yesil-yazi"><strong>Doğru Cevap:</strong> ${soru.siklar[soru.dogruCevap]}</p><div class="aciklama-kutusu"><strong>Açıklama:</strong> ${soru.aciklama}</div>`;
             listeDiv.appendChild(kart);
         }
     });
