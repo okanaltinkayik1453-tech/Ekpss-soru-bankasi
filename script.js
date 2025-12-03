@@ -153,7 +153,7 @@ function soruyuGoster(index) {
     if (kullaniciCevaplari[index] === null) soruBaslik.focus();
 }
 
-// --- CEVAP İŞARETLEME (PC: DETAYLI, MOBİL: HIZLI VE SADE) ---
+// --- CEVAP İŞARETLEME (PC: ARIA-LIVE EKLENDİ, MOBİL: ÇİFT OKUMA KALDIRILDI) ---
 function cevapIsaretle(secilenIndex, btnElement) {
     if (isaretlemeKilitli) return;
     isaretlemeKilitli = true;
@@ -163,8 +163,8 @@ function cevapIsaretle(secilenIndex, btnElement) {
     const gorselUyari = document.getElementById("gorsel-uyari-alani");
     
     const sikHarfi = ["A", "B", "C", "D", "E"][secilenIndex];
-    let durumMetniDetayli = ""; // PC için
-    let durumMetniKisa = ""; // Mobil için
+    let durumMetniDetayli = ""; 
+    let durumMetniKisa = ""; 
 
     // --- CİHAZ TESPİTİ ---
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || window.innerWidth < 768;
@@ -179,42 +179,44 @@ function cevapIsaretle(secilenIndex, btnElement) {
 
     if (secilenIndex === dogruCevapIndex) {
         btnElement.classList.add("dogru"); 
-        durumMetniDetayli = "Doğru cevap."; // PC'de "A şıkkını işaretlediniz. Doğru cevap." olur.
-        durumMetniKisa = "Doğru cevap."; // Mobilde sadece "Doğru cevap" olur.
+        durumMetniDetayli = "Doğru cevap."; 
+        durumMetniKisa = "Doğru cevap."; 
     } else {
         btnElement.classList.add("yanlis"); 
         durumMetniDetayli = "Yanlış cevap."; 
         durumMetniKisa = "Yanlış cevap."; 
     }
 
-    // --- PC/MOBİL ANNOUNCEMENT AYRIMI (AYARLARINIZ %100 GERİ YÜKLENDİ) ---
+    // --- PC/MOBİL ANNOUNCEMENT AYRIMI ---
 
     if (!isMobile) {
-        // PC AYARI KORUNDU: MP3 çalınır ve metin tek seferde detaylı eklenir (2500ms bekleme).
+        // PC AYARI DÜZELTİLDİ: NVDA'nın okumasını sağlayan ARIA-LIVE eklendi.
+        uyariKutusu.setAttribute("role", "alert"); 
+        uyariKutusu.setAttribute("aria-live", "assertive"); 
+        
         sesUret(secilenIndex === dogruCevapIndex ? "dogru" : "yanlis"); 
+        // Metin okuma ayarı korundu
         uyariKutusu.innerText = sikHarfi + " şıkkını işaretlediniz. " + durumMetniDetayli;
     } 
     else {
-        // MOBİL AYARI YAPILDI: İşaretleme metni atlandı, sadece sonuç okundu.
-        // 1. Aşama: Metin eklenir (Sadece sonucu içerir).
-        uyariKutusu.innerText = durumMetniKisa;
-        
-        // 2. Aşama: 350ms sonra (eski dosyanızdaki güvenilir beklemeye benzer, hızlandırılmış) sonuç tekrar eklenir. 
-        // VoiceOver'ın okumayı garantilemesi için.
+        // MOBİL AYARI DÜZELTİLDİ: Çift okumayı engeller, sadece sonucu söyler.
         setTimeout(() => { 
-            uyariKutusu.innerText = durumMetniKisa; 
+             // 350ms bekleyip sadece sonucu bir kez söyler.
+             uyariKutusu.innerText = durumMetniKisa; 
         }, 350); 
     }
 
     // --- GENEL ZAMANLAMA VE GEÇİŞ ---
-    const toplamGecisSuresi = isMobile ? 1350 : 2500; // PC (2500ms) korundu.
+    const toplamGecisSuresi = isMobile ? 1350 : 2500; 
 
     const tumButonlar = document.querySelectorAll(".sik-butonu");
     tumButonlar.forEach(b => b.disabled = true);
 
     setTimeout(() => {
-        // Temizliği yap
+        // PC için eklenen ARIA-LIVE ayarları temizlenir.
         uyariKutusu.innerText = ""; 
+        uyariKutusu.removeAttribute("role"); 
+        uyariKutusu.removeAttribute("aria-live");
         gorselUyari.style.display = "none";
 
         if (mevcutSoruIndex < mevcutSorular.length - 1) { 
@@ -224,6 +226,7 @@ function cevapIsaretle(secilenIndex, btnElement) {
              // Test bittiğinde
              sesUret("bitis");
              uyariKutusu.innerText = "Test bitti. Sonuçları görmek için bitir düğmesine basınız.";
+             
              gorselUyari.className = "gorsel-uyari-kutusu"; gorselUyari.style.display = "block";
              gorselUyari.style.backgroundColor = "#000"; gorselUyari.style.color = "#ffff00";
              gorselUyari.style.border = "2px solid #fff"; gorselUyari.innerText = "TEST BİTTİ";
@@ -254,7 +257,7 @@ function testiBitir() {
     document.getElementById("sonuc-alani").style.display = "block";
 
     const sonucHTML = `
-        <div style="border: 4px solid #fff; padding: 20 px; border-radius: 10px; margin-bottom: 20px; background:#000;">
+        <div style="border: 4px solid #fff; padding: 20px; border-radius: 10px; margin-bottom: 20px; background:#000;">
             <h3 style="color:${mesajRengi}; font-size: 1.8rem; margin: 0 0 10px 0;">${motivasyonMesaji}</h3>
         </div>
         <p style="font-size:1.5rem; color:#fff;"><strong>TOPLAM PUAN: ${puan.toFixed(2)} / 100</strong></p>
