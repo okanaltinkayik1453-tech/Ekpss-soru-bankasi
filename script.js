@@ -7,7 +7,7 @@ let isaretlemeKilitli = false;
 // JSON DOSYALARININ YOLU
 const JSON_PATH = './data/';
 
-// JSON Dosya Adı Eşleştirme Haritası (script.js'in link ID'lerini, GitHub'daki tam dosya adlarıyla eşleştirir)
+// JSON Dosya Adı Eşleştirme Haritası
 const DOSYA_ESLESTIRME = {
     "ilkturkislam": "ilkturkislamdevletleri.json",
     "islamoncesi": "islamoncesiturkdevletleri.json",
@@ -15,17 +15,17 @@ const DOSYA_ESLESTIRME = {
     "osmanlikurulus": "osmanlikurulus.json"
 };
 
-// --- SES MOTORU (PC AYARLARI KORUNDU - MP3 SİSTEMİ) ---
+// --- SES MOTORU (PC AYARLARI KORUNMUŞTUR) ---
 const sesler = {
     dogru: new Audio('dogru.mp3'),
     yanlis: new Audio('yanlis.mp3'),
     bitis: new Audio('bitis.mp3')
 };
 
-// Ses Seviyeleri
+// Ses Seviyeleri (Sizin orijinal ayarlarınız korunmuştur)
 sesler.dogru.volume = 1.0; 
 sesler.yanlis.volume = 0.3; 
-sesler.bitis.volume = 0.3;
+sesler.bitis.volume = 0.3; 
 
 function sesUret(tur) {
     if (sesler[tur]) {
@@ -48,8 +48,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const dosyaAdi = DOSYA_ESLESTIRME[onEk];
         
         // 3. Test numarasını al (örn: test1 -> 1)
-        const testNo = parseInt(testParam.slice(-1)); 
-
+        const testNoStr = testParam.substring(testParam.lastIndexOf('_') + 5); 
+        const testNo = parseInt(testNoStr); 
+        
         if (dosyaAdi && !isNaN(testNo)) {
             testiYukle(dosyaAdi, testNo);
         } else {
@@ -138,25 +139,26 @@ function soruyuGoster(index) {
     const cubuk = document.getElementById("ilerleme-cubugu");
     if(cubuk) cubuk.style.width = `${yuzde}%`;
 
+    // --------------------------------------------------------
+    // ** NVDA HATA GİDERME **: Sadece h2'nin içini düz metin yapıyoruz.
+    // --------------------------------------------------------
     const soruBaslik = document.getElementById("soru-metni");
     
-    // --- AKILLI İÇERİK OLUŞTURUCU ---
     let finalHTML = "";
-
-    // EĞER SORU PARÇALANMIŞ (YENİ TİP) İSE:
+    let anaSoruMetni = soruObj.soru || ""; 
+    let soruKokuVurgulu = "";
+    
     if (soruObj.onculler && soruObj.onculler.length > 0) {
         
         // 1. Giriş Metni (Varsa)
         if (soruObj.onculGiris) {
-            finalHTML += `<div>${soruObj.onculGiris}</div>`;
+            finalHTML += `<p>${soruObj.onculGiris}</p>`; // P etiketi düz metin okutur
         }
-
+        
         // 2. Öncül Kutusu (Sarı Çizgili Alan)
         finalHTML += `<div class='oncul-kapsayici'>`;
         soruObj.onculler.forEach(oncul => {
-            // Numarayı (1. veya I.) ve metni ayıklamaya çalış, yoksa düz bas
-            // Genelde format: "1. Metin"
-            let numara = oncul.split(" ")[0]; // İlk kelimeyi numara say
+            let numara = oncul.split(" ")[0]; 
             let metin = oncul.substring(numara.length).trim();
             
             finalHTML += `
@@ -166,22 +168,28 @@ function soruyuGoster(index) {
                 </div>`;
         });
         finalHTML += `</div>`;
-
-        // 3. Soru Kökü (Koyu ve Sarı)
+        
+        // 3. Soru Kökü (Alttaki Vurgulu Kısım)
         if (soruObj.soruKoku) {
-            finalHTML += `<div class='soru-koku-vurgu'>${soruObj.soruKoku}</div>`;
+            soruKokuVurgulu = soruObj.soruKoku;
         }
 
-    } 
-    // EĞER SORU ESKİ TİP (DÜZ METİN) İSE:
-    else {
-        // Eski soruların bozulmaması için düz yazdır
-        let metin = soruObj.soru || "";
-        finalHTML = metin;
+    } else {
+        // 2. Öncülsüz Sorular için direkt P etiketi
+        finalHTML = `<p>${anaSoruMetni}</p>`; 
     }
 
+    // Vurgulu soru kökü varsa en sona ekle
+    if (soruKokuVurgulu) {
+        finalHTML += `<p class='soru-koku-vurgu'>${soruKokuVurgulu}</p>`; // P etiketi düz metin okutur
+    }
+
+    // H2'nin içine sadece final HTML'i yerleştiriyoruz.
+    // Bu sayede NVDA sadece H2'yi "Başlık" der, geri kalanı düz metin okur.
     soruBaslik.innerHTML = finalHTML;
     
+    // --------------------------------------------------------
+
     document.getElementById("soru-sayac").innerText = `Soru ${index + 1} / ${mevcutSorular.length}`;
     const siklarKutusu = document.getElementById("siklar-alani");
     siklarKutusu.innerHTML = "";
@@ -197,13 +205,13 @@ function soruyuGoster(index) {
         document.getElementById("soru-alani").appendChild(div);
     }
 
-    soruObj.secenekler.forEach((sik, i) => { // Siklar'ı secenekler ile değiştirdim
+    soruObj.secenekler.forEach((sik, i) => { 
         const btn = document.createElement("button");
         btn.innerText = getSikHarfi(i) + ") " + sik;
         btn.className = "sik-butonu";
         if (kullaniciCevaplari[index] !== null) {
             if (getSikHarfi(i) === getSikHarfi(kullaniciCevaplari[index])) {
-                if (getSikHarfi(i) === soruObj.dogru_cevap) { btn.classList.add("dogru"); } else { btn.classList.add("yanlis"); } // Kontrolü güncelledim
+                if (getSikHarfi(i) === soruObj.dogru_cevap) { btn.classList.add("dogru"); } else { btn.classList.add("yanlis"); } 
             }
             btn.disabled = true;
         }
@@ -222,17 +230,17 @@ function cevapIsaretle(secilenIndex, btnElement) {
     if (isaretlemeKilitli) return;
     isaretlemeKilitli = true;
     kullaniciCevaplari[mevcutSoruIndex] = secilenIndex;
-    const dogruCevapHarf = mevcutSorular[mevcutSoruIndex].dogru_cevap; // JSON'dan harf olarak çek
-    const secilenCevapHarf = getSikHarfi(secilenIndex); // Seçilen harfi al
+    const dogruCevapHarf = mevcutSorular[mevcutSoruIndex].dogru_cevap; 
+    const secilenCevapHarf = getSikHarfi(secilenIndex); 
 
     const uyariKutusu = document.getElementById("sesli-uyari");
     const gorselUyari = document.getElementById("gorsel-uyari-alani");
     
-    const sikHarfi = secilenCevapHarf; // "A", "B", "C"...
+    const sikHarfi = secilenCevapHarf; 
     let durumMetniDetayli = ""; 
     let durumMetniKisa = ""; 
 
-    // --- CİHAZ TESPİTİ ---
+    // --- CİHAZ TESPİTİ (PC AYARLARI KORUNMUŞTUR) ---
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || window.innerWidth < 768;
 
     // --- GÖRSEL VE DURUM AYARLARI ---
@@ -248,18 +256,18 @@ function cevapIsaretle(secilenIndex, btnElement) {
         btnElement.classList.add("dogru"); 
         durumMetniDetayli = "Doğru cevap."; 
         durumMetniKisa = "Doğru cevap."; 
+        sesUret("dogru"); 
     } else {
         btnElement.classList.add("yanlis"); 
         durumMetniDetayli = "Yanlış cevap."; 
         durumMetniKisa = "Yanlış cevap."; 
+        sesUret("yanlis"); 
     }
 
-    // --- PC/MOBİL ANNOUNCEMENT AYRIMI ---
+    // --- PC/MOBİL ANNOUNCEMENT AYRIMI (PC SÜRE VE ROL AYARLARI KORUNMUŞTUR) ---
     if (!isMobile) {
         uyariKutusu.setAttribute("role", "alert"); 
         uyariKutusu.setAttribute("aria-live", "assertive"); 
-        
-        sesUret(dogruMu ? "dogru" : "yanlis"); 
         uyariKutusu.innerText = sikHarfi + " şıkkını işaretlediniz. " + durumMetniDetayli;
     } 
     else {
@@ -381,7 +389,7 @@ function cevapAnahtariniGoster() {
             kart.style.borderLeft = "6px solid #ff0000";
         }
 
-        // Soru Metnini Hazırla
+        // Soru Metnini Hazırla (Akıllı Gösterim)
         let soruMetniGoster = "";
         if (soru.onculler) {
             if(soru.onculGiris) soruMetniGoster += `<div style="margin-bottom:5px;">${soru.onculGiris}</div>`;
