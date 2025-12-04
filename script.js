@@ -105,7 +105,7 @@ function oncekiSoru() { if (mevcutSoruIndex > 0) soruyuGoster(mevcutSoruIndex - 
 function sonrakiSoru() { if (mevcutSoruIndex < mevcutSorular.length - 1) soruyuGoster(mevcutSoruIndex + 1); }
 
 // ==========================================================
-// --- GELİŞMİŞ VOICEOVER/NVDA SORU MOTORU (GİZLİ ALAN YOK) ---
+// --- SORU GÖSTERME (ORİJİNAL GÖRÜNÜM + VOICEOVER ODAK) ---
 // ==========================================================
 function soruyuGoster(index) {
     window.scrollTo({ top: 0, behavior: 'auto' });
@@ -125,92 +125,90 @@ function soruyuGoster(index) {
     const cubuk = document.getElementById("ilerleme-cubugu");
     if(cubuk) cubuk.style.width = `${yuzde}%`;
 
-    // 1. SORU METNİ ALANINI HAZIRLA (DOĞAL HTML)
+    // 1. SORU SAYACI
     const soruSayacElement = document.getElementById("soru-sayac");
-    // Soru sayacını görsel olarak bırakıyoruz ama VoiceOver'ın okuma sırasını karıştırmaması için
-    // ana kapsayıcıya dahil edeceğiz. Burada 'aria-hidden' yapıp aşağıda manuel ekliyoruz.
     soruSayacElement.innerText = `Soru ${index + 1} / ${mevcutSorular.length}`;
-    soruSayacElement.setAttribute("aria-hidden", "true");
+    // VoiceOver okusun ama başlık demesin diye temizliyoruz
+    soruSayacElement.removeAttribute("role");
+    soruSayacElement.removeAttribute("aria-level");
 
-    const soruMetniAlani = document.getElementById("soru-metni");
-    soruMetniAlani.innerHTML = ""; // Temizle
+    // 2. HTML İÇERİĞİNİ HAZIRLAMA (Orijinal Yöntem)
+    // Soru kökünü ve metinleri eskisi gibi HTML string olarak birleştiriyoruz.
+    // Bu sayede CSS bozulmaz ve soru kökü olması gereken yerde çıkar.
     
-    // ** ANA KAPSAYICI OLUŞTURMA **
-    // Tüm soru parçalarını (Numara, Metin, Öncüller) tek bir kapsayıcıya koyuyoruz.
-    // role="article" -> VoiceOver'a buranın bir bütün metin olduğunu söyler.
-    // tabindex="-1" -> JavaScript ile odaklanılabilir yapar.
-    const okumaKapsayicisi = document.createElement("div");
-    okumaKapsayicisi.id = "aktif-soru-okuma-alani";
-    okumaKapsayicisi.setAttribute("role", "article");
-    okumaKapsayicisi.setAttribute("aria-label", `Soru ${index + 1}`);
-    okumaKapsayicisi.setAttribute("tabindex", "-1");
-    // Focus outline'ı CSS ile kaldırabilirsiniz, ama erişilebilirlik için görünmesi iyidir.
-    okumaKapsayicisi.style.outline = "none"; 
-
-    // A. Soru Numarası (Paragraf olarak)
-    const pSayac = document.createElement("p");
-    pSayac.className = "soru-giris"; // Mevcut CSS stillerini korumak için
-    pSayac.style.fontWeight = "bold";
-    pSayac.style.marginBottom = "10px";
-    pSayac.innerText = `Soru ${index + 1}`;
-    okumaKapsayicisi.appendChild(pSayac);
-
-    // B. Giriş Metni (Varsa)
+    let finalHTML = "";
+    let anaSoruMetni = soruObj.soru || ""; 
+    let onculHTML = "";
+    let soruKokuVurguluHTML = ""; 
     let girisMetni = soruObj.onculGiris || "";
-    let anaSoruMetni = soruObj.soru || "";
     
-    if (girisMetni && girisMetni !== anaSoruMetni) {
-        const pGiris = document.createElement("p");
-        pGiris.className = "soru-giris";
-        pGiris.innerText = girisMetni;
-        okumaKapsayicisi.appendChild(pGiris);
-    }
-
-    // C. Ana Metin (Öncülsüzse veya ayrıysa)
-    if (anaSoruMetni && (!soruObj.onculler || soruObj.onculler.length === 0)) {
-        if(!soruObj.soruKoku) {
-            const pAna = document.createElement("p");
-            pAna.className = "soru-giris";
-            pAna.innerText = anaSoruMetni;
-            okumaKapsayicisi.appendChild(pAna);
-        }
-    }
-
-    // D. Öncüller (Maddeler - Tek Tek Paragraf)
-    if (soruObj.onculler && soruObj.onculler.length > 0) {
-        const onculKutusu = document.createElement("div");
-        onculKutusu.className = "oncul-kapsayici"; // CSS stilini korur
-        
-        soruObj.onculler.forEach((oncul, i) => {
-            const pOncul = document.createElement("p");
-            pOncul.className = "oncul-satir"; // CSS stilini korur
-            
-            // Metin temizliği ve numaralandırma
-            const match = oncul.match(/^(\d+\.?|\w\.?)\s*(.*)/);
-            const metin = match ? match[2] || oncul : oncul;
-            const numara = match ? match[1] : (i + 1) + ".";
-
-            // Görsel yapı için span kullanabiliriz ama VoiceOver için düz text daha iyidir.
-            // Burada CSS sınıflarını koruyarak HTML oluşturuyoruz.
-            pOncul.innerHTML = `<span class="oncul-no">${numara}</span> <span class="oncul-yazi">${metin}</span>`;
-            onculKutusu.appendChild(pOncul);
-        });
-        okumaKapsayicisi.appendChild(onculKutusu);
-    }
-
-    // E. Soru Kökü (Koyu Yazı)
+    // Soru Kökü Hazırlığı
     if (soruObj.soruKoku) {
-        const pKoku = document.createElement("p");
-        pKoku.className = "soru-koku-vurgu"; // CSS stilini korur
-        pKoku.innerText = soruObj.soruKoku;
-        okumaKapsayicisi.appendChild(pKoku);
+        soruKokuVurguluHTML = `<p class='soru-koku-vurgu'>${soruObj.soruKoku}</p>`;
     }
 
-    // Hazırlanan kapsayıcıyı sayfaya ekle
-    soruMetniAlani.appendChild(okumaKapsayicisi);
+    // Öncül Hazırlığı
+    if (soruObj.onculler && soruObj.onculler.length > 0) {
+        onculHTML += `<div class='oncul-kapsayici'>`; 
+        soruObj.onculler.forEach(oncul => {
+            const match = oncul.match(/^(\d+\.?|\w\.?)\s*(.*)/);
+            let numara = match ? match[1] : ''; 
+            let metin = match ? match[2] : oncul;
+            
+            if (!numara && metin.split(" ").length > 1 && /^\d+\./.test(metin.trim())) {
+                 numara = metin.split(" ")[0];
+                 metin = metin.substring(numara.length).trim();
+            }
+            onculHTML += `
+                <p class='oncul-satir'>
+                    <span class='oncul-no'>${numara}</span>
+                    <span class='oncul-yazi'>${metin}</span>
+                </p>`;
+        });
+        onculHTML += `</div>`;
+
+        let ustMetin = girisMetni;
+        if (anaSoruMetni && girisMetni) { ustMetin += " " + anaSoruMetni; } 
+        else if (anaSoruMetni) { ustMetin = anaSoruMetni; }
+        
+        if (ustMetin) { finalHTML += `<p class="soru-giris">${ustMetin}</p>`; } 
+
+        const yerlesim = soruObj.oncul_yerlesim || "ONCE_KOK"; 
+        
+        if (yerlesim === "ONCE_KOK") {
+            finalHTML += onculHTML;
+            finalHTML += soruKokuVurguluHTML;
+        } else if (yerlesim === "SONRA_KOK") {
+            finalHTML += soruKokuVurguluHTML;
+            finalHTML += onculHTML;
+        } else if (yerlesim === "ASAGIDAKI_SKIP") {
+            finalHTML += onculHTML;
+        }
+
+    } else {
+        finalHTML = `<p class="soru-giris">${anaSoruMetni}</p>`;
+        finalHTML += soruKokuVurguluHTML;
+    }
+    
+    // 3. HTML'İ YERLEŞTİRME VE ODAK AYARI
+    const soruMetniAlani = document.getElementById("soru-metni");
+    
+    // VoiceOver için Soru Başlığı ekliyoruz (Gizli ama okunur)
+    // Soru 1, Soru 2 diye okuması için.
+    const ekranOkuyucuBaslik = `<p style="position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0);">Soru ${index + 1}</p>`;
+    
+    soruMetniAlani.innerHTML = ekranOkuyucuBaslik + finalHTML;
+    
+    // VoiceOver'ın bu alanı bir "metin bloğu" olarak görmesi için:
+    soruMetniAlani.setAttribute("role", "article"); 
+    soruMetniAlani.setAttribute("aria-label", `Soru ${index + 1}`); 
+    soruMetniAlani.setAttribute("tabindex", "-1"); // Odaklanılabilir yap
+    
+    // Eski "aria-hidden" varsa kaldıralım, çünkü artık burayı okutacağız
+    soruMetniAlani.removeAttribute("aria-hidden");
 
 
-    // 2. ŞIKLAR ALANI
+    // 4. ŞIKLAR ALANI
     const siklarKutusu = document.getElementById("siklar-alani");
     siklarKutusu.innerHTML = "";
     
@@ -244,12 +242,12 @@ function soruyuGoster(index) {
     document.getElementById("btn-onceki").disabled = (index === 0);
     document.getElementById("btn-sonraki").disabled = (index === mevcutSorular.length - 1);
 
-    // 3. ODAK YÖNETİMİ (VOICEOVER KRİTİK NOKTA)
+    // 5. ODAK YÖNETİMİ (Kritik)
     if (kullaniciCevaplari[index] === null) {
-        // VoiceOver'ın DOM değişimini algılaması için minik gecikme
+        // Sayfa geçişinde VoiceOver'ın yetişmesi için minik gecikme
         setTimeout(() => {
-            if(okumaKapsayicisi) {
-                okumaKapsayicisi.focus();
+            if(soruMetniAlani) {
+                soruMetniAlani.focus();
             }
         }, 150);
     }
