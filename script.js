@@ -140,12 +140,12 @@ function soruyuGoster(index) {
     if(cubuk) cubuk.style.width = `${yuzde}%`;
 
     // --------------------------------------------------------
-    // ** ANA GÜNCELLEME ALANI **: Kesin Çözüm Mantığı (ONCE_KOK / SONRA_KOK)
+    // ** ANA GÜNCELLEME ALANI **: Kesin Çözüm Mantığı (NVDA İÇİN OPTİMİZASYON)
     // --------------------------------------------------------
     const soruBaslik = document.getElementById("soru-metni");
-    // NVDA Düzeltmesi: Sorunun bir navigasyon başlığı olarak okunmasını engeller.
-    soruBaslik.setAttribute('role', 'region'); 
-    soruBaslik.setAttribute('aria-label', 'Soru Metni');
+    // NVDA Düzeltmesi: Önceki ARIA etiketlerini kaldırıyoruz, çünkü yeni H3 etiketi kullanılacak
+    soruBaslik.removeAttribute('role'); 
+    soruBaslik.removeAttribute('aria-label');
 
     let finalHTML = "";
     let anaSoruMetni = soruObj.soru || ""; 
@@ -160,7 +160,7 @@ function soruyuGoster(index) {
 
     // Öncül HTML'ini hazırla
     if (soruObj.onculler && soruObj.onculler.length > 0) {
-        onculHTML += `<div class='oncul-kapsayici'>`;
+        onculHTML += `<div class='oncul-kapsayici' role="list">`; // Öncül listesini duyur
         soruObj.onculler.forEach(oncul => {
             // Öncülleri numara ve metin olarak ayır
             const match = oncul.match(/^(\d+\.?|\w\.?)\s*(.*)/);
@@ -174,7 +174,7 @@ function soruyuGoster(index) {
             }
             
             onculHTML += `
-                <div class='oncul-satir'>
+                <div class='oncul-satir' role="listitem"> // NVDA'ya tek tek okutmak için
                     <span class='oncul-no'>${numara}</span>
                     <span class='oncul-yazi'>${metin}</span>
                 </div>`;
@@ -189,32 +189,32 @@ function soruyuGoster(index) {
             ustMetin = anaSoruMetni;
         }
         
-        // Akış Kararı: JSON'daki oncul_yerlesim etiketine göre yerleştirme
-        // Varsayılan: ONCE_KOK (Metin -> Öncül -> Kök)
-        const yerlesim = soruObj.oncul_yerlesim || "ONCE_KOK"; 
-        
-        // Ana Metin (Giriş/Ana Soru) her zaman en üstte basılır
+        // 1. NVDA Düzeltmesi: İlk paragrafı Başlık 3 olarak sarıyoruz (H3)
         if (ustMetin) {
-            finalHTML += `<p>${ustMetin}</p>`; 
+            finalHTML += `<h3 role="heading" aria-level="3">${ustMetin}</h3>`; 
         }
 
+        // Akış Kararı: JSON'daki oncul_yerlesim etiketine göre yerleştirme
+        const yerlesim = soruObj.oncul_yerlesim || "ONCE_KOK"; 
+        
         if (yerlesim === "ONCE_KOK") {
-            // İstenen: Metin -> Öncül Kutusu -> Koyu Soru Kökü (Yargılarından/Yukarıdaki)
+            // İstenen: Metin (H3) -> Öncül Kutusu -> Koyu Soru Kökü
             finalHTML += onculHTML;
             finalHTML += soruKokuVurguluHTML;
         } else if (yerlesim === "SONRA_KOK") {
-            // İstenen: Metin -> Koyu Soru Kökü -> Öncül Kutusu (Aşağıdaki - Eğer istenirse)
+            // İstenen: Metin (H3) -> Koyu Soru Kökü -> Öncül Kutusu
             finalHTML += soruKokuVurguluHTML;
             finalHTML += onculHTML;
         } else if (yerlesim === "ASAGIDAKI_SKIP") {
-            // İstenen: Metin -> Öncül Kutusu -> DİREKT ŞIKLAR (Koyu Kök Atlanır - Sizin 2. örneğiniz için)
+            // İstenen: Metin (H3) -> Öncül Kutusu -> DİREKT ŞIKLAR (Koyu Kök Atlanır)
             finalHTML += onculHTML;
             // soruKokuVurguluHTML atlanır.
         }
 
     } else {
         // Öncülsüz Sorular
-        finalHTML = `<p>${anaSoruMetni}</p>`;
+        // NVDA Düzeltmesi: Öncül yoksa, ana soruyu Başlık 3 olarak sarıyoruz
+        finalHTML = `<h3 role="heading" aria-level="3">${anaSoruMetni}</h3>`;
         finalHTML += soruKokuVurguluHTML;
     }
     
