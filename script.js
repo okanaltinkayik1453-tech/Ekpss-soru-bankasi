@@ -132,26 +132,25 @@ function soruyuGoster(index) {
     if(cubuk) cubuk.style.width = `${yuzde}%`;
 
     // --------------------------------------------------------
-    // ** ERİŞİLEBİLİRLİK ODAKLI YAPI (VoiceOver/NVDA/TalkBack) **
+    // ** ERİŞİLEBİLİRLİK ODAKLI YAPI (GÜNCELLENDİ) **
     // --------------------------------------------------------
     
-    // 1. Soru Sayacı: "Heading" rolü kaldırıldı, düz metin gibi okunacak.
+    // 1. Soru Sayacı: ARTIK BAŞLIK OLARAK GÖRÜNECEK (H Tuşu çalışır)
     const soruSayacElement = document.getElementById("soru-sayac");
     soruSayacElement.innerText = `Soru ${index + 1} / ${mevcutSorular.length}`;
     
-    // Anlamsal gürültüyü (Başlık seviyesi 2 vb.) önlemek için rolleri temizliyoruz.
-    // Ancak programatik odaklanma için tabindex kalıyor.
-    soruSayacElement.removeAttribute("role"); 
-    soruSayacElement.removeAttribute("aria-level"); 
+    // BURADAKİ "removeAttribute" KODLARINI SİLDİK. 
+    // Artık NVDA burayı "Başlık Seviye 3" olarak görecek.
+    // Sadece odaklanma kalıyor:
     soruSayacElement.setAttribute("tabindex", "-1"); 
 
-    // 2. Soru Metni Alanı: Gizlilik kaldırıldı, direkt okuma alanı oldu.
+    // 2. Soru Metni Alanı:
     const soruBaslik = document.getElementById("soru-metni");
-    soruBaslik.removeAttribute('aria-hidden'); // ARTIK GİZLİ DEĞİL
+    soruBaslik.removeAttribute('aria-hidden'); 
     soruBaslik.removeAttribute('role'); 
-    soruBaslik.setAttribute('tabindex', '-1'); // Okuma akışını kolaylaştırmak için
+    soruBaslik.setAttribute('tabindex', '-1'); 
 
-    // Varsa eski "sessiz okuma alanı"nı temizle (Çatışmayı önlemek için)
+    // Varsa eski "sessiz okuma alanı"nı temizle
     const eskiSessizAlan = document.getElementById("sessiz-okuma-alani");
     if (eskiSessizAlan) eskiSessizAlan.remove();
 
@@ -159,25 +158,18 @@ function soruyuGoster(index) {
     let anaSoruMetni = soruObj.soru || ""; 
     let girisMetni = soruObj.onculGiris || "";
     
-    // Giriş metni (Örn: "Aşağıdakilerden hangisi...")
     let ustMetin = girisMetni;
-    // Eğer giriş metni ve soru metni farklıysa birleştir, değilse tekini al
     if (anaSoruMetni && girisMetni && anaSoruMetni !== girisMetni) { 
-        // Duruma göre birleştirme yapılabilir, burada basitçe ekliyoruz.
     } 
     
-    // Paragraf yapısı: Ekran okuyucuların duraksaması için <p> kullanımı en iyisidir.
     if (girisMetni) {
         finalHTML += `<p class="soru-giris" style="margin-bottom:10px;">${girisMetni}</p>`;
     }
     
-    // Ana soru metni (Giriş metninden farklıysa ekle)
     if (anaSoruMetni && anaSoruMetni !== girisMetni) {
          finalHTML += `<p class="soru-ana-metin" style="margin-bottom:10px;">${anaSoruMetni}</p>`;
     }
 
-    // Öncüller (I, II, III gibi maddeler)
-    // "Liste" olarak kodlamıyoruz. Düz <div> kullanıyoruz ki "Liste 3 eleman" demesin.
     let onculHTML = "";
     if (soruObj.onculler && soruObj.onculler.length > 0) {
         onculHTML += `<div class='oncul-kapsayici' style="margin: 10px 0;">`; 
@@ -186,14 +178,11 @@ function soruyuGoster(index) {
             let numara = match ? match[1] : ''; 
             let metin = match ? match[2] : oncul;
             
-            // Eğer numara otomatik algılanmadıysa manuel kontrol
             if (!numara && metin.split(" ").length > 1 && /^\d+\./.test(metin.trim())) {
                  numara = metin.split(" ")[0];
                  metin = metin.substring(numara.length).trim();
             }
             
-            // VoiceOver ve NVDA için en temiz okuma: <span> veya <p>
-            // role="listitem" YOK. Sadece metin.
             onculHTML += `
                 <div class='oncul-satir' style="margin-bottom:5px;">
                     <span class='oncul-no' style="font-weight:bold; margin-right:5px;">${numara}</span>
@@ -203,27 +192,25 @@ function soruyuGoster(index) {
         onculHTML += `</div>`;
     }
 
-    // Soru Kökü (Koyu yazılan kısım)
+    // Soru Kökü
     let soruKokuHTML = "";
     if (soruObj.soruKoku) {
         soruKokuHTML = `<p class='soru-koku-vurgu' style="font-weight:bold; margin-top:10px;">${soruObj.soruKoku}</p>`;
     }
 
-    // Yerleşim Mantığı
     const yerlesim = soruObj.oncul_yerlesim || "ONCE_KOK"; 
     
     if (yerlesim === "ONCE_KOK") {
-        finalHTML += onculHTML;     // Önce maddeler
-        finalHTML += soruKokuHTML;  // Sonra "Buna göre..." kısmı
+        finalHTML += onculHTML;    
+        finalHTML += soruKokuHTML; 
     } else if (yerlesim === "SONRA_KOK") {
         finalHTML += soruKokuHTML;
         finalHTML += onculHTML;
     } else {
-        finalHTML += onculHTML; // Varsayılan
+        finalHTML += onculHTML; 
         finalHTML += soruKokuHTML;
     }
 
-    // HTML'i bas
     soruBaslik.innerHTML = finalHTML;
 
     // ŞIKLARIN OLUŞTURULMASI
@@ -244,11 +231,9 @@ function soruyuGoster(index) {
         const btn = document.createElement("button");
         const harf = getSikHarfi(i);
         
-        // Görsel metin
         btn.innerText = harf + ") " + sik;
         btn.className = "sik-butonu";
         
-        // Erişilebilirlik Etiketi: Şıkkı net okuması için.
         btn.setAttribute("aria-label", `${harf} şıkkı: ${sik}`); 
 
         if (kullaniciCevaplari[index] !== null) {
@@ -264,9 +249,7 @@ function soruyuGoster(index) {
     document.getElementById("btn-onceki").disabled = (index === 0);
     document.getElementById("btn-sonraki").disabled = (index === mevcutSorular.length - 1);
 
-    // ODAK YÖNETİMİ (Kritik Nokta)
-    // Soru değiştiğinde odak direkt sayaca gider. Kullanıcı tek parmakla sağa (veya aşağı ok) yaparak
-    // sırasıyla: Sayaç -> Soru Metni -> Öncüller -> Soru Kökü -> Şıklar şeklinde akar.
+    // ODAK YÖNETİMİ
     if (kullaniciCevaplari[index] === null) {
         soruSayacElement.focus();
     }
@@ -287,10 +270,8 @@ function cevapIsaretle(secilenIndex, btnElement) {
     let durumMetniDetayli = ""; 
     let durumMetniKisa = ""; 
 
-    // --- CİHAZ TESPİTİ (ORİJİNAL) ---
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || window.innerWidth < 768;
 
-    // --- GÖRSEL VE DURUM AYARLARI ---
     const dogruMu = (secilenCevapHarf === dogruCevapHarf);
     const gorselMetin = dogruMu ? "DOĞRU CEVAP!" : "YANLIŞ CEVAP!";
     const gorselClass = dogruMu ? "uyari-dogru" : "uyari-yanlis";
@@ -306,7 +287,6 @@ function cevapIsaretle(secilenIndex, btnElement) {
         sesUret("dogru"); 
     } else {
         btnElement.classList.add("yanlis"); 
-        // DOĞRU CEVABI GÖSTER
         const dogruButon = Array.from(document.querySelectorAll(".sik-butonu")).find(b => b.innerText.startsWith(dogruCevapHarf + ")"));
         if(dogruButon) dogruButon.classList.add("dogru");
         
@@ -315,14 +295,12 @@ function cevapIsaretle(secilenIndex, btnElement) {
         sesUret("yanlis"); 
     }
 
-    // --- PC/MOBİL ANNOUNCEMENT AYRIMI (AYARLARINIZ KORUNDU) ---
     if (!isMobile) {
         uyariKutusu.setAttribute("role", "alert"); 
         uyariKutusu.setAttribute("aria-live", "assertive"); 
         uyariKutusu.innerText = sikHarfi + " şıkkını işaretlediniz. " + durumMetniDetayli;
     } 
     else {
-        // MOBİL ÖZEL ODAK YÖNETİMİ
         setTimeout(() => { 
              uyariKutusu.innerText = durumMetniKisa; 
              if (uyariKutusu.tabIndex === -1) uyariKutusu.tabIndex = 0; 
@@ -330,14 +308,12 @@ function cevapIsaretle(secilenIndex, btnElement) {
         }, 350); 
     }
 
-    // --- GENEL ZAMANLAMA VE GEÇİŞ ---
     const toplamGecisSuresi = isMobile ? 1750 : 2500; 
 
     const tumButonlar = document.querySelectorAll(".sik-butonu");
     tumButonlar.forEach(b => b.disabled = true);
 
     setTimeout(() => {
-        // PC/Mobil temizliği
         uyariKutusu.innerText = ""; 
         uyariKutusu.removeAttribute("role"); 
         uyariKutusu.removeAttribute("aria-live");
@@ -348,7 +324,6 @@ function cevapIsaretle(secilenIndex, btnElement) {
             sonrakiSoru(); 
         } 
         else {
-             // Test bittiğinde
              sesUret("bitis");
              const bitirButonu = document.getElementById("bitir-buton");
              if(bitirButonu) {
