@@ -103,7 +103,7 @@ function testiYukle(dosyaAdi, testNo) {
             console.error("JSON çekme hatası:", error);
             // Genellikle bu hata, bir JSON dosyasında syntax hatası (virgül, tırnak) olduğu anlamına gelir.
             const soruAlani = document.getElementById("soru-alani");
-            soruAlani.innerHTML = `<div style="text-align:center; padding:20px; color:#ff0000;"><h2>Veri Yükleme Hatası (JSON Hatalı)</h2><p>Lütfen Konsol (F12) üzerinden hatanın kaynağını kontrol edin. Muhtemelen bir JSON dosyasında virgül, tırnak veya parantez hatası var.</p><a href="testler.html" class="aksiyon-butonu">Testlere Dön</a></div>`;
+            soruAlani.innerHTML = `<div style="text-align:center; padding:20px; color:#ff0000;"><h2>Veri Yükleme Hatası (JSON Hatalı)</h2><p>Lütfen Konsol (F12) üzerinden hatanın kaynağını kontrol edin. Muhtemelen bir JSON dosyasında virgül, tırnak veya parantez hatası var.</p><a href="testler.html" class"aksiyon-butonu">Testlere Dön</a></div>`;
         });
 }
 
@@ -140,10 +140,10 @@ function soruyuGoster(index) {
     if(cubuk) cubuk.style.width = `${yuzde}%`;
 
     // --------------------------------------------------------
-    // ** ANA GÜNCELLEME ALANI **: Kesin Çözüm Mantığı (NVDA İÇİN OPTİMİZASYON)
+    // ** ANA GÜNCELLEME ALANI **: Kesin Çözüm Mantığı (NVDA Serbest Gezinme Düzeltmesi)
     // --------------------------------------------------------
     const soruBaslik = document.getElementById("soru-metni");
-    // NVDA Düzeltmesi: Önceki ARIA etiketlerini kaldırıyoruz, çünkü yeni H3 etiketi kullanılacak
+    // NVDA Düzeltmesi: Bu öğenin ARIA etiketlerini sıfırlıyoruz.
     soruBaslik.removeAttribute('role'); 
     soruBaslik.removeAttribute('aria-label');
 
@@ -189,32 +189,32 @@ function soruyuGoster(index) {
             ustMetin = anaSoruMetni;
         }
         
-        // 1. NVDA Düzeltmesi: İlk paragrafı Başlık 3 olarak sarıyoruz (H3)
+        // 1. NVDA/SERBEST GEZİNME Düzeltmesi: Metni P tagı içine al, ama ona başlık rolü ver
         if (ustMetin) {
-            finalHTML += `<h3 role="heading" aria-level="3">${ustMetin}</h3>`; 
+            finalHTML += `<p role="heading" aria-level="3">${ustMetin}</p>`; // P tagı içine Başlık rolü eklendi!
         }
 
         // Akış Kararı: JSON'daki oncul_yerlesim etiketine göre yerleştirme
         const yerlesim = soruObj.oncul_yerlesim || "ONCE_KOK"; 
         
         if (yerlesim === "ONCE_KOK") {
-            // İstenen: Metin (H3) -> Öncül Kutusu -> Koyu Soru Kökü
+            // İstenen: Metin (P+Başlık) -> Öncül Kutusu -> Koyu Soru Kökü
             finalHTML += onculHTML;
             finalHTML += soruKokuVurguluHTML;
         } else if (yerlesim === "SONRA_KOK") {
-            // İstenen: Metin (H3) -> Koyu Soru Kökü -> Öncül Kutusu
+            // İstenen: Metin (P+Başlık) -> Koyu Soru Kökü -> Öncül Kutusu
             finalHTML += soruKokuVurguluHTML;
             finalHTML += onculHTML;
         } else if (yerlesim === "ASAGIDAKI_SKIP") {
-            // İstenen: Metin (H3) -> Öncül Kutusu -> DİREKT ŞIKLAR (Koyu Kök Atlanır)
+            // İstenen: Metin (P+Başlık) -> Öncül Kutusu -> DİREKT ŞIKLAR
             finalHTML += onculHTML;
             // soruKokuVurguluHTML atlanır.
         }
 
     } else {
         // Öncülsüz Sorular
-        // NVDA Düzeltmesi: Öncül yoksa, ana soruyu Başlık 3 olarak sarıyoruz
-        finalHTML = `<h3 role="heading" aria-level="3">${anaSoruMetni}</h3>`;
+        // NVDA Düzeltmesi: Öncül yoksa, ana soruyu P tagı içine Başlık rolü veriyoruz
+        finalHTML = `<p role="heading" aria-level="3">${anaSoruMetni}</p>`;
         finalHTML += soruKokuVurguluHTML;
     }
     
@@ -403,7 +403,7 @@ function cevapAnahtariniGoster() {
         let durumMetni = "";
         let sonucIkonu = "";
         
-        const secilenCevapHarf = kullaniciCevabiIndex !== null ? getSikHarfi(kullaniciCevabiIndex) : null;
+        const secilenCevapHarf = kullaniciCevabiIndex !== null ? getSikHarfi(kullaniciCevaplari[index]) : null;
         
         if (secilenCevapHarf === null) {
             durumRengi = "#ffff00"; 
