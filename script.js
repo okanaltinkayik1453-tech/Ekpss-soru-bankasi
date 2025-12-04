@@ -7,7 +7,7 @@ let isaretlemeKilitli = false;
 // JSON DOSYALARININ YOLU
 const JSON_PATH = './data/';
 
-// JSON Dosya Adı Eşleştirme Haritası
+// JSON Dosya Adı Eşleştirme Haritası (KORUNMUŞTUR)
 const DOSYA_ESLESTIRME = {
     "ilkturkislam": "ilkturkislamdevletleri.json",
     "islamoncesi": "islamoncesiturkdevletleri.json",
@@ -15,13 +15,14 @@ const DOSYA_ESLESTIRME = {
     "osmanlikurulus": "osmanlikurulus.json"
 };
 
-// --- SES MOTORU ---
+// --- SES MOTORU (PC AYARLARI KORUNMUŞTUR) ---
 const sesler = {
     dogru: new Audio('dogru.mp3'),
     yanlis: new Audio('yanlis.mp3'),
     bitis: new Audio('bitis.mp3')
 };
 
+// Ses Seviyeleri (Orijinal ayarlarınız korunmuştur)
 sesler.dogru.volume = 1.0; 
 sesler.yanlis.volume = 0.3; 
 sesler.bitis.volume = 0.3; 
@@ -48,49 +49,56 @@ document.addEventListener("DOMContentLoaded", () => {
         if (dosyaAdi && !isNaN(testNo)) {
             testiYukle(dosyaAdi, testNo);
         } else {
-             hataGoster("Test ID Eşleşme Hatası", "Lütfen testler.html dosyasındaki ID'leri kontrol edin.");
+             const soruAlani = document.getElementById("soru-alani");
+             if(soruAlani) {
+                 soruAlani.innerHTML = `<div style="text-align:center; padding:20px;"><div class="baslik-h2-gibi">Test ID Eşleşme Hatası</div><p>Lütfen testler.html dosyasındaki ID'leri kontrol edin.</p><a href="testler.html" class="aksiyon-butonu">Testlere Dön</a></div>`;
+                 if(document.querySelector(".test-ust-bar")) document.querySelector(".test-ust-bar").style.display = "none";
+             }
         }
     } else {
-        hataGoster("Test Bulunamadı", "Lütfen ana sayfadan bir test seçiniz.");
+        const soruAlani = document.getElementById("soru-alani");
+        if(soruAlani) {
+             soruAlani.innerHTML = `<div style="text-align:center; padding:20px;"><div class="baslik-h2-gibi">Test Bulunamadı</div><a href="testler.html" class="aksiyon-butonu">Testlere Dön</a></div>`;
+            if(document.querySelector(".test-ust-bar")) document.querySelector(".test-ust-bar").style.display = "none";
+        }
     }
 });
 
-function hataGoster(baslik, mesaj) {
-    const soruAlani = document.getElementById("soru-alani");
-    if(soruAlani) {
-        soruAlani.innerHTML = `<div style="text-align:center; padding:20px;"><div class="baslik-h2-gibi">${baslik}</div><p>${mesaj}</p><a href="testler.html" class="aksiyon-butonu">Testlere Dön</a></div>`;
-        if(document.querySelector(".test-ust-bar")) document.querySelector(".test-ust-bar").style.display = "none";
-    }
-}
-
+// JSON dosyasını çekme ve testi başlatma fonksiyonu
 function testiYukle(dosyaAdi, testNo) {
     const url = JSON_PATH + dosyaAdi;
     fetch(url)
         .then(response => {
-            if (!response.ok) throw new Error(`Dosya yüklenemedi: ${response.statusText}`);
+            if (!response.ok) {
+                throw new Error(`Dosya yüklenemedi veya sunucu hatası: ${response.statusText}`);
+            }
             return response.json();
         })
         .then(data => {
             const ustBaslikObj = data[0]; 
+            
             if (ustBaslikObj && ustBaslikObj.tests) {
                 const istenenTest = ustBaslikObj.tests[testNo - 1]; 
+
                 if (istenenTest) {
                     mevcutSorular = istenenTest.sorular;
                     kullaniciCevaplari = new Array(mevcutSorular.length).fill(null);
                     navigasyonButonlariniEkle();
                     soruyuGoster(0);
                 } else {
-                    hataGoster("Test No Bulunamadı", "Test numarası JSON dosyasında yok.");
+                    document.getElementById("soru-alani").innerHTML = `<div style="text-align:center; padding:20px;"><div class="baslik-h2-gibi">Test No Bulunamadı</div><p>Lütfen JSON dosyasındaki test numaralarını kontrol edin.</p><a href="testler.html" class="aksiyon-butonu">Testlere Dön</a></div>`;
                 }
             } else {
-                 hataGoster("JSON Yapısı Hatalı", "Dosya formatı uygun değil.");
+                 document.getElementById("soru-alani").innerHTML = `<div style="text-align:center; padding:20px;"><div class="baslik-h2-gibi">JSON Yapısı Hatalı</div><a href="testler.html" class="aksiyon-butonu">Testlere Dön</a></div>`;
             }
         })
         .catch(error => {
-            console.error("JSON Hatası:", error);
-            hataGoster("Veri Yükleme Hatası", "JSON dosyasında hata olabilir. Konsolu kontrol edin.");
+            console.error("JSON çekme hatası:", error);
+            const soruAlani = document.getElementById("soru-alani");
+            soruAlani.innerHTML = `<div style="text-align:center; padding:20px; color:#ff0000;"><div class="baslik-h2-gibi">Veri Yükleme Hatası (JSON Hatalı)</div><p>Lütfen Konsol (F12) üzerinden hatanın kaynağını kontrol edin. Muhtemelen bir JSON dosyasında virgül, tırnak veya parantez hatası var.</p><a href="testler.html" class"aksiyon-butonu">Testlere Dön</a></div>`;
         });
 }
+
 
 function navigasyonButonlariniEkle() {
     const soruAlani = document.getElementById("soru-alani");
@@ -104,15 +112,13 @@ function navigasyonButonlariniEkle() {
 function oncekiSoru() { if (mevcutSoruIndex > 0) soruyuGoster(mevcutSoruIndex - 1); }
 function sonrakiSoru() { if (mevcutSoruIndex < mevcutSorular.length - 1) soruyuGoster(mevcutSoruIndex + 1); }
 
-// ==========================================================
-// --- SORU GÖSTERME (ORİJİNAL GÖRÜNÜM + VOICEOVER ODAK) ---
-// ==========================================================
+// --- ERİŞİLEBİLİRLİK İÇİN YENİDEN TASARLANMIŞ SORU MOTORU ---
 function soruyuGoster(index) {
     window.scrollTo({ top: 0, behavior: 'auto' });
 
-    // Uyarıları Temizle
     const uyariKutusu = document.getElementById("sesli-uyari");
     if(uyariKutusu) uyariKutusu.innerText = "";
+    
     const gorselUyari = document.getElementById("gorsel-uyari-alani");
     if (gorselUyari) gorselUyari.style.display = "none";
 
@@ -125,90 +131,102 @@ function soruyuGoster(index) {
     const cubuk = document.getElementById("ilerleme-cubugu");
     if(cubuk) cubuk.style.width = `${yuzde}%`;
 
-    // 1. SORU SAYACI
+    // --------------------------------------------------------
+    // ** ERİŞİLEBİLİRLİK ODAKLI YAPI (VoiceOver/NVDA/TalkBack) **
+    // --------------------------------------------------------
+    
+    // 1. Soru Sayacı: "Heading" rolü kaldırıldı, düz metin gibi okunacak.
     const soruSayacElement = document.getElementById("soru-sayac");
     soruSayacElement.innerText = `Soru ${index + 1} / ${mevcutSorular.length}`;
-    // VoiceOver okusun ama başlık demesin diye temizliyoruz
-    soruSayacElement.removeAttribute("role");
-    soruSayacElement.removeAttribute("aria-level");
-
-    // 2. HTML İÇERİĞİNİ HAZIRLAMA (Orijinal Yöntem)
-    // Soru kökünü ve metinleri eskisi gibi HTML string olarak birleştiriyoruz.
-    // Bu sayede CSS bozulmaz ve soru kökü olması gereken yerde çıkar.
     
+    // Anlamsal gürültüyü (Başlık seviyesi 2 vb.) önlemek için rolleri temizliyoruz.
+    // Ancak programatik odaklanma için tabindex kalıyor.
+    soruSayacElement.removeAttribute("role"); 
+    soruSayacElement.removeAttribute("aria-level"); 
+    soruSayacElement.setAttribute("tabindex", "-1"); 
+
+    // 2. Soru Metni Alanı: Gizlilik kaldırıldı, direkt okuma alanı oldu.
+    const soruBaslik = document.getElementById("soru-metni");
+    soruBaslik.removeAttribute('aria-hidden'); // ARTIK GİZLİ DEĞİL
+    soruBaslik.removeAttribute('role'); 
+    soruBaslik.setAttribute('tabindex', '-1'); // Okuma akışını kolaylaştırmak için
+
+    // Varsa eski "sessiz okuma alanı"nı temizle (Çatışmayı önlemek için)
+    const eskiSessizAlan = document.getElementById("sessiz-okuma-alani");
+    if (eskiSessizAlan) eskiSessizAlan.remove();
+
     let finalHTML = "";
     let anaSoruMetni = soruObj.soru || ""; 
-    let onculHTML = "";
-    let soruKokuVurguluHTML = ""; 
     let girisMetni = soruObj.onculGiris || "";
     
-    // Soru Kökü Hazırlığı
-    if (soruObj.soruKoku) {
-        soruKokuVurguluHTML = `<p class='soru-koku-vurgu'>${soruObj.soruKoku}</p>`;
+    // Giriş metni (Örn: "Aşağıdakilerden hangisi...")
+    let ustMetin = girisMetni;
+    // Eğer giriş metni ve soru metni farklıysa birleştir, değilse tekini al
+    if (anaSoruMetni && girisMetni && anaSoruMetni !== girisMetni) { 
+        // Duruma göre birleştirme yapılabilir, burada basitçe ekliyoruz.
+    } 
+    
+    // Paragraf yapısı: Ekran okuyucuların duraksaması için <p> kullanımı en iyisidir.
+    if (girisMetni) {
+        finalHTML += `<p class="soru-giris" style="margin-bottom:10px;">${girisMetni}</p>`;
+    }
+    
+    // Ana soru metni (Giriş metninden farklıysa ekle)
+    if (anaSoruMetni && anaSoruMetni !== girisMetni) {
+         finalHTML += `<p class="soru-ana-metin" style="margin-bottom:10px;">${anaSoruMetni}</p>`;
     }
 
-    // Öncül Hazırlığı
+    // Öncüller (I, II, III gibi maddeler)
+    // "Liste" olarak kodlamıyoruz. Düz <div> kullanıyoruz ki "Liste 3 eleman" demesin.
+    let onculHTML = "";
     if (soruObj.onculler && soruObj.onculler.length > 0) {
-        onculHTML += `<div class='oncul-kapsayici'>`; 
+        onculHTML += `<div class='oncul-kapsayici' style="margin: 10px 0;">`; 
         soruObj.onculler.forEach(oncul => {
             const match = oncul.match(/^(\d+\.?|\w\.?)\s*(.*)/);
             let numara = match ? match[1] : ''; 
             let metin = match ? match[2] : oncul;
             
+            // Eğer numara otomatik algılanmadıysa manuel kontrol
             if (!numara && metin.split(" ").length > 1 && /^\d+\./.test(metin.trim())) {
                  numara = metin.split(" ")[0];
                  metin = metin.substring(numara.length).trim();
             }
+            
+            // VoiceOver ve NVDA için en temiz okuma: <span> veya <p>
+            // role="listitem" YOK. Sadece metin.
             onculHTML += `
-                <p class='oncul-satir'>
-                    <span class='oncul-no'>${numara}</span>
+                <div class='oncul-satir' style="margin-bottom:5px;">
+                    <span class='oncul-no' style="font-weight:bold; margin-right:5px;">${numara}</span>
                     <span class='oncul-yazi'>${metin}</span>
-                </p>`;
+                </div>`;
         });
         onculHTML += `</div>`;
-
-        let ustMetin = girisMetni;
-        if (anaSoruMetni && girisMetni) { ustMetin += " " + anaSoruMetni; } 
-        else if (anaSoruMetni) { ustMetin = anaSoruMetni; }
-        
-        if (ustMetin) { finalHTML += `<p class="soru-giris">${ustMetin}</p>`; } 
-
-        const yerlesim = soruObj.oncul_yerlesim || "ONCE_KOK"; 
-        
-        if (yerlesim === "ONCE_KOK") {
-            finalHTML += onculHTML;
-            finalHTML += soruKokuVurguluHTML;
-        } else if (yerlesim === "SONRA_KOK") {
-            finalHTML += soruKokuVurguluHTML;
-            finalHTML += onculHTML;
-        } else if (yerlesim === "ASAGIDAKI_SKIP") {
-            finalHTML += onculHTML;
-        }
-
-    } else {
-        finalHTML = `<p class="soru-giris">${anaSoruMetni}</p>`;
-        finalHTML += soruKokuVurguluHTML;
     }
-    
-    // 3. HTML'İ YERLEŞTİRME VE ODAK AYARI
-    const soruMetniAlani = document.getElementById("soru-metni");
-    
-    // VoiceOver için Soru Başlığı ekliyoruz (Gizli ama okunur)
-    // Soru 1, Soru 2 diye okuması için.
-    const ekranOkuyucuBaslik = `<p style="position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0);">Soru ${index + 1}</p>`;
-    
-    soruMetniAlani.innerHTML = ekranOkuyucuBaslik + finalHTML;
-    
-    // VoiceOver'ın bu alanı bir "metin bloğu" olarak görmesi için:
-    soruMetniAlani.setAttribute("role", "article"); 
-    soruMetniAlani.setAttribute("aria-label", `Soru ${index + 1}`); 
-    soruMetniAlani.setAttribute("tabindex", "-1"); // Odaklanılabilir yap
-    
-    // Eski "aria-hidden" varsa kaldıralım, çünkü artık burayı okutacağız
-    soruMetniAlani.removeAttribute("aria-hidden");
 
+    // Soru Kökü (Koyu yazılan kısım)
+    let soruKokuHTML = "";
+    if (soruObj.soruKoku) {
+        soruKokuHTML = `<p class='soru-koku-vurgu' style="font-weight:bold; margin-top:10px;">${soruObj.soruKoku}</p>`;
+    }
 
-    // 4. ŞIKLAR ALANI
+    // Yerleşim Mantığı
+    const yerlesim = soruObj.oncul_yerlesim || "ONCE_KOK"; 
+    
+    if (yerlesim === "ONCE_KOK") {
+        finalHTML += onculHTML;     // Önce maddeler
+        finalHTML += soruKokuHTML;  // Sonra "Buna göre..." kısmı
+    } else if (yerlesim === "SONRA_KOK") {
+        finalHTML += soruKokuHTML;
+        finalHTML += onculHTML;
+    } else {
+        finalHTML += onculHTML; // Varsayılan
+        finalHTML += soruKokuHTML;
+    }
+
+    // HTML'i bas
+    soruBaslik.innerHTML = finalHTML;
+
+    // ŞIKLARIN OLUŞTURULMASI
     const siklarKutusu = document.getElementById("siklar-alani");
     siklarKutusu.innerHTML = "";
     
@@ -224,14 +242,18 @@ function soruyuGoster(index) {
 
     soruObj.secenekler.forEach((sik, i) => { 
         const btn = document.createElement("button");
-        btn.innerText = getSikHarfi(i) + ") " + sik;
+        const harf = getSikHarfi(i);
+        
+        // Görsel metin
+        btn.innerText = harf + ") " + sik;
         btn.className = "sik-butonu";
-        // VoiceOver için açık etiket
-        btn.setAttribute("aria-label", `${getSikHarfi(i)} şıkkı: ${sik}`); 
+        
+        // Erişilebilirlik Etiketi: Şıkkı net okuması için.
+        btn.setAttribute("aria-label", `${harf} şıkkı: ${sik}`); 
 
         if (kullaniciCevaplari[index] !== null) {
-            if (getSikHarfi(i) === getSikHarfi(kullaniciCevaplari[index])) {
-                if (getSikHarfi(i) === soruObj.dogru_cevap) { btn.classList.add("dogru"); } else { btn.classList.add("yanlis"); } 
+            if (harf === getSikHarfi(kullaniciCevaplari[index])) {
+                if (harf === soruObj.dogru_cevap) { btn.classList.add("dogru"); } else { btn.classList.add("yanlis"); } 
             }
             btn.disabled = true;
         }
@@ -242,18 +264,15 @@ function soruyuGoster(index) {
     document.getElementById("btn-onceki").disabled = (index === 0);
     document.getElementById("btn-sonraki").disabled = (index === mevcutSorular.length - 1);
 
-    // 5. ODAK YÖNETİMİ (Kritik)
+    // ODAK YÖNETİMİ (Kritik Nokta)
+    // Soru değiştiğinde odak direkt sayaca gider. Kullanıcı tek parmakla sağa (veya aşağı ok) yaparak
+    // sırasıyla: Sayaç -> Soru Metni -> Öncüller -> Soru Kökü -> Şıklar şeklinde akar.
     if (kullaniciCevaplari[index] === null) {
-        // Sayfa geçişinde VoiceOver'ın yetişmesi için minik gecikme
-        setTimeout(() => {
-            if(soruMetniAlani) {
-                soruMetniAlani.focus();
-            }
-        }, 150);
+        soruSayacElement.focus();
     }
 }
 
-// --- CEVAP İŞARETLEME ---
+// --- CEVAP İŞARETLEME (MOBİL/PC AYIRIMI KORUNDU) ---
 function cevapIsaretle(secilenIndex, btnElement) {
     if (isaretlemeKilitli) return;
     isaretlemeKilitli = true;
@@ -268,8 +287,10 @@ function cevapIsaretle(secilenIndex, btnElement) {
     let durumMetniDetayli = ""; 
     let durumMetniKisa = ""; 
 
+    // --- CİHAZ TESPİTİ (ORİJİNAL) ---
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || window.innerWidth < 768;
 
+    // --- GÖRSEL VE DURUM AYARLARI ---
     const dogruMu = (secilenCevapHarf === dogruCevapHarf);
     const gorselMetin = dogruMu ? "DOĞRU CEVAP!" : "YANLIŞ CEVAP!";
     const gorselClass = dogruMu ? "uyari-dogru" : "uyari-yanlis";
@@ -285,6 +306,7 @@ function cevapIsaretle(secilenIndex, btnElement) {
         sesUret("dogru"); 
     } else {
         btnElement.classList.add("yanlis"); 
+        // DOĞRU CEVABI GÖSTER
         const dogruButon = Array.from(document.querySelectorAll(".sik-butonu")).find(b => b.innerText.startsWith(dogruCevapHarf + ")"));
         if(dogruButon) dogruButon.classList.add("dogru");
         
@@ -293,28 +315,29 @@ function cevapIsaretle(secilenIndex, btnElement) {
         sesUret("yanlis"); 
     }
 
-    // VoiceOver için Live Region Güncellemesi
+    // --- PC/MOBİL ANNOUNCEMENT AYRIMI (AYARLARINIZ KORUNDU) ---
     if (!isMobile) {
         uyariKutusu.setAttribute("role", "alert"); 
         uyariKutusu.setAttribute("aria-live", "assertive"); 
         uyariKutusu.innerText = sikHarfi + " şıkkını işaretlediniz. " + durumMetniDetayli;
     } 
     else {
-        // Mobilde odak kaydırma daha sağlıklıdır
+        // MOBİL ÖZEL ODAK YÖNETİMİ
         setTimeout(() => { 
              uyariKutusu.innerText = durumMetniKisa; 
-             // tabindex ekleyip odaklanıyoruz ki VoiceOver kesin okusun
-             if (uyariKutusu.tabIndex === -1) uyariKutusu.tabIndex = -1; 
+             if (uyariKutusu.tabIndex === -1) uyariKutusu.tabIndex = 0; 
              uyariKutusu.focus();
         }, 350); 
     }
 
+    // --- GENEL ZAMANLAMA VE GEÇİŞ ---
     const toplamGecisSuresi = isMobile ? 1750 : 2500; 
 
     const tumButonlar = document.querySelectorAll(".sik-butonu");
     tumButonlar.forEach(b => b.disabled = true);
 
     setTimeout(() => {
+        // PC/Mobil temizliği
         uyariKutusu.innerText = ""; 
         uyariKutusu.removeAttribute("role"); 
         uyariKutusu.removeAttribute("aria-live");
@@ -325,6 +348,7 @@ function cevapIsaretle(secilenIndex, btnElement) {
             sonrakiSoru(); 
         } 
         else {
+             // Test bittiğinde
              sesUret("bitis");
              const bitirButonu = document.getElementById("bitir-buton");
              if(bitirButonu) {
@@ -367,7 +391,7 @@ function testiBitir() {
     document.getElementById("sonuc-alani").style.display = "block";
 
     const sonucHTML = `
-        <div tabindex="-1" id="sonuc-ozet-kutusu" style="border: 4px solid #fff; padding: 20px; border-radius: 10px; margin-bottom: 20px; background:#000;">
+        <div style="border: 4px solid #fff; padding: 20px; border-radius: 10px; margin-bottom: 20px; background:#000;">
             <div style="color:${mesajRengi}; font-size: 1.8rem; margin: 0 0 10px 0;">${motivasyonMesaji}</div>
         </div>
         <p style="font-size:1.5rem; color:#fff;"><strong>TOPLAM PUAN: ${puan.toFixed(2)} / 100</strong></p>
@@ -381,12 +405,13 @@ function testiBitir() {
     document.getElementById("sonuc-alani").focus();
 }
 
+// --- CEVAP ANAHTARI DETAYLARI ---
 function cevapAnahtariniGoster() {
     const listeDiv = document.getElementById("yanlis-detaylari");
     listeDiv.innerHTML = "";
     
     const baslik = document.getElementById("yanlislar-baslik");
-    if(baslik) baslik.innerHTML = `<div class="baslik-h2-gibi" tabindex="-1">CEVAP ANAHTARI</div>`;
+    if(baslik) baslik.innerHTML = `<div class="baslik-h2-gibi">CEVAP ANAHTARI</div>`;
     
     document.getElementById("yanlislar-listesi").style.display = "block";
     
@@ -421,11 +446,11 @@ function cevapAnahtariniGoster() {
 
         let soruMetniGoster = "";
         if (soru.onculler) {
-            if(soru.onculGiris) soruMetniGoster += `<p>${soru.onculGiris}</p>`;
-            soru.onculler.forEach(o => soruMetniGoster += `<p style="padding-left:10px;">${o}</p>`);
-            if(soru.soruKoku) soruMetniGoster += `<p style="margin-top:10px; font-weight:bold;">${soru.soruKoku}</p>`;
+            if(soru.onculGiris) soruMetniGoster += `<div style="margin-bottom:5px;">${soru.onculGiris}</div>`;
+            soru.onculler.forEach(o => soruMetniGoster += `<div style="padding-left:10px;">${o}</div>`);
+            if(soru.soruKoku) soruMetniGoster += `<div style="margin-top:10px; font-weight:bold;">${soru.soruKoku}</div>`;
         } else {
-            soruMetniGoster = `<p>${soru.soru}</p>`;
+            soruMetniGoster = soru.soru;
         }
         
         const dogruCevapIndex = ["A", "B", "C", "D", "E"].indexOf(dogruCevapHarf); 
@@ -453,8 +478,5 @@ function cevapAnahtariniGoster() {
         listeDiv.appendChild(kart);
     });
 
-    // Başlığa değil, ilk odaklanılabilir öğeye odakla
-    if(document.querySelector(".baslik-h2-gibi")) {
-        document.querySelector(".baslik-h2-gibi").focus();
-    }
+    baslik.focus();
 }
