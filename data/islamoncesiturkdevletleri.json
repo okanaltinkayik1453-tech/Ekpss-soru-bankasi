@@ -6,21 +6,118 @@
         "alt_baslik": "Test 1",
         "soru_sayisi": 20,
         "sorular": [
-          { "id": 1, "soru": "Çin kaynaklarına göre Orta Asya'da kurulan Asya Hunları evlerini topraktan yapmış, Volga kıyılarıyla Kırım arasında kurulan Hazarların evleri ise hep ahşap olup yalnız Hakan Sarayı ve kale taştan yapılmıştır. Bu bilgilere göre yargılarından hangilerine ulaşılabilir? 1. Doğa şartları insanların yaşam biçimini etkilemiştir. 2. Türklerde daha çok göçebe yaşantı vardır. 3. Türkler mimaride Çinlilerden etkilenmiştir.", "secenekler": ["Yalnız 1", "Yalnız 2", "Yalnız 3", "1 ve 2", "1, 2 ve 3"], "dogru_cevap": "A", "aciklama": "Hunların toprağı, Hazarların ahşabı kullanması, mimarinin coğrafi şartlara göre şekillendiğini gösterir." },
+          { 
+            "id": 1, 
+            "oncul_yerlesim": "ONCE_KOK",
+            "soru": "Çin kaynaklarına göre Orta Asya'da kurulan Asya Hunları evlerini topraktan yapmış, Volga kıyılarıyla Kırım arasında kurulan Hazarların evleri ise hep ahşap olup yalnız Hakan Sarayı ve kale taştan yapılmıştır.", 
+            "onculler": [
+                "1. Doğa şartları insanların yaşam biçimini etkilemiştir.", 
+                "2. Türklerde daha çok göçebe yaşantı vardır.", 
+                "3. Türkler mimaride Çinlilerden etkilenmiştir."
+            ],
+            "soruKoku": "Bu bilgilere göre yargılarından hangilerine ulaşılabilir?",
+            "secenekler": ["Yalnız 1", "Yalnız 2", "Yalnız 3", "1 ve 2", "1, 2 ve 3"], 
+            "dogru_cevap": "A", 
+            "aciklama": "Hunların toprağı, Hazarların ahşabı kullanması, mimarinin coğrafi şartlara göre şekillendiğini gösterir." 
+          },
           { "id": 2, "soru": "Anav'daki bir kurganda yapılan kazıda; el değirmenleri, kömürleşmiş buğday, süslemeli çömlekler bulunmuştur. Bu durumla ilgili hangisi söylenemez?", "secenekler": ["Sanatla uğraşıldığı", "Bir yerleşim alanı olduğu", "Tahıl ürünlerinin tanındığı", "Topluluk halinde yaşanıldığı", "Üretim gereçlerinin ortak kullanıldığı"], "dogru_cevap": "E", "aciklama": "Evlerde değirmen bulunması özel mülkiyeti gösterir, ortak kullanımı değil." },
-          { "id": 3, "soru": "Orta Asya'nın sert iklimi Türklerin hızlı hareket etmesini gerektirmiştir. Bu durum Türklerle ilgili yargılarından hangilerini doğrular? 1. Yerleşik hayata geç geçmişlerdir. 2. Ata önem vermişlerdir. 3. Doğayla mücadele etmişlerdir.", "secenekler": ["Yalnız 1", "Yalnız 2", "Yalnız 3", "1 ve 2", "2 ve 3"], "dogru_cevap": "D", "aciklama": "Hızlı hareket atı, sert iklim mücadeleyi gerektirir. (Yazım hatasını düzelttim: 1 ve 2 yerine E şıkkının orijinal karşılığı olan D şıkkını bıraktım, acıklamaya göre 1 ve 2 doğru cevaptır.)" },
+          { 
+            "id": 3, 
+            "oncul_yerlesim": "ONCE_KOK",
+            "soru": "Orta Asya'nın sert iklimi Türklerin hızlı hareket etmesini gerektirmiştir. Bu durum Türklerle ilgili yargılarından hangilerini doğrular?", 
+            "onculler": [
+                "1. Yerleşik hayata geç geçmişlerdir.", 
+                "2. Ata önem vermişlerdir.", 
+                "3. Doğayla mücadele etmişlerdir."
+            ],
+            "soruKoku": "Bu bilgilere göre yargılarından hangilerine ulaşılabilir?",
+            "secenekler": ["Yalnız 1", "Yalnız 2", "Yalnız 3", "1 ve 2", "2 ve 3"], 
+            "dogru_cevap": "D", 
+            "aciklama": "Hızlı hareket atı, sert iklim mücadeleyi gerektirir. (Yazım hatasını düzelttim: 1 ve 2 yerine E şıkkının orijinal karşılığı olan D şıkkını bıraktım, acıklamaya göre 1 ve 2 doğru cevaptır.)" 
+          },
           { "id": 4, "soru": "Pazırık Halısı ve Altın Elbiseli Adam zırhı hangi Türk devletine aittir?", "secenekler": ["Tabgaçlar", "Göktürkler", "Uygurlar", "Sakalar", "Kırgızlar"], "dogru_cevap": "D", "aciklama": "Bu eserler Sakalar' a aittir." },
           { "id": 5, "soru": "Doğu Roma İmparatorluğu (Bizans), aşağıdaki Türk devletlerinden hangisiyle çağdaş (aynı dönemde) olmamıştır?", "secenekler": ["Asya Hun", "Avar", "Uygur", "Akhun", "Hazar"], "dogru_cevap": "A", "aciklama": "Asya Hun Devleti, Bizans kurulmadan önce yıkılmıştır." },
           { "id": 6, "soru": "I. Göktürk Devleti'ne en parlak dönemini yaşatan ve Avarları yıkan hükümdar kimdir?", "secenekler": ["Mukan Kağan", "Bögü Kağan", "Tapo Kağan", "Bilge Kağan", "İlteriş Kağan"], "dogru_cevap": "A", "aciklama": "En parlak dönemi yaşatan Mukan Kağan'dır." },
-          { "id": 7, "soru": "Yukarıdaki liderlerden hangileri Asya Hun hükümdarıdır? 1. Teoman 2. Mete Han 3. Kutluk Kağan", "secenekler": ["Yalnız 1", "Yalnız 2", "Yalnız 3", "1 ve 2", "2 ve 3"], "dogru_cevap": "D", "aciklama": "Teoman ve Mete Han Asya Hun, Kutluk Kağan ise II. Göktürk hükümdarıdır." },
+          { 
+            "id": 7, 
+            "oncul_yerlesim": "ONCE_KOK",
+            "soru": "Yukarıdaki liderlerden hangileri Asya Hun hükümdarıdır?", 
+            "onculler": [
+                "1. Teoman", 
+                "2. Mete Han", 
+                "3. Kutluk Kağan"
+            ],
+            "soruKoku": "Yukarıda verilen yargılardan hangilerine ulaşılabilir?",
+            "secenekler": ["Yalnız 1", "Yalnız 2", "Yalnız 3", "1 ve 2", "2 ve 3"], 
+            "dogru_cevap": "D", 
+            "aciklama": "Teoman ve Mete Han Asya Hun, Kutluk Kağan ise II. Göktürk hükümdarıdır." 
+          },
           { "id": 8, "soru": "Avar egemenliğine son vererek 552 yılında kurulan devlet hangisidir?", "secenekler": ["Göktürk", "Uygur", "Hun", "Moğol", "Akhun"], "dogru_cevap": "A", "aciklama": "552 yılında Bumin Kağan tarafından kurulan devlet I. Göktürk Devleti'dir." },
-          { "id": 9, "soru": "Göktürklerle ilgili bilgilerden bazıları şunlardır: 1. İlk kez Türk adını taşıyan kavim olarak ortaya çıkmışlardır. 2. Doğu-batı olmak üzere iki koldan yönetilmişlerdir. 3. Kendilerine özgü yazıya geçmişlerdir. 4. Orta Asya'da devlet kurmuşlardır. 5. Hükümdarları komşu ülke hanedanlarıyla akrabalık kurmuştur. Bu bilgilerden hangilerine dayanarak Göktürkler'de ulusçu (milliyetçi) bir devlet anlayışı olduğu söylenebilir?", "secenekler": ["1 ve 3", "2 ve 3", "2 ve 4", "3 ve 4", "4 ve 5"], "dogru_cevap": "A", "aciklama": "Türk adını kullanmak ve milli alfabe (Göktürk alfabesi) ulusçuluk göstergesidir." },
-          { "id": 10, "soru": "Türk tarihinde görülen Kürşat Ayaklanması'yla ilgili olarak aşağıda verilen bilgilerden hangileri doğrudur? 1. Türklerin bağımsızlığı amaçlayan hareketlerinden biridir. 2. Doğu Göktürk Devleti'nin Çin egemenliği altında bulunduğu dönemde gerçekleşmiştir. 3. Türklerin İslamiyet'i kabul etmelerinde etkili olmuştur.", "secenekler": ["Yalnız 1", "Yalnız 2", "Yalnız 3", "1 ve 2", "1, 2 ve 3"], "dogru_cevap": "D", "aciklama": "Çin esaretindeki Türklerin bağımsızlık hareketidir, İslamiyet ile ilgisi yoktur." },
+          { 
+            "id": 9, 
+            "oncul_yerlesim": "ONCE_KOK",
+            "soru": "Göktürklerle ilgili bilgilerden bazıları şunlardır: 1. İlk kez Türk adını taşıyan kavim olarak ortaya çıkmışlardır. 2. Doğu-batı olmak üzere iki koldan yönetilmişlerdir. 3. Kendilerine özgü yazıya geçmişlerdir. 4. Orta Asya'da devlet kurmuşlardır. 5. Hükümdarları komşu ülke hanedanlarıyla akrabalık kurmuştur.", 
+            "onculler": [
+                "1. İlk kez Türk adını taşıyan kavim olarak ortaya çıkmışlardır.", 
+                "2. Doğu-batı olmak üzere iki koldan yönetilmişlerdir.", 
+                "3. Kendilerine özgü yazıya geçmişlerdir.", 
+                "4. Orta Asya'da devlet kurmuşlardır.", 
+                "5. Hükümdarları komşu ülke hanedanlarıyla akrabalık kurmuştur."
+            ],
+            "soruKoku": "Bu bilgilerden hangilerine dayanarak Göktürkler'de ulusçu (milliyetçi) bir devlet anlayışı olduğu söylenebilir?",
+            "secenekler": ["1 ve 3", "2 ve 3", "2 ve 4", "3 ve 4", "4 ve 5"], 
+            "dogru_cevap": "A", 
+            "aciklama": "Türk adını kullanmak ve milli alfabe (Göktürk alfabesi) ulusçuluk göstergesidir." 
+          },
+          { 
+            "id": 10, 
+            "oncul_yerlesim": "ONCE_KOK",
+            "soru": "Türk tarihinde görülen Kürşat Ayaklanması'yla ilgili olarak aşağıda verilen bilgilerden hangileri doğrudur?", 
+            "onculler": [
+                "1. Türklerin bağımsızlığı amaçlayan hareketlerinden biridir.", 
+                "2. Doğu Göktürk Devleti'nin Çin egemenliği altında bulunduğu dönemde gerçekleşmiştir.", 
+                "3. Türklerin İslamiyet'i kabul etmelerinde etkili olmuştur."
+            ],
+            "soruKoku": "Bu bilgilere göre yargılarından hangilerine ulaşılabilir?",
+            "secenekler": ["Yalnız 1", "Yalnız 2", "Yalnız 3", "1 ve 2", "1, 2 ve 3"], 
+            "dogru_cevap": "D", 
+            "aciklama": "Çin esaretindeki Türklerin bağımsızlık hareketidir, İslamiyet ile ilgisi yoktur." 
+          },
           { "id": 11, "soru": "Aşağıdakilerden hangisi Türk tarihiyle ilgili doğru bir bilgidir?", "secenekler": ["Türkistan'ın Sincan bölgesinde Uygurlar yaşar.", "İlk Türk devleti Göktürklerdir.", "Avrupa Hun devletinin kurucusu Mete Han'dır.", "Karluklar Avrupa'da devlet kurmuştur.", "Alparslan Malazgirt zaferini Haçlılara karşı kazandı."], "dogru_cevap": "A", "aciklama": "Doğu Türkistan'da yaşayanlar Uygurlardır. Diğer bilgiler yanlıştır." },
           { "id": 12, "soru": "Uygurların Karluk ve Basmillerle birleşip devlet kurması hangisini gösterir?", "secenekler": ["Göçebe yaşamı", "Farklı toplulukları birleştirdiklerini", "Batıya göçü", "Karlukların önce kurulduğunu", "Orta Asya egemenliğini"], "dogru_cevap": "B", "aciklama": "Farklı boyları (Karluk, Basmil) bir araya getirmişlerdir." },
-          { "id": 13, "soru": "Aşağıdaki bilgilerden hangileri Uygur Devleti’ne aittir? 1. Orta Asya’da demir işçiliğiyle ünlenen ilk Türk topluluğudur. 2. Maniheizm dinini kabul etmişlerdir. 3. 14–18 harfli bir alfabeye sahiptirler. 4. İlk kez Türk tarihinde “ordu-millet” anlayışını resmî hâle getirmişlerdir. 5. Yerleşik hayata geçen ilk Türk topluluklarından biridir. 6. Çin’le yaptığı savaşlar sonrasında İpek Yolu’nun tamamına hâkim olmuştur.", "secenekler": ["1 ve 3", "1 ve 5", "4 ve 6", "2, 3 ve 5", "2, 4 ve 6"], "dogru_cevap": "D", "aciklama": "Uygurlar; Maniheizm’i benimseyen, 14–18 harfli alfabeyi kullanan ve yerleşik hayata geçen ilk Türk devletidir." },
+          { 
+            "id": 13, 
+            "oncul_yerlesim": "ONCE_KOK",
+            "soru": "Aşağıdaki bilgilerden hangileri Uygur Devleti’ne aittir?", 
+            "onculler": [
+                "1. Orta Asya’da demir işçiliğiyle ünlenen ilk Türk topluluğudur.", 
+                "2. Maniheizm dinini kabul etmişlerdir.", 
+                "3. 14–18 harfli bir alfabeye sahiptirler.", 
+                "4. İlk kez Türk tarihinde “ordu-millet” anlayışını resmî hâle getirmişlerdir.", 
+                "5. Yerleşik hayata geçen ilk Türk topluluklarından biridir.", 
+                "6. Çin’le yaptığı savaşlar sonrasında İpek Yolu’nun tamamına hâkim olmuştur."
+            ],
+            "soruKoku": "Bu bilgilere göre yargılarından hangilerine ulaşılabilir?",
+            "secenekler": ["1 ve 3", "1 ve 5", "4 ve 6", "2, 3 ve 5", "2, 4 ve 6"], 
+            "dogru_cevap": "D", 
+            "aciklama": "Uygurlar; Maniheizm’i benimseyen, 14–18 harfli alfabeyi kullanan ve yerleşik hayata geçen ilk Türk devletidir." 
+          },
           { "id": 14, "soru": "Hangisi Uygurlara ait değildir?", "secenekler": ["Çin Seddi'nin yapılması", "Tapınak yapımı", "Karabalgasun Yazıtları", "Maniheizm dini", "Yerleşik hayat"], "dogru_cevap": "A", "aciklama": "Çin Seddi Hunlar döneminde yapılmıştır." },
-          { "id": 15, "soru": "Yukarıdaki Türk topluluklarından hangileri Avrupa'da teşkilatlı bir devlet kurmuşlardır? 1. Karluklar 2. Hazarlar 3. Avarlar 4. Hunlar", "secenekler": ["Yalnız 1", "Yalnız 2", "Yalnız 4", "2 ve 3", "3 ve 4"], "dogru_cevap": "E", "aciklama": "Avrupa Hunları ve Avarlar hem Asya hem Avrupa'da devlet kurmuştur." },
+          { 
+            "id": 15, 
+            "oncul_yerlesim": "ONCE_KOK",
+            "soru": "Yukarıdaki Türk topluluklarından hangileri Avrupa'da teşkilatlı bir devlet kurmuşlardır?", 
+            "onculler": [
+                "1. Karluklar", 
+                "2. Hazarlar", 
+                "3. Avarlar", 
+                "4. Hunlar"
+            ],
+            "soruKoku": "Bu bilgilere göre yargılarından hangilerine ulaşılabilir?",
+            "secenekler": ["Yalnız 1", "Yalnız 2", "Yalnız 4", "2 ve 3", "3 ve 4"], 
+            "dogru_cevap": "E", 
+            "aciklama": "Avrupa Hunları ve Avarlar hem Asya hem Avrupa'da devlet kurmuştur." 
+          },
           { "id": 16, "soru": "Aşağıdakilerden hangisi Avarların tarihteki etkilerinden biridir?", "secenekler": ["Dede Korkut hikâyelerinin ortaya çıkması", "Anadolu'nun kapılarının Türklere açılması", "Slav topluluklarının birbirleriyle kaynaşıp bütünleşmesi", "Türkler arasında İslamiyet'in yayılmaya başlaması", "Kuruldukları bölgenin adının onların adıyla günümüze kadar gelmesi"], "dogru_cevap": "C", "aciklama": "Avarlar Slavları yönetim ve askerlik konusunda eğitmişlerdir." },
           { "id": 17, "soru": "İstanbul'u kuşatan ilk Türk devleti hangisidir?", "secenekler": ["Avar", "Bulgar", "Kuman", "İskit", "Karluk"], "dogru_cevap": "A", "aciklama": "İstanbul'u ilk kuşatanlar Avarlardır." },
           { "id": 18, "soru": "Maniheizm'i kabul eden, matbaayı kullanan ve Kırgızlar tarafından yıkılan devlet hangisidir?", "secenekler": ["Uygurlar", "Göktürkler", "Kumanlar", "Karahitaylar", "Hazarlar"], "dogru_cevap": "A", "aciklama": "Bu özellikler Uygurlara aittir." },
@@ -32,7 +129,20 @@
         "alt_baslik": "Test 2",
         "soru_sayisi": 20,
         "sorular": [
-          { "id": 21, "soru": "Hristiyanlığı kabul eden Türk kavimleri hangileridir? 1. Bulgarlar 2. Macarlar 3. Göktürkler", "secenekler": ["Yalnız 1", "Yalnız 2", "1 ve 2", "1 ve 3", "1, 2 ve 3"], "dogru_cevap": "C", "aciklama": "Tuna Bulgarları ve Macarlar Avrupa'da Hristiyanlaşmıştır." },
+          { 
+            "id": 21, 
+            "oncul_yerlesim": "ONCE_KOK",
+            "soru": "Hristiyanlığı kabul eden Türk kavimleri hangileridir?", 
+            "onculler": [
+                "1. Bulgarlar", 
+                "2. Macarlar", 
+                "3. Göktürkler"
+            ],
+            "soruKoku": "Yukarıda verilen yargılardan hangilerine ulaşılabilir?",
+            "secenekler": ["Yalnız 1", "Yalnız 2", "1 ve 2", "1 ve 3", "1, 2 ve 3"], 
+            "dogru_cevap": "C", 
+            "aciklama": "Tuna Bulgarları ve Macarlar Avrupa'da Hristiyanlaşmıştır." 
+          },
           { "id": 22, "soru": "Aşağıdakilerden hangisinin uygulanması Uygurların matbaalarının olduğuna ve baskı yaptıklarına bir kanıt olduğu savunulabilir?", "secenekler": ["Tahtadan yapılmış harfler", "Çivili eserler", "18 harfli alfabe", "Taş kitabe", "Kağıt belgeler"], "dogru_cevap": "A", "aciklama": "Hareketli harf sistemi (tahta harfler) matbaanın temelidir." },
           { "id": 23, "soru": "Türk adını 'güç ve kuvvet' olarak tanımlayan devlet (veya kaynak) hangisidir?", "secenekler": ["Göktürkler", "Uygurlar", "Asya Hunları", "Kimekler", "Karluklar"], "dogru_cevap": "B", "aciklama": "Uygur metinlerinde Türk adı güç/kuvvet olarak geçer." },
           { "id": 24, "soru": "Türk adını 'kanun ve nizam sahibi' (Töreli) olarak tanımlayan kimdir?", "secenekler": ["Ziya Gökalp", "Sina Akşin", "Hakkı Behiç", "Barthold", "Kaşgarlı Mahmut"], "dogru_cevap": "A", "aciklama": "Ziya Gökalp Türk adını 'Töreli' olarak açıklar." },
@@ -45,7 +155,20 @@
           { "id": 31, "soru": "Islık çalan okların mucidi kimdir?", "secenekler": ["Mete", "Teoman", "Karaton", "Bumin", "Alpertunga"], "dogru_cevap": "A", "aciklama": "Mete Han, orduyu yönetmek için ıslıklı oku icat etmiştir." },
           { "id": 32, "soru": "İslam Öncesi Türklerde yazısız hukuk kurallarına ne denir?", "secenekler": ["Tüz", "Yabgu", "Töre", "Yek", "Tarkan"], "dogru_cevap": "C", "aciklama": "Yazısız hukuka Töre denir." },
           { "id": 33, "soru": "Yöneten ile yönetilen arasındaki sözleşmeye ne denir?", "secenekler": ["Tüz", "Yabgu", "Töre", "Yek", "Tarkan"], "dogru_cevap": "A", "aciklama": "Devlet (Kağan) ile halk arasındaki anlaşmaya Tüz denir." },
-          { "id": 34, "soru": "İspanyolların temelini atan kavimler hangileridir? 1. Alanlar 2. Vandallar 3. Vizigotlar", "secenekler": ["Yalnız 1", "Yalnız 2", "1 ve 2", "2 ve 3", "1, 2 ve 3"], "dogru_cevap": "E", "aciklama": "Vandallar, Vizigotlar ve Alanlar İspanya'ya yerleşmiştir." },
+          { 
+            "id": 34, 
+            "oncul_yerlesim": "ONCE_KOK",
+            "soru": "İspanyolların temelini atan kavimler hangileridir?", 
+            "onculler": [
+                "1. Alanlar", 
+                "2. Vandallar", 
+                "3. Vizigotlar"
+            ],
+            "soruKoku": "Yukarıda verilen yargılardan hangilerine ulaşılabilir?",
+            "secenekler": ["Yalnız 1", "Yalnız 2", "1 ve 2", "2 ve 3", "1, 2 ve 3"], 
+            "dogru_cevap": "E", 
+            "aciklama": "Vandallar, Vizigotlar ve Alanlar İspanya'ya yerleşmiştir." 
+          },
           { "id": 35, "soru": "İngilizlerin temelini atan kavim hangisidir?", "secenekler": ["Alanlar", "Angıllar ve Saksonlar", "Ostrogot ve Vizigotlar", "Germenler", "Slavlar"], "dogru_cevap": "B", "aciklama": "Angıllar ve Saksonlar Britanya'ya yerleşerek İngilizleri oluşturmuştur." },
           { "id": 36, "soru": "Hangisi Kavimler göçünün sonucu değildir?", "secenekler": ["Avrupa Hun Devletinin kurulması", "Türk kültürünün yayılması", "Orta Çağın sona ermesi", "Skolastik düşünce", "Derebeylik"], "dogru_cevap": "C", "aciklama": "Kavimler Göçü Orta Çağ'ı başlatmıştır, sona erdirmemiştir." },
           { "id": 37, "soru": "Anadolu'ya ayak basan ilk Türk devleti hangisidir?", "secenekler": ["Avarlar", "İskitler", "Avrupa Hun devleti", "Asya Hun devleti", "Macarlar"], "dogru_cevap": "C", "aciklama": "Uldız döneminde Avrupa Hunları Anadolu'ya girmiştir." },
@@ -62,7 +185,20 @@
           { "id": 42, "soru": "Nibelungen Destanına konu olan Türk Devleti hangisidir?", "secenekler": ["Asya Hun Devleti", "Avrupa Hun devleti", "Göktürkler", "Macarlar", "Avarlar"], "dogru_cevap": "B", "aciklama": "Nibelungen Destanı, Avrupa Hunları ile Burgundların mücadelesini anlatır." },
           { "id": 43, "soru": "Nibelungen Destanında 'Etzel' olarak geçen lider kimdir?", "secenekler": ["Atilla", "Bumin", "Uldız", "Rua", "İrnek"], "dogru_cevap": "A", "aciklama": "Etzel, Atilla'nın destandaki adıdır." },
           { "id": 44, "soru": "İlk liderleri Arpad olan devlet hangisidir?", "secenekler": ["Avarlar", "Macarlar", "Karluklar", "Kırgızlar", "Kimekler"], "dogru_cevap": "B", "aciklama": "Macarların efsanevi kurucusu Arpad'dır." },
-          { "id": 45, "soru": "Atilla'ya atfedilen unvanlar hangileridir? 1. Tanrının Kamçısı 2. Aresin Kılıcı 3. Cesur Kavimlerin Efendisi", "secenekler": ["Yalnız 1", "Yalnız 2", "1 ve 2", "2 ve 3", "1, 2 ve 3"], "dogru_cevap": "E", "aciklama": "Atilla'ya Avrupa'da bu unvanların hepsi verilmiştir." },
+          { 
+            "id": 45, 
+            "oncul_yerlesim": "ONCE_KOK",
+            "soru": "Atilla'ya atfedilen unvanlar hangileridir?", 
+            "onculler": [
+                "1. Tanrının Kamçısı", 
+                "2. Aresin Kılıcı", 
+                "3. Cesur Kavimlerin Efendisi"
+            ],
+            "soruKoku": "Yukarıda verilen yargılardan hangilerine ulaşılabilir?",
+            "secenekler": ["Yalnız 1", "Yalnız 2", "1 ve 2", "2 ve 3", "1, 2 ve 3"], 
+            "dogru_cevap": "E", 
+            "aciklama": "Atilla'ya Avrupa'da bu unvanların hepsi verilmiştir." 
+          },
           { "id": 46, "soru": "Atilla'nın bayrağında hangi hayvanın tasviri vardır?", "secenekler": ["Kurt", "Köpek", "Kartal", "Atmaca", "At"], "dogru_cevap": "C", "aciklama": "Atilla'nın bayrağında Kartal (Turul) figürü vardır." },
           { "id": 47, "soru": "İlek, Dengizik ve İrnek hangi devlete liderlik yapmıştır?", "secenekler": ["Asya Hun Devleti", "Avrupa Hun devleti", "Göktürkler", "Macarlar", "Avarlar"], "dogru_cevap": "B", "aciklama": "Bu kişiler Atilla'nın oğulları ve Avrupa Hun hükümdarlarıdır." },
           { "id": 48, "soru": "Türklerin demir dağı eritmesi olayının anlatıldığı destan hangisidir?", "secenekler": ["Göç", "Ergenekon", "Manas", "İki Tegin Hikayesi", "Şu"], "dogru_cevap": "B", "aciklama": "Ergenekon Destanı, demir dağın eritilip çıkılmasını anlatır." },
@@ -76,15 +212,40 @@
           { "id": 56, "soru": "Orhun yazıtlarını 1893 yılında okuyan bilim adamı kimdir?", "secenekler": ["Radlof", "Strahlenberg", "Heikel", "Thomsen", "Necip Asım"], "dogru_cevap": "D", "aciklama": "Danimarkalı Thomsen yazıtları çözmüştür." },
           { "id": 57, "soru": "Orhun yazıtlarını bilim dünyasına kazandıran kimdir?", "secenekler": ["Radlof", "Strahlenberg", "Heikel", "Thomsen", "Necip Asım"], "dogru_cevap": "B", "aciklama": "İsveçli Strahlenberg yazıtları bulup dünyaya duyurmuştur." },
           { "id": 58, "soru": "'Türkçülüğün Esasları' adlı eser kime aittir?", "secenekler": ["Ziya Gökalp", "Akdes Nimet", "Niyazi Berkes", "Enver Ziya", "Halil İnalcık"], "dogru_cevap": "A", "aciklama": "Ziya Gökalp, Türk milliyetçiliğinin teorisyenidir." },
-          { "id": 59, "soru": "Aşağıdaki Türk devletleri ve destan eşleştirmelerinden hangisi yanlıştır?", "secenekler": ["İskitler. Alpertunga Destanı", "Asya Hun Devleti. Oğuz Kağan Destanı", "Göktürkler. Bozkurt Destanı", "Uygurlar. Ergenekon Destanı", "Kırgızlar. Manas Destanı"], "dogru_cevap": "D", "aciklama": "Ergenekon Destanı Göktürkler'e aittir." },
-          { "id": 60, "soru": "Aşağıdakilerden hangisinde Uygurlar'a ait 2 destan birlikte verilmiştir?", "secenekler": ["Bozkurt-Ergenekon", "Alpertunga-Şu", "Türeyiş-Göç", "Manas-Oğuz Kağan", "Yaratılış-Türeyiş"], "dogru_cevap": "C", "aciklama": "Türeyiş ve Göç destanları Uygurlar'a aittir." }
+          { 
+            "id": 59, 
+            "oncul_yerlesim": "ONCE_KOK",
+            "soru": "Aşağıdaki Türk devletleri ve destan eşleştirmelerinden hangisi yanlıştır?", 
+            "onculler": [
+                "1. İskitler. Alpertunga Destanı", 
+                "2. Asya Hun Devleti. Oğuz Kağan Destanı", 
+                "3. Göktürkler. Bozkurt Destanı", 
+                "4. Uygurlar. Ergenekon Destanı", 
+                "5. Kırgızlar. Manas Destanı"
+            ],
+            "soruKoku": "Yukarıda verilen yargılardan hangilerine ulaşılabilir?",
+            "secenekler": ["İskitler. Alpertunga Destanı", "Asya Hun Devleti. Oğuz Kağan Destanı", "Göktürkler. Bozkurt Destanı", "Uygurlar. Ergenekon Destanı", "Kırgızlar. Manas Destanı"], 
+            "dogru_cevap": "D", 
+            "aciklama": "Ergenekon Destanı Göktürkler'e aittir." 
+          },
+          { 
+            "id": 60, 
+            "oncul_yerlesim": "ONCE_KOK",
+            "soru": "Aşağıdakilerden hangisinde Uygurlar'a ait 2 destan birlikte verilmiştir?", 
+            "onculler": [
+                "1. Bozkurt-Ergenekon", 
+                "2. Alpertunga-Şu", 
+                "3. Türeyiş-Göç", 
+                "4. Manas-Oğuz Kağan", 
+                "5. Yaratılış-Türeyiş"
+            ],
+            "soruKoku": "Yukarıda verilen yargılardan hangilerine ulaşılabilir?",
+            "secenekler": ["Bozkurt-Ergenekon", "Alpertunga-Şu", "Türeyiş-Göç", "Manas-Oğuz Kağan", "Yaratılış-Türeyiş"], 
+            "dogru_cevap": "C", 
+            "aciklama": "Türeyiş ve Göç destanları Uygurlar'a aittir." 
+          }
         ]
-      }
-    ]
-  },
-  {
-    "ust_baslik": "İslam Öncesi Türk Devletleri",
-    "tests": [
+      },
       {
         "alt_baslik": "Test 4",
         "soru_sayisi": 20,

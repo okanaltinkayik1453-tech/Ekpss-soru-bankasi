@@ -4,20 +4,28 @@ let mevcutSoruIndex = 0;
 let kullaniciCevaplari = [];
 let isaretlemeKilitli = false;
 
-// JSON DOSYALARININ YOLU (Daha önce konuştuğumuz klasörleme stratejisine göre ayarlandı)
+// JSON DOSYALARININ YOLU
 const JSON_PATH = './data/';
 
-// --- SES MOTORU (PC AYARLARI KORUNDU - MP3 SİSTEMİ) ---
+// JSON Dosya Adı Eşleştirme Haritası
+const DOSYA_ESLESTIRME = {
+    "ilkturkislam": "ilkturkislamdevletleri.json",
+    "islamoncesi": "islamoncesiturkdevletleri.json",
+    "osmanlikultur": "osmanlikulturmedeniyeti.json",
+    "osmanlikurulus": "osmanlikurulus.json"
+};
+
+// --- SES MOTORU (PC AYARLARI KORUNMUŞTUR) ---
 const sesler = {
     dogru: new Audio('dogru.mp3'),
     yanlis: new Audio('yanlis.mp3'),
     bitis: new Audio('bitis.mp3')
 };
 
-// Ses Seviyeleri
+// Ses Seviyeleri (Sizin orijinal ayarlarınız korunmuştur)
 sesler.dogru.volume = 1.0; 
 sesler.yanlis.volume = 0.3; 
-sesler.bitis.volume = 0.3;
+sesler.bitis.volume = 0.3; 
 
 function sesUret(tur) {
     if (sesler[tur]) {
@@ -30,15 +38,28 @@ function sesUret(tur) {
 // --- TEST YÖNETİMİ ---
 document.addEventListener("DOMContentLoaded", () => {
     const urlParams = new URLSearchParams(window.location.search);
-    // testID artık eski karmaşık isimleri (islamiyet_test1) içeriyor
     const testParam = urlParams.get('id'); 
     
     if (testParam) {
-        // Parametreyi dosya adına çevirme mantığı
-        // Örnek: 'islamoncesi_test1' -> 'islamoncesi.json'
-        const dosyaAdi = testParam.substring(0, testParam.lastIndexOf('_')) + '.json';
+        // 1. Linkten gelen test ön ekini ayır (örn: ilkturkislam_test1 -> ilkturkislam)
+        const onEk = testParam.substring(0, testParam.lastIndexOf('_'));
         
-        testiYukle(dosyaAdi, testParam);
+        // 2. Eşleştirme haritasından tam dosya adını al
+        const dosyaAdi = DOSYA_ESLESTIRME[onEk];
+        
+        // 3. Test numarasını al (örn: test1 -> 1)
+        const testNoStr = testParam.substring(testParam.lastIndexOf('_') + 5); 
+        const testNo = parseInt(testNoStr); 
+        
+        if (dosyaAdi && !isNaN(testNo)) {
+            testiYukle(dosyaAdi, testNo);
+        } else {
+             const soruAlani = document.getElementById("soru-alani");
+             if(soruAlani) {
+                 soruAlani.innerHTML = `<div style="text-align:center; padding:20px;"><h2>Test ID Eşleşme Hatası</h2><p>Lütfen testler.html dosyasındaki ID'leri kontrol edin.</p><a href="testler.html" class="aksiyon-butonu">Testlere Dön</a></div>`;
+                 if(document.querySelector(".test-ust-bar")) document.querySelector(".test-ust-bar").style.display = "none";
+             }
+        }
     } else {
         const soruAlani = document.getElementById("soru-alani");
         if(soruAlani) {
@@ -49,24 +70,22 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // Yeni: JSON dosyasını çekme ve testi başlatma fonksiyonu
-function testiYukle(dosyaAdi, testID) {
+function testiYukle(dosyaAdi, testNo) {
     const url = JSON_PATH + dosyaAdi;
     fetch(url)
         .then(response => {
             if (!response.ok) {
+                // Eğer yüklenemezse, kullanıcıya net bir hata mesajı gönder
                 throw new Error(`Dosya yüklenemedi: ${response.statusText}`);
             }
             return response.json();
         })
         .then(data => {
-            // data bir dizi [ { "ust_baslik":..., "tests": [...] } ] şeklinde geliyor.
-            // Bizim JSON yapımızda her dosya tek bir üst başlık içeriyor.
             const ustBaslikObj = data[0]; 
             
             if (ustBaslikObj && ustBaslikObj.tests) {
-                // İstenen alt testi bul (testID'nin sonundaki sayıya göre)
-                const testNo = parseInt(testID.slice(-1)); 
-                const istenenTest = ustBaslikObj.tests[testNo - 1]; // Diziler 0'dan başladığı için -1
+                // İstenen alt testi bul (Test 1 -> 0. index)
+                const istenenTest = ustBaslikObj.tests[testNo - 1]; 
 
                 if (istenenTest) {
                     mevcutSorular = istenenTest.sorular;
@@ -74,7 +93,7 @@ function testiYukle(dosyaAdi, testID) {
                     navigasyonButonlariniEkle();
                     soruyuGoster(0);
                 } else {
-                    document.getElementById("soru-alani").innerHTML = `<div style="text-align:center; padding:20px;"><h2>Test No Bulunamadı</h2><a href="testler.html" class="aksiyon-butonu">Testlere Dön</a></div>`;
+                    document.getElementById("soru-alani").innerHTML = `<div style="text-align:center; padding:20px;"><h2>Test No Bulunamadı</h2><p>Lütfen JSON dosyasındaki test numaralarını kontrol edin.</p><a href="testler.html" class="aksiyon-butonu">Testlere Dön</a></div>`;
                 }
             } else {
                  document.getElementById("soru-alani").innerHTML = `<div style="text-align:center; padding:20px;"><h2>JSON Yapısı Hatalı</h2><a href="testler.html" class="aksiyon-butonu">Testlere Dön</a></div>`;
@@ -82,9 +101,12 @@ function testiYukle(dosyaAdi, testID) {
         })
         .catch(error => {
             console.error("JSON çekme hatası:", error);
-            document.getElementById("soru-alani").innerHTML = `<div style="text-align:center; padding:20px; color:#ff0000;"><h2>Veri Yükleme Hatası: ${error.message}</h2><p>Lütfen dosya adlarını (örnek: data/ilkturkislamdevletleri.json) kontrol ediniz.</p><a href="testler.html" class="aksiyon-butonu">Testlere Dön</a></div>`;
+            // Hata mesajını kullanıcıya gösterirken dosya adını vurgula
+            const soruAlani = document.getElementById("soru-alani");
+            soruAlani.innerHTML = `<div style="text-align:center; padding:20px; color:#ff0000;"><h2>Veri Yükleme Hatası</h2><p>Uygulama, gerekli olan dosyayı bulamadı: <b>${url}</b></p><p>Lütfen GitHub'daki dosya adlarını ve yolunu kontrol edin.</p><a href="testler.html" class="aksiyon-butonu">Testlere Dön</a></div>`;
         });
 }
+
 
 function navigasyonButonlariniEkle() {
     const soruAlani = document.getElementById("soru-alani");
@@ -117,50 +139,84 @@ function soruyuGoster(index) {
     const cubuk = document.getElementById("ilerleme-cubugu");
     if(cubuk) cubuk.style.width = `${yuzde}%`;
 
+    // --------------------------------------------------------
+    // ** ANA GÜNCELLEME ALANI **: Kesin Çözüm Mantığı
+    // --------------------------------------------------------
     const soruBaslik = document.getElementById("soru-metni");
-    
-    // --- AKILLI İÇERİK OLUŞTURUCU ---
     let finalHTML = "";
+    let anaSoruMetni = soruObj.soru || ""; 
+    let onculHTML = "";
+    let soruKokuVurguluHTML = ""; 
+    let girisMetni = soruObj.onculGiris || "";
+    
+    // Vurgulu Soru Kökü HTML'ini oluştur
+    if (soruObj.soruKoku) {
+        soruKokuVurguluHTML = `<p class='soru-koku-vurgu'>${soruObj.soruKoku}</p>`;
+    }
 
-    // EĞER SORU PARÇALANMIŞ (YENİ TİP) İSE:
+    // Öncül HTML'ini hazırla
     if (soruObj.onculler && soruObj.onculler.length > 0) {
-        
-        // 1. Giriş Metni (Varsa)
-        if (soruObj.onculGiris) {
-            finalHTML += `<div>${soruObj.onculGiris}</div>`;
-        }
-
-        // 2. Öncül Kutusu (Sarı Çizgili Alan)
-        finalHTML += `<div class='oncul-kapsayici'>`;
+        onculHTML += `<div class='oncul-kapsayici'>`;
         soruObj.onculler.forEach(oncul => {
-            // Numarayı (1. veya I.) ve metni ayıklamaya çalış, yoksa düz bas
-            // Genelde format: "1. Metin"
-            let numara = oncul.split(" ")[0]; // İlk kelimeyi numara say
-            let metin = oncul.substring(numara.length).trim();
+            // Öncülleri numara ve metin olarak ayır
+            const match = oncul.match(/^(\d+\.?|\w\.?)\s*(.*)/);
+            let numara = match ? match[1] : ''; 
+            let metin = match ? match[2] : oncul;
             
-            finalHTML += `
+            // Eğer numara boşsa (1. konya gibi), numara olarak kullan ve metinden çıkar
+            if (!numara && metin.split(" ").length > 1 && /^\d+\./.test(metin.trim())) {
+                 numara = metin.split(" ")[0];
+                 metin = metin.substring(numara.length).trim();
+            }
+            
+            onculHTML += `
                 <div class='oncul-satir'>
                     <span class='oncul-no'>${numara}</span>
                     <span class='oncul-yazi'>${metin}</span>
                 </div>`;
         });
-        finalHTML += `</div>`;
+        onculHTML += `</div>`;
 
-        // 3. Soru Kökü (Koyu ve Sarı)
-        if (soruObj.soruKoku) {
-            finalHTML += `<div class='soru-koku-vurgu'>${soruObj.soruKoku}</div>`;
+        // Öncül Giriş Metni ve Ana Metni Birleştir
+        let ustMetin = girisMetni;
+        if (anaSoruMetni && girisMetni) {
+            ustMetin += " " + anaSoruMetni;
+        } else if (anaSoruMetni) {
+            ustMetin = anaSoruMetni;
+        }
+        
+        // Akış Kararı: JSON'daki oncul_yerlesim etiketine göre yerleştirme
+        if (ustMetin) {
+            finalHTML += `<p>${ustMetin}</p>`; // 1. Metin (Giriş/Ana Soru) her zaman en üstte basılır
         }
 
-    } 
-    // EĞER SORU ESKİ TİP (DÜZ METİN) İSE:
-    else {
-        // Eski soruların bozulmaması için düz yazdır
-        let metin = soruObj.soru || "";
-        finalHTML = metin;
-    }
+        const yerlesim = soruObj.oncul_yerlesim || "ONCE_KOK"; // Etiket yoksa, varsayılan olarak Metin -> Öncül -> Kök
+        
+        if (yerlesim === "ONCE_KOK") {
+            // İstenen: Metin -> Öncül Kutusu -> Koyu Soru Kökü (Yargılarından/Yukarıdaki)
+            finalHTML += onculHTML; // 2. Öncül Kutusu
+            finalHTML += soruKokuVurguluHTML; // 3. Koyu Soru Kökü
+        } else if (yerlesim === "SONRA_KOK") {
+            // İstenen: Metin -> Koyu Soru Kökü -> Öncül Kutusu (Aşağıdaki)
+            finalHTML += soruKokuVurguluHTML; // 2. Koyu Soru Kökü
+            finalHTML += onculHTML; // 3. Öncül Kutusu
+        } else if (yerlesim === "ASAGIDAKI_SKIP") {
+            // İstenen: Metin -> Öncül Kutusu -> DİREKT ŞIKLAR (Koyu Kök Atlanır)
+            finalHTML += onculHTML; // 2. Öncül Kutusu
+            // soruKokuVurguluHTML eklenmez.
+        }
 
+    } else {
+        // Öncülsüz Sorular (Bu kısım zaten hep doğru çalışıyordu)
+        finalHTML = `<p>${anaSoruMetni}</p>`;
+        finalHTML += soruKokuVurguluHTML;
+    }
+    
+    // H2'nin içine final HTML'i yerleştir
     soruBaslik.innerHTML = finalHTML;
     
+    // --------------------------------------------------------
+
     document.getElementById("soru-sayac").innerText = `Soru ${index + 1} / ${mevcutSorular.length}`;
     const siklarKutusu = document.getElementById("siklar-alani");
     siklarKutusu.innerHTML = "";
@@ -176,13 +232,13 @@ function soruyuGoster(index) {
         document.getElementById("soru-alani").appendChild(div);
     }
 
-    soruObj.secenekler.forEach((sik, i) => { // Siklar'ı secenekler ile değiştirdim
+    soruObj.secenekler.forEach((sik, i) => { 
         const btn = document.createElement("button");
         btn.innerText = getSikHarfi(i) + ") " + sik;
         btn.className = "sik-butonu";
         if (kullaniciCevaplari[index] !== null) {
-            if (kullaniciCevaplari[index] === i) {
-                if (getSikHarfi(i) === soruObj.dogru_cevap) { btn.classList.add("dogru"); } else { btn.classList.add("yanlis"); } // Kontrolü güncelledim
+            if (getSikHarfi(i) === getSikHarfi(kullaniciCevaplari[index])) {
+                if (getSikHarfi(i) === soruObj.dogru_cevap) { btn.classList.add("dogru"); } else { btn.classList.add("yanlis"); } 
             }
             btn.disabled = true;
         }
@@ -201,17 +257,17 @@ function cevapIsaretle(secilenIndex, btnElement) {
     if (isaretlemeKilitli) return;
     isaretlemeKilitli = true;
     kullaniciCevaplari[mevcutSoruIndex] = secilenIndex;
-    const dogruCevapHarf = mevcutSorular[mevcutSoruIndex].dogru_cevap; // JSON'dan harf olarak çek
-    const secilenCevapHarf = getSikHarfi(secilenIndex); // Seçilen harfi al
+    const dogruCevapHarf = mevcutSorular[mevcutSoruIndex].dogru_cevap; 
+    const secilenCevapHarf = getSikHarfi(secilenIndex); 
 
     const uyariKutusu = document.getElementById("sesli-uyari");
     const gorselUyari = document.getElementById("gorsel-uyari-alani");
     
-    const sikHarfi = secilenCevapHarf; // "A", "B", "C"...
+    const sikHarfi = secilenCevapHarf; 
     let durumMetniDetayli = ""; 
     let durumMetniKisa = ""; 
 
-    // --- CİHAZ TESPİTİ ---
+    // --- CİHAZ TESPİTİ (PC AYARLARI KORUNMUŞTUR) ---
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || window.innerWidth < 768;
 
     // --- GÖRSEL VE DURUM AYARLARI ---
@@ -227,18 +283,18 @@ function cevapIsaretle(secilenIndex, btnElement) {
         btnElement.classList.add("dogru"); 
         durumMetniDetayli = "Doğru cevap."; 
         durumMetniKisa = "Doğru cevap."; 
+        sesUret("dogru"); 
     } else {
         btnElement.classList.add("yanlis"); 
         durumMetniDetayli = "Yanlış cevap."; 
         durumMetniKisa = "Yanlış cevap."; 
+        sesUret("yanlis"); 
     }
 
-    // --- PC/MOBİL ANNOUNCEMENT AYRIMI ---
+    // --- PC/MOBİL ANNOUNCEMENT AYRIMI (PC SÜRE VE ROL AYARLARI KORUNMUŞTUR) ---
     if (!isMobile) {
         uyariKutusu.setAttribute("role", "alert"); 
         uyariKutusu.setAttribute("aria-live", "assertive"); 
-        
-        sesUret(dogruMu ? "dogru" : "yanlis"); 
         uyariKutusu.innerText = sikHarfi + " şıkkını işaretlediniz. " + durumMetniDetayli;
     } 
     else {
@@ -360,13 +416,16 @@ function cevapAnahtariniGoster() {
             kart.style.borderLeft = "6px solid #ff0000";
         }
 
-        // Soru Metnini Hazırla
+        // Soru Metnini Hazırla (Akıllı Gösterim)
         let soruMetniGoster = "";
         if (soru.onculler) {
             if(soru.onculGiris) soruMetniGoster += `<div style="margin-bottom:5px;">${soru.onculGiris}</div>`;
+            // Öncülleri tek tek ekle
             soru.onculler.forEach(o => soruMetniGoster += `<div style="padding-left:10px;">${o}</div>`);
+            // Soru kökünü kalın ve ayrı bir satırda ekle
             if(soru.soruKoku) soruMetniGoster += `<div style="margin-top:10px; font-weight:bold;">${soru.soruKoku}</div>`;
         } else {
+            // Öncülsüz ise direkt soru metnini kullan
             soruMetniGoster = soru.soru;
         }
         
