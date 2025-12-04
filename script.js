@@ -138,10 +138,10 @@ function soruyuGoster(index) {
     if(cubuk) cubuk.style.width = `${yuzde}%`;
 
     // --------------------------------------------------------
-    // ** NVDA DÜZELTME ALANI **: Kesin Çözüm Mantığı
+    // ** NVDA NİHAİ DÜZELTME ALANI **: Başlık ve Liste Uyarıları Kaldırıldı
     // --------------------------------------------------------
     const soruBaslik = document.getElementById("soru-metni");
-    // ARIA etiketlerini temizle (Başlık rolünü kaldırmak için)
+    // Tüm ARIA etiketlerini ve rolleri temizle
     soruBaslik.removeAttribute('role'); 
     soruBaslik.removeAttribute('aria-label');
 
@@ -153,35 +153,34 @@ function soruyuGoster(index) {
     
     // Vurgulu Soru Kökü HTML'ini oluştur
     if (soruObj.soruKoku) {
-        // NVDA tarafından başlık (heading) olarak algılanmaması için P kullanıldı.
+        // P etiketleri kullanıldı, üzerinde 'heading' veya 'listitem' rolü yok.
         soruKokuVurguluHTML = `<p class='soru-koku-vurgu'>${soruObj.soruKoku}</p>`;
     }
 
     // Öncül HTML'ini hazırla
     if (soruObj.onculler && soruObj.onculler.length > 0) {
-        // Öncül kutusuna role="list" verildi. Bu, NVDA'nın "liste başlangıcı" demesini sağlar.
-        onculHTML += `<div class='oncul-kapsayici' role="list">`; 
+        // Öncül kutusu (role="list" KALDIRILDI)
+        onculHTML += `<div class='oncul-kapsayici'>`; 
         soruObj.onculler.forEach(oncul => {
             // Öncülleri numara ve metin olarak ayır
             const match = oncul.match(/^(\d+\.?|\w\.?)\s*(.*)/);
             let numara = match ? match[1] : ''; 
             let metin = match ? match[2] : oncul;
             
-            // Eğer numara boşsa (1. konya gibi), numara olarak kullan ve metinden çıkar
             if (!numara && metin.split(" ").length > 1 && /^\d+\./.test(metin.trim())) {
                  numara = metin.split(" ")[0];
                  metin = metin.substring(numara.length).trim();
             }
             
-            // DÜZELTME: NVDA'nın '1', '2' demesi için role="listitem" kullanılır. 
-            // Bu, başlık uyarısı vermeden satır satır okumayı garantiler.
+            // DÜZELTME: role="listitem" KALDIRILDI. Sadece düz P etiketi kullanıldı.
+            // Bu, NVDA'nın '1. madde' demesini engellerken, aşağı ok ile ayrı satır olarak okunmasını sağlar.
             onculHTML += `
-                <p class='oncul-satir' role="listitem">
-                    <span class='oncul-no' aria-hidden="true">${numara}</span>
+                <p class='oncul-satir'>
+                    <span class='oncul-no'>${numara}</span>
                     <span class='oncul-yazi'>${metin}</span>
                 </p>`;
         });
-        onculHTML += `</div>`; // role="list" bitişi
+        onculHTML += `</div>`; // oncul-kapsayici bitişi
 
         // Öncül Giriş Metni ve Ana Metni Birleştir
         let ustMetin = girisMetni;
@@ -191,8 +190,8 @@ function soruyuGoster(index) {
             ustMetin = anaSoruMetni;
         }
         
-        // DÜZELTME: Ana Metin için P tagı kullanıldı. Role="heading" YOK. 
-        // NVDA, sorunun başına geldiğinde "Başlık" demeden okumaya başlar.
+        // DÜZELTME: Ana Metin için P tagı kullanıldı. Role="heading" KALDIRILDI.
+        // NVDA, sorunun başına geldiğinde "Başlık" demeden okumaya başlar ve aşağı okla satır satır okur.
         if (ustMetin) {
             finalHTML += `<p class="soru-giris">${ustMetin}</p>`; 
         }
@@ -201,15 +200,15 @@ function soruyuGoster(index) {
         const yerlesim = soruObj.oncul_yerlesim || "ONCE_KOK"; 
         
         if (yerlesim === "ONCE_KOK") {
-            // İstenen: Metin (P) -> Öncül Kutusu (List) -> Koyu Soru Kökü (P)
+            // İstenen: Metin (P) -> Öncül Kutusu (Düz Div/P) -> Koyu Soru Kökü (P)
             finalHTML += onculHTML;
             finalHTML += soruKokuVurguluHTML;
         } else if (yerlesim === "SONRA_KOK") {
-            // İstenen: Metin (P) -> Koyu Soru Kökü (P) -> Öncül Kutusu (List)
+            // İstenen: Metin (P) -> Koyu Soru Kökü (P) -> Öncül Kutusu (Düz Div/P)
             finalHTML += soruKokuVurguluHTML;
             finalHTML += onculHTML;
         } else if (yerlesim === "ASAGIDAKI_SKIP") {
-            // İstenen: Metin (P) -> Öncül Kutusu (List) -> DİREKT ŞIKLAR
+            // İstenen: Metin (P) -> Öncül Kutusu (Düz Div/P) -> DİREKT ŞIKLAR
             finalHTML += onculHTML;
             // soruKokuVurguluHTML atlanır.
         }
@@ -245,7 +244,7 @@ function soruyuGoster(index) {
         const btn = document.createElement("button");
         btn.innerText = getSikHarfi(i) + ") " + sik;
         btn.className = "sik-butonu";
-        // NVDA'ya doğru şık harfini okutmak için aria-label eklendi (Önceki kodda yoktu, bu önemli bir erişilebilirlik eklemesi)
+        // NVDA'ya doğru şık harfini okutmak için aria-label eklendi (Erişilebilirlik özelliği korundu)
         btn.setAttribute("aria-label", `${getSikHarfi(i)} şıkkı: ${sik}`); 
 
         if (kullaniciCevaplari[index] !== null) {
@@ -286,7 +285,6 @@ function cevapIsaretle(secilenIndex, btnElement) {
     let durumMetniKisa = ""; 
 
     // --- CİHAZ TESPİTİ (PC AYARLARI KORUNMUŞTUR) ---
-    // MOBİL AYARINIZ KORUNDU: Mobil cihazlarda zorunlu odak yönetimi için tespit korunmuştur.
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || window.innerWidth < 768;
 
     // --- GÖRSEL VE DURUM AYARLARI ---
