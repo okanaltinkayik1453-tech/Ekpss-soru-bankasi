@@ -147,6 +147,7 @@ function soruyuGoster(index) {
     let anaSoruMetni = soruObj.soru || ""; 
     let onculHTML = "";
     let soruKokuVurgulu = soruObj.soruKoku || ""; 
+    let girisMetni = soruObj.onculGiris || ""; 
 
     // Öncül HTML'ini hazırla
     if (soruObj.onculler && soruObj.onculler.length > 0) {
@@ -157,8 +158,8 @@ function soruyuGoster(index) {
             let numara = match ? match[1] : ''; 
             let metin = match ? match[2] : oncul;
             
-            // Eğer numara boşsa (1. konya gibi), numara olarak kullan
-            if (!numara && metin.includes(".")) {
+            // Eğer numara boşsa (1. konya gibi), numara olarak kullan ve metinden çıkar
+            if (!numara && metin.split(" ").length > 1 && /^\d+\./.test(metin.trim())) {
                  numara = metin.split(" ")[0];
                  metin = metin.substring(numara.length).trim();
             }
@@ -171,38 +172,45 @@ function soruyuGoster(index) {
         });
         onculHTML += `</div>`;
     }
-
-    // --- Yerleşim Mantığı ---
-    const metinBirlestir = (anaSoruMetni + " " + soruKokuVurgulu).toLowerCase();
-    const iceriyorYukari = metinBirlestir.includes("yukarıdaki") || metinBirlestir.includes("yargılarından") || metinBirlestir.includes("ifadelerinden");
-    const iceriyorAsagi = metinBirlestir.includes("aşağıdaki");
+    
+    // Tüm metinleri birleştirip küçük harfe çevir
+    const tumMetinKucuk = (girisMetni + " " + anaSoruMetni + " " + soruKokuVurgulu).toLowerCase();
+    
+    // Anahtar Kelime Tespiti
+    const iceriyorYukari = tumMetinKucuk.includes("yukarıdaki") || tumMetinKucuk.includes("yargılarından") || tumMetinKucuk.includes("ifadelerinden");
+    const iceriyorAsagi = tumMetinKucuk.includes("aşağıdaki");
 
     if (onculHTML) {
-        // 1. Öncül Giriş Metni
-        if (soruObj.onculGiris) {
-            finalHTML += `<p>${soruObj.onculGiris}</p>`;
-        } else {
-            // Eğer onculGiris yoksa, ana soruyu kullan
-            finalHTML += `<p>${anaSoruMetni}</p>`; 
+        // ** Metin Parçası Oluşturma **
+        // Giriş metni ve ana soru metnini tek bir normal paragraf olarak birleştir
+        let ustMetin = girisMetni;
+        if (anaSoruMetni && girisMetni) {
+            // Eğer hem onculGiris hem soru varsa, ana soruyu onculGiris'in devamı yap
+            ustMetin += " " + anaSoruMetni;
+        } else if (anaSoruMetni) {
+            // Sadece ana soru varsa
+            ustMetin = anaSoruMetni;
+        }
+        
+        if (ustMetin) {
+            finalHTML += `<p>${ustMetin}</p>`;
         }
 
-        // 2. Yerleşim Kararı
+        // ** Yerleşim Kararı **
         if (iceriyorYukari) {
-            // İstenen: Metin (Türk-İslam...) -> Öncüller -> Soru Kökü
-            // Ana Soru metni zaten yukarıda basıldı. Şimdi Öncüller ve Soru Kökü geliyor.
+            // İstenen: Metin (Osmanlıya...) -> Öncüller -> Soru Kökü (Koyu Vurgulu)
             finalHTML += onculHTML;
             if (soruKokuVurgulu) {
                 finalHTML += `<p class='soru-koku-vurgu'>${soruKokuVurgulu}</p>`;
             }
         } 
         else if (iceriyorAsagi) {
-            // İstenen: Metin (Türk-İslam...) -> Öncüller -> Direkt Şıklar (Soru Kökü İptal)
-            // Soru Kökü (vurgulu kısım) bu senaryoda basılmaz.
+            // İstenen: Metin (Osmanlıya...) -> Öncüller -> DİREKT ŞIKLAR (Soru Kökü ATLANIR)
             finalHTML += onculHTML;
-            // Soru Kökü (soruKokuVurgulu) burada eklenmeyecek.
+            // soruKokuVurgulu bu senaryoda eklenmez.
         } 
         else {
-            // Varsayılan: Metin -> Öncüller -> Soru Kökü
+            // Varsayılan: Yukarıdaki gibi kabul et
             finalHTML += onculHTML;
             if (soruKokuVurgulu) {
                 finalHTML += `<p class='soru-koku-vurgu'>${soruKokuVurgulu}</p>`;
@@ -211,7 +219,6 @@ function soruyuGoster(index) {
 
     } else {
         // Öncülsüz Sorular
-        // Sadece soru metnini bas (Vurgulu soru kökü varsa onu da ekle)
         finalHTML = `<p>${anaSoruMetni}</p>`;
         if (soruKokuVurgulu) {
             finalHTML += `<p class='soru-koku-vurgu'>${soruKokuVurgulu}</p>`;
@@ -372,7 +379,7 @@ function testiBitir() {
             <h3 style="color:${mesajRengi}; font-size: 1.8rem; margin: 0 0 10px 0;">${motivasyonMesaji}</h3>
         </div>
         <p style="font-size:1.5rem; color:#fff;"><strong>TOPLAM PUAN: ${puan.toFixed(2)} / 100</strong></p>
-        <p style="font-size:1.2rem; color:#ccc;">Doğru: ${dogruSayisi} | Yanlış: ${yanlisSayisi} | Boş: ${bosSayisi}</p>
+        <p style="font-size:1.2rem; color:#ccc;">Doğru: ${dogruSayisi} | Yanlış: ${yanlisSayayisi} | Boş: ${bosSayisi}</p>
         <p style="font-size:1.4rem; color:#ffff00;">Net: ${net.toFixed(2)}</p>
         <br>
         <button class="nav-buton" onclick="cevapAnahtariniGoster()" style="width:100%; padding:20px; font-size:1.4rem; border:2px solid #ffff00; color:#ffff00; background:#000; font-weight:bold;">📝 CEVAP ANAHTARI (Tüm Soruları İncele)</button>
