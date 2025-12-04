@@ -138,7 +138,7 @@ function soruyuGoster(index) {
     if(cubuk) cubuk.style.width = `${yuzde}%`;
 
     // --------------------------------------------------------
-    // ** NVDA NİHAİ DÜZELTME ALANI **: Başlık ve Liste Uyarıları Kaldırıldı
+    // ** NVDA NİHAİ DÜZELTME ALANI **: Başlık ve Liste Uyarıları KALDIRILDI
     // --------------------------------------------------------
     const soruBaslik = document.getElementById("soru-metni");
     // Tüm ARIA etiketlerini ve rolleri temizle
@@ -153,7 +153,7 @@ function soruyuGoster(index) {
     
     // Vurgulu Soru Kökü HTML'ini oluştur
     if (soruObj.soruKoku) {
-        // P etiketleri kullanıldı, üzerinde 'heading' veya 'listitem' rolü yok.
+        // Düz P etiketi kullanıldı. (Başlık uyarısı yok)
         soruKokuVurguluHTML = `<p class='soru-koku-vurgu'>${soruObj.soruKoku}</p>`;
     }
 
@@ -173,7 +173,7 @@ function soruyuGoster(index) {
             }
             
             // DÜZELTME: role="listitem" KALDIRILDI. Sadece düz P etiketi kullanıldı.
-            // Bu, NVDA'nın '1. madde' demesini engellerken, aşağı ok ile ayrı satır olarak okunmasını sağlar.
+            // NVDA'ya sadece satır metnini okutur ve hiçbir etiket (1. madde, liste öğesi) uyarısı vermez.
             onculHTML += `
                 <p class='oncul-satir'>
                     <span class='oncul-no'>${numara}</span>
@@ -191,7 +191,6 @@ function soruyuGoster(index) {
         }
         
         // DÜZELTME: Ana Metin için P tagı kullanıldı. Role="heading" KALDIRILDI.
-        // NVDA, sorunun başına geldiğinde "Başlık" demeden okumaya başlar ve aşağı okla satır satır okur.
         if (ustMetin) {
             finalHTML += `<p class="soru-giris">${ustMetin}</p>`; 
         }
@@ -200,15 +199,12 @@ function soruyuGoster(index) {
         const yerlesim = soruObj.oncul_yerlesim || "ONCE_KOK"; 
         
         if (yerlesim === "ONCE_KOK") {
-            // İstenen: Metin (P) -> Öncül Kutusu (Düz Div/P) -> Koyu Soru Kökü (P)
             finalHTML += onculHTML;
             finalHTML += soruKokuVurguluHTML;
         } else if (yerlesim === "SONRA_KOK") {
-            // İstenen: Metin (P) -> Koyu Soru Kökü (P) -> Öncül Kutusu (Düz Div/P)
             finalHTML += soruKokuVurguluHTML;
             finalHTML += onculHTML;
         } else if (yerlesim === "ASAGIDAKI_SKIP") {
-            // İstenen: Metin (P) -> Öncül Kutusu (Düz Div/P) -> DİREKT ŞIKLAR
             finalHTML += onculHTML;
             // soruKokuVurguluHTML atlanır.
         }
