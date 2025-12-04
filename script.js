@@ -140,12 +140,17 @@ function soruyuGoster(index) {
     if(cubuk) cubuk.style.width = `${yuzde}%`;
 
     // --------------------------------------------------------
+<<<<<<< HEAD
     // ** ANA GÜNCELLEME ALANI **: Kesin Çözüm Mantığı
+=======
+    // ** ANA GÜNCELLEME ALANI **: Soru ve Öncül Yerleşimi Mantığı
+>>>>>>> c76a1f9bc0ad58673d9f7b840d222b2427516f2f
     // --------------------------------------------------------
     const soruBaslik = document.getElementById("soru-metni");
     let finalHTML = "";
     let anaSoruMetni = soruObj.soru || ""; 
     let onculHTML = "";
+<<<<<<< HEAD
     let soruKokuVurguluHTML = ""; 
     let girisMetni = soruObj.onculGiris || "";
     
@@ -153,6 +158,10 @@ function soruyuGoster(index) {
     if (soruObj.soruKoku) {
         soruKokuVurguluHTML = `<p class='soru-koku-vurgu'>${soruObj.soruKoku}</p>`;
     }
+=======
+    let soruKokuVurgulu = soruObj.soruKoku || ""; 
+    let girisMetni = soruObj.onculGiris || ""; 
+>>>>>>> c76a1f9bc0ad58673d9f7b840d222b2427516f2f
 
     // Öncül HTML'ini hazırla
     if (soruObj.onculler && soruObj.onculler.length > 0) {
@@ -176,6 +185,7 @@ function soruyuGoster(index) {
                 </div>`;
         });
         onculHTML += `</div>`;
+<<<<<<< HEAD
 
         // Öncül Giriş Metni ve Ana Metni Birleştir
         let ustMetin = girisMetni;
@@ -210,6 +220,60 @@ function soruyuGoster(index) {
         // Öncülsüz Sorular (Bu kısım zaten hep doğru çalışıyordu)
         finalHTML = `<p>${anaSoruMetni}</p>`;
         finalHTML += soruKokuVurguluHTML;
+=======
+    }
+    
+    // Tüm metinleri birleştirip küçük harfe çevir
+    const tumMetinKucuk = (girisMetni + " " + anaSoruMetni + " " + soruKokuVurgulu).toLowerCase();
+    
+    // Anahtar Kelime Tespiti
+    const iceriyorYukari = tumMetinKucuk.includes("yukarıdaki") || tumMetinKucuk.includes("yargılarından") || tumMetinKucuk.includes("ifadelerinden");
+    const iceriyorAsagi = tumMetinKucuk.includes("aşağıdaki");
+
+    if (onculHTML) {
+        // ** Metin Parçası Oluşturma **
+        // Giriş metni ve ana soru metnini tek bir normal paragraf olarak birleştir
+        let ustMetin = girisMetni;
+        if (anaSoruMetni && girisMetni) {
+            // Eğer hem onculGiris hem soru varsa, ana soruyu onculGiris'in devamı yap
+            ustMetin += " " + anaSoruMetni;
+        } else if (anaSoruMetni) {
+            // Sadece ana soru varsa
+            ustMetin = anaSoruMetni;
+        }
+        
+        if (ustMetin) {
+            finalHTML += `<p>${ustMetin}</p>`;
+        }
+
+        // ** Yerleşim Kararı **
+        if (iceriyorYukari) {
+            // İstenen: Metin (Osmanlıya...) -> Öncüller -> Soru Kökü (Koyu Vurgulu)
+            finalHTML += onculHTML;
+            if (soruKokuVurgulu) {
+                finalHTML += `<p class='soru-koku-vurgu'>${soruKokuVurgulu}</p>`;
+            }
+        } 
+        else if (iceriyorAsagi) {
+            // İstenen: Metin (Osmanlıya...) -> Öncüller -> DİREKT ŞIKLAR (Soru Kökü ATLANIR)
+            finalHTML += onculHTML;
+            // soruKokuVurgulu bu senaryoda eklenmez.
+        } 
+        else {
+            // Varsayılan: Yukarıdaki gibi kabul et
+            finalHTML += onculHTML;
+            if (soruKokuVurgulu) {
+                finalHTML += `<p class='soru-koku-vurgu'>${soruKokuVurgulu}</p>`;
+            }
+        }
+
+    } else {
+        // Öncülsüz Sorular
+        finalHTML = `<p>${anaSoruMetni}</p>`;
+        if (soruKokuVurgulu) {
+            finalHTML += `<p class='soru-koku-vurgu'>${soruKokuVurgulu}</p>`;
+        }
+>>>>>>> c76a1f9bc0ad58673d9f7b840d222b2427516f2f
     }
     
     // H2'nin içine final HTML'i yerleştir
@@ -366,7 +430,7 @@ function testiBitir() {
             <h3 style="color:${mesajRengi}; font-size: 1.8rem; margin: 0 0 10px 0;">${motivasyonMesaji}</h3>
         </div>
         <p style="font-size:1.5rem; color:#fff;"><strong>TOPLAM PUAN: ${puan.toFixed(2)} / 100</strong></p>
-        <p style="font-size:1.2rem; color:#ccc;">Doğru: ${dogruSayisi} | Yanlış: ${yanlisSayisi} | Boş: ${bosSayisi}</p>
+        <p style="font-size:1.2rem; color:#ccc;">Doğru: ${dogruSayisi} | Yanlış: ${yanlisSayayisi} | Boş: ${bosSayisi}</p>
         <p style="font-size:1.4rem; color:#ffff00;">Net: ${net.toFixed(2)}</p>
         <br>
         <button class="nav-buton" onclick="cevapAnahtariniGoster()" style="width:100%; padding:20px; font-size:1.4rem; border:2px solid #ffff00; color:#ffff00; background:#000; font-weight:bold;">📝 CEVAP ANAHTARI (Tüm Soruları İncele)</button>
