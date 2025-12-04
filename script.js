@@ -140,7 +140,7 @@ function soruyuGoster(index) {
     if(cubuk) cubuk.style.width = `${yuzde}%`;
 
     // --------------------------------------------------------
-    // ** ANA GÜNCELLEME ALANI **: Kesin Çözüm Mantığı (NVDA Serbest Gezinme Düzeltmesi)
+    // ** ANA GÜNCELLEME ALANI **: Kesin Çözüm Mantığı (NVDA Nihai Düzeltme)
     // --------------------------------------------------------
     const soruBaslik = document.getElementById("soru-metni");
     // NVDA Düzeltmesi: Bu öğenin ARIA etiketlerini sıfırlıyoruz.
@@ -155,12 +155,14 @@ function soruyuGoster(index) {
     
     // Vurgulu Soru Kökü HTML'ini oluştur
     if (soruObj.soruKoku) {
+        // Vurgulu Soru Kökü de normal paragraf olarak kalmalı, sadece CSS class'ı ile kalınlaştırılmalı.
         soruKokuVurguluHTML = `<p class='soru-koku-vurgu'>${soruObj.soruKoku}</p>`;
     }
 
     // Öncül HTML'ini hazırla
     if (soruObj.onculler && soruObj.onculler.length > 0) {
-        onculHTML += `<div class='oncul-kapsayici' role="list">`; // Öncül listesini duyur
+        // Öncül kutusu (role="list" ve role="listitem" kaldırıldı)
+        onculHTML += `<div class='oncul-kapsayici'>`; 
         soruObj.onculler.forEach(oncul => {
             // Öncülleri numara ve metin olarak ayır
             const match = oncul.match(/^(\d+\.?|\w\.?)\s*(.*)/);
@@ -173,11 +175,13 @@ function soruyuGoster(index) {
                  metin = metin.substring(numara.length).trim();
             }
             
+            // NVDA'ya satır satır okutmak için her satırı ayrı bir P etiketi ile sarmalama
+            // (Bu P etiketi, P tagına verdiğimiz başlık rolünden farklı davranacaktır)
             onculHTML += `
-                <div class='oncul-satir' role="listitem"> // NVDA'ya tek tek okutmak için
+                <p class='oncul-satir'>
                     <span class='oncul-no'>${numara}</span>
                     <span class='oncul-yazi'>${metin}</span>
-                </div>`;
+                </p>`;
         });
         onculHTML += `</div>`;
 
@@ -190,8 +194,9 @@ function soruyuGoster(index) {
         }
         
         // 1. NVDA/SERBEST GEZİNME Düzeltmesi: Metni P tagı içine al, ama ona başlık rolü ver
+        // H tuşuyla bulunsun, Aşağı Ok ile satır satır gezinsin.
         if (ustMetin) {
-            finalHTML += `<p role="heading" aria-level="3">${ustMetin}</p>`; // P tagı içine Başlık rolü eklendi!
+            finalHTML += `<p role="heading" aria-level="3">${ustMetin}</p>`; 
         }
 
         // Akış Kararı: JSON'daki oncul_yerlesim etiketine göre yerleştirme
