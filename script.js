@@ -55,15 +55,17 @@ document.addEventListener("DOMContentLoaded", () => {
             testiYukle(dosyaAdi, testNo);
         } else {
              const soruAlani = document.getElementById("soru-alani");
+             // Hata mesajındaki H2 başlığı da artık düz DIV olmalıdır.
              if(soruAlani) {
-                 soruAlani.innerHTML = `<div style="text-align:center; padding:20px;"><h2>Test ID Eşleşme Hatası</h2><p>Lütfen testler.html dosyasındaki ID'leri kontrol edin.</p><a href="testler.html" class="aksiyon-butonu">Testlere Dön</a></div>`;
+                 soruAlani.innerHTML = `<div style="text-align:center; padding:20px;"><div class="baslik-h2-gibi">Test ID Eşleşme Hatası</div><p>Lütfen testler.html dosyasındaki ID'leri kontrol edin.</p><a href="testler.html" class="aksiyon-butonu">Testlere Dön</a></div>`;
                  if(document.querySelector(".test-ust-bar")) document.querySelector(".test-ust-bar").style.display = "none";
              }
         }
     } else {
         const soruAlani = document.getElementById("soru-alani");
+         // Hata mesajındaki H2 başlığı da artık düz DIV olmalıdır.
         if(soruAlani) {
-             soruAlani.innerHTML = `<div style="text-align:center; padding:20px;"><h2>Test Bulunamadı</h2><a href="testler.html" class="aksiyon-butonu">Testlere Dön</a></div>`;
+             soruAlani.innerHTML = `<div style="text-align:center; padding:20px;"><div class="baslik-h2-gibi">Test Bulunamadı</div><a href="testler.html" class="aksiyon-butonu">Testlere Dön</a></div>`;
             if(document.querySelector(".test-ust-bar")) document.querySelector(".test-ust-bar").style.display = "none";
         }
     }
@@ -92,16 +94,19 @@ function testiYukle(dosyaAdi, testNo) {
                     navigasyonButonlariniEkle();
                     soruyuGoster(0);
                 } else {
-                    document.getElementById("soru-alani").innerHTML = `<div style="text-align:center; padding:20px;"><h2>Test No Bulunamadı</h2><p>Lütfen JSON dosyasındaki test numaralarını kontrol edin.</p><a href="testler.html" class="aksiyon-butonu">Testlere Dön</a></div>`;
+                    // Hata mesajındaki H2 başlığı da artık düz DIV olmalıdır.
+                    document.getElementById("soru-alani").innerHTML = `<div style="text-align:center; padding:20px;"><div class="baslik-h2-gibi">Test No Bulunamadı</div><p>Lütfen JSON dosyasındaki test numaralarını kontrol edin.</p><a href="testler.html" class="aksiyon-butonu">Testlere Dön</a></div>`;
                 }
             } else {
-                 document.getElementById("soru-alani").innerHTML = `<div style="text-align:center; padding:20px;"><h2>JSON Yapısı Hatalı</h2><a href="testler.html" class="aksiyon-butonu">Testlere Dön</a></div>`;
+                 // Hata mesajındaki H2 başlığı da artık düz DIV olmalıdır.
+                 document.getElementById("soru-alani").innerHTML = `<div style="text-align:center; padding:20px;"><div class="baslik-h2-gibi">JSON Yapısı Hatalı</div><a href="testler.html" class="aksiyon-butonu">Testlere Dön</a></div>`;
             }
         })
         .catch(error => {
             console.error("JSON çekme hatası:", error);
             const soruAlani = document.getElementById("soru-alani");
-            soruAlani.innerHTML = `<div style="text-align:center; padding:20px; color:#ff0000;"><h2>Veri Yükleme Hatası (JSON Hatalı)</h2><p>Lütfen Konsol (F12) üzerinden hatanın kaynağını kontrol edin. Muhtemelen bir JSON dosyasında virgül, tırnak veya parantez hatası var.</p><a href="testler.html" class"aksiyon-butonu">Testlere Dön</a></div>`;
+             // Hata mesajındaki H2 başlığı da artık düz DIV olmalıdır.
+            soruAlani.innerHTML = `<div style="text-align:center; padding:20px; color:#ff0000;"><div class="baslik-h2-gibi">Veri Yükleme Hatası (JSON Hatalı)</div><p>Lütfen Konsol (F12) üzerinden hatanın kaynağını kontrol edin. Muhtemelen bir JSON dosyasında virgül, tırnak veya parantez hatası var.</p><a href="testler.html" class"aksiyon-butonu">Testlere Dön</a></div>`;
         });
 }
 
@@ -138,10 +143,22 @@ function soruyuGoster(index) {
     if(cubuk) cubuk.style.width = `${yuzde}%`;
 
     // --------------------------------------------------------
-    // ** NVDA NİHAİ DÜZELTME ALANI **: Başlık ve Liste Uyarıları KALDIRILDI
+    // ** NVDA NİHAİ DÜZELTME ALANI **: Odak ve Okuma Kontrolü
     // --------------------------------------------------------
+    
+    // Soru Sayacını Güncelle ve H Odak Noktasını Ayarla
+    const soruSayacElement = document.getElementById("soru-sayac");
+    soruSayacElement.innerText = `Soru ${index + 1} / ${mevcutSorular.length}`;
+    
+    // DÜZELTME 1: Soru Numarasına H ile Ulaşım ve Direkt Odaklanma
+    // Soru sayacına 'heading' rolü ve tabindex verilerek H tuşuyla ulaşım ve ilk odak garantilenir.
+    soruSayacElement.setAttribute("role", "heading");
+    soruSayacElement.setAttribute("aria-level", "2"); // H2 gibi algılanmasını sağlar.
+    soruSayacElement.setAttribute("tabindex", "-1"); // Programatik odaklanmayı mümkün kılar.
+
+
     const soruBaslik = document.getElementById("soru-metni");
-    // Tüm ARIA etiketlerini ve rolleri temizle
+    // Soru metni alanından tüm ARIA etiketlerini ve rolleri temizle
     soruBaslik.removeAttribute('role'); 
     soruBaslik.removeAttribute('aria-label');
 
@@ -159,7 +176,7 @@ function soruyuGoster(index) {
 
     // Öncül HTML'ini hazırla
     if (soruObj.onculler && soruObj.onculler.length > 0) {
-        // Öncül kutusu (role="list" KALDIRILDI)
+        // Öncül kutusu
         onculHTML += `<div class='oncul-kapsayici'>`; 
         soruObj.onculler.forEach(oncul => {
             // Öncülleri numara ve metin olarak ayır
@@ -172,8 +189,8 @@ function soruyuGoster(index) {
                  metin = metin.substring(numara.length).trim();
             }
             
-            // DÜZELTME: role="listitem" KALDIRILDI. Sadece düz P etiketi kullanıldı.
-            // NVDA'ya sadece satır metnini okutur ve hiçbir etiket (1. madde, liste öğesi) uyarısı vermez.
+            // DÜZELTME 2 & 3: role="listitem" KALDIRILDI. Sadece düz P etiketi kullanıldı.
+            // NVDA'ya sadece satır metnini okutur ve hiçbir etiket (başlık, liste öğesi) uyarısı vermez.
             onculHTML += `
                 <p class='oncul-satir'>
                     <span class='oncul-no'>${numara}</span>
@@ -216,12 +233,11 @@ function soruyuGoster(index) {
         finalHTML += soruKokuVurguluHTML;
     }
     
-    // H2'nin içine final HTML'i yerleştir
+    // Soru metni HTML'i yerleştirilir
     soruBaslik.innerHTML = finalHTML;
     
     // --------------------------------------------------------
 
-    document.getElementById("soru-sayac").innerText = `Soru ${index + 1} / ${mevcutSorular.length}`;
     const siklarKutusu = document.getElementById("siklar-alani");
     siklarKutusu.innerHTML = "";
     
@@ -256,12 +272,9 @@ function soruyuGoster(index) {
     document.getElementById("btn-onceki").disabled = (index === 0);
     document.getElementById("btn-sonraki").disabled = (index === mevcutSorular.length - 1);
 
-    // Soruyu Başlatmak için odak noktası, şıklar değil, ana soru metni olmalı.
+    // DÜZELTME 4: Odak, her zaman soru numarası başlığına verilir.
     if (kullaniciCevaplari[index] === null) {
-        // Ana soru metnini ve öncülleri içeren soruBaslik div'ine tabIndex ekleyerek odaklanılmasını sağlarız.
-        soruBaslik.setAttribute("tabindex", "0");
-        soruBaslik.focus();
-        soruBaslik.removeAttribute("tabindex"); // Odaklandıktan sonra tab sırasından çıkarılır
+        soruSayacElement.focus();
     }
 }
 
@@ -390,7 +403,7 @@ function testiBitir() {
     // Cevap Anahtarı butonu buraya dinamik olarak eklenir
     const sonucHTML = `
         <div style="border: 4px solid #fff; padding: 20px; border-radius: 10px; margin-bottom: 20px; background:#000;">
-            <h3 style="color:${mesajRengi}; font-size: 1.8rem; margin: 0 0 10px 0;">${motivasyonMesaji}</h3>
+            <div style="color:${mesajRengi}; font-size: 1.8rem; margin: 0 0 10px 0;">${motivasyonMesaji}</div>
         </div>
         <p style="font-size:1.5rem; color:#fff;"><strong>TOPLAM PUAN: ${puan.toFixed(2)} / 100</strong></p>
         <p style="font-size:1.2rem; color:#ccc;">Doğru: ${dogruSayisi} | Yanlış: ${yanlisSayisi} | Boş: ${bosSayisi}</p>
@@ -409,7 +422,8 @@ function cevapAnahtariniGoster() {
     listeDiv.innerHTML = "";
     
     const baslik = document.getElementById("yanlislar-baslik");
-    if(baslik) baslik.innerText = "CEVAP ANAHTARI";
+    // Yanlışlar başlığı H2-gibi görünmesi için DIV yapıldı
+    if(baslik) baslik.innerHTML = `<div class="baslik-h2-gibi">CEVAP ANAHTARI</div>`;
     
     document.getElementById("yanlislar-listesi").style.display = "block";
     
@@ -461,7 +475,7 @@ function cevapAnahtariniGoster() {
         // KART HTML'İNİ OLUŞTUR
         kart.innerHTML = `
             <div style="border-bottom:1px solid #444; padding-bottom:10px; margin-bottom:10px;">
-                <h4 style="margin:0; color:#888;">Soru ${index + 1} ${sonucIkonu}</h4>
+                <div style="margin:0; color:#888;">Soru ${index + 1} ${sonucIkonu}</div>
                 <div style="margin-top:10px; font-size:1.1rem;">${soruMetniGoster}</div>
             </div>
             
