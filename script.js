@@ -7,7 +7,7 @@ let isaretlemeKilitli = false;
 // JSON DOSYALARININ YOLU
 const JSON_PATH = './data/';
 
-// JSON Dosya Adı Eşleştirme Haritası (KORUNMUŞTUR)
+// JSON Dosya Adı Eşleştirme Haritası
 const DOSYA_ESLESTIRME = {
     "ilkturkislam": "ilkturkislamdevletleri.json",
     "islamoncesi": "islamoncesiturkdevletleri.json",
@@ -15,14 +15,13 @@ const DOSYA_ESLESTIRME = {
     "osmanlikurulus": "osmanlikurulus.json"
 };
 
-// --- SES MOTORU (PC AYARLARI KORUNMUŞTUR) ---
+// --- SES MOTORU ---
 const sesler = {
     dogru: new Audio('dogru.mp3'),
     yanlis: new Audio('yanlis.mp3'),
     bitis: new Audio('bitis.mp3')
 };
 
-// Ses Seviyeleri
 sesler.dogru.volume = 1.0; 
 sesler.yanlis.volume = 0.3; 
 sesler.bitis.volume = 0.3; 
@@ -64,7 +63,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-// JSON dosyasını çekme ve testi başlatma fonksiyonu
 function testiYukle(dosyaAdi, testNo) {
     const url = JSON_PATH + dosyaAdi;
     fetch(url)
@@ -111,7 +109,7 @@ function navigasyonButonlariniEkle() {
 function oncekiSoru() { if (mevcutSoruIndex > 0) soruyuGoster(mevcutSoruIndex - 1); }
 function sonrakiSoru() { if (mevcutSoruIndex < mevcutSorular.length - 1) soruyuGoster(mevcutSoruIndex + 1); }
 
-// --- SORU GÖSTERME (NVDA İÇİN ÖZEL DÜZENLENMİŞTİR) ---
+// --- SORU GÖSTERME (VOICEOVER VE NVDA UYUMLU) ---
 function soruyuGoster(index) {
     window.scrollTo({ top: 0, behavior: 'auto' });
 
@@ -131,14 +129,14 @@ function soruyuGoster(index) {
     if(cubuk) cubuk.style.width = `${yuzde}%`;
 
     // -------------------------------------------------------------
-    // 1. GÖRSEL ALAN (Ekranda Görünen, NVDA'dan Gizlenen Kısım)
+    // 1. GÖRSEL ALAN (Ekranda Görünen, Screen Reader'dan Gizlenen)
     // -------------------------------------------------------------
     const soruSayacElement = document.getElementById("soru-sayac");
     soruSayacElement.innerText = `Soru ${index + 1} / ${mevcutSorular.length}`;
-    soruSayacElement.setAttribute("aria-hidden", "true"); // NVDA okumasın
+    soruSayacElement.setAttribute("aria-hidden", "true"); 
 
     const soruBaslik = document.getElementById("soru-metni");
-    soruBaslik.setAttribute('aria-hidden', 'true'); // NVDA okumasın
+    soruBaslik.setAttribute('aria-hidden', 'true'); 
 
     let finalHTML = "";
     let anaSoruMetni = soruObj.soru || ""; 
@@ -194,63 +192,64 @@ function soruyuGoster(index) {
     soruBaslik.innerHTML = finalHTML;
     
     // -------------------------------------------------------------
-    // 2. NVDA ALANI (Ekran Dışı, Başlıksız, Satır Satır Okuma)
+    // 2. ERİŞİLEBİLİRLİK ALANI (GİZLİ OKUMA ALANI)
     // -------------------------------------------------------------
     
-    // Bu alan daha önce varsa temizleyelim, yoksa oluşturalım
-    let nvdaAlani = document.getElementById("nvda-ozel-alan");
-    if (!nvdaAlani) {
-        nvdaAlani = document.createElement("div");
-        nvdaAlani.id = "nvda-ozel-alan";
-        // Ekrandan dışarı atıyoruz ama display:none yapmıyoruz ki okusun
-        nvdaAlani.style.cssText = "position: absolute; left: -9999px; top: 0; width: 1px; height: 1px; overflow: hidden;";
-        // Tabindex -1 ile odaklanabilir yapıyoruz (JS ile focus atacağız)
-        nvdaAlani.setAttribute("tabindex", "-1");
-        document.body.appendChild(nvdaAlani);
+    let erisilebilirlikAlani = document.getElementById("erisilebilirlik-ozel-alan");
+    if (!erisilebilirlikAlani) {
+        erisilebilirlikAlani = document.createElement("div");
+        erisilebilirlikAlani.id = "erisilebilirlik-ozel-alan";
+        
+        // VoiceOver ve NVDA için görünmez ama erişilebilir stil
+        erisilebilirlikAlani.style.cssText = "position: absolute; left: -9999px; top: 0; width: 1px; height: 1px; overflow: hidden;";
+        
+        // VoiceOver için "role" ve "aria-label" çok önemlidir
+        erisilebilirlikAlani.setAttribute("role", "region"); 
+        erisilebilirlikAlani.setAttribute("aria-label", "Soru Metni"); 
+        erisilebilirlikAlani.setAttribute("tabindex", "-1");
+        document.body.appendChild(erisilebilirlikAlani);
     }
-    nvdaAlani.innerHTML = ""; // İçini temizle
+    erisilebilirlikAlani.innerHTML = ""; // Temizle
 
-    // A. Soru Numarası (Başlık etiketi YOK, düz P etiketi)
+    // A. Soru Numarası
     let pSayac = document.createElement("p");
     pSayac.innerText = `Soru ${index + 1}`;
-    nvdaAlani.appendChild(pSayac);
+    erisilebilirlikAlani.appendChild(pSayac);
 
-    // B. Giriş Metni / Üst Metin
+    // B. Giriş Metni
     if (girisMetni && girisMetni !== anaSoruMetni) {
         let pGiris = document.createElement("p");
         pGiris.innerText = girisMetni;
-        nvdaAlani.appendChild(pGiris);
+        erisilebilirlikAlani.appendChild(pGiris);
     }
     
-    // C. Ana Soru Metni (Eğer öncül yoksa veya bağımsızsa)
+    // C. Ana Soru Metni
     if (anaSoruMetni && (!soruObj.onculler || soruObj.onculler.length === 0)) {
          if(!soruObj.soruKoku) {
             let pAna = document.createElement("p");
             pAna.innerText = anaSoruMetni;
-            nvdaAlani.appendChild(pAna);
+            erisilebilirlikAlani.appendChild(pAna);
          }
     }
 
-    // D. Öncüller (Her biri AYRI <p> etiketi -> Yön tuşlarıyla gezilebilir)
+    // D. Öncüller (Satır satır okunabilmesi için ayrı P etiketleri)
     if (soruObj.onculler && soruObj.onculler.length > 0) {
         soruObj.onculler.forEach((oncul, i) => {
              const match = oncul.match(/^(\d+\.?|\w\.?)\s*(.*)/);
              const metin = match ? match[2] || oncul : oncul;
              
              let pOncul = document.createElement("p");
-             // "1. Madde içeriği" şeklinde ekliyoruz
              pOncul.innerText = (i + 1) + ". " + metin; 
-             nvdaAlani.appendChild(pOncul);
+             erisilebilirlikAlani.appendChild(pOncul);
         });
     }
 
-    // E. Soru Kökü (En son, ayrı satır)
+    // E. Soru Kökü
     if (soruObj.soruKoku) {
         let pKoku = document.createElement("p");
         pKoku.innerText = soruObj.soruKoku;
-        nvdaAlani.appendChild(pKoku);
+        erisilebilirlikAlani.appendChild(pKoku);
     }
-
 
     // --- ŞIKLAR ALANI ---
     const siklarKutusu = document.getElementById("siklar-alani");
@@ -285,11 +284,13 @@ function soruyuGoster(index) {
     document.getElementById("btn-onceki").disabled = (index === 0);
     document.getElementById("btn-sonraki").disabled = (index === mevcutSorular.length - 1);
 
-    // --- ODAK YÖNETİMİ ---
-    // Cevap verilmemişse direkt NVDA alanına odaklan.
-    // NVDA tüm kapsayıcıyı okumaya başlayabilir, yön tuşlarıyla içine girip satır satır gezebilirsin.
+    // --- ODAK YÖNETİMİ (VoiceOver İçin Kritik Düzeltme) ---
     if (kullaniciCevaplari[index] === null) {
-        nvdaAlani.focus();
+        // VoiceOver DOM güncellemelerini algılaması için minik bir gecikmeye ihtiyaç duyar.
+        // 100ms gecikme ile odağı kaydırıyoruz.
+        setTimeout(() => {
+            if(erisilebilirlikAlani) erisilebilirlikAlani.focus();
+        }, 100);
     }
 }
 
