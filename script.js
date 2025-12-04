@@ -143,6 +143,10 @@ function soruyuGoster(index) {
     // ** ANA GÜNCELLEME ALANI **: Kesin Çözüm Mantığı (ONCE_KOK / SONRA_KOK)
     // --------------------------------------------------------
     const soruBaslik = document.getElementById("soru-metni");
+    // NVDA Düzeltmesi: Sorunun bir navigasyon başlığı olarak okunmasını engeller.
+    soruBaslik.setAttribute('role', 'region'); 
+    soruBaslik.setAttribute('aria-label', 'Soru Metni');
+
     let finalHTML = "";
     let anaSoruMetni = soruObj.soru || ""; 
     let onculHTML = "";
