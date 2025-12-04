@@ -4,8 +4,16 @@ let mevcutSoruIndex = 0;
 let kullaniciCevaplari = [];
 let isaretlemeKilitli = false;
 
-// JSON DOSYALARININ YOLU (Daha önce konuştuğumuz klasörleme stratejisine göre ayarlandı)
+// JSON DOSYALARININ YOLU
 const JSON_PATH = './data/';
+
+// JSON Dosya Adı Eşleştirme Haritası (script.js'in link ID'lerini, GitHub'daki tam dosya adlarıyla eşleştirir)
+const DOSYA_ESLESTIRME = {
+    "ilkturkislam": "ilkturkislamdevletleri.json",
+    "islamoncesi": "islamoncesiturkdevletleri.json",
+    "osmanlikultur": "osmanlikulturmedeniyeti.json",
+    "osmanlikurulus": "osmanlikurulus.json"
+};
 
 // --- SES MOTORU (PC AYARLARI KORUNDU - MP3 SİSTEMİ) ---
 const sesler = {
@@ -30,15 +38,27 @@ function sesUret(tur) {
 // --- TEST YÖNETİMİ ---
 document.addEventListener("DOMContentLoaded", () => {
     const urlParams = new URLSearchParams(window.location.search);
-    // testID artık eski karmaşık isimleri (islamiyet_test1) içeriyor
     const testParam = urlParams.get('id'); 
     
     if (testParam) {
-        // Parametreyi dosya adına çevirme mantığı
-        // Örnek: 'islamoncesi_test1' -> 'islamoncesi.json'
-        const dosyaAdi = testParam.substring(0, testParam.lastIndexOf('_')) + '.json';
+        // 1. Linkten gelen test ön ekini ayır (örn: ilkturkislam_test1 -> ilkturkislam)
+        const onEk = testParam.substring(0, testParam.lastIndexOf('_'));
         
-        testiYukle(dosyaAdi, testParam);
+        // 2. Eşleştirme haritasından tam dosya adını al
+        const dosyaAdi = DOSYA_ESLESTIRME[onEk];
+        
+        // 3. Test numarasını al (örn: test1 -> 1)
+        const testNo = parseInt(testParam.slice(-1)); 
+
+        if (dosyaAdi && !isNaN(testNo)) {
+            testiYukle(dosyaAdi, testNo);
+        } else {
+             const soruAlani = document.getElementById("soru-alani");
+             if(soruAlani) {
+                 soruAlani.innerHTML = `<div style="text-align:center; padding:20px;"><h2>Test ID Eşleşme Hatası</h2><p>Lütfen testler.html dosyasındaki ID'leri kontrol edin.</p><a href="testler.html" class="aksiyon-butonu">Testlere Dön</a></div>`;
+                 if(document.querySelector(".test-ust-bar")) document.querySelector(".test-ust-bar").style.display = "none";
+             }
+        }
     } else {
         const soruAlani = document.getElementById("soru-alani");
         if(soruAlani) {
@@ -49,24 +69,22 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // Yeni: JSON dosyasını çekme ve testi başlatma fonksiyonu
-function testiYukle(dosyaAdi, testID) {
+function testiYukle(dosyaAdi, testNo) {
     const url = JSON_PATH + dosyaAdi;
     fetch(url)
         .then(response => {
             if (!response.ok) {
+                // Eğer yüklenemezse, kullanıcıya net bir hata mesajı gönder
                 throw new Error(`Dosya yüklenemedi: ${response.statusText}`);
             }
             return response.json();
         })
         .then(data => {
-            // data bir dizi [ { "ust_baslik":..., "tests": [...] } ] şeklinde geliyor.
-            // Bizim JSON yapımızda her dosya tek bir üst başlık içeriyor.
             const ustBaslikObj = data[0]; 
             
             if (ustBaslikObj && ustBaslikObj.tests) {
-                // İstenen alt testi bul (testID'nin sonundaki sayıya göre)
-                const testNo = parseInt(testID.slice(-1)); 
-                const istenenTest = ustBaslikObj.tests[testNo - 1]; // Diziler 0'dan başladığı için -1
+                // İstenen alt testi bul (Test 1 -> 0. index)
+                const istenenTest = ustBaslikObj.tests[testNo - 1]; 
 
                 if (istenenTest) {
                     mevcutSorular = istenenTest.sorular;
@@ -74,7 +92,7 @@ function testiYukle(dosyaAdi, testID) {
                     navigasyonButonlariniEkle();
                     soruyuGoster(0);
                 } else {
-                    document.getElementById("soru-alani").innerHTML = `<div style="text-align:center; padding:20px;"><h2>Test No Bulunamadı</h2><a href="testler.html" class="aksiyon-butonu">Testlere Dön</a></div>`;
+                    document.getElementById("soru-alani").innerHTML = `<div style="text-align:center; padding:20px;"><h2>Test No Bulunamadı</h2><p>Lütfen JSON dosyasındaki test numaralarını kontrol edin.</p><a href="testler.html" class="aksiyon-butonu">Testlere Dön</a></div>`;
                 }
             } else {
                  document.getElementById("soru-alani").innerHTML = `<div style="text-align:center; padding:20px;"><h2>JSON Yapısı Hatalı</h2><a href="testler.html" class="aksiyon-butonu">Testlere Dön</a></div>`;
@@ -82,9 +100,12 @@ function testiYukle(dosyaAdi, testID) {
         })
         .catch(error => {
             console.error("JSON çekme hatası:", error);
-            document.getElementById("soru-alani").innerHTML = `<div style="text-align:center; padding:20px; color:#ff0000;"><h2>Veri Yükleme Hatası: ${error.message}</h2><p>Lütfen dosya adlarını (örnek: data/ilkturkislamdevletleri.json) kontrol ediniz.</p><a href="testler.html" class="aksiyon-butonu">Testlere Dön</a></div>`;
+            // Hata mesajını kullanıcıya gösterirken dosya adını vurgula
+            const soruAlani = document.getElementById("soru-alani");
+            soruAlani.innerHTML = `<div style="text-align:center; padding:20px; color:#ff0000;"><h2>Veri Yükleme Hatası</h2><p>Uygulama, gerekli olan dosyayı bulamadı: <b>${url}</b></p><p>Lütfen GitHub'daki dosya adlarını ve yolunu kontrol edin.</p><a href="testler.html" class="aksiyon-butonu">Testlere Dön</a></div>`;
         });
 }
+
 
 function navigasyonButonlariniEkle() {
     const soruAlani = document.getElementById("soru-alani");
@@ -181,7 +202,7 @@ function soruyuGoster(index) {
         btn.innerText = getSikHarfi(i) + ") " + sik;
         btn.className = "sik-butonu";
         if (kullaniciCevaplari[index] !== null) {
-            if (kullaniciCevaplari[index] === i) {
+            if (getSikHarfi(i) === getSikHarfi(kullaniciCevaplari[index])) {
                 if (getSikHarfi(i) === soruObj.dogru_cevap) { btn.classList.add("dogru"); } else { btn.classList.add("yanlis"); } // Kontrolü güncelledim
             }
             btn.disabled = true;
