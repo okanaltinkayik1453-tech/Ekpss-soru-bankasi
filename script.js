@@ -140,52 +140,85 @@ function soruyuGoster(index) {
     if(cubuk) cubuk.style.width = `${yuzde}%`;
 
     // --------------------------------------------------------
-    // ** NVDA HATA GİDERME **: Sadece h2'nin içini düz metin yapıyoruz.
+    // ** ANA GÜNCELLEME ALANI **: Soru ve Öncül Yerleşimi Mantığı
     // --------------------------------------------------------
     const soruBaslik = document.getElementById("soru-metni");
-    
     let finalHTML = "";
     let anaSoruMetni = soruObj.soru || ""; 
-    let soruKokuVurgulu = "";
-    
+    let onculHTML = "";
+    let soruKokuVurgulu = soruObj.soruKoku || ""; 
+
+    // Öncül HTML'ini hazırla
     if (soruObj.onculler && soruObj.onculler.length > 0) {
-        
-        // 1. Giriş Metni (Varsa)
-        if (soruObj.onculGiris) {
-            finalHTML += `<p>${soruObj.onculGiris}</p>`; // P etiketi düz metin okutur
-        }
-        
-        // 2. Öncül Kutusu (Sarı Çizgili Alan)
-        finalHTML += `<div class='oncul-kapsayici'>`;
+        onculHTML += `<div class='oncul-kapsayici'>`;
         soruObj.onculler.forEach(oncul => {
-            let numara = oncul.split(" ")[0]; 
-            let metin = oncul.substring(numara.length).trim();
+            // Öncülleri numara ve metin olarak ayır
+            const match = oncul.match(/^(\d+\.?|\w\.?)\s*(.*)/);
+            let numara = match ? match[1] : ''; 
+            let metin = match ? match[2] : oncul;
             
-            finalHTML += `
+            // Eğer numara boşsa (1. konya gibi), numara olarak kullan
+            if (!numara && metin.includes(".")) {
+                 numara = metin.split(" ")[0];
+                 metin = metin.substring(numara.length).trim();
+            }
+            
+            onculHTML += `
                 <div class='oncul-satir'>
                     <span class='oncul-no'>${numara}</span>
                     <span class='oncul-yazi'>${metin}</span>
                 </div>`;
         });
-        finalHTML += `</div>`;
-        
-        // 3. Soru Kökü (Alttaki Vurgulu Kısım)
-        if (soruObj.soruKoku) {
-            soruKokuVurgulu = soruObj.soruKoku;
+        onculHTML += `</div>`;
+    }
+
+    // --- Yerleşim Mantığı ---
+    const metinBirlestir = (anaSoruMetni + " " + soruKokuVurgulu).toLowerCase();
+    const iceriyorYukari = metinBirlestir.includes("yukarıdaki") || metinBirlestir.includes("yargılarından") || metinBirlestir.includes("ifadelerinden");
+    const iceriyorAsagi = metinBirlestir.includes("aşağıdaki");
+
+    if (onculHTML) {
+        // 1. Öncül Giriş Metni
+        if (soruObj.onculGiris) {
+            finalHTML += `<p>${soruObj.onculGiris}</p>`;
+        } else {
+            // Eğer onculGiris yoksa, ana soruyu kullan
+            finalHTML += `<p>${anaSoruMetni}</p>`; 
+        }
+
+        // 2. Yerleşim Kararı
+        if (iceriyorYukari) {
+            // İstenen: Metin (Türk-İslam...) -> Öncüller -> Soru Kökü
+            // Ana Soru metni zaten yukarıda basıldı. Şimdi Öncüller ve Soru Kökü geliyor.
+            finalHTML += onculHTML;
+            if (soruKokuVurgulu) {
+                finalHTML += `<p class='soru-koku-vurgu'>${soruKokuVurgulu}</p>`;
+            }
+        } 
+        else if (iceriyorAsagi) {
+            // İstenen: Metin (Türk-İslam...) -> Öncüller -> Direkt Şıklar (Soru Kökü İptal)
+            // Soru Kökü (vurgulu kısım) bu senaryoda basılmaz.
+            finalHTML += onculHTML;
+            // Soru Kökü (soruKokuVurgulu) burada eklenmeyecek.
+        } 
+        else {
+            // Varsayılan: Metin -> Öncüller -> Soru Kökü
+            finalHTML += onculHTML;
+            if (soruKokuVurgulu) {
+                finalHTML += `<p class='soru-koku-vurgu'>${soruKokuVurgulu}</p>`;
+            }
         }
 
     } else {
-        // 2. Öncülsüz Sorular için direkt P etiketi
-        finalHTML = `<p>${anaSoruMetni}</p>`; 
+        // Öncülsüz Sorular
+        // Sadece soru metnini bas (Vurgulu soru kökü varsa onu da ekle)
+        finalHTML = `<p>${anaSoruMetni}</p>`;
+        if (soruKokuVurgulu) {
+            finalHTML += `<p class='soru-koku-vurgu'>${soruKokuVurgulu}</p>`;
+        }
     }
-
-    // Vurgulu soru kökü varsa en sona ekle
-    if (soruKokuVurgulu) {
-        finalHTML += `<p class='soru-koku-vurgu'>${soruKokuVurgulu}</p>`; // P etiketi düz metin okutur
-    }
-
-    // H2'nin içine sadece final HTML'i yerleştiriyoruz.
-    // Bu sayede NVDA sadece H2'yi "Başlık" der, geri kalanı düz metin okur.
+    
+    // H2'nin içine final HTML'i yerleştir
     soruBaslik.innerHTML = finalHTML;
     
     // --------------------------------------------------------
@@ -393,9 +426,12 @@ function cevapAnahtariniGoster() {
         let soruMetniGoster = "";
         if (soru.onculler) {
             if(soru.onculGiris) soruMetniGoster += `<div style="margin-bottom:5px;">${soru.onculGiris}</div>`;
+            // Öncülleri tek tek ekle
             soru.onculler.forEach(o => soruMetniGoster += `<div style="padding-left:10px;">${o}</div>`);
+            // Soru kökünü kalın ve ayrı bir satırda ekle
             if(soru.soruKoku) soruMetniGoster += `<div style="margin-top:10px; font-weight:bold;">${soru.soruKoku}</div>`;
         } else {
+            // Öncülsüz ise direkt soru metnini kullan
             soruMetniGoster = soru.soru;
         }
         
