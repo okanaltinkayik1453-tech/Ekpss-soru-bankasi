@@ -41,13 +41,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const testParam = urlParams.get('id'); 
     
     if (testParam) {
-        // 1. Linkten gelen test ön ekini ayır (örn: ilkturkislam_test1 -> ilkturkislam)
         const onEk = testParam.substring(0, testParam.lastIndexOf('_'));
-        
-        // 2. Eşleştirme haritasından tam dosya adını al
         const dosyaAdi = DOSYA_ESLESTIRME[onEk];
-        
-        // 3. Test numarasını al (örn: test1 -> 1)
         const testNoStr = testParam.substring(testParam.lastIndexOf('_') + 5); 
         const testNo = parseInt(testNoStr); 
         
@@ -55,7 +50,6 @@ document.addEventListener("DOMContentLoaded", () => {
             testiYukle(dosyaAdi, testNo);
         } else {
              const soruAlani = document.getElementById("soru-alani");
-             // Hata mesajındaki H2 başlığı da artık düz DIV olmalıdır.
              if(soruAlani) {
                  soruAlani.innerHTML = `<div style="text-align:center; padding:20px;"><div class="baslik-h2-gibi">Test ID Eşleşme Hatası</div><p>Lütfen testler.html dosyasındaki ID'leri kontrol edin.</p><a href="testler.html" class="aksiyon-butonu">Testlere Dön</a></div>`;
                  if(document.querySelector(".test-ust-bar")) document.querySelector(".test-ust-bar").style.display = "none";
@@ -63,7 +57,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     } else {
         const soruAlani = document.getElementById("soru-alani");
-         // Hata mesajındaki H2 başlığı da artık düz DIV olmalıdır.
         if(soruAlani) {
              soruAlani.innerHTML = `<div style="text-align:center; padding:20px;"><div class="baslik-h2-gibi">Test Bulunamadı</div><a href="testler.html" class="aksiyon-butonu">Testlere Dön</a></div>`;
             if(document.querySelector(".test-ust-bar")) document.querySelector(".test-ust-bar").style.display = "none";
@@ -85,7 +78,6 @@ function testiYukle(dosyaAdi, testNo) {
             const ustBaslikObj = data[0]; 
             
             if (ustBaslikObj && ustBaslikObj.tests) {
-                // İstenen alt testi bul (Test 1 -> 0. index)
                 const istenenTest = ustBaslikObj.tests[testNo - 1]; 
 
                 if (istenenTest) {
@@ -94,18 +86,15 @@ function testiYukle(dosyaAdi, testNo) {
                     navigasyonButonlariniEkle();
                     soruyuGoster(0);
                 } else {
-                    // Hata mesajındaki H2 başlığı da artık düz DIV olmalıdır.
                     document.getElementById("soru-alani").innerHTML = `<div style="text-align:center; padding:20px;"><div class="baslik-h2-gibi">Test No Bulunamadı</div><p>Lütfen JSON dosyasındaki test numaralarını kontrol edin.</p><a href="testler.html" class="aksiyon-butonu">Testlere Dön</a></div>`;
                 }
             } else {
-                 // Hata mesajındaki H2 başlığı da artık düz DIV olmalıdır.
                  document.getElementById("soru-alani").innerHTML = `<div style="text-align:center; padding:20px;"><div class="baslik-h2-gibi">JSON Yapısı Hatalı</div><a href="testler.html" class="aksiyon-butonu">Testlere Dön</a></div>`;
             }
         })
         .catch(error => {
             console.error("JSON çekme hatası:", error);
             const soruAlani = document.getElementById("soru-alani");
-             // Hata mesajındaki H2 başlığı da artık düz DIV olmalıdır.
             soruAlani.innerHTML = `<div style="text-align:center; padding:20px; color:#ff0000;"><div class="baslik-h2-gibi">Veri Yükleme Hatası (JSON Hatalı)</div><p>Lütfen Konsol (F12) üzerinden hatanın kaynağını kontrol edin. Muhtemelen bir JSON dosyasında virgül, tırnak veya parantez hatası var.</p><a href="testler.html" class"aksiyon-butonu">Testlere Dön</a></div>`;
         });
 }
@@ -151,14 +140,14 @@ function soruyuGoster(index) {
     soruSayacElement.innerText = `Soru ${index + 1} / ${mevcutSorular.length}`;
     
     // DÜZELTME 1: Soru Numarasına H ile Ulaşım ve Direkt Odaklanma
-    // Soru sayacına 'heading' rolü ve tabindex verilerek H tuşuyla ulaşım ve ilk odak garantilenir.
     soruSayacElement.setAttribute("role", "heading");
-    soruSayacElement.setAttribute("aria-level", "2"); // H2 gibi algılanmasını sağlar.
-    soruSayacElement.setAttribute("tabindex", "-1"); // Programatik odaklanmayı mümkün kılar.
+    soruSayacElement.setAttribute("aria-level", "2"); 
+    soruSayacElement.setAttribute("tabindex", "-1"); 
 
 
     const soruBaslik = document.getElementById("soru-metni");
-    // Soru metni alanından tüm ARIA etiketlerini ve rolleri temizle
+    // Soru metni alanını tamamen gizle (NVDA sadece görünmez metin alanını okuyacak)
+    soruBaslik.setAttribute('aria-hidden', 'true');
     soruBaslik.removeAttribute('role'); 
     soruBaslik.removeAttribute('aria-label');
 
@@ -170,16 +159,13 @@ function soruyuGoster(index) {
     
     // Vurgulu Soru Kökü HTML'ini oluştur
     if (soruObj.soruKoku) {
-        // Düz P etiketi kullanıldı. (Başlık uyarısı yok)
         soruKokuVurguluHTML = `<p class='soru-koku-vurgu'>${soruObj.soruKoku}</p>`;
     }
 
     // Öncül HTML'ini hazırla
     if (soruObj.onculler && soruObj.onculler.length > 0) {
-        // Öncül kutusu
         onculHTML += `<div class='oncul-kapsayici'>`; 
         soruObj.onculler.forEach(oncul => {
-            // Öncülleri numara ve metin olarak ayır
             const match = oncul.match(/^(\d+\.?|\w\.?)\s*(.*)/);
             let numara = match ? match[1] : ''; 
             let metin = match ? match[2] : oncul;
@@ -189,8 +175,8 @@ function soruyuGoster(index) {
                  metin = metin.substring(numara.length).trim();
             }
             
-            // DÜZELTME 2 & 3: role="listitem" KALDIRILDI. Sadece düz P etiketi kullanıldı.
-            // NVDA'ya sadece satır metnini okutur ve hiçbir etiket (başlık, liste öğesi) uyarısı vermez.
+            // DÜZELTME: role="listitem" KALDIRILDI. Sadece düz P etiketi.
+            // Bu kısım GÖRSEL alandır (aria-hidden=true olduğu için NVDA burayı görmez)
             onculHTML += `
                 <p class='oncul-satir'>
                     <span class='oncul-no'>${numara}</span>
@@ -199,20 +185,12 @@ function soruyuGoster(index) {
         });
         onculHTML += `</div>`; // oncul-kapsayici bitişi
 
-        // Öncül Giriş Metni ve Ana Metni Birleştir
         let ustMetin = girisMetni;
-        if (anaSoruMetni && girisMetni) {
-            ustMetin += " " + anaSoruMetni;
-        } else if (anaSoruMetni) {
-            ustMetin = anaSoruMetni;
-        }
+        if (anaSoruMetni && girisMetni) { ustMetin += " " + anaSoruMetni; } 
+        else if (anaSoruMetni) { ustMetin = anaSoruMetni; }
         
-        // DÜZELTME: Ana Metin için P tagı kullanıldı. Role="heading" KALDIRILDI.
-        if (ustMetin) {
-            finalHTML += `<p class="soru-giris">${ustMetin}</p>`; 
-        }
+        if (ustMetin) { finalHTML += `<p class="soru-giris">${ustMetin}</p>`; } 
 
-        // Akış Kararı: JSON'daki oncul_yerlesim etiketine göre yerleştirme
         const yerlesim = soruObj.oncul_yerlesim || "ONCE_KOK"; 
         
         if (yerlesim === "ONCE_KOK") {
@@ -223,25 +201,58 @@ function soruyuGoster(index) {
             finalHTML += onculHTML;
         } else if (yerlesim === "ASAGIDAKI_SKIP") {
             finalHTML += onculHTML;
-            // soruKokuVurguluHTML atlanır.
         }
 
     } else {
-        // Öncülsüz Sorular
-        // NVDA Düzeltmesi: Öncül yoksa, ana soruyu P tagı içine alıyoruz (Başlık rolü yok)
         finalHTML = `<p class="soru-giris">${anaSoruMetni}</p>`;
         finalHTML += soruKokuVurguluHTML;
     }
     
-    // Soru metni HTML'i yerleştirilir
+    // Soru metni HTML'i yerleştirilir (Görsel olarak)
     soruBaslik.innerHTML = finalHTML;
     
-    // --------------------------------------------------------
+    // ----------------------------------------------------
+    // DÜZELTME 2: NVDA'nın okuyacağı sessiz metin alanını oluşturma
+    // Bu, NVDA'nın sadece okuması için oluşturulan yapıdır.
+
+    // 1. Ana metni temizle ve her öncülü numaralandırılmış düz metin satırına çevir.
+    let sessizMetin = "";
+    if (anaSoruMetni) sessizMetin += anaSoruMetni + '\n';
+    if (girisMetni && girisMetni !== anaSoruMetni) sessizMetin += girisMetni + '\n';
+    if (soruObj.soruKoku) sessizMetin += soruObj.soruKoku + '\n';
+
+    if (soruObj.onculler && soruObj.onculler.length > 0) {
+        soruObj.onculler.forEach((oncul, i) => {
+            // Öncülün numarasını ve metnini ayır
+             const match = oncul.match(/^(\d+\.?|\w\.?)\s*(.*)/);
+             const metin = match ? match[2] || oncul : oncul;
+            
+            // Numara/madde işareti eklendi (NVDA bu alanda sadece metin okuyacaktır)
+            sessizMetin += `\n ${i + 1}. ${metin}`; 
+        });
+    }
+
+    // 2. Gizli metin alanını oluştur ve sayfaya ekle (Eğer yoksa)
+    let sessizOkumaAlani = document.getElementById("sessiz-okuma-alani");
+    if (!sessizOkumaAlani) {
+        sessizOkumaAlani = document.createElement("div");
+        sessizOkumaAlani.id = "sessiz-okuma-alani";
+        // role="text" ARIA 1.1'den itibaren, öğenin yalnızca düz metin içeriği olduğunu bildirir.
+        // Bu, NVDA'nın içindeki yapısal etiketleri (Başlık, Liste vb.) görmezden gelmesini sağlayan en profesyonel çözümdür.
+        sessizOkumaAlani.setAttribute("role", "text"); 
+        // Ekran dışında tutulur
+        sessizOkumaAlani.style.cssText = "position: absolute; left: -9999px;";
+        document.body.appendChild(sessizOkumaAlani);
+    }
+    
+    // 3. İçeriği temiz metin olarak yükle
+    sessizOkumaAlani.innerText = sessizMetin;
+    // ----------------------------------------------------
+
 
     const siklarKutusu = document.getElementById("siklar-alani");
     siklarKutusu.innerHTML = "";
     
-    // Uzun şık kontrolü
     const uzunSikVar = soruObj.secenekler.some(sik => sik.length > 40);
     if (uzunSikVar) siklarKutusu.classList.add("tek-sutun");
     else siklarKutusu.classList.remove("tek-sutun");
@@ -256,7 +267,6 @@ function soruyuGoster(index) {
         const btn = document.createElement("button");
         btn.innerText = getSikHarfi(i) + ") " + sik;
         btn.className = "sik-butonu";
-        // NVDA'ya doğru şık harfini okutmak için aria-label eklendi (Erişilebilirlik özelliği korundu)
         btn.setAttribute("aria-label", `${getSikHarfi(i)} şıkkı: ${sik}`); 
 
         if (kullaniciCevaplari[index] !== null) {
@@ -272,7 +282,7 @@ function soruyuGoster(index) {
     document.getElementById("btn-onceki").disabled = (index === 0);
     document.getElementById("btn-sonraki").disabled = (index === mevcutSorular.length - 1);
 
-    // DÜZELTME 4: Odak, her zaman soru numarası başlığına verilir.
+    // DÜZELTME 3: Odak, her zaman H ile ulaşılabilen soru numarası başlığına verilir.
     if (kullaniciCevaplari[index] === null) {
         soruSayacElement.focus();
     }
@@ -316,7 +326,6 @@ function cevapIsaretle(secilenIndex, btnElement) {
         const dogruButon = Array.from(document.querySelectorAll(".sik-butonu")).find(b => b.innerText.startsWith(dogruCevapHarf + ")"));
         if(dogruButon) dogruButon.classList.add("dogru");
         
-        // Yanlış cevabı işaretledikten sonra, doğru cevabın harfi ile detaylı bilgi verme özelliği korundu.
         durumMetniDetayli = "Yanlış cevap. Doğru cevap " + dogruCevapHarf + " şıkkıydı."; 
         durumMetniKisa = "Yanlış cevap."; 
         sesUret("yanlis"); 
@@ -324,7 +333,6 @@ function cevapIsaretle(secilenIndex, btnElement) {
 
     // --- PC/MOBİL ANNOUNCEMENT AYRIMI (PC SÜRE VE ROL AYARLARI KORUNMUŞTUR) ---
     if (!isMobile) {
-        // PC'de ayrıntılı geri bildirim ve rol korundu.
         uyariKutusu.setAttribute("role", "alert"); 
         uyariKutusu.setAttribute("aria-live", "assertive"); 
         uyariKutusu.innerText = sikHarfi + " şıkkını işaretlediniz. " + durumMetniDetayli;
@@ -358,11 +366,9 @@ function cevapIsaretle(secilenIndex, btnElement) {
         else {
              // Test bittiğinde
              sesUret("bitis");
-             // Bitirme odak yönetimi korundu
              const bitirButonu = document.getElementById("bitir-buton");
              if(bitirButonu) {
                  bitirButonu.focus();
-                 // Ekran okuyucuya bilgi verme
                  uyariKutusu.setAttribute("role", "alert"); 
                  uyariKutusu.setAttribute("aria-live", "assertive"); 
                  uyariKutusu.innerText = "Test bitti. Sonuçları görmek için bitir düğmesine basınız.";
