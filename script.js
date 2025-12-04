@@ -22,7 +22,7 @@ const sesler = {
     bitis: new Audio('bitis.mp3')
 };
 
-// Ses Seviyeleri (Orijinal ayarlarınız korunmuştur)
+// Ses Seviyeleri
 sesler.dogru.volume = 1.0; 
 sesler.yanlis.volume = 0.3; 
 sesler.bitis.volume = 0.3; 
@@ -99,7 +99,6 @@ function testiYukle(dosyaAdi, testNo) {
         });
 }
 
-
 function navigasyonButonlariniEkle() {
     const soruAlani = document.getElementById("soru-alani");
     if(document.querySelector(".navigasyon-alani")) return;
@@ -112,7 +111,7 @@ function navigasyonButonlariniEkle() {
 function oncekiSoru() { if (mevcutSoruIndex > 0) soruyuGoster(mevcutSoruIndex - 1); }
 function sonrakiSoru() { if (mevcutSoruIndex < mevcutSorular.length - 1) soruyuGoster(mevcutSoruIndex + 1); }
 
-// --- YENİ SORU GÖSTERME MOTORU (NVDA DÜZELTME UYGULANDI) ---
+// --- SORU GÖSTERME (NVDA İÇİN ÖZEL DÜZENLENMİŞTİR) ---
 function soruyuGoster(index) {
     window.scrollTo({ top: 0, behavior: 'auto' });
 
@@ -131,25 +130,15 @@ function soruyuGoster(index) {
     const cubuk = document.getElementById("ilerleme-cubugu");
     if(cubuk) cubuk.style.width = `${yuzde}%`;
 
-    // --------------------------------------------------------
-    // ** NVDA NİHAİ DÜZELTME ALANI **: Odak ve Okuma Kontrolü
-    // --------------------------------------------------------
-    
-    // Soru Sayacını Güncelle ve H Odak Noktasını Ayarla
+    // -------------------------------------------------------------
+    // 1. GÖRSEL ALAN (Ekranda Görünen, NVDA'dan Gizlenen Kısım)
+    // -------------------------------------------------------------
     const soruSayacElement = document.getElementById("soru-sayac");
     soruSayacElement.innerText = `Soru ${index + 1} / ${mevcutSorular.length}`;
-    
-    // DÜZELTME 1: Soru Numarasına H ile Ulaşım ve Direkt Odaklanma
-    soruSayacElement.setAttribute("role", "heading");
-    soruSayacElement.setAttribute("aria-level", "2"); 
-    soruSayacElement.setAttribute("tabindex", "-1"); 
-
+    soruSayacElement.setAttribute("aria-hidden", "true"); // NVDA okumasın
 
     const soruBaslik = document.getElementById("soru-metni");
-    // Soru metni alanını tamamen gizle (NVDA sadece görünmez metin alanını okuyacak)
-    soruBaslik.setAttribute('aria-hidden', 'true');
-    soruBaslik.removeAttribute('role'); 
-    soruBaslik.removeAttribute('aria-label');
+    soruBaslik.setAttribute('aria-hidden', 'true'); // NVDA okumasın
 
     let finalHTML = "";
     let anaSoruMetni = soruObj.soru || ""; 
@@ -157,12 +146,10 @@ function soruyuGoster(index) {
     let soruKokuVurguluHTML = ""; 
     let girisMetni = soruObj.onculGiris || "";
     
-    // Vurgulu Soru Kökü HTML'ini oluştur
     if (soruObj.soruKoku) {
         soruKokuVurguluHTML = `<p class='soru-koku-vurgu'>${soruObj.soruKoku}</p>`;
     }
 
-    // Öncül HTML'ini hazırla
     if (soruObj.onculler && soruObj.onculler.length > 0) {
         onculHTML += `<div class='oncul-kapsayici'>`; 
         soruObj.onculler.forEach(oncul => {
@@ -174,16 +161,13 @@ function soruyuGoster(index) {
                  numara = metin.split(" ")[0];
                  metin = metin.substring(numara.length).trim();
             }
-            
-            // DÜZELTME: role="listitem" KALDIRILDI. Sadece düz P etiketi.
-            // Bu kısım GÖRSEL alandır (aria-hidden=true olduğu için NVDA burayı görmez)
             onculHTML += `
                 <p class='oncul-satir'>
                     <span class='oncul-no'>${numara}</span>
                     <span class='oncul-yazi'>${metin}</span>
                 </p>`;
         });
-        onculHTML += `</div>`; // oncul-kapsayici bitişi
+        onculHTML += `</div>`;
 
         let ustMetin = girisMetni;
         if (anaSoruMetni && girisMetni) { ustMetin += " " + anaSoruMetni; } 
@@ -207,49 +191,68 @@ function soruyuGoster(index) {
         finalHTML = `<p class="soru-giris">${anaSoruMetni}</p>`;
         finalHTML += soruKokuVurguluHTML;
     }
-    
-    // Soru metni HTML'i yerleştirilir (Görsel olarak)
     soruBaslik.innerHTML = finalHTML;
     
-    // ----------------------------------------------------
-    // DÜZELTME 2: NVDA'nın okuyacağı sessiz metin alanını oluşturma
-    // Bu, NVDA'nın sadece okuması için oluşturulan yapıdır.
+    // -------------------------------------------------------------
+    // 2. NVDA ALANI (Ekran Dışı, Başlıksız, Satır Satır Okuma)
+    // -------------------------------------------------------------
+    
+    // Bu alan daha önce varsa temizleyelim, yoksa oluşturalım
+    let nvdaAlani = document.getElementById("nvda-ozel-alan");
+    if (!nvdaAlani) {
+        nvdaAlani = document.createElement("div");
+        nvdaAlani.id = "nvda-ozel-alan";
+        // Ekrandan dışarı atıyoruz ama display:none yapmıyoruz ki okusun
+        nvdaAlani.style.cssText = "position: absolute; left: -9999px; top: 0; width: 1px; height: 1px; overflow: hidden;";
+        // Tabindex -1 ile odaklanabilir yapıyoruz (JS ile focus atacağız)
+        nvdaAlani.setAttribute("tabindex", "-1");
+        document.body.appendChild(nvdaAlani);
+    }
+    nvdaAlani.innerHTML = ""; // İçini temizle
 
-    // 1. Ana metni temizle ve her öncülü numaralandırılmış düz metin satırına çevir.
-    let sessizMetin = "";
-    if (anaSoruMetni) sessizMetin += anaSoruMetni + '\n';
-    if (girisMetni && girisMetni !== anaSoruMetni) sessizMetin += girisMetni + '\n';
-    if (soruObj.soruKoku) sessizMetin += soruObj.soruKoku + '\n';
+    // A. Soru Numarası (Başlık etiketi YOK, düz P etiketi)
+    let pSayac = document.createElement("p");
+    pSayac.innerText = `Soru ${index + 1}`;
+    nvdaAlani.appendChild(pSayac);
 
+    // B. Giriş Metni / Üst Metin
+    if (girisMetni && girisMetni !== anaSoruMetni) {
+        let pGiris = document.createElement("p");
+        pGiris.innerText = girisMetni;
+        nvdaAlani.appendChild(pGiris);
+    }
+    
+    // C. Ana Soru Metni (Eğer öncül yoksa veya bağımsızsa)
+    if (anaSoruMetni && (!soruObj.onculler || soruObj.onculler.length === 0)) {
+         if(!soruObj.soruKoku) {
+            let pAna = document.createElement("p");
+            pAna.innerText = anaSoruMetni;
+            nvdaAlani.appendChild(pAna);
+         }
+    }
+
+    // D. Öncüller (Her biri AYRI <p> etiketi -> Yön tuşlarıyla gezilebilir)
     if (soruObj.onculler && soruObj.onculler.length > 0) {
         soruObj.onculler.forEach((oncul, i) => {
-            // Öncülün numarasını ve metnini ayır
              const match = oncul.match(/^(\d+\.?|\w\.?)\s*(.*)/);
              const metin = match ? match[2] || oncul : oncul;
-            
-            // Numara/madde işareti eklendi (NVDA bu alanda sadece metin okuyacaktır)
-            sessizMetin += `\n ${i + 1}. ${metin}`; 
+             
+             let pOncul = document.createElement("p");
+             // "1. Madde içeriği" şeklinde ekliyoruz
+             pOncul.innerText = (i + 1) + ". " + metin; 
+             nvdaAlani.appendChild(pOncul);
         });
     }
 
-    // 2. Gizli metin alanını oluştur ve sayfaya ekle (Eğer yoksa)
-    let sessizOkumaAlani = document.getElementById("sessiz-okuma-alani");
-    if (!sessizOkumaAlani) {
-        sessizOkumaAlani = document.createElement("div");
-        sessizOkumaAlani.id = "sessiz-okuma-alani";
-        // role="text" ARIA 1.1'den itibaren, öğenin yalnızca düz metin içeriği olduğunu bildirir.
-        // Bu, NVDA'nın içindeki yapısal etiketleri (Başlık, Liste vb.) görmezden gelmesini sağlayan en profesyonel çözümdür.
-        sessizOkumaAlani.setAttribute("role", "text"); 
-        // Ekran dışında tutulur
-        sessizOkumaAlani.style.cssText = "position: absolute; left: -9999px;";
-        document.body.appendChild(sessizOkumaAlani);
+    // E. Soru Kökü (En son, ayrı satır)
+    if (soruObj.soruKoku) {
+        let pKoku = document.createElement("p");
+        pKoku.innerText = soruObj.soruKoku;
+        nvdaAlani.appendChild(pKoku);
     }
-    
-    // 3. İçeriği temiz metin olarak yükle
-    sessizOkumaAlani.innerText = sessizMetin;
-    // ----------------------------------------------------
 
 
+    // --- ŞIKLAR ALANI ---
     const siklarKutusu = document.getElementById("siklar-alani");
     siklarKutusu.innerHTML = "";
     
@@ -282,13 +285,15 @@ function soruyuGoster(index) {
     document.getElementById("btn-onceki").disabled = (index === 0);
     document.getElementById("btn-sonraki").disabled = (index === mevcutSorular.length - 1);
 
-    // DÜZELTME 3: Odak, her zaman H ile ulaşılabilen soru numarası başlığına verilir.
+    // --- ODAK YÖNETİMİ ---
+    // Cevap verilmemişse direkt NVDA alanına odaklan.
+    // NVDA tüm kapsayıcıyı okumaya başlayabilir, yön tuşlarıyla içine girip satır satır gezebilirsin.
     if (kullaniciCevaplari[index] === null) {
-        soruSayacElement.focus();
+        nvdaAlani.focus();
     }
 }
 
-// --- CEVAP İŞARETLEME (PC KORUNMUŞ, MOBİL ZORUNLU ODAK YÖNETİMİ) ---
+// --- CEVAP İŞARETLEME ---
 function cevapIsaretle(secilenIndex, btnElement) {
     if (isaretlemeKilitli) return;
     isaretlemeKilitli = true;
@@ -303,10 +308,8 @@ function cevapIsaretle(secilenIndex, btnElement) {
     let durumMetniDetayli = ""; 
     let durumMetniKisa = ""; 
 
-    // --- CİHAZ TESPİTİ (PC AYARLARI KORUNMUŞTUR) ---
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || window.innerWidth < 768;
 
-    // --- GÖRSEL VE DURUM AYARLARI ---
     const dogruMu = (secilenCevapHarf === dogruCevapHarf);
     const gorselMetin = dogruMu ? "DOĞRU CEVAP!" : "YANLIŞ CEVAP!";
     const gorselClass = dogruMu ? "uyari-dogru" : "uyari-yanlis";
@@ -322,7 +325,6 @@ function cevapIsaretle(secilenIndex, btnElement) {
         sesUret("dogru"); 
     } else {
         btnElement.classList.add("yanlis"); 
-        // DOĞRU CEVABI GÖSTER
         const dogruButon = Array.from(document.querySelectorAll(".sik-butonu")).find(b => b.innerText.startsWith(dogruCevapHarf + ")"));
         if(dogruButon) dogruButon.classList.add("dogru");
         
@@ -331,14 +333,12 @@ function cevapIsaretle(secilenIndex, btnElement) {
         sesUret("yanlis"); 
     }
 
-    // --- PC/MOBİL ANNOUNCEMENT AYRIMI (PC SÜRE VE ROL AYARLARI KORUNMUŞTUR) ---
     if (!isMobile) {
         uyariKutusu.setAttribute("role", "alert"); 
         uyariKutusu.setAttribute("aria-live", "assertive"); 
         uyariKutusu.innerText = sikHarfi + " şıkkını işaretlediniz. " + durumMetniDetayli;
     } 
     else {
-        // MOBİL AYARINIZ KORUNDU: Mobil odak yönetimi korunmuştur.
         setTimeout(() => { 
              uyariKutusu.innerText = durumMetniKisa; 
              if (uyariKutusu.tabIndex === -1) uyariKutusu.tabIndex = 0; 
@@ -346,14 +346,12 @@ function cevapIsaretle(secilenIndex, btnElement) {
         }, 350); 
     }
 
-    // --- GENEL ZAMANLAMA VE GEÇİŞ ---
     const toplamGecisSuresi = isMobile ? 1750 : 2500; 
 
     const tumButonlar = document.querySelectorAll(".sik-butonu");
     tumButonlar.forEach(b => b.disabled = true);
 
     setTimeout(() => {
-        // PC/Mobil temizliği
         uyariKutusu.innerText = ""; 
         uyariKutusu.removeAttribute("role"); 
         uyariKutusu.removeAttribute("aria-live");
@@ -364,7 +362,6 @@ function cevapIsaretle(secilenIndex, btnElement) {
             sonrakiSoru(); 
         } 
         else {
-             // Test bittiğinde
              sesUret("bitis");
              const bitirButonu = document.getElementById("bitir-buton");
              if(bitirButonu) {
@@ -406,7 +403,6 @@ function testiBitir() {
     document.getElementById("bitir-buton").style.display = "none";
     document.getElementById("sonuc-alani").style.display = "block";
 
-    // Cevap Anahtarı butonu buraya dinamik olarak eklenir
     const sonucHTML = `
         <div style="border: 4px solid #fff; padding: 20px; border-radius: 10px; margin-bottom: 20px; background:#000;">
             <div style="color:${mesajRengi}; font-size: 1.8rem; margin: 0 0 10px 0;">${motivasyonMesaji}</div>
@@ -422,13 +418,11 @@ function testiBitir() {
     document.getElementById("sonuc-alani").focus();
 }
 
-// --- CEVAP ANAHTARI DETAYLARI (TÜM SORULARI GÖSTERME) ---
 function cevapAnahtariniGoster() {
     const listeDiv = document.getElementById("yanlis-detaylari");
     listeDiv.innerHTML = "";
     
     const baslik = document.getElementById("yanlislar-baslik");
-    // Yanlışlar başlığı H2-gibi görünmesi için DIV yapıldı
     if(baslik) baslik.innerHTML = `<div class="baslik-h2-gibi">CEVAP ANAHTARI</div>`;
     
     document.getElementById("yanlislar-listesi").style.display = "block";
@@ -439,7 +433,6 @@ function cevapAnahtariniGoster() {
         const kart = document.createElement("div"); 
         kart.className = "yanlis-soru-karti";
         
-        // DURUM BELİRLEME
         let durumRengi = "";
         let durumMetni = "";
         let sonucIkonu = "";
@@ -463,22 +456,17 @@ function cevapAnahtariniGoster() {
             kart.style.borderLeft = "6px solid #ff0000";
         }
 
-        // Soru Metnini Hazırla (Akıllı Gösterim)
         let soruMetniGoster = "";
         if (soru.onculler) {
             if(soru.onculGiris) soruMetniGoster += `<div style="margin-bottom:5px;">${soru.onculGiris}</div>`;
-            // Öncülleri tek tek ekle
             soru.onculler.forEach(o => soruMetniGoster += `<div style="padding-left:10px;">${o}</div>`);
-            // Soru kökünü kalın ve ayrı bir satırda ekle
             if(soru.soruKoku) soruMetniGoster += `<div style="margin-top:10px; font-weight:bold;">${soru.soruKoku}</div>`;
         } else {
-            // Öncülsüz ise direkt soru metnini kullan
             soruMetniGoster = soru.soru;
         }
         
         const dogruCevapIndex = ["A", "B", "C", "D", "E"].indexOf(dogruCevapHarf); 
 
-        // KART HTML'İNİ OLUŞTUR
         kart.innerHTML = `
             <div style="border-bottom:1px solid #444; padding-bottom:10px; margin-bottom:10px;">
                 <div style="margin:0; color:#888;">Soru ${index + 1} ${sonucIkonu}</div>
