@@ -74,9 +74,9 @@ function testiYukle(dosyaAdi, testNo) {
     const url = JSON_PATH + dosyaAdi;
     fetch(url)
         .then(response => {
+            // JSON yüklenirken oluşabilecek yapısal hataları (eksik virgül, tırnak) bu adım yakalar.
             if (!response.ok) {
-                // Eğer yüklenemezse, kullanıcıya net bir hata mesajı gönder
-                throw new Error(`Dosya yüklenemedi: ${response.statusText}`);
+                throw new Error(`Dosya yüklenemedi veya sunucu hatası: ${response.statusText}`);
             }
             return response.json();
         })
@@ -101,9 +101,9 @@ function testiYukle(dosyaAdi, testNo) {
         })
         .catch(error => {
             console.error("JSON çekme hatası:", error);
-            // Hata mesajını kullanıcıya gösterirken dosya adını vurgula
+            // Genellikle bu hata, bir JSON dosyasında syntax hatası (virgül, tırnak) olduğu anlamına gelir.
             const soruAlani = document.getElementById("soru-alani");
-            soruAlani.innerHTML = `<div style="text-align:center; padding:20px; color:#ff0000;"><h2>Veri Yükleme Hatası</h2><p>Uygulama, gerekli olan dosyayı bulamadı: <b>${url}</b></p><p>Lütfen GitHub'daki dosya adlarını ve yolunu kontrol edin.</p><a href="testler.html" class="aksiyon-butonu">Testlere Dön</a></div>`;
+            soruAlani.innerHTML = `<div style="text-align:center; padding:20px; color:#ff0000;"><h2>Veri Yükleme Hatası (JSON Hatalı)</h2><p>Lütfen Konsol (F12) üzerinden hatanın kaynağını kontrol edin. Muhtemelen bir JSON dosyasında virgül, tırnak veya parantez hatası var.</p><a href="testler.html" class="aksiyon-butonu">Testlere Dön</a></div>`;
         });
 }
 
@@ -140,17 +140,12 @@ function soruyuGoster(index) {
     if(cubuk) cubuk.style.width = `${yuzde}%`;
 
     // --------------------------------------------------------
-<<<<<<< HEAD
-    // ** ANA GÜNCELLEME ALANI **: Kesin Çözüm Mantığı
-=======
-    // ** ANA GÜNCELLEME ALANI **: Soru ve Öncül Yerleşimi Mantığı
->>>>>>> c76a1f9bc0ad58673d9f7b840d222b2427516f2f
+    // ** ANA GÜNCELLEME ALANI **: Kesin Çözüm Mantığı (ONCE_KOK / SONRA_KOK)
     // --------------------------------------------------------
     const soruBaslik = document.getElementById("soru-metni");
     let finalHTML = "";
     let anaSoruMetni = soruObj.soru || ""; 
     let onculHTML = "";
-<<<<<<< HEAD
     let soruKokuVurguluHTML = ""; 
     let girisMetni = soruObj.onculGiris || "";
     
@@ -158,10 +153,6 @@ function soruyuGoster(index) {
     if (soruObj.soruKoku) {
         soruKokuVurguluHTML = `<p class='soru-koku-vurgu'>${soruObj.soruKoku}</p>`;
     }
-=======
-    let soruKokuVurgulu = soruObj.soruKoku || ""; 
-    let girisMetni = soruObj.onculGiris || ""; 
->>>>>>> c76a1f9bc0ad58673d9f7b840d222b2427516f2f
 
     // Öncül HTML'ini hazırla
     if (soruObj.onculler && soruObj.onculler.length > 0) {
@@ -185,7 +176,6 @@ function soruyuGoster(index) {
                 </div>`;
         });
         onculHTML += `</div>`;
-<<<<<<< HEAD
 
         // Öncül Giriş Metni ve Ana Metni Birleştir
         let ustMetin = girisMetni;
@@ -196,84 +186,32 @@ function soruyuGoster(index) {
         }
         
         // Akış Kararı: JSON'daki oncul_yerlesim etiketine göre yerleştirme
+        // Varsayılan: ONCE_KOK (Metin -> Öncül -> Kök)
+        const yerlesim = soruObj.oncul_yerlesim || "ONCE_KOK"; 
+        
+        // Ana Metin (Giriş/Ana Soru) her zaman en üstte basılır
         if (ustMetin) {
-            finalHTML += `<p>${ustMetin}</p>`; // 1. Metin (Giriş/Ana Soru) her zaman en üstte basılır
+            finalHTML += `<p>${ustMetin}</p>`; 
         }
 
-        const yerlesim = soruObj.oncul_yerlesim || "ONCE_KOK"; // Etiket yoksa, varsayılan olarak Metin -> Öncül -> Kök
-        
         if (yerlesim === "ONCE_KOK") {
             // İstenen: Metin -> Öncül Kutusu -> Koyu Soru Kökü (Yargılarından/Yukarıdaki)
-            finalHTML += onculHTML; // 2. Öncül Kutusu
-            finalHTML += soruKokuVurguluHTML; // 3. Koyu Soru Kökü
+            finalHTML += onculHTML;
+            finalHTML += soruKokuVurguluHTML;
         } else if (yerlesim === "SONRA_KOK") {
-            // İstenen: Metin -> Koyu Soru Kökü -> Öncül Kutusu (Aşağıdaki)
-            finalHTML += soruKokuVurguluHTML; // 2. Koyu Soru Kökü
-            finalHTML += onculHTML; // 3. Öncül Kutusu
+            // İstenen: Metin -> Koyu Soru Kökü -> Öncül Kutusu (Aşağıdaki - Eğer istenirse)
+            finalHTML += soruKokuVurguluHTML;
+            finalHTML += onculHTML;
         } else if (yerlesim === "ASAGIDAKI_SKIP") {
-            // İstenen: Metin -> Öncül Kutusu -> DİREKT ŞIKLAR (Koyu Kök Atlanır)
-            finalHTML += onculHTML; // 2. Öncül Kutusu
-            // soruKokuVurguluHTML eklenmez.
-        }
-
-    } else {
-        // Öncülsüz Sorular (Bu kısım zaten hep doğru çalışıyordu)
-        finalHTML = `<p>${anaSoruMetni}</p>`;
-        finalHTML += soruKokuVurguluHTML;
-=======
-    }
-    
-    // Tüm metinleri birleştirip küçük harfe çevir
-    const tumMetinKucuk = (girisMetni + " " + anaSoruMetni + " " + soruKokuVurgulu).toLowerCase();
-    
-    // Anahtar Kelime Tespiti
-    const iceriyorYukari = tumMetinKucuk.includes("yukarıdaki") || tumMetinKucuk.includes("yargılarından") || tumMetinKucuk.includes("ifadelerinden");
-    const iceriyorAsagi = tumMetinKucuk.includes("aşağıdaki");
-
-    if (onculHTML) {
-        // ** Metin Parçası Oluşturma **
-        // Giriş metni ve ana soru metnini tek bir normal paragraf olarak birleştir
-        let ustMetin = girisMetni;
-        if (anaSoruMetni && girisMetni) {
-            // Eğer hem onculGiris hem soru varsa, ana soruyu onculGiris'in devamı yap
-            ustMetin += " " + anaSoruMetni;
-        } else if (anaSoruMetni) {
-            // Sadece ana soru varsa
-            ustMetin = anaSoruMetni;
-        }
-        
-        if (ustMetin) {
-            finalHTML += `<p>${ustMetin}</p>`;
-        }
-
-        // ** Yerleşim Kararı **
-        if (iceriyorYukari) {
-            // İstenen: Metin (Osmanlıya...) -> Öncüller -> Soru Kökü (Koyu Vurgulu)
+            // İstenen: Metin -> Öncül Kutusu -> DİREKT ŞIKLAR (Koyu Kök Atlanır - Sizin 2. örneğiniz için)
             finalHTML += onculHTML;
-            if (soruKokuVurgulu) {
-                finalHTML += `<p class='soru-koku-vurgu'>${soruKokuVurgulu}</p>`;
-            }
-        } 
-        else if (iceriyorAsagi) {
-            // İstenen: Metin (Osmanlıya...) -> Öncüller -> DİREKT ŞIKLAR (Soru Kökü ATLANIR)
-            finalHTML += onculHTML;
-            // soruKokuVurgulu bu senaryoda eklenmez.
-        } 
-        else {
-            // Varsayılan: Yukarıdaki gibi kabul et
-            finalHTML += onculHTML;
-            if (soruKokuVurgulu) {
-                finalHTML += `<p class='soru-koku-vurgu'>${soruKokuVurgulu}</p>`;
-            }
+            // soruKokuVurguluHTML atlanır.
         }
 
     } else {
         // Öncülsüz Sorular
         finalHTML = `<p>${anaSoruMetni}</p>`;
-        if (soruKokuVurgulu) {
-            finalHTML += `<p class='soru-koku-vurgu'>${soruKokuVurgulu}</p>`;
-        }
->>>>>>> c76a1f9bc0ad58673d9f7b840d222b2427516f2f
+        finalHTML += soruKokuVurguluHTML;
     }
     
     // H2'nin içine final HTML'i yerleştir
@@ -430,7 +368,7 @@ function testiBitir() {
             <h3 style="color:${mesajRengi}; font-size: 1.8rem; margin: 0 0 10px 0;">${motivasyonMesaji}</h3>
         </div>
         <p style="font-size:1.5rem; color:#fff;"><strong>TOPLAM PUAN: ${puan.toFixed(2)} / 100</strong></p>
-        <p style="font-size:1.2rem; color:#ccc;">Doğru: ${dogruSayisi} | Yanlış: ${yanlisSayayisi} | Boş: ${bosSayisi}</p>
+        <p style="font-size:1.2rem; color:#ccc;">Doğru: ${dogruSayisi} | Yanlış: ${yanlisSayisi} | Boş: ${bosSayisi}</p>
         <p style="font-size:1.4rem; color:#ffff00;">Net: ${net.toFixed(2)}</p>
         <br>
         <button class="nav-buton" onclick="cevapAnahtariniGoster()" style="width:100%; padding:20px; font-size:1.4rem; border:2px solid #ffff00; color:#ffff00; background:#000; font-weight:bold;">📝 CEVAP ANAHTARI (Tüm Soruları İncele)</button>
