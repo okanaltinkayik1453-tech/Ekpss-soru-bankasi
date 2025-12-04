@@ -4,6 +4,9 @@ let mevcutSoruIndex = 0;
 let kullaniciCevaplari = [];
 let isaretlemeKilitli = false;
 
+// JSON DOSYALARININ YOLU (Daha önce konuştuğumuz klasörleme stratejisine göre ayarlandı)
+const JSON_PATH = './data/';
+
 // --- SES MOTORU (PC AYARLARI KORUNDU - MP3 SİSTEMİ) ---
 const sesler = {
     dogru: new Audio('dogru.mp3'),
@@ -27,13 +30,15 @@ function sesUret(tur) {
 // --- TEST YÖNETİMİ ---
 document.addEventListener("DOMContentLoaded", () => {
     const urlParams = new URLSearchParams(window.location.search);
-    const testID = urlParams.get('id');
-
-    if (testID && typeof tumTestler !== 'undefined' && tumTestler[testID]) {
-        mevcutSorular = tumTestler[testID];
-        kullaniciCevaplari = new Array(mevcutSorular.length).fill(null);
-        navigasyonButonlariniEkle();
-        soruyuGoster(0);
+    // testID artık eski karmaşık isimleri (islamiyet_test1) içeriyor
+    const testParam = urlParams.get('id'); 
+    
+    if (testParam) {
+        // Parametreyi dosya adına çevirme mantığı
+        // Örnek: 'islamoncesi_test1' -> 'islamoncesi.json'
+        const dosyaAdi = testParam.substring(0, testParam.lastIndexOf('_')) + '.json';
+        
+        testiYukle(dosyaAdi, testParam);
     } else {
         const soruAlani = document.getElementById("soru-alani");
         if(soruAlani) {
@@ -42,6 +47,44 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 });
+
+// Yeni: JSON dosyasını çekme ve testi başlatma fonksiyonu
+function testiYukle(dosyaAdi, testID) {
+    const url = JSON_PATH + dosyaAdi;
+    fetch(url)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Dosya yüklenemedi: ${response.statusText}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            // data bir dizi [ { "ust_baslik":..., "tests": [...] } ] şeklinde geliyor.
+            // Bizim JSON yapımızda her dosya tek bir üst başlık içeriyor.
+            const ustBaslikObj = data[0]; 
+            
+            if (ustBaslikObj && ustBaslikObj.tests) {
+                // İstenen alt testi bul (testID'nin sonundaki sayıya göre)
+                const testNo = parseInt(testID.slice(-1)); 
+                const istenenTest = ustBaslikObj.tests[testNo - 1]; // Diziler 0'dan başladığı için -1
+
+                if (istenenTest) {
+                    mevcutSorular = istenenTest.sorular;
+                    kullaniciCevaplari = new Array(mevcutSorular.length).fill(null);
+                    navigasyonButonlariniEkle();
+                    soruyuGoster(0);
+                } else {
+                    document.getElementById("soru-alani").innerHTML = `<div style="text-align:center; padding:20px;"><h2>Test No Bulunamadı</h2><a href="testler.html" class="aksiyon-butonu">Testlere Dön</a></div>`;
+                }
+            } else {
+                 document.getElementById("soru-alani").innerHTML = `<div style="text-align:center; padding:20px;"><h2>JSON Yapısı Hatalı</h2><a href="testler.html" class="aksiyon-butonu">Testlere Dön</a></div>`;
+            }
+        })
+        .catch(error => {
+            console.error("JSON çekme hatası:", error);
+            document.getElementById("soru-alani").innerHTML = `<div style="text-align:center; padding:20px; color:#ff0000;"><h2>Veri Yükleme Hatası: ${error.message}</h2><p>Lütfen dosya adlarını (örnek: data/ilkturkislamdevletleri.json) kontrol ediniz.</p><a href="testler.html" class="aksiyon-butonu">Testlere Dön</a></div>`;
+        });
+}
 
 function navigasyonButonlariniEkle() {
     const soruAlani = document.getElementById("soru-alani");
@@ -123,7 +166,7 @@ function soruyuGoster(index) {
     siklarKutusu.innerHTML = "";
     
     // Uzun şık kontrolü
-    const uzunSikVar = soruObj.siklar.some(sik => sik.length > 40);
+    const uzunSikVar = soruObj.secenekler.some(sik => sik.length > 40);
     if (uzunSikVar) siklarKutusu.classList.add("tek-sutun");
     else siklarKutusu.classList.remove("tek-sutun");
 
@@ -133,13 +176,13 @@ function soruyuGoster(index) {
         document.getElementById("soru-alani").appendChild(div);
     }
 
-    soruObj.siklar.forEach((sik, i) => {
+    soruObj.secenekler.forEach((sik, i) => { // Siklar'ı secenekler ile değiştirdim
         const btn = document.createElement("button");
         btn.innerText = getSikHarfi(i) + ") " + sik;
         btn.className = "sik-butonu";
         if (kullaniciCevaplari[index] !== null) {
             if (kullaniciCevaplari[index] === i) {
-                if (i === soruObj.dogruCevap) { btn.classList.add("dogru"); } else { btn.classList.add("yanlis"); }
+                if (getSikHarfi(i) === soruObj.dogru_cevap) { btn.classList.add("dogru"); } else { btn.classList.add("yanlis"); } // Kontrolü güncelledim
             }
             btn.disabled = true;
         }
@@ -158,11 +201,13 @@ function cevapIsaretle(secilenIndex, btnElement) {
     if (isaretlemeKilitli) return;
     isaretlemeKilitli = true;
     kullaniciCevaplari[mevcutSoruIndex] = secilenIndex;
-    const dogruCevapIndex = mevcutSorular[mevcutSoruIndex].dogruCevap;
+    const dogruCevapHarf = mevcutSorular[mevcutSoruIndex].dogru_cevap; // JSON'dan harf olarak çek
+    const secilenCevapHarf = getSikHarfi(secilenIndex); // Seçilen harfi al
+
     const uyariKutusu = document.getElementById("sesli-uyari");
     const gorselUyari = document.getElementById("gorsel-uyari-alani");
     
-    const sikHarfi = ["A", "B", "C", "D", "E"][secilenIndex];
+    const sikHarfi = secilenCevapHarf; // "A", "B", "C"...
     let durumMetniDetayli = ""; 
     let durumMetniKisa = ""; 
 
@@ -170,14 +215,15 @@ function cevapIsaretle(secilenIndex, btnElement) {
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || window.innerWidth < 768;
 
     // --- GÖRSEL VE DURUM AYARLARI ---
-    const gorselMetin = (secilenIndex === dogruCevapIndex) ? "DOĞRU CEVAP!" : "YANLIŞ CEVAP!";
-    const gorselClass = (secilenIndex === dogruCevapIndex) ? "uyari-dogru" : "uyari-yanlis";
+    const dogruMu = (secilenCevapHarf === dogruCevapHarf);
+    const gorselMetin = dogruMu ? "DOĞRU CEVAP!" : "YANLIŞ CEVAP!";
+    const gorselClass = dogruMu ? "uyari-dogru" : "uyari-yanlis";
     
     gorselUyari.innerText = gorselMetin;
     gorselUyari.className = "gorsel-uyari-kutusu " + gorselClass;
     gorselUyari.style.display = "block";
 
-    if (secilenIndex === dogruCevapIndex) {
+    if (dogruMu) {
         btnElement.classList.add("dogru"); 
         durumMetniDetayli = "Doğru cevap."; 
         durumMetniKisa = "Doğru cevap."; 
@@ -188,29 +234,22 @@ function cevapIsaretle(secilenIndex, btnElement) {
     }
 
     // --- PC/MOBİL ANNOUNCEMENT AYRIMI ---
-    // PC tarafı tamamen korunmuştur.
-
     if (!isMobile) {
-        // PC AYARI KORUNDU: ARIA-LIVE ile okuma garanti, 2500ms süre.
         uyariKutusu.setAttribute("role", "alert"); 
         uyariKutusu.setAttribute("aria-live", "assertive"); 
         
-        sesUret(secilenIndex === dogruCevapIndex ? "dogru" : "yanlis"); 
+        sesUret(dogruMu ? "dogru" : "yanlis"); 
         uyariKutusu.innerText = sikHarfi + " şıkkını işaretlediniz. " + durumMetniDetayli;
     } 
     else {
-        // MOBİL AYARI (Odak Zorlama + Güvenilir Süre):
-        // 1. Aşama: 350ms bekleyip metni koy.
         setTimeout(() => { 
              uyariKutusu.innerText = durumMetniKisa; 
-             // 2. Aşama: Odak noktasını uyarı kutusuna taşı! 
              if (uyariKutusu.tabIndex === -1) uyariKutusu.tabIndex = 0; 
              uyariKutusu.focus();
         }, 350); 
     }
 
     // --- GENEL ZAMANLAMA VE GEÇİŞ ---
-    // Mobil süre, VoiceOver'a odaklanma ve okuma için 1750ms'ye çıkarıldı.
     const toplamGecisSuresi = isMobile ? 1750 : 2500; 
 
     const tumButonlar = document.querySelectorAll(".sik-butonu");
@@ -246,8 +285,11 @@ function getSikHarfi(index) { return ["A", "B", "C", "D", "E"][index]; }
 function testiBitir() {
     let dogruSayisi = 0; let yanlisSayisi = 0; let bosSayisi = 0;
     for (let i = 0; i < mevcutSorular.length; i++) {
-        if (kullaniciCevaplari[i] === null) bosSayisi++;
-        else if (kullaniciCevaplari[i] === mevcutSorular[i].dogruCevap) dogruSayisi++;
+        const dogruCevapHarf = mevcutSorular[i].dogru_cevap;
+        const secilenCevapHarf = kullaniciCevaplari[i] !== null ? getSikHarfi(kullaniciCevaplari[i]) : null;
+
+        if (secilenCevapHarf === null) bosSayisi++;
+        else if (secilenCevapHarf === dogruCevapHarf) dogruSayisi++;
         else yanlisSayisi++;
     }
     const net = dogruSayisi - (yanlisSayisi / 4);
@@ -289,8 +331,8 @@ function cevapAnahtariniGoster() {
     document.getElementById("yanlislar-listesi").style.display = "block";
     
     mevcutSorular.forEach((soru, index) => {
-        const kullaniciCevabi = kullaniciCevaplari[index];
-        const dogruCevap = soru.dogruCevap;
+        const kullaniciCevabiIndex = kullaniciCevaplari[index];
+        const dogruCevapHarf = soru.dogru_cevap;
         const kart = document.createElement("div"); 
         kart.className = "yanlis-soru-karti";
         
@@ -299,12 +341,14 @@ function cevapAnahtariniGoster() {
         let durumMetni = "";
         let sonucIkonu = "";
         
-        if (kullaniciCevabi === null) {
+        const secilenCevapHarf = kullaniciCevabiIndex !== null ? getSikHarfi(kullaniciCevabiIndex) : null;
+        
+        if (secilenCevapHarf === null) {
             durumRengi = "#ffff00"; 
             sonucIkonu = "❔";
             durumMetni = "BOŞ BIRAKILDI";
             kart.style.borderLeft = "6px solid #ffff00";
-        } else if (kullaniciCevabi === dogruCevap) {
+        } else if (secilenCevapHarf === dogruCevapHarf) {
             durumRengi = "#00ff00"; 
             sonucIkonu = "✅";
             durumMetni = "DOĞRU CEVAP VERİLDİ";
@@ -325,6 +369,8 @@ function cevapAnahtariniGoster() {
         } else {
             soruMetniGoster = soru.soru;
         }
+        
+        const dogruCevapIndex = ["A", "B", "C", "D", "E"].indexOf(dogruCevapHarf); // Açıklamayı kolaylaştırmak için harfi indexe çevir
 
         // KART HTML'İNİ OLUŞTUR
         kart.innerHTML = `
@@ -334,12 +380,12 @@ function cevapAnahtariniGoster() {
             </div>
             
             <p style="color:${durumRengi}; font-size:1.1rem; margin-bottom:5px;">
-                <strong>Sizin Cevabınız:</strong> ${kullaniciCevabi !== null ? getSikHarfi(kullaniciCevabi) + ") " + soru.siklar[kullaniciCevabi] : 'Boş Bırakıldı'}
+                <strong>Sizin Cevabınız:</strong> ${secilenCevapHarf !== null ? secilenCevapHarf + ") " + soru.secenekler[kullaniciCevabiIndex] : 'Boş Bırakıldı'}
                 <span style="font-weight:bold; color:${durumRengi};">(${durumMetni})</span>
             </p>
             
             <p style="color:#00ff00; font-size:1.1rem; margin-bottom:10px;">
-                <strong>Doğru Cevap:</strong> ${getSikHarfi(dogruCevap)}) ${soru.siklar[dogruCevap]}
+                <strong>Doğru Cevap:</strong> ${dogruCevapHarf}) ${soru.secenekler[dogruCevapIndex]}
             </p>
             
             <div class="aciklama-kutusu" style="background:#111; padding:15px; border-radius:8px; border:1px solid #333; margin-top:10px;">
