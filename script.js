@@ -75,6 +75,8 @@ function testiYukle(dosyaAdi, testNo) {
             return response.json();
         })
         .then(data => {
+            // BURASI KRİTİK: JSON tek bir dizi içinde tek bir obje olmalı.
+            // Düzeltilmiş JSON ile data[0] tüm testleri (1-5) kapsayacak.
             const ustBaslikObj = data[0]; 
             
             if (ustBaslikObj && ustBaslikObj.tests) {
@@ -132,16 +134,14 @@ function soruyuGoster(index) {
     if(cubuk) cubuk.style.width = `${yuzde}%`;
 
     // --------------------------------------------------------
-    // ** ERİŞİLEBİLİRLİK ODAKLI YAPI (GÜNCELLENDİ) **
+    // ** ERİŞİLEBİLİRLİK ODAKLI YAPI (NVDA + H TUŞU + ÖNCÜL AYARI) **
     // --------------------------------------------------------
     
-    // 1. Soru Sayacı: ARTIK BAŞLIK OLARAK GÖRÜNECEK (H Tuşu çalışır)
+    // 1. Soru Sayacı: H Tuşu ile bulunabilmesi için başlık özelliği KORUNDU.
     const soruSayacElement = document.getElementById("soru-sayac");
     soruSayacElement.innerText = `Soru ${index + 1} / ${mevcutSorular.length}`;
     
-    // BURADAKİ "removeAttribute" KODLARINI SİLDİK. 
-    // Artık NVDA burayı "Başlık Seviye 3" olarak görecek.
-    // Sadece odaklanma kalıyor:
+    // Sadece odaklanma için tabindex var, rol silme kodu YOK.
     soruSayacElement.setAttribute("tabindex", "-1"); 
 
     // 2. Soru Metni Alanı:
@@ -162,14 +162,18 @@ function soruyuGoster(index) {
     if (anaSoruMetni && girisMetni && anaSoruMetni !== girisMetni) { 
     } 
     
+    // Giriş Metni (Paragraf)
     if (girisMetni) {
         finalHTML += `<p class="soru-giris" style="margin-bottom:10px;">${girisMetni}</p>`;
     }
     
+    // Ana Soru Metni (Paragraf)
     if (anaSoruMetni && anaSoruMetni !== girisMetni) {
          finalHTML += `<p class="soru-ana-metin" style="margin-bottom:10px;">${anaSoruMetni}</p>`;
     }
 
+    // --- ÖNCÜLLER (NVDA İÇİN PARAGRAF AYARI) ---
+    // Her biri ayrı paragraf (<p>) olduğu için NVDA her birini ayrı okuyup duracak.
     let onculHTML = "";
     if (soruObj.onculler && soruObj.onculler.length > 0) {
         onculHTML += `<div class='oncul-kapsayici' style="margin: 10px 0;">`; 
@@ -183,16 +187,18 @@ function soruyuGoster(index) {
                  metin = metin.substring(numara.length).trim();
             }
             
+            // BURASI DEĞİŞTİ: <div class='oncul-satir'> YERİNE <p class='oncul-satir'>
+            // Bu sayede NVDA satır satır okuyacak.
             onculHTML += `
-                <div class='oncul-satir' style="margin-bottom:5px;">
+                <p class='oncul-satir' style="margin-bottom:5px;">
                     <span class='oncul-no' style="font-weight:bold; margin-right:5px;">${numara}</span>
                     <span class='oncul-yazi'>${metin}</span>
-                </div>`;
+                </p>`;
         });
         onculHTML += `</div>`;
     }
 
-    // Soru Kökü
+    // Soru Kökü (Paragraf)
     let soruKokuHTML = "";
     if (soruObj.soruKoku) {
         soruKokuHTML = `<p class='soru-koku-vurgu' style="font-weight:bold; margin-top:10px;">${soruObj.soruKoku}</p>`;
