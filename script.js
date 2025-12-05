@@ -75,8 +75,6 @@ function testiYukle(dosyaAdi, testNo) {
             return response.json();
         })
         .then(data => {
-            // BURASI KRİTİK: JSON tek bir dizi içinde tek bir obje olmalı.
-            // Düzeltilmiş JSON ile data[0] tüm testleri (1-5) kapsayacak.
             const ustBaslikObj = data[0]; 
             
             if (ustBaslikObj && ustBaslikObj.tests) {
@@ -133,15 +131,9 @@ function soruyuGoster(index) {
     const cubuk = document.getElementById("ilerleme-cubugu");
     if(cubuk) cubuk.style.width = `${yuzde}%`;
 
-    // --------------------------------------------------------
-    // ** ERİŞİLEBİLİRLİK ODAKLI YAPI (NVDA + H TUŞU + ÖNCÜL AYARI) **
-    // --------------------------------------------------------
-    
-    // 1. Soru Sayacı: H Tuşu ile bulunabilmesi için başlık özelliği KORUNDU.
+    // 1. Soru Sayacı:
     const soruSayacElement = document.getElementById("soru-sayac");
     soruSayacElement.innerText = `Soru ${index + 1} / ${mevcutSorular.length}`;
-    
-    // Sadece odaklanma için tabindex var, rol silme kodu YOK.
     soruSayacElement.setAttribute("tabindex", "-1"); 
 
     // 2. Soru Metni Alanı:
@@ -150,7 +142,6 @@ function soruyuGoster(index) {
     soruBaslik.removeAttribute('role'); 
     soruBaslik.setAttribute('tabindex', '-1'); 
 
-    // Varsa eski "sessiz okuma alanı"nı temizle
     const eskiSessizAlan = document.getElementById("sessiz-okuma-alani");
     if (eskiSessizAlan) eskiSessizAlan.remove();
 
@@ -159,8 +150,6 @@ function soruyuGoster(index) {
     let girisMetni = soruObj.onculGiris || "";
     
     let ustMetin = girisMetni;
-    if (anaSoruMetni && girisMetni && anaSoruMetni !== girisMetni) { 
-    } 
     
     // Giriş Metni (Paragraf)
     if (girisMetni) {
@@ -172,11 +161,12 @@ function soruyuGoster(index) {
          finalHTML += `<p class="soru-ana-metin" style="margin-bottom:10px;">${anaSoruMetni}</p>`;
     }
 
-    // --- ÖNCÜLLER (NVDA İÇİN PARAGRAF AYARI) ---
-    // Her biri ayrı paragraf (<p>) olduğu için NVDA her birini ayrı okuyup duracak.
+    // --- ÖNCÜLLER (NVDA DOSTU LİSTE YAPISI) ---
+    // BU KISIM GÜNCELLENDİ: DIV yerine UL, P yerine LI kullanıldı.
     let onculHTML = "";
     if (soruObj.onculler && soruObj.onculler.length > 0) {
-        onculHTML += `<div class='oncul-kapsayici' style="margin: 10px 0;">`; 
+        // NVDA'nın 'Liste' olarak okuması için UL etiketi
+        onculHTML += `<ul class='oncul-kapsayici' style="margin: 10px 0; list-style:none; padding:0;">`; 
         soruObj.onculler.forEach(oncul => {
             const match = oncul.match(/^(\d+\.?|\w\.?)\s*(.*)/);
             let numara = match ? match[1] : ''; 
@@ -187,15 +177,14 @@ function soruyuGoster(index) {
                  metin = metin.substring(numara.length).trim();
             }
             
-            // BURASI DEĞİŞTİ: <div class='oncul-satir'> YERİNE <p class='oncul-satir'>
-            // Bu sayede NVDA satır satır okuyacak.
+            // NVDA'nın satır satır durması için LI etiketi
             onculHTML += `
-                <p class='oncul-satir' style="margin-bottom:5px;">
+                <li class='oncul-satir' style="margin-bottom:5px;">
                     <span class='oncul-no' style="font-weight:bold; margin-right:5px;">${numara}</span>
                     <span class='oncul-yazi'>${metin}</span>
-                </p>`;
+                </li>`;
         });
-        onculHTML += `</div>`;
+        onculHTML += `</ul>`;
     }
 
     // Soru Kökü (Paragraf)
