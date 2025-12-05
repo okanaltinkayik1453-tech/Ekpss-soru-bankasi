@@ -24,7 +24,7 @@
           },
           { "id": 4, "soru": "Hangi devlet adını kurucusundan almıştır?", "secenekler": ["Selçuklu", "Göktürkler", "Uygurlar", "Kırgızlar", "Avarlar"], "dogru_cevap": "A", "aciklama": "Selçuklu Devleti adını Selçuk Bey'den almıştır." },
           { "id": 5, "soru": "Anadolu Selçuklularında Subaşıların hem yönetici hem askerlerin amiri olması neyi gösterir?", "secenekler": ["Toprak mülkiyetini", "Yönetim ve askerliğin birlikte yürütüldüğünü", "Sultana bağlılığı", "2 ve 3", "1, 2 ve 3"], "dogru_cevap": "B", "aciklama": "Hem yönetici hem komutan olmaları iki görevi birlikte yürüttüklerini gösterir." },
-          { "id": 6, "soru": "Meliklerin (Hanedan üyeleri) para bastırma ve savaş açma yetkisinin olmaması neyin göstergesidir?", "secenekler": ["Sınır güvenliğinin", "Ekonomik durumun", "Ülke bütünlüğünün korunmasının", "Yerleşik hayatın", "Dış ilişkilerin"], "dogru_cevap": "C", "aciklama": "Merkezi otoriteyi korumak ve devletin parçalanmasını önlemek içindir." },
+          { "id": 6, "soru": "Anadolu Selçuklu Devleti'nde kendilerine bir bölgenin yönetimi verilen hanedan üyelerine melik deniyordu. Kendi bölgelerinin yönetiminde söz sahibi olan meliklerin para bastırma, savaş açma ve siyasi görüşme yetkileri yoktu. Meliklerin yetkilerinin sınırlı tutulması aşağıdakilerden hangisine önem verildiğini gösterir?", "secenekler": ["Sınır güvenliğinin", "Ekonomik durumun", "Ülke bütünlüğünün korunmasının", "Yerleşik hayatın", "Dış ilişkilerin"], "dogru_cevap": "C", "aciklama": "Merkezi otoriteyi korumak ve devletin parçalanmasını önlemek içindir." },
           { "id": 7, "soru": "Toprağın ekilip biçildiği sürece köylüde kalması neye karşı bir önlemdir?", "secenekler": ["Toprağın devlet denetimi dışında el değiştirmesine", "Ayaklanmalara", "El sanatlarına", "Kaçak göçe", "Yöneticilere"], "dogru_cevap": "A", "aciklama": "Toprak devletindir (Miri arazi), satılamaz. Sadece kullanım hakkı devredilir." },
           { 
             "id": 8, 
@@ -189,8 +189,7 @@
                 "2. Taş", 
                 "3. Ahşap"
             ],
-            "soruKoku": "Yukarıda verilen yargılardan hangilerine ulaşılabilir?",
-            "secenekler": ["Yalnız bir", "Yalnız 2", "Yalnız 3", "1 ve 2", "1, 2 ve 3"], 
+            "secenekler": ["Yalnız 1", "Yalnız 2", "Yalnız 3", "1 ve 2", "1, 2 ve 3"], 
             "dogru_cevap": "E", 
             "aciklama": "Çini, Taş ve Ahşap işçiliği Selçuklu sanatının temelidir." 
           },
@@ -464,7 +463,7 @@
             "aciklama": "Karamanoğlu Mehmet Bey 1277'de Türkçeyi resmi dil ilan etmiştir." 
           },
           { "id": 104, "soru": "Selçuklularda resmi yazışma dili Farsça idi. Medreselerde eğitim Arapça yapılıyordu. Halk ve ordu kesimi ise Türkçe konuşuyordu. Bu durum Selçuklularda aşağıdakilerden hangisine neden olmuştur?", "secenekler": ["Ordudaki asker sayısının azalmasına", "Yöneticiler ile halk arasındaki bağların güçlenmesine", "Türk dilindeki gelişmenin yavaşlamasına", "Siyasal baskıların önlenmesine", "Bilim adamlarının yönetime girmesine"], "dogru_cevap": "C", "aciklama": "Türkçenin sadece halk dili olarak kalması edebi gelişimini yavaşlatmıştır." },
-          { "id": 105, "soru": "Kültür ve uygarlık tarihimizin ana yapıtlarından biridir. Türkçenin ilk sözlüğü olan yapıt, Araplara Türkçeyi öğretmek amacıyla yazılmıştır. Söz konusu yapıt ve yazarı aşağıdakilerden hangisinde birlikte verilmiştir?", "secenekler": ["Divan-ı Lügati't-Türk, Kaşgarlı Mahmud", "Atabetü'l Hakayık, Edib Ahmed", "KutadguBilig, Yusuf Has Hacip", "Siyasetname, Nizamülmülk", "Divan-ı Hikmet, Hoca Ahmed yesevi"], "dogru_cevap": "A", "aciklama": "Kaşgarlı Mahmud tarafından yazılan eser Divan-ı Lügati't-Türk'tür." },
+          { "id": 105, "soru": "Kültür ve uygarlık tarihimizin ana yapıtlarından biridir. Türkçenin ilk sözlüğü olan yapıt, Araplara Türkçeyi öğretmek amacıyla yazılmıştır. Söz konusu yapıt ve yazarı aşağıdakilerden hangisinde birlikte verilmiştir?", "secenekler": ["Divan-ı Lügati't-Türk, Kaşgarlı Mahmud", "Atabetü'l Hakayık, Edib Ahmed", "Kutadgu Bilig, Yusuf Has Hacip", "Siyasetname, Nizamülmülk", "Divan-ı Hikmet, Hoca Ahmed yesevi"], "dogru_cevap": "A", "aciklama": "Kaşgarlı Mahmud tarafından yazılan eser Divan-ı Lügati't-Türk'tür." },
           { 
             "id": 106, 
             "oncul_yerlesim": "ONCE_KOK",
@@ -584,19 +583,16 @@
             "dogru_cevap": "B", 
             "aciklama": "Ülkenin hanedanın ortak malı olması (Veraset), her şehzadeye taht hakkı tanıyarak kavgaya yol açar." 
           },
-          { "id": 126, "soru": "'Büyük Selçuklularda fethedilen toprak fethedenin malıdır' anlayışı neye yol açmıştır?", "secenekler": ["Feodal beyliklerin ortaya çıkmasına", "Merkeziyetçiliğin güçlenmesine", "Deneyimsiz komutanlara", "Ticarete önem verilmesine", "Bayındırlık işlerinin aksamasına"], "dogru_cevap": "A", "aciklama": "Komutanların fethettikleri yerde yarı bağımsız beylikler kurmasına (feodalleşme) neden olmuştur." },
+          { 
+            "id": 126, 
+            "soru": "'Büyük Selçuklularda fethedilen toprak fethedenin malıdır' anlayışı neye yol açmıştır?", 
+            "secenekler": ["Feodal beyliklerin ortaya çıkmasına", "Merkeziyetçiliğin güçlenmesine", "Deneyimsiz komutanlara", "Ticarete önem verilmesine", "Bayındırlık işlerinin aksamasına"], 
+            "dogru_cevap": "A", 
+            "aciklama": "Komutanların fethettikleri yerde yarı bağımsız beylikler kurmasına (feodalleşme) neden olmuştur." 
+          },
           { 
             "id": 127, 
-            "oncul_yerlesim": "ONCE_KOK",
             "soru": "Hangisi Türk İslam devletlerinin hükümdarlık sembolü değildir?", 
-            "onculler": [
-                "1. Hilat", 
-                "2. Asa", 
-                "3. Bayrak",
-                "4. Çetir",
-                "5. Ok"
-            ],
-            "soruKoku": "Yukarıda verilen yargılardan hangileri doğrudur?",
             "secenekler": ["Hilat", "Asa", "Bayrak", "Çetir", "Ok"], 
             "dogru_cevap": "E", 
             "aciklama": "Ok bağlılığı (tabiyeti) simgeler; Yay egemenliği simgeler." 
@@ -615,19 +611,16 @@
             "dogru_cevap": "A", 
             "aciklama": "Yavuz Sultan Selim ile birlikte Osmanlı padişahları Halifelik unvanını da almıştır." 
           },
-          { "id": 129, "soru": "İlk Müslüman Türk devletlerinde devlet memurluğu çoğunlukla babadan oğula geçer, iktidar (siyasi güç) değişmelerinde de memuriyet çoğu kez aynı ailede kalırdı. Aşağıdakilerden hangisi bu durumun sonuçlarından biridir?", "secenekler": ["İyi yönetime", "İşsizliğin bitmesine", "Başarılı dış siyasete", "Yeni mesleklerin kapanmasına", "Bürokraside egemen bir sınıfın oluşmasına"], "dogru_cevap": "E", "aciklama": "Yönetimde belirli ailelerin güçlendiği bir bürokratik sınıf ortaya çıkmıştır." },
           { 
+            "id": 129, 
+            "soru": "İlk Müslüman Türk devletlerinde devlet memurluğu çoğunlukla babadan oğula geçer, iktidar (siyasi güç) değişmelerinde de memuriyet çoğu kez aynı ailede kalırdı. Aşağıdakilerden hangisi bu durumun sonuçlarından biridir?", 
+            "secenekler": ["İyi yönetime", "İşsizliğin bitmesine", "Başarılı dış siyasete", "Yeni mesleklerin kapanmasına", "Bürokraside egemen bir sınıfın oluşmasına"], 
+            "dogru_cevap": "E", 
+            "aciklama": "Yönetimde belirli ailelerin güçlendiği bir bürokratik sınıf ortaya çıkmıştır." 
+          },
+          {
             "id": 130, 
-            "oncul_yerlesim": "ONCE_KOK",
             "soru": "Büyük Selçuklularda iktalar askeri ve sivil devlet görevlerine hizmetleri karşılığında verilirdi. İkta sahipleri ikta olarak verilen topraklarda oturur, memurlar aracılığıyla vergileri toplardı. Bu vergilerin bir kısmıyla kendi geçimini sağlar, geri kalan kısmıyla da belli sayıda atlı asker beslerdi. Sefere çağrıldığı zaman askerleriyle birlikte sefere katılırdı. Aşağıdakilerden hangisi bu düzenleme ile ortaya çıkan durumlardan biri olduğu savunulamaz?", 
-            "onculler": [
-                "1. Hazinenin yükünün azalması", 
-                "2. Vergilerin maaş karşılığı olması", 
-                "3. Ordunun tümünün atlı olması", 
-                "4. Atlı asker masrafının karşılanması", 
-                "5. Toprağın mülkiyetinin devlette kalması"
-            ],
-            "soruKoku": "Yukarıda verilen yargılardan hangilerine ulaşılabilir?",
             "secenekler": ["Hazinenin yükünün azalması", "Vergilerin maaş karşılığı olması", "Ordunun tümünün atlı olması", "Atlı asker masrafının karşılanması", "Toprağın mülkiyetinin devlette kalması"], 
             "dogru_cevap": "C", 
             "aciklama": "Ordunun tamamı atlı değildir; Gulam gibi piyade birlikleri de vardır." 
@@ -745,13 +738,13 @@
             "aciklama": "Sultana sormadan hareket edebilmeleri bazı durumlar dışında merkeze bağlı olduklarını, saldırılar olduğunda ve düşman kalesi ifadeleri ise buraların savaş bölgesi olduğunu gösterir." 
           },
           { "id": 145, "soru": "Bu iki Türk hükümdarının birçok isteklerinin yanında özellikle hutbe okutmak konusundaki ısrarını aşağıdakilerden hangisi daha iyi açıklar? 1. Pasinler Savaşı'ndan sonra Sultan Tuğrul Bey'in esir aldığı Gürcü Kralı Liparit'i İstanbul'daki camide (adına) hutbe okutmak şartıyla serbest bırakması. 2. Ankara Savaşı'ndan önce Yıldırım Beyazıt'ın İstanbul kuşatmasını kaldırırken İstanbul'daki camide adına hutbe okutmak şartı ileri sürmesi.", "secenekler": ["İslamiyet'in üstünlüğünün", "Barış taraftarı olduklarının", "Egemenlik sembolü olduğunun", "Müslümanları çekmek istemelerinin", "Moral vermenin"], "dogru_cevap": "C", "aciklama": "Türk-İslam devletlerinde Cuma namazlarında Hutbe okutmak (ve para bastırmak), o topraklarda kimin egemen olduğunu gösteren en önemli siyasi semboldür." },
-          { "id": 146, "soru": "Aşağıdakilerden hangisi Göktürkler ile Selçukluların ortak özelliklerinden biridir?", "secenekler": ["Aynı yüzyıllarda siyasi varlık göstermeleri", "Ülkenin hükümdar ailesinin ortak malı olması", "Hükümdarlarının sultan unvanını taşıması", "İslam dinini kabul etmeleri", "Alfabe birliğinin olması birliği"], "dogru_cevap": "B", "aciklama": "Kut anlayışı ve veraset sistemi ortaktır." },
+          { "id": 146, "soru": "Aşağıdakilerden hangisi Göktürkler ile Selçukluların ortak özelliklerinden biridir?", "secenekler": ["Aynı yüzyıllarda siyasi varlık göstermeleri", "Ülkenin hükümdar ailesinin ortak malı olması", "Hükümdarlarının sultan unvanını taşıması", "İslam dinini kabul etmeleri", "Alfabe birliğinin olması"], "dogru_cevap": "B", "aciklama": "Kut anlayışı ve veraset sistemi ortaktır." },
           { "id": 147, "soru": "Selçuklulardaki Atabey'in Osmanlı'daki karşılığı hangisidir?", "secenekler": ["Ayan", "Lala", "Vezir", "Mültezim", "Kethüda"], "dogru_cevap": "B", "aciklama": "Şehzade eğitmeni olan Atabey'in Osmanlı'daki adı Lala'dır." },
           { "id": 148, "soru": "Devlet yönetimini hanedanın erkek çocuklarına öğretmeyi amaçlayan Atabeylik aşağıdaki Türk devletlerinin hangisi zamanında ortaya çıkmıştır?", "secenekler": ["Karahanlılar", "Gazneliler", "Büyük Selçuklular", "Memlükler", "Harzemşahlar"], "dogru_cevap": "C", "aciklama": "İlk kez Büyük Selçuklular (Nizamülmülk) döneminde uygulanmıştır." },
           { "id": 149, "soru": "Aşağıdakilerden hangisi ilk Müslüman Türk devletlerinde hükümdarın çocuk yaşta olması halinde devleti yöneten kişiye verilen unvandır?", "secenekler": ["Atabey", "Naip", "Şahne", "Melik", "Ulak"], "dogru_cevap": "B", "aciklama": "Hükümdar vekiline Naip (Saltanat Naibi) denir." },
           { "id": 150, "soru": "Karahanlı Devleti ile ilgili olarak aşağıdaki bilgilerden hangisi doğru değildir?", "secenekler": ["Orta Asya'da kurulan ilk Türk İslam Devletidir.", "1042 yılında ikiye ayrılmıştır.", "Döneminde Türkçeye büyük önem verilmiştir.", "Hindistan'da İslamiyet'in yayılmasına öncülük etmiştir.", "Semerkant, Buhara ve Kaşgar önemli bilim ve kültür merkezleridir."], "dogru_cevap": "D", "aciklama": "Hindistan'da İslamiyet'i yayan Gaznelilerdir." },
           { "id": 151, "soru": "'Sultan' unvanını kullanan ilk Türk İslam devleti hangisidir?", "secenekler": ["Karahanlı", "Gazneli", "Büyük Selçuklu", "Anadolu Selçuklu", "Tolunoğulları"], "dogru_cevap": "B", "aciklama": "Gazneli Mahmut, Sultan unvanını kullanan ilk Türk hükümdardır." },
-          { "id": 152, "soru": "1187 yılları arasında Afganistan, Özbekistan, İran, Horasan, Pakistan ve Kuzey Hindistan'a kadar uzanan geniş bir coğrafyaya hakim olan devlet aşağıdakilerden hangisidir?", "secenekler": ["Karahanlı", "Akkoyunlu", "Gazneli", "Büyük Selçuklu", "Karakoyunlu"], "dogru_cevap": "C", "aciklama": "Gazneliler bu coğrafyada hüküm sürmüştür." },
+          { "id": 152, "soru": "963-1187 yılları arasında Afganistan, Özbekistan, İran, Horasan, Pakistan ve Kuzey Hindistan'a kadar uzanan geniş bir coğrafyaya hakim olan devlet aşağıdakilerden hangisidir?", "secenekler": ["Karahanlı", "Akkoyunlu", "Gazneli", "Büyük Selçuklu", "Karakoyunlu"], "dogru_cevap": "C", "aciklama": "Gazneliler bu coğrafyada hüküm sürmüştür." },
           { "id": 153, "soru": "1025 yılında Karahanlılar ve Gazneliler aşağıdakilerden hangisinin güçlenmesine karşı önlem almayı kararlaştırmışlardır?", "secenekler": ["Abbasiler", "Selçuklular", "Bizanslılar", "Tolunoğulları", "İhşidiler"], "dogru_cevap": "B", "aciklama": "Selçukluların güçlenmesinden endişe ederek ittifak yapmışlardır." },
           { "id": 154, "soru": "Gazneliler, Selçuklular ve Avarlar adlı Türk devletlerinden hangisi etnik kökenine, hangisi kurucusuna ve hangisi kuruluş yerine göre adlandırılmıştır?", "secenekler": ["Gazneliler (Kuruluş Yeri), Selçuklular (Kurucusu), Avarlar (Etnik Köken)", "Gazneliler (Kuruluş Yeri), Selçuklular (Etnik Köken), Avarlar (Kuruluş Yeri)", "Gazneliler (Etnik Köken), Selçuklular (Kuruluş Yeri), Avarlar (Kuruluş Yeri)", "Gazneliler (Kurucusu), Selçuklular (Etnik Köken), Avarlar (Kuruluş Yeri)", "Gazneliler (Kurucusu), Selçuklular (Kuruluş Yeri), Avarlar (Etnik Köken)"], "dogru_cevap": "A", "aciklama": "Gazneliler (Yer/Gazne), Selçuklular (Kurucu/Selçuk Bey), Avarlar (Etnik/Avar Kavmi)." },
           { "id": 155, "soru": "Dandanakan Zaferi'nin Türk tarihindeki önemi aşağıdakilerden hangisidir?", "secenekler": ["Büyük Selçuklu Devleti'nin kurulması", "Türklerin İslamiyet'i tanıması", "Selçukluların Bizans Devleti'ne yaptığı ilk önemli savaş olması", "Anadolu'da Türk tarihinin başlangıcı", "Harzemşahların yıkılması"], "dogru_cevap": "A", "aciklama": "1040 Dandanakan Savaşı ile Büyük Selçuklu resmen kurulmuştur." },

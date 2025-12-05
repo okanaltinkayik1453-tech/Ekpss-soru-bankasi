@@ -105,12 +105,7 @@
           { "id": 79, "soru": "Yıldırım Bayezid'in vefatı nerede gerçekleşmiştir?", "secenekler": ["Bursa", "Edirne", "Akşehir", "Semerkant", "İstanbul"], "dogru_cevap": "C", "aciklama": "Esaret altındayken Akşehir'de vefat etmiştir." },
           { "id": 80, "soru": "Yıldırım Bayezid döneminde Osmanlı sınırları doğuda nereye kadar ulaşmıştır?", "secenekler": ["Fırat Nehri", "Hazar Denizi", "Basra Körfezi", "Çin Seddi", "Tuna Nehri"], "dogru_cevap": "A", "aciklama": "Malatya ve Elbistan'ın alınmasıyla Fırat nehrine dayanılmıştır." }
         ]
-      }
-    ]
-  },
-  {
-    "ust_baslik": "Osmanlı Kuruluş Dönemi",
-    "tests": [
+      },
       {
         "alt_baslik": "Test 5",
         "soru_sayisi": 20,
@@ -125,7 +120,7 @@
           { "id": 88, "soru": "Şeyh Bedrettin isyanının Ege bölgesindeki en önemli destekçileri (müritleri) kimlerdir?", "secenekler": ["Börklüce Mustafa - Torlak Kemal", "Kalender Çelebi - Baba Zünnun", "Şahkulu - Karayazıcı", "Canberdi Gazali - Ahmet Paşa", "Köroğlu - Dadaloğlu"], "dogru_cevap": "A", "aciklama": "İzmir/Aydın çevresinde Börklüce Mustafa, Manisa çevresinde Torlak Kemal isyan etmiştir." },
           { "id": 89, "soru": "1. Mehmet döneminde Anadolu Türk birliğini sağlamak için tekrar Osmanlı'ya katılan beylik hangisidir?", "secenekler": ["Karesioğulları", "Saruhanoğulları", "Dulkadiroğulları", "Ramazanoğulları", "Eretna"], "dogru_cevap": "B", "aciklama": "Saruhanoğulları beyliğine 1. Mehmet döneminde son verilmiştir." },
           { "id": 90, "soru": "1. Mehmet'in türbesi (Yeşil Türbe) hangi şehirdedir?", "secenekler": ["Edirne", "İstanbul", "Bursa", "Amasya", "İznik"], "dogru_cevap": "C", "aciklama": "Bursa'daki Yeşil Külliye içindedir. Osmanlı mimarisinin çini sanatındaki şaheseridir." },
-          { "id": 91, "soru": "Aşağıdakilerden hangisi Fetret Devri şehzadelerinden biri değildir?", "secenekler": ["İsa Çelebi", "Musa Çelebi", "Süleyman Çelebi", "Mehmet Çelebi", "Yakup Çelebi"], "dogru_cevap": "E", "aciklama": "Yakup Çelebi, 1. Murat'ın oğludur ve 1. Kosova Savaşı sonrası Bayezid tahta çıkınca öldürülmüştür." },
+          { "id": 91, "soru": "Aşağıdaki hangisi Fetret Devri şehzadelerinden biri değildir?", "secenekler": ["İsa Çelebi", "Musa Çelebi", "Süleyman Çelebi", "Mehmet Çelebi", "Yakup Çelebi"], "dogru_cevap": "E", "aciklama": "Yakup Çelebi, 1. Murat'ın oğludur ve 1. Kosova Savaşı sonrası Bayezid tahta çıkınca öldürülmüştür." },
           { "id": 92, "soru": "Çelebi Mehmet, Fetret Devri mücadelesini yürütürken hangi şehri merkez üssü olarak kullanmıştır?", "secenekler": ["Edirne", "Amasya", "Manisa", "Trabzon", "Konya"], "dogru_cevap": "B", "aciklama": "Çelebi Mehmet, Amasya sancak beyi iken mücadeleyi başlatmıştır." },
           { "id": 93, "soru": "1. Mehmet döneminde Samsun ve çevresinin Osmanlı'ya katılmasıyla hangi beyliklerin hakimiyetine son verilmiştir?", "secenekler": ["Canik Beylikleri", "Teke Beylikleri", "Menteşe Beylikleri", "Hamit Beylikleri", "Germiyan Beylikleri"], "dogru_cevap": "A", "aciklama": "Kubadoğulları, Taşanoğulları gibi Canik beylikleri itaat altına alınmıştır." },
           { "id": 94, "soru": "Fetret Devri'nde Süleyman Çelebi'nin (Emir Süleyman) kültürel hayata katkısı olarak, Süleyman Çelebi (şair) tarafından yazılan ünlü eser hangisidir?", "secenekler": ["Mesnevi", "Vesiletü'n Necat (Mevlid)", "Garibname", "Yunus Emre Divanı", "Risaletü'n Nushiyye"], "dogru_cevap": "B", "aciklama": "Mevlid (Vesiletü'n Necat), Süleyman Çelebi tarafından bu dönemde Bursa'da yazılmıştır." },

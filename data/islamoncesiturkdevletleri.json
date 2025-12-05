@@ -32,8 +32,8 @@
             ],
             "soruKoku": "Bu bilgilere göre yargılarından hangilerine ulaşılabilir?",
             "secenekler": ["Yalnız 1", "Yalnız 2", "Yalnız 3", "1 ve 2", "2 ve 3"], 
-            "dogru_cevap": "D", 
-            "aciklama": "Hızlı hareket atı, sert iklim mücadeleyi gerektirir. (Yazım hatasını düzelttim: 1 ve 2 yerine E şıkkının orijinal karşılığı olan D şıkkını bıraktım, acıklamaya göre 1 ve 2 doğru cevaptır.)" 
+            "dogru_cevap": "E", 
+            "aciklama": "Hızlı hareket atı, sert iklim mücadeleyi gerektirir." 
           },
           { "id": 4, "soru": "Pazırık Halısı ve Altın Elbiseli Adam zırhı hangi Türk devletine aittir?", "secenekler": ["Tabgaçlar", "Göktürkler", "Uygurlar", "Sakalar", "Kırgızlar"], "dogru_cevap": "D", "aciklama": "Bu eserler Sakalar' a aittir." },
           { "id": 5, "soru": "Doğu Roma İmparatorluğu (Bizans), aşağıdaki Türk devletlerinden hangisiyle çağdaş (aynı dönemde) olmamıştır?", "secenekler": ["Asya Hun", "Avar", "Uygur", "Akhun", "Hazar"], "dogru_cevap": "A", "aciklama": "Asya Hun Devleti, Bizans kurulmadan önce yıkılmıştır." },
@@ -41,16 +41,15 @@
           { 
             "id": 7, 
             "oncul_yerlesim": "ONCE_KOK",
-            "soru": "Yukarıdaki liderlerden hangileri Asya Hun hükümdarıdır?", 
+            "soru": "Aşağıdaki liderlerden hangileri Asya Hun hükümdarıdır?", 
             "onculler": [
                 "1. Teoman", 
                 "2. Mete Han", 
                 "3. Kutluk Kağan"
             ],
-            "soruKoku": "Yukarıda verilen yargılardan hangilerine ulaşılabilir?",
             "secenekler": ["Yalnız 1", "Yalnız 2", "Yalnız 3", "1 ve 2", "2 ve 3"], 
             "dogru_cevap": "D", 
-            "aciklama": "Teoman ve Mete Han Asya Hun, Kutluk Kağan ise II. Göktürk hükümdarıdır." 
+            "aciklama": "Teoman ve Mete Han Asya Hun, Kutluk Kağan ise 2. Göktürk hükümdarıdır." 
           },
           { "id": 8, "soru": "Avar egemenliğine son vererek 552 yılında kurulan devlet hangisidir?", "secenekler": ["Göktürk", "Uygur", "Hun", "Moğol", "Akhun"], "dogru_cevap": "A", "aciklama": "552 yılında Bumin Kağan tarafından kurulan devlet I. Göktürk Devleti'dir." },
           { 
@@ -223,7 +222,6 @@
                 "4. Uygurlar. Ergenekon Destanı", 
                 "5. Kırgızlar. Manas Destanı"
             ],
-            "soruKoku": "Yukarıda verilen yargılardan hangilerine ulaşılabilir?",
             "secenekler": ["İskitler. Alpertunga Destanı", "Asya Hun Devleti. Oğuz Kağan Destanı", "Göktürkler. Bozkurt Destanı", "Uygurlar. Ergenekon Destanı", "Kırgızlar. Manas Destanı"], 
             "dogru_cevap": "D", 
             "aciklama": "Ergenekon Destanı Göktürkler'e aittir." 
@@ -239,7 +237,6 @@
                 "4. Manas-Oğuz Kağan", 
                 "5. Yaratılış-Türeyiş"
             ],
-            "soruKoku": "Yukarıda verilen yargılardan hangilerine ulaşılabilir?",
             "secenekler": ["Bozkurt-Ergenekon", "Alpertunga-Şu", "Türeyiş-Göç", "Manas-Oğuz Kağan", "Yaratılış-Türeyiş"], 
             "dogru_cevap": "C", 
             "aciklama": "Türeyiş ve Göç destanları Uygurlar'a aittir." 
