@@ -7,12 +7,13 @@ let isaretlemeKilitli = false;
 // JSON DOSYALARININ YOLU
 const JSON_PATH = './data/';
 
-// JSON Dosya Adı Eşleştirme Haritası (KORUNMUŞTUR)
+// JSON Dosya Adı Eşleştirme Haritası (GÜNCELLENDİ)
 const DOSYA_ESLESTIRME = {
     "ilkturkislam": "ilkturkislamdevletleri.json",
     "islamoncesi": "islamoncesiturkdevletleri.json",
     "osmanlikultur": "osmanlikulturmedeniyeti.json",
-    "osmanlikurulus": "osmanlikurulus.json"
+    "osmanlikurulus": "osmanlikurulus.json",
+    "osmanliyukselme": "osmanliyukselme.json"
 };
 
 // --- SES MOTORU (PC AYARLARI KORUNMUŞTUR) ---
