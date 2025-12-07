@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (testParam) {
         const onEk = testParam.substring(0, testParam.lastIndexOf('_'));
         const dosyaAdi = DOSYA_ESLESTIRME[onEk];
-        const testNoStr = testParam.substring(testParam.lastIndexOf('_') + 5); 
+const testNoStr = testParam.split('_test')[1];
         const testNo = parseInt(testNoStr); 
         
         if (dosyaAdi && !isNaN(testNo)) {
