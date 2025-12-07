@@ -84,7 +84,7 @@
         "alt_baslik": "Güncel Bilgiler - Test 4",
         "soru_sayisi": 20,
         "sorular": [
-          { "id": 61, "soru": "5. nesil savaş uçağımız KAAN ilk uçuşunu ne zaman yapmıştır?", "secenekler": ["15 temmuz 2023", "21 Şubat 2024", "15 Temmuz 2020", "30 Ağustos 2025", "29 Ekim 2022"], dogru_cevap": "B", "aciklama": "21 Şubat 2024'te başarıyla havalanmıştır." },
+          { "id": 61, "soru": "5. nesil savaş uçağımız KAAN ilk uçuşunu ne zaman yapmıştır?", "secenekler": ["15 temmuz 2023", "21 Şubat 2024", "15 Temmuz 2020", "30 Ağustos 2025", "29 Ekim 2022"], "dogru_cevap": "B", "aciklama": "21 Şubat 2024'te başarıyla havalanmıştır." },
           { "id": 62, "soru": "Veri güvenliğini yerli şifreleme ile sağlayan mini uydunun adı nedir?", "secenekler": ["GÖKTÜRK", "İMECE", "KILIÇSAT", "TÜRKSAT 6A", "İSTİKLAL"], "dogru_cevap": "C", "aciklama": "Bu küp uydunun adı KILIÇSAT'tır." },
           { "id": 63, "soru": "Mevcut TCMB Başkanı kimdir?", "secenekler": ["Kavcıoğlu", "Gaye Erkan", "Fatih Karahan", "Çetinkaya", "Naci Ağbal"], "dogru_cevap": "C", "aciklama": "Başkan Fatih Karahan'dır." },
           { "id": 64, "soru": "Dünyanın ilk SİHA gemisi olarak bilinen gemimiz hangisidir?", "secenekler": ["TCG İstanbul", "TCG Anadolu", "TCG Gökova", "TCG Piri Reis", "TCG Akhisar"], "dogru_cevap": "B", "aciklama": "TCG Anadolu bu unvana sahiptir." },
