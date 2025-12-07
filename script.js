@@ -46,10 +46,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const testParam = urlParams.get('id'); 
     
     if (testParam) {
-        // ID formatı: "konuadi_testNO" (örn: osmanligerileme_test1)
         const onEk = testParam.substring(0, testParam.lastIndexOf('_'));
         const dosyaAdi = DOSYA_ESLESTIRME[onEk];
-        // "test" kelimesinden sonraki sayıyı al (örn: "_test1" -> 1)
         const testNoStr = testParam.substring(testParam.lastIndexOf('_') + 5); 
         const testNo = parseInt(testNoStr); 
         
@@ -81,13 +79,9 @@ function testiYukle(dosyaAdi, testNo) {
             return response.json();
         })
         .then(data => {
-            // JSON yapısı: [{ ust_baslik: "...", tests: [ ... ] }]
             const ustBaslikObj = data[0]; 
-            
             if (ustBaslikObj && ustBaslikObj.tests) {
-                // Dizi indeksi 0'dan başlar, testNo 1'den başlar. O yüzden -1
                 const istenenTest = ustBaslikObj.tests[testNo - 1]; 
-
                 if (istenenTest) {
                     mevcutSorular = istenenTest.sorular;
                     kullaniciCevaplari = new Array(mevcutSorular.length).fill(null);
@@ -132,103 +126,76 @@ function soruyuGoster(index) {
     const soruObj = mevcutSorular[index];
     isaretlemeKilitli = false; 
     
-    // İlerleme Çubuğu
-    const yuzde = ((index + 1) / mevcutSorular.length) * 100;
     const cubuk = document.getElementById("ilerleme-cubugu");
-    if(cubuk) cubuk.style.width = `${yuzde}%`;
+    if(cubuk) cubuk.style.width = `${((index + 1) / mevcutSorular.length) * 100}%`;
 
-    // Soru Sayacı
     const soruSayacElement = document.getElementById("soru-sayac");
     soruSayacElement.innerText = `Soru ${index + 1} / ${mevcutSorular.length}`;
     soruSayacElement.setAttribute("tabindex", "-1"); 
 
-    // Soru Metni
     const soruBaslik = document.getElementById("soru-metni");
     soruBaslik.removeAttribute('aria-hidden'); 
     soruBaslik.removeAttribute('role'); 
     soruBaslik.setAttribute('tabindex', '-1'); 
 
     let finalHTML = "";
-    let anaSoruMetni = soruObj.soru || ""; 
-    let girisMetni = soruObj.onculGiris || "";
+    let toplamMetinKontrol = ""; 
     
-    if (girisMetni) {
-        finalHTML += `<p class="soru-giris" style="margin-bottom:10px;">${girisMetni}</p>`;
+    if (soruObj.onculGiris) {
+        finalHTML += `<p class="soru-giris" style="margin-bottom:10px;">${soruObj.onculGiris}</p>`;
+        toplamMetinKontrol += soruObj.onculGiris;
     }
     
-    if (anaSoruMetni && anaSoruMetni !== girisMetni) {
-         finalHTML += `<p class="soru-ana-metin" style="margin-bottom:10px;">${anaSoruMetni}</p>`;
+    if (soruObj.soru && soruObj.soru !== soruObj.onculGiris) {
+         finalHTML += `<p class="soru-ana-metin" style="margin-bottom:10px;">${soruObj.soru}</p>`;
+         toplamMetinKontrol += soruObj.soru;
     }
 
-    // Öncüller (Liste Yapısı)
     let onculHTML = "";
     if (soruObj.onculler && soruObj.onculler.length > 0) {
         onculHTML += `<ul class='oncul-kapsayici' style="margin: 10px 0; list-style:none; padding:0;">`; 
         soruObj.onculler.forEach(oncul => {
             const match = oncul.match(/^(\d+\.?|\w\.?)\s*(.*)/);
-            let numara = match ? match[1] : ''; 
-            let metin = match ? match[2] : oncul;
-            
-            if (!numara && metin.split(" ").length > 1 && /^\d+\./.test(metin.trim())) {
-                 numara = metin.split(" ")[0];
-                 metin = metin.substring(numara.length).trim();
-            }
-            
-            onculHTML += `
-                <li class='oncul-satir' style="margin-bottom:5px;">
-                    <span class='oncul-no' style="font-weight:bold; margin-right:5px;">${numara}</span>
-                    <span class='oncul-yazi'>${metin}</span>
-                </li>`;
+            onculHTML += `<li class='oncul-satir' style="margin-bottom:5px;"><span class='oncul-no' style="font-weight:bold; margin-right:5px;">${match ? match[1] : ''}</span><span class='oncul-yazi'>${match ? match[2] : oncul}</span></li>`;
+            toplamMetinKontrol += oncul;
         });
         onculHTML += `</ul>`;
     }
 
-    // Soru Kökü
     let soruKokuHTML = "";
     if (soruObj.soruKoku) {
         soruKokuHTML = `<p class='soru-koku-vurgu' style="font-weight:bold; margin-top:10px;">${soruObj.soruKoku}</p>`;
+        toplamMetinKontrol += soruObj.soruKoku;
+    }
+
+    const container = document.querySelector(".container");
+    if (toplamMetinKontrol.length > 250) {
+        container.classList.add("uzun-soru");
+    } else {
+        container.classList.remove("uzun-soru");
     }
 
     const yerlesim = soruObj.oncul_yerlesim || "ONCE_KOK"; 
-    
-    if (yerlesim === "ONCE_KOK") {
-        finalHTML += onculHTML;    
-        finalHTML += soruKokuHTML; 
-    } else if (yerlesim === "SONRA_KOK") {
-        finalHTML += soruKokuHTML;
-        finalHTML += onculHTML;
-    } else {
-        finalHTML += onculHTML; 
-        finalHTML += soruKokuHTML;
-    }
+    if (yerlesim === "ONCE_KOK") { finalHTML += onculHTML + soruKokuHTML; } 
+    else { finalHTML += soruKokuHTML + onculHTML; }
 
     soruBaslik.innerHTML = finalHTML;
 
-    // Şıklar
     const siklarKutusu = document.getElementById("siklar-alani");
     siklarKutusu.innerHTML = "";
-    
     const uzunSikVar = soruObj.secenekler.some(sik => sik.length > 40);
     if (uzunSikVar) siklarKutusu.classList.add("tek-sutun");
     else siklarKutusu.classList.remove("tek-sutun");
 
-    if (!document.getElementById("gorsel-uyari-alani")) {
-        const div = document.createElement("div");
-        div.id = "gorsel-uyari-alani"; div.className = "gorsel-uyari-kutusu";
-        document.getElementById("soru-alani").appendChild(div);
-    }
-
     soruObj.secenekler.forEach((sik, i) => { 
         const btn = document.createElement("button");
         const harf = getSikHarfi(i);
-        
         btn.innerText = harf + ") " + sik;
         btn.className = "sik-butonu";
         btn.setAttribute("aria-label", `${harf} şıkkı: ${sik}`); 
-
         if (kullaniciCevaplari[index] !== null) {
             if (harf === getSikHarfi(kullaniciCevaplari[index])) {
-                if (harf === soruObj.dogru_cevap) { btn.classList.add("dogru"); } else { btn.classList.add("yanlis"); } 
+                btn.classList.add(harf === soruObj.dogru_cevap ? "dogru" : "yanlis");
             }
             btn.disabled = true;
         }
@@ -238,10 +205,7 @@ function soruyuGoster(index) {
 
     document.getElementById("btn-onceki").disabled = (index === 0);
     document.getElementById("btn-sonraki").disabled = (index === mevcutSorular.length - 1);
-
-    if (kullaniciCevaplari[index] === null) {
-        soruSayacElement.focus();
-    }
+    if (kullaniciCevaplari[index] === null) soruSayacElement.focus();
 }
 
 function cevapIsaretle(secilenIndex, btnElement) {
@@ -253,79 +217,39 @@ function cevapIsaretle(secilenIndex, btnElement) {
 
     const uyariKutusu = document.getElementById("sesli-uyari");
     const gorselUyari = document.getElementById("gorsel-uyari-alani");
-    
-    const sikHarfi = secilenCevapHarf; 
-    let durumMetniDetayli = ""; 
-    let durumMetniKisa = ""; 
-
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || window.innerWidth < 768;
-
     const dogruMu = (secilenCevapHarf === dogruCevapHarf);
-    const gorselMetin = dogruMu ? "DOĞRU CEVAP!" : "YANLIŞ CEVAP!";
-    const gorselClass = dogruMu ? "uyari-dogru" : "uyari-yanlis";
     
-    gorselUyari.innerText = gorselMetin;
-    gorselUyari.className = "gorsel-uyari-kutusu " + gorselClass;
+    gorselUyari.innerText = dogruMu ? "DOĞRU CEVAP!" : "YANLIŞ CEVAP!";
+    gorselUyari.className = `gorsel-uyari-kutusu ${dogruMu ? 'uyari-dogru' : 'uyari-yanlis'}`;
     gorselUyari.style.display = "block";
 
     if (dogruMu) {
         btnElement.classList.add("dogru"); 
-        durumMetniDetayli = "Doğru cevap."; 
-        durumMetniKisa = "Doğru cevap."; 
         sesUret("dogru"); 
     } else {
         btnElement.classList.add("yanlis"); 
         const dogruButon = Array.from(document.querySelectorAll(".sik-butonu")).find(b => b.innerText.startsWith(dogruCevapHarf + ")"));
         if(dogruButon) dogruButon.classList.add("dogru");
-        
-        durumMetniDetayli = "Yanlış cevap. Doğru cevap " + dogruCevapHarf + " şıkkıydı."; 
-        durumMetniKisa = "Yanlış cevap."; 
         sesUret("yanlis"); 
     }
 
     if (!isMobile) {
         uyariKutusu.setAttribute("role", "alert"); 
         uyariKutusu.setAttribute("aria-live", "assertive"); 
-        uyariKutusu.innerText = sikHarfi + " şıkkını işaretlediniz. " + durumMetniDetayli;
+        uyariKutusu.innerText = secilenCevapHarf + " şıkkını işaretlediniz. " + (dogruMu ? "Doğru cevap." : "Yanlış. Doğru cevap " + dogruCevapHarf);
     } 
-    else {
-        setTimeout(() => { 
-             uyariKutusu.innerText = durumMetniKisa; 
-             if (uyariKutusu.tabIndex === -1) uyariKutusu.tabIndex = 0; 
-             uyariKutusu.focus();
-        }, 350); 
-    }
-
-    const toplamGecisSuresi = isMobile ? 1750 : 2500; 
-
-    const tumButonlar = document.querySelectorAll(".sik-butonu");
-    tumButonlar.forEach(b => b.disabled = true);
 
     setTimeout(() => {
         uyariKutusu.innerText = ""; 
-        uyariKutusu.removeAttribute("role"); 
-        uyariKutusu.removeAttribute("aria-live");
-        if (isMobile) uyariKutusu.removeAttribute("tabindex"); 
         gorselUyari.style.display = "none";
-
-        if (mevcutSoruIndex < mevcutSorular.length - 1) { 
-            sonrakiSoru(); 
-        } 
+        if (mevcutSoruIndex < mevcutSorular.length - 1) sonrakiSoru(); 
         else {
              sesUret("bitis");
-             const bitirButonu = document.getElementById("bitir-buton");
-             if(bitirButonu) {
-                 bitirButonu.focus();
-                 uyariKutusu.setAttribute("role", "alert"); 
-                 uyariKutusu.setAttribute("aria-live", "assertive"); 
-                 uyariKutusu.innerText = "Test bitti. Sonuçları görmek için bitir düğmesine basınız.";
-             }
-
              gorselUyari.className = "gorsel-uyari-kutusu"; gorselUyari.style.display = "block";
-             gorselUyari.style.backgroundColor = "#000"; gorselUyari.style.color = "#ffff00";
-             gorselUyari.style.border = "2px solid #fff"; gorselUyari.innerText = "TEST BİTTİ";
+             gorselUyari.style.backgroundColor = "#000"; gorselUyari.innerText = "TEST BİTTİ";
         }
-    }, toplamGecisSuresi);
+    }, 2500);
 }
 
 function getSikHarfi(index) { return ["A", "B", "C", "D", "E"][index]; }
@@ -335,7 +259,6 @@ function testiBitir() {
     for (let i = 0; i < mevcutSorular.length; i++) {
         const dogruCevapHarf = mevcutSorular[i].dogru_cevap;
         const secilenCevapHarf = kullaniciCevaplari[i] !== null ? getSikHarfi(kullaniciCevaplari[i]) : null;
-
         if (secilenCevapHarf === null) bosSayisi++;
         else if (secilenCevapHarf === dogruCevapHarf) dogruSayisi++;
         else yanlisSayisi++;
@@ -343,101 +266,36 @@ function testiBitir() {
     const net = dogruSayisi - (yanlisSayisi / 4);
     let puan = net * 5; if (puan < 0) puan = 0;
 
-    let motivasyonMesaji = ""; let mesajRengi = "";
-    if (puan >= 80) { motivasyonMesaji = "🏆 Mükemmel! Konuya son derece hakimsin."; mesajRengi = "#00ff00"; } 
-    else if (puan >= 50) { motivasyonMesaji = "👍 Gayet iyisin! Biraz daha tekrarla harika olursun."; mesajRengi = "#ffff00"; } 
-    else { motivasyonMesaji = "💪 Pes etmek yok! Tekrar yaparak başaracaksın."; mesajRengi = "#ff9999"; }
-
     document.getElementById("soru-alani").style.display = "none";
     document.getElementById("bitir-buton").style.display = "none";
     document.getElementById("sonuc-alani").style.display = "block";
 
     const sonucHTML = `
         <div style="border: 4px solid #fff; padding: 20px; border-radius: 10px; margin-bottom: 20px; background:#000;">
-            <div style="color:${mesajRengi}; font-size: 1.8rem; margin: 0 0 10px 0;">${motivasyonMesaji}</div>
+            <p style="font-size:1.5rem; color:#fff;"><strong>TOPLAM PUAN: ${puan.toFixed(2)} / 100</strong></p>
+            <p style="font-size:1.2rem; color:#ccc;">Doğru: ${dogruSayisi} | Yanlış: ${yanlisSayisi} | Boş: ${bosSayisi}</p>
         </div>
-        <p style="font-size:1.5rem; color:#fff;"><strong>TOPLAM PUAN: ${puan.toFixed(2)} / 100</strong></p>
-        <p style="font-size:1.2rem; color:#ccc;">Doğru: ${dogruSayisi} | Yanlış: ${yanlisSayisi} | Boş: ${bosSayisi}</p>
-        <p style="font-size:1.4rem; color:#ffff00;">Net: ${net.toFixed(2)}</p>
-        <br>
-        <button class="nav-buton" onclick="cevapAnahtariniGoster()" style="width:100%; padding:20px; font-size:1.4rem; border:2px solid #ffff00; color:#ffff00; background:#000; font-weight:bold;">📝 CEVAP ANAHTARI (Tüm Soruları İncele)</button>
+        <button class="nav-buton" onclick="cevapAnahtariniGoster()" style="width:100%;">📝 CEVAP ANAHTARI</button>
     `;
-    
     document.getElementById("puan-detay").innerHTML = sonucHTML;
-    document.getElementById("sonuc-alani").focus();
 }
 
 function cevapAnahtariniGoster() {
     const listeDiv = document.getElementById("yanlis-detaylari");
     listeDiv.innerHTML = "";
-    
-    const baslik = document.getElementById("yanlislar-baslik");
-    if(baslik) baslik.innerHTML = `<div class="baslik-h2-gibi">CEVAP ANAHTARI</div>`;
-    
     document.getElementById("yanlislar-listesi").style.display = "block";
-    
     mevcutSorular.forEach((soru, index) => {
         const kullaniciCevabiIndex = kullaniciCevaplari[index];
         const dogruCevapHarf = soru.dogru_cevap;
         const kart = document.createElement("div"); 
         kart.className = "yanlis-soru-karti";
-        
-        let durumRengi = "";
-        let durumMetni = "";
-        let sonucIkonu = "";
-        
-        const secilenCevapHarf = kullaniciCevabiIndex !== null ? getSikHarfi(kullaniciCevaplari[index]) : null;
-        
-        if (secilenCevapHarf === null) {
-            durumRengi = "#ffff00"; 
-            sonucIkonu = "❔";
-            durumMetni = "BOŞ BIRAKILDI";
-            kart.style.borderLeft = "6px solid #ffff00";
-        } else if (secilenCevapHarf === dogruCevapHarf) {
-            durumRengi = "#00ff00"; 
-            sonucIkonu = "✅";
-            durumMetni = "DOĞRU CEVAP VERİLDİ";
-            kart.style.borderLeft = "6px solid #00ff00";
-        } else {
-            durumRengi = "#ff0000"; 
-            sonucIkonu = "❌";
-            durumMetni = "YANLIŞ CEVAP VERİLDİ";
-            kart.style.borderLeft = "6px solid #ff0000";
-        }
-
-        let soruMetniGoster = "";
-        if (soru.onculler) {
-            if(soru.onculGiris) soruMetniGoster += `<div style="margin-bottom:5px;">${soru.onculGiris}</div>`;
-            soru.onculler.forEach(o => soruMetniGoster += `<div style="padding-left:10px;">${o}</div>`);
-            if(soru.soruKoku) soruMetniGoster += `<div style="margin-top:10px; font-weight:bold;">${soru.soruKoku}</div>`;
-        } else {
-            soruMetniGoster = soru.soru;
-        }
-        
-        const dogruCevapIndex = ["A", "B", "C", "D", "E"].indexOf(dogruCevapHarf); 
-
+        const secilenCevapHarf = kullaniciCevabiIndex !== null ? getSikHarfi(kullaniciCevaplari[index]) : 'Boş';
         kart.innerHTML = `
-            <div style="border-bottom:1px solid #444; padding-bottom:10px; margin-bottom:10px;">
-                <div style="margin:0; color:#888;">Soru ${index + 1} ${sonucIkonu}</div>
-                <div style="margin-top:10px; font-size:1.1rem;">${soruMetniGoster}</div>
-            </div>
-            
-            <p style="color:${durumRengi}; font-size:1.1rem; margin-bottom:5px;">
-                <strong>Sizin Cevabınız:</strong> ${secilenCevapHarf !== null ? secilenCevapHarf + ") " + soru.secenekler[kullaniciCevabiIndex] : 'Boş Bırakıldı'}
-                <span style="font-weight:bold; color:${durumRengi};">(${durumMetni})</span>
-            </p>
-            
-            <p style="color:#00ff00; font-size:1.1rem; margin-bottom:10px;">
-                <strong>Doğru Cevap:</strong> ${dogruCevapHarf}) ${soru.secenekler[dogruCevapIndex]}
-            </p>
-            
-            <div class="aciklama-kutusu" style="background:#111; padding:15px; border-radius:8px; border:1px solid #333; margin-top:10px;">
-                <strong style="color:#ffff00; display:block; margin-bottom:5px;">💡 Açıklama:</strong> 
-                <span style="color:#ddd;">${soru.aciklama || 'Açıklama mevcut değil.'}</span>
-            </div>
-        `;
+            <div style="border-bottom:1px solid #444; padding-bottom:10px;">
+                <p>Soru ${index + 1} - Sizin Cevabınız: ${secilenCevapHarf}</p>
+                <p style="color:#00ff00;">Doğru Cevap: ${dogruCevapHarf}</p>
+                <p>Açıklama: ${soru.aciklama || 'Yok'}</p>
+            </div>`;
         listeDiv.appendChild(kart);
     });
-
-    baslik.focus();
 }

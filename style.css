@@ -201,31 +201,30 @@ footer { text-align: center; padding: 20px; border-top: 1px solid #333; font-siz
 .ana-menu-karti:hover { background-color: #fff; color: #500000; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
 
-/* --- MASAÜSTÜ İÇİN EK ODALANMA VE SIĞDIRMA AYARLARI --- */
+/* --- MASAÜSTÜ İÇİN AKILLI SIĞDIRMA AYARLARI --- */
 @media screen and (min-width: 1024px) {
-    #soru-metni {
+    /* Sadece çok uzun sorularda aktif olur (Script tarafından tetiklenir) */
+    .uzun-soru #soru-metni {
         max-height: 250px; 
         overflow-y: auto; 
         padding-right: 15px;
     }
-    .soru-kutusu {
+    
+    .uzun-soru .soru-kutusu {
         padding: 20px 30px; 
-        margin-bottom: 10px;
-        min-height: 520px; /* Standart odak için kutu yüksekliğini sabitler */
+        min-height: 520px;
         display: flex;
         flex-direction: column;
     }
-    .siklar-grid {
+
+    .uzun-soru .siklar-grid {
         gap: 10px;
-        margin-top: auto; /* Şıkları kutunun en altına sabitler */
+        margin-top: auto; 
     }
-    .sik-butonu {
-        min-height: 55px;
-        padding: 10px 15px;
+    
+    .uzun-soru .sik-butonu {
+        min-height: 50px;
+        padding: 8px 15px;
         font-size: 1.15rem;
-    }
-    .oncul-kapsayici {
-        margin: 10px 0;
-        padding: 10px 15px;
     }
 }
