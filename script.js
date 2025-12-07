@@ -17,9 +17,9 @@ const DOSYA_ESLESTIRME = {
     "osmanligerileme": "osmanligerilemevedagilma.json",
     "mesrutiyet": "mesrutiyet.json",
     "inkilap": "1dunyasavasivekurtulussavasi.json",
-    "cumhuriyet": "cumhuriyetdonemi.json"
+    "cumhuriyet": "cumhuriyetdonemi.json",
+    "guncel": "guncelbilgiler.json"
 };
-
 // --- SES MOTORU ---
 const sesler = {
     dogru: new Audio('dogru.mp3'),
@@ -207,49 +207,56 @@ function soruyuGoster(index) {
     document.getElementById("btn-sonraki").disabled = (index === mevcutSorular.length - 1);
     if (kullaniciCevaplari[index] === null) soruSayacElement.focus();
 }
-
 function cevapIsaretle(secilenIndex, btnElement) {
     if (isaretlemeKilitli) return;
     isaretlemeKilitli = true;
     kullaniciCevaplari[mevcutSoruIndex] = secilenIndex;
+    
     const dogruCevapHarf = mevcutSorular[mevcutSoruIndex].dogru_cevap; 
     const secilenCevapHarf = getSikHarfi(secilenIndex); 
+    const dogruMu = (secilenCevapHarf === dogruCevapHarf);
 
     const uyariKutusu = document.getElementById("sesli-uyari");
     const gorselUyari = document.getElementById("gorsel-uyari-alani");
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || window.innerWidth < 768;
-    const dogruMu = (secilenCevapHarf === dogruCevapHarf);
-    
+
+    // 1. ADIM: VoiceOver için anında metinsel geri bildirim
     gorselUyari.innerText = dogruMu ? "DOĞRU CEVAP!" : "YANLIŞ CEVAP!";
     gorselUyari.className = `gorsel-uyari-kutusu ${dogruMu ? 'uyari-dogru' : 'uyari-yanlis'}`;
     gorselUyari.style.display = "block";
 
+    if (uyariKutusu) {
+        uyariKutusu.setAttribute("role", "alert"); 
+        uyariKutusu.setAttribute("aria-live", "assertive"); 
+        uyariKutusu.innerText = dogruMu ? "Doğru bildiniz." : `Yanlış. Doğru cevap ${dogruCevapHarf} şıkkıydı.`;
+    }
+
     if (dogruMu) {
         btnElement.classList.add("dogru"); 
-        sesUret("dogru"); 
     } else {
         btnElement.classList.add("yanlis"); 
         const dogruButon = Array.from(document.querySelectorAll(".sik-butonu")).find(b => b.innerText.startsWith(dogruCevapHarf + ")"));
         if(dogruButon) dogruButon.classList.add("dogru");
-        sesUret("yanlis"); 
     }
 
-    if (!isMobile) {
-        uyariKutusu.setAttribute("role", "alert"); 
-        uyariKutusu.setAttribute("aria-live", "assertive"); 
-        uyariKutusu.innerText = secilenCevapHarf + " şıkkını işaretlediniz. " + (dogruMu ? "Doğru cevap." : "Yanlış. Doğru cevap " + dogruCevapHarf);
-    } 
-
+    // 2. ADIM: Ses çakışmasını önlemek için 500ms gecikme ile ses çalma
     setTimeout(() => {
-        uyariKutusu.innerText = ""; 
+        sesUret(dogruMu ? "dogru" : "yanlis");
+    }, 500);
+
+    // 3. ADIM: Bir sonraki soruya geçiş
+    setTimeout(() => {
+        if (uyariKutusu) uyariKutusu.innerText = ""; 
         gorselUyari.style.display = "none";
-        if (mevcutSoruIndex < mevcutSorular.length - 1) sonrakiSoru(); 
-        else {
-             sesUret("bitis");
-             gorselUyari.className = "gorsel-uyari-kutusu"; gorselUyari.style.display = "block";
-             gorselUyari.style.backgroundColor = "#000"; gorselUyari.innerText = "TEST BİTTİ";
+        if (mevcutSoruIndex < mevcutSorular.length - 1) {
+            sonrakiSoru(); 
+        } else {
+            sesUret("bitis");
+            gorselUyari.className = "gorsel-uyari-kutusu"; 
+            gorselUyari.style.display = "block";
+            gorselUyari.style.backgroundColor = "#000"; 
+            gorselUyari.innerText = "TEST BİTTİ";
         }
-    }, 2500);
+    }, 3000);  
 }
 
 function getSikHarfi(index) { return ["A", "B", "C", "D", "E"][index]; }
