@@ -19,8 +19,9 @@ const DOSYA_ESLESTIRME = {
     "inkilap": "1dunyasavasivekurtulussavasi.json",
     "cumhuriyet": "cumhuriyetdonemi.json",
     "guncel": "guncelbilgiler.json",
-"karma": "karmatestler.json"
+    "karma": "karmatestler.json"
 };
+
 // --- SES MOTORU ---
 const sesler = {
     dogru: new Audio('dogru.mp3'),
@@ -49,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (testParam) {
         const onEk = testParam.substring(0, testParam.lastIndexOf('_'));
         const dosyaAdi = DOSYA_ESLESTIRME[onEk];
-const testNoStr = testParam.split('_test')[1];
+        const testNoStr = testParam.split('_test')[1];
         const testNo = parseInt(testNoStr); 
         
         if (dosyaAdi && !isNaN(testNo)) {
@@ -208,6 +209,7 @@ function soruyuGoster(index) {
     document.getElementById("btn-sonraki").disabled = (index === mevcutSorular.length - 1);
     if (kullaniciCevaplari[index] === null) soruSayacElement.focus();
 }
+
 function cevapIsaretle(secilenIndex, btnElement) {
     if (isaretlemeKilitli) return;
     isaretlemeKilitli = true;
@@ -291,19 +293,95 @@ function testiBitir() {
 function cevapAnahtariniGoster() {
     const listeDiv = document.getElementById("yanlis-detaylari");
     listeDiv.innerHTML = "";
-    document.getElementById("yanlislar-listesi").style.display = "block";
+    
+    // Konteynerın görünür olduğundan emin ol
+    const yanlislarListesi = document.getElementById("yanlislar-listesi");
+    if(yanlislarListesi) yanlislarListesi.style.display = "block";
+
     mevcutSorular.forEach((soru, index) => {
-        const kullaniciCevabiIndex = kullaniciCevaplari[index];
-        const dogruCevapHarf = soru.dogru_cevap;
-        const kart = document.createElement("div"); 
-        kart.className = "yanlis-soru-karti";
-        const secilenCevapHarf = kullaniciCevabiIndex !== null ? getSikHarfi(kullaniciCevaplari[index]) : 'Boş';
+        const kullaniciIdx = kullaniciCevaplari[index];
+        const dogruCevap = soru.dogru_cevap;
+        const kullaniciCevapHarf = kullaniciIdx !== null ? getSikHarfi(kullaniciIdx) : "Boş";
+
+        // Durum Belirleme (Renkler ve Metin)
+        let durumMetni = "";
+        let durumRenk = "";
+        let kartSinirRengi = "";
+
+        if (kullaniciCevapHarf === "Boş") {
+            durumMetni = "(BOŞ)";
+            durumRenk = "#FFA500"; // Turuncu
+            kartSinirRengi = "#FFA500";
+        } else if (kullaniciCevapHarf === dogruCevap) {
+            durumMetni = "(DOĞRU)";
+            durumRenk = "#00FF00"; // Yeşil
+            kartSinirRengi = "#00FF00";
+        } else {
+            durumMetni = "(YANLIŞ)";
+            durumRenk = "#FF0000"; // Kırmızı
+            kartSinirRengi = "#FF0000";
+        }
+
+        // Soru Metnini Oluşturma (Tam detaylı görünüm)
+        let soruIcerikHTML = "";
+        if (soru.onculGiris) soruIcerikHTML += `<p style="margin-bottom:5px;">${soru.onculGiris}</p>`;
+        if (soru.soru) soruIcerikHTML += `<p style="margin-bottom:5px;">${soru.soru}</p>`;
+        if (soru.onculler && soru.onculler.length > 0) {
+            soruIcerikHTML += '<ul style="list-style:none; padding-left:0; margin:5px 0;">';
+            soru.onculler.forEach(onc => soruIcerikHTML += `<li>${onc}</li>`);
+            soruIcerikHTML += '</ul>';
+        }
+        if (soru.soruKoku) soruIcerikHTML += `<p style="font-weight:bold; margin-top:5px;">${soru.soruKoku}</p>`;
+
+        // Kart Elementini Oluşturma
+        const kart = document.createElement("div");
+        kart.className = "sonuc-karti";
+        // Estetik ve Kontrast Stilleri
+        kart.style.cssText = `
+            background-color: #1a1a1a;
+            border: 2px solid ${kartSinirRengi};
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 25px;
+            color: #ffffff;
+            font-family: sans-serif;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+        `;
+
+        let cevapKismiHTML = `
+            <div style="margin-top:15px; border-top:1px solid #444; padding-top:15px;">
+                <p style="font-size:1.1rem; margin-bottom:5px;">
+                    Sizin Cevabınız: <strong>${kullaniciCevapHarf}</strong>
+                    <span style="color:${durumRenk}; font-weight:bold; margin-left:10px;">${durumMetni}</span>
+                </p>
+        `;
+
+        // Yanlış veya Boş ise Doğru Cevabı Göster
+        if (kullaniciCevapHarf !== dogruCevap) {
+            cevapKismiHTML += `
+                <p style="color:#00FF00; font-weight:bold; font-size:1.1rem; margin-top:5px;">
+                    Doğru Cevap: ${dogruCevap}
+                </p>
+            `;
+        }
+
+        // Açıklama Varsa Ekle
+        if (soru.aciklama) {
+            cevapKismiHTML += `
+                <div style="background:#333; color:#ddd; padding:10px; border-radius:5px; margin-top:15px; border-left: 4px solid #fff;">
+                    <strong>Açıklama:</strong> ${soru.aciklama}
+                </div>
+            `;
+        }
+
+        cevapKismiHTML += `</div>`;
+
         kart.innerHTML = `
-            <div style="border-bottom:1px solid #444; padding-bottom:10px;">
-                <p>Soru ${index + 1} - Sizin Cevabınız: ${secilenCevapHarf}</p>
-                <p style="color:#00ff00;">Doğru Cevap: ${dogruCevapHarf}</p>
-                <p>Açıklama: ${soru.aciklama || 'Yok'}</p>
-            </div>`;
+            <div style="font-weight:bold; font-size:1.2rem; margin-bottom:10px; color:#aaa; border-bottom:1px solid #333; padding-bottom:5px;">SORU ${index + 1}</div>
+            <div class="soru-metni-ozet" style="font-size:1rem; line-height:1.4;">${soruIcerikHTML}</div>
+            ${cevapKismiHTML}
+        `;
+
         listeDiv.appendChild(kart);
     });
 }
