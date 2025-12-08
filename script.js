@@ -231,13 +231,11 @@ function soruyuGoster(index) {
     
     const btnSonraki = document.getElementById("btn-sonraki");
     if (index === mevcutSorular.length - 1) {
-        // Son sorudaysak butonu "Testi Bitir" yap
         btnSonraki.innerText = "TESTİ BİTİR";
-        btnSonraki.classList.add("bitir-ozel"); // Yeşil özel stil
-        btnSonraki.onclick = testiBitir; // Doğrudan bitirme fonksiyonuna bağla
+        btnSonraki.classList.add("bitir-ozel"); 
+        btnSonraki.onclick = testiBitir; 
         btnSonraki.disabled = false;
     } else {
-        // Ara sorulardaysak "Sonraki" olarak kalsın
         btnSonraki.innerText = "Sonraki >";
         btnSonraki.classList.remove("bitir-ozel");
         btnSonraki.onclick = sonrakiSoru;
@@ -256,7 +254,6 @@ function cevapIsaretle(secilenIndex, btnElement) {
     const secilenCevapHarf = getSikHarfi(secilenIndex); 
     const dogruMu = (secilenCevapHarf === dogruCevapHarf);
 
-    // Doğru şıkkın metnini bul
     const dogruIndex = ["A", "B", "C", "D", "E"].indexOf(dogruCevapHarf);
     const dogruSikMetni = mevcutSorular[mevcutSoruIndex].secenekler[dogruIndex];
 
@@ -264,7 +261,6 @@ function cevapIsaretle(secilenIndex, btnElement) {
     const gorselUyari = document.getElementById("gorsel-uyari-alani");
 
     // 1. ADIM: DETAYLI GERİ BİLDİRİM METNİ OLUŞTURMA
-    // Hem görsel hem işitsel olarak tam metni hazırlıyoruz.
     let bildirimMetni = "";
     if (dogruMu) {
         bildirimMetni = `Doğru! Cevap ${dogruCevapHarf} şıkkı: ${dogruSikMetni}`;
@@ -272,16 +268,14 @@ function cevapIsaretle(secilenIndex, btnElement) {
         bildirimMetni = `Yanlış. Doğru cevap ${dogruCevapHarf} şıkkı: ${dogruSikMetni}`;
     }
 
-    // Görsel uyarıyı göster
     gorselUyari.innerText = dogruMu ? "DOĞRU CEVAP!" : "YANLIŞ CEVAP!";
     gorselUyari.className = `gorsel-uyari-kutusu ${dogruMu ? 'uyari-dogru' : 'uyari-yanlis'}`;
     gorselUyari.style.display = "block";
 
-    // Ekran okuyucuya detaylı metni gönder
     if (uyariKutusu) {
         uyariKutusu.setAttribute("role", "alert"); 
         uyariKutusu.setAttribute("aria-live", "assertive"); 
-        uyariKutusu.innerText = bildirimMetni; // Şıkkın içeriğini okur
+        uyariKutusu.innerText = bildirimMetni; 
     }
 
     if (dogruMu) {
@@ -292,18 +286,24 @@ function cevapIsaretle(secilenIndex, btnElement) {
         if(dogruButon) dogruButon.classList.add("dogru");
     }
 
-    // 2. ADIM: SES VE GEÇİŞ MANTIĞI (MOBİL / PC AYRIMI)
-    
-    // Sesi biraz gecikmeli çal (Ekran okuyucu metne başlasın diye)
+    // 2. ADIM: SES VE GEÇİŞ MANTIĞI (DÜZELTİLDİ)
+
+    // DÜZELTME 1: Mobilde sesin engellenmemesi için gecikme çok düşürüldü/kaldırıldı.
+    // Telefonlarda kullanıcı etkileşimi (click) ile ses (audio) aynı anda olmalı.
+    const sesGecikmesi = isMobile ? 50 : 400; // Mobilde neredeyse anlık (50ms), PC'de 400ms
     setTimeout(() => {
         sesUret(dogruMu ? "dogru" : "yanlis");
-    }, 400);
+    }, sesGecikmesi);
 
-    // Geçiş Mantığı
+    // Ortak süre hesaplama (Harf başına okuma süresi)
+    const temelBekleme = 1500; // Temel bekleme süresi
+    const harfBasinaSure = 70; // Harf başına milisaniye (Mobil okuma hızı için biraz daha cömert)
+    const hesaplananSure = temelBekleme + (bildirimMetni.length * harfBasinaSure);
+
     if (isMobile) {
-        // --- MOBİL DAVRANIŞI (ODAK YÖNETİMİ) ---
-        // Otomatik geçiş YOK. Sadece "Sonraki" butonuna odaklan.
-        // Kullanıcı cevabı dinler, sonra butona kendi basar.
+        // --- MOBİL DAVRANIŞI (DÜZELTİLDİ: AKILLI BEKLEME) ---
+        // Eskiden sabit 2.5 saniyeydi, şimdi "hesaplananSure" kadar bekliyor.
+        // Böylece VoiceOver uzun cümleyi bitirmeden odak asla kaymıyor.
         setTimeout(() => {
             if (uyariKutusu) uyariKutusu.innerText = ""; 
             gorselUyari.style.display = "none";
@@ -312,15 +312,10 @@ function cevapIsaretle(secilenIndex, btnElement) {
             const btnSonraki = document.getElementById("btn-sonraki");
             if (btnSonraki) btnSonraki.focus(); 
             
-        }, 2500); // 2.5 saniye sonra odağı butona taşı
+        }, hesaplananSure); // Dinamik süre kullanıldı
         
     } else {
-        // --- BİLGİSAYAR DAVRANIŞI (AKILLI OTOMATİK GEÇİŞ) ---
-        // Metnin uzunluğuna göre bekleme süresi hesapla
-        const temelBekleme = 2000; // En az 2 saniye
-        const harfBasinaSure = 60; // Harf başına 60ms ekle
-        const hesaplananSure = temelBekleme + (bildirimMetni.length * harfBasinaSure);
-        
+        // --- BİLGİSAYAR DAVRANIŞI (OTOMATİK GEÇİŞ) ---
         setTimeout(() => {
             if (uyariKutusu) uyariKutusu.innerText = ""; 
             gorselUyari.style.display = "none";
@@ -328,13 +323,11 @@ function cevapIsaretle(secilenIndex, btnElement) {
             if (mevcutSoruIndex < mevcutSorular.length - 1) {
                 sonrakiSoru(); 
             } else {
-                // Son sorudaysak otomatik geçiş yerine "Test Bitti" uyarısı ver
                 sesUret("bitis");
                 gorselUyari.className = "gorsel-uyari-kutusu"; 
                 gorselUyari.style.display = "block";
                 gorselUyari.style.backgroundColor = "#000"; 
                 gorselUyari.innerText = "TEST BİTTİ - Sonuçları Görmek İçin Tıklayın";
-                // Bilgisayarda da son soruda buton "Testi Bitir" olduğu için oraya odaklansın
                 const btnSonraki = document.getElementById("btn-sonraki");
                 if (btnSonraki) btnSonraki.focus();
             }
@@ -357,7 +350,7 @@ function testiBitir() {
     let puan = net * 5; if (puan < 0) puan = 0;
 
     document.getElementById("soru-alani").style.display = "none";
-    if(document.getElementById("bitir-buton")) document.getElementById("bitir-buton").style.display = "none"; // Varsa gizle
+    if(document.getElementById("bitir-buton")) document.getElementById("bitir-buton").style.display = "none"; 
     document.getElementById("sonuc-alani").style.display = "block";
 
     const sonucHTML = `
