@@ -9,6 +9,27 @@ html, body {
     display: flex; flex-direction: column;
 }
 
+/* --- LİNK (BAĞLANTI) AYARLARI - ÖZEL DÜZENLEME --- */
+/* Buradaki kod; ana menü kartlarını, şıkları, navigasyon butonlarını ve site başlığını 
+   HARİÇ tutarak (not komutu ile), sadece metin içindeki linkleri hedef alır.
+*/
+a:not(.ana-menu-karti):not(.sik-butonu):not(.nav-buton):not(.site-linki):not(.skip-link) {
+    color: #ffff00;             /* Sapsarı (En iyi kontrast) */
+    font-weight: bold;          /* Kalın */
+    text-decoration: underline; /* Altı çizgili */
+    font-size: 1.2rem;          /* %20 Daha büyük (Normali 1rem) */
+    transition: all 0.2s;       /* Yumuşak geçiş */
+}
+
+/* Üzerine gelince fosforlu efekt (Yine sadece metin linkleri için) */
+a:not(.ana-menu-karti):not(.sik-butonu):not(.nav-buton):not(.site-linki):not(.skip-link):hover {
+    background-color: #ffff00;
+    color: #000000;
+    text-decoration: none;
+    padding: 0 5px;             /* Hafif genişleme efekti */
+    border-radius: 4px;
+}
+
 /* İLERLEME ÇUBUĞU */
 .ilerleme-kapsayici {
     position: fixed; top: 0; left: 0; width: 100%; height: 4px;
@@ -145,7 +166,7 @@ a:focus, button:focus, summary:focus, input:focus {
 /* FOOTER */
 footer { text-align: center; padding: 20px; border-top: 1px solid #333; font-size: 0.9rem; color: #777; margin-top: auto; }
 
-/* ANA SAYFA TASARIM EKLEMELERİ (YENİ) */
+/* ANA SAYFA TASARIM EKLEMELERİ */
 .site-header {
     background: linear-gradient(to right, #380000, #5a0000, #380000);
     width: 100%;
