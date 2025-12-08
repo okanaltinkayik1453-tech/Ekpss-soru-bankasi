@@ -30,19 +30,19 @@ const sesler = {
     dogru: new Audio('dogru.mp3'),
     yanlis: new Audio('yanlis.mp3'),
     bitis: new Audio('bitis.mp3'),
-    kilit: new Audio('kilit.mp3') // YENİ: Kilit sesi eklendi
+    kilit: new Audio('kilit.mp3') // Klasörde kilit.mp3 olduğundan emin ol
 };
 
 // Ses Seviyeleri
 sesler.dogru.volume = 1.0; 
 sesler.yanlis.volume = 0.3; 
 sesler.bitis.volume = 0.3; 
-sesler.kilit.volume = 1.0; // Kilit sesi net duyulsun
+sesler.kilit.volume = 0.8; 
 
 function sesUret(tur) {
     // MOBİL KISITLAMASI: 
-    // Mobilde 'dogru' ve 'yanlis' seslerini çalma (VoiceOver konuşsun diye).
-    // Ancak 'kilit' sesi ve 'bitis' sesi çalabilir.
+    // Mobilde 'dogru' ve 'yanlis' sesleri VoiceOver ile çakışmaması için kapatıldı.
+    // Sadece 'kilit' (tıklama anı) ve 'bitis' çalacak.
     if (isMobile && (tur === "dogru" || tur === "yanlis")) return;
 
     if (sesler[tur]) {
@@ -145,7 +145,12 @@ function soruyuGoster(index) {
     window.scrollTo({ top: 0, behavior: 'auto' });
 
     const uyariKutusu = document.getElementById("sesli-uyari");
-    if(uyariKutusu) uyariKutusu.innerText = "";
+    if(uyariKutusu) {
+        uyariKutusu.innerText = "";
+        // Yeni soruya geçince aria-live temizlenir
+        uyariKutusu.removeAttribute("role");
+        uyariKutusu.removeAttribute("aria-live");
+    }
     
     const gorselUyari = document.getElementById("gorsel-uyari-alani");
     if (gorselUyari) gorselUyari.style.display = "none";
@@ -222,7 +227,7 @@ function soruyuGoster(index) {
         const harf = getSikHarfi(i);
         btn.innerText = harf + ") " + sik;
         btn.className = "sik-butonu";
-        // VoiceOver için düğme etiketini iyileştirme
+        // VoiceOver için
         btn.setAttribute("aria-label", `${harf} şıkkı, ${sik}. Seçmek için çift dokunun.`); 
         if (kullaniciCevaplari[index] !== null) {
             if (harf === getSikHarfi(kullaniciCevaplari[index])) {
@@ -253,7 +258,7 @@ function soruyuGoster(index) {
     if (kullaniciCevaplari[index] === null) soruSayacElement.focus();
 }
 
-// --- DÜZELTİLMİŞ CEVAP İŞARETLEME FONKSİYONU ---
+// --- AKILLI CEVAP İŞARETLEME (PC ve MOBİL AYRIŞTIRILMIŞ) ---
 function cevapIsaretle(secilenIndex, btnElement) {
     if (isaretlemeKilitli) return;
     isaretlemeKilitli = true;
@@ -269,8 +274,7 @@ function cevapIsaretle(secilenIndex, btnElement) {
     const uyariKutusu = document.getElementById("sesli-uyari");
     const gorselUyari = document.getElementById("gorsel-uyari-alani");
 
-    // --- METİN OLUŞTURMA (VoiceOver için optimize edildi) ---
-    // Noktalama işaretleri VoiceOver'ın es vermesini sağlar.
+    // Okunacak Metin (Noktalama işaretleri ile es verdik)
     let bildirimMetni = "";
     if (dogruMu) {
         bildirimMetni = `Doğru! İşaretlediğiniz şık ${dogruCevapHarf}. ${dogruSikMetni}.`;
@@ -278,14 +282,14 @@ function cevapIsaretle(secilenIndex, btnElement) {
         bildirimMetni = `Yanlış. Sizin cevabınız ${secilenCevapHarf}. Doğru cevap ${dogruCevapHarf} şıkkı: ${dogruSikMetni}.`;
     }
 
-    // Görsel geri bildirimi hemen ver
+    // GÖRSEL GERİ BİLDİRİM (HEMEN)
     if(gorselUyari) {
         gorselUyari.innerText = dogruMu ? "DOĞRU CEVAP!" : "YANLIŞ CEVAP!";
         gorselUyari.className = `gorsel-uyari-kutusu ${dogruMu ? 'uyari-dogru' : 'uyari-yanlis'}`;
         gorselUyari.style.display = "block";
     }
 
-    // Buton Renklendirmeleri
+    // BUTON RENKLENDİRME
     if (dogruMu) {
         btnElement.classList.add("dogru"); 
     } else {
@@ -294,71 +298,84 @@ function cevapIsaretle(secilenIndex, btnElement) {
         if(dogruButon) dogruButon.classList.add("dogru");
     }
 
-    // --- AYRIŞTIRILMIŞ MANTIK ---
+    // --- SES VE OKUMA SENARYOLARI ---
 
     if (isMobile) {
-        // --- SENARYO: MOBİL (VoiceOver İyileştirmesi) ---
+        // --- SENARYO 1: MOBİL (iPhone/Android) ---
+        // Strateji: Önce tık sesi, 600ms bekle, sonra konuş, sonra hızlı geç.
         
-        // 1. ADIM: Dokunma geri bildirimi sesi
-        sesUret("kilit");
+        sesUret("kilit"); // Tık sesi
 
-        // VoiceOver'ın önceki okumalarını temizlemesi için uyarı kutusunu sıfırla
+        // Ekran okuyucu kuyruğunu temizle
         if (uyariKutusu) {
             uyariKutusu.innerText = "";
-            uyariKutusu.setAttribute("role", "alert");
-            uyariKutusu.setAttribute("aria-live", "assertive");
+            uyariKutusu.removeAttribute("role");
+            uyariKutusu.removeAttribute("aria-live");
         }
 
-        // 2. ADIM: Gecikmeli Okuma (Ses çakışmasını önler)
         setTimeout(() => {
+            // Ses bittikten sonra metni gönderiyoruz
             if (uyariKutusu) {
+                uyariKutusu.setAttribute("role", "alert");
+                uyariKutusu.setAttribute("aria-live", "assertive");
                 uyariKutusu.innerText = bildirimMetni; 
             }
 
-            // 3. ADIM: SÜRE HESAPLAMASI (GÜVENLİ)
-            // Harf başına süreyi 90ms'den 130ms'ye çıkardık
-            // Sabit bekleme süresini 1000ms'den 2500ms'ye çıkardık
-            const okumaSuresi = (bildirimMetni.length * 130) + 2500; 
+            // HIZLI GEÇİŞ AYARI
+            // Harf başına 90ms (daha seri) + 1000ms (1 saniye) sabit bekleme
+            const mobilOkumaSuresi = (bildirimMetni.length * 90) + 1000;
 
             setTimeout(() => {
-                // Temizlik
-                if (uyariKutusu) uyariKutusu.innerText = ""; 
-                if (gorselUyari) gorselUyari.style.display = "none";
-                
-                // 4. ADIM: GEÇİŞ
-                if (mevcutSoruIndex < mevcutSorular.length - 1) {
-                    sonrakiSoru(); 
-                } else {
-                    testiBitirKismi(); 
-                }
-            }, okumaSuresi);
+                temizlikVeGecis();
+            }, mobilOkumaSuresi);
 
-        }, 750); // Ses çaldıktan 0.75sn sonra VoiceOver konuşmaya başlar (Çakışmayı önler)
+        }, 600); // Tık sesinin bitmesi için bekleme
 
     } else {
-        // --- SENARYO: BİLGİSAYAR (Hızlı Akış) ---
+        // --- SENARYO 2: BİLGİSAYAR (PC/Web) ---
+        // Strateji: Önce ses efekti (Doğru/Yanlış) çalsın.
+        // O sırada ekran okuyucuya HİÇBİR ŞEY gönderme.
+        // Ses bitsin (1 sn), sonra metni gönder. Böylece asla karışmaz.
+
+        sesUret(dogruMu ? "dogru" : "yanlis");
+
+        // Metni hemen yazma! Önce temizle.
         if (uyariKutusu) {
-            uyariKutusu.setAttribute("role", "alert"); 
-            uyariKutusu.setAttribute("aria-live", "assertive"); 
-            uyariKutusu.innerText = bildirimMetni; 
+            uyariKutusu.innerText = "";
+            uyariKutusu.removeAttribute("role");
         }
 
         setTimeout(() => {
-            sesUret(dogruMu ? "dogru" : "yanlis");
-        }, 400);
-
-        const pcOkumaSuresi = (bildirimMetni.length * 60) + 2000;
-
-        setTimeout(() => {
-            if (uyariKutusu) uyariKutusu.innerText = ""; 
-            if (gorselUyari) gorselUyari.style.display = "none";
-            
-            if (mevcutSoruIndex < mevcutSorular.length - 1) {
-                sonrakiSoru(); 
-            } else {
-                testiBitirKismi();
+            // 1.000 ms (1 saniye) sonra ses efekti biter, şimdi okutuyoruz.
+            if (uyariKutusu) {
+                uyariKutusu.setAttribute("role", "alert"); 
+                uyariKutusu.setAttribute("aria-live", "assertive"); 
+                uyariKutusu.innerText = bildirimMetni; 
             }
-        }, pcOkumaSuresi);
+
+            // PC okuma süresi hesaplama
+            const pcOkumaSuresi = (bildirimMetni.length * 70) + 1200;
+
+            setTimeout(() => {
+                temizlikVeGecis();
+            }, pcOkumaSuresi);
+
+        }, 1000); // Ses efekti için 1 saniye bekleme payı
+    }
+}
+
+// Kod tekrarını önlemek için ortak temizlik ve geçiş fonksiyonu
+function temizlikVeGecis() {
+    const uyariKutusu = document.getElementById("sesli-uyari");
+    const gorselUyari = document.getElementById("gorsel-uyari-alani");
+    
+    if (uyariKutusu) uyariKutusu.innerText = ""; 
+    if (gorselUyari) gorselUyari.style.display = "none";
+    
+    if (mevcutSoruIndex < mevcutSorular.length - 1) {
+        sonrakiSoru(); 
+    } else {
+        testiBitirKismi(); 
     }
 }
 
