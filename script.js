@@ -29,22 +29,26 @@ const DOSYA_ESLESTIRME = {
 const sesler = {
     dogru: new Audio('dogru.mp3'),
     yanlis: new Audio('yanlis.mp3'),
-    bitis: new Audio('bitis.mp3')
+    bitis: new Audio('bitis.mp3'),
+    kilit: new Audio('kilit.mp3') // YENİ: Kilit sesi eklendi
 };
 
 // Ses Seviyeleri
 sesler.dogru.volume = 1.0; 
 sesler.yanlis.volume = 0.3; 
 sesler.bitis.volume = 0.3; 
+sesler.kilit.volume = 1.0; // Kilit sesi net duyulsun
 
 function sesUret(tur) {
-    // MOBİL KISITLAMASI: Mobildeyse ses çalma, sadece PC'de çal
-    if (isMobile && tur !== "bitis") return; 
+    // MOBİL KISITLAMASI: 
+    // Mobilde 'dogru' ve 'yanlis' seslerini çalma (VoiceOver konuşsun diye).
+    // Ancak 'kilit' sesi ve 'bitis' sesi çalabilir.
+    if (isMobile && (tur === "dogru" || tur === "yanlis")) return;
 
     if (sesler[tur]) {
         sesler[tur].pause();
         sesler[tur].currentTime = 0;
-        sesler[tur].play().catch(e => console.log("Ses hatası:", e));
+        sesler[tur].play().catch(e => console.log("Ses hatası (Dosya eksik olabilir):", e));
     }
 }
 
@@ -218,7 +222,8 @@ function soruyuGoster(index) {
         const harf = getSikHarfi(i);
         btn.innerText = harf + ") " + sik;
         btn.className = "sik-butonu";
-        btn.setAttribute("aria-label", `${harf} şıkkı: ${sik}`); 
+        // VoiceOver için düğme etiketini iyileştirme
+        btn.setAttribute("aria-label", `${harf} şıkkı, ${sik}. Seçmek için çift dokunun.`); 
         if (kullaniciCevaplari[index] !== null) {
             if (harf === getSikHarfi(kullaniciCevaplari[index])) {
                 btn.classList.add(harf === soruObj.dogru_cevap ? "dogru" : "yanlis");
@@ -263,26 +268,18 @@ function cevapIsaretle(secilenIndex, btnElement) {
     const uyariKutusu = document.getElementById("sesli-uyari");
     const gorselUyari = document.getElementById("gorsel-uyari-alani");
 
-    // 1. ADIM: DETAYLI GERİ BİLDİRİM METNİ OLUŞTURMA
-    // Burası VoiceOver'ın okuyacağı esas metindir.
+    // METİN OLUŞTURMA (Okunacak içerik)
     let bildirimMetni = "";
     if (dogruMu) {
-        bildirimMetni = `Doğru! Cevap ${dogruCevapHarf} şıkkı: ${dogruSikMetni}`;
+        bildirimMetni = `Doğru! Cevabınız ${dogruCevapHarf} şıkkı: ${dogruSikMetni}`;
     } else {
         bildirimMetni = `Yanlış. Doğru cevap ${dogruCevapHarf} şıkkı: ${dogruSikMetni}`;
     }
 
-    // Görsel Uyarı
+    // Görsel geri bildirimi hemen ver (Görenler için)
     gorselUyari.innerText = dogruMu ? "DOĞRU CEVAP!" : "YANLIŞ CEVAP!";
     gorselUyari.className = `gorsel-uyari-kutusu ${dogruMu ? 'uyari-dogru' : 'uyari-yanlis'}`;
     gorselUyari.style.display = "block";
-
-    // VoiceOver Uyarı Alanını Güncelle
-    if (uyariKutusu) {
-        uyariKutusu.setAttribute("role", "alert"); 
-        uyariKutusu.setAttribute("aria-live", "assertive"); 
-        uyariKutusu.innerText = bildirimMetni; 
-    }
 
     if (dogruMu) {
         btnElement.classList.add("dogru"); 
@@ -292,45 +289,86 @@ function cevapIsaretle(secilenIndex, btnElement) {
         if(dogruButon) dogruButon.classList.add("dogru");
     }
 
-    // 2. ADIM: SES VE OTOMATİK GEÇİŞ MANTIĞI
+    // --- AYRIŞTIRILMIŞ MANTIK (MOBİL VE BİLGİSAYAR) ---
 
-    // SES KONTROLÜ:
-    // Mobilde hiç ses çalmaz (VoiceOver rahat konuşsun diye).
-    // Bilgisayarda ses çalar.
-    if (!isMobile) {
+    if (isMobile) {
+        // --- SENARYO: MOBİL (VOICEOVER/TALKBACK) ---
+        
+        // 1. ADIM: "KAPIDAN KİLİTLEME" SESİ (ANINDA)
+        // Kullanıcı tıkladığı an bu sesi duyar.
+        sesUret("kilit");
+
+        // 2. ADIM: 1 SANİYE BEKLEME
+        setTimeout(() => {
+            // 3. ADIM: VoiceOver'a Metni Gönder
+            // VoiceOver ancak şimdi konuşmaya başlar.
+            if (uyariKutusu) {
+                uyariKutusu.setAttribute("role", "alert"); 
+                uyariKutusu.setAttribute("aria-live", "assertive"); 
+                uyariKutusu.innerText = bildirimMetni; 
+            }
+
+            // 4. ADIM: AKILLI SÜRE HESABI VE GEÇİŞ
+            // Metin uzunluğuna göre bekleme süresi hesapla.
+            // Mobilde harf başına 90ms veriyoruz ki VoiceOver rahatça bitirsin.
+            const okumaSuresi = (bildirimMetni.length * 90) + 1000; 
+
+            setTimeout(() => {
+                // Temizlik
+                if (uyariKutusu) uyariKutusu.innerText = ""; 
+                gorselUyari.style.display = "none";
+                
+                // Geçiş
+                if (mevcutSoruIndex < mevcutSorular.length - 1) {
+                    sonrakiSoru(); 
+                } else {
+                    // Test sonu
+                    sesUret("bitis");
+                    gorselUyari.className = "gorsel-uyari-kutusu"; 
+                    gorselUyari.style.display = "block";
+                    gorselUyari.style.backgroundColor = "#000"; 
+                    gorselUyari.innerText = "TEST BİTTİ";
+                    const btnSonraki = document.getElementById("btn-sonraki");
+                    if (btnSonraki) btnSonraki.focus();
+                }
+            }, okumaSuresi);
+
+        }, 1000); // 1 saniye kilit beklemesi
+
+    } else {
+        // --- SENARYO: BİLGİSAYAR (ORİJİNAL HALİ KORUNDU) ---
+        
+        // Bilgisayarda hemen konuşsun ve MP3 çalsın
+        if (uyariKutusu) {
+            uyariKutusu.setAttribute("role", "alert"); 
+            uyariKutusu.setAttribute("aria-live", "assertive"); 
+            uyariKutusu.innerText = bildirimMetni; 
+        }
+
         setTimeout(() => {
             sesUret(dogruMu ? "dogru" : "yanlis");
         }, 400);
-    }
 
-    // SÜRE HESAPLAMA VE GEÇİŞ:
-    // Her iki platformda da OTOMATİK GEÇİŞ var.
-    // Ancak mobil için süre katsayısını artırıyoruz ki VoiceOver sözünü bitirebilsin.
-    
-    const temelBekleme = isMobile ? 2500 : 1500; // Mobilde temel bekleme daha uzun
-    const harfBasinaSure = isMobile ? 85 : 60; // Mobilde harf başına okuma payı daha yüksek (Garantici yaklaşım)
-    
-    const hesaplananSure = temelBekleme + (bildirimMetni.length * harfBasinaSure);
+        // Bilgisayar için süre hesabı (Daha seri)
+        const pcOkumaSuresi = (bildirimMetni.length * 60) + 2000;
 
-    setTimeout(() => {
-        if (uyariKutusu) uyariKutusu.innerText = ""; 
-        gorselUyari.style.display = "none";
-        
-        if (mevcutSoruIndex < mevcutSorular.length - 1) {
-            sonrakiSoru(); 
-        } else {
-            // Son soruda bitiş sesi çalınabilir (Mobilde de çalabilir çünkü konuşma bitti)
-            sesUret("bitis");
-            gorselUyari.className = "gorsel-uyari-kutusu"; 
-            gorselUyari.style.display = "block";
-            gorselUyari.style.backgroundColor = "#000"; 
-            gorselUyari.innerText = "TEST BİTTİ - Sonuçları Görmek İçin Tıklayın";
+        setTimeout(() => {
+            if (uyariKutusu) uyariKutusu.innerText = ""; 
+            gorselUyari.style.display = "none";
             
-            // Son soruda odaklanma mantığı (Her yerde butona odaklan)
-            const btnSonraki = document.getElementById("btn-sonraki");
-            if (btnSonraki) btnSonraki.focus();
-        }
-    }, hesaplananSure); 
+            if (mevcutSoruIndex < mevcutSorular.length - 1) {
+                sonrakiSoru(); 
+            } else {
+                sesUret("bitis");
+                gorselUyari.className = "gorsel-uyari-kutusu"; 
+                gorselUyari.style.display = "block";
+                gorselUyari.style.backgroundColor = "#000"; 
+                gorselUyari.innerText = "TEST BİTTİ";
+                const btnSonraki = document.getElementById("btn-sonraki");
+                if (btnSonraki) btnSonraki.focus();
+            }
+        }, pcOkumaSuresi);
+    }
 }
 
 function getSikHarfi(index) { return ["A", "B", "C", "D", "E"][index]; }
