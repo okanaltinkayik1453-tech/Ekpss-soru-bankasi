@@ -18,7 +18,8 @@ const DOSYA_ESLESTIRME = {
     "mesrutiyet": "mesrutiyet.json",
     "inkilap": "1dunyasavasivekurtulussavasi.json",
     "cumhuriyet": "cumhuriyetdonemi.json",
-    "guncel": "guncelbilgiler.json"
+    "guncel": "guncelbilgiler.json",
+"karma": "karmatestler.json"
 };
 // --- SES MOTORU ---
 const sesler = {
