@@ -21,7 +21,6 @@ const DOSYA_ESLESTIRME = {
     "guncel": "guncelbilgiler.json",
     "karma": "karmatestler.json"
 };
-
 // --- SES MOTORU ---
 const sesler = {
     dogru: new Audio('dogru.mp3'),
@@ -50,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (testParam) {
         const onEk = testParam.substring(0, testParam.lastIndexOf('_'));
         const dosyaAdi = DOSYA_ESLESTIRME[onEk];
-        const testNoStr = testParam.split('_test')[1];
+const testNoStr = testParam.split('_test')[1];
         const testNo = parseInt(testNoStr); 
         
         if (dosyaAdi && !isNaN(testNo)) {
@@ -219,10 +218,14 @@ function cevapIsaretle(secilenIndex, btnElement) {
     const secilenCevapHarf = getSikHarfi(secilenIndex); 
     const dogruMu = (secilenCevapHarf === dogruCevapHarf);
 
+    // Doğru şıkkın metin içeriğini bul
+    const dogruIndex = ["A", "B", "C", "D", "E"].indexOf(dogruCevapHarf);
+    const dogruSikMetni = mevcutSorular[mevcutSoruIndex].secenekler[dogruIndex];
+
     const uyariKutusu = document.getElementById("sesli-uyari");
     const gorselUyari = document.getElementById("gorsel-uyari-alani");
 
-    // 1. ADIM: VoiceOver için anında metinsel geri bildirim
+    // 1. ADIM: VoiceOver/NVDA için güncellenmiş metinsel geri bildirim
     gorselUyari.innerText = dogruMu ? "DOĞRU CEVAP!" : "YANLIŞ CEVAP!";
     gorselUyari.className = `gorsel-uyari-kutusu ${dogruMu ? 'uyari-dogru' : 'uyari-yanlis'}`;
     gorselUyari.style.display = "block";
@@ -230,7 +233,13 @@ function cevapIsaretle(secilenIndex, btnElement) {
     if (uyariKutusu) {
         uyariKutusu.setAttribute("role", "alert"); 
         uyariKutusu.setAttribute("aria-live", "assertive"); 
-        uyariKutusu.innerText = dogruMu ? "Doğru bildiniz." : `Yanlış. Doğru cevap ${dogruCevapHarf} şıkkıydı.`;
+        
+        // GÜNCELLEME: Doğru/Yanlış durumunda şıkkın içeriğini okutma
+        if (dogruMu) {
+            uyariKutusu.innerText = `Doğru. ${dogruCevapHarf} şıkkı: ${dogruSikMetni}`;
+        } else {
+            uyariKutusu.innerText = `Yanlış. Doğru cevap ${dogruCevapHarf} şıkkı: ${dogruSikMetni}`;
+        }
     }
 
     if (dogruMu) {
@@ -300,8 +309,15 @@ function cevapAnahtariniGoster() {
 
     mevcutSorular.forEach((soru, index) => {
         const kullaniciIdx = kullaniciCevaplari[index];
-        const dogruCevap = soru.dogru_cevap;
+        const dogruCevapHarf = soru.dogru_cevap;
+        
+        // Kullanıcının cevabının harfi ve metni
         const kullaniciCevapHarf = kullaniciIdx !== null ? getSikHarfi(kullaniciIdx) : "Boş";
+        const kullaniciMetin = kullaniciIdx !== null ? soru.secenekler[kullaniciIdx] : "İşaretlenmedi";
+
+        // Doğru cevabın harfi ve metni
+        const dogruIndex = ["A", "B", "C", "D", "E"].indexOf(dogruCevapHarf);
+        const dogruMetin = soru.secenekler[dogruIndex];
 
         // Durum Belirleme (Renkler ve Metin)
         let durumMetni = "";
@@ -312,7 +328,7 @@ function cevapAnahtariniGoster() {
             durumMetni = "(BOŞ)";
             durumRenk = "#FFA500"; // Turuncu
             kartSinirRengi = "#FFA500";
-        } else if (kullaniciCevapHarf === dogruCevap) {
+        } else if (kullaniciCevapHarf === dogruCevapHarf) {
             durumMetni = "(DOĞRU)";
             durumRenk = "#00FF00"; // Yeşil
             kartSinirRengi = "#00FF00";
@@ -350,20 +366,15 @@ function cevapAnahtariniGoster() {
 
         let cevapKismiHTML = `
             <div style="margin-top:15px; border-top:1px solid #444; padding-top:15px;">
-                <p style="font-size:1.1rem; margin-bottom:5px;">
-                    Sizin Cevabınız: <strong>${kullaniciCevapHarf}</strong>
+                <p style="font-size:1.1rem; margin-bottom:10px;">
+                    Sizin Cevabınız: <strong>${kullaniciCevapHarf}) ${kullaniciMetin}</strong>
                     <span style="color:${durumRenk}; font-weight:bold; margin-left:10px;">${durumMetni}</span>
                 </p>
-        `;
-
-        // Yanlış veya Boş ise Doğru Cevabı Göster
-        if (kullaniciCevapHarf !== dogruCevap) {
-            cevapKismiHTML += `
-                <p style="color:#00FF00; font-weight:bold; font-size:1.1rem; margin-top:5px;">
-                    Doğru Cevap: ${dogruCevap}
+                
+                <p style="color:#00FF00; font-weight:bold; font-size:1.1rem; margin-bottom:10px;">
+                    Doğru Cevap: ${dogruCevapHarf}) ${dogruMetin}
                 </p>
-            `;
-        }
+        `;
 
         // Açıklama Varsa Ekle
         if (soru.aciklama) {
