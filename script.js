@@ -227,8 +227,10 @@ function cevapIsaretle(secilenIndex, btnElement) {
 
     if (dogruMu) {
         btnElement.classList.add("dogru"); 
+        sesUret('dogru'); // EKLENDİ: Artık doğru sesi çalacak
     } else {
         btnElement.classList.add("yanlis"); 
+        sesUret('yanlis'); // EKLENDİ: Artık yanlış sesi çalacak
         const butonlar = document.querySelectorAll(".sik-butonu");
         butonlar.forEach(b => {
             if(b.innerText.startsWith(dogruCevapHarf + ")")) {
@@ -237,40 +239,48 @@ function cevapIsaretle(secilenIndex, btnElement) {
         });
     }
 
+    // Okunacak metni hazırlıyoruz
     let konusulacakMetin = "";
     if (dogruMu) {
-        konusulacakMetin = `${secilenSikHarfi} şıkkı, ${secilenCevapMetni} cevabı işaretlendi. Doğru bildiniz.`;
+        konusulacakMetin = `Doğru. ${secilenSikHarfi} şıkkı, ${secilenCevapMetni}.`;
     } else {
-        konusulacakMetin = `${secilenSikHarfi} şıkkı, ${secilenCevapMetni} işaretlendi. Yanlış. Doğru cevap ${dogruCevapHarf} şıkkı, ${dogruCevapMetni}.`;
+        konusulacakMetin = `Yanlış. İşaretlediğiniz ${secilenSikHarfi}, doğru cevap ${dogruCevapHarf} şıkkı, ${dogruCevapMetni}.`;
     }
 
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
     if (isMobile) {
+        // MOBİL (VOICEOVER/TALKBACK) İÇİN TARAYICI MOTORU
         window.speechSynthesis.cancel();
         let utterance = new SpeechSynthesisUtterance(konusulacakMetin);
         utterance.lang = 'tr-TR';
-        utterance.rate = 1.3; 
+        utterance.rate = 1.3; // Okuma hızı
         setTimeout(() => {
             window.speechSynthesis.speak(utterance);
         }, 100);
     } else {
+        // MASAÜSTÜ (NVDA/JAWS) İÇİN ARIA LIVE BÖLGESİ
         let uyariKutusu = document.getElementById("sesli-uyari");
         if (!uyariKutusu) {
             uyariKutusu = document.createElement("div");
             uyariKutusu.id = "sesli-uyari";
+            // NVDA'nın metni atlamadan okuması için en sağlam ayarlar:
             uyariKutusu.setAttribute("aria-live", "assertive");
+            uyariKutusu.setAttribute("aria-atomic", "true"); 
             uyariKutusu.setAttribute("role", "alert");
-            uyariKutusu.style.position = "absolute";
-            uyariKutusu.style.left = "-9999px";
+            // Ekran dışına atmak yerine 1 piksellik görünmez alan yapıyoruz
+            uyariKutusu.style.cssText = "position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(1px, 1px, 1px, 1px); white-space:nowrap;";
             document.body.appendChild(uyariKutusu);
         }
+        
+        // Önce içeriği temizle, kısa süre sonra yeni metni bas (NVDA tetiklensin diye)
         uyariKutusu.innerText = ""; 
         setTimeout(() => {
             uyariKutusu.innerText = konusulacakMetin;
-        }, 50);
+        }, 100);
     }
 
+    // Soruyu geçiş süresi
     setTimeout(() => {
         const gorselUyari = document.getElementById("gorsel-uyari-alani");
         if(gorselUyari) gorselUyari.style.display = "none";
