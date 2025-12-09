@@ -320,70 +320,103 @@ function testiBitir() {
     document.getElementById("puan-detay").innerHTML = sonucHTML;
 }
 function cevapAnahtariniGoster() {
-    const listeDiv = document.getElementById("yanlis-detaylari"); 
-    let hedefDiv = listeDiv;
-    if (!hedefDiv) {
-        hedefDiv = document.getElementById("sonuc-alani");
-        if(!document.getElementById("cevap-anahtari-konteyner")) {
-            const container = document.createElement("div");
-            container.id = "cevap-anahtari-konteyner";
-            container.className = "cevap-anahtari-kapsayici";
-            hedefDiv.appendChild(container);
-            hedefDiv = container;
-        } else {
-            hedefDiv = document.getElementById("cevap-anahtari-konteyner");
-        }
+    // Sonuç alanını bul veya oluştur
+    let hedefDiv = document.getElementById("sonuc-alani");
+    
+    // Eğer daha önce oluşturulmuş bir cevap anahtarı varsa temizle, yoksa yeni oluştur
+    let container = document.getElementById("cevap-anahtari-konteyner");
+    if (container) {
+        container.innerHTML = "";
+    } else {
+        container = document.createElement("div");
+        container.id = "cevap-anahtari-konteyner";
+        container.className = "cevap-anahtari-kapsayici";
+        // Stil eklemeleri: Şıkların alt alta düzgün durması için
+        container.style.marginTop = "20px";
+        hedefDiv.appendChild(container);
     }
-    
-    hedefDiv.innerHTML = "<h2 style='text-align:center; color:#ffff00; margin-bottom:20px;'>CEVAP ANAHTARI</h2>";
-    const listeKapsayici = document.getElementById("yanlislar-listesi");
-    if(listeKapsayici) listeKapsayici.style.display = "block";
 
+    // Başlık
+    const baslik = document.createElement("h2");
+    baslik.innerText = "CEVAP ANAHTARI VE DETAYLI ÇÖZÜMLER";
+    baslik.style.cssText = "text-align:center; color:#ffff00; margin-bottom:20px;";
+    baslik.setAttribute("tabindex", "0"); // Başlığa odaklanabilsin
+    container.appendChild(baslik);
+
+    // Soruları döngüye al
     mevcutSorular.forEach((soru, index) => {
-        const kullaniciIndex = kullaniciCevaplari[index];
-        const dogruCevapHarf = soru.dogru_cevap;
+        const kullaniciSecimiIndex = kullaniciCevaplari[index];
+        const dogruCevapHarfi = soru.dogru_cevap;
         
-        let kullaniciCevapMetni = "Boş Bırakıldı";
-        let kullaniciHarf = "BOŞ";
-        let dogruMu = false;
-
-        if (kullaniciIndex !== null) {
-            kullaniciHarf = getSikHarfi(kullaniciIndex);
-            kullaniciCevapMetni = soru.secenekler[kullaniciIndex];
-            dogruMu = (kullaniciHarf === dogruCevapHarf);
-        }
-
-        let dogruCevapIcerik = "";
-        soru.secenekler.forEach((sik, i) => {
-            if(getSikHarfi(i) === dogruCevapHarf) dogruCevapIcerik = sik;
-        });
-
+        // Soru Kartı Oluştur
         const kart = document.createElement("div");
-        kart.className = "sonuc-karti"; 
+        kart.className = "sonuc-karti";
+        kart.style.cssText = "border: 1px solid #444; padding: 15px; margin-bottom: 20px; background: #222; border-radius: 8px;";
         
-        let html = `<div class="sonuc-soru-metni" tabindex="0">Soru ${index+1}: ${soru.soruMetni || soru.soru || 'Soru Metni'}</div>`;
+        // 1. Soru Metni
+        let soruMetniHTML = `<h3 style="color:#fff; margin-bottom:10px;" tabindex="0">Soru ${index + 1}</h3>`;
+        soruMetniHTML += `<div style="color:#eee; margin-bottom:15px; font-size:1.1rem;" tabindex="0">${soru.soru || soru.soruMetni || ''}</div>`;
         
-        const durumClass = dogruMu ? "durum-dogru" : "durum-yanlis";
-        html += `<div class="kullanici-cevap-kutusu ${durumClass}" tabindex="0">
-                    Sizin Cevabınız: ${kullaniciHarf}) ${kullaniciCevapMetni}
-                 </div>`;
+        // 2. Şıkların Listelenmesi
+        let siklarHTML = `<div class="cevap-siklari-listesi" style="display:flex; flex-direction:column; gap:10px;">`;
+        
+        soru.secenekler.forEach((sikMetni, i) => {
+            const harf = getSikHarfi(i);
+            const buSikSecildi = (i === kullaniciSecimiIndex);
+            
+            // Renk ve Durum Ayarları
+            let arkaPlanRengi = "#333"; // Varsayılan şık rengi
+            let kenarlik = "1px solid #555";
+            let durumMetni = ""; // NVDA'nın okuyacağı ek metin
+            
+            if (buSikSecildi) {
+                // Kullanıcı bunu seçmiş
+                if (harf === dogruCevapHarfi) {
+                    // Doğru bilmiş
+                    arkaPlanRengi = "#1a4d1a"; // Koyu yeşil
+                    kenarlik = "2px solid #00ff00";
+                    durumMetni = "(Sizin cevabınız - DOĞRU)";
+                } else {
+                    // Yanlış bilmiş
+                    arkaPlanRengi = "#4d1a1a"; // Koyu kırmızı
+                    kenarlik = "2px solid #ff0000";
+                    durumMetni = "(Sizin cevabınız - YANLIŞ)";
+                }
+            }
 
-        if (!dogruMu) {
-            html += `<div class="dogru-cevap-goster" tabindex="0">
-                        Doğru Cevap: ${dogruCevapHarf}) ${dogruCevapIcerik}
-                     </div>`;
-        }
+            // Şık Kutusu HTML
+            // aria-label kullanarak ekran okuyucuya şıkkı, metni ve durumu tek seferde okutuyoruz.
+            siklarHTML += `
+                <div style="background:${arkaPlanRengi}; border:${kenarlik}; padding:10px; border-radius:5px; color:#fff;" tabindex="0" aria-label="${harf} şıkkı: ${sikMetni}. ${durumMetni}">
+                    <span style="font-weight:bold; color:#ffcc00;">${harf})</span> ${sikMetni} 
+                    <span style="font-weight:bold; float:right;">${durumMetni}</span>
+                </div>
+            `;
+        });
+        siklarHTML += `</div>`;
 
-        if (soru.aciklama) {
-            html += `<div class="aciklama-metni" tabindex="0">
-                        Açıklama: ${soru.aciklama}
-                     </div>`;
-        }
+        // 3. Doğru Cevap ve Açıklama Alanı (Kartın en altı)
+        // İlgili şıkkın metnini bulalım
+        let dogruCevapMetni = "";
+        soru.secenekler.forEach((s, k) => { if(getSikHarfi(k) === dogruCevapHarfi) dogruCevapMetni = s; });
 
-        kart.innerHTML = html;
-        hedefDiv.appendChild(kart);
+        const altBilgiHTML = `
+            <div style="margin-top:20px; padding-top:15px; border-top:1px dashed #666;">
+                <p tabindex="0" style="color:#00ff00; font-weight:bold; margin-bottom:5px;">
+                    ✅ Doğru Cevap: ${dogruCevapHarfi}) ${dogruCevapMetni}
+                </p>
+                <div tabindex="0" style="background:#333; padding:10px; border-left:4px solid #ffff00; margin-top:10px; color:#ddd;">
+                    <strong>💡 Açıklama:</strong><br>
+                    ${soru.aciklama ? soru.aciklama : "Bu soru için açıklama bulunmuyor."}
+                </div>
+            </div>
+        `;
+
+        kart.innerHTML = soruMetniHTML + siklarHTML + altBilgiHTML;
+        container.appendChild(kart);
     });
-    
-    hedefDiv.scrollIntoView();
-    hedefDiv.firstChild.focus();
+
+    // Sayfayı başlığa kaydır ve odakla
+    container.scrollIntoView();
+    baslik.focus();
 }
