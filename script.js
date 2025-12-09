@@ -213,53 +213,75 @@ function cevapIsaretle(secilenIndex, btnElement) {
     isaretlemeKilitli = true;
     kullaniciCevaplari[mevcutSoruIndex] = secilenIndex;
     
+    const hamMetin = btnElement.innerText; 
+    const secilenSikHarfi = hamMetin.charAt(0); 
+    const secilenCevapMetni = hamMetin.substring(3).trim(); 
+
     const dogruCevapHarf = mevcutSorular[mevcutSoruIndex].dogru_cevap; 
-    const secilenCevapHarf = getSikHarfi(secilenIndex); 
-    const dogruMu = (secilenCevapHarf === dogruCevapHarf);
-
-    const uyariKutusu = document.getElementById("sesli-uyari");
-    const gorselUyari = document.getElementById("gorsel-uyari-alani");
-
-    // 1. ADIM: VoiceOver için anında metinsel geri bildirim
-    gorselUyari.innerText = dogruMu ? "DOĞRU CEVAP!" : "YANLIŞ CEVAP!";
-    gorselUyari.className = `gorsel-uyari-kutusu ${dogruMu ? 'uyari-dogru' : 'uyari-yanlis'}`;
-    gorselUyari.style.display = "block";
-
-    if (uyariKutusu) {
-        uyariKutusu.setAttribute("role", "alert"); 
-        uyariKutusu.setAttribute("aria-live", "assertive"); 
-        uyariKutusu.innerText = dogruMu ? "Doğru bildiniz." : `Yanlış. Doğru cevap ${dogruCevapHarf} şıkkıydı.`;
-    }
+    const dogruMu = (secilenSikHarfi === dogruCevapHarf);
+    
+    let dogruCevapMetni = "";
+    mevcutSorular[mevcutSoruIndex].secenekler.forEach((sik, i) => {
+        if(getSikHarfi(i) === dogruCevapHarf) dogruCevapMetni = sik;
+    });
 
     if (dogruMu) {
         btnElement.classList.add("dogru"); 
     } else {
         btnElement.classList.add("yanlis"); 
-        const dogruButon = Array.from(document.querySelectorAll(".sik-butonu")).find(b => b.innerText.startsWith(dogruCevapHarf + ")"));
-        if(dogruButon) dogruButon.classList.add("dogru");
+        const butonlar = document.querySelectorAll(".sik-butonu");
+        butonlar.forEach(b => {
+            if(b.innerText.startsWith(dogruCevapHarf + ")")) {
+                b.classList.add("dogru");
+            }
+        });
     }
 
-    // 2. ADIM: Ses çakışmasını önlemek için 500ms gecikme ile ses çalma
-    setTimeout(() => {
-        sesUret(dogruMu ? "dogru" : "yanlis");
-    }, 500);
+    let konusulacakMetin = "";
+    if (dogruMu) {
+        konusulacakMetin = `${secilenSikHarfi} şıkkı, ${secilenCevapMetni} cevabı işaretlendi. Doğru bildiniz.`;
+    } else {
+        konusulacakMetin = `${secilenSikHarfi} şıkkı, ${secilenCevapMetni} işaretlendi. Yanlış. Doğru cevap ${dogruCevapHarf} şıkkı, ${dogruCevapMetni}.`;
+    }
 
-    // 3. ADIM: Bir sonraki soruya geçiş
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+    if (isMobile) {
+        window.speechSynthesis.cancel();
+        let utterance = new SpeechSynthesisUtterance(konusulacakMetin);
+        utterance.lang = 'tr-TR';
+        utterance.rate = 1.3; 
+        setTimeout(() => {
+            window.speechSynthesis.speak(utterance);
+        }, 100);
+    } else {
+        let uyariKutusu = document.getElementById("sesli-uyari");
+        if (!uyariKutusu) {
+            uyariKutusu = document.createElement("div");
+            uyariKutusu.id = "sesli-uyari";
+            uyariKutusu.setAttribute("aria-live", "assertive");
+            uyariKutusu.setAttribute("role", "alert");
+            uyariKutusu.style.position = "absolute";
+            uyariKutusu.style.left = "-9999px";
+            document.body.appendChild(uyariKutusu);
+        }
+        uyariKutusu.innerText = ""; 
+        setTimeout(() => {
+            uyariKutusu.innerText = konusulacakMetin;
+        }, 50);
+    }
+
     setTimeout(() => {
-        if (uyariKutusu) uyariKutusu.innerText = ""; 
-        gorselUyari.style.display = "none";
+        const gorselUyari = document.getElementById("gorsel-uyari-alani");
+        if(gorselUyari) gorselUyari.style.display = "none";
         if (mevcutSoruIndex < mevcutSorular.length - 1) {
             sonrakiSoru(); 
+            if(isMobile) window.speechSynthesis.cancel();
         } else {
-            sesUret("bitis");
-            gorselUyari.className = "gorsel-uyari-kutusu"; 
-            gorselUyari.style.display = "block";
-            gorselUyari.style.backgroundColor = "#000"; 
-            gorselUyari.innerText = "TEST BİTTİ";
+            testiBitir();
         }
-    }, 3000);  
+    }, 4000); 
 }
-
 function getSikHarfi(index) { return ["A", "B", "C", "D", "E"][index]; }
 
 function testiBitir() {
@@ -287,23 +309,71 @@ function testiBitir() {
     `;
     document.getElementById("puan-detay").innerHTML = sonucHTML;
 }
-
 function cevapAnahtariniGoster() {
-    const listeDiv = document.getElementById("yanlis-detaylari");
-    listeDiv.innerHTML = "";
-    document.getElementById("yanlislar-listesi").style.display = "block";
+    const listeDiv = document.getElementById("yanlis-detaylari"); 
+    let hedefDiv = listeDiv;
+    if (!hedefDiv) {
+        hedefDiv = document.getElementById("sonuc-alani");
+        if(!document.getElementById("cevap-anahtari-konteyner")) {
+            const container = document.createElement("div");
+            container.id = "cevap-anahtari-konteyner";
+            container.className = "cevap-anahtari-kapsayici";
+            hedefDiv.appendChild(container);
+            hedefDiv = container;
+        } else {
+            hedefDiv = document.getElementById("cevap-anahtari-konteyner");
+        }
+    }
+    
+    hedefDiv.innerHTML = "<h2 style='text-align:center; color:#ffff00; margin-bottom:20px;'>CEVAP ANAHTARI</h2>";
+    const listeKapsayici = document.getElementById("yanlislar-listesi");
+    if(listeKapsayici) listeKapsayici.style.display = "block";
+
     mevcutSorular.forEach((soru, index) => {
-        const kullaniciCevabiIndex = kullaniciCevaplari[index];
+        const kullaniciIndex = kullaniciCevaplari[index];
         const dogruCevapHarf = soru.dogru_cevap;
-        const kart = document.createElement("div"); 
-        kart.className = "yanlis-soru-karti";
-        const secilenCevapHarf = kullaniciCevabiIndex !== null ? getSikHarfi(kullaniciCevaplari[index]) : 'Boş';
-        kart.innerHTML = `
-            <div style="border-bottom:1px solid #444; padding-bottom:10px;">
-                <p>Soru ${index + 1} - Sizin Cevabınız: ${secilenCevapHarf}</p>
-                <p style="color:#00ff00;">Doğru Cevap: ${dogruCevapHarf}</p>
-                <p>Açıklama: ${soru.aciklama || 'Yok'}</p>
-            </div>`;
-        listeDiv.appendChild(kart);
+        
+        let kullaniciCevapMetni = "Boş Bırakıldı";
+        let kullaniciHarf = "BOŞ";
+        let dogruMu = false;
+
+        if (kullaniciIndex !== null) {
+            kullaniciHarf = getSikHarfi(kullaniciIndex);
+            kullaniciCevapMetni = soru.secenekler[kullaniciIndex];
+            dogruMu = (kullaniciHarf === dogruCevapHarf);
+        }
+
+        let dogruCevapIcerik = "";
+        soru.secenekler.forEach((sik, i) => {
+            if(getSikHarfi(i) === dogruCevapHarf) dogruCevapIcerik = sik;
+        });
+
+        const kart = document.createElement("div");
+        kart.className = "sonuc-karti"; 
+        
+        let html = `<div class="sonuc-soru-metni" tabindex="0">Soru ${index+1}: ${soru.soruMetni || soru.soru || 'Soru Metni'}</div>`;
+        
+        const durumClass = dogruMu ? "durum-dogru" : "durum-yanlis";
+        html += `<div class="kullanici-cevap-kutusu ${durumClass}" tabindex="0">
+                    Sizin Cevabınız: ${kullaniciHarf}) ${kullaniciCevapMetni}
+                 </div>`;
+
+        if (!dogruMu) {
+            html += `<div class="dogru-cevap-goster" tabindex="0">
+                        Doğru Cevap: ${dogruCevapHarf}) ${dogruCevapIcerik}
+                     </div>`;
+        }
+
+        if (soru.aciklama) {
+            html += `<div class="aciklama-metni" tabindex="0">
+                        Açıklama: ${soru.aciklama}
+                     </div>`;
+        }
+
+        kart.innerHTML = html;
+        hedefDiv.appendChild(kart);
     });
+    
+    hedefDiv.scrollIntoView();
+    hedefDiv.firstChild.focus();
 }
