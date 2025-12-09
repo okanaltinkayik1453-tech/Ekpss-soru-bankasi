@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coğrafya Dokümanları - EKPSS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <a href="#test-listesi" class="skip-link">Test listesine atla</a>
+
+    <header role="banner" class="ana-baslik-kutusu">
+        <h1>COĞRAFYA <span class="yil-etiketi">2026</span></h1>
+        <nav class="ana-menu" style="margin-top:15px; text-align:center;">
+            <a href="index.html" style="color:#fff; text-decoration:none; margin:0 10px; font-weight:bold; font-size:1.2rem; border-bottom:1px solid #fff;">Ana Sayfa</a>
+            <a href="hakkinda.html" style="color:#fff; text-decoration:none; margin:0 10px; font-weight:bold; font-size:1.2rem;">Hakkında</a>
+        </nav>
+    </header>
+
+    <main id="test-listesi">
+        <div class="container">
+            <div style="text-align: left; margin-bottom: 20px;">
+                <a href="index.html" class="geri-link" style="color:#fff; text-decoration:none; font-size:1.2rem; border-bottom:1px solid #fff;">&larr; Ana Sayfa</a>
+            </div>
+
+            <h2 class="alt-baslik" style="color:#ffff00;">Konu Seçiniz</h2>
+            <p style="text-align:center; font-size:1.2rem; margin-bottom:30px;">Testlerini çözmek istediğiniz konunun üzerine tıklayarak listeyi açabilirsiniz.</p>
+
+            <div class="konu-listesi-kapsayici">
+                
+                <details class="acilir-menu">
+                    <summary class="konu-baslik-butonu">İklim ve Bitki Örtüsü</summary>
+                    <div class="test-linkleri-alani">
+                        <a href="test-coz.html?id=cografyaiklim_test1" class="test-link">Test 1 Çöz (Genel Özellikler)</a>
+                        <a href="test-coz.html?id=cografyaiklim_test2" class="test-link">Test 2 Çöz (Yağış ve Sıcaklık)</a>
+                        <a href="test-coz.html?id=cografyaiklim_test3" class="test-link">Test 3 Çöz (Bitki Örtüsü ve Toprak)</a>
+                    </div>
+                </details>
+<details class="acilir-menu">
+                    <summary class="konu-baslik-butonu">Türkiye'nin Yer Şekilleri</summary>
+                    <div class="test-linkleri-alani">
+                        <a href="test-coz.html?id=cografyayersekilleri_test1" class="test-link">Test 1 Çöz (Genel Yer Şekilleri)</a>
+                        <a href="test-coz.html?id=cografyayersekilleri_test2" class="test-link">Test 2 Çöz (Ovalar ve Platolar)</a>
+                        <a href="test-coz.html?id=cografyayersekilleri_test3" class="test-link">Test 3 Çöz (Kıyı Tipleri ve Dağlar)</a>
+                        <a href="test-coz.html?id=cografyayersekilleri_test4" class="test-link">Test 4 Çöz (Göller ve Dış Kuvvetler)</a>
+                        <a href="test-coz.html?id=cografyayersekilleri_test5" class="test-link">Test 5 Çöz (Toprak ve Su Kaynakları)</a>
+                    </div>
+                </details>
+
+                </div>
+
+            <script>
+                // Açılır menülerin tek tek açılmasını sağlayan script
+                const tumMenuler = document.querySelectorAll("details");
+                tumMenuler.forEach((hedefMenu) => {
+                    hedefMenu.addEventListener("toggle", (event) => {
+                        if (hedefMenu.open) {
+                            tumMenuler.forEach((digerMenu) => {
+                                if (digerMenu !== hedefMenu && digerMenu.open) {
+                                    digerMenu.removeAttribute("open");
+                                }
+                            });
+                        }
+                    });
+                });
+            </script>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 EKPSS Soru Kütüphanesi</p>
+        <a href="https://www.netlify.com" target="_blank" rel="noopener noreferrer" class="netlify-link">
+            This site is powered by Netlify
+        </a>
+    </footer>
+</body>
+</html>

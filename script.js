@@ -19,7 +19,25 @@ const DOSYA_ESLESTIRME = {
     "inkilap": "1dunyasavasivekurtulussavasi.json",
     "cumhuriyet": "cumhuriyetdonemi.json",
     "guncel": "guncelbilgiler.json",
-"karma": "karmatestler.json"
+"karma": "karmatestler.json",
+"cografyaiklim": "cografya_iklim.json",
+"cografyayersekilleri": "cografyayersekilleri.json"
+};
+// SAYFA YÖNLENDİRME LİSTESİ
+const SAYFA_ESLESTIRME = {
+    "cografyaiklim": "cografya.html",
+    "cografyayersekilleri": "cografya.html",
+    "guncel": "guncel.html",
+    "ilkturkislam": "index.html", 
+    "islamoncesi": "index.html",
+    "osmanlikultur": "index.html",
+    "osmanlikurulus": "index.html",
+    "osmanliyukselme": "index.html",
+    "osmanligerileme": "index.html",
+    "mesrutiyet": "index.html",
+    "inkilap": "index.html",
+    "cumhuriyet": "index.html",
+    "karma": "index.html"
 };
 // --- SES MOTORU ---
 const sesler = {
@@ -51,7 +69,19 @@ document.addEventListener("DOMContentLoaded", () => {
         const dosyaAdi = DOSYA_ESLESTIRME[onEk];
 const testNoStr = testParam.split('_test')[1];
         const testNo = parseInt(testNoStr); 
-        
+// --- AKILLI GERİ DÖN SİSTEMİ ---
+        // Listede varsa oraya, yoksa index.html sayfasina gider
+        const donulecekSayfa = SAYFA_ESLESTIRME[onEk] || "index.html"; 
+
+        setTimeout(() => {
+            const tumLinkler = document.querySelectorAll("a");
+            tumLinkler.forEach(link => {
+                if(link.innerText.includes("Listeye") || link.innerText.includes("Geri")) {
+                    link.href = donulecekSayfa;
+                }
+            });
+        }, 1000);
+        // --------------------------------
         if (dosyaAdi && !isNaN(testNo)) {
             testiYukle(dosyaAdi, testNo);
         } else {
@@ -277,7 +307,7 @@ function cevapIsaretle(secilenIndex, btnElement) {
         uyariKutusu.innerText = ""; 
         setTimeout(() => {
             uyariKutusu.innerText = konusulacakMetin;
-        }, 100);
+        }, 2000);
     }
 
     // Soruyu geçiş süresi
