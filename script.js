@@ -313,22 +313,36 @@ async function cevapIsaretle(secilenIndex, btnElement) {
     } else {
         konusulacakMetin = `Yanlış. Siz ${secilenSikHarfi} dediniz. Doğru cevap ${dogruCevapHarf}, ${dogruCevapMetni}.`;
     }
-
-    // --- SIRALI İŞLEM BAŞLIYOR (ASYNC/AWAIT) ---
+// --- SIRALI İŞLEM BAŞLIYOR (ASYNC/AWAIT) ---
     
-    // 1. Önce sesi çal ve bitmesini bekle
-    if (dogruMu) {
-        await sesCalBekle('dogru');
+    // Cihaz Kontrolü: Kullanıcı mobilde mi?
+    const mobilMi = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+    if (mobilMi) {
+        // --- MOBİL İÇİN ÖZEL AKIŞ (Hızlı Geçiş) ---
+        // Sesi beklemeden çal (Browser engeline takılmamak için)
+        sesUret(dogruMu ? 'dogru' : 'yanlis');
+        
+        // Okuma emniyet kilidi (4 saniye sonra her türlü devam eder)
+        const okuma = metniOkuBekle(konusulacakMetin);
+        const kilit = new Promise(r => setTimeout(r, 4000));
+        await Promise.race([okuma, kilit]);
+
     } else {
-        await sesCalBekle('yanlis');
+        // --- BİLGİSAYAR İÇİN ORİJİNAL AKIŞ (Senin Eski Kodun) ---
+        // Burası bilgisayarda %100 aynı kalır, sırasıyla bekler.
+        if (dogruMu) {
+            await sesCalBekle('dogru');
+        } else {
+            await sesCalBekle('yanlis');
+        }
+
+        // Nefes payı
+        await new Promise(r => setTimeout(r, 300));
+
+        // Metni oku ve bitmesini bekle
+        await metniOkuBekle(konusulacakMetin);
     }
-
-    // 2. Çok kısa bir nefes payı ver (Doğallık için)
-    await new Promise(r => setTimeout(r, 300));
-
-    // 3. Şimdi metni oku ve bitmesini bekle
-    await metniOkuBekle(konusulacakMetin);
-
     // 4. Her şey bitti, şimdi diğer soruya geç
     const gorselUyari = document.getElementById("gorsel-uyari-alani");
     if(gorselUyari) gorselUyari.style.display = "none";
