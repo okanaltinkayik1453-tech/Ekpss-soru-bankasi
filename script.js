@@ -3,6 +3,7 @@ let mevcutSorular = [];
 let mevcutSoruIndex = 0;
 let kullaniciCevaplari = [];
 let isaretlemeKilitli = false;
+let akilliGeriDonSayfasi = "index.html"; // YENİ: Akıllı geri dönüş sayfası tutulur
 
 // JSON DOSYALARININ YOLU
 const JSON_PATH = './data/';
@@ -21,12 +22,18 @@ const DOSYA_ESLESTIRME = {
     "guncel": "guncelbilgiler.json",
 "karma": "karmatestler.json",
 "cografyaiklim": "cografya_iklim.json",
-"cografyayersekilleri": "cografyayersekilleri.json"
+"cografyayersekilleri": "cografya_yersekilleri.json",
+"cografyanufus": "cografya_nufus.json",
+"cografyaekonomik": "cografya_ekonomik.json",
+"cografyabolgeler": "cografya_bolgeler.json"
 };
 // SAYFA YÖNLENDİRME LİSTESİ
 const SAYFA_ESLESTIRME = {
     "cografyaiklim": "cografya.html",
     "cografyayersekilleri": "cografya.html",
+"cografyanufus": "cografya.html",
+"cografyaekonomik": "cografya.html",
+"cografyabolgeler": "cografya.html",
     "guncel": "guncel.html",
     "ilkturkislam": "index.html", 
     "islamoncesi": "index.html",
@@ -58,7 +65,36 @@ function sesUret(tur) {
         sesler[tur].play().catch(e => console.log("Ses hatası:", e));
     }
 }
+// --- YENİ EKLENEN BEKÇİ FONKSİYONLAR ---
+function sesCalBekle(tur) {
+    return new Promise((resolve) => {
+        if (sesler[tur]) {
+            sesler[tur].pause();
+            sesler[tur].currentTime = 0;
+            sesler[tur].onended = () => resolve();
+            sesler[tur].onerror = () => resolve();
+            let playPromise = sesler[tur].play();
+            if (playPromise !== undefined) {
+                playPromise.catch(() => resolve());
+            }
+        } else {
+            resolve();
+        }
+    });
+}
 
+function metniOkuBekle(metin) {
+    return new Promise((resolve) => {
+        window.speechSynthesis.cancel();
+        let utterance = new SpeechSynthesisUtterance(metin);
+        utterance.lang = 'tr-TR';
+        utterance.rate = 1.1; 
+        utterance.onend = () => { resolve(); };
+        utterance.onerror = () => { resolve(); };
+        window.speechSynthesis.speak(utterance);
+    });
+}
+// ---------------------------------------
 // --- TEST YÖNETİMİ ---
 document.addEventListener("DOMContentLoaded", () => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -67,11 +103,12 @@ document.addEventListener("DOMContentLoaded", () => {
     if (testParam) {
         const onEk = testParam.substring(0, testParam.lastIndexOf('_'));
         const dosyaAdi = DOSYA_ESLESTIRME[onEk];
-const testNoStr = testParam.split('_test')[1];
+        const testNoStr = testParam.split('_test')[1];
         const testNo = parseInt(testNoStr); 
 // --- AKILLI GERİ DÖN SİSTEMİ ---
         // Listede varsa oraya, yoksa index.html sayfasina gider
         const donulecekSayfa = SAYFA_ESLESTIRME[onEk] || "index.html"; 
+        akilliGeriDonSayfasi = donulecekSayfa; // YENİ: Akıllı geri dönüş sayfasını kaydet
 
         setTimeout(() => {
             const tumLinkler = document.querySelectorAll("a");
@@ -238,9 +275,10 @@ function soruyuGoster(index) {
     document.getElementById("btn-sonraki").disabled = (index === mevcutSorular.length - 1);
     if (kullaniciCevaplari[index] === null) soruSayacElement.focus();
 }
-function cevapIsaretle(secilenIndex, btnElement) {
+async function cevapIsaretle(secilenIndex, btnElement) {
     if (isaretlemeKilitli) return;
-    isaretlemeKilitli = true;
+    isaretlemeKilitli = true; 
+    
     kullaniciCevaplari[mevcutSoruIndex] = secilenIndex;
     
     const hamMetin = btnElement.innerText; 
@@ -255,12 +293,11 @@ function cevapIsaretle(secilenIndex, btnElement) {
         if(getSikHarfi(i) === dogruCevapHarf) dogruCevapMetni = sik;
     });
 
+    // Görsel İşlemler
     if (dogruMu) {
         btnElement.classList.add("dogru"); 
-        sesUret('dogru'); // EKLENDİ: Artık doğru sesi çalacak
     } else {
         btnElement.classList.add("yanlis"); 
-        sesUret('yanlis'); // EKLENDİ: Artık yanlış sesi çalacak
         const butonlar = document.querySelectorAll(".sik-butonu");
         butonlar.forEach(b => {
             if(b.innerText.startsWith(dogruCevapHarf + ")")) {
@@ -269,62 +306,80 @@ function cevapIsaretle(secilenIndex, btnElement) {
         });
     }
 
-    // Okunacak metni hazırlıyoruz
+    // Okunacak Metni Hazırla
     let konusulacakMetin = "";
     if (dogruMu) {
-        konusulacakMetin = `Doğru. ${secilenSikHarfi} şıkkı, ${secilenCevapMetni}.`;
+        konusulacakMetin = `Doğru! Cevabınız ${secilenSikHarfi}, ${secilenCevapMetni}.`;
     } else {
-        konusulacakMetin = `Yanlış. İşaretlediğiniz ${secilenSikHarfi}, doğru cevap ${dogruCevapHarf} şıkkı, ${dogruCevapMetni}.`;
+        konusulacakMetin = `Yanlış. Siz ${secilenSikHarfi} dediniz. Doğru cevap ${dogruCevapHarf}, ${dogruCevapMetni}.`;
     }
 
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
-    if (isMobile) {
-        // MOBİL (VOICEOVER/TALKBACK) İÇİN TARAYICI MOTORU
-        window.speechSynthesis.cancel();
-        let utterance = new SpeechSynthesisUtterance(konusulacakMetin);
-        utterance.lang = 'tr-TR';
-        utterance.rate = 1.3; // Okuma hızı
-        setTimeout(() => {
-            window.speechSynthesis.speak(utterance);
-        }, 100);
+    // --- SIRALI İŞLEM BAŞLIYOR (ASYNC/AWAIT) ---
+    
+    // 1. Önce sesi çal ve bitmesini bekle
+    if (dogruMu) {
+        await sesCalBekle('dogru');
     } else {
-        // MASAÜSTÜ (NVDA/JAWS) İÇİN ARIA LIVE BÖLGESİ
-        let uyariKutusu = document.getElementById("sesli-uyari");
-        if (!uyariKutusu) {
-            uyariKutusu = document.createElement("div");
-            uyariKutusu.id = "sesli-uyari";
-            // NVDA'nın metni atlamadan okuması için en sağlam ayarlar:
-            uyariKutusu.setAttribute("aria-live", "assertive");
-            uyariKutusu.setAttribute("aria-atomic", "true"); 
-            uyariKutusu.setAttribute("role", "alert");
-            // Ekran dışına atmak yerine 1 piksellik görünmez alan yapıyoruz
-            uyariKutusu.style.cssText = "position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(1px, 1px, 1px, 1px); white-space:nowrap;";
-            document.body.appendChild(uyariKutusu);
-        }
-        
-        // Önce içeriği temizle, kısa süre sonra yeni metni bas (NVDA tetiklensin diye)
-        uyariKutusu.innerText = ""; 
-        setTimeout(() => {
-            uyariKutusu.innerText = konusulacakMetin;
-        }, 2000);
+        await sesCalBekle('yanlis');
     }
 
-    // Soruyu geçiş süresi
-    setTimeout(() => {
-        const gorselUyari = document.getElementById("gorsel-uyari-alani");
-        if(gorselUyari) gorselUyari.style.display = "none";
-        if (mevcutSoruIndex < mevcutSorular.length - 1) {
-            sonrakiSoru(); 
-            if(isMobile) window.speechSynthesis.cancel();
-        } else {
-            testiBitir();
-        }
-    }, 4000); 
+    // 2. Çok kısa bir nefes payı ver (Doğallık için)
+    await new Promise(r => setTimeout(r, 300));
+
+    // 3. Şimdi metni oku ve bitmesini bekle
+    await metniOkuBekle(konusulacakMetin);
+
+    // 4. Her şey bitti, şimdi diğer soruya geç
+    const gorselUyari = document.getElementById("gorsel-uyari-alani");
+    if(gorselUyari) gorselUyari.style.display = "none";
+
+    if (mevcutSoruIndex < mevcutSorular.length - 1) {
+        sonrakiSoru(); 
+    } else {
+        testiBitir();
+    }
 }
 function getSikHarfi(index) { return ["A", "B", "C", "D", "E"][index]; }
+function formatSoruMetni(soruObj) {
+    let finalHTML = "";
+    
+    // 1. Öncül Giriş
+    if (soruObj.onculGiris) {
+        finalHTML += `<p class="soru-giris" style="margin-bottom:10px;">${soruObj.onculGiris}</p>`;
+    }
+    
+    // 2. Ana Soru Metni
+    // onculGiris ile aynı metin değilse veya onculGiris yoksa yaz
+    if (soruObj.soru && soruObj.soru !== soruObj.onculGiris) {
+         finalHTML += `<p class="soru-ana-metin" style="margin-bottom:10px;">${soruObj.soru}</p>`;
+    }
 
+    // 3. Öncüller (1, 2, 3... Maddeler)
+    let onculHTML = "";
+    if (soruObj.onculler && soruObj.onculler.length > 0) {
+        onculHTML += `<ul class='oncul-kapsayici' style="margin: 10px 0; list-style:none; padding:0;">`; 
+        soruObj.onculler.forEach(oncul => {
+            const match = oncul.match(/^(\d+\.?|\w\.?)\s*(.*)/);
+            onculHTML += `<li class='oncul-satir' style="margin-bottom:5px;"><span class='oncul-no' style="font-weight:bold; margin-right:5px;">${match ? match[1] : ''}</span><span class='oncul-yazi'>${match ? match[2] : oncul}</span></li>`;
+        });
+        onculHTML += `</ul>`;
+    }
+
+    // 4. Soru Kökü
+    let soruKokuHTML = "";
+    if (soruObj.soruKoku) {
+        soruKokuHTML = `<p classu'soru-koku-vurgu' style="font-weight:bold; margin-top:10px;">${soruObj.soruKoku}</p>`;
+    }
+
+    // 5. Yerleşime Göre Birleştirme
+    const yerlesim = soruObj.oncul_yerlesim || "ONCE_KOK"; 
+    if (yerlesim === "ONCE_KOK") { finalHTML += onculHTML + soruKokuHTML; } 
+    else { finalHTML += soruKokuHTML + onculHTML; }
+
+    return finalHTML;
+}
 function testiBitir() {
+    sesUret('bitis'); 
     let dogruSayisi = 0; let yanlisSayisi = 0; let bosSayisi = 0;
     for (let i = 0; i < mevcutSorular.length; i++) {
         const dogruCevapHarf = mevcutSorular[i].dogru_cevap;
@@ -346,6 +401,7 @@ function testiBitir() {
             <p style="font-size:1.2rem; color:#ccc;">Doğru: ${dogruSayisi} | Yanlış: ${yanlisSayisi} | Boş: ${bosSayisi}</p>
         </div>
         <button class="nav-buton" onclick="cevapAnahtariniGoster()" style="width:100%;">📝 CEVAP ANAHTARI</button>
+        <a href="${akilliGeriDonSayfasi}" class="nav-buton" style="width:100%; margin-top: 10px; display:block; text-align:center;">Yeni Test Seç</a>
     `;
     document.getElementById("puan-detay").innerHTML = sonucHTML;
 }
@@ -385,7 +441,9 @@ function cevapAnahtariniGoster() {
         
         // 1. Soru Metni
         let soruMetniHTML = `<h3 style="color:#fff; margin-bottom:10px;" tabindex="0">Soru ${index + 1}</h3>`;
-        soruMetniHTML += `<div style="color:#eee; margin-bottom:15px; font-size:1.1rem;" tabindex="0">${soru.soru || soru.soruMetni || ''}</div>`;
+// Öncüllerin gösterimi için soruyuGoster fonksiyonundakine benzer bir yapı kuruyoruz.
+        let soruGosterimHTML = formatSoruMetni(soru); // Yeni fonksiyonu kullanıyoruz
+        soruMetniHTML += `<div style="color:#eee; margin-bottom:15px; font-size:1.1rem;" tabindex="0">${soruGosterimHTML}</div>`;
         
         // 2. Şıkların Listelenmesi
         let siklarHTML = `<div class="cevap-siklari-listesi" style="display:flex; flex-direction:column; gap:10px;">`;
