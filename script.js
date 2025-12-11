@@ -25,7 +25,8 @@ const DOSYA_ESLESTIRME = {
 "cografyayersekilleri": "cografya_yersekilleri.json",
 "cografyanufus": "cografya_nufus.json",
 "cografyaekonomik": "cografya_ekonomik.json",
-"cografyabolgeler": "cografya_bolgeler.json"
+"cografyabolgeler": "cografya_bolgeler.json",
+"vatandaslik": "vatandaslik.json"
 };
 // SAYFA YÖNLENDİRME LİSTESİ
 const SAYFA_ESLESTIRME = {
@@ -44,7 +45,8 @@ const SAYFA_ESLESTIRME = {
     "mesrutiyet": "index.html",
     "inkilap": "index.html",
     "cumhuriyet": "index.html",
-    "karma": "index.html"
+    "karma": "index.html",
+"vatandaslik": "vatandaslik.html"
 };
 // --- SES MOTORU ---
 const sesler = {
