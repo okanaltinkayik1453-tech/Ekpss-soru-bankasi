@@ -158,7 +158,7 @@ function testiYukle(dosyaAdi, testNo) {
             return response.json();
         })
         .then(data => {
-            const ustBaslikObj = data[0]; 
+const ustBaslikObj = Array.isArray(data) ? data[0] : data;
             if (ustBaslikObj && ustBaslikObj.tests) {
                 const istenenTest = ustBaslikObj.tests[testNo - 1]; 
                 if (istenenTest) {
