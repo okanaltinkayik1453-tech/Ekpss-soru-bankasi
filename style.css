@@ -222,6 +222,32 @@ a:focus, button:focus, summary:focus, input:focus {
 
 footer { text-align: center; padding: 20px; border-top: 1px solid #333; font-size: 0.9rem; color: #777; margin-top: auto; }
 
+/* --- TÜRKÇE PARAGRAF SORULARINA ÖZEL DÜZENLEME (UZUN SORULAR İÇİN) --- */
+/* Bu ayar, sadece script.js'in eklediği 'uzun-soru' sınıfına sahip
+   olan konteynerler için çalışır. Diğer dersleri etkilemez. */
+.container.uzun-soru #soru-metni {
+    /* Soru metni alanını küçült ve kaydırılabilir yap */
+    max-height: 250px; /* Maksimum yükseklik sınırı */
+    overflow-y: auto; /* Dikey kaydırma çubuğu ekle */
+    padding-right: 15px; /* Kaydırma çubuğu için boşluk */
+    margin-bottom: 20px !important;
+    border-bottom: 1px dashed #555;
+}
+
+/* 769px ve üzeri ekranlar için optimizasyon (Bilgisayar/Tablet) */
+@media screen and (min-width: 769px) {
+    .container.uzun-soru .soru-kutusu {
+        /* Soru kutusunun içindeki boşluğu azalt */
+        padding: 20px;
+    }
+    
+    /* Şıklar alanı 2 sütunlu kalır, böylece daha kompakt görünür */
+    .container.uzun-soru .siklar-grid { 
+        grid-template-columns: 1fr 1fr; 
+        gap: 10px; 
+    }
+}
+
 /* MOBİL UYUM */
 @media screen and (max-width: 768px) {
     /* Testler Listesi Mobilde Tek Sütun */
