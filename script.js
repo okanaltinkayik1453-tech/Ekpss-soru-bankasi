@@ -28,11 +28,9 @@ const DOSYA_ESLESTIRME = {
     "cografyaekonomik": "cografya_ekonomik.json",
     "cografyabolgeler": "cografya_bolgeler.json",
     "vatandaslik": "vatandaslik.json",
-    // TÜRKÇE EŞLEŞTİRMELERİ BAŞLANGIÇ
     "paragraf1": "paragraf1.json",
     "paragraf2": "paragraf2.json",
     "paragraf3": "paragraf3.json"
-    // TÜRKÇE EŞLEŞTİRMELERİ BİTİŞ
 };
 // SAYFA YÖNLENDİRME LİSTESİ
 const SAYFA_ESLESTIRME = {
