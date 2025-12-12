@@ -1,0 +1,619 @@
+{
+  "ust_baslik": "Paragraf Soruları",
+  "tests": [
+    {
+      "alt_baslik": "Test 9 (201-225)",
+      "soru_sayisi": 25,
+      "sorular": [
+        {
+          "id": 201,
+          "soru": "Mimarlık, sadece binaların fiziksel tasarımını yapmakla sınırlı değildir. Aynı zamanda insan yaşam kalitesini, toplumsal etkileşimi ve şehirlerin kültürel kimliğini de şekillendirir. İyi tasarlanmış bir kamusal alan, komşuluk ilişkilerini güçlendirirken; kötü tasarlanmış bir yapı, o bölgedeki yaşamı olumsuz etkileyebilir. Bu nedenle, mimarın görevi, estetik ve işlevselliğin ötesinde, insanın ruhuna ve toplumsal uyumuna hizmet etmektir. Bu parçada asıl anlatılmak istenen nedir?",
+          "secenekler": [
+            "A) Mimarlık, estetik kaygılardan çok işlevselliğe odaklanmalıdır.",
+            "B) Toplumsal uyum, sadece kamusal alanların tasarımıyla sağlanabilir.",
+            "C) Mimarın temel sorumluluğu, sadece binaların fiziksel tasarımını yapmaktır.",
+            "D) Şehirlerin kültürel kimliği, mimarlıktan bağımsız olarak gelişir.",
+            "E) Mimarlık, estetik ve işlevselliğin yanı sıra, insan yaşam kalitesini ve toplumsal uyumu şekillendiren derin bir görev üstlenir."
+          ],
+          "dogru_cevap": "E",
+          "aciklama": "Metin, mimarlığın görevini \"fiziksel tasarımla sınırlı olmamakla\" birlikte, \"yaşam kalitesini, toplumsal etkileşimi\" şekillendirmesi olarak tanımlamaktadır. Ana düşünce, mimarlığın bu geniş ve toplumsal rolünü vurgulamaktır."
+        },
+        {
+          "id": 202,
+          "soru": "Tarih, sadece geçmişte yaşanan olayların kronolojik bir kaydı değildir. Tarih yazımı, aynı zamanda günümüzü anlamak ve geleceğe yön vermek için geçmiş deneyimlerden ders çıkarma çabasıdır. Geçmişteki başarıları ve hataları analiz etmek, toplumsal hafızayı diri tutar ve bireyin kendi kimliğini güçlendirir. Bu bakış açısıyla, tarih, geleceği inşa etmenin temel kılavuzu olarak işlev görür. Bu parçanın ana düşüncesi aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "A) Tarihçilerin temel görevi, olayları kronolojik sıraya göre kaydetmektir.",
+            "B) Tarih, geçmişin karmaşık olaylarını günümüz insanı için sadeleştirir.",
+            "C) Tarih, sadece geçmişi kaydetmek değil, geleceği şekillendirmek için geçmişten ders çıkarma kılavuzudur.",
+            "D) Geçmişteki hataları sürekli hatırlamak, bireyin kendi kimliğini zayıflatır.",
+            "E) Bir toplumun tarihi, o toplumun başarısını kanıtlayan tek kaynaktır."
+          ],
+          "dogru_cevap": "C",
+          "aciklama": "Metin, tarihin \"sadece geçmişin kronolojik bir kaydı olmadığına\" karşı çıkarak, asıl işlevinin \"geçmiş deneyimlerden ders çıkarma çabası\" olduğunu ve geleceği inşa etmenin temel kılavuzu olduğunu vurgulamaktadır."
+        },
+        {
+          "id": 203,
+          "soru": "Doğa ile insan arasındaki ilişki, sanayi devriminden bu yana dengesini yitirmiştir. İnsan, kendini doğanın bir parçası olarak görmek yerine, onun efendisi gibi davranmış ve kaynakları sınırsızca tüketmiştir. Bu yanlış algı, çevre felaketlerini tetiklemiş ve gezegenimizin geleceğini tehlikeye atmıştır. Ekolojik dengeyi yeniden kurmanın ilk adımı, insanın doğaya hükmetme isteğinden vazgeçip, onunla uyum içinde yaşamayı öğrenmesidir. Bu parçanın ana konusu aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "A) Sanayi devriminin çevre felaketleri üzerindeki önemi.",
+            "B) İnsanlığın, doğadaki kaynakları kullanma biçiminin zorunlu olduğu.",
+            "C) İnsanın doğaya hükmetme algısının, ekolojik dengeyi bozarak yarattığı tehlikeler.",
+            "D) Ekolojik dengeyi korumak için bilim insanlarının geliştirdiği yeni teknolojiler.",
+            "E) Doğanın, insan eylemlerinden bağımsız olarak kendini yenileme yeteneği."
+          ],
+          "dogru_cevap": "C",
+          "aciklama": "Paragrafın tamamı, insanın \"doğanın efendisi gibi davranması\" (hükmetme algısı) sonucunda \"ekolojik dengeyi yitirmesi\" ve bunun tehlikeleri üzerinedir."
+        },
+        {
+          "id": 204,
+          "soru": "Yeni bir dil öğrenmek, sadece kelime dağarcığını zenginleştirmek değildir. O, aynı zamanda kültürel sınırları aşma ve farklı bir düşünce sistemine kapı açma eylemidir. Her dil, içinde konuşulduğu toplumun dünya görüşünü, tarihini ve espri anlayışını taşır. Bu nedenle, başka bir dilde akıcı olmak, aslında o kültürü içselleştirmek ve dünyaya yeni bir pencereden bakabilmek demektir. Bu parçadan çıkarılabilecek en kapsamlı yargı aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "A) Dil öğrenme süreci, zihinsel kapasiteyi zorladığı için oldukça yorucudur.",
+            "B) Yeni bir dil öğrenmek, sadece iletişim kurma becerisi değil, kültürü anlama ve dünyaya farklı bir düşünce sistemiyle bakma yeteneği kazandırır.",
+            "C) Dil bilgisi kurallarını öğrenmek, kültürel farklılıkları anlamaktan daha önemlidir.",
+            "D) Her dil, içinde sadece o topluma ait espri anlayışını barındırır.",
+            "E) Farklı dillerin düşünce sistemleri, birbiriyle çatışma halindedir."
+          ],
+          "dogru_cevap": "B",
+          "aciklama": "Metin, dil öğrenmenin faydasını \"kelime dağarcığı zenginleştirmekle sınırlı tutmaz, aksine asıl faydanın kültürü içselleştirmek ve dünyaya yeni bir pencereden bakabilmek olduğunu vurgular."
+        },
+        {
+          "id": 205,
+          "soru": "Birçok kişi, edebiyatın sadece hayal ürünü olduğunu ve gerçek hayata karşı bir kaçış sunduğunu düşünür. Oysa gerçek edebiyat, hayatın en derin ve karmaşık gerçeklerini, okuyucunun yüzüne vuran bir aynadır. Okuduğumuz bir roman, bize toplumun görünmeyen sorunlarını gösterir veya kendi iç çatışmalarımızla yüzleşmemizi sağlar. Edebiyat, hayatın içinden bir kesit sunar, onu süslemekten veya ondan kaçmaktan çok, onu anlamlandırmamıza yardım eder. Bu parçada, edebiyatın temel işlevi nedir?",
+          "secenekler": [
+            "A) Edebiyatın, okuyucuyu gerçek hayattan uzaklaştırarak dinlenmesini sağlamak.",
+            "B) Edebi metinlerin sadece hayal ürünü olduğunu ve gerçeklikle bağının olmadığını kabul etmek.",
+            "C) Edebiyatın, hayatın karmaşık gerçeklerini yansıtarak okuyucuyu toplumsal sorunlar ve kendi iç çatışmalarıyla yüzleştirmesi.",
+            "D) Edebi eserlerin, toplumsal sorunları çözmek için somut öneriler sunması.",
+            "E) Edebiyatın, sadece estetik kaygılarla üretilmesi gereken bir sanat dalı olması."
+          ],
+          "dogru_cevap": "C",
+          "aciklama": "Yazar, yaygın kanıya karşı çıkarak, edebiyatın asıl görevinin \"hayatın en derin ve karmaşık gerçeklerini\" yansıtmak ve okuyucuyu \"iç çatışmalarla yüzleşmeye\" zorlamak olduğunu belirtir."
+        },
+        {
+          "id": 206,
+          "soru": "Çocukluk dönemi, bireyin yaşamında kritik bir öneme sahiptir. Bu dönemde edinilen alışkanlıklar, değer yargıları ve duygusal deneyimler, yetişkinlikteki karakterin temelini oluşturur. Örneğin, çocuklukta kazandırılan okuma alışkanlığı, bireyin hayat boyu öğrenme becerisini etkiler. Ailelerin ve eğitimcilerin bu döneme gösterdiği özen, sadece o çocuğun değil, gelecekteki toplumun kalitesini de belirler. Bu parçada asıl anlatılmak istenen nedir?",
+          "secenekler": [
+            "A) Çocuklukta edinilen alışkanlıkların, yetişkinlikte tamamen değişebileceği.",
+            "B) Okuma alışkanlığının, çocuklukta kazanılması gereken en önemli beceri olduğu.",
+            "C) Çocukluk döneminin, bireyin gelişiminde çok önemli bir etkiye sahip olduğu.",
+            "D) Çocukluk döneminde edinilen alışkanlık ve deneyimlerin, bireyin karakteri ve toplumun geleceği için belirleyici öneme sahip olması.",
+            "E) Ailelerin, çocukluk dönemindeki eğitime, eğitimcilerden daha çok önem vermesi gerektiği."
+          ],
+          "dogru_cevap": "D",
+          "aciklama": "Metin, çocukluk döneminin \"kritik bir öneme sahip\" olduğunu, edinilenlerin \"yetişkinlikteki karakterin temelini oluşturduğunu\" ve \"gelecekteki toplumun kalitesini de belirlediğini\" vurgulamaktadır."
+        },
+        {
+          "id": 207,
+          "soru": "Empati, sadece başkalarının duygularını anlamak değildir. Aynı zamanda bu duyguları paylaşabilme ve ona uygun tepkiler gösterebilme yeteneğidir. Empati kurabilen bir kişi, sosyal ilişkilerinde daha başarılı olur, çatışmaları daha kolay çözebilir ve çevresindekilerle daha güçlü bağlar kurar. Bu beceri, bireysel başarının yanı sıra, toplumsal huzur ve uyum için de vazgeçilmez bir temeldir. Bu parçanın ana fikri aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "A) Empati, insanların duygusal zekâsını ölçmek için kullanılan tek yöntemdir.",
+            "B) Çatışmaların çözümü, sadece empatik yaklaşımla mümkündür.",
+            "C) Empati, sosyal ilişkilerde başarılı olmayı, çatışmaları çözmeyi ve toplumsal huzuru sağlayan temel bir yetenektir.",
+            "D) Başkalarının duygularını paylaşmak, bireye sadece duygusal yük getirir.",
+            "E) Empati, sadece doğuştan gelen ve geliştirilemeyen bir yetenek olarak görülmelidir."
+          ],
+          "dogru_cevap": "C",
+          "aciklama": "Metin, empatinin sosyal hayattaki faydalarını (başarı, çatışma çözme, güçlü bağlar) ve toplumsal huzur için vazgeçilmezliğini vurgulamaktadır."
+        },
+        {
+          "id": 208,
+          "soru": "Eleştirel düşünme, bilgi çağında sadece akademik bir beceri olmaktan çıkıp, günlük hayatta kalma becerisi hâline gelmiştir. Her gün yüzlerce yanlış bilgi ve manipülasyonla karşı karşıya kalan birey, bu bilgileri sorgulamadan kabul ettiğinde, kendi kararlarını dahi doğru veremez. Bu nedenle, eleştirel düşünme, bireyin kendi hayatının kontrolünü elinde tutması için olmazsa olmaz bir donanımdır. Bu parçadan çıkarılabilecek en kapsamlı yargı aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "A) Bilgi çağında, akademik becerilerin günlük hayata hiçbir katkısı yoktur.",
+            "B) İnsanların çoğu, yanlış bilgiyi sorgulamadan kabul etme eğilimindedir.",
+            "C) Eleştirel düşünme, bilgi kirliliği karşısında bireyin kendi hayatının kontrolünü elinde tutmasını sağlayan hayati bir günlük yaşam becerisidir.",
+            "D) Manipülasyonlar, sadece siyasi veya ekonomik konularla sınırlıdır.",
+            "E) Akademik becerilerin günlük hayattaki rolü, sürekli olarak artmaktadır."
+          ],
+          "dogru_cevap": "C",
+          "aciklama": "Metin, eleştirel düşünmenin \"günlük hayatta kalma becerisi hâline geldiğini\" ve bunun bireyin \"kendi hayatının kontrolünü elinde tutması\" için gerekli olduğunu vurgular."
+        },
+        {
+          "id": 209,
+          "soru": "Felsefe, bilim ve sanat, insanlık için anlam arayışının üç farklı yoludur. Bilim, rasyonel ve deneysel yöntemlerle gerçekliği çözmeye çalışır. Sanat, duygusal ifade ve estetikle insan ruhuna dokunur. Felsefe ise, bu iki alanın temel varsayımlarını sorgulayarak, varoluşun ve bilginin sınırlarını anlamaya çalışır. Bu üç alanın ortak çabası, insanı, evrendeki yerini ve amacını bulmaya yönlendirir. Bu parçanın ana düşüncesi aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "A) Felsefenin temel görevi, bilim ve sanat arasındaki çatışmaları çözmektir.",
+            "B) Sanat, rasyonel yöntemleri kullanmadığı için bilimden daha az değerlidir.",
+            "C) Felsefe, bilim ve sanat; farklı yöntemler kullansalar da, insanlığın anlam arayışına hizmet eden ortak bir amaca sahiptir.",
+            "D) Bilim, deneysel yöntemler kullandığı için diğer alanlardan daha güvenilir bir kaynaktır.",
+            "E) İnsan, anlam arayışında sadece felsefenin yol göstermesine ihtiyaç duyar."
+          ],
+          "dogru_cevap": "C",
+          "aciklama": "Metin, felsefe, bilim ve sanatı \"üç farklı yol\" olarak tanımlasa da, hepsinin \"insanlık için anlam arayışının\" bir parçası olduğunu ve \"ortak çabalarının\" insanı amacına yönlendirdiğini belirtir."
+        },
+        {
+          "id": 210,
+          "soru": "\"Eleştirel yaklaşım, okunan metnin ardındaki önyargıları ve yazarın amacını ortaya çıkarmaya odaklanır; bu da okuyucuyu pasif bir alıcı olmaktan çıkarır.\" Bu parçadan çıkarılabilecek en kapsamlı yargı nedir?",
+          "secenekler": [
+            "A) Pasif okuyucular, metindeki önyargıları fark edemezler.",
+            "B) Metinlerin yazılma amacı, eleştirel yaklaşımla her zaman ortaya çıkarılır.",
+            "C) Eleştirel yaklaşım, okuyucunun pasif alıcı rolünden kurtulmasını ve metnin ardındaki unsurları aktif olarak sorgulamasını sağlar.",
+            "D) Eleştirel yaklaşım, sadece metinlerdeki önyargıları bulmaya yarar.",
+            "E) Yazarın amacını bilmek, okuyucuyu metne karşı daha pasif yapar."
+          ],
+          "dogru_cevap": "C",
+          "aciklama": "Cümle, eleştirel yaklaşımın işlevini (\"önyargıları, amacı ortaya çıkarmak\") ve bunun sonucunu (\"okuyucuyu pasif alıcı olmaktan çıkarmak\") belirtmektedir."
+        },
+        {
+          "id": 211,
+          "soru": "Hayat boyu öğrenme, günümüz dünyasının en büyük zorunluluklarından biridir. Teknolojinin hızıyla meslekler ve bilgi alanları sürekli değişmektedir. Bu değişime ayak uydurabilmek için, bireylerin sadece okulda öğrendikleriyle yetinmeyip, sürekli yeni beceriler edinmesi ve eski bilgilerini güncellemesi gerekir. Hayat boyu öğrenme, sadece kariyer başarısı için değil; aynı zamanda zihinsel esnekliği korumak ve yaşama aktif olarak katılmaya devam etmek için de kritik öneme sahiptir. Bu parçadan hareketle aşağıdaki yargılardan hangisine ulaşılabilir?",
+          "secenekler": [
+            "A) Okulların temel görevi, bireylere hayat boyu öğrenecekleri bilgiyi bir defada vermektir.",
+            "B) Bireyler, teknoloji değişse bile mesleklerini korumak için sadece eski bilgilerini kullanmalıdır.",
+            "C) Hayat boyu öğrenme, hem kariyer başarısı hem de zihinsel esnekliği sürdürmek açısından çağımızın bir zorunluluğudur.",
+            "D) Teknolojinin hızı, bilginin güncellenme ihtiyacını azaltmaktadır.",
+            "E) Hayat boyu öğrenme, sadece emeklilik sonrası dönemde gereklidir."
+          ],
+          "dogru_cevap": "C",
+          "aciklama": "Metin, hayat boyu öğrenmenin \"en büyük zorunluluklardan biri\" olduğunu belirtir ve faydalarını \"kariyer başarısı\" ve \"zihinsel esnekliği korumak\" olarak sıralar."
+        },
+        {
+          "id": 212,
+          "soru": "Hayat boyu öğrenme, günümüz dünyasının en büyük zorunluluklarından biridir. Teknolojinin hızıyla meslekler ve bilgi alanları sürekli değişmektedir. Bu değişime ayak uydurabilmek için, bireylerin sadece okulda öğrendikleriyle yetinmeyip, sürekli yeni beceriler edinmesi ve eski bilgilerini güncellemesi gerekir. Hayat boyu öğrenme, sadece kariyer başarısı için değil; aynı zamanda zihinsel esnekliği korumak ve yaşama aktif olarak katılmaya devam etmek için de kritik öneme sahiptir. Parçada, hayat boyu öğrenme gerekliliğinin nedenleri arasında aşağıdakilerden hangisi değinilmemiştir?",
+          "secenekler": [
+            "A) Teknolojinin hızla değişiyor olması.",
+            "B) Mesleklerin ve bilgi alanlarının sürekli değişmesi.",
+            "C) Bireylerin zihinsel esnekliği koruma ihtiyacı.",
+            "D) Eğitim sistemlerinin kalitesinin düşmesi nedeniyle okulların yetersiz kalması.",
+            "E) Bireylerin yaşama aktif olarak katılmaya devam etme isteği."
+          ],
+          "dogru_cevap": "D",
+          "aciklama": "Metin, hayat boyu öğrenme gerekliliğinin nedenlerini teknoloji, mesleklerin değişimi, zihinsel esneklik ve aktif katılım olarak sıralamaktadır. \"Eğitim sistemlerinin kalitesinin düşmesi\"ne dair bir görüşe değinilmemiştir."
+        },
+        {
+          "id": 213,
+          "soru": "Aşağıdaki cümlelerin hangisinde bir \"önyargı\" anlamı yoktur?",
+          "secenekler": [
+            "A) Bu ressamın eserleri kesinlikle satmaz, çünkü çok soyut ve anlaşılmaz.",
+            "B) Yazarın son kitabında kullandığı sade ve anlaşılır dil, okuyucunun ilgisini artırmıştır.",
+            "C) O partinin adayını desteklemeye gerek yok, o bölgede asla kazanamaz.",
+            "D) Bu kadar basit bir konuyu işleyen bir yazar, kesinlikle başarılı olamaz.",
+            "E) Daha kitabın ilk sayfasına baktım, bu konuyu zaten herkes biliyor olmalı."
+          ],
+          "dogru_cevap": "B",
+          "aciklama": "B seçeneği, kitabın yayınlanmasından sonra (deneyim sonrası) verilen bir yargı ve tespittir. Önceden verilmiş, deneyime dayanmayan bir hüküm (önyargı) içermez."
+        },
+        {
+          "id": 214,
+          "soru": "Aşağıdaki cümlelerin hangisinde bir \"amaç\" bildiren bir ifade bulunmaktadır?",
+          "secenekler": [
+            "A) Hava çok rüzgarlı olduğu için gemi seferleri iptal edildi.",
+            "B) Projenin başarısı, ekibin iş birliğine ne kadar değer verdiğiyle doğru orantılıdır.",
+            "C) Okuyucuyu sıkmamak üzere, yazar romanında uzun betimlemelerden kaçındı.",
+            "D) Yıllardır süren bu trafik sıkışıklığına o kadar alıştım ki, artık şaşırmıyorum.",
+            "E) Filmdeki oyunculuklar o kadar başarılıydı ki, salondaki herkes ayakta alkışladı."
+          ],
+          "dogru_cevap": "C",
+          "aciklama": "C seçeneğinde, yazarın betimlemelerden kaçınmasının amacı, \"Okuyucuyu sıkmamak üzere\" ifadesiyle belirtilmiştir."
+        },
+        {
+          "id": 215,
+          "soru": "Aşağıdaki yargılardan hangisi, \"İnsanlar, duygusal zekâları sayesinde zorlu sosyal ilişkilerde bile sağlıklı iletişim kurabilirler.\" düşüncesini destekler?",
+          "secenekler": [
+            "A) Yüksek akademik zekâ, sosyal ilişkilerde başarılı olmanın tek yoludur.",
+            "B) Duygusal zekâ, sadece bireyin kendi duygularını yönetme yeteneğidir.",
+            "C) Empati kurabilen ve başkalarının duygularını yönetebilen liderler, ekip içinde çıkan çatışmaları daha kolay çözerler.",
+            "D) İnsanlar, zorlu sosyal ilişkilerden kaçınarak daha mutlu bir yaşam sürerler.",
+            "E) Sosyal ilişkilerin zorluğu, duygusal zekânın önemini zamanla azaltmaktadır."
+          ],
+          "dogru_cevap": "C",
+          "aciklama": "Metindeki düşünce, duygusal zekânın zorlu ilişkilerde sağlıklı iletişimi sağladığıdır. C seçeneği, empatik liderlerin \"ekip içinde çıkan çatışmaları daha kolay çözdüklerini\" söyleyerek (zorlu sosyal ilişkiyi çözmek), ana düşünceyi destekleyen somut bir örnek sunmaktadır."
+        },
+        {
+          "id": 216,
+          "soru": "Çevre bilinci, sadece doğal kaynakları korumakla ilgili değildir. Aynı zamanda gelecek nesillerin yaşam hakkına ve kaynaklara eşit erişimine saygı duymaktır. Bir bireyin bugün yaptığı her tüketim eylemi, gelecekteki bir çocuğun kullanabileceği kaynağı tüketir. Bu nedenle, çevre bilinci, sadece ekolojik bir gereklilik değil, aynı zamanda derin bir etik ve adalet sorumluluğudur. Bu parçadan hareketle aşağıdaki yargılardan hangisi kesinlikle söylenebilir?",
+          "secenekler": [
+            "A) Gelecek nesiller, doğal kaynaklara erişim konusunda büyük sıkıntılar yaşayacaktır.",
+            "B) Çevre bilinci, sadece bireysel tüketim alışkanlıklarını değiştirmekle ilgilidir.",
+            "C) Bireyin tüketim eylemi, her zaman gelecek nesillerin kaynaklarını adilce kullanmasını sağlar.",
+            "D) Çevre bilinci, gelecek nesillerin haklarına saygı duymayı gerektiren etik bir sorumluluktur.",
+            "E) Ekolojik gereklilikler, etik sorumluluklardan daha önemlidir."
+          ],
+          "dogru_cevap": "D",
+          "aciklama": "Metin, çevre bilincinin \"gelecek nesillerin yaşam hakkına ve kaynaklara eşit erişimine saygı duymak\" olduğunu belirtir ve son cümlede bunun \"derin bir etik ve adalet sorumluluğu\" olduğunu vurgular."
+        },
+        {
+          "id": 217,
+          "soru": "Aşağıdaki cümlelerin hangisinde bir \"ihtimal (olasılık)\" anlamı vardır?",
+          "secenekler": [
+            "A) Projenin başarısızlığının temelinde, ekibin tecrübesizliği yatıyor.",
+            "B) Bence bu yılki sanat ödüllerini o genç yazar kazanacak gibi duruyor.",
+            "C) Hızlı okuma becerisi, sadece düzenli pratikle geliştirilebilir.",
+            "D) Yazarın bu eserde kullandığı dil, okuyucunun ilgisini artırmıştır.",
+            "E) Sınavdaki başarısı, tamamen disiplinli çalışmasına bağlıdır."
+          ],
+          "dogru_cevap": "B",
+          "aciklama": "B seçeneğinde, genç yazarın ödülü \"kazanacak gibi duruyor\" ifadesi, olayın gerçekleşmesinin kesin olmadığını, bir tahmine veya olasılığa dayandığını göstermektedir."
+        },
+        {
+          "id": 218,
+          "soru": "Aşağıdaki yargılardan hangisi, \"Bir yazarın üslubu, onun dünyaya bakış açısını yansıtan bir aynadır.\" düşüncesini desteklemez?",
+          "secenekler": [
+            "A) Yazarın eserlerindeki alaycı dil, onun hayata karşı eleştirel bir tavır takındığını gösterir.",
+            "B) Yazarın romanının konusu, onun çocukluk döneminde yaşadığı travmalardan esinlenmiştir.",
+            "C) Şairin sade ve akıcı anlatımı, onun okuyucuya değer veren bir kişilik olduğunu gösterir.",
+            "D) Yazarın karmaşık ve devrik cümleleri tercih etmesi, onun iç dünyasındaki karmaşayı yansıtır.",
+            "E) Eserde kullanılan neşeli ve umut dolu dil, yazarın iyimser bir karaktere sahip olduğunu düşündürür."
+          ],
+          "dogru_cevap": "B",
+          "aciklama": "Metindeki temel düşünce, bir yazarın üslubunun (nasıl anlattığı) onun karakterini/bakış açısını yansıttığıdır. A, C, D ve E şıkları; dil (üslup) ve yazarın kişiliği arasındaki ilişkiyi kurarken; B şıkkı, eserin konusunu (içerik) yazarın travmalarıyla ilişkilendirir. Dolayısıyla B şıkkı, üslup/karakter ilişkisini değil, içerik/karakter ilişkisini kurduğu için metindeki ana düşünceyi desteklemez."
+        },
+        {
+          "id": 219,
+          "soru": "Aşağıdaki cümlelerin hangisinde bir \"pişmanlık\" (hayıflanma) anlamı yoktur?",
+          "secenekler": [
+            "A) Keşke o önemli toplantıdaki fikrimi daha cesurca dile getirseydim.",
+            "B) O fırsatın bu kadar değerli olduğunu bilseydim, kaçırmaz, mutlaka değerlendirirdin.",
+            "C) Yıllardır süren bu adaletsizliğe o kadar alıştık ki, artık tepki vermiyoruz.",
+            "D) Gençken bana sunulan o iş teklifini kabul etmeyerek büyük bir hata yapmışım.",
+            "E) Keşke spora daha küçük yaşlarda başlayıp sağlığıma daha çok dikkat etseydim."
+          ],
+          "dogru_cevap": "C",
+          "aciklama": "Pişmanlık (hayıflanma), kişinin kendi yaptığı bir hatadan dolayı duyduğu üzüntüdür (A, B, D, E). C seçeneği ise, olumsuz bir duruma (adaletsizlik) alışma ve normal karşılama, yani kanıksama anlamı içermektedir."
+        },
+        {
+          "id": 220,
+          "soru": "Aşağıdakilerden hangisi, bir eleştirmenin \"içerik ve üslup\" ayrımına dikkat ettiğini gösterir?",
+          "secenekler": [
+            "A) Yazarın eserindeki dilin çok karmaşık olduğunu söyleyip, konunun güncel olduğunu belirtmesi.",
+            "B) Hikayenin kurgusunun zayıf olduğunu, ama karakterlerin çok iyi işlendiğini belirtmesi.",
+            "C) Yazarın kullandığı cümle yapısının çok basit olduğunu, ama eserin konusunun derin olduğunu belirtmesi.",
+            "D) Romanın konusunun özgün olmadığını, fakat anlatım tekniğinin benzersiz olduğunu belirtmesi.",
+            "E) Eleştirmenin, eserin konusunun ilginç olduğunu, ancak yazarın sade bir dil kullanmayı tercih ettiğini söylemesi."
+          ],
+          "dogru_cevap": "E",
+          "aciklama": "İçerik (konu) ve üslup (dil/anlatım biçimi) ayrıdır. E seçeneğinde eleştirmen, \"konunun ilginç olduğunu\" (içerik) ve \"sade bir dil kullanmayı tercih ettiğini\" (üslup) belirterek bu iki farklı boyuta da dikkat ettiğini göstermiştir."
+        },
+        {
+          "id": 221,
+          "soru": "Aşağıdaki cümlelerle anlamlı ve kurallı bir paragraf oluşturulduğunda, baştan ikinci cümle hangisi olur?\n1. Bu nedenle, eleştirel düşünme, bilginin sadece pasif alıcısı olmaktan kurtulmanın ilk adımıdır.\n2. Pasif bilgi alımı, bireyin kendisine sunulan bilgiyi sorgulamadan kabul etmesine yol açar.\n3. Bu da toplumda tek tip düşüncenin yayılmasına ve dogmatizme zemin hazırlar.\n4. Günümüzde internet sayesinde bilgiye erişim kolaylaştıkça, pasif bilgi alımı da artmaktadır.\n5. Halbuki, bir toplumun ilerlemesi, ancak farklı görüşlerin eleştirel bir süzgeçten geçirilmesiyle mümkündür.",
+          "secenekler": ["A) 1", "B) 2", "C) 3", "D) 4", "E) 5"],
+          "dogru_cevap": "B",
+          "aciklama": "Cümlelerin anlam akışına göre en doğru sıralama: 4 (Giriş) - 2 (Açıklama) - 3 (Sonuç) - 1 (Çözüm Önerisi) - 5 (Nihai Hüküm). Bu sıralamada baştan ikinci cümle 2. numaralı cümledir."
+        },
+        {
+          "id": 222,
+          "soru": "Aşağıdaki cümlelerden hangisi, bir paragrafın giriş cümlesi olmaya en uygun düşmez?",
+          "secenekler": [
+            "A) Bütün bilimsel keşifler, öncelikle merak duygusuyla ve sorgulama isteğiyle başlar.",
+            "B) Edebiyat, hayatın çelişkilerini, sevinçlerini ve hüzünlerini ele alan bir aynadır.",
+            "C) Felsefe, insanın evreni ve kendini sorgulama sürecidir.",
+            "D) Bu nedenle, teknolojik gelişmeler, bireysel etik anlayışımızı değiştirmelidir.",
+            "E) Sanatın amacı, sadece güzel olanı yaratmak değil, aynı zamanda düşündürmektir."
+          ],
+          "dogru_cevap": "D",
+          "aciklama": "Giriş cümlesi, kendinden önce bir durumun varlığını düşündürecek bağlayıcı kelimeler içermemelidir. D seçeneği, \"Bu nedenle\" bağlacı ile başladığı için, paragrafın girişine en uygun düşmez."
+        },
+        {
+          "id": 223,
+          "soru": "Aşağıdaki numaralanmış cümlelerden hangisi, parçanın anlam akışını bozmaktadır?\n1. Küresel ısınma ile mücadele, enerji sektöründe köklü değişimleri zorunlu kılmaktadır.\n2. Fosil yakıtlara olan bağımlılığın azaltılması ve yenilenebilir enerji kaynaklarına geçiş, bu değişimin temelini oluşturur.\n3. Bu süreçte devletlerin yanı sıra, bireysel enerji tüketim alışkanlıklarının da değişmesi önemlidir.\n4. Sanat eserlerinin estetik değerleri, toplumsal konulardan bağımsız ele alınmalıdır.\n5. Çünkü etik sorumluluk olmadan, en iyi teknoloji bile sorunu kökten çözemeyecektir.",
+          "secenekler": ["A) 1", "B) 2", "C) 3", "D) 5", "E) 4"],
+          "dogru_cevap": "E",
+          "aciklama": "Paragrafın genel akışı (1, 2, 3, 5. cümleler), \"küresel ısınmayla mücadele ve enerji sektöründeki değişimler\" üzerinedir. 4. cümle ise konuyu aniden \"sanat eserlerinin estetik değerine\" kaydırmaktadır ve akışı bozmaktadır."
+        },
+        {
+          "id": 224,
+          "soru": "Aşağıdaki cümlelerle anlamlı ve kurallı bir paragraf oluşturulduğunda, baştan beşinci (son) cümle hangisi olur?\n1. Oysa sanat, hayatın acılarını, sevinçlerini ve umutlarını yansıtan en güçlü araçtır.\n2. Toplumun ruh sağlığını iyileştirmek için sanatsal faaliyetlere daha çok önem verilmelidir.\n3. Sanatın sadece bir eğlence aracı olarak görülmesi, onun toplumsal işlevini göz ardı etmektir.\n4. Çünkü sanata değer vermek, kişinin kendi duygusal dünyasına değer vermesi anlamına gelir.\n5. Bu, sanatın sadece bireye değil, aynı zamanda topluma da şifa dağıttığını gösterir.",
+          "secenekler": ["A) 1", "B) 2", "C) 3", "D) 5", "E) 4"],
+          "dogru_cevap": "D",
+          "aciklama": "Cümlelerin anlam akışına göre sıralaması: 3 (Yanlış kanı) - 1 (Karşıt Görüş) - 4 (Gerekçe) - 2 (Gereklilik) - 5 (Nihai Hüküm). Sıralama: 3-1-4-2-5. Baştan beşinci (son) cümle 5. numaralı cümledir."
+        },
+        {
+          "id": 225,
+          "soru": "Liderlik, sadece yetenekli kişilere özgü, doğuştan gelen bir özellik değildir. Bu, tıpkı spor gibi, düzenli eğitim, tecrübe ve uygulama ile geliştirilebilen bir beceridir. Liderlik becerisi, sadece karar alma yeteneğini değil, aynı zamanda empati, iletişim ve sorun çözme gibi yetenekleri de kapsar. [...]. Bu nedenle, iyi bir lider olmak isteyen herkesin, bu becerileri geliştirmek için sürekli çaba göstermesi gerekir. Bu paragraftaki boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "A) Bir liderin başarısı, genellikle sadece doğuştan gelen yetenekleriyle ölçülür.",
+            "B) Liderlik eğitimi, sadece akademik alanda başarılı olanlara verilmelidir.",
+            "C) Çünkü bu beceriler, liderin ekibini motive etmesi ve zorlu durumlarda güven inşa etmesi için hayati önem taşır.",
+            "D) Liderlik, sadece emir verme ve kontrol etme yeteneğiyle ilgilidir.",
+            "E) Empati, liderlikte en az önemli olan beceridir."
+          ],
+          "dogru_cevap": "C",
+          "aciklama": "C seçeneği, duygusal ve sosyal becerilerin neden hayati olduğunu (ekibi motive etme, güven inşa etme) açıklayarak, liderliğin geliştirilmesi gerektiği sonucunun gerekçesini sunar."
+        }
+      ]
+    },
+    {
+      "alt_baslik": "Test 10 (226-250)",
+      "soru_sayisi": 25,
+      "sorular": [
+        {
+          "id": 226,
+          "soru": "Aşağıdaki cümlelerden hangisi, bir paragrafın giriş cümlesi olmaya en uygun düşer?",
+          "secenekler": [
+            "A) Ancak bu yaklaşım, modern sanatın geldiği noktayı tam olarak açıklamaz.",
+            "B) Bu nedenle, kentsel dönüşüm, sadece binaları yenilemekle sınırlı kalmamalıdır.",
+            "C) Böylece, toplumsal hafızanın korunması konusunda önemli bir adım atılmış oldu.",
+            "D) İnsan doğası, varoluşundan itibaren hem yalnız kalma hem de ait olma çelişkisi içindedir.",
+            "E) Bununla birlikte, bu süreçte karşılaşılan etik sorunlar da göz ardı edilemez."
+          ],
+          "dogru_cevap": "D",
+          "aciklama": "D seçeneği, genel bir konuyu (İnsan doğasındaki çelişki) bağımsız bir yargıyla ortaya koyduğu için giriş cümlesi olmaya en uygundur. Diğer şıklar bağlayıcı kelimeler (Ancak, Bu nedenle, Böylece, Bununla birlikte) içermektedir."
+        },
+        {
+          "id": 227,
+          "soru": "Aşağıdaki cümlelerle anlamlı ve kurallı bir paragraf oluşturulduğunda, baştan üçüncü cümle hangisi olur?\n1. Bu nedenle, şiir, okuyucunun kendi iç dünyasını keşfetmesi için eşsiz bir yolculuktur.\n2. Şiir, yazarın en derin duygularını ve karmaşık düşüncelerini bile az sözle yoğunlaştırır.\n3. Bu yoğunlaştırma, okuyucunun her kelimenin ardındaki anlamı aktif bir şekilde araması gerektirir.\n4. Şiir, düzyazı gibi geniş bir anlatım alanına sahip olmayan, kısıtlı bir türdür.\n5. O, sadece estetik bir keyif değil, aynı zamanda zihinsel bir çaba da gerektirir.",
+          "secenekler": ["A) 1", "B) 2", "C) 3", "D) 5", "E) 4"],
+          "dogru_cevap": "C",
+          "aciklama": "Cümlelerin anlam akışına göre sıralaması: 4 (Kısıtlı tür olması - Giriş) - 2 (Yoğunlaştırma işlevi) - 3 (Yoğunlaştırmanın okuyucudaki sonucu) - 5 (Gereklilik) - 1 (Nihai Hüküm). Sıralama: 4-2-3-5-1. Baştan üçüncü cümle 3. numaralı cümledir."
+        },
+        {
+          "id": 228,
+          "soru": "Aşağıdaki numaralanmış cümlelerden hangisi, parçanın anlam akışını bozmaktadır?\n1. İklim değişikliği ile mücadele, sadece yenilenebilir enerjiye geçişle sınırlı değildir.\n2. Aynı zamanda, karbon emisyonlarını azaltmak için toplu taşıma sistemleri yaygınlaştırılmalıdır.\n3. Bireysel olarak, daha az et tüketmek ve yerel ürünleri tercih etmek de önemlidir.\n4. Sinema, toplumsal bilinç oluşturmanın en etkili araçlarından biridir.\n5. Çünkü küresel bir sorunun çözümü, herkesin küçük katkılarıyla mümkün olabilir.",
+          "secenekler": ["A) 1", "B) 2", "C) 3", "D) 5", "E) 4"],
+          "dogru_cevap": "E",
+          "aciklama": "Paragrafın genel akışı (1, 2, 3, 5. cümleler), \"iklim değişikliğiyle mücadelede alınması gereken eylemler ve bireysel katkının önemi\" üzerinedir. 4. cümle ise konuyu aniden \"sinemanın toplumsal bilinç oluşturma gücüne\" kaydırmaktadır ve akışı bozmaktadır."
+        },
+        {
+          "id": 229,
+          "soru": "Aşağıdaki cümlelerle anlamlı ve kurallı bir paragraf oluşturulduğunda, baştan birinci cümle hangisi olur?\n1. Bu nedenle, eleştiri, bir eseri veya fikri daha iyi bir noktaya taşımak için yapılır.\n2. Yapıcı eleştiri, sadece hataları bulup göstermekle kalmaz, aynı zamanda çözüm önerileri de sunar.\n3. Çoğu insan eleştiriyi, kişisel bir saldırı olarak algılama eğilimindedir.\n4. Eleştirinin temel amacı, yıkmak değil, gelişim sağlamaktır.\n5. Bu yanlış algı, toplumda eleştiriye karşı gereksiz bir direnç yaratır.",
+          "secenekler": ["A) 1", "B) 2", "C) 3", "D) 4", "E) 5"],
+          "dogru_cevap": "D",
+          "aciklama": "Cümlelerin anlam akışına göre sıralaması: 4 (Giriş) - 2 (Gelişim sağlayan eleştiri tanımı) - 1 (Bağlantı/Amaç) - 3 (Yanlış algı) - 5 (Sonuç). Sıralama: 4-2-1-3-5. Baştan birinci cümle 4. numaralı cümledir."
+        },
+        {
+          "id": 230,
+          "soru": "Aşağıdaki cümlelerden hangisi, parçanın akışına göre en uygun sonuç cümlesi olur?",
+          "secenekler": [
+            "A) Ancak, bu durumun çevresel sonuçları henüz tam olarak bilinmemektedir.",
+            "B) Dolayısıyla, bu yöntemin uygulanabilirliği konusunda bilim insanları arasında tartışmalar sürmektedir.",
+            "C) Tüm bu nedenler göz önüne alındığında, spor yapmanın sadece fiziksel değil, aynı zamanda zihinsel bir zorunluluk olduğu anlaşılmaktadır.",
+            "D) Bu durum, sanatçının eserinde kullandığı dilin, içerikten daha önemli olduğu anlamına gelir.",
+            "E) Projenin başarısızlığı, yöneticinin yanlış kararlar almasından kaynaklanmıştır."
+          ],
+          "dogru_cevap": "C",
+          "aciklama": "C seçeneği, \"Tüm bu nedenler göz önüne alındığında\" ifadesiyle bir özetleme yaptıktan sonra, sporun faydaları hakkındaki tüm argümanları (fiziksel ve zihinsel zorunluluk) nihai bir hükümle özetlemektedir."
+        },
+        {
+          "id": 231,
+          "soru": "Siyasi partilerin temel amacı, sadece iktidara gelmek midir, yoksa topluma hizmet etmek mi? İktidarı amaçlayan partiler, kısa vadeli popülist kararlarla günü kurtarmaya çalışırken, topluma hizmeti amaçlayanlar uzun vadeli, köklü reformlara odaklanır. Halkın beklentisi, kısa vadeli çözümlerden çok, ülkenin geleceğini güvence altına alacak reformlardır. Bu nedenle, partiler amaçlarını yeniden gözden geçirmelidir. Bu parçanın anlatımında aşağıdaki anlatım biçimlerinden hangisi ağır basmaktadır?",
+          "secenekler": [
+            "A) Açıklama",
+            "B) Tartışma",
+            "C) Betimleme",
+            "D) Öyküleme",
+            "E) Kanıtlama"
+          ],
+          "dogru_cevap": "B",
+          "aciklama": "Metin, bir soruyla başlayarak (\"iktidara gelmek mi, topluma hizmet etmek mi?\") bir tezi ortaya atmış ve iki farklı görüşü karşılaştırarak kendi görüşünü (uzun vadeli reformların önemi) savunmuştur. Bu, Tartışma anlatım biçimidir."
+        },
+        {
+          "id": 232,
+          "soru": "Birçok kişi, yaratıcılığın doğuştan gelen, geliştirilemez bir yetenek olduğunu düşünür. Oysa, yaratıcılık, tıpkı spor yapmak gibi, düzenli ve disiplinli pratikle geliştirilebilen bir beceridir. Yeni fikirlere açık olmak, farklı disiplinlerdeki bilgileri birleştirmek ve risk almaktan çekinmemek gibi tutumlar, bu beceriyi keskinleştirir. Edison’un ampulü icat etmeden önce binlerce başarısız deneme yapması da yaratıcılığın bir süreç olduğunu kanıtlar. Bu parçada düşünceyi geliştirmek için aşağıdaki yollardan hangisine başvurulmuştur?",
+          "secenekler": [
+            "A) Tanımlama ve benzetme",
+            "B) Karşılaştırma ve sayısal verilerden yararlanma",
+            "C) Benzetme ve örnekleme",
+            "D) Tanık gösterme ve tanımlama",
+            "E) Öyküleme ve karşılaştırma"
+          ],
+          "dogru_cevap": "C",
+          "aciklama": "Yaratıcılığın geliştirilebilen bir beceri olduğu fikrini desteklemek için, yaratıcılık \"tıpkı spor yapmak gibi\" ifadesiyle Benzetme yoluyla anlatılmıştır. Ayrıca, Edison'un denemeleri somut bir Örnekleme olarak sunulmuştur."
+        },
+        {
+          "id": 233,
+          "soru": "Aşağıdaki cümlelerin hangisinde \"tanımlama\"dan yararlanılmıştır?",
+          "secenekler": [
+            "A) Liderlik, sadece emir vermek değil, aynı zamanda ekibi motive etme sanatıdır.",
+            "B) Hayal kırıklığı, bir beklentinin gerçekleşmemesi sonucunda duyulan derin üzüntü hissidir.",
+            "C) Edebiyat, hayatın çelişkilerini, sevinçlerini ve hüzünlerini ele alan bir aynadır.",
+            "D) Sanat, insanın iç dünyasındaki karmaşayı dışa vuran güçlü bir iletişim aracıdır.",
+            "E) Biyografik roman, tarihi bir kişinin yaşam öyküsünü kurmaca ile birleştiren edebi bir türdür."
+          ],
+          "dogru_cevap": "E",
+          "aciklama": "E seçeneğinde, \"Biyografik roman nedir?\" sorusuna cevap verilerek, kavramın tanımı yapılmıştır."
+        },
+        {
+          "id": 234,
+          "soru": "Aşağıdaki cümlelerin hangisinde \"karşılaştırma\" yapılmıştır?",
+          "secenekler": [
+            "A) Yazar, bu romanında sadece İstanbul'u değil, aynı zamanda küçük bir Anadolu kasabasını da anlatır.",
+            "B) Projenin bu aşaması, belirlenen süreden on gün önce tamamlanmıştır.",
+            "C) Bilim insanları, küresel ısınmanın etkilerinin her geçen gün arttığını söylüyor.",
+            "D) Öykü, romana göre daha az karakter ve daha kısa bir zaman dilimi içerir.",
+            "E) Sanatçının resim sergisi, eleştirmenler tarafından en başarılı sergisi olarak nitelendirildi."
+          ],
+          "dogru_cevap": "D",
+          "aciklama": "D seçeneğinde, \"öykü\" ile \"roman\" arasında, karakter sayısı ve zaman dilimi yönünden kıyaslama yapılmıştır (\"daha az\", \"daha kısa\")."
+        },
+        {
+          "id": 235,
+          "soru": "Tarihi yapılar, bir şehrin sadece mimari mirasını temsil etmez. Aynı zamanda o şehrin geçmişindeki yaşam biçimini, sanat anlayışını ve toplumsal değerlerini de taşır. Bu yapılar, geçmişle günümüz arasında somut bir bağ kurar ve şehrin kimliğini belirler. Bu nedenle tarihi yapıları korumak, bir toplumun kendi kimliğini ve hafızasını koruması anlamına gelir. Bu parçanın anlatımında aşağıdaki anlatım biçimlerinden hangisi ağır basmaktadır?",
+          "secenekler": [
+            "A) Betimleme",
+            "B) Tartışma",
+            "C) Açıklama",
+            "D) Öyküleme",
+            "E) Kanıtlama"
+          ],
+          "dogru_cevap": "C",
+          "aciklama": "Paragraf, tarihi yapıların ne anlama geldiğini (kültürel kimlik, yaşam biçimi) ve korunmalarının neden önemli olduğunu bilgi verici ve nesnel bir dille anlatmaktadır."
+        },
+        {
+          "id": 236,
+          "soru": "Aşağıdaki cümlelerin hangisinde \"tanık gösterme\" düşünceyi geliştirme yoluna başvurulmuştur?",
+          "secenekler": [
+            "A) Şairin duygularını aktarmak için seçtiği kelimeler, onun iç dünyasını yansıtır.",
+            "B) Tıpkı bir ağacın kökleri gibi, insanın kimliği de çocuklukta atılan temellere dayanır.",
+            "C) Sanatın amacı, sadece güzel olanı yaratmak değil, aynı zamanda düşündürmektir.",
+            "D) Ünlü yazar Lev Tolstoy’un dediği gibi: \"Herkes dünyayı değiştirmeyi düşünür, ama kimse kendini değiştirmeyi düşünmez.\"",
+            "E) Bu projenin sonuçları, önceki tahminlerden %20 oranında daha düşüktür."
+          ],
+          "dogru_cevap": "D",
+          "aciklama": "D seçeneğinde, yazar fikrini desteklemek amacıyla ünlü yazar Lev Tolstoy'un sözünü, tırnak içinde, aynen aktarmıştır."
+        },
+        {
+          "id": 237,
+          "soru": "Aşağıdaki cümlelerin hangisinde \"benzetme\" vardır?",
+          "secenekler": [
+            "A) Yazar, eserinde sade ve akıcı bir dil kullanmayı tercih etmiştir.",
+            "B) Romanın konusu, yazarın çocukluk döneminde yaşadığı olaylardan esinlenmiştir.",
+            "C) Eleştirmen, yazarın bu romanını kariyerinin en iyi eseri olarak nitelendirmiştir.",
+            "D) Sahildeki kumlar, güneşin etkisiyle parlayan altın tozları gibiydi.",
+            "E) Projenin başarısı, ekibin iş birliği sayesinde beklenenin üzerine çıkmıştır."
+          ],
+          "dogru_cevap": "D",
+          "aciklama": "D seçeneğinde, \"Sahildeki kumlar\"ın parlaması, \"altın tozları gibiydi\" ifadesiyle benzetilmiştir."
+        },
+        {
+          "id": 238,
+          "soru": "Aşağıdaki cümlelerin hangisi \"öyküleme\" anlatım biçimine örnektir?",
+          "secenekler": [
+            "A) Şairin dizeleri, insanın iç dünyasına ayna tutan bir deniz gibidir.",
+            "B) Bütün şehir, kışın gelişiyle birlikte bembeyaz bir örtüyle kaplanmıştı.",
+            "C) Gemi, fırtınanın ortasında saatlerce dalgalarla mücadele etti, sonunda kaptan dümeni yavaşça limana çevirdi.",
+            "D) Felsefe, insanın evreni ve kendini sorgulama sürecidir.",
+            "E) Edebiyat, hayatın çelişkilerini, sevinçlerini ve hüzünlerini ele alan bir aynadır."
+          ],
+          "dogru_cevap": "C",
+          "aciklama": "C seçeneğinde, \"gemi\" ve \"kaptan\" gibi kişiler/varlıklar, \"mücadele etti\" ve \"dümeni çevirdi\" gibi art arda gelişen olaylar (eylemler) anlatılmıştır. Bu, Öyküleme anlatım biçimidir."
+        },
+        {
+          "id": 239,
+          "soru": "Aşağıdaki cümlelerin hangisinde \"tanımlama\"dan yararlanılmıştır?",
+          "secenekler": [
+            "A) Liderlik, sadece emir vermek değil, aynı zamanda ekibi motive etme sanatıdır.",
+            "B) Roman, yazarın hayal gücünü kullanarak olayları, kişileri ve durumları anlattığı uzun edebi bir türdür.",
+            "C) Bir sanat eserinin kalıcılığı, onun okuyucuda yarattığı etkiyle ölçülür.",
+            "D) Eleştirel düşünme, bilginin sadece ezberlenmesi yerine sorgulanmasını gerektirir.",
+            "E) Hayat boyu öğrenme, değişen dünya koşullarına ayak uydurmanın tek yoludur."
+          ],
+          "dogru_cevap": "B",
+          "aciklama": "B seçeneğinde, \"Roman nedir?\" sorusuna cevap verilerek, kavramın tanımı yapılmıştır."
+        },
+        {
+          "id": 240,
+          "soru": "Aşağıdaki cümlelerin hangisinde \"karşılaştırma\" yapılmıştır?",
+          "secenekler": [
+            "A) Bu yılki bilimsel yayın sayısı, geçen yıla göre %15 oranında daha düşüktür.",
+            "B) Projenin başarısı, ekibin iş birliği sayesinde beklenenin üzerine çıkmıştır.",
+            "C) Yazar, eserinde sade ve akıcı bir dil kullanmayı tercih etmiştir.",
+            "D) Spor yapmak, sağlıklı bir yaşam için vazgeçilmez bir alışkanlıktır.",
+            "E) Onun bu kadar başarılı olması, tamamen düzenli çalışmasına bağlıdır."
+          ],
+          "dogru_cevap": "A",
+          "aciklama": "A seçeneğinde, \"Bu yılki bilimsel yayın sayısı\" ile \"geçen yılki bilimsel yayın sayısı\" kıyaslanmış ve fark (\"%15 oranında daha düşüktür\") belirtilmiştir."
+        },
+        {
+          "id": 241,
+          "soru": "Aşağıdaki cümlelerle anlamlı ve kurallı bir bütün oluşturulduğunda, baştan ikinci cümle hangisi olur?\n1. Bu, sadece teorik bilgiyi değil, aynı zamanda eleştirel düşünme, sorun çözme ve adaptasyon gibi becerileri de kapsar.\n2. Eğitimin temel amacı, bireyi sadece bir mesleğe hazırlamak değil, hayat boyu öğrenmeye hazır bir vatandaş olarak yetiştirmektir.\n3. Çünkü teknolojinin ve toplumsal yapının hızlı değişimi, bireylerden sürekli olarak yeni beceriler edinmesini zorunlu kılar.\n4. Hayat boyu öğrenme becerisinin kazanılması, çağımızın en büyük zorunluluklarından biridir.\n5. Bu nedenle, başarılı bir eğitim sistemi, öğrencilerin bu esnek ve kritik becerileri kazanmasına odaklanmalıdır.",
+          "secenekler": ["A) 1", "B) 2", "C) 3", "D) 4", "E) 5"],
+          "dogru_cevap": "D",
+          "aciklama": "Cümlelerin anlam akışına göre en doğru sıralama: 2 (Genel Tanım/Giriş) - 4 (Gerekliliğin Vurgulanması) - 3 (Gerekliliğin Gerekçesi) - 1 (Kapsamın Açıklanması) - 5 (Nihai Sonuç/Çözüm). Bu sıralamada baştan ikinci cümle 4. numaralı cümledir ve D seçeneğinde yer almaktadır."
+        },
+        {
+          "id": 242,
+          "soru": "1. Yazarın bu yeni kitabı, dilin sınırlarını zorlayan, alışılmadık bir anlatım tekniğine sahip.\n2. Cümleler öyle uzundu ki, okuyucu, cümlenin başını unutup anlama odaklanmakta zorlanıyordu.\n3. Eleştirmenler, bu zorlu dili yazarın edebi dehasının bir göstergesi olarak kabul ettiklerini söylediler.\n4. Oysa bana kalırsa, bu durum, yazarın okuyucuyu hiçe saydığını gösteren bir tavırdır.\n5. Keşke bu kadar karmaşık bir anlatım yerine, herkesin anlayabileceği bir üslup tercih edilseydi. Parçanın 5. cümlesinde ağır basan duygu aşağıdakilerden hangisidir?",
+          "secenekler": ["A) Kanıksama", "B) Yadırgama", "C) Sitem", "D) Şaşırma", "E) Yakınma"],
+          "dogru_cevap": "E",
+          "aciklama": "5. cümlede \"Keşke... üslup tercih edilseydi\" ifadesiyle, yazarın yapmadığı bir eylemden dolayı duyduğu memnuniyetsizliği ve eleştiriyi dile getirilmiştir. Bu durum Yakınma duygusunu ifade eder."
+        },
+        {
+          "id": 243,
+          "soru": "Aşağıdaki cümlelerin hangisinde nesnel bir yargı söz konusudur?",
+          "secenekler": [
+            "A) Romanın son bölümü, yazarın kariyerindeki en başarılı bölümdür.",
+            "B) Yazarın bu konuyu ele alışı, okuyucunun ruhunu derinden etkilemiştir.",
+            "C) İstanbul Boğazı, Asya ve Avrupa kıtalarını birbirinden ayıran doğal bir su yoludur.",
+            "D) Bu kadar basit bir konuyu işleyen bir filmin izleyici rekoru kırması büyük şaşkınlık yarattı.",
+            "E) Sanatın amacı, sadece estetik kaygıyı gidermek olmalıdır."
+          ],
+          "dogru_cevap": "C",
+          "aciklama": "C seçeneğindeki ifade, İstanbul Boğazı'nın coğrafi konumu hakkında herkes tarafından kabul edilen ve kanıtlanabilir nesnel bir bilgidir."
+        },
+        {
+          "id": 244,
+          "soru": "Aşağıdaki cümlelerin hangisinde \"abartma (mübalağa)\" sanatı yoktur?",
+          "secenekler": [
+            "A) O kadar çok yürüdüm ki, ayaklarımın altı kan revan içinde kaldı.",
+            "B) Şairin sesi, kalabalıklar içinde yankılanan bir feryat gibiydi.",
+            "C) Projenin başarısızlığı, beni yerin dibine geçirdi.",
+            "D) Eleştirmen, yazarın cümle yapısını sade ve anlaşılır bulduğunu belirtti.",
+            "E) Açlıktan karnım öyle zil çalıyordu ki, tüm mahalle duydu."
+          ],
+          "dogru_cevap": "D",
+          "aciklama": "D seçeneğinde, eleştirmenin yazarın dili hakkındaki tespiti, herhangi bir durumu olduğundan çok büyük gösterme (abartma) anlamı içermemektedir."
+        },
+        {
+          "id": 245,
+          "soru": "Aşağıdaki cümlelerin hangisinde öznel bir değerlendirme söz konusudur?",
+          "secenekler": [
+            "A) Proje, belirlenen bütçenin %15’ini aşmıştır.",
+            "B) Tiyatro, şiire göre daha fazla oyuncu ve sahne gerektiren bir sanat dalıdır.",
+            "C) Yazarın bu romanı, modern Türk edebiyatının en derinlikli ve en etkileyici eseridir.",
+            "D) Kitap, üç ana bölümden ve on alt bölümden oluşmaktadır.",
+            "E) İstanbul'da bulunan tarihi yapılar, binlerce yıl öncesine dayanmaktadır."
+          ],
+          "dogru_cevap": "C",
+          "aciklama": "C seçeneğindeki \"en derinlikli ve en etkileyici eseridir\" ifadesi, tamamen kişisel bir beğeniye ve yoruma dayanır. Bu nedenle öznel bir yargıdır."
+        },
+        {
+          "id": 246,
+          "soru": "Aşağıdaki cümlelerin hangisinde bir \"yadırgama\" (garipseme) duygusu ifade edilmiştir?",
+          "secenekler": [
+            "A) Keşke o önemli projenin bir parçası olabilseydim.",
+            "B) O kadar çok sorunla karşılaştım ki, artık hiçbir şeye şaşırmıyorum.",
+            "C) Daha düne kadar bu fikri şiddetle reddediyordu, şimdi nasıl oldu da projenin başına geçti!",
+            "D) Onun bu kadar başarılı olması, tamamen düzenli çalışmasına bağlıdır.",
+            "E) Bu kadar yoksulluğun olduğu bir ülkede sanatı konuşmak çok gereksiz."
+          ],
+          "dogru_cevap": "C",
+          "aciklama": "C seçeneğinde, bir kişinin önceki davranışına (fikri reddetmek) tamamen zıt bir eylem yapması karşısında duyulan şaşkınlık ve hayret duygusu (\"nasıl oldu da\") ifade edilmiştir. Bu, Yadırgama duygusudur."
+        },
+        {
+          "id": 247,
+          "soru": "Aşağıdaki cümlelerin hangisinde \"kanıksama\" (alışma) anlamı vardır?",
+          "secenekler": [
+            "A) Bu kadar zorlu bir görev için bu kadar az kaynak verilmesi haksızlıktır.",
+            "B) Bütün bu olayların ardından hâlâ ona güvenebiliyor olman şaşırtıcı.",
+            "C) Mahalledeki sürekli devam eden inşaat sesine artık öyle alıştık ki, sessizliği garipsiyoruz.",
+            "D) Bu kadar basit bir konunun çözümünü nasıl oldu da daha önce kimse bulamadı!",
+            "E) Keşke o önemli kararı almadan önce daha çok düşünseydim."
+          ],
+          "dogru_cevap": "C",
+          "aciklama": "Kanıksama, olumsuz bir duruma zamanla alışma ve onu normal karşılama halidir. C seçeneğinde, başlangıçta rahatsız edici olan \"inşaat sesine\" alışıldığı ve bu durumun normalleştiği anlatılmaktadır."
+        },
+        {
+          "id": 248,
+          "soru": "Aşağıdaki cümlelerin hangisinde dolaylı anlatıma yer verilmiştir?",
+          "secenekler": [
+            "A) Yazar, yeni eseri için \"en olgunluk dönemi romanım\" diye tanıttı.",
+            "B) Ünlü düşünür, \"Hayatta en önemli şey, kendini bilmektir.\" demiştir.",
+            "C) Okul yönetimi, öğrenci ve velilerin dilekçelerinin inceleneceğini duyurdu.",
+            "D) Arkadaşım, bu sınavın çok zor olduğunu, kimsenin geçemeyeceğini iddia etti.",
+            "E) Gazeteci, ünlü sanatçının yeni projesi hakkında detaylı bilgi verdi."
+          ],
+          "dogru_cevap": "C",
+          "aciklama": "C seçeneği, okul yönetiminin duyurusunu (\"incelenecek\" gibi bir ifade), \"inceleneceğini duyurdu\" şeklinde değiştirerek aktarmıştır. Bu, dolaylı anlatımdır."
+        },
+        {
+          "id": 249,
+          "soru": "Aşağıdaki cümlelerin hangisinde bir \"tahmin\" (öngörü) söz konusudur?",
+          "secenekler": [
+            "A) Bence bu yılki ekonomik büyüme, %5'in altında kalmayacak gibi görünüyor.",
+            "B) Projenin başarısızlığı, ekibin tecrübesizliğinden kaynaklanmıştır.",
+            "C) Hızlı okuma becerisi, sadece düzenli pratikle geliştirilebilir.",
+            "D) Yazarın bu eserde kullandığı dil, okuyucunun ilgisini artırmıştır.",
+            "E) Sınavdaki başarısı, tamamen disiplinli çalışmasına bağlıdır."
+          ],
+          "dogru_cevap": "A",
+          "aciklama": "A seçeneğinde, henüz gerçekleşmemiş bir ekonomik durum hakkında kişisel görüş (\"bence\") ve olasılık/öngörü belirtilmektedir."
+        },
+        {
+          "id": 250,
+          "soru": "Aşağıdaki cümlelerin hangisinde bir \"sitem\" (yakınma) duygusu ifade edilmiştir?",
+          "secenekler": [
+            "A) Keşke o önemli kararı alırken bana danışsaydın.",
+            "B) Bütün bu çabalarının sonucunda beklediği ilgiyi görmemesi onu üzdü.",
+            "C) Onun bu kadar başarılı olması, herkes için büyük bir motivasyon kaynağıdır.",
+            "D) Bu zorlu görevi yapmamız gerektiğini biliyorduk, bu yüzden hiç itiraz etmedik.",
+            "E) Bunca yıl arkadaşız, böyle önemli bir konuda beni arayıp sormaman hiç doğru değil."
+          ],
+          "dogru_cevap": "E",
+          "aciklama": "E seçeneğinde kişi, arkadaşlığına rağmen kendisine değer verilmemesinden (arayıp sormamasından dolayı duyduğu kırgınlığı ve memnuniyetsizliği dile getirmektedir. Bu, Sitem duygusunu ifade eder."
+        }
+      ]
+    }
+  ]
+}
