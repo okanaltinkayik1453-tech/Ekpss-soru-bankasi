@@ -629,7 +629,6 @@ function gosterTurkceCozum(index, container) {
 
     // NVDA dostu olması için odağı kart başlığına alıyoruz
     kart.querySelector('h3').focus();
-    mevcutCozumIndex = index; // İndeksi güncelle
 }
 
 function testiBitirCozum() {
