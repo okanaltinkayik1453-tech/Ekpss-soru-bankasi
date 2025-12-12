@@ -617,11 +617,11 @@ mevcutCozumIndex = index;
         </div>
     `;
 
-    // 4. Navigasyon Butonları
+    // 4. Navigasyon Butonları (KUSURSUZ HALE GETİRİLDİ)
     const navHTML = `
         <div class="navigasyon-cozum" style="display:flex; gap:20px; margin-top:20px;">
-            <button class="nav-buton" onclick="mevcutCozumIndex > 0 ? gosterTurkceCozum(mevcutCozumIndex - 1, container) : null" style="flex:1;" ${mevcutCozumIndex === 0 ? 'disabled' : ''}>&lt; Önceki Çözüm</button>
-            <button class="nav-buton" onclick="mevcutCozumIndex < mevcutSorular.length - 1 ? gosterTurkceCozum(mevcutCozumIndex + 1, container) : testiBitirCozum()" style="flex:1;">
+            <button class="nav-buton" onclick="oncekiTurkceCozum()" style="flex:1;" ${mevcutCozumIndex === 0 ? 'disabled' : ''}>&lt; Önceki Çözüm</button>
+            <button class="nav-buton" onclick="sonrakiTurkceCozum()" style="flex:1;">
                 ${mevcutCozumIndex < mevcutSorular.length - 1 ? 'Sıradaki Sorunun Çözümü &gt;' : 'Sonuçları Bitir'}
             </button>
         </div>
@@ -642,4 +642,24 @@ function testiBitirCozum() {
     if (container) container.innerHTML = "";
     // Ana sonuç başlığına odaklan
     document.querySelector('#puan-detay button').focus(); 
+}
+
+// +++ BURADAN SONRA YENİ EKLENEN KUSURSUZ NAVİGASYON FONKSİYONLARI BAŞLAR +++
+
+// YENİ FONKSİYON: Türkçe Çözümde Önceki Soruya Git
+function oncekiTurkceCozum() {
+    const container = document.getElementById("cevap-anahtari-konteyner");
+    if (container && mevcutCozumIndex > 0) {
+        gosterTurkceCozum(mevcutCozumIndex - 1, container);
+    }
+}
+
+// YENİ FONKSİYON: Türkçe Çözümde Sonraki Soruya Git
+function sonrakiTurkceCozum() {
+    const container = document.getElementById("cevap-anahtari-konteyner");
+    if (container && mevcutCozumIndex < mevcutSorular.length - 1) {
+        gosterTurkceCozum(mevcutCozumIndex + 1, container);
+    } else if (mevcutCozumIndex === mevcutSorular.length - 1) {
+        testiBitirCozum();
+    }
 }
