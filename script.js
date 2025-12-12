@@ -299,11 +299,13 @@ async function cevapIsaretle(secilenIndex, btnElement) {
 
     const dogruCevapHarf = mevcutSorular[mevcutSoruIndex].dogru_cevap; 
     const dogruMu = (secilenSikHarfi === dogruCevapHarf);
-    
-    let dogruCevapMetni = "";
-    mevcutSorular[mevcutSoruIndex].secenekler.forEach((sik, i) => {
-        if(getSikHarfi(i) === dogruCevapHarf) dogruCevapMetni = sik;
-    });
+    const dogruCevapIndex = mevcutSorular[mevcutSoruIndex].secenekler
+        .findIndex((_, i) => getSikHarfi(i) === dogruCevapHarf);
+    const dogruCevapMetni = dogruCevapIndex !== -1 
+        ? mevcutSorular[mevcutSoruIndex].secenekler[dogruCevapIndex] 
+        : "Bilinmiyor";
+    // *** BURADAN GEREKSİZ '});' SATIRI SİLİNMİŞTİR ***
+
 
     // Görsel İşlemler
     if (dogruMu) {
@@ -546,6 +548,7 @@ function cevapAnahtariniGoster() {
 // YENİ FONKSİYON: Sadece Türkçe Testleri için çözüm navigasyonu
 function gosterTurkceCozum(index, container) {
     container.innerHTML = ""; // Önceki soruyu temizle
+mevcutCozumIndex = index;
     const soru = mevcutSorular[index];
     const kullaniciSecimiIndex = kullaniciCevaplari[index];
     const dogruCevapHarfi = soru.dogru_cevap;
