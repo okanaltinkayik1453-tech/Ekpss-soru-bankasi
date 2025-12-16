@@ -30,7 +30,8 @@ const DOSYA_ESLESTIRME = {
     "vatandaslik": "vatandaslik.json",
     "paragraf1": "paragraf1.json",
     "paragraf2": "paragraf2.json",
-    "paragraf3": "paragraf3.json"
+    "paragraf3": "paragraf3.json",
+"dilbilgisi": "turkce_dilbilgisi.json"
 };
 // SAYFA YÖNLENDİRME LİSTESİ
 const SAYFA_ESLESTIRME = {
@@ -54,6 +55,7 @@ const SAYFA_ESLESTIRME = {
     "paragraf1": "turkce.html",
     "paragraf2": "turkce.html",
     "paragraf3": "turkce.html",
+"dilbilgisi": "turkce.html",
     // TÜRKÇE GERİ DÖN ROTALARI BİTİŞ
     "vatandaslik": "vatandaslik.html"
 };
