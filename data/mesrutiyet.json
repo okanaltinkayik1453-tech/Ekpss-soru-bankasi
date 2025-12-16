@@ -58,7 +58,7 @@
         "alt_baslik": "Test 3",
         "soru_sayisi": 20,
         "sorular": [
-          { "id": 41, "soru": "1. Balkan Savaşı'nda Osmanlı'ya saldıran devletlerden hangisi diğerlerinden farklı olarak 2. Balkan Savaşı'nda Bulgaristan'a saldırmıştır?", "secenekler": ["Yunanistan", "Sırbistan", "Karadağ", "Romanya", "Arnavutluk"], "dogru_cevap": "D", "aciklama": "Romanya I. Balkan Savaşı'na katılmamış, 2. Balkan Savaşı'na katılmıştır." },
+          { "id": 41, "soru": "1. Balkan Savaşı'nda Yer almayan ancak 2. Balkan Savaşı'nda Bulgaristan'a saldıran devlet aşağıdakilerden hangisidir?", "secenekler": ["Yunanistan", "Sırbistan", "Karadağ", "Romanya", "Arnavutluk"], "dogru_cevap": "D", "aciklama": "Romanya 1. Balkan Savaşı'na katılmamış, 2. Balkan Savaşı'na katılmıştır." },
           { "id": 42, "soru": "Osmanlı'nın Midye-Enez hattının batısındaki toprakları kaybettiği antlaşma hangisidir?", "secenekler": ["Bükreş", "Londra", "İstanbul", "Atina", "Uşi"], "dogru_cevap": "B", "aciklama": "1913 Londra Antlaşması ile Edirne dahil Doğu Trakya kaybedilmiştir." },
           { "id": 43, "soru": "Edirne'yi Bulgar işgalinden kurtararak 'Edirne Fatihi' unvanını alan komutan kimdir?", "secenekler": ["Şükrü Paşa", "Enver Paşa", "Mustafa Kemal", "Talat Paşa", "Cemal Paşa"], "dogru_cevap": "B", "aciklama": "2. Balkan Savaşı'nda Edirne'ye giren birliklerin komutanı Enver Paşa'dır." },
           { "id": 44, "soru": "Hamidiye Kruvazörü ile Ege Denizi'nde efsaneleşen 'Rauf Orbay'ın unvanı nedir?", "secenekler": ["Hamidiye Kahramanı", "Edirne Fatihi", "Plevne Kahramanı", "Çöl Kaplanı", "18 Mart Kahramanı"], "dogru_cevap": "A", "aciklama": "Rauf Orbay, Hamidiye Kahramanı olarak bilinir." },
