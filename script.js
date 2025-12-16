@@ -193,10 +193,11 @@ function navigasyonButonlariniEkle() {
 
 function oncekiSoru() { if (mevcutSoruIndex > 0) soruyuGoster(mevcutSoruIndex - 1); }
 function sonrakiSoru() { if (mevcutSoruIndex < mevcutSorular.length - 1) soruyuGoster(mevcutSoruIndex + 1); }
-
 function soruyuGoster(index) {
+    // Sayfayı yukarı kaydır
     window.scrollTo({ top: 0, behavior: 'auto' });
 
+    // Varsa eski uyarıları temizle
     const uyariKutusu = document.getElementById("sesli-uyari");
     if(uyariKutusu) uyariKutusu.innerText = "";
     
@@ -207,74 +208,101 @@ function soruyuGoster(index) {
     const soruObj = mevcutSorular[index];
     isaretlemeKilitli = false; 
     
+    // İlerleme çubuğu güncellemesi
     const cubuk = document.getElementById("ilerleme-cubugu");
     if(cubuk) cubuk.style.width = `${((index + 1) / mevcutSorular.length) * 100}%`;
 
+    // --- NVDA İÇİN BAŞLIK DÜZENLEMESİ ---
+    // Sadece 'Soru Sayacı' (Soru 1/25) gerçek bir başlık (Heading Level 2) olacak.
     const soruSayacElement = document.getElementById("soru-sayac");
     soruSayacElement.innerText = `Soru ${index + 1} / ${mevcutSorular.length}`;
-    soruSayacElement.setAttribute("tabindex", "-1"); 
+    soruSayacElement.setAttribute("role", "heading"); 
+    soruSayacElement.setAttribute("aria-level", "2"); 
+    // Odaklanılabilir yapmıyoruz, okuyucu zaten başlık olarak bulacak.
 
+    // --- METİN ALANI DÜZENLEMESİ ---
+    // Soru metni alanını 'presentation' yaparak onun bir başlık olmasını engelliyoruz.
+    // İçindeki <p> etiketleri normal metin olarak okunacak.
     const soruBaslik = document.getElementById("soru-metni");
     soruBaslik.removeAttribute('aria-hidden'); 
-    soruBaslik.removeAttribute('role'); 
-    soruBaslik.setAttribute('tabindex', '-1'); 
-
+    soruBaslik.setAttribute("role", "presentation"); // Kapsayıcıyı nötrleştir
+    
     let finalHTML = "";
     let toplamMetinKontrol = ""; 
     
+    // 1. Giriş Metni (Varsa)
     if (soruObj.onculGiris) {
         finalHTML += `<p class="soru-giris" style="margin-bottom:10px;">${soruObj.onculGiris}</p>`;
         toplamMetinKontrol += soruObj.onculGiris;
     }
     
+    // 2. Ana Soru Metni
     if (soruObj.soru && soruObj.soru !== soruObj.onculGiris) {
          finalHTML += `<p class="soru-ana-metin" style="margin-bottom:10px;">${soruObj.soru}</p>`;
          toplamMetinKontrol += soruObj.soru;
     }
 
+    // 3. Öncüller (Liste Haline Getirildi)
+    // NVDA'nın bunları madde madde okuması için role="list" ve role="listitem" ekliyoruz.
     let onculHTML = "";
     if (soruObj.onculler && soruObj.onculler.length > 0) {
-        onculHTML += `<ul class='oncul-kapsayici' style="margin: 10px 0; list-style:none; padding:0;">`; 
+        onculHTML += `<ul class='oncul-kapsayici' style="margin: 10px 0; list-style:none; padding:0;" role="list" aria-label="Öncüller">`; 
         soruObj.onculler.forEach(oncul => {
-            const match = oncul.match(/^(\d+\.?|\w\.?)\s*(.*)/);
-            onculHTML += `<li class='oncul-satir' style="margin-bottom:5px;"><span class='oncul-no' style="font-weight:bold; margin-right:10px;">${match ? match[1] : ''}</span><span class='oncul-yazi'>${match ? match[2] : oncul}</span></li>`;
+            // Regex ile numara ve metni ayırıyoruz (I. Madde gibi)
+            const match = oncul.match(/^(\d+\.?|[IVX]+\.?|\w\.?)\s*(.*)/);
+            // tabindex="0" ile klavye ile üzerine gelinebilir yapıyoruz (isteğe bağlı, aşağı ok yeterli)
+            onculHTML += `<li class='oncul-satir' style="margin-bottom:8px; padding: 5px; border-left: 2px solid #ffff00;" role="listitem">
+                <span class='oncul-no' style="font-weight:bold; margin-right:10px;">${match ? match[1] : ''}</span>
+                <span class='oncul-yazi'>${match ? match[2] : oncul}</span>
+            </li>`;
             toplamMetinKontrol += oncul;
         });
         onculHTML += `</ul>`;
     }
 
+    // 4. Soru Kökü (Koyu yazılan kısım)
     let soruKokuHTML = "";
     if (soruObj.soruKoku) {
-        soruKokuHTML = `<p class='soru-koku-vurgu' style="font-weight:bold; margin-top:10px;">${soruObj.soruKoku}</p>`;
+        soruKokuHTML = `<p class='soru-koku-vurgu' style="font-weight:bold; margin-top:15px; color:#ffff00;">${soruObj.soruKoku}</p>`;
         toplamMetinKontrol += soruObj.soruKoku;
     }
 
+    // Uzun soru kontrolü (CSS için)
     const container = document.querySelector(".container");
-    // TÜRKÇE SORULARA ÖZEL UZUN SORU KONTROLÜ
-    if (toplamMetinKontrol.length > 250 && soruObj.id >= 1) { // Id kontrolü ile sadece Türkçe'deki paragraf sorularına odaklanabiliriz
+    if (toplamMetinKontrol.length > 250 && soruObj.id >= 1) { 
         container.classList.add("uzun-soru");
     } else {
         container.classList.remove("uzun-soru");
     }
 
+    // Yerleşime göre birleştir
     const yerlesim = soruObj.oncul_yerlesim || "ONCE_KOK"; 
     if (yerlesim === "ONCE_KOK") { finalHTML += onculHTML + soruKokuHTML; } 
     else { finalHTML += soruKokuHTML + onculHTML; }
 
     soruBaslik.innerHTML = finalHTML;
 
+    // --- ŞIKLARIN DÜZENLENMESİ (Çift Harf Temizliği) ---
     const siklarKutusu = document.getElementById("siklar-alani");
     siklarKutusu.innerHTML = "";
     const uzunSikVar = soruObj.secenekler.some(sik => sik.length > 40);
+    
     if (uzunSikVar) siklarKutusu.classList.add("tek-sutun");
     else siklarKutusu.classList.remove("tek-sutun");
 
     soruObj.secenekler.forEach((sik, i) => { 
         const btn = document.createElement("button");
         const harf = getSikHarfi(i);
-        btn.innerText = harf + ") " + sik;
+        
+        // **ÖNEMLİ DÜZELTME:** JSON'dan gelen "A)", "A." veya "a)" kısımlarını siliyoruz.
+        // Regex: Satır başındaki Harf ve parantez/nokta ikilisini bul ve sil.
+        let temizSik = sik.replace(/^[A-Ea-e][\)\.]\s*/, "");
+
+        btn.innerText = harf + ") " + temizSik;
         btn.className = "sik-butonu";
-        btn.setAttribute("aria-label", `${harf} şıkkı: ${sik}`); 
+        // Ekran okuyucuya temiz bilgi veriyoruz
+        btn.setAttribute("aria-label", `${harf} şıkkı: ${temizSik}`); 
+
         if (kullaniciCevaplari[index] !== null) {
             if (harf === getSikHarfi(kullaniciCevaplari[index])) {
                 btn.classList.add(harf === soruObj.dogru_cevap ? "dogru" : "yanlis");
@@ -285,8 +313,11 @@ function soruyuGoster(index) {
         siklarKutusu.appendChild(btn);
     });
 
+    // Navigasyon butonlarını ayarla
     document.getElementById("btn-onceki").disabled = (index === 0);
     document.getElementById("btn-sonraki").disabled = (index === mevcutSorular.length - 1);
+    
+    // Soru yüklendiğinde odağı sayaca ver (Böylece kullanıcı "Soru 1/25" diye duyar ve aşağı okla metne iner)
     if (kullaniciCevaplari[index] === null) soruSayacElement.focus();
 }
 async function cevapIsaretle(secilenIndex, btnElement) {
@@ -549,8 +580,8 @@ function cevapAnahtariniGoster() {
 
 // YENİ FONKSİYON: Sadece Türkçe Testleri için çözüm navigasyonu
 function gosterTurkceCozum(index, container) {
-    container.innerHTML = ""; // Önceki soruyu temizle
-mevcutCozumIndex = index;
+    container.innerHTML = ""; // Önceki içeriği temizle
+    mevcutCozumIndex = index;
     const soru = mevcutSorular[index];
     const kullaniciSecimiIndex = kullaniciCevaplari[index];
     const dogruCevapHarfi = soru.dogru_cevap;
@@ -561,9 +592,9 @@ mevcutCozumIndex = index;
     kart.className = "sonuc-karti-turkce";
     kart.style.cssText = "border: 1px solid #444; padding: 20px; margin-bottom: 20px; background: #222; border-radius: 8px;";
     
-    // 1. Soru Metni
+    // 1. Soru Başlığı ve Durumu
     let durum = "";
-    let durumRengi = "#ffcc00"; // Sarı
+    let durumRengi = "#ffcc00"; 
     if (kullaniciSecimiHarfi === dogruCevapHarfi) {
         durum = "✅ Doğru Cevapladınız!";
         durumRengi = "#00ff00";
@@ -574,16 +605,22 @@ mevcutCozumIndex = index;
         durum = "❓ Boş Bıraktınız.";
     }
 
-    let soruMetniHTML = `<h3 style="color:${durumRengi}; margin-bottom:15px;" tabindex="0">Soru ${index + 1} / ${mevcutSorular.length}: ${durum}</h3>`;
-    soruMetniHTML += `<div style="color:#eee; margin-bottom:15px; font-size:1.1rem; border-bottom:1px solid #555; padding-bottom:10px;" tabindex="0">${formatSoruMetni(soru)}</div>`;
+    // NVDA için başlık ayarı
+    let soruMetniHTML = `<h3 style="color:${durumRengi}; margin-bottom:15px;" tabindex="-1">Soru ${index + 1}: ${durum}</h3>`;
+    // formatSoruMetni fonksiyonunu çağırıyoruz ama o fonksiyon sadece metni döndürüyor, role ayarını burada kapsayıcıya verebiliriz.
+    soruMetniHTML += `<div style="color:#eee; margin-bottom:15px; font-size:1.1rem; border-bottom:1px solid #555; padding-bottom:10px;" role="presentation">${formatSoruMetni(soru)}</div>`;
     
     // 2. Şıkların Listelenmesi
-    let siklarHTML = `<p style="font-weight:bold; color:#ffcc00; margin-bottom:10px;">Cevabınızın Durumu:</p>`;
+    let siklarHTML = `<p style="font-weight:bold; color:#ffcc00; margin-bottom:10px;">Şıklar:</p>`;
     siklarHTML += `<div class="cevap-siklari-listesi-turkce" style="display:flex; flex-direction:column; gap:10px;">`;
     
     soru.secenekler.forEach((sikMetni, i) => {
         const harf = getSikHarfi(i);
         const buSikSecildi = (i === kullaniciSecimiIndex);
+        
+        // **TEMİZLİK:** JSON'dan gelen "A)" vb. burada da temizleniyor.
+        let temizSik = sikMetni.replace(/^[A-Ea-e][\)\.]\s*/, "");
+
         let arkaPlanRengi = "#333"; 
         let kenarlik = "1px solid #555";
         let durumMetni = ""; 
@@ -599,8 +636,8 @@ mevcutCozumIndex = index;
         }
 
         siklarHTML += `
-            <div style="background:${arkaPlanRengi}; border:${kenarlik}; padding:10px; border-radius:5px; color:#fff;" tabindex="0" aria-label="${harf} şıkkı: ${sikMetni}. ${durumMetni}">
-                <span style="font-weight:bold; color:#ffcc00;">${harf})</span> ${sikMetni} 
+            <div style="background:${arkaPlanRengi}; border:${kenarlik}; padding:10px; border-radius:5px; color:#fff;" tabindex="0" aria-label="${harf} şıkkı: ${temizSik}. ${durumMetni}">
+                <span style="font-weight:bold; color:#ffcc00;">${harf})</span> ${temizSik} 
                 <span style="font-weight:bold; float:right; font-size:0.9rem;">${durumMetni}</span>
             </div>
         `;
@@ -610,21 +647,19 @@ mevcutCozumIndex = index;
     // 3. Açıklama Alanı 
     const aciklamaHTML = `
         <div style="margin-top:20px; padding-top:15px; border-top:1px dashed #666;">
-            <p tabindex="0" style="color:#ffff00; font-weight:bold; margin-bottom:5px;">
-                💡 Detaylı Çözüm:
-            </p>
+            <h4 style="color:#ffff00; margin-bottom:5px;">💡 Detaylı Çözüm:</h4>
             <div tabindex="0" style="background:#333; padding:10px; border-left:4px solid #ffff00; margin-top:5px; color:#ddd;">
                 ${soru.aciklama ? soru.aciklama : "Bu soru için açıklama bulunmuyor."}
             </div>
         </div>
     `;
 
-    // 4. Navigasyon Butonları (KUSURSUZ HALE GETİRİLDİ)
+    // 4. Navigasyon
     const navHTML = `
         <div class="navigasyon-cozum" style="display:flex; gap:20px; margin-top:20px;">
-            <button class="nav-buton" onclick="oncekiTurkceCozum()" style="flex:1;" ${mevcutCozumIndex === 0 ? 'disabled' : ''}>&lt; Önceki Çözüm</button>
+            <button class="nav-buton" onclick="oncekiTurkceCozum()" style="flex:1;" ${mevcutCozumIndex === 0 ? 'disabled' : ''}>&lt; Önceki Soru</button>
             <button class="nav-buton" onclick="sonrakiTurkceCozum()" style="flex:1;">
-                ${mevcutCozumIndex < mevcutSorular.length - 1 ? 'Sıradaki Sorunun Çözümü &gt;' : 'Sonuçları Bitir'}
+                ${mevcutCozumIndex < mevcutSorular.length - 1 ? 'Sonraki Soru &gt;' : 'Çözümleri Bitir'}
             </button>
         </div>
     `;
@@ -632,10 +667,9 @@ mevcutCozumIndex = index;
     kart.innerHTML = soruMetniHTML + siklarHTML + aciklamaHTML + navHTML;
     container.appendChild(kart);
 
-    // NVDA dostu olması için odağı kart başlığına alıyoruz
+    // Odağı başlığa ver ki okumaya başlasın
     kart.querySelector('h3').focus();
 }
-
 function testiBitirCozum() {
     // Türkçe testinde çözüm bittiğinde, tekrar sonuç detaylarına dönülmesini sağlar
     const sonucDiv = document.getElementById("puan-detay");
