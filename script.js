@@ -62,8 +62,8 @@ const SAYFA_ESLESTIRME = {
 "turkcekarisik": "turkce.html",
     // TÜRKÇE GERİ DÖN ROTALARI BİTİŞ
     "vatandaslik": "vatandaslik.html",
-"inkilapkarma": "index.html",
-    "trablusgarp": "index.html"
+"inkilapkarma": "testler.html",
+"trablusgarp": "testler.html"
 };
 // --- SES MOTORU ---
 const sesler = {
@@ -120,7 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const testParam = urlParams.get('id'); 
     
     if (testParam) {
-        const onEk = testParam.substring(0, testParam.lastIndexOf('_'));
+const onEk = testParam.split('_')[0];
         const dosyaAdi = DOSYA_ESLESTIRME[onEk];
         const testNoStr = testParam.split('_test')[1];
         const testNo = parseInt(testNoStr); 
