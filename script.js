@@ -31,7 +31,10 @@ const DOSYA_ESLESTIRME = {
     "paragraf1": "paragraf1.json",
     "paragraf2": "paragraf2.json",
     "paragraf3": "paragraf3.json",
-"dilbilgisi": "turkce_dilbilgisi.json"
+"dilbilgisi": "turkce_dilbilgisi.json",
+"turkcekarisik": "turkce_karisik.json",
+"inkilapkarma": "inkilapkarma.json",
+    "trablusgarp": "trablusgarpvebalkan.json"
 };
 // SAYFA YÖNLENDİRME LİSTESİ
 const SAYFA_ESLESTIRME = {
@@ -56,8 +59,11 @@ const SAYFA_ESLESTIRME = {
     "paragraf2": "turkce.html",
     "paragraf3": "turkce.html",
 "dilbilgisi": "turkce.html",
+"turkcekarisik": "turkce.html",
     // TÜRKÇE GERİ DÖN ROTALARI BİTİŞ
-    "vatandaslik": "vatandaslik.html"
+    "vatandaslik": "vatandaslik.html",
+"inkilapkarma": "index.html",
+    "trablusgarp": "index.html"
 };
 // --- SES MOTORU ---
 const sesler = {
