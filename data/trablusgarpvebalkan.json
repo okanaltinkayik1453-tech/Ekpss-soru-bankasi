@@ -130,9 +130,9 @@
             { "id": 98, "soru": "Mustafa Kemal'in 'Geldikleri gibi giderler' sözünün tarihsel arka planında, Balkan Savaşları'ndaki yenilginin yarattığı hangi duygu yatar?", "secenekler": ["Umutsuzluk", "Rövanş (İntikam) ve Vatanı Kurtarma Azmi", "Teslimiyet", "Korku", "Kayıtsızlık"], "dogru_cevap": "B", "aciklama": "Balkan hezimeti, Mustafa Kemal neslinde 'Vatan elden gidiyor' korkusuyla karışık müthiş bir kurtarma hırsı ve azmi yaratmıştır." },
             { "id": 99, "soru": "Osmanlı Devleti, Balkan Savaşları sonrasında hangi ülkeye yaklaşarak 1. Dünya Savaşı'na giden yolda ittifak arayışına girmiştir?", "secenekler": ["İngiltere", "Fransa", "Almanya", "Rusya", "İtalya"], "dogru_cevap": "C", "aciklama": "Ordunun modernizasyonu için gelen Alman heyetleri ve İttihatçıların Alman hayranlığı, ittifakın yolunu açmıştır." },
             { "id": 100, "soru": "Trablusgarp ve Balkan Savaşları, Osmanlı İmparatorluğu'nun hangi dönemine denk gelir?", "secenekler": ["Lale Devri", "Tanzimat Dönemi", "Dağılma Dönemi", "Yükselme Dönemi", "Duraklama Dönemi"], "dogru_cevap": "C", "aciklama": "Bu savaşlar, imparatorluğun 'Dağılma' ve çöküş sürecinin son ve en kanlı evreleridir." }
-          ]
-        }
-      ]
-    }
-  ]
-}
+          }
+        ]
+      }
+    ]
+  }
+]

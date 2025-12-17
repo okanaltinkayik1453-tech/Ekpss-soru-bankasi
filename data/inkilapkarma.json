@@ -390,9 +390,8 @@
             { "id": 298, "soru": "Lozan Konferansı'na İsmet İnönü ile birlikte giden ve 'Dr. Rıza Nur' ile heyette yer alan üçüncü önemli delegemiz kimdir?", "secenekler": ["Hasan Saka", "Refet Bele", "Rauf Orbay", "Ali Fethi Okyar", "Celal Bayar"], "dogru_cevap": "A", "aciklama": "Lozan heyeti: Başdelege İsmet Paşa, Dr. Rıza Nur ve Hasan Saka'dan (Eski Maliye Bakanı) oluşmaktadır." },
             { "id": 299, "soru": "Cumhuriyet Halk Fırkası'nın kurulmasından sonra parti tüzüğünde yapılan düzenlemeyle, partinin 'Birinci Büyük Kurultayı' olarak kabul edilen kongre aşağıdakilerden hangisidir?", "secenekler": ["Erzurum Kongresi", "Sivas Kongresi", "1921 Maarif Kongresi", "İzmir İktisat Kongresi", "1927 Kurultayı (Nutuk'un okunduğu)"], "dogru_cevap": "B", "aciklama": "Mustafa Kemal Atatürk, Halk Fırkası'nı (CHP) Anadolu ve Rumeli Müdafaa-i Hukuk Cemiyeti'nin bir devamı olarak gördüğü için, Sivas Kongresi'ni partinin ilk kurultayı olarak kabul etmiştir." },
             { "id": 300, "soru": "Milli Mücadele'nin başarıya ulaşmasını sağlayan ve Mustafa Kemal'in 'Gözüm Sakarya'da, Dumlupınar'da, kulağım İnebolu'da' diyerek önemini belirttiği lojistik hattın adı nedir?", "secenekler": ["İpek Yolu", "Istiklal Yolu", "Kral Yolu", "Zafer Yolu", "Cumhuriyet Yolu"], "dogru_cevap": "B", "aciklama": "İnebolu limanından alınan cephanenin Ankara'ya taşındığı güzergah 'İstiklal Yolu'dur ve savaşın kazanılmasında hayati rol oynamıştır." }
-          ]
+]
         }
       ]
     }
   ]
-}
