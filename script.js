@@ -34,7 +34,7 @@ const DOSYA_ESLESTIRME = {
     "dilbilgisi": "turkce_dilbilgisi.json",
     "turkcekarisik": "turkce_karisik.json",
     "inkilapkarma": "inkilapkarma.json",
-    "trablusgarp": "trablusgarpvebalkan.json"
+"trablusgarp": "trablusgarpvebalkan.json"
 };
 
 // SAYFA YÖNLENDİRME LİSTESİ
@@ -155,6 +155,19 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function testiYukle(dosyaAdi, testNo) {
+// --- AKILLI HATA TESPİT MEKANİZMASI ---
+if (!dosyaAdi) {
+    console.error("HATA TESPİT EDİLDİ: 'DOSYA_ESLESTIRME' nesnesinde bu test için bir dosya adı tanımlanmamış.");
+    document.getElementById("soru-alani").innerHTML = `
+        <div style="background:#4d1a1a; border:2px solid #ff0000; padding:15px; color:#fff;">
+            <h2 style="color:#ffcc00;">⚠️ Nokta Atışı Hata Tespiti</h2>
+            <p><strong>Sorun:</strong> script.js içinde dosya yolu eksik.</p>
+            <p><strong>Dosya:</strong> script.js</p>
+            <p><strong>Satır Tahmini:</strong> 'DOSYA_ESLESTIRME' bloğunun içi.</p>
+            <p><strong>Çözüm:</strong> Bu testin ID'sini DOSYA_ESLESTIRME nesnesine eklemelisin.</p>
+        </div>`;
+    return;
+}
     const url = JSON_PATH + dosyaAdi;
     fetch(url)
         .then(response => {
