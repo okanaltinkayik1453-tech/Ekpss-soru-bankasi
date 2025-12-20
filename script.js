@@ -14,7 +14,7 @@ const DOSYA_ESLESTIRME = {
     "ilkturkislam": "ilkturkislamdevletleri.json",
     "islamoncesi": "islamoncesiturkdevletleri.json",
     "osmanlikultur": "osmanlikulturmedeniyeti.json",
-    "osmanlikurulus": "osmanlikurulus.json",
+    "osmanlikkurulus": "osmanlikurulus.json",
     "osmanliyukselme": "osmanliyukselme.json",
     "osmanligerileme": "osmanligerilemevedagilma.json",
     "mesrutiyet": "mesrutiyet.json",
@@ -34,11 +34,12 @@ const DOSYA_ESLESTIRME = {
     "dilbilgisi": "turkce_dilbilgisi.json",
     "turkcekarisik": "turkce_karisik.json",
     "inkilapkarma": "inkilapkarma.json",
-"trablusgarp": "trablusgarpvebalkan.json"
+    "trablusgarp": "trablusgarpvebalkan.json"
 };
 
 // SAYFA YÖNLENDİRME LİSTESİ
 const SAYFA_ESLESTIRME = {
+    "cografya": "cografya.html", // DÜZELTME: Coğrafya ana yönlendirmesi eklendi
     "cografyaiklim": "cografya.html",
     "cografyayersekilleri": "cografya.html",
     "cografyanufus": "cografya.html",
@@ -155,19 +156,18 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function testiYukle(dosyaAdi, testNo) {
-// --- AKILLI HATA TESPİT MEKANİZMASI ---
-if (!dosyaAdi) {
-    console.error("HATA TESPİT EDİLDİ: 'DOSYA_ESLESTIRME' nesnesinde bu test için bir dosya adı tanımlanmamış.");
-    document.getElementById("soru-alani").innerHTML = `
-        <div style="background:#4d1a1a; border:2px solid #ff0000; padding:15px; color:#fff;">
-            <h2 style="color:#ffcc00;">⚠️ Nokta Atışı Hata Tespiti</h2>
-            <p><strong>Sorun:</strong> script.js içinde dosya yolu eksik.</p>
-            <p><strong>Dosya:</strong> script.js</p>
-            <p><strong>Satır Tahmini:</strong> 'DOSYA_ESLESTIRME' bloğunun içi.</p>
-            <p><strong>Çözüm:</strong> Bu testin ID'sini DOSYA_ESLESTIRME nesnesine eklemelisin.</p>
-        </div>`;
-    return;
-}
+    if (!dosyaAdi) {
+        console.error("HATA TESPİT EDİLDİ: 'DOSYA_ESLESTIRME' nesnesinde bu test için bir dosya adı tanımlanmamış.");
+        document.getElementById("soru-alani").innerHTML = `
+            <div style="background:#4d1a1a; border:2px solid #ff0000; padding:15px; color:#fff;">
+                <h2 style="color:#ffcc00;">⚠️ Nokta Atışı Hata Tespiti</h2>
+                <p><strong>Sorun:</strong> script.js içinde dosya yolu eksik.</p>
+                <p><strong>Dosya:</strong> script.js</p>
+                <p><strong>Satır Tahmini:</strong> 'DOSYA_ESLESTIRME' bloğunun içi.</p>
+                <p><strong>Çözüm:</strong> Bu testin ID'sini DOSYA_ESLESTIRME nesnesine eklemelisin.</p>
+            </div>`;
+        return;
+    }
     const url = JSON_PATH + dosyaAdi;
     fetch(url)
         .then(response => {
@@ -232,6 +232,21 @@ function soruyuGoster(index) {
     soruSayacElement.innerText = `Soru ${index + 1} / ${mevcutSorular.length}`;
     soruSayacElement.setAttribute("role", "heading"); 
     soruSayacElement.setAttribute("aria-level", "2"); 
+    soruSayacElement.setAttribute("tabindex", "-1"); // ERİŞİLEBİLİRLİK: Odaklanma için eklendi
+
+    // --- SESLİ GERİ BİLDİRİM KONTROLÜ (ONAY KUTUSU) ---
+    if (!document.getElementById("tts-kontrol-alani")) {
+        const kontrolDiv = document.createElement("div");
+        kontrolDiv.id = "tts-kontrol-alani";
+        kontrolDiv.style.cssText = "background:#1a1a1a; padding:10px; border:1px solid #ffff00; border-radius:8px; margin-bottom:15px;";
+        kontrolDiv.innerHTML = `
+            <input type="checkbox" id="tts-kapali-check" style="width:20px; height:20px; cursor:pointer;">
+            <label for="tts-kapali-check" style="color:#ffff00; font-weight:bold; font-size:1.1rem; margin-left:10px; cursor:pointer;">
+                Sadece Ses Efekti Çal (Konuşmayı Kapat)
+            </label>
+        `;
+        soruSayacElement.parentNode.insertBefore(kontrolDiv, soruSayacElement);
+    }
 
     const soruBaslik = document.getElementById("soru-metni");
     soruBaslik.removeAttribute('aria-hidden'); 
@@ -312,7 +327,8 @@ function soruyuGoster(index) {
     document.getElementById("btn-onceki").disabled = (index === 0);
     document.getElementById("btn-sonraki").disabled = (index === mevcutSorular.length - 1);
     
-    if (kullaniciCevaplari[index] === null) soruSayacElement.focus();
+    // ERİŞİLEBİLİRLİK: Sayfa yüklendiğinde veya soru değiştiğinde sayaca odaklan
+    setTimeout(() => { soruSayacElement.focus(); }, 100);
 }
 
 async function cevapIsaretle(secilenIndex, btnElement) {
@@ -353,16 +369,21 @@ async function cevapIsaretle(secilenIndex, btnElement) {
     }
     
     const mobilMi = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    const ttsKapali = document.getElementById("tts-kapali-check")?.checked;
 
     if (mobilMi) {
         sesUret(dogruMu ? 'dogru' : 'yanlis');
-        const okuma = metniOkuBekle(konusulacakMetin);
-        const kilit = new Promise(r => setTimeout(r, 4000));
-        await Promise.race([okuma, kilit]);
+        if (!ttsKapali) {
+            const okuma = metniOkuBekle(konusulacakMetin);
+            const kilit = new Promise(r => setTimeout(r, 4000));
+            await Promise.race([okuma, kilit]);
+        }
     } else {
         if (dogruMu) { await sesCalBekle('dogru'); } else { await sesCalBekle('yanlis'); }
-        await new Promise(r => setTimeout(r, 300));
-        await metniOkuBekle(konusulacakMetin);
+        if (!ttsKapali) {
+            await new Promise(r => setTimeout(r, 300));
+            await metniOkuBekle(konusulacakMetin);
+        }
     }
 
     if (mevcutSoruIndex < mevcutSorular.length - 1) {
