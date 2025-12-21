@@ -46,16 +46,16 @@ const SAYFA_ESLESTIRME = {
     "cografyaekonomik": "cografya.html",
     "cografyabolgeler": "cografya.html",
     "guncel": "guncel.html",
-    "ilkturkislam": "index.html", 
-    "islamoncesi": "index.html",
-    "osmanlikultur": "index.html",
-    "osmanlikurulus": "index.html",
-    "osmanliyukselme": "index.html",
-    "osmanligerileme": "index.html",
-    "mesrutiyet": "index.html",
-    "inkilap": "index.html",
-    "cumhuriyet": "index.html",
-    "karma": "index.html",
+    "ilkturkislam": "testler.html", 
+    "islamoncesi": "testler.html",
+    "osmanlikultur": "testler.html",
+    "osmanlikurulus": "testler.html",
+    "osmanliyukselme": "testler.html",
+    "osmanligerileme": "testler.html",
+    "mesrutiyet": "testler.html",
+    "inkilap": "testler.html",
+    "cumhuriyet": "testler.html",
+    "karma": "testler.html",
     "paragraf1": "turkce.html",
     "paragraf2": "turkce.html",
     "paragraf3": "turkce.html",
@@ -107,7 +107,7 @@ function metniOkuBekle(metin) {
         window.speechSynthesis.cancel();
         let utterance = new SpeechSynthesisUtterance(metin);
         utterance.lang = 'tr-TR';
-        utterance.rate = 1.1; 
+        utterance.rate = 1.4; 
         utterance.onend = () => { resolve(); };
         utterance.onerror = () => { resolve(); };
         window.speechSynthesis.speak(utterance);
@@ -251,51 +251,47 @@ function soruyuGoster(index) {
     const soruBaslik = document.getElementById("soru-metni");
     soruBaslik.removeAttribute('aria-hidden'); 
     soruBaslik.setAttribute("role", "presentation"); 
-    
-    let finalHTML = "";
+let finalHTML = "";
     let toplamMetinKontrol = ""; 
     
-    if (soruObj.onculGiris) {
-        finalHTML += `<p class="soru-giris" style="margin-bottom:10px;">${soruObj.onculGiris}</p>`;
-        toplamMetinKontrol += soruObj.onculGiris;
-    }
-    
-    if (soruObj.soru && soruObj.soru !== soruObj.onculGiris) {
-         finalHTML += `<p class="soru-ana-metin" style="margin-bottom:10px;">${soruObj.soru}</p>`;
-         toplamMetinKontrol += soruObj.soru;
+    // Kelime Düzeltme: "Yukarıdaki" ifadesini "Aşağıdaki" yapar
+    const metniTamirEt = (metin) => {
+        if (!metin) return "";
+        return metin.replace(/Yukarıdaki/g, "Aşağıdaki").replace(/yukarıdaki/g, "aşağıdaki");
+    };
+
+    // 1. SIRADA: Soru Kökü (NVDA önce görevi söyler)
+    if (soruObj.soruKoku || (soruObj.soru && !soruObj.onculGiris)) {
+        let hamMetin = soruObj.soruKoku || soruObj.soru;
+        let tamirEdilmis = metniTamirEt(hamMetin);
+        finalHTML += `<p class='soru-koku-vurgu' style="font-weight:bold; margin-bottom:15px; color:#ffff00;">${tamirEdilmis}</p>`;
+        toplamMetinKontrol += tamirEdilmis;
     }
 
-    let onculHTML = "";
+    // 2. SIRADA: Paragraf Metni (Varsa)
+    if (soruObj.onculGiris) {
+        let tamirEdilmisGiris = metniTamirEt(soruObj.onculGiris);
+        finalHTML += `<p class="soru-giris" style="margin-bottom:15px; padding:10px; background:#222; border-left:3px solid #ffff00;">${tamirEdilmisGiris}</p>`;
+        toplamMetinKontrol += tamirEdilmisGiris;
+    }
+
+    // 3. SIRADA: Öncüller (1. 2. 3. gibi maddeler)
     if (soruObj.onculler && soruObj.onculler.length > 0) {
-        onculHTML += `<ul class='oncul-kapsayici' style="margin: 10px 0; list-style:none; padding:0;" role="list" aria-label="Öncüller">`; 
+        finalHTML += `<ul class='oncul-kapsayici' style="margin: 10px 0; list-style:none; padding:0;" role="list">`; 
         soruObj.onculler.forEach(oncul => {
-            const match = oncul.match(/^(\d+\.?|[IVX]+\.?|\w\.?)\s*(.*)/);
-            onculHTML += `<li class='oncul-satir' style="margin-bottom:8px; padding: 5px; border-left: 2px solid #ffff00;" role="listitem">
-                <span class='oncul-no' style="font-weight:bold; margin-right:10px;">${match ? match[1] : ''}</span>
-                <span class='oncul-yazi'>${match ? match[2] : oncul}</span>
-            </li>`;
+            finalHTML += `<li style="margin-bottom:8px; padding-left:10px; border-left: 2px solid #ffff00;" role="listitem">${oncul}</li>`;
             toplamMetinKontrol += oncul;
         });
-        onculHTML += `</ul>`;
+        finalHTML += `</ul>`;
     }
 
-    let soruKokuHTML = "";
-    if (soruObj.soruKoku) {
-        soruKokuHTML = `<p class='soru-koku-vurgu' style="font-weight:bold; margin-top:15px; color:#ffff00;">${soruObj.soruKoku}</p>`;
-        toplamMetinKontrol += soruObj.soruKoku;
-    }
-
+    // Uzun metin kontrolü (Görsel ayar)
     const container = document.querySelector(".container");
     if (toplamMetinKontrol.length > 250) { 
         container.classList.add("uzun-soru");
     } else {
         container.classList.remove("uzun-soru");
-    }
-
-    const yerlesim = soruObj.oncul_yerlesim || "ONCE_KOK"; 
-    if (yerlesim === "ONCE_KOK") { finalHTML += onculHTML + soruKokuHTML; } 
-    else { finalHTML += soruKokuHTML + onculHTML; }
-
+    }    
     soruBaslik.innerHTML = finalHTML;
 
     const siklarKutusu = document.getElementById("siklar-alani");
@@ -348,19 +344,28 @@ async function cevapIsaretle(secilenIndex, btnElement) {
     const dogruCevapMetni = dogruCevapIndex !== -1 
         ? mevcutSorular[mevcutSoruIndex].secenekler[dogruCevapIndex] 
         : "Bilinmiyor";
-
-    if (dogruMu) {
+if (dogruMu) {
+        // Doğru cevap verildiğinde modern yeşil parlama
+        btnElement.style.backgroundColor = "#1a4d1a";
+        btnElement.style.border = "3px solid #00ff00";
+        btnElement.style.boxShadow = "0 0 15px #00ff00";
         btnElement.classList.add("dogru"); 
     } else {
+        // Yanlış cevap verildiğinde: Seçilen kırmızı, Doğru olan yeşil yansın
+        btnElement.style.backgroundColor = "#4d1a1a";
+        btnElement.style.border = "3px solid #ff0000";
         btnElement.classList.add("yanlis"); 
+        
         const butonlar = document.querySelectorAll(".sik-butonu");
         butonlar.forEach(b => {
             if(b.innerText.startsWith(dogruCevapHarf + ")")) {
+                b.style.backgroundColor = "#1a4d1a";
+                b.style.border = "3px solid #00ff00";
+                b.style.boxShadow = "0 0 15px #00ff00";
                 b.classList.add("dogru");
             }
         });
     }
-
     let konusulacakMetin = "";
     if (dogruMu) {
         konusulacakMetin = `Doğru! Cevabınız ${secilenSikHarfi}, ${secilenCevapMetni}.`;
@@ -414,9 +419,7 @@ function formatSoruMetni(soruObj) {
     if (soruObj.soruKoku) soruKokuHTML += `<p class='soru-koku-vurgu' style="font-weight:bold; margin-top:10px;">${soruObj.soruKoku}</p>`;
 
     const yerlesim = soruObj.oncul_yerlesim || "ONCE_KOK"; 
-    if (yerlesim === "ONCE_KOK") finalHTML += onculHTML + soruKokuHTML; 
-    else finalHTML += soruKokuHTML + onculHTML;
-
+finalHTML += soruKokuHTML + onculHTML;
     return finalHTML;
 }
 
