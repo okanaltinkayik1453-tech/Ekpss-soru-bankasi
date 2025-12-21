@@ -39,23 +39,23 @@ const DOSYA_ESLESTIRME = {
 
 // SAYFA YÖNLENDİRME LİSTESİ
 const SAYFA_ESLESTIRME = {
-    "cografya": "cografya.html", // DÜZELTME: Coğrafya ana yönlendirmesi eklendi
+    "cografya": "cografya.html",
     "cografyaiklim": "cografya.html",
     "cografyayersekilleri": "cografya.html",
     "cografyanufus": "cografya.html",
     "cografyaekonomik": "cografya.html",
     "cografyabolgeler": "cografya.html",
     "guncel": "guncel.html",
-    "ilkturkislam": "testler.html", 
-    "islamoncesi": "testler.html",
-    "osmanlikultur": "testler.html",
-    "osmanlikurulus": "testler.html",
-    "osmanliyukselme": "testler.html",
-    "osmanligerileme": "testler.html",
-    "mesrutiyet": "testler.html",
-    "inkilap": "testler.html",
-    "cumhuriyet": "testler.html",
-    "karma": "testler.html",
+    "ilkturkislam": "index.html", 
+    "islamoncesi": "index.html",
+    "osmanlikultur": "index.html",
+    "osmanlikurulus": "index.html",
+    "osmanliyukselme": "index.html",
+    "osmanligerileme": "index.html",
+    "mesrutiyet": "index.html",
+    "inkilap": "index.html",
+    "cumhuriyet": "index.html",
+    "karma": "index.html",
     "paragraf1": "turkce.html",
     "paragraf2": "turkce.html",
     "paragraf3": "turkce.html",
@@ -107,12 +107,18 @@ function metniOkuBekle(metin) {
         window.speechSynthesis.cancel();
         let utterance = new SpeechSynthesisUtterance(metin);
         utterance.lang = 'tr-TR';
-        utterance.rate = 1.4; 
+        utterance.rate = 1.1; 
         utterance.onend = () => { resolve(); };
         utterance.onerror = () => { resolve(); };
         window.speechSynthesis.speak(utterance);
     });
 }
+
+// Kelime Düzeltme: "Yukarıdaki" ifadesini "Aşağıdaki" yapar
+const metniTamirEt = (metin) => {
+    if (!metin) return "";
+    return metin.replace(/Yukarıdaki/g, "Aşağıdaki").replace(/yukarıdaki/g, "aşağıdaki");
+};
 
 // --- TEST YÖNETİMİ ---
 document.addEventListener("DOMContentLoaded", () => {
@@ -232,9 +238,8 @@ function soruyuGoster(index) {
     soruSayacElement.innerText = `Soru ${index + 1} / ${mevcutSorular.length}`;
     soruSayacElement.setAttribute("role", "heading"); 
     soruSayacElement.setAttribute("aria-level", "2"); 
-    soruSayacElement.setAttribute("tabindex", "-1"); // ERİŞİLEBİLİRLİK: Odaklanma için eklendi
+    soruSayacElement.setAttribute("tabindex", "-1"); 
 
-    // --- SESLİ GERİ BİLDİRİM KONTROLÜ (ONAY KUTUSU) ---
     if (!document.getElementById("tts-kontrol-alani")) {
         const kontrolDiv = document.createElement("div");
         kontrolDiv.id = "tts-kontrol-alani";
@@ -249,33 +254,29 @@ function soruyuGoster(index) {
     }
 
     const soruBaslik = document.getElementById("soru-metni");
-    soruBaslik.removeAttribute('aria-hidden'); 
     soruBaslik.setAttribute("role", "presentation"); 
-let finalHTML = "";
-    let toplamMetinKontrol = ""; 
     
-    // Kelime Düzeltme: "Yukarıdaki" ifadesini "Aşağıdaki" yapar
-    const metniTamirEt = (metin) => {
-        if (!metin) return "";
-        return metin.replace(/Yukarıdaki/g, "Aşağıdaki").replace(/yukarıdaki/g, "aşağıdaki");
-    };
+    let finalHTML = "";
+    let toplamMetinKontrol = ""; 
 
-    // 1. SIRADA: Soru Kökü (NVDA önce görevi söyler)
-    if (soruObj.soruKoku || (soruObj.soru && !soruObj.onculGiris)) {
-        let hamMetin = soruObj.soruKoku || soruObj.soru;
-        let tamirEdilmis = metniTamirEt(hamMetin);
-        finalHTML += `<p class='soru-koku-vurgu' style="font-weight:bold; margin-bottom:15px; color:#ffff00;">${tamirEdilmis}</p>`;
-        toplamMetinKontrol += tamirEdilmis;
+    // --- KÖRCÜL NAVİGASYON: Önce Kök, Sonra İçerik, Sonra Öncül ---
+    
+    // 1. SORU KÖKÜ
+    if (soruObj.soruKoku) {
+        let tamirEdilmisKök = metniTamirEt(soruObj.soruKoku);
+        finalHTML += `<p class='soru-koku-vurgu' style="font-weight:bold; margin-bottom:15px; color:#ffff00; font-size:1.1rem;">${tamirEdilmisKök}</p>`;
+        toplamMetinKontrol += tamirEdilmisKök;
     }
 
-    // 2. SIRADA: Paragraf Metni (Varsa)
-    if (soruObj.onculGiris) {
-        let tamirEdilmisGiris = metniTamirEt(soruObj.onculGiris);
-        finalHTML += `<p class="soru-giris" style="margin-bottom:15px; padding:10px; background:#222; border-left:3px solid #ffff00;">${tamirEdilmisGiris}</p>`;
-        toplamMetinKontrol += tamirEdilmisGiris;
+    // 2. ANA METİN VEYA PARAGRAF (Veri Kaybı Engellendi)
+    let anaIcerik = soruObj.onculGiris || soruObj.soru;
+    if (anaIcerik && anaIcerik !== soruObj.soruKoku) {
+        let tamirEdilmisIcerik = metniTamirEt(anaIcerik);
+        finalHTML += `<p class="soru-icerik" style="margin-bottom:15px; padding:10px; background:#222; border-left:3px solid #ffff00;">${tamirEdilmisIcerik}</p>`;
+        toplamMetinKontrol += tamirEdilmisIcerik;
     }
 
-    // 3. SIRADA: Öncüller (1. 2. 3. gibi maddeler)
+    // 3. ÖNCÜLLER (1. 2. 3. gibi maddeler)
     if (soruObj.onculler && soruObj.onculler.length > 0) {
         finalHTML += `<ul class='oncul-kapsayici' style="margin: 10px 0; list-style:none; padding:0;" role="list">`; 
         soruObj.onculler.forEach(oncul => {
@@ -285,7 +286,6 @@ let finalHTML = "";
         finalHTML += `</ul>`;
     }
 
-    // Uzun metin kontrolü (Görsel ayar)
     const container = document.querySelector(".container");
     if (toplamMetinKontrol.length > 250) { 
         container.classList.add("uzun-soru");
@@ -305,11 +305,9 @@ let finalHTML = "";
         const btn = document.createElement("button");
         const harf = getSikHarfi(i);
         let temizSik = sik.replace(/^[A-Ea-e][\)\.]\s*/, "");
-
         btn.innerText = harf + ") " + temizSik;
         btn.className = "sik-butonu";
         btn.setAttribute("aria-label", `${harf} şıkkı: ${temizSik}`); 
-
         if (kullaniciCevaplari[index] !== null) {
             if (harf === getSikHarfi(kullaniciCevaplari[index])) {
                 btn.classList.add(harf === soruObj.dogru_cevap ? "dogru" : "yanlis");
@@ -323,7 +321,6 @@ let finalHTML = "";
     document.getElementById("btn-onceki").disabled = (index === 0);
     document.getElementById("btn-sonraki").disabled = (index === mevcutSorular.length - 1);
     
-    // ERİŞİLEBİLİRLİK: Sayfa yüklendiğinde veya soru değiştiğinde sayaca odaklan
     setTimeout(() => { soruSayacElement.focus(); }, 100);
 }
 
@@ -332,7 +329,6 @@ async function cevapIsaretle(secilenIndex, btnElement) {
     isaretlemeKilitli = true; 
     
     kullaniciCevaplari[mevcutSoruIndex] = secilenIndex;
-    
     const hamMetin = btnElement.innerText; 
     const secilenSikHarfi = hamMetin.charAt(0); 
     const secilenCevapMetni = hamMetin.substring(3).trim(); 
@@ -344,28 +340,19 @@ async function cevapIsaretle(secilenIndex, btnElement) {
     const dogruCevapMetni = dogruCevapIndex !== -1 
         ? mevcutSorular[mevcutSoruIndex].secenekler[dogruCevapIndex] 
         : "Bilinmiyor";
-if (dogruMu) {
-        // Doğru cevap verildiğinde modern yeşil parlama
-        btnElement.style.backgroundColor = "#1a4d1a";
-        btnElement.style.border = "3px solid #00ff00";
-        btnElement.style.boxShadow = "0 0 15px #00ff00";
+
+    if (dogruMu) {
         btnElement.classList.add("dogru"); 
     } else {
-        // Yanlış cevap verildiğinde: Seçilen kırmızı, Doğru olan yeşil yansın
-        btnElement.style.backgroundColor = "#4d1a1a";
-        btnElement.style.border = "3px solid #ff0000";
         btnElement.classList.add("yanlis"); 
-        
         const butonlar = document.querySelectorAll(".sik-butonu");
         butonlar.forEach(b => {
             if(b.innerText.startsWith(dogruCevapHarf + ")")) {
-                b.style.backgroundColor = "#1a4d1a";
-                b.style.border = "3px solid #00ff00";
-                b.style.boxShadow = "0 0 15px #00ff00";
                 b.classList.add("dogru");
             }
         });
     }
+
     let konusulacakMetin = "";
     if (dogruMu) {
         konusulacakMetin = `Doğru! Cevabınız ${secilenSikHarfi}, ${secilenCevapMetni}.`;
@@ -402,24 +389,17 @@ function getSikHarfi(index) { return ["A", "B", "C", "D", "E"][index]; }
 
 function formatSoruMetni(soruObj) {
     let finalHTML = "";
-    if (soruObj.onculGiris) finalHTML += `<p class="soru-giris" style="margin-bottom:10px;">${soruObj.onculGiris}</p>`;
-    if (soruObj.soru && soruObj.soru !== soruObj.onculGiris) finalHTML += `<p class="soru-ana-metin" style="margin-bottom:10px;">${soruObj.soru}</p>`;
+    if (soruObj.soruKoku) finalHTML += `<p style="font-weight:bold; color:#ffff00; margin-bottom:10px;">${metniTamirEt(soruObj.soruKoku)}</p>`;
+    let anaMetin = soruObj.onculGiris || soruObj.soru;
+    if (anaMetin && anaMetin !== soruObj.soruKoku) finalHTML += `<p style="margin-bottom:10px;">${metniTamirEt(anaMetin)}</p>`;
 
-    let onculHTML = "";
     if (soruObj.onculler && soruObj.onculler.length > 0) {
-        onculHTML += `<ul class='oncul-kapsayici' style="margin: 10px 0; list-style:none; padding:0;">`; 
+        finalHTML += `<ul style="list-style:none; padding:0; margin:10px 0;">`; 
         soruObj.onculler.forEach(oncul => {
-            const match = oncul.match(/^(\d+\.?|\w\.?)\s*(.*)/);
-            onculHTML += `<li class='oncul-satir' style="margin-bottom:5px;"><span class='oncul-no' style="font-weight:bold; margin-right:5px;">${match ? match[1] : ''}</span><span class='oncul-yazi'>${match ? match[2] : oncul}</span></li>`;
+            finalHTML += `<li style="margin-bottom:5px; border-left:2px solid #ffff00; padding-left:10px;">${oncul}</li>`;
         });
-        onculHTML += `</ul>`;
+        finalHTML += `</ul>`;
     }
-
-    let soruKokuHTML = "";
-    if (soruObj.soruKoku) soruKokuHTML += `<p class='soru-koku-vurgu' style="font-weight:bold; margin-top:10px;">${soruObj.soruKoku}</p>`;
-
-    const yerlesim = soruObj.oncul_yerlesim || "ONCE_KOK"; 
-finalHTML += soruKokuHTML + onculHTML;
     return finalHTML;
 }
 
@@ -454,7 +434,7 @@ function testiBitir() {
 function cevapAnahtariniGoster() {
     const urlParams = new URLSearchParams(window.location.search);
     const testParam = urlParams.get('id');
-    const isTurkishTest = testParam && testParam.startsWith('paragraf'); 
+    const isTurkishTest = testParam && (testParam.startsWith('paragraf') || testParam.startsWith('turkce') || testParam.startsWith('dilbilgisi')); 
 
     let hedefDiv = document.getElementById("sonuc-alani");
     let container = document.getElementById("cevap-anahtari-konteyner");
@@ -492,7 +472,6 @@ function cevapAnahtariniGoster() {
                 const harf = getSikHarfi(i);
                 const buSikSecildi = (i === kullaniciSecimiIndex);
                 let arkaPlanRengi = "#333"; let kenarlik = "1px solid #555"; let durumMetni = "";
-                
                 if (buSikSecildi) {
                     arkaPlanRengi = harf === dogruCevapHarfi ? "#1a4d1a" : "#4d1a1a"; 
                     kenarlik = harf === dogruCevapHarfi ? "2px solid #00ff00" : "2px solid #ff0000";
@@ -500,25 +479,12 @@ function cevapAnahtariniGoster() {
                 } else if (harf === dogruCevapHarfi) {
                     arkaPlanRengi = "#005500"; kenarlik = "2px solid #00ff00"; durumMetni = "(Doğru Cevap)"; 
                 }
-                
-                siklarHTML += `
-                    <div style="background:${arkaPlanRengi}; border:${kenarlik}; padding:10px; border-radius:5px; color:#fff;" tabindex="0" aria-label="${harf} şıkkı: ${sikMetni}. ${durumMetni}">
-                        <span style="font-weight:bold; color:#ffcc00;">${harf})</span> ${sikMetni} 
-                        <span style="font-weight:bold; float:right; font-size:0.9rem;">${durumMetni}</span>
-                    </div>`;
+                siklarHTML += `<div style="background:${arkaPlanRengi}; border:${kenarlik}; padding:10px; border-radius:5px; color:#fff;" tabindex="0"><span style="font-weight:bold; color:#ffcc00;">${harf})</span> ${sikMetni.replace(/^[A-Ea-e][\)\.]\s*/, "")} <span style="font-weight:bold; float:right; font-size:0.9rem;">${durumMetni}</span></div>`;
             });
             siklarHTML += `</div>`;
 
-            let dogruCevapMetni = "";
-            soru.secenekler.forEach((s, k) => { if(getSikHarfi(k) === dogruCevapHarfi) dogruCevapMetni = s; });
-
-            const altBilgiHTML = `
-                <div style="margin-top:20px; padding-top:15px; border-top:1px dashed #666;">
-                    <p tabindex="0" style="color:#00ff00; font-weight:bold; margin-bottom:5px;">✅ Doğru Cevap: ${dogruCevapHarfi}) ${dogruCevapMetni}</p>
-                    <div tabindex="0" style="background:#333; padding:10px; border-left:4px solid #ffff00; margin-top:10px; color:#ddd;">
-                        <strong>💡 Açıklama:</strong><br>${soru.aciklama || "Bu soru için açıklama bulunmuyor."}
-                    </div>
-                </div>`;
+            let dogruCevapMetni = soru.secenekler.find(s => s.startsWith(dogruCevapHarfi)) || "";
+            const altBilgiHTML = `<div style="margin-top:20px; padding-top:15px; border-top:1px dashed #666;"><p tabindex="0" style="color:#00ff00; font-weight:bold; margin-bottom:5px;">✅ Doğru Cevap: ${dogruCevapHarfi}) ${dogruCevapMetni.replace(/^[A-Ea-e][\)\.]\s*/, "")}</p><div tabindex="0" style="background:#333; padding:10px; border-left:4px solid #ffff00; margin-top:10px; color:#ddd;"><strong>💡 Açıklama:</strong><br>${soru.aciklama || "Bu soru için açıklama bulunmuyor."}</div></div>`;
             kart.innerHTML = soruMetniHTML + siklarHTML + altBilgiHTML;
             container.appendChild(kart);
         });
@@ -534,7 +500,6 @@ function gosterTurkceCozum(index, container) {
     const kullaniciSecimiIndex = kullaniciCevaplari[index];
     const dogruCevapHarfi = soru.dogru_cevap;
     const kullaniciSecimiHarfi = kullaniciSecimiIndex !== null ? getSikHarfi(kullaniciSecimiIndex) : null;
-
     const kart = document.createElement("div");
     kart.className = "sonuc-karti-turkce";
     kart.style.cssText = "border: 1px solid #444; padding: 20px; margin-bottom: 20px; background: #222; border-radius: 8px;";
@@ -547,15 +512,11 @@ function gosterTurkceCozum(index, container) {
     let soruMetniHTML = `<h3 style="color:${durumRengi}; margin-bottom:15px;" tabindex="-1">Soru ${index + 1}: ${durum}</h3>`;
     soruMetniHTML += `<div style="color:#eee; margin-bottom:15px; font-size:1.1rem; border-bottom:1px solid #555; padding-bottom:10px;" role="presentation">${formatSoruMetni(soru)}</div>`;
     
-    let siklarHTML = `<p style="font-weight:bold; color:#ffcc00; margin-bottom:10px;">Şıklar:</p>`;
-    siklarHTML += `<div class="cevap-siklari-listesi-turkce" style="display:flex; flex-direction:column; gap:10px;">`;
-    
+    let siklarHTML = `<p style="font-weight:bold; color:#ffcc00; margin-bottom:10px;">Şıklar:</p><div class="cevap-siklari-listesi-turkce" style="display:flex; flex-direction:column; gap:10px;">`;
     soru.secenekler.forEach((sikMetni, i) => {
         const harf = getSikHarfi(i);
         const buSikSecildi = (i === kullaniciSecimiIndex);
-        let temizSik = sikMetni.replace(/^[A-Ea-e][\)\.]\s*/, "");
         let arkaPlanRengi = "#333"; let kenarlik = "1px solid #555"; let durumMetni = ""; 
-        
         if (buSikSecildi) {
             arkaPlanRengi = harf === dogruCevapHarfi ? "#1a4d1a" : "#4d1a1a"; 
             kenarlik = harf === dogruCevapHarfi ? "2px solid #00ff00" : "2px solid #ff0000";
@@ -563,30 +524,12 @@ function gosterTurkceCozum(index, container) {
         } else if (harf === dogruCevapHarfi) {
             arkaPlanRengi = "#005500"; kenarlik = "2px solid #00ff00"; durumMetni = "(Doğru Cevap)"; 
         }
-
-        siklarHTML += `
-            <div style="background:${arkaPlanRengi}; border:${kenarlik}; padding:10px; border-radius:5px; color:#fff;" tabindex="0" aria-label="${harf} şıkkı: ${temizSik}. ${durumMetni}">
-                <span style="font-weight:bold; color:#ffcc00;">${harf})</span> ${temizSik} 
-                <span style="font-weight:bold; float:right; font-size:0.9rem;">${durumMetni}</span>
-            </div>`;
+        siklarHTML += `<div style="background:${arkaPlanRengi}; border:${kenarlik}; padding:10px; border-radius:5px; color:#fff;" tabindex="0"><span style="font-weight:bold; color:#ffcc00;">${harf})</span> ${sikMetni.replace(/^[A-Ea-e][\)\.]\s*/, "")} <span style="font-weight:bold; float:right; font-size:0.9rem;">${durumMetni}</span></div>`;
     });
     siklarHTML += `</div>`;
 
-    const aciklamaHTML = `
-        <div style="margin-top:20px; padding-top:15px; border-top:1px dashed #666;">
-            <h4 style="color:#ffff00; margin-bottom:5px;">💡 Detaylı Çözüm:</h4>
-            <div tabindex="0" style="background:#333; padding:10px; border-left:4px solid #ffff00; margin-top:5px; color:#ddd;">
-                ${soru.aciklama || "Bu soru için açıklama bulunmuyor."}
-            </div>
-        </div>`;
-
-    const navHTML = `
-        <div class="navigasyon-cozum" style="display:flex; gap:20px; margin-top:20px;">
-            <button class="nav-buton" onclick="oncekiTurkceCozum()" style="flex:1;" ${mevcutCozumIndex === 0 ? 'disabled' : ''}>&lt; Önceki Soru</button>
-            <button class="nav-buton" onclick="sonrakiTurkceCozum()" style="flex:1;">
-                ${mevcutCozumIndex < mevcutSorular.length - 1 ? 'Sonraki Soru &gt;' : 'Çözümleri Bitir'}
-            </button>
-        </div>`;
+    const aciklamaHTML = `<div style="margin-top:20px; padding-top:15px; border-top:1px dashed #666;"><h4 style="color:#ffff00; margin-bottom:5px;">💡 Detaylı Çözüm:</h4><div tabindex="0" style="background:#333; padding:10px; border-left:4px solid #ffff00; margin-top:5px; color:#ddd;">${soru.aciklama || "Bu soru için açıklama bulunmuyor."}</div></div>`;
+    const navHTML = `<div class="navigasyon-cozum" style="display:flex; gap:20px; margin-top:20px;"><button class="nav-buton" onclick="oncekiTurkceCozum()" style="flex:1;" ${mevcutCozumIndex === 0 ? 'disabled' : ''}>&lt; Önceki Soru</button><button class="nav-buton" onclick="sonrakiTurkceCozum()" style="flex:1;">${mevcutCozumIndex < mevcutSorular.length - 1 ? 'Sonraki Soru &gt;' : 'Çözümleri Bitir'}</button></div>`;
     
     kart.innerHTML = soruMetniHTML + siklarHTML + aciklamaHTML + navHTML;
     container.appendChild(kart);
