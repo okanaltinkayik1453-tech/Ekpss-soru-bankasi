@@ -62,13 +62,18 @@ a:focus, button:focus, summary:focus, input:focus {
     display: flex; width: 100%; height: 100%;
     align-items: center; justify-content: space-between;
 }
-
 .bayrak-tam-kapsam {
-    flex: 0 0 250px; height: 100%;
-    background-image: url('https://upload.wikimedia.org/wikipedia/commons/b/b4/Flag_of_Turkey.svg');
-    background-size: cover; background-position: center; background-repeat: no-repeat;
+    flex: 0 0 250px; 
+    height: 100%;
+    background-color: #5a0000; /* Koyu Kırmızı */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3.5rem; /* Büyük ve okunabilir yazı */
+    font-weight: 900;
+    color: #ffffff;
 }
-.bayrak-tam-kapsam.sag { transform: scaleX(-1); }
+/* Sağ taraftaki kutuda yazı ters dönmesin diye eski 'transform' satırını sildik. */
 
 .bolum-yazi { flex: 1; display: flex; flex-direction: column; align-items: center; text-align: center; }
 

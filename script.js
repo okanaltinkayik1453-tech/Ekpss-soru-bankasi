@@ -107,15 +107,32 @@ function metniOkuBekle(metin) {
         window.speechSynthesis.cancel();
         let utterance = new SpeechSynthesisUtterance(metin);
         utterance.lang = 'tr-TR';
-        utterance.rate = 1.1; 
+        utterance.rate = 1.4; 
         utterance.onend = () => { resolve(); };
         utterance.onerror = () => { resolve(); };
         window.speechSynthesis.speak(utterance);
     });
 }
-
+// --- SESLERİ TARAYICIYA KAYDETME (NETLİFY KOTA DOSTU) ---
+async function sesleriOnbellegeAl() {
+    const sesDosyalari = ['dogru.mp3', 'yanlis.mp3', 'bitis.mp3'];
+    try {
+        const cache = await caches.open('ekpss-ses-onbellegi');
+        // Sadece eksik olan dosyaları kontrol et ve indir
+        for (const ses of sesDosyalari) {
+            const response = await cache.match(ses);
+            if (!response) {
+                await cache.add(ses);
+                console.log(ses + " önbelleğe alındı.");
+            }
+        }
+    } catch (e) {
+        console.log("Önbellekleme hatası (Kota etkilenmez):", e);
+    }
+}
 // --- TEST YÖNETİMİ ---
 document.addEventListener("DOMContentLoaded", () => {
+    sesleriOnbellegeAl(); // Yeni eklenen satır
     const urlParams = new URLSearchParams(window.location.search);
     const testParam = urlParams.get('id'); 
     
