@@ -14,7 +14,7 @@ const DOSYA_ESLESTIRME = {
     "ilkturkislam": "ilkturkislamdevletleri.json",
     "islamoncesi": "islamoncesiturkdevletleri.json",
     "osmanlikultur": "osmanlikulturmedeniyeti.json",
-    "osmanlikkurulus": "osmanlikurulus.json",
+    "osmanlikurulus": "osmanlikurulus.json",
     "osmanliyukselme": "osmanliyukselme.json",
     "osmanligerileme": "osmanligerilemevedagilma.json",
     "mesrutiyet": "mesrutiyet.json",
