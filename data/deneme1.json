@@ -1,0 +1,619 @@
+[
+  {
+    "denemeID": "deneme1",
+    "sorular": [
+      {
+        "tip": "turkce",
+        "konu": "Cümlede Anlam",
+        "soruKoku": "Kültürel miras, geçmişten günümüze aktarılan ve gelecek nesillere korunarak iletilmesi gereken değerler bütünüdür; bu nedenle toplumlar, sahip oldukları mirası ---- değil, onu yaşatarak ---- yoluna gitmelidir. Bu cümlede boş bırakılan yerlere, düşüncenin akışına göre aşağıdakilerden hangisi sırasıyla getirilmelidir?",
+        "icerik": [],
+        "secenekler": ["saklayarak / unutturma", "tüketerek / zenginleştirme", "yadsıyarak / değiştirme", "önemsemeyerek / yok etme", "dondurarak / sergileme"],
+        "dogru_cevap": "B",
+        "aciklama": "Cümlenin bağlamı, kültürel mirasın korunması ve geleceğe aktarılması üzerinedir. 'Bu nedenle' bağlacı, mirasın korunarak iletilmesi gerekliliğini destekleyen bir yargı ister."
+      },
+      {
+        "tip": "turkce",
+        "konu": "Deyimler",
+        "soruKoku": "Aşağıdaki numaralanmış yerlerin hangisinde, parantez içinde verilen açıklamayla altı çizili sözün anlamı uyuşmamaktadır?",
+        "icerik": [
+            "Yazar, son romanında ele aldığı konuyu ilmek ilmek dokumuş (ayrıntılarıyla ve özenle işlemiş).",
+            "Karakterlerin iç dünyasını yansıtırken kılı kırk yaran (çok titizlenen) bir üslup benimsemiş.",
+            "Ancak olay örgüsünde ipe un sermiş (işi yokuşa sürmüş, imkansızlaştırmış) gibi görünen bazı kopukluklar var.",
+            "Yine de okur, yazarın kalem oynattığı (yazı yazdığı, eser verdiği) bu alandaki ustalığını hemen fark ediyor.",
+            "Eser, edebiyat dünyasında ses getirecek (ilgi uyandıracak) bir potansiyele sahip."
+        ],
+        "secenekler": ["Birinci", "İkinci", "Üçüncü", "Dördüncü", "Beşinci"],
+        "dogru_cevap": "C",
+        "aciklama": "'İpe un sermek' deyimi, bir isteği yerine getirmemek için bahaneler uydurmak anlamındadır; olay örgüsündeki kopukluk için kullanılamaz."
+      },
+      {
+        "tip": "turkce",
+        "konu": "Karşılaştırma",
+        "soruKoku": "Bu parçada numaralanmış cümlelerin hangisinde 'karşılaştırma' yapılmıştır?",
+        "icerik": [
+            "Dijital kütüphaneler, bilgiye erişim konusunda son yıllarda büyük bir devrim yarattı.",
+            "Klasik kütüphanelerin aksine, dijital kütüphaneler zaman ve mekan sınırı olmaksızın hizmet verebiliyor.",
+            "Kullanıcılar, aradıkları bir makaleye veya kitaba saniyeler içinde ulaşmanın konforunu yaşıyor.",
+            "Bu platformlar, genellikle üyelik sistemiyle çalışıyor ve geniş bir veri tabanı sunuyor.",
+            "Araştırmacılar için bu durum, literatür taraması sürecini oldukça hızlandırıyor."
+        ],
+        "secenekler": ["1", "2", "3", "4", "5"],
+        "dogru_cevap": "B",
+        "aciklama": "İkinci cümlede 'aksine' ifadesiyle dijital ve klasik kütüphaneler mekan sınırı bakımından kıyaslanmıştır."
+      },
+      {
+        "tip": "turkce",
+        "konu": "Anlatım Bozukluğu",
+        "soruKoku": "Aşağıdaki cümlelerin hangisinde bir anlatım bozukluğu vardır?",
+        "icerik": [],
+        "secenekler": [
+            "Toplantıda alınan kararların hepsi, çalışanlara tebliğ edildi.",
+            "Bahçedeki çiçekleri her sabah özenle sular, bakımını yapardı.",
+            "Yeni aldığı arabasını çok seviyor, gözü gibi bakıyordu.",
+            "Arkadaşım, bu zor günlerde beni hiç yalnız bırakmadı; hep destek oldu.",
+            "Okuldaki başarısı sayesinde ailesinin ve öğretmenlerinin takdirini kazandı."
+        ],
+        "dogru_cevap": "B",
+        "aciklama": "Nesne eksikliği vardır. 'sular, (onların) bakımını yapardı' şeklinde olmalıdır."
+      },
+      {
+        "tip": "turkce",
+        "konu": "Ses Bilgisi",
+        "soruKoku": "Küçücük bir dükkânda, ömrünü saat tamiriyle geçiren çalışkan ustanın sabrı, görenleri hayrete düşürüyordu. Bu parçada aşağıdaki ses olaylarından hangisi yoktur?",
+        "icerik": [],
+        "secenekler": ["Ünsüz düşmesi", "Ünlü düşmesi", "Ünsüz benzeşmesi", "Kaynaştırma ünsüzü", "Ünlü daralması"],
+        "dogru_cevap": "E",
+        "aciklama": "Küçücük (ünsüz düşmesi), ömrünü (ünlü düşmesi), çalışkan (benzeşme) vardır; daralma yoktur."
+      },
+      {
+        "tip": "turkce",
+        "konu": "Sözcük Türleri",
+        "soruKoku": "Yeşil ağaçların altında sessizce oturuyordu. Bu parçada numaralanmış sözcüklerin türleri aşağıdakilerin hangisinde sırasıyla doğru verilmiştir?",
+        "icerik": [],
+        "secenekler": ["Sıfat - İsim - Zarf - Fiil", "İsim - Sıfat - Zarf - Fiil", "Sıfat - Zarf - İsim - Fiil", "Zarf - İsim - Sıfat - Fiil", "Sıfat - İsim - Sıfat - Zarf"],
+        "dogru_cevap": "A",
+        "aciklama": "Yeşil (Sıfat), Altında (İsim), Sessizce (Zarf), Oturuyordu (Fiil)."
+      },
+      {
+        "tip": "turkce",
+        "konu": "Paragrafta Yapı",
+        "soruKoku": "Bu parçada numaralanmış cümlelerden hangisi düşüncenin akışını bozmaktadır?",
+        "icerik": [
+            "Anadolu'nun her köşesi ayrı bir hikâye barındırır bağrında.",
+            "Taşlarında, topraklarında binlerce yıllık medeniyetlerin izleri okunur.",
+            "Bu izleri sürmek, tarihin tozlu sayfalarını aralamak gibidir.",
+            "Ancak günümüzde bu tarihi doku, modernleşme adı altında ne yazık ki tahrip ediliyor.",
+            "Turistler genellikle sahil şeridindeki otelleri tercih ediyor.",
+            "Oysa gerçek keşif, beton yığınlarının ötesindeki bu kadim kalıntılarda saklıdır."
+        ],
+        "secenekler": ["2", "3", "4", "5", "6"],
+        "dogru_cevap": "D",
+        "aciklama": "Paragraf tarihi dokudan bahsederken 5. cümle konaklama tercihine geçtiği için akışı bozar."
+      },
+      {
+        "tip": "turkce",
+        "konu": "Anlatım Teknikleri",
+        "soruKoku": "Bu parçanın anlatımında aşağıdakilerden hangisine başvurulmuştur? Deneme, yazarın herhangi bir konuda kesin hükümlere varmadan, kendi kendisiyle konuşuyormuşçasına yazdığı yazı türüdür. Makale ise bir tezi savunmak, bir gerçeği kanıtlamak amacıyla yazılır; onda nesnellik ve bilimsel veriler ön plandadır.",
+        "icerik": [],
+        "secenekler": ["Öyküleme", "Betimleme", "Karşılaştırma", "Tanık Gösterme", "Benzetme"],
+        "dogru_cevap": "C",
+        "aciklama": "Deneme ve makale türleri özelliklerine göre kıyaslanmıştır."
+      },
+      {
+        "tip": "turkce",
+        "konu": "Paragrafta Anlam",
+        "soruKoku": "Bu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir? Sanatçı, eserini oluştururken toplumdan kopuk yaşayamaz. Çünkü sanat, gücünü hayattan ve insandan alır. Bir ressamın tuvalindeki renkler, bir yazarın romanındaki karakterler, aslında hep o toplumun birer yansımasıdır. Kısacası, ----.",
+        "icerik": [],
+        "secenekler": [
+            "sanatçı eserlerinde sadece kendi iç dünyasını yansıtmalıdır",
+            "toplumun beklentileri sanatçının özgürlüğünü kısıtlar",
+            "sanatçı, yaşadığı toplumun aynasıdır",
+            "evrensel eserler vermek için yerellikten uzaklaşmak gerekir",
+            "sanatın amacı insanlara ders vermek değildir"
+        ],
+        "dogru_cevap": "C",
+        "aciklama": "Metin sanatçının toplumun yansıması olduğunu vurguladığı için C şıkkı en uygundur."
+      },
+      {
+        "tip": "turkce",
+        "konu": "Paragrafta Yardımcı Düşünce",
+        "soruKoku": "Bu parçada 'kitap okuma alışkanlığı' ile ilgili olarak aşağıdakilerden hangisine değinilmemiştir?",
+        "icerik": [
+            "Kitap okuma alışkanlığı, bireyin düşünce ufkunu genişleten en önemli eylemlerden biridir.",
+            "Düzenli okuyan kişilerde empati yeteneğinin geliştiği, farklı bakış açılarına daha açık oldukları gözlemlenmiştir.",
+            "Ayrıca okuma, kelime dağarcığını zenginleştirerek kişinin kendisini daha iyi ifade etmesine olanak tanır.",
+            "Ancak günümüzde dijitalleşmenin etkisiyle bu alışkanlığın, özellikle gençler arasında azaldığı görülmektedir."
+        ],
+        "secenekler": [
+            "Bireysel gelişime katkı sağladığına",
+            "İletişim becerilerini güçlendirdiğine",
+            "Teknolojik gelişmelerden olumsuz etkilendiğine",
+            "İnsanları anlamayı kolaylaştırdığına",
+            "Akademik başarıyı doğrudan artırdığına"
+        ],
+        "dogru_cevap": "E",
+        "aciklama": "Metinde akademik başarıdan bahsedilmemiştir."
+      },
+      {
+        "tip": "turkce",
+        "konu": "Yazım Kuralları",
+        "soruKoku": "Aşağıdaki cümlelerin hangisinde 'ki' bağlacının yazımıyla ilgili bir yanlışlık yapılmıştır?",
+        "icerik": [],
+        "secenekler": [
+            "Mademki gelmeyecektin, neden haber vermedin?",
+            "Anladım ki bu iş düşündüğümden daha zormuş.",
+            "Evdeki hesap çarşıya uymadı.",
+            "Öyle bir bağırdıki herkes korktu.",
+            "Belki de bu, bizim için yeni bir başlangıçtır."
+        ],
+        "dogru_cevap": "D",
+        "aciklama": "Fiilden sonra gelen 'ki' bağlaçtır ve ayrı yazılmalıdır (bağırdı ki)."
+      },
+      {
+        "tip": "turkce",
+        "konu": "Cümle Yorumu",
+        "soruKoku": "Aşağıdaki cümlelerin hangisinde 'öz eleştiri' söz konusudur?",
+        "icerik": [],
+        "secenekler": [
+            "Bu projeyi zamanında bitirebilmek için ekibimizle gece gündüz çalıştık.",
+            "Yıllar önce ona söylediğim o kırıcı sözler yüzünden hala kendimi affedemiyorum.",
+            "İnsanların çoğu, hatalarını kabul etmek yerine başkalarını suçlamayı tercih eder.",
+            "Senin bu konudaki fikirlerin, bizim için her zaman yol gösterici olmuştur.",
+            "Keşke o gün yanımıza şemsiye alsaydık, sırılsıklam olmazdık."
+        ],
+        "dogru_cevap": "B",
+        "aciklama": "Kişinin kendi davranışını olumsuz değerlendirmesi öz eleştiridir."
+      },
+      {
+        "tip": "turkce",
+        "konu": "Noktalama İşaretleri",
+        "soruKoku": "Bu parçada aşağıdaki noktalama işaretlerinden hangisinin kullanımıyla ilgili bir yanlışlık yapılmıştır? Ankara'dan İstanbul'a gitmek için yola çıktık. Yol boyunca; Bolu, Düzce ve Sakarya'dan geçtik. Molada çayımızı yudumlarken arkadaşım bana döndü: 'Bu yolculuk hiç bitmesin istiyorum,' dedi. Ben de ona gülümseyerek; 'Her güzel şeyin bir sonu vardır.' dedim.",
+        "icerik": [],
+        "secenekler": ["Kesme işareti", "Noktalı virgül", "Tırnak işareti", "Virgül", "İki nokta"],
+        "dogru_cevap": "B",
+        "aciklama": "Alıntılardan önce noktalı virgül kullanılmaz; iki nokta kullanılır veya işaret konmaz."
+      },
+      {
+        "tip": "turkce",
+        "konu": "Paragrafta Ana Düşünce",
+        "soruKoku": "Bu parçaya göre Antroposen Çağı'nın en belirgin özelliği aşağıdakilerden hangisidir? Antroposen Çağı, insan faaliyetlerinin yerküre üzerinde jeolojik ve biyolojik bir güç haline geldiği yeni bir dönemi ifade eder.",
+        "icerik": [],
+        "secenekler": [
+            "Doğal kaynakların hızla tükenmesi sonucu ekonominin durma noktasına gelmesi",
+            "İnsanın doğa üzerindeki etkisinin jeolojik bir boyuta ulaşarak belirleyici bir güç olması",
+            "Teknolojik gelişmelerin doğadaki tür çeşitliliğini koruma altına alması",
+            "İnsanlığın doğadan tamamen koparak yapay bir yaşam tarzını benimsemesi",
+            "Küresel iklim krizinin sadece belirli coğrafi bölgelerde etkili olması"
+        ],
+        "dogru_cevap": "B",
+        "aciklama": "Metin insanın doğa üzerinde jeolojik bir güç haline gelmesini vurgular."
+      },
+      {
+        "tip": "turkce",
+        "konu": "Paragrafta Yorum",
+        "soruKoku": "Yazarın 'ahlaki ve varoluşsal sorumluluk' ifadesiyle vurgulamak istediği temel düşünce nedir?",
+        "icerik": [],
+        "secenekler": [
+            "İnsanın teknolojik cihazları kullanırken dikkatli olması gerektiği",
+            "Doğadaki değişimlerin insan yaşamını ekonomik olarak kısıtlaması",
+            "İnsanın yerküre üzerindeki baskın rolü nedeniyle doğaya karşı yükümlülük altına girmesi",
+            "Bilimsel çalışmaların sadece insan odaklı yürütülmesinin önemi",
+            "Geçmiş çağlardaki yaşam standartlarına geri dönülmesinin zorunluluğu"
+        ],
+        "dogru_cevap": "C",
+        "aciklama": "İnsanın doğanın kaderini tayin etmesi ona yükümlülük yükler."
+      },
+      {
+        "tip": "matematik",
+        "konu": "Rasyonel Sayılar",
+        "sesliBetimleme": "Pay kısmında 1 bölü 2 artı 3 bölü 5, payda kısmında ise 11 bölü 10 işleminin sonucu kaçtır?",
+        "gorselMetin": "(1/2 + 3/5) / (11/10) = ?",
+        "secenekler": ["1", "2", "1/2", "5/11", "10/11"],
+        "dogru_cevap": "A",
+        "aciklama": "Pay kısmı 5/10 + 6/10 = 11/10 eder. 11/10 bölü 11/10 sonucu 1'dir."
+      },
+      {
+        "tip": "matematik",
+        "konu": "Ondalık Sayılar",
+        "sesliBetimleme": "0 virgül 48 bölü 0 virgül 12 artı 0 virgül 9 bölü 0 virgül 3 işleminin sonucu kaçtır?",
+        "gorselMetin": "(0.48 / 0.12) + (0.9 / 0.3) = ?",
+        "secenekler": ["4", "5", "6", "7", "8"],
+        "dogru_cevap": "D",
+        "aciklama": "48/12 = 4 ve 9/3 = 3 eder. 4 + 3 = 7."
+      },
+      {
+        "tip": "matematik",
+        "konu": "Üslü Sayılar",
+        "sesliBetimleme": "Parantez içinde eksi 3'ün parantez dışındaki karesi eksi parantez içinde eksi 1'in parantez dışındaki küpü işleminin sonucu kaçtır?",
+        "gorselMetin": "(-3)^2 - (-1)^3 = ?",
+        "secenekler": ["8", "9", "10", "eksi 8", "eksi 10"],
+        "dogru_cevap": "C",
+        "aciklama": "9 - (-1) = 9 + 1 = 10."
+      },
+      {
+        "tip": "matematik",
+        "konu": "Köklü Sayılar",
+        "sesliBetimleme": "Karekök içinde 72 artı karekök içinde 18 bölü karekök içinde 2 işleminin sonucu kaçtır?",
+        "gorselMetin": "(√72 + √18) / √2 = ?",
+        "secenekler": ["6", "9", "12", "3 kök 2", "5 kök 2"],
+        "dogru_cevap": "B",
+        "aciklama": "6 kök 2 + 3 kök 2 = 9 kök 2. Kök 2'ye bölünce sonuç 9 olur."
+      },
+      {
+        "tip": "matematik",
+        "konu": "Bölünebilme Kuralları",
+        "sesliBetimleme": "Üç basamaklı 4 A 8 sayısı 3 ile tam bölünebildiğine göre A rakamının alabileceği farklı değerlerin toplamı kaçtır?",
+        "gorselMetin": "4A8 (3 ile tam bölünürsa) A rakamları toplamı?",
+        "secenekler": ["12", "15", "18", "21", "24"],
+        "dogru_cevap": "C",
+        "aciklama": "12 + A = 3k olmalı. A = {0, 3, 6, 9} olabilir. Toplamı 18'dir."
+      },
+      {
+        "tip": "matematik",
+        "konu": "Kümeler",
+        "sesliBetimleme": "A kümesi a b c d e elemanlarından oluşmaktadır. A kümesinin alt kümelerinin kaç tanesinde a elemanı bulunur fakat b elemanı bulunmaz?",
+        "gorselMetin": "A = {a, b, c, d, e} kümesinde 'a' olan 'b' olmayan alt küme?",
+        "secenekler": ["4", "8", "16", "32", "64"],
+        "dogru_cevap": "B",
+        "aciklama": "Kalan 3 elemanla 2 üzeri 3 = 8 alt küme yazılır."
+      },
+      {
+        "tip": "matematik",
+        "konu": "Denklemler",
+        "sesliBetimleme": "3 x eksi 5 bölü 2 eşittir x artı 4 olduğuna göre x kaçtır?",
+        "gorselMetin": "(3x - 5) / 2 = x + 4",
+        "secenekler": ["10", "11", "12", "13", "14"],
+        "dogru_cevap": "D",
+        "aciklama": "3x - 5 = 2x + 8 buradan x = 13 bulunur."
+      },
+      {
+        "tip": "matematik",
+        "konu": "Sayı Problemleri",
+        "sesliBetimleme": "Toplamları 60 olan iki sayıdan biri diğerinin 3 katından 4 fazladır. Buna göre küçük sayı kaçtır?",
+        "gorselMetin": "Toplam = 60, B = 3k + 4. k = ?",
+        "secenekler": ["12", "14", "16", "18", "20"],
+        "dogru_cevap": "B",
+        "aciklama": "4x + 4 = 60 -> 4x = 56 -> x = 14."
+      },
+      {
+        "tip": "matematik",
+        "konu": "Yaş Problemleri",
+        "sesliBetimleme": "Bir babanın yaşı bugün iki çocuğunun yaşları toplamının 3 katıdır. 4 yıl sonra babanın yaşı çocukların yaşları toplamının 2 katı olacağına göre babanın bugünkü yaşı kaçtır?",
+        "gorselMetin": "B = 3x. B+4 = 2(x+8). B = ?",
+        "secenekler": ["36", "39", "42", "45", "48"],
+        "dogru_cevap": "A",
+        "aciklama": "3x + 4 = 2x + 16 -> x = 12. Baba 36 yaşındadır."
+      },
+      {
+        "tip": "matematik",
+        "konu": "Yüzde Problemleri",
+        "sesliBetimleme": "Yüzde 20 kâr ile 480 TL'ye satılan bir ürünün maliyet fiyatı kaç TL'dir?",
+        "gorselMetin": "%20 kâr ile 480 TL ise maliyet?",
+        "secenekler": ["380", "400", "420", "440", "450"],
+        "dogru_cevap": "B",
+        "aciklama": "1.2 * Maliyet = 480 -> Maliyet = 400 TL."
+      },
+      {
+        "tip": "matematik",
+        "konu": "Yüzde Problemleri",
+        "sesliBetimleme": "Bir sınıftaki öğrencilerin yüzde 60'ı erkektir. Sınıfa 4 kız öğrenci daha katıldığında kızların sayısı erkeklerin sayısına eşit olduğuna göre başlangıçta sınıfta kaç öğrenci vardır?",
+        "gorselMetin": "%60 Erkek, +4 Kız -> Kız = Erkek. Toplam ?",
+        "secenekler": ["20", "25", "30", "35", "40"],
+        "dogru_cevap": "A",
+        "aciklama": "20 kişide 12 erkek 8 kız vardır. 4 kız katılırsa 12 kız olur ve eşitlenir."
+      },
+      {
+        "tip": "matematik",
+        "konu": "Hız Problemleri",
+        "sesliBetimleme": "Saatteki hızı 80 km olan bir araç A kentinden B kentine 5 saatte gidiyor. Bu araç hızını saatte 20 km artırırsa aynı yolu kaç saatte döner?",
+        "gorselMetin": "Hız=80, T=5. Yeni Hız=100 ise Yeni T=?",
+        "secenekler": ["3", "3,5", "4", "4,5", "5"],
+        "dogru_cevap": "C",
+        "aciklama": "400 km yolu 100 km hızla 4 saatte alır."
+      },
+      {
+        "tip": "matematik",
+        "konu": "İşlem",
+        "sesliBetimleme": "Pozitif tam sayılar kümesinde üçgen işlemi x üçgen y eşittir x'in karesi artı 3 y şeklinde tanımlanıyor. Buna göre 4 üçgen 5 işleminin sonucu kaçtır?",
+        "gorselMetin": "x Δ y = x^2 + 3y. 4 Δ 5 = ?",
+        "secenekler": ["25", "28", "31", "34", "37"],
+        "dogru_cevap": "C",
+        "aciklama": "4^2 + 3*5 = 16 + 15 = 31."
+      },
+      {
+        "tip": "matematik",
+        "konu": "Geometri",
+        "sesliBetimleme": "Bir kenar uzunluğu 6 cm olan karenin çevresi ile aynı çevre uzunluğuna sahip bir eşkenar üçgenin bir kenar uzunluğu kaç cm'dir?",
+        "gorselMetin": "Kare çevre (6) = Üçgen çevre. Üçgen kenar ?",
+        "secenekler": ["6", "7", "8", "9", "10"],
+        "dogru_cevap": "C",
+        "aciklama": "Çevre 24 cm. Üçgen kenarı 24/3 = 8 cm."
+      },
+      {
+        "tip": "matematik",
+        "konu": "Geometri",
+        "sesliBetimleme": "Taban yarıçapı 3 cm ve yüksekliği 10 cm olan bir dik silindirin hacmi kaç pi santimetreküptür?",
+        "gorselMetin": "r=3, h=10 olan silindir hacmi (pi cinsinden)?",
+        "secenekler": ["30 pi", "60 pi", "90 pi", "120 pi", "150 pi"],
+        "dogru_cevap": "C",
+        "aciklama": "pi * r^2 * h = pi * 9 * 10 = 90 pi."
+      },
+      {
+        "tip": "turkce",
+        "konu": "İlk Türk Devletleri",
+        "soruKoku": "İslamiyet öncesi Türk devletlerinde toplumsal yapının temelini oluşturan ve 'aile' anlamına gelen birim aşağıdakilerden hangisidir?",
+        "icerik": [],
+        "secenekler": ["Oguş", "Urug", "Boy", "Bodun", "İl"],
+        "dogru_cevap": "A",
+        "aciklama": "Eski Türklerde toplumsal yapı çekirdek aile olan Oguş ile başlar."
+      },
+      {
+        "tip": "turkce",
+        "konu": "Türk İslam Tarihi",
+        "soruKoku": "Karahanlılar döneminde kaleme alınan, Türk-İslam tarihinin ilk siyasetnamesi ve 'mutluluk veren bilgi' anlamına gelen eser hangisidir?",
+        "icerik": [],
+        "secenekler": ["Divân-ı Lügati't-Türk", "Kutadgu Bilig", "Atabetü'l Hakayık", "Divân-ı Hikmet", "Siyasetname"],
+        "dogru_cevap": "B",
+        "aciklama": "Yusuf Has Hacip tarafından yazılan Kutadgu Bilig ideal devleti anlatır."
+      },
+      {
+        "tip": "turkce",
+        "konu": "Osmanlı Devleti",
+        "soruKoku": "Osmanlı Devleti'nde orduya asker yetiştirmek amacıyla ilk kez I. Murad döneminde uygulanan, savaş esirlerinin beşte birinin orduya alınması sistemine ne ad verilir?",
+        "icerik": [],
+        "secenekler": ["Devşirme", "Pençik", "İltizam", "Malikane", "Müsadere"],
+        "dogru_cevap": "B",
+        "aciklama": "Pençik sistemi savaş esirlerinin asker yapılmasını sağlar."
+      },
+      {
+        "tip": "turkce",
+        "konu": "Osmanlı Yükselme",
+        "soruKoku": "1538 yılında gerçekleşen, Akdeniz'in bir Türk gölü haline gelmesini sağlayan ve Barbaros Hayreddin Paşa komutasında Haçlılara karşı kazanılan savaş hangisidir?",
+        "icerik": [],
+        "secenekler": ["Cerbe", "İnebahtı", "Preveze", "Navarin", "Çeşme"],
+        "dogru_cevap": "C",
+        "aciklama": "Preveze Deniz Zaferi Osmanlı'nın denizlerdeki üstünlüğünü kesinleştirmiştir."
+      },
+      {
+        "tip": "turkce",
+        "konu": "Osmanlı Yenileşme",
+        "soruKoku": "Osmanlı Devleti'nde 3. Selim döneminde yapılan köklü yeniliklerin tamamına verilen isim ve bu dönemde kurulan Batı tarzı ordunun adı aşağıdakilerden hangisidir?",
+        "icerik": [],
+        "secenekler": ["Nizam-ı Cedit", "Sekban-ı Cedit", "Eşkinci Ocağı", "Asakir-i Mansure", "Hamidiye Alayları"],
+        "dogru_cevap": "A",
+        "aciklama": "III. Selim Nizam-ı Cedit adıyla Batı tarzı askeri birliği kurmuştur."
+      },
+      {
+        "tip": "turkce",
+        "konu": "20. Yüzyıl Savaşları",
+        "soruKoku": "1912 yılında İtalya ile imzalanan, Osmanlı'nın Kuzey Afrika'daki son toprak parçasını (Trablusgarp ve Bingazi) kaybettiği antlaşma hangisidir?",
+        "icerik": [],
+        "secenekler": ["Londra", "Uşi", "Bükreş", "İstanbul", "Atina"],
+        "dogru_cevap": "B",
+        "aciklama": "Uşi Antlaşması ile Trablusgarp kaybedilmiştir."
+      },
+      {
+        "tip": "turkce",
+        "konu": "1. Dünya Savaşı",
+        "soruKoku": "I. Dünya Savaşı devam ederken İtilaf Devletleri'nin Osmanlı topraklarını paylaşmak için kendi aralarında imzaladıkları gizli antlaşmaları dünya kamuoyuna duyuran devlet hangisidir?",
+        "icerik": [],
+        "secenekler": ["ABD", "İtalya", "Yunanistan", "Sovyet Rusya", "Bulgaristan"],
+        "dogru_cevap": "D",
+        "aciklama": "Sovyet Rusya, Çarlık dönemine ait gizli planları ifşa etmiştir."
+      },
+      {
+        "tip": "turkce",
+        "konu": "Milli Mücadele",
+        "soruKoku": "Millî Mücadele'nin gerekçesi, yöntemi ve amacının ilk kez belirtildiği, aynı zamanda millî egemenliğe dayalı yeni bir devletin kurulacağının işaretini veren belge hangisidir?",
+        "icerik": [],
+        "secenekler": ["Havza Genelgesi", "Amasya Genelgesi", "Erzurum Kongresi", "Sivas Kongresi", "Misak-ı Millî"],
+        "dogru_cevap": "B",
+        "aciklama": "Amasya Genelgesi bir ihtilal beyannamesi özelliği taşır."
+      },
+      {
+        "tip": "turkce",
+        "konu": "İnkılap Tarihi",
+        "soruKoku": "Kurtuluş Savaşı'nda Batı Cephesi'nde kazanılan I. İnönü Zaferi sonrası, yeni Türk devletinin ilk anayasası olarak kabul edilen belge hangisidir?",
+        "icerik": [],
+        "secenekler": ["Kanun-i Esasi", "Teşkilat-ı Esasiye", "Takrir-i Sükun", "Tekalif-i Milliye", "Teşvik-i Sanayi"],
+        "dogru_cevap": "B",
+        "aciklama": "1921 Anayasası (Teşkilat-ı Esasiye) ilk anayasadır."
+      },
+      {
+        "tip": "turkce",
+        "konu": "Atatürk İnkılapları",
+        "soruKoku": "3 Mart 1924 tarihinde kabul edilen ve Türkiye'deki tüm eğitim kurumlarının Millî Eğitim Bakanlığı'na bağlanmasını sağlayarak eğitimde ikiliği sona erdiren kanun hangisidir?",
+        "icerik": [],
+        "secenekler": ["Kabotaj Kanunu", "Maarif Teşkilatı Kanunu", "Tevhid-i Tedrisat Kanunu", "Şapka Kanunu", "Medeni Kanun"],
+        "dogru_cevap": "C",
+        "aciklama": "Tevhid-i Tedrisat Kanunu ile eğitimde birlik sağlanmıştır."
+      },
+      {
+        "tip": "turkce",
+        "konu": "Atatürk İlkeleri",
+        "soruKoku": "1930'lu yıllarda dünyada yaşanan ekonomik bunalım üzerine Türkiye'nin benimsediği, yatırımların bizzat devlet eliyle yapılmasını öngören ilke hangisidir?",
+        "icerik": [],
+        "secenekler": ["Halkçılık", "Milliyetçilik", "Devletçilik", "Cumhuriyetçilik", "Laiklik"],
+        "dogru_cevap": "C",
+        "aciklama": "Devletçilik ilkesi yatırımların devlet tarafından yönetilmesini esas alır."
+      },
+      {
+        "tip": "turkce",
+        "konu": "Dış Politika",
+        "soruKoku": "Lozan Barış Antlaşması'nda, Yunanistan'ın Batı Anadolu'da verdiği zararlara karşılık 'Savaş Tazminatı' olarak Türkiye'ye bıraktığı yer aşağıdakilerden hangisidir?",
+        "icerik": [],
+        "secenekler": ["Karaağaç", "Gökçeada", "Bozcaada", "Meis", "Rodos"],
+        "dogru_cevap": "A",
+        "aciklama": "Karaağaç savaş tazminatı olarak alınmıştır."
+      },
+      {
+        "tip": "turkce",
+        "konu": "Milli Marş",
+        "soruKoku": "İstiklâl Marşı'nın yazarı Mehmet Akif Ersoy, TBMM tarafından düzenlenen yarışmadan kazandığı para ödülünü hangi kuruma bağışlamıştır?",
+        "icerik": [],
+        "secenekler": ["Türk Kızılayı", "Darü'l-Mesai", "Türk Hava Kurumu", "Çocuk Esirgeme Kurumu", "Türk Tarih Kurumu"],
+        "dogru_cevap": "B",
+        "aciklama": "Mehmet Akif ödülü Darü'l-Mesai kurumuna bağışlamıştır."
+      },
+      {
+        "tip": "turkce",
+        "konu": "Türkiye Yer Şekilleri",
+        "soruKoku": "Türkiye'nin kuzey ve güney kıyılarında dağların denize paralel uzanmasının sonucu aşağıdakilerden hangisi olamaz?",
+        "icerik": [],
+        "secenekler": [
+            "Kıyı ile iç kesimler arasında ulaşımın zor olması",
+            "Kıyı kesiminde falez (yalıyar) oluşumunun yaygın olması",
+            "Denizel iklim etkisinin iç kesimlere sokulamaması",
+            "Boyuna kıyı tipinin görülmesi",
+            "Kıyıda girinti ve çıkıntının çok olması"
+        ],
+        "dogru_cevap": "E",
+        "aciklama": "Kıyıda girinti çıkıntının çok olması dağların denize dik uzandığı bölgelere aittir."
+      },
+      {
+        "tip": "turkce",
+        "konu": "Türkiye İklimi",
+        "soruKoku": "Türkiye'de don olaylarının en az görüldüğü bölge aşağıdakilerden hangisidir?",
+        "icerik": [],
+        "secenekler": ["Karadeniz Bölgesi", "Akdeniz Bölgesi", "Marmara Bölgesi", "İç Anadolu Bölgesi", "Doğu Anadolu Bölgesi"],
+        "dogru_cevap": "B",
+        "aciklama": "Akdeniz kıyıları yüksek kış sıcaklıkları nedeniyle don olayının en az görüldüğü yerdir."
+      },
+      {
+        "tip": "turkce",
+        "konu": "Dış Kuvvetler",
+        "soruKoku": "Türkiye'de 'karstik şekillerin' (mağara, obruk, lapa vb.) en yaygın olduğu bölge aşağıdakilerden hangisidir?",
+        "icerik": [],
+        "secenekler": ["Batı Anadolu", "Doğu Anadolu", "Karadeniz", "Teke ve Taşeli Platoları (Akdeniz)", "Ergene Havzası"],
+        "dogru_cevap": "D",
+        "aciklama": "Akdeniz'deki Teke ve Taşeli platoları karstik topoğrafyanın merkezidir."
+      },
+      {
+        "tip": "turkce",
+        "konu": "Türkiye Tarımı",
+        "soruKoku": "Türkiye'de modern yöntemlerle (entansif) tarım yapıldığında aşağıdakilerden hangisinin azalması beklenir?",
+        "icerik": [],
+        "secenekler": ["Tarımsal verimlilik", "Birim alandan alınan ürün miktarı", "Doğal koşullara olan bağımlılık", "Sulanan arazi miktarı", "Gübre kullanımı"],
+        "dogru_cevap": "C",
+        "aciklama": "Modern tarım teknolojisi doğaya ve iklime olan bağımlılığı azaltır."
+      },
+      {
+        "tip": "turkce",
+        "konu": "Madenler",
+        "soruKoku": "Aşağıdaki madenlerden hangisinin Türkiye'deki rezervleri dünya sıralamasında ilk sırada yer alır?",
+        "icerik": [],
+        "secenekler": ["Bakır", "Demir", "Bor", "Krom", "Boksit"],
+        "dogru_cevap": "C",
+        "aciklama": "Türkiye dünya bor rezervlerinin %70'inden fazlasına sahiptir."
+      },
+      {
+        "tip": "turkce",
+        "konu": "Yargı",
+        "soruKoku": "1982 Anayasası’na göre Uyuşmazlık Mahkemesi Başkanı aşağıdakilerden hangisi tarafından kendi üyeleri arasından seçilir?",
+        "icerik": [],
+        "secenekler": ["Anayasa Mahkemesi", "Yargıtay Genel Kurulu", "Danıştay Genel Kurulu", "Hâkimler ve Savcılar Kurulu", "Cumhurbaşkanı"],
+        "dogru_cevap": "A",
+        "aciklama": "Uyuşmazlık Mahkemesi Başkanı Anayasa Mahkemesi üyeleri arasından seçilir."
+      },
+      {
+        "tip": "turkce",
+        "konu": "Anayasa Hukuku",
+        "soruKoku": "1982 Anayasası'na göre Türk hukuk sistemindeki norm hiyerarşisinin en tepesinde hangisi yer alır?",
+        "icerik": [],
+        "secenekler": ["Kanun", "Yönetmelik", "Genelge", "Anayasa", "Cumhurbaşkanlığı Kararnamesi"],
+        "dogru_cevap": "D",
+        "aciklama": "Anayasa hukuk hiyerarşisinin en tepesinde bulunur."
+      },
+      {
+        "tip": "turkce",
+        "konu": "Yasama",
+        "soruKoku": "Türkiye'de bir kişinin milletvekili seçilebilmesi için en az kaç yaşını doldurmuş olması gerekir?",
+        "icerik": [],
+        "secenekler": ["18", "20", "25", "30", "35"],
+        "dogru_cevap": "A",
+        "aciklama": "Milletvekili seçilme yaşı 2017 değişikliği ile 18'e düşürülmüştür."
+      },
+      {
+        "tip": "turkce",
+        "konu": "İdare Hukuku",
+        "soruKoku": "Bir köyün kurulmasına, kaldırılmasına veya adının değiştirilmesine karar verme yetkisi kime aittir?",
+        "icerik": [],
+        "secenekler": ["TBMM", "Cumhurbaşkanı", "İçişleri Bakanlığı", "Vali", "Kaymakam"],
+        "dogru_cevap": "C",
+        "aciklama": "Köy tüzel kişiliği İçişleri Bakanlığı kararı ile kurulur."
+      },
+      {
+        "tip": "turkce",
+        "konu": "Anayasa Mahkemeleri",
+        "soruKoku": "Aşağıdakilerden hangisi 1982 Anayasası'nda sayılan bir 'yüksek mahkeme' değildir?",
+        "icerik": [],
+        "secenekler": ["Yargıtay", "Danıştay", "Uyuşmazlık Mahkemesi", "Sayıştay", "Anayasa Mahkemesi"],
+        "dogru_cevap": "D",
+        "aciklama": "Sayıştay bir denetim organıdır, yüksek mahkeme sayılmaz."
+      },
+      {
+        "tip": "turkce",
+        "konu": "İdare Hukuku",
+        "soruKoku": "Yerel seçimlerde muhtar seçilebilmek için seçimden önce kaç ay o mahallede ikamet şartı aranır?",
+        "icerik": [],
+        "secenekler": ["1 ay", "6 ay", "12 ay", "24 ay", "3 ay"],
+        "dogru_cevap": "B",
+        "aciklama": "Muhtarlık için en az 6 ay mahallede ikamet şartı vardır."
+      },
+      {
+        "tip": "turkce",
+        "konu": "Güncel Bilgi",
+        "soruKoku": "Özbekistan'da düzenlenen Ekonomik İşbirliği Teşkilatı toplantısında alınan karar ile '2025 EİT Turizm Başkenti' ilan edilen ilimiz hangisidir?",
+        "icerik": [],
+        "secenekler": ["Erzurum", "Bursa", "Konya", "Şanlıurfa", "Antalya"],
+        "dogru_cevap": "A",
+        "aciklama": "2025 EİT Turizm Başkenti olarak Erzurum seçilmiştir."
+      },
+      {
+        "tip": "turkce",
+        "konu": "Güncel Bilgi",
+        "soruKoku": "Kazakistan'ın ev sahipliğinde toplanan Türk Dünyası Kültür Başkentleri Birliği tarafından '2025 Türk Dünyası Kültür Başkenti' olarak seçilen şehir aşağıdakilerden hangisidir?",
+        "icerik": [],
+        "secenekler": ["Bakü", "Aktau", "Aşkabat", "Semerkant", "Türkistan"],
+        "dogru_cevap": "B",
+        "aciklama": "2025 Türk Dünyası Kültür Başkenti olarak Aktau şehri seçilmiştir."
+      },
+      {
+        "tip": "turkce",
+        "konu": "Güncel Bilgi",
+        "soruKoku": "Türkiye'nin ilk astronotu Alper Gezeravcı'nın Ocak 2024'te Uluslararası Uzay İstasyonu'na (ISS) giderek bilimsel deneyler gerçekleştirdiği misyonun adı nedir?",
+        "icerik": [],
+        "secenekler": ["Artemis 1", "Apollo 11", "Axiom Mission 3 (Ax-3)", "Space-X Falcon", "Soyuz T-15"],
+        "dogru_cevap": "C",
+        "aciklama": "Alper Gezeravcı Ax-3 misyonu ile uzay deneylerini tamamlamıştır."
+      },
+      {
+        "tip": "turkce",
+        "konu": "Güncel Bilgi",
+        "soruKoku": "Cumhurbaşkanlığı tarafından yayımlanan genelge ile toplumsal yapının temelini korumak ve güçlendirmek amacıyla Türkiye'de '2025 yılı' ne yılı olarak ilan edilmiştir?",
+        "icerik": [],
+        "secenekler": ["Dayanışma Yılı", "Bilim Yılı", "Tarım Yılı", "Aile Yılı", "Emekliler Yılı"],
+        "dogru_cevap": "D",
+        "aciklama": "2025 yılı Türkiye'de Aile Yılı olarak ilan edilmiştir."
+      },
+      {
+        "tip": "turkce",
+        "konu": "Güncel Bilgi",
+        "soruKoku": "2025 yılında 'Yaşamlar İçin Gelecek Toplumunu Tasarlamak' temasıyla düzenlenecek olan dünyanın en büyük sergi organizasyonu EXPO'ya ev sahipliği yapacak şehir hangisidir?",
+        "icerik": [],
+        "secenekler": ["Dubai", "Paris", "Madrid", "Roma", "Osaka"],
+        "dogru_cevap": "E",
+        "aciklama": "EXPO 2025 Japonya'nın Osaka şehrinde düzenlenecektir."
+      },
+      {
+        "tip": "turkce",
+        "konu": "Güncel Bilgi",
+        "soruKoku": "2024 yılında hayatını kaybeden, 'Yaseminler Tüter mi Hâlâ?' ve 'Schrödinger'in Kedisi' gibi eserlerin yazarı olan ünlü Türk düşünür ve yazar kimdir?",
+        "icerik": [],
+        "secenekler": ["Adalet Ağaoğlu", "Sezai Karakoç", "Alev Alatlı", "Doğan Cüceloğlu", "Rasim Özdenören"],
+        "dogru_cevap": "C",
+        "aciklama": "Şubat 2024'te vefat eden ünlü yazar Alev Alatlı'dır."
+      }
+    ]
+  }
+]
