@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EKPSS 2026 - Online Deneme Merkezi</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <a href="#ana-icerik" class="skip-link">Doğrudan ana içeriğe atla</a>
+
+    <header role="banner" class="site-header">
+        <div class="header-icerik">
+            <div class="bayrak-tam-kapsam" aria-hidden="true">EKPSS</div>
+            <div class="bolum-yazi">
+                <h1>ONLİNE DENEME</h1>
+                <a href="index.html" class="site-linki">www.okanhoca.com</a>
+            </div>
+            <div class="bayrak-tam-kapsam sag" aria-hidden="true">2026</div>
+        </div>
+    </header>
+
+    <main id="ana-icerik">
+        <div class="container">
+            
+            <section id="giris-ekrani" class="soru-kutusu" aria-labelledby="bilgi-baslik">
+                <h2 id="bilgi-baslik" class="hosgeldin-baslik">Deneme Sınavı Bilgilendirmesi</h2>
+                
+                <div class="bilgi-metni-kapsayici" style="text-align: left; font-size: 1.1rem; line-height: 1.8;">
+                    <p><strong>1. EKPSS Denemesine Hoş Geldiniz:</strong> Sınavın ilerleyişi veya matematiksel sembollerle alakalı bir hata fark ederseniz, lütfen Hakkında sayfasından bize bildirin.</p>
+                    <p><strong>2. Sınav Yapısı:</strong> Denemeler toplam 60 sorudan oluşur ve süre 100 dakikadır. 4 yanlış 1 doğruyu götürür.</p>
+                    <p><strong>3. Çoklu Sınav Modu:</strong> Oda şifresi ile arkadaşlarınızla aynı anda sınava başlayabilirsiniz.</p>
+                    <p><strong>4. Bağlantı Kesilmesi:</strong> İnternet kopsa dahi 5 dakika içinde dönerseniz kaldığınız yerden devam edebilirsiniz.</p>
+                    <hr style="border: 0; border-top: 1px solid #444; margin: 20px 0;">
+                    <p style="text-align: center; font-weight: bold; color: #ffff00;">Başarılar dileriz!</p>
+                </div>
+
+                <div style="margin-top: 30px; text-align: center;">
+                    <button id="btn-google-login" class="ana-menu-karti" style="width: 100%; background-color: #4285F4; color: white; border: none; cursor: pointer; font-size: 1.4rem;">
+                        GOOGLE İLE BAĞLAN VE DEVAM ET
+                    </button>
+                </div>
+            </section>
+
+            <section id="oda-yonetimi" class="soru-kutusu" style="display:none;"></section>
+
+            <section id="sinav-ekrani" class="soru-kutusu" style="display:none; position: relative;"></section>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 EKPSS Online Deneme Merkezi</p>
+    </footer>
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-database-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-analytics-compat.js"></script>
+
+    <script src="deneme.js"></script>
+
+</body>
+</html>
