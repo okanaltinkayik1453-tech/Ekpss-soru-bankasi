@@ -21,9 +21,9 @@ let mevcutSorular = [], mevcutIndex = 0, kullaniciCevaplari = [];
 let kalanSure = 100 * 60, timerInterval, odaKodu = "";
 let isSinglePlayer = false, secilenDenemeID = "", odaKatilimciSayisi = 0;
 let sonPuanVerisi = null, sinavBittiMi = false;
-let isOnlyEmptyMode = false; // Sadece boş soruları çözme modu
+let isOnlyEmptyMode = false; 
 
-// --- 1. BAĞLANTI KURTARMA ---
+// --- 1. BAĞLANTI KURTARMA (RECONNECTION) ---
 window.onload = () => {
     const kaydedilmisOda = localStorage.getItem('aktifOda');
     const kayitZamani = localStorage.getItem('kayitZamani');
@@ -101,7 +101,7 @@ function odaKur() {
     document.getElementById('oda-islem-alani').style.display = 'block';
     document.getElementById('oda-kodu-input').value = odaKodu;
     document.getElementById('btn-onay').onclick = () => db.ref('odalar/' + odaKodu).update({ durum: 'basladi' });
-    sesliBildiri("Oda kuruldu. Şifre " + odaKodu.split('').join(' '));
+    sesliBildiri("Oda kuruldu. Paylaşmanız gereken şifre " + odaKodu.split('').join(' '));
 }
 
 function odaKatilHazirlik() {
@@ -116,7 +116,7 @@ function odaKatilHazirlik() {
     };
 }
 
-// --- 4. SINAV MOTORU ---
+// --- 4. SINAV MOTORU VE ERİŞİLEBİLİRLİK ---
 function testiYukleVeBaslat(dID, isRecover = false) {
     secilenDenemeID = dID;
     fetch(`./data/${dID}.json`).then(res => res.json()).then(data => {
@@ -126,12 +126,11 @@ function testiYukleVeBaslat(dID, isRecover = false) {
         
         odaYonetimi.style.display = 'none'; sinavEkrani.style.display = 'block';
         
-        // GÜNCELLEME: Kırmızı dikdörtgen ve Erişilebilir Süre Düğmesi
         sinavEkrani.innerHTML = `
             <button id="timer-kutusu" class="timer-dikdortgen" 
                     onclick="kalanSureyiSoyle()" 
                     aria-label="Kalan süreyi belirt" 
-                    style="position: fixed; top: 10px; right: 10px; background: #ff0000; color: #fff; padding: 15px; border: 2px solid #fff; border-radius: 5px; font-weight: bold; cursor: pointer; z-index: 9999;">
+                    style="position: fixed; top: 10px; right: 10px; background: #ff0000; color: #ffffff; padding: 25px; border: 5px solid #ffffff; border-radius: 10px; font-size: 3rem; font-weight: 900; z-index: 9999; box-shadow: 0 0 25px rgba(0,0,0,0.7);">
                 <span id="dakika">100</span>:<span id="saniye">00</span>
             </button>
             <div id="deneme-govde"></div>`;
@@ -140,7 +139,8 @@ function testiYukleVeBaslat(dID, isRecover = false) {
         if(rIndex !== null) soruyuGoster(rIndex);
         else {
             document.getElementById('deneme-govde').innerHTML = `<div class="soru-kutusu"><h2 id="b-baslik" tabindex="-1">Sınav Başladı. Bölüm Seçiniz.</h2><div class="navigasyon-alani"><button class="nav-buton" onclick="soruyuGoster(0)">GENEL YETENEK</button><button class="nav-buton" onclick="soruyuGoster(30)">GENEL KÜLTÜR</button></div></div>`;
-            document.getElementById('b-baslik').focus();
+            sesliBildiri("Süreniz başladı. Lütfen çözmek istediğiniz bölümü seçin.");
+            setTimeout(() => document.getElementById('b-baslik').focus(), 150);
         }
         baslatSayac(); 
     });
@@ -152,14 +152,26 @@ function kalanSureyiSoyle() {
 }
 
 function soruyuGoster(index) {
+    const bolumAdi = index < 30 ? "Genel Yetenek" : "Genel Kültür";
+    const ekranNo = index < 30 ? (index + 1) : (index - 29);
+
+    if (mevcutIndex < 30 && index >= 30) {
+        const dk = Math.floor(kalanSure / 60);
+        sesliBildiri("Genel Kültür bölümüne geçtiniz. Kalan süreniz " + dk + " dakika.");
+    } else if (mevcutIndex >= 30 && index < 30) {
+        const dk = Math.floor(kalanSure / 60);
+        sesliBildiri("Genel Yetenek bölümüne geçtiniz. Kalan süreniz " + dk + " dakika.");
+    }
+
     mevcutIndex = index;
-    localStorage.setItem('sonIndex', index); localStorage.setItem('cevaplar', JSON.stringify(kullaniciCevaplari));
+    localStorage.setItem('sonIndex', index); 
+    localStorage.setItem('cevaplar', JSON.stringify(kullaniciCevaplari));
     
     const soru = mevcutSorular[index];
     let html = `
         <div class="soru-kutusu">
-            <h2 id="s-no" tabindex="-1">Soru ${index + 1}</h2>
-            ${soru.tip === "turkce" ? `<p class="soru-koku-vurgu">${soru.soruKoku}</p><ul>${soru.icerik.map((it, i) => `<li>(${i+1}) ${it}</li>`).join('')}</ul>` : ""}
+            <h2 id="s-no" tabindex="-1">${bolumAdi} - Soru ${ekranNo}</h2>
+            ${soru.tip === "turkce" ? `<p class="soru-koku-vurgu">${soru.soruKoku}</p><ul role="list">${soru.icerik.map((it, i) => `<li role="listitem">(${i+1}) ${it}</li>`).join('')}</ul>` : ""}
             ${soru.tip === "matematik" ? `<div role="text" aria-label="${soru.sesliBetimleme}"><p>${soru.gorselMetin}</p></div>` : ""}
             <div class="siklar-grid">
                 ${["A","B","C","D","E"].map((h, i) => `<button class="sik-butonu ${kullaniciCevaplari[index]===h?'dogru':''}" onclick="isaretle('${h}')">${h}) ${soru.secenekler[i]}</button>`).join('')}
@@ -171,21 +183,23 @@ function soruyuGoster(index) {
             </div>
         </div>`;
     document.getElementById('deneme-govde').innerHTML = html;
-    setTimeout(() => document.getElementById('s-no').focus(), 100);
+    setTimeout(() => document.getElementById('s-no').focus(), 150);
 }
 
 function isaretle(h) { kullaniciCevaplari[mevcutIndex] = h; sesliBildiri(h + " işaretlendi."); sonrakiSoru(); }
-function bosBirak() { kullaniciCevaplari[mevcutIndex] = null; sesliBildiri((mevcutIndex + 1) + ". soru boş."); sonrakiSoru(); }
 
-// GÜNCELLEME: Boş sorular modu kontrolü
+function bosBirak() { 
+    kullaniciCevaplari[mevcutIndex] = null; 
+    const ekranNo = mevcutIndex < 30 ? (mevcutIndex + 1) : (mevcutIndex - 29);
+    sesliBildiri(ekranNo + ". soru boş bırakıldı."); 
+    sonrakiSoru(); 
+}
+
 function sonrakiSoru() {
     if (isOnlyEmptyMode) {
         const nextEmpty = kullaniciCevaplari.indexOf(null, mevcutIndex + 1);
-        if (nextEmpty !== -1) {
-            soruyuGoster(nextEmpty);
-        } else {
-            bitisOnayEkrani();
-        }
+        if (nextEmpty !== -1) soruyuGoster(nextEmpty);
+        else bitisOnayEkrani();
     } else {
         if (mevcutIndex < mevcutSorular.length - 1) soruyuGoster(mevcutIndex + 1); 
         else bitisOnayEkrani();
@@ -208,29 +222,72 @@ function bitisOnayEkrani() {
 
 function bosDon() { 
     const i = kullaniciCevaplari.indexOf(null); 
-    if (i !== -1) {
-        isOnlyEmptyMode = true; // Sadece boşları çözdür
-        soruyuGoster(i);
-    } else {
-        puanHesapla();
-    }
+    if (i !== -1) { isOnlyEmptyMode = true; soruyuGoster(i); } 
+    else { puanHesapla(); }
 }
 
 // --- 5. PUANLAMA VE ANALİZ ---
 function puanHesapla() {
     if(sinavBittiMi) return; sinavBittiMi = true; isOnlyEmptyMode = false;
     let y = {d:0, y:0}, k = {d:0, y:0}, analiz = {};
+    let matD = 0, matY = 0, digD = 0, digY = 0; 
+
     kullaniciCevaplari.forEach((cev, i) => {
-        const s = mevcutSorular[i]; const h = i < 30 ? y : k;
+        const s = mevcutSorular[i];
+        const h = i < 30 ? y : k;
         const dMu = (cev === s.dogru_cevap);
-        if (cev !== null) { if(dMu) h.d++; else h.y++; }
+
+        if (cev !== null) {
+            if(dMu) h.d++; else h.y++;
+            if (s.tip === "matematik") {
+                if(dMu) matD++; else matY++;
+            } else {
+                if(dMu) digD++; else digY++;
+            }
+        }
+
         if(!analiz[s.konu]) analiz[s.konu]={d:0,y:0};
         if(dMu) analiz[s.konu].d++; else if(cev!==null) analiz[s.konu].y++;
     });
-    const nY = y.d - (y.y/4), nK = k.d - (k.y/4), tN = nY + nK, p = tN * 1.6;
+    
+    const nY = y.d - (y.y / 4), nK = k.d - (k.y / 4), tN = nY + nK;
+    const matNet = matD - (matY / 4);
+    const digerNet = digD - (digY / 4);
+
+    let p = 40 + digerNet;
+    if (matD > 6) {
+        p += (matNet * 1.2); 
+    } else {
+        p += matNet;
+    }
+
+    if (p > 100) p = 100;
+    if (p < 0) p = 0;
+
     sonPuanVerisi = { y, k, nY, nK, p, analiz };
-    db.ref('kullanicilar/' + auth.currentUser.uid + '/cozulenDenemeler/' + secilenDenemeID).set({ puan: p.toFixed(2), net: tN.toFixed(2), tarih: Date.now() });
-    if (!isSinglePlayer) db.ref('odalar/' + odaKodu + '/sonuclar/' + auth.currentUser.uid).set({ isim: auth.currentUser.displayName, net: tN, sure: (6000-kalanSure), matD: y.d });
+
+    const kullaniciIsmi = auth.currentUser.displayName || auth.currentUser.email.split('@')[0];
+    db.ref('kullanicilar/' + auth.currentUser.uid + '/cozulenDenemeler/' + secilenDenemeID).set({ 
+        puan: p.toFixed(2), 
+        net: tN.toFixed(2), 
+        tarih: Date.now() 
+    });
+
+    if (!isSinglePlayer) {
+        db.ref('odalar/' + odaKodu + '/sonuclar/' + auth.currentUser.uid).set({
+            isim: kullaniciIsmi,
+            net: tN
+        }).then(() => {
+            db.ref('odalar/' + odaKodu).once('value', snap => {
+                const d = snap.val();
+                const sonuclar = Object.values(d.sonuclar || {});
+                if (sonuclar.length >= d.hedefOyuncu) {
+                    let lider = sonuclar.reduce((prev, curr) => (prev.net > curr.net) ? prev : curr);
+                    sesliBildiri("Sınav sonuçlandı. Şampiyonumuz: " + lider.isim + ". Toplam neti: " + lider.net.toFixed(2));
+                }
+            });
+        });
+    }
     sonucEkraniGoster();
 }
 
@@ -244,46 +301,77 @@ function sonucEkraniGoster() {
                 <tbody>
                     <tr><td>Genel Yetenek</td><td>${y.d}</td><td>${y.y}</td><td>${nY.toFixed(2)}</td></tr>
                     <tr><td>Genel Kültür</td><td>${k.d}</td><td>${k.y}</td><td>${nK.toFixed(2)}</td></tr>
-                    <tr style="background:#222;"><td>TOPLAM</td><td>${y.d+k.d}</td><td>${y.y+k.y}</td><td>${(nY+nK).toFixed(2)}</td></tr>
-                    <tr style="background:#ffff00; color:#000;"><td colspan="3"><strong>PUAN</strong></td><td><strong>${p.toFixed(2)}</strong></td></tr>
+                    <tr style="background:#222;"><td>TOPLAM NET</td><td colspan="3"><strong>${(nY+nK).toFixed(2)} Net</strong></td></tr>
+                    <tr style="background:#ffff00; color:#000;"><td colspan="3"><strong>100 ÜZERİNDEN PUANINIZ</strong></td><td><strong>${p.toFixed(2)}</strong></td></tr>
                 </tbody>
             </table>
-            <button class="ana-menu-karti" style="margin-top:20px;" onclick="cevapKagidiYukle()">SINAV KAĞIDINI GÖRÜNTÜLE</button>
+            <button class="ana-menu-karti" style="margin-top:20px;" onclick="cevapKagidiYukle()">SINAV KAĞIDINI VE ANALİZİ GÖRÜNTÜLE</button>
             <button class="nav-buton" onclick="location.reload()">Yeni Deneme Seç</button>
         </div>`;
     document.getElementById('res-h').focus();
 }
 
-// GÜNCELLEME: Zayıf ve Güçlü yanlar maddeler halinde listelenir
 function cevapKagidiYukle() {
     const { analiz } = sonPuanVerisi;
     let zayifListe = "", gucluListe = "";
     Object.keys(analiz).forEach(kon => {
-        if(analiz[kon].y > analiz[kon].d) {
-            zayifListe += `<li><strong>${kon}</strong> konusunda zayıfsınız.</li>`;
-        } else if(analiz[kon].d > 0) {
-            gucluListe += `<li><strong>${kon}</strong> konusunda güçlüsünüz.</li>`;
-        }
+        if(analiz[kon].y > analiz[kon].d) zayifListe += `<li>${kon} konusunda zayıfsınız.</li>`;
+        else if(analiz[kon].d > 0) gucluListe += `<li>${kon} konusunda güçlüsünüz.</li>`;
     });
 
     document.getElementById('deneme-govde').innerHTML = `
         <div class="soru-kutusu">
-            <h2 id="kag-h" tabindex="-1">Sınav Kağıdı ve Konu Analizi</h2>
-            <div style="margin-bottom:20px; border:1px solid #444; padding:15px; background:#1a1a1a;">
-                <h3 style="color:#00ff00;">GÜÇLÜ YANLARINIZ</h3>
-                <ul style="padding-left:20px;">${gucluListe || "Henüz güçlü bir konu tespit edilmedi."}</ul>
-                <h3 style="color:#ff0000; margin-top:15px;">ZAYIF YANLARINIZ</h3>
-                <ul style="padding-left:20px;">${zayifListe || "Zayıf bir konu tespit edilmedi."}</ul>
+            <h2 id="kag-h" tabindex="-1">Sınav Kağıdı, Sorular ve Detaylı Çözümler</h2>
+            
+            <div style="margin-bottom:25px; border:2px solid #fff; padding:15px; background:#1a1a1a;">
+                <h3 style="color:#00ff00;">GÜÇLÜ KONULARINIZ:</h3>
+                <ul style="padding-left:20px;">${gucluListe || "Henüz tespit edilemedi."}</ul>
+                <h3 style="color:#ff0000; margin-top:15px;">ZAYIF KONULARINIZ:</h3>
+                <ul style="padding-left:20px;">${zayifListe || "Henüz tespit edilemedi."}</ul>
             </div>
-            <hr>
-            ${mevcutSorular.map((s, i) => `
-                <div style="border-bottom: 1px solid #444; padding: 15px 0; text-align: left;">
-                    <p><strong>Soru ${i+1}:</strong> ${kullaniciCevaplari[i] === s.dogru_cevap ? "✅ Doğru" : (kullaniciCevaplari[i] ? "❌ Yanlış" : "⚪ Boş")}</p>
-                    <p>Cevabınız: ${kullaniciCevaplari[i] || "Boş"} | Doğru: ${s.dogru_cevap}</p>
-                    <p style="background: #222; padding: 10px; border-left: 4px solid #ffff00;"><strong>Çözüm:</strong> ${s.aciklama}</p>
-                </div>
-            `).join('')}
-            <button class="nav-buton" onclick="sonucEkraniGoster()" style="margin-top:20px;">SONUÇ EKRANINA DÖN</button>
+            
+            <hr style="border: 1px solid #444;">
+            
+            ${mevcutSorular.map((s, i) => {
+                const kullaniciSecimi = kullaniciCevaplari[i];
+                const dogruMu = kullaniciSecimi === s.dogru_cevap;
+                const durumMetni = dogruMu ? "✅ Doğru" : (kullaniciSecimi ? "❌ Yanlış" : "⚪ Boş");
+                const bolum = i < 30 ? "Genel Yetenek" : "Genel Kültür";
+                const no = i < 30 ? (i + 1) : (i - 29);
+                
+                return `
+                <div style="border-bottom: 3px solid #444; padding: 25px 0; text-align: left;">
+                    <p style="font-size: 1.2rem; background: #222; padding: 5px;"><strong>${bolum} - Soru ${no}:</strong> ${durumMetni}</p>
+                    
+                    <div style="margin: 15px 0; padding: 10px; border-left: 4px solid #007bff;">
+                        <p><strong>Soru Metni:</strong></p>
+                        <p>${s.soruKoku || ""}</p>
+                        ${s.icerik ? `<ul style="list-style-type: none; padding-left: 0;">${s.icerik.map((it, idx) => `<li>(${idx+1}) ${it}</li>`).join('')}</ul>` : ""}
+                    </div>
+
+                    <div style="margin-left: 15px; margin-bottom: 15px;">
+                        ${["A","B","C","D","E"].map((h, idx) => {
+                            let stil = "margin: 5px 0; padding: 3px;";
+                            let ekBilgi = "";
+                            if (h === s.dogru_cevap) {
+                                stil += "background: rgba(0, 255, 0, 0.2); border: 1px solid #00ff00; font-weight: bold;";
+                                ekBilgi = " (DOĞRU CEVAP)";
+                            } else if (h === kullaniciSecimi) {
+                                stil += "background: rgba(255, 0, 0, 0.2); border: 1px solid #ff0000;";
+                                ekBilgi = " (SİZİN CEVABINIZ)";
+                            }
+                            return `<p style="${stil}">${h}) ${s.secenekler[idx]} ${ekBilgi}</p>`;
+                        }).join('')}
+                    </div>
+
+                    <div style="background: #1e1e1e; padding: 15px; border: 1px dashed #ffff00; border-radius: 8px;">
+                        <p style="color: #ffff00; font-weight: bold; margin-bottom: 5px;">AÇIKLAMALI ÇÖZÜM:</p>
+                        <p>${s.aciklama}</p>
+                    </div>
+                </div>`;
+            }).join('')}
+            
+            <button class="nav-buton" onclick="sonucEkraniGoster()" style="margin-top:30px; width: 100%; height: 60px; font-size: 1.5rem;">SONUÇ EKRANINA DÖN</button>
         </div>`;
     document.getElementById('kag-h').focus();
 }
