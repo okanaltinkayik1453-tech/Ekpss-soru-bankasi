@@ -260,7 +260,7 @@
       {
         "tip": "matematik",
         "konu": "Denklemler",
-        "sesliBetimleme": "3 x eksi 5 bölü 2 eşittir x artı 4 olduğuna göre x kaçtır?",
+        "sesliBetimleme": "Denklemin sol tarafında bir kesir çizgisi var. Bu kesrin pay kısmında 3 çarpı x , eksi 5 , payda kısmında ise 2 yer alıyor. Bu kesir ifadesi , eşittir , x artı 4 olduğuna göre x kaçtır?",
         "gorselMetin": "(3x - 5) / 2 = x + 4",
         "secenekler": ["10", "11", "12", "13", "14"],
         "dogru_cevap": "D",
