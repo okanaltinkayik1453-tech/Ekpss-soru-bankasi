@@ -85,11 +85,16 @@ function odaKur() {
     const hedef = parseInt(document.getElementById('hedef-oyuncu-input').value) || 1;
     odaKodu = Math.floor(1000 + Math.random() * 9000).toString();
     db.ref('odalar/' + odaKodu).set({ durum: 'bekliyor', kurucu: auth.currentUser.displayName, oyuncuSayisi: 1, hedefOyuncu: hedef });
-    
     db.ref('odalar/' + odaKodu).on('value', snap => {
         const d = snap.val(); if (!d) return;
         odaKatilimciSayisi = d.oyuncuSayisi;
         const btn = document.getElementById('btn-onay');
+        
+        // --- SESLİ BİLDİRİM MÜDAHALESİ ---
+        if (odaKatilimciSayisi >= d.hedefOyuncu && btn.disabled) {
+            sesliBildiri("Hedef oyuncu sayısına ulaşıldı, sınavı şimdi başlatabilirsin.");
+        }
+
         if (odaKatilimciSayisi >= d.hedefOyuncu) {
             btn.disabled = false; btn.innerText = "SINAVI ŞİMDİ BAŞLAT"; btn.style.background = "#00ff00"; btn.style.color = "#000";
         } else {
@@ -98,6 +103,8 @@ function odaKur() {
         if (d.durum === 'basladi') testiYukleVeBaslat('deneme1');
     });
 
+    // Kendini (Kurucuyu) listeye ekle
+    db.ref('odalar/' + odaKodu + '/katilimciListesi/' + auth.currentUser.uid).set(auth.currentUser.email);    
     document.getElementById('oda-islem-alani').style.display = 'block';
     document.getElementById('oda-kodu-input').value = odaKodu;
     document.getElementById('btn-onay').onclick = () => db.ref('odalar/' + odaKodu).update({ durum: 'basladi' });
@@ -110,10 +117,40 @@ function odaKatilHazirlik() {
     document.getElementById('btn-onay').innerText = "ODAYA GİR VE BEKLE";
     document.getElementById('btn-onay').onclick = () => {
         odaKodu = document.getElementById('oda-kodu-input').value;
+        // ARKADAŞININ KAYDI BURADA YAPILIYOR
+        db.ref('odalar/' + odaKodu + '/katilimciListesi/' + auth.currentUser.uid).set(auth.currentUser.email);
+        
         db.ref('odalar/' + odaKodu).transaction(c => { if(c) c.oyuncuSayisi++; return c; });
         db.ref('odalar/' + odaKodu + '/durum').on('value', snap => { if(snap.val() === 'basladi') testiYukleVeBaslat('deneme1'); });
         sesliBildiri("Odaya girildi, kurucu bekleniyor.");
     };
+}
+
+// --- ULTRA AKILLI MATEMATİK BETİMLEME MOTORU (GÜNCELLENMİŞ) ---
+function matematikAnlat(metin) {
+    if (!metin) return;
+    let anlatim = metin.toLowerCase();
+
+    // Adım 1: Karekök ve Üslü Sayıların Temizliği
+    anlatim = anlatim.replace(/sqrt\((.*?)\)/g, " karekök içerisinde $1 , karekök bitti ");
+    anlatim = anlatim.replace(/√(.*?)(?=\s|$|\))/g, " karekök içerisinde $1 , karekök bitti ");
+    anlatim = anlatim.replace(/\^/g, " üzeri ");
+    
+    // Adım 2: Kesir ve Parantez Yapısı
+    anlatim = anlatim.replace(/(\(.*?\)|[0-9a-zA-Z]+)\/(\(.*?\)|[0-9a-zA-Z]+)/g, " bir kesir ifadesi: pay kısmında $1 , payda kısmında $2 . kesir bitti ");
+    anlatim = anlatim.replace(/\(/g, " parantez açılıyor, ").replace(/\)/g, " , parantez kapandı ");
+
+    // Adım 3: Temel İşaretler ve Teknik Terim Temizliği
+    anlatim = anlatim.replace(/\*/g, " çarpı ").replace(/\+/g, " artı ").replace(/-/g, " eksi ").replace(/=/g, " eşittir ");
+    anlatim = anlatim.replace(/skrt|sqrt|sqr/g, "karekök");
+
+    anlatim = anlatim.replace(/\s\s+/g, ' ').trim();
+
+    window.speechSynthesis.cancel();
+    let ut = new SpeechSynthesisUtterance(anlatim);
+    ut.lang = 'tr-TR';
+    ut.rate = 1.2; 
+    window.speechSynthesis.speak(ut);
 }
 
 // --- 4. SINAV MOTORU VE ERİŞİLEBİLİRLİK ---
@@ -171,8 +208,21 @@ function soruyuGoster(index) {
     let html = `
         <div class="soru-kutusu">
             <h2 id="s-no" tabindex="-1">${bolumAdi} - Soru ${ekranNo}</h2>
-            ${soru.tip === "turkce" ? `<p class="soru-koku-vurgu">${soru.soruKoku}</p><ul role="list">${soru.icerik.map((it, i) => `<li role="listitem">(${i+1}) ${it}</li>`).join('')}</ul>` : ""}
-            ${soru.tip === "matematik" ? `<div role="text" aria-label="${soru.sesliBetimleme}"><p>${soru.gorselMetin}</p></div>` : ""}
+            ${(index >= 15 && index <= 29) ? `
+                <div class="matematik-alani" style="text-align:center; margin-bottom:20px;">
+                    <p class="soru-koku-vurgu" aria-hidden="true" style="font-size:1.4rem; border:2px solid #ffff00; padding:15px; background:#111;">${soru.gorselMetin || soru.soruKoku || ""}</p>
+                    <button class="nav-buton" 
+                            style="width:100%; background:#00ff00; color:#000; font-weight:bold; margin-bottom:10px; padding:25px; font-size:1.3rem; border:4px double #000;" 
+                            onclick="matematikAnlat('${(soru.gorselMetin || soru.soruKoku || "").replace(/'/g, "\\'")}')">
+                        MATEMATİK SORUSUNU KÖRCÜL DİNLE
+                    </button>
+                </div>
+            ` : (soru.tip === "turkce" ? `
+                <p class="soru-koku-vurgu">${soru.soruKoku}</p>
+                <ul role="list">${soru.icerik.map((it, i) => `<li role="listitem">(${i+1}) ${it}</li>`).join('')}</ul>
+            ` : `
+                <p class="soru-koku-vurgu" style="margin-bottom:20px;">${soru.soruKoku || ""}</p>
+            `)}
             <div class="siklar-grid">
                 ${["A","B","C","D","E"].map((h, i) => `<button class="sik-butonu ${kullaniciCevaplari[index]===h?'dogru':''}" onclick="isaretle('${h}')">${h}) ${soru.secenekler[i]}</button>`).join('')}
             </div>
@@ -182,7 +232,24 @@ function soruyuGoster(index) {
                 <button class="nav-buton" onclick="sonrakiSoru()">İleri</button>
             </div>
         </div>`;
+    // Liste alanını HTML içeriğine sonradan ekliyoruz
+    html += `<div id="katilimci-takip" style="border-top:2px solid #444; margin-top:30px; padding:10px;">
+                <p style="color:#ffff00; font-weight:bold;">Sınavdaki Oyuncular:</p>
+                <ul id="canli-liste" role="list" style="list-style:none; padding:0; color:#aaa;"></ul>
+             </div>`;
+
     document.getElementById('deneme-govde').innerHTML = html;
+    
+    // Listeyi canlı güncelleme motoru
+    if (!isSinglePlayer) {
+        db.ref('odalar/' + odaKodu + '/katilimciListesi').on('value', snap => {
+            const liste = snap.val(); if(!liste) return;
+            const listeHtml = Object.values(liste).map(email => `<li role="listitem">${email}</li>`).join('');
+            const listeUl = document.getElementById('canli-liste');
+            if(listeUl) listeUl.innerHTML = listeHtml;
+        });
+    }
+
     setTimeout(() => document.getElementById('s-no').focus(), 150);
 }
 
