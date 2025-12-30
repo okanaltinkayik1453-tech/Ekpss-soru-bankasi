@@ -127,32 +127,47 @@ function odaKatilHazirlik() {
 }
 
 // --- ULTRA AKILLI MATEMATİK BETİMLEME MOTORU (GÜNCELLENMİŞ) ---
-function matematikAnlat(metin) {
-    if (!metin) return;
+function matematikAnlat(konu, metin, hazirBetimleme) {
+    if (!metin && !hazirBetimleme) return;
+
+    // Eğer JSON dosyasında senin yazdığın özel bir 'sesliBetimleme' varsa, öncelikle onu oku.
+    if (hazirBetimleme && hazirBetimleme.trim() !== "") {
+        sesliBildiri("Konu: " + konu + ". " + hazirBetimleme);
+        return;
+    }
+
     let anlatim = metin.toLowerCase();
 
-    // Adım 1: Karekök ve Üslü Sayıların Temizliği
+    // Giriş cümlesi
+    let giris = "Bu bir " + konu + " sorusudur. Denklem şöyle: ";
+
+    // Karekök ve Üslü Sayılar
     anlatim = anlatim.replace(/sqrt\((.*?)\)/g, " karekök içerisinde $1 , karekök bitti ");
     anlatim = anlatim.replace(/√(.*?)(?=\s|$|\))/g, " karekök içerisinde $1 , karekök bitti ");
     anlatim = anlatim.replace(/\^/g, " üzeri ");
     
-    // Adım 2: Kesir ve Parantez Yapısı
+    // Kesir ve Parantez
     anlatim = anlatim.replace(/(\(.*?\)|[0-9a-zA-Z]+)\/(\(.*?\)|[0-9a-zA-Z]+)/g, " bir kesir ifadesi: pay kısmında $1 , payda kısmında $2 . kesir bitti ");
     anlatim = anlatim.replace(/\(/g, " parantez açılıyor, ").replace(/\)/g, " , parantez kapandı ");
 
-    // Adım 3: Temel İşaretler ve Teknik Terim Temizliği
-anlatim = anlatim.replace(/\+/g, " artı ").replace(/-/g, " eksi ").replace(/\*/g, " çarpı ").replace(/\//g, " bölü ").replace(/:/g, " bölü ").replace(/=/g, " eşittir ").replace(/</g, " küçüktür ").replace(/>/g, " büyüktür ").replace(/%/g, " yüzde ");
-    anlatim = anlatim.replace(/skrt|sqrt|sqr/g, "karekök");
+    // Sayı-Harf ayrımı (3k -> 3 çarpı k) ve Temel İşaretler
+    anlatim = anlatim.replace(/([0-9])([a-z])/g, "$1 çarpı $2"); 
+    anlatim = anlatim.replace(/\+/g, " artı ")
+                     .replace(/-/g, " eksi ")
+                     .replace(/\*/g, " çarpı ")
+                     .replace(/\//g, " bölü ")
+                     .replace(/:/g, " bölü ")
+                     .replace(/=/g, " , eşittir , ")
+                     .replace(/</g, " , küçüktür , ")
+                     .replace(/>/g, " , büyüktür , ")
+                     .replace(/%/g, " yüzde ")
+                     .replace(/\?/g, " , nedir , ");
 
+    anlatim = anlatim.replace(/skrt|sqrt|sqr/g, "karekök");
     anlatim = anlatim.replace(/\s\s+/g, ' ').trim();
 
-    window.speechSynthesis.cancel();
-    let ut = new SpeechSynthesisUtterance(anlatim);
-    ut.lang = 'tr-TR';
-    ut.rate = 1.2; 
-    window.speechSynthesis.speak(ut);
+    sesliBildiri(giris + anlatim);
 }
-
 // --- 4. SINAV MOTORU VE ERİŞİLEBİLİRLİK ---
 function testiYukleVeBaslat(dID, isRecover = false) {
     secilenDenemeID = dID;
@@ -213,7 +228,7 @@ function soruyuGoster(index) {
                     <p class="soru-koku-vurgu" aria-hidden="true" style="font-size:1.4rem; border:2px solid #ffff00; padding:15px; background:#111;">${soru.gorselMetin || soru.soruKoku || ""}</p>
                     <button class="nav-buton" 
                             style="width:100%; background:#00ff00; color:#000; font-weight:bold; margin-bottom:10px; padding:25px; font-size:1.3rem; border:4px double #000;" 
-                            onclick="matematikAnlat('${(soru.gorselMetin || soru.soruKoku || "").replace(/'/g, "\\'")}')">
+onclick="matematikAnlat('${soru.konu}', '${(soru.gorselMetin || "").replace(/'/g, "\\'")}', '${(soru.sesliBetimleme || "").replace(/'/g, "\\'")}')">
                         MATEMATİK SORUSUNU KÖRCÜL DİNLE
                     </button>
                 </div>
