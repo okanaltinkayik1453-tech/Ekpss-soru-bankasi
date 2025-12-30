@@ -21,6 +21,7 @@ let kalanSure = 100 * 60, timerInterval, odaKodu = "";
 let isSinglePlayer = false, secilenDenemeID = "", odaKatilimciSayisi = 0;
 let sonPuanVerisi = null, sinavBittiMi = false;
 let isOnlyEmptyMode = false, sampiyonDuyuruldu = false;
+let secilenHedef = 1;
 
 // --- 1. BAĞLANTI KURTARMA (RECONNECTION) ---
 window.onload = () => {
@@ -68,6 +69,7 @@ function anaMenuGoster(isim) {
 
 function denemeListesiGoster(tekliMi) {
     isSinglePlayer = tekliMi;
+if(!tekliMi) secilenHedef = parseInt(document.getElementById('hedef-oyuncu-input').value) || 1;
     let listeHtml = `<h2 id="d-liste-baslik" tabindex="-1">Lütfen Bir Deneme Seçiniz</h2><div class="sol-sutun-butonlari">`;
     for (let i = 1; i <= TOPLAM_DENEME_SAYISI; i++) {
         const dID = `deneme${i}`;
@@ -81,7 +83,7 @@ function denemeListesiGoster(tekliMi) {
 // --- 3. ÇOKLU OYUNCU MANTIĞI ---
 function odaKurHazirlik(dID) {
     secilenDenemeID = dID;
-    const hedef = parseInt(document.getElementById('hedef-oyuncu-input').value) || 1;
+const hedef = secilenHedef;
     odaKodu = Math.floor(1000 + Math.random() * 9000).toString();
     db.ref('odalar/' + odaKodu).set({ durum: 'bekliyor', kurucu: auth.currentUser.displayName, oyuncuSayisi: 1, hedefOyuncu: hedef, denemeID: dID });
     
