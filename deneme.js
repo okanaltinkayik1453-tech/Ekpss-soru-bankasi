@@ -141,7 +141,7 @@ function matematikAnlat(metin) {
     anlatim = anlatim.replace(/\(/g, " parantez açılıyor, ").replace(/\)/g, " , parantez kapandı ");
 
     // Adım 3: Temel İşaretler ve Teknik Terim Temizliği
-    anlatim = anlatim.replace(/\*/g, " çarpı ").replace(/\+/g, " artı ").replace(/-/g, " eksi ").replace(/=/g, " eşittir ");
+anlatim = anlatim.replace(/\+/g, " artı ").replace(/-/g, " eksi ").replace(/\*/g, " çarpı ").replace(/\//g, " bölü ").replace(/:/g, " bölü ").replace(/=/g, " eşittir ").replace(/</g, " küçüktür ").replace(/>/g, " büyüktür ").replace(/%/g, " yüzde ");
     anlatim = anlatim.replace(/skrt|sqrt|sqr/g, "karekök");
 
     anlatim = anlatim.replace(/\s\s+/g, ' ').trim();
