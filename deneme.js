@@ -85,12 +85,12 @@ function odaKur() {
     const hedef = parseInt(document.getElementById('hedef-oyuncu-input').value) || 1;
     odaKodu = Math.floor(1000 + Math.random() * 9000).toString();
     db.ref('odalar/' + odaKodu).set({ durum: 'bekliyor', kurucu: auth.currentUser.displayName, oyuncuSayisi: 1, hedefOyuncu: hedef });
+    
     db.ref('odalar/' + odaKodu).on('value', snap => {
         const d = snap.val(); if (!d) return;
         odaKatilimciSayisi = d.oyuncuSayisi;
         const btn = document.getElementById('btn-onay');
         
-        // --- SESLİ BİLDİRİM MÜDAHALESİ ---
         if (odaKatilimciSayisi >= d.hedefOyuncu && btn.disabled) {
             sesliBildiri("Hedef oyuncu sayısına ulaşıldı, sınavı şimdi başlatabilirsin.");
         }
@@ -100,32 +100,38 @@ function odaKur() {
         } else {
             btn.innerText = `OYUNCULAR BEKLENİYOR (${odaKatilimciSayisi}/${d.hedefOyuncu})`;
         }
-        if (d.durum === 'basladi') testiYukleVeBaslat('deneme1');
+        
+        if (d.durum === 'basladi' && sinavEkrani.style.display !== 'block') {
+            testiYukleVeBaslat('deneme1');
+        }
     });
 
-    // Kendini (Kurucuyu) listeye ekle
     db.ref('odalar/' + odaKodu + '/katilimciListesi/' + auth.currentUser.uid).set(auth.currentUser.email);    
     document.getElementById('oda-islem-alani').style.display = 'block';
     document.getElementById('oda-kodu-input').value = odaKodu;
     document.getElementById('btn-onay').onclick = () => db.ref('odalar/' + odaKodu).update({ durum: 'basladi' });
     sesliBildiri("Oda kuruldu. Paylaşmanız gereken şifre " + odaKodu.split('').join(' '));
 }
-
 function odaKatilHazirlik() {
     document.getElementById('oda-islem-alani').style.display = 'block';
     document.getElementById('btn-onay').disabled = false;
     document.getElementById('btn-onay').innerText = "ODAYA GİR VE BEKLE";
     document.getElementById('btn-onay').onclick = () => {
         odaKodu = document.getElementById('oda-kodu-input').value;
-        // ARKADAŞININ KAYDI BURADA YAPILIYOR
         db.ref('odalar/' + odaKodu + '/katilimciListesi/' + auth.currentUser.uid).set(auth.currentUser.email);
-        
         db.ref('odalar/' + odaKodu).transaction(c => { if(c) c.oyuncuSayisi++; return c; });
-        db.ref('odalar/' + odaKodu + '/durum').on('value', snap => { if(snap.val() === 'basladi') testiYukleVeBaslat('deneme1'); });
+        
+        const durumRef = db.ref('odalar/' + odaKodu + '/durum');
+        const durumDinleyici = (snap) => {
+            if (snap.val() === 'basladi') {
+                durumRef.off('value', durumDinleyici); 
+                testiYukleVeBaslat('deneme1');
+            }
+        };
+        durumRef.on('value', durumDinleyici);
         sesliBildiri("Odaya girildi, kurucu bekleniyor.");
     };
 }
-
 // --- ULTRA AKILLI MATEMATİK BETİMLEME MOTORU (GÜNCELLENMİŞ) ---
 function matematikAnlat(konu, metin, hazirBetimleme) {
     if (!metin && !hazirBetimleme) return;
@@ -276,18 +282,35 @@ function bosBirak() {
     sesliBildiri(ekranNo + ". soru boş bırakıldı."); 
     sonrakiSoru(); 
 }
-
 function sonrakiSoru() {
     if (isOnlyEmptyMode) {
         const nextEmpty = kullaniciCevaplari.indexOf(null, mevcutIndex + 1);
-        if (nextEmpty !== -1) soruyuGoster(nextEmpty);
-        else bitisOnayEkrani();
+        if (nextEmpty !== -1) {
+            soruyuGoster(nextEmpty);
+        } else {
+            const firstEmpty = kullaniciCevaplari.indexOf(null);
+            if (firstEmpty !== -1 && firstEmpty < mevcutIndex) {
+                soruyuGoster(firstEmpty);
+            } else {
+                bitisOnayEkrani();
+            }
+        }
     } else {
-        if (mevcutIndex < mevcutSorular.length - 1) soruyuGoster(mevcutIndex + 1); 
-        else bitisOnayEkrani();
+        if (mevcutIndex === 59) { 
+            const genelYetenekBosMu = kullaniciCevaplari.slice(0, 30).every(c => c === null);
+            if (genelYetenekBosMu) {
+                sesliBildiri("Genel Kültür bitti, şimdi Genel Yetenek bölümüne yönlendiriliyorsunuz.");
+                soruyuGoster(0);
+            } else {
+                bitisOnayEkrani();
+            }
+        } else if (mevcutIndex === 29) {
+            soruyuGoster(30);
+        } else {
+            soruyuGoster(mevcutIndex + 1);
+        }
     }
 }
-
 function bitisOnayEkrani() {
     const b = kullaniciCevaplari.filter(c => c === null).length;
     document.getElementById('deneme-govde').innerHTML = `
@@ -372,7 +395,6 @@ function puanHesapla() {
     }
     sonucEkraniGoster();
 }
-
 function sonucEkraniGoster() {
     const { y, k, nY, nK, p } = sonPuanVerisi;
     document.getElementById('deneme-govde').innerHTML = `
@@ -388,7 +410,7 @@ function sonucEkraniGoster() {
                 </tbody>
             </table>
             <button class="ana-menu-karti" style="margin-top:20px;" onclick="cevapKagidiYukle()">SINAV KAĞIDINI VE ANALİZİ GÖRÜNTÜLE</button>
-            <button class="nav-buton" onclick="location.reload()">Yeni Deneme Seç</button>
+            <button class="nav-buton" onclick="sinaviTemizleVeListeyeDon()">YENİ DENEME SEÇ</button>
         </div>`;
     document.getElementById('res-h').focus();
 }
@@ -404,33 +426,27 @@ function cevapKagidiYukle() {
     document.getElementById('deneme-govde').innerHTML = `
         <div class="soru-kutusu">
             <h2 id="kag-h" tabindex="-1">Sınav Kağıdı, Sorular ve Detaylı Çözümler</h2>
-            
             <div style="margin-bottom:25px; border:2px solid #fff; padding:15px; background:#1a1a1a;">
                 <h3 style="color:#00ff00;">GÜÇLÜ KONULARINIZ:</h3>
                 <ul style="padding-left:20px;">${gucluListe || "Henüz tespit edilemedi."}</ul>
                 <h3 style="color:#ff0000; margin-top:15px;">ZAYIF KONULARINIZ:</h3>
                 <ul style="padding-left:20px;">${zayifListe || "Henüz tespit edilemedi."}</ul>
             </div>
-            
             <hr style="border: 1px solid #444;">
-            
             ${mevcutSorular.map((s, i) => {
                 const kullaniciSecimi = kullaniciCevaplari[i];
                 const dogruMu = kullaniciSecimi === s.dogru_cevap;
                 const durumMetni = dogruMu ? "✅ Doğru" : (kullaniciSecimi ? "❌ Yanlış" : "⚪ Boş");
                 const bolum = i < 30 ? "Genel Yetenek" : "Genel Kültür";
                 const no = i < 30 ? (i + 1) : (i - 29);
-                
                 return `
                 <div style="border-bottom: 3px solid #444; padding: 25px 0; text-align: left;">
                     <p style="font-size: 1.2rem; background: #222; padding: 5px;"><strong>${bolum} - Soru ${no}:</strong> ${durumMetni}</p>
-                    
                     <div style="margin: 15px 0; padding: 10px; border-left: 4px solid #007bff;">
                         <p><strong>Soru Metni:</strong></p>
                         <p>${s.soruKoku || ""}</p>
                         ${s.icerik ? `<ul style="list-style-type: none; padding-left: 0;">${s.icerik.map((it, idx) => `<li>(${idx+1}) ${it}</li>`).join('')}</ul>` : ""}
                     </div>
-
                     <div style="margin-left: 15px; margin-bottom: 15px;">
                         ${["A","B","C","D","E"].map((h, idx) => {
                             let stil = "margin: 5px 0; padding: 3px;";
@@ -445,19 +461,32 @@ function cevapKagidiYukle() {
                             return `<p style="${stil}">${h}) ${s.secenekler[idx]} ${ekBilgi}</p>`;
                         }).join('')}
                     </div>
-
                     <div style="background: #1e1e1e; padding: 15px; border: 1px dashed #ffff00; border-radius: 8px;">
                         <p style="color: #ffff00; font-weight: bold; margin-bottom: 5px;">AÇIKLAMALI ÇÖZÜM:</p>
                         <p>${s.aciklama}</p>
                     </div>
                 </div>`;
             }).join('')}
-            
-            <button class="nav-buton" onclick="sonucEkraniGoster()" style="margin-top:30px; width: 100%; height: 60px; font-size: 1.5rem;">SONUÇ EKRANINA DÖN</button>
+            <button class="nav-buton" onclick="sinaviTemizleVeListeyeDon()" style="margin-top:30px; width: 100%; height: 60px; font-size: 1.5rem;">YENİ DENEME SEÇ</button>
         </div>`;
     document.getElementById('kag-h').focus();
 }
 
+function sinaviTemizleVeListeyeDon() {
+    clearInterval(timerInterval);
+    sinavBittiMi = false;
+    isOnlyEmptyMode = false;
+    mevcutIndex = 0;
+    kullaniciCevaplari = [];
+    kalanSure = 100 * 60;
+    localStorage.removeItem('aktifOda');
+    localStorage.removeItem('cevaplar');
+    localStorage.removeItem('sonIndex');
+    localStorage.removeItem('kayitZamani');
+    sinavEkrani.style.display = 'none';
+    odaYonetimi.style.display = 'block';
+    denemeListesiGoster();
+}
 // --- 6. SÜRE VE SES ---
 function baslatSayac() {
     if(timerInterval) clearInterval(timerInterval);
