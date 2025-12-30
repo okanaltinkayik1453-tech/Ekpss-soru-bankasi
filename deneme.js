@@ -13,7 +13,6 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db = firebase.database();
-const analytics = firebase.analytics();
 
 // --- AYARLAR VE DEĞİŞKENLER ---
 const TOPLAM_DENEME_SAYISI = 1; 
@@ -21,7 +20,7 @@ let mevcutSorular = [], mevcutIndex = 0, kullaniciCevaplari = [];
 let kalanSure = 100 * 60, timerInterval, odaKodu = "";
 let isSinglePlayer = false, secilenDenemeID = "", odaKatilimciSayisi = 0;
 let sonPuanVerisi = null, sinavBittiMi = false;
-let isOnlyEmptyMode = false; 
+let isOnlyEmptyMode = false, sampiyonDuyuruldu = false;
 
 // --- 1. BAĞLANTI KURTARMA (RECONNECTION) ---
 window.onload = () => {
@@ -41,14 +40,16 @@ const girisEkrani = document.getElementById('giris-ekrani');
 const odaYonetimi = document.getElementById('oda-yonetimi');
 const sinavEkrani = document.getElementById('sinav-ekrani');
 
-btnLogin.onclick = () => {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    auth.signInWithPopup(provider).then((res) => {
-        girisEkrani.style.display = 'none';
-        odaYonetimi.style.display = 'block';
-        anaMenuGoster(res.user.displayName);
-    });
-};
+if(btnLogin) {
+    btnLogin.onclick = () => {
+        const provider = new firebase.auth.GoogleAuthProvider();
+        auth.signInWithPopup(provider).then((res) => {
+            girisEkrani.style.display = 'none';
+            odaYonetimi.style.display = 'block';
+            anaMenuGoster(res.user.displayName);
+        });
+    };
+}
 
 function anaMenuGoster(isim) {
     odaYonetimi.innerHTML = `
@@ -57,23 +58,20 @@ function anaMenuGoster(isim) {
             <div style="margin-bottom:15px; border:1px solid #444; padding:15px; background:#1a1a1a;">
                 <label for="hedef-oyuncu-input">Toplam Katılımcı Sayısı:</label>
                 <input type="number" id="hedef-oyuncu-input" value="1" min="1" max="10" style="width:100%; padding:10px; margin-top:5px; background:#000; color:#fff; border:1px solid #ffff00;">
-                <button class="ana-menu-karti" onclick="odaKur()" style="margin-top:10px;">ÇOKLU SINAV KUR (ODA SAHİBİ)</button>
+                <button class="ana-menu-karti" onclick="denemeListesiGoster(false)" style="margin-top:10px;">ÇOKLU SINAV KUR (ODA SAHİBİ)</button>
             </div>
             <button class="ana-menu-karti" onclick="odaKatilHazirlik()">ÇOKLU SINAVA GİR (KOD İLE)</button>
-            <button class="ana-menu-karti" onclick="denemeListesiGoster()" style="background:#ffff00; color:#000;">TEK KİŞİLİK SINAV BAŞLAT</button>
-        </div>
-        <div id="oda-islem-alani" style="display:none; margin-top:20px;">
-            <input type="number" id="oda-kodu-input" placeholder="4 Haneli Şifre" style="width:100%; padding:15px; font-size:1.5rem;">
-            <button id="btn-onay" class="nav-buton" style="width:100%; margin-top:10px;" disabled>OYUNCULAR BEKLENİYOR...</button>
+            <button class="ana-menu-karti" onclick="denemeListesiGoster(true)" style="background:#ffff00; color:#000;">TEK KİŞİLİK SINAV BAŞLAT</button>
         </div>`;
     document.getElementById('menu-baslik').focus();
 }
 
-function denemeListesiGoster() {
-    isSinglePlayer = true;
+function denemeListesiGoster(tekliMi) {
+    isSinglePlayer = tekliMi;
     let listeHtml = `<h2 id="d-liste-baslik" tabindex="-1">Lütfen Bir Deneme Seçiniz</h2><div class="sol-sutun-butonlari">`;
     for (let i = 1; i <= TOPLAM_DENEME_SAYISI; i++) {
-        listeHtml += `<button class="test-link" onclick="testiYukleVeBaslat('deneme${i}')">EKPSS Deneme ${i}</button>`;
+        const dID = `deneme${i}`;
+        listeHtml += `<button class="test-link" onclick="${tekliMi ? `testiYukleVeBaslat('${dID}')` : `odaKurHazirlik('${dID}')`}">EKPSS Deneme ${i}</button>`;
     }
     listeHtml += `</div><button class="nav-buton" onclick="location.reload()">Geri Dön</button>`;
     odaYonetimi.innerHTML = listeHtml;
@@ -81,100 +79,89 @@ function denemeListesiGoster() {
 }
 
 // --- 3. ÇOKLU OYUNCU MANTIĞI ---
-function odaKur() {
+function odaKurHazirlik(dID) {
+    secilenDenemeID = dID;
     const hedef = parseInt(document.getElementById('hedef-oyuncu-input').value) || 1;
     odaKodu = Math.floor(1000 + Math.random() * 9000).toString();
-    db.ref('odalar/' + odaKodu).set({ durum: 'bekliyor', kurucu: auth.currentUser.displayName, oyuncuSayisi: 1, hedefOyuncu: hedef });
+    db.ref('odalar/' + odaKodu).set({ durum: 'bekliyor', kurucu: auth.currentUser.displayName, oyuncuSayisi: 1, hedefOyuncu: hedef, denemeID: dID });
     
     db.ref('odalar/' + odaKodu).on('value', snap => {
         const d = snap.val(); if (!d) return;
         odaKatilimciSayisi = d.oyuncuSayisi;
         const btn = document.getElementById('btn-onay');
         
-        if (odaKatilimciSayisi >= d.hedefOyuncu && btn.disabled) {
+        if (odaKatilimciSayisi >= d.hedefOyuncu && btn && btn.disabled) {
             sesliBildiri("Hedef oyuncu sayısına ulaşıldı, sınavı şimdi başlatabilirsin.");
-        }
-
-        if (odaKatilimciSayisi >= d.hedefOyuncu) {
             btn.disabled = false; btn.innerText = "SINAVI ŞİMDİ BAŞLAT"; btn.style.background = "#00ff00"; btn.style.color = "#000";
-        } else {
+        } else if (btn) {
             btn.innerText = `OYUNCULAR BEKLENİYOR (${odaKatilimciSayisi}/${d.hedefOyuncu})`;
         }
         
         if (d.durum === 'basladi' && sinavEkrani.style.display !== 'block') {
-            testiYukleVeBaslat('deneme1');
+            testiYukleVeBaslat(d.denemeID);
         }
     });
 
     db.ref('odalar/' + odaKodu + '/katilimciListesi/' + auth.currentUser.uid).set(auth.currentUser.email);    
-    document.getElementById('oda-islem-alani').style.display = 'block';
-    document.getElementById('oda-kodu-input').value = odaKodu;
+    odaYonetimi.innerHTML = `
+        <h2 id="oda-kur-baslik" tabindex="-1">Oda Kuruldu. Kod: ${odaKodu}</h2>
+        <div id="oda-islem-alani">
+            <button id="btn-onay" class="nav-buton" style="width:100%;" disabled>OYUNCULAR BEKLENİYOR...</button>
+        </div>`;
     document.getElementById('btn-onay').onclick = () => db.ref('odalar/' + odaKodu).update({ durum: 'basladi' });
     sesliBildiri("Oda kuruldu. Paylaşmanız gereken şifre " + odaKodu.split('').join(' '));
+    document.getElementById('oda-kur-baslik').focus();
 }
+
 function odaKatilHazirlik() {
-    document.getElementById('oda-islem-alani').style.display = 'block';
-    document.getElementById('btn-onay').disabled = false;
-    document.getElementById('btn-onay').innerText = "ODAYA GİR VE BEKLE";
-    document.getElementById('btn-onay').onclick = () => {
+    odaYonetimi.innerHTML = `
+        <h2 id="katil-baslik" tabindex="-1">Odaya Katıl</h2>
+        <input type="number" id="oda-kodu-input" placeholder="4 Haneli Şifre" style="width:100%; padding:15px; font-size:1.5rem; background:#000; color:#fff; border:1px solid #ffff00;">
+        <button id="btn-katil-onay" class="nav-buton" style="width:100%; margin-top:10px;">ODAYA GİR VE BEKLE</button>
+        <button class="nav-buton" onclick="location.reload()" style="margin-top:10px;">GERİ</button>`;
+    
+    document.getElementById('katil-baslik').focus();
+
+    document.getElementById('btn-katil-onay').onclick = () => {
         odaKodu = document.getElementById('oda-kodu-input').value;
-        db.ref('odalar/' + odaKodu + '/katilimciListesi/' + auth.currentUser.uid).set(auth.currentUser.email);
-        db.ref('odalar/' + odaKodu).transaction(c => { if(c) c.oyuncuSayisi++; return c; });
+        const odaRef = db.ref('odalar/' + odaKodu);
         
-        const durumRef = db.ref('odalar/' + odaKodu + '/durum');
-        const durumDinleyici = (snap) => {
-            if (snap.val() === 'basladi') {
-                durumRef.off('value', durumDinleyici); 
-                testiYukleVeBaslat('deneme1');
+        odaRef.once('value').then(snap => {
+            if(!snap.exists()) {
+                sesliBildiri("Hatalı oda kodu girdiniz.");
+                return;
             }
-        };
-        durumRef.on('value', durumDinleyici);
-        sesliBildiri("Odaya girildi, kurucu bekleniyor.");
+            db.ref('odalar/' + odaKodu + '/katilimciListesi/' + auth.currentUser.uid).set(auth.currentUser.email);
+            odaRef.transaction(c => { if(c) c.oyuncuSayisi++; return c; });
+            odaRef.on('value', (s) => {
+                if (s.val() && s.val().durum === 'basladi') testiYukleVeBaslat(s.val().denemeID);
+            });
+            sesliBildiri("Odaya girildi, kurucu bekleniyor.");
+        });
     };
 }
-// --- ULTRA AKILLI MATEMATİK BETİMLEME MOTORU (GÜNCELLENMİŞ) ---
+
+// --- 4. MATEMATİK BETİMLEME MOTORU ---
 function matematikAnlat(konu, metin, hazirBetimleme) {
     if (!metin && !hazirBetimleme) return;
-
-    // Eğer JSON dosyasında senin yazdığın özel bir 'sesliBetimleme' varsa, öncelikle onu oku.
     if (hazirBetimleme && hazirBetimleme.trim() !== "") {
         sesliBildiri("Konu: " + konu + ". " + hazirBetimleme);
         return;
     }
-
     let anlatim = metin.toLowerCase();
-
-    // Giriş cümlesi
     let giris = "Bu bir " + konu + " sorusudur. Denklem şöyle: ";
-
-    // Karekök ve Üslü Sayılar
     anlatim = anlatim.replace(/sqrt\((.*?)\)/g, " karekök içerisinde $1 , karekök bitti ");
     anlatim = anlatim.replace(/√(.*?)(?=\s|$|\))/g, " karekök içerisinde $1 , karekök bitti ");
     anlatim = anlatim.replace(/\^/g, " üzeri ");
-    
-    // Kesir ve Parantez
     anlatim = anlatim.replace(/(\(.*?\)|[0-9a-zA-Z]+)\/(\(.*?\)|[0-9a-zA-Z]+)/g, " bir kesir ifadesi: pay kısmında $1 , payda kısmında $2 . kesir bitti ");
     anlatim = anlatim.replace(/\(/g, " parantez açılıyor, ").replace(/\)/g, " , parantez kapandı ");
-
-    // Sayı-Harf ayrımı (3k -> 3 çarpı k) ve Temel İşaretler
     anlatim = anlatim.replace(/([0-9])([a-z])/g, "$1 çarpı $2"); 
-    anlatim = anlatim.replace(/\+/g, " artı ")
-                     .replace(/-/g, " eksi ")
-                     .replace(/\*/g, " çarpı ")
-                     .replace(/\//g, " bölü ")
-                     .replace(/:/g, " bölü ")
-                     .replace(/=/g, " , eşittir , ")
-                     .replace(/</g, " , küçüktür , ")
-                     .replace(/>/g, " , büyüktür , ")
-                     .replace(/%/g, " yüzde ")
-                     .replace(/\?/g, " , nedir , ");
-
-    anlatim = anlatim.replace(/skrt|sqrt|sqr/g, "karekök");
+    anlatim = anlatim.replace(/\+/g, " artı ").replace(/-/g, " eksi ").replace(/\*/g, " çarpı ").replace(/\//g, " bölü ").replace(/:/g, " bölü ").replace(/=/g, " , eşittir , ").replace(/</g, " , küçüktür , ").replace(/>/g, " , büyüktür , ").replace(/%/g, " yüzde ").replace(/\?/g, " , nedir , ");
     anlatim = anlatim.replace(/\s\s+/g, ' ').trim();
-
     sesliBildiri(giris + anlatim);
 }
-// --- 4. SINAV MOTORU VE ERİŞİLEBİLİRLİK ---
+
+// --- 5. SINAV MOTORU ---
 function testiYukleVeBaslat(dID, isRecover = false) {
     secilenDenemeID = dID;
     fetch(`./data/${dID}.json`).then(res => res.json()).then(data => {
@@ -185,18 +172,45 @@ function testiYukleVeBaslat(dID, isRecover = false) {
         odaYonetimi.style.display = 'none'; sinavEkrani.style.display = 'block';
         
         sinavEkrani.innerHTML = `
-            <button id="timer-kutusu" class="timer-dikdortgen" 
-                    onclick="kalanSureyiSoyle()" 
-                    aria-label="Kalan süreyi belirt" 
-                    style="position: fixed; top: 10px; right: 10px; background: #ff0000; color: #ffffff; padding: 25px; border: 5px solid #ffffff; border-radius: 10px; font-size: 3rem; font-weight: 900; z-index: 9999; box-shadow: 0 0 25px rgba(0,0,0,0.7);">
+            <button id="timer-kutusu" class="timer-dikdortgen" onclick="kalanSureyiSoyle()" aria-label="Kalan süreyi belirt">
                 <span id="dakika">100</span>:<span id="saniye">00</span>
             </button>
-            <div id="deneme-govde"></div>`;
-        
+            <div id="deneme-govde"></div>
+            <div id="katilimci-takip" style="border-top:2px solid #444; margin-top:30px; padding:10px;">
+                <p style="color:#ffff00; font-weight:bold;">Sınavdaki Oyuncular:</p>
+                <ul id="canli-liste" role="list" style="list-style:none; padding:0; color:#aaa;"></ul>
+            </div>`;
+
+        if (!isSinglePlayer) {
+            db.ref('odalar/' + odaKodu + '/katilimciListesi').on('value', snap => {
+                const liste = snap.val(); if(!liste) return;
+                const listeHtml = Object.values(liste).map(email => `<li role="listitem">${email}</li>`).join('');
+                if(document.getElementById('canli-liste')) document.getElementById('canli-liste').innerHTML = listeHtml;
+            });
+
+            db.ref('odalar/' + odaKodu + '/sonuclar').on('value', snap => {
+                const sonuclar = snap.val(); if(!sonuclar || sampiyonDuyuruldu) return;
+                db.ref('odalar/' + odaKodu + '/hedefOyuncu').once('value', hSnap => {
+                    if (Object.values(sonuclar).length >= hSnap.val()) {
+                        sampiyonDuyuruldu = true;
+                        let lider = Object.values(sonuclar).reduce((prev, curr) => (prev.net > curr.net) ? prev : curr);
+                        sesliBildiri("Dikkat! Tüm adaylar bitirdi. Şampiyon: " + lider.isim + ". Net: " + lider.net.toFixed(2));
+                    }
+                });
+            });
+        }
+
         const rIndex = isRecover ? (parseInt(localStorage.getItem('sonIndex')) || 0) : null;
         if(rIndex !== null) soruyuGoster(rIndex);
         else {
-            document.getElementById('deneme-govde').innerHTML = `<div class="soru-kutusu"><h2 id="b-baslik" tabindex="-1">Sınav Başladı. Bölüm Seçiniz.</h2><div class="navigasyon-alani"><button class="nav-buton" onclick="soruyuGoster(0)">GENEL YETENEK</button><button class="nav-buton" onclick="soruyuGoster(30)">GENEL KÜLTÜR</button></div></div>`;
+            document.getElementById('deneme-govde').innerHTML = `
+                <div class="soru-kutusu">
+                    <h2 id="b-baslik" tabindex="-1">Sınav Başladı. Bölüm Seçiniz.</h2>
+                    <div class="navigasyon-alani">
+                        <button class="nav-buton" onclick="soruyuGoster(0)">GENEL YETENEK</button>
+                        <button class="nav-buton" onclick="soruyuGoster(30)">GENEL KÜLTÜR</button>
+                    </div>
+                </div>`;
             sesliBildiri("Süreniz başladı. Lütfen çözmek istediğiniz bölümü seçin.");
             setTimeout(() => document.getElementById('b-baslik').focus(), 150);
         }
@@ -204,46 +218,32 @@ function testiYukleVeBaslat(dID, isRecover = false) {
     });
 }
 
-function kalanSureyiSoyle() {
-    const dk = Math.floor(kalanSure / 60);
-    sesliBildiri("Kalan süreniz " + dk + " dakika.");
-}
-
 function soruyuGoster(index) {
     const bolumAdi = index < 30 ? "Genel Yetenek" : "Genel Kültür";
     const ekranNo = index < 30 ? (index + 1) : (index - 29);
 
-    if (mevcutIndex < 30 && index >= 30) {
-        const dk = Math.floor(kalanSure / 60);
-        sesliBildiri("Genel Kültür bölümüne geçtiniz. Kalan süreniz " + dk + " dakika.");
-    } else if (mevcutIndex >= 30 && index < 30) {
-        const dk = Math.floor(kalanSure / 60);
-        sesliBildiri("Genel Yetenek bölümüne geçtiniz. Kalan süreniz " + dk + " dakika.");
-    }
+    if (mevcutIndex < 30 && index >= 30) sesliBildiri("Genel Kültür bölümüne geçtiniz.");
+    else if (mevcutIndex >= 30 && index < 30) sesliBildiri("Genel Yetenek bölümüne geçtiniz.");
 
     mevcutIndex = index;
-    localStorage.setItem('sonIndex', index); 
-    localStorage.setItem('cevaplar', JSON.stringify(kullaniciCevaplari));
+    localStorage.setItem('sonIndex', index); localStorage.setItem('cevaplar', JSON.stringify(kullaniciCevaplari));
     
     const soru = mevcutSorular[index];
     let html = `
         <div class="soru-kutusu">
             <h2 id="s-no" tabindex="-1">${bolumAdi} - Soru ${ekranNo}</h2>
             ${(index >= 15 && index <= 29) ? `
-                <div class="matematik-alani" style="text-align:center; margin-bottom:20px;">
-                    <p class="soru-koku-vurgu" aria-hidden="true" style="font-size:1.4rem; border:2px solid #ffff00; padding:15px; background:#111;">${soru.gorselMetin || soru.soruKoku || ""}</p>
-                    <button class="nav-buton" 
-                            style="width:100%; background:#00ff00; color:#000; font-weight:bold; margin-bottom:10px; padding:25px; font-size:1.3rem; border:4px double #000;" 
-onclick="matematikAnlat('${soru.konu}', '${(soru.gorselMetin || "").replace(/'/g, "\\'")}', '${(soru.sesliBetimleme || "").replace(/'/g, "\\'")}')">
+                <div class="matematik-alani">
+                    <p class="soru-koku-vurgu" aria-hidden="true">${soru.gorselMetin || soru.soruKoku || ""}</p>
+                    <button class="nav-buton" style="width:100%; background:#00ff00; color:#000; padding:25px;" 
+                            onclick="matematikAnlat('${soru.konu}', '${(soru.gorselMetin || "").replace(/'/g, "\\'")}', '${(soru.sesliBetimleme || "").replace(/'/g, "\\'")}')">
                         MATEMATİK SORUSUNU KÖRCÜL DİNLE
                     </button>
                 </div>
             ` : (soru.tip === "turkce" ? `
                 <p class="soru-koku-vurgu">${soru.soruKoku}</p>
                 <ul role="list">${soru.icerik.map((it, i) => `<li role="listitem">(${i+1}) ${it}</li>`).join('')}</ul>
-            ` : `
-                <p class="soru-koku-vurgu" style="margin-bottom:20px;">${soru.soruKoku || ""}</p>
-            `)}
+            ` : `<p class="soru-koku-vurgu">${soru.soruKoku || ""}</p>`)}
             <div class="siklar-grid">
                 ${["A","B","C","D","E"].map((h, i) => `<button class="sik-butonu ${kullaniciCevaplari[index]===h?'dogru':''}" onclick="isaretle('${h}')">${h}) ${soru.secenekler[i]}</button>`).join('')}
             </div>
@@ -253,64 +253,43 @@ onclick="matematikAnlat('${soru.konu}', '${(soru.gorselMetin || "").replace(/'/g
                 <button class="nav-buton" onclick="sonrakiSoru()">İleri</button>
             </div>
         </div>`;
-    // Liste alanını HTML içeriğine sonradan ekliyoruz
-    html += `<div id="katilimci-takip" style="border-top:2px solid #444; margin-top:30px; padding:10px;">
-                <p style="color:#ffff00; font-weight:bold;">Sınavdaki Oyuncular:</p>
-                <ul id="canli-liste" role="list" style="list-style:none; padding:0; color:#aaa;"></ul>
-             </div>`;
-
     document.getElementById('deneme-govde').innerHTML = html;
-    
-    // Listeyi canlı güncelleme motoru
-    if (!isSinglePlayer) {
-        db.ref('odalar/' + odaKodu + '/katilimciListesi').on('value', snap => {
-            const liste = snap.val(); if(!liste) return;
-            const listeHtml = Object.values(liste).map(email => `<li role="listitem">${email}</li>`).join('');
-            const listeUl = document.getElementById('canli-liste');
-            if(listeUl) listeUl.innerHTML = listeHtml;
-        });
-    }
-
     setTimeout(() => document.getElementById('s-no').focus(), 150);
 }
 
-function isaretle(h) { kullaniciCevaplari[mevcutIndex] = h; sesliBildiri(h + " işaretlendi."); sonrakiSoru(); }
-
-function bosBirak() { 
-    kullaniciCevaplari[mevcutIndex] = null; 
-    const ekranNo = mevcutIndex < 30 ? (mevcutIndex + 1) : (mevcutIndex - 29);
-    sesliBildiri(ekranNo + ". soru boş bırakıldı."); 
-    sonrakiSoru(); 
-}
+// --- 6. AKILLI NAVİGASYON ---
 function sonrakiSoru() {
     if (isOnlyEmptyMode) {
         const nextEmpty = kullaniciCevaplari.indexOf(null, mevcutIndex + 1);
-        if (nextEmpty !== -1) {
-            soruyuGoster(nextEmpty);
-        } else {
+        if (nextEmpty !== -1) soruyuGoster(nextEmpty);
+        else {
             const firstEmpty = kullaniciCevaplari.indexOf(null);
-            if (firstEmpty !== -1 && firstEmpty < mevcutIndex) {
-                soruyuGoster(firstEmpty);
-            } else {
-                bitisOnayEkrani();
-            }
+            if (firstEmpty !== -1 && firstEmpty < mevcutIndex) soruyuGoster(firstEmpty);
+            else bitisOnayEkrani();
         }
     } else {
-        if (mevcutIndex === 59) { 
-            const genelYetenekBosMu = kullaniciCevaplari.slice(0, 30).every(c => c === null);
-            if (genelYetenekBosMu) {
-                sesliBildiri("Genel Kültür bitti, şimdi Genel Yetenek bölümüne yönlendiriliyorsunuz.");
+        if (mevcutIndex === 29) { 
+            sesliBildiri("Genel Yetenek bitti, Genel Kültür bölümüne geçiliyor.");
+            kalanSureyiSoyle();
+            soruyuGoster(30);
+        } else if (mevcutIndex === 59) {
+            const gyBosMu = kullaniciCevaplari.slice(0, 30).some(c => c === null);
+            if (gyBosMu) {
+                sesliBildiri("Genel Kültür bitti, çözmediğiniz Genel Yetenek sorularına geçiliyor.");
+                kalanSureyiSoyle();
                 soruyuGoster(0);
             } else {
                 bitisOnayEkrani();
             }
-        } else if (mevcutIndex === 29) {
-            soruyuGoster(30);
         } else {
             soruyuGoster(mevcutIndex + 1);
         }
     }
 }
+
+function isaretle(h) { kullaniciCevaplari[mevcutIndex] = h; sesliBildiri(h + " işaretlendi."); sonrakiSoru(); }
+function bosBirak() { kullaniciCevaplari[mevcutIndex] = null; sesliBildiri("Boş bırakıldı."); sonrakiSoru(); }
+
 function bitisOnayEkrani() {
     const b = kullaniciCevaplari.filter(c => c === null).length;
     document.getElementById('deneme-govde').innerHTML = `
@@ -327,167 +306,112 @@ function bitisOnayEkrani() {
 
 function bosDon() { 
     const i = kullaniciCevaplari.indexOf(null); 
-    if (i !== -1) { isOnlyEmptyMode = true; soruyuGoster(i); } 
-    else { puanHesapla(); }
+    if (i !== -1) { isOnlyEmptyMode = true; soruyuGoster(i); } else puanHesapla();
 }
 
-// --- 5. PUANLAMA VE ANALİZ ---
+// --- 7. PUANLAMA VE ANALİZ ---
 function puanHesapla() {
     if(sinavBittiMi) return; sinavBittiMi = true; isOnlyEmptyMode = false;
-    let y = {d:0, y:0}, k = {d:0, y:0}, analiz = {};
-    let matD = 0, matY = 0, digD = 0, digY = 0; 
+    let yD=0, yY=0, kD=0, kY=0, analiz={}, matD=0, matY=0;
 
     kullaniciCevaplari.forEach((cev, i) => {
-        const s = mevcutSorular[i];
-        const h = i < 30 ? y : k;
-        const dMu = (cev === s.dogru_cevap);
-
-        if (cev !== null) {
-            if(dMu) h.d++; else h.y++;
-            if (s.tip === "matematik") {
-                if(dMu) matD++; else matY++;
-            } else {
-                if(dMu) digD++; else digY++;
-            }
-        }
-
+        const s = mevcutSorular[i], dMu = (cev === s.dogru_cevap);
+        if (i < 30) { if(cev!==null) { if(dMu) yD++; else yY++; } }
+        else { if(cev!==null) { if(dMu) kD++; else kY++; } }
+        if (s.tip === "matematik" && cev!==null) { if(dMu) matD++; else matY++; }
         if(!analiz[s.konu]) analiz[s.konu]={d:0,y:0};
         if(dMu) analiz[s.konu].d++; else if(cev!==null) analiz[s.konu].y++;
     });
-    
-    const nY = y.d - (y.y / 4), nK = k.d - (k.y / 4), tN = nY + nK;
-    const matNet = matD - (matY / 4);
-    const digerNet = digD - (digY / 4);
+const matNet = matD - (matY / 4);
+const toplamYanlis = yY + kY;
+const toplamNet = (yD + kD) - (toplamYanlis / 4);
+let p = 40; 
+if (matNet >= 6) {
+    const digerNetler = toplamNet - matNet;
+    p += (matNet * 1.2) + digerNetler;
+} else {
+    p += toplamNet;
+}
+if (toplamYanlis > 0 && p >= 100) { p = 99.75; }
+if (p > 100) p = 100;
+if (p < 0) p = 0;
+const tN = toplamNet;    
 
-    let p = 40 + digerNet;
-    if (matD > 6) {
-        p += (matNet * 1.2); 
-    } else {
-        p += matNet;
-    }
+sonPuanVerisi = { yD, yY, kD, kY, n: tN, p: p, analiz };
+    const isim = auth.currentUser.displayName || "Aday";
+    db.ref('kullanicilar/' + auth.currentUser.uid + '/cozulenDenemeler/' + secilenDenemeID).set({ puan: p.toFixed(2), net: tN.toFixed(2), tarih: Date.now() });
 
-    if (p > 100) p = 100;
-    if (p < 0) p = 0;
-
-    sonPuanVerisi = { y, k, nY, nK, p, analiz };
-
-    const kullaniciIsmi = auth.currentUser.displayName || auth.currentUser.email.split('@')[0];
-    db.ref('kullanicilar/' + auth.currentUser.uid + '/cozulenDenemeler/' + secilenDenemeID).set({ 
-        puan: p.toFixed(2), 
-        net: tN.toFixed(2), 
-        tarih: Date.now() 
-    });
-
-    if (!isSinglePlayer) {
-        db.ref('odalar/' + odaKodu + '/sonuclar/' + auth.currentUser.uid).set({
-            isim: kullaniciIsmi,
-            net: tN
-        }).then(() => {
-            db.ref('odalar/' + odaKodu).once('value', snap => {
-                const d = snap.val();
-                const sonuclar = Object.values(d.sonuclar || {});
-                if (sonuclar.length >= d.hedefOyuncu) {
-                    let lider = sonuclar.reduce((prev, curr) => (prev.net > curr.net) ? prev : curr);
-                    sesliBildiri("Sınav sonuçlandı. Şampiyonumuz: " + lider.isim + ". Toplam neti: " + lider.net.toFixed(2));
-                }
-            });
-        });
-    }
+    if (!isSinglePlayer) db.ref('odalar/' + odaKodu + '/sonuclar/' + auth.currentUser.uid).set({ isim, net: tN });
     sonucEkraniGoster();
 }
 function sonucEkraniGoster() {
-    const { y, k, nY, nK, p } = sonPuanVerisi;
+    const { yD, yY, kD, kY, n, p } = sonPuanVerisi;
+    const yNet = (yD - (yY / 4)).toFixed(2);
+    const kNet = (kD - (kY / 4)).toFixed(2);
+
     document.getElementById('deneme-govde').innerHTML = `
         <div class="soru-kutusu">
             <h2 id="res-h" tabindex="-1">Sınav Sonucunuz</h2>
-            <table border="1" style="width:100%; border-collapse:collapse; text-align:center;">
-                <thead><tr><th>Bölüm</th><th>Doğru</th><th>Yanlış</th><th>Net</th></tr></thead>
+            
+            <table style="width:100%; border-collapse: collapse; background: #8B0000; color: white; border: 4px solid white; margin-bottom: 20px;">
+                <thead>
+                    <tr style="border-bottom: 3px solid white;">
+                        <th style="padding: 10px; border-right: 2px solid white;">Bölüm</th>
+                        <th style="padding: 10px; border-right: 2px solid white;">D</th>
+                        <th style="padding: 10px; border-right: 2px solid white;">Y</th>
+                        <th style="padding: 10px;">Net</th>
+                    </tr>
+                </thead>
                 <tbody>
-                    <tr><td>Genel Yetenek</td><td>${y.d}</td><td>${y.y}</td><td>${nY.toFixed(2)}</td></tr>
-                    <tr><td>Genel Kültür</td><td>${k.d}</td><td>${k.y}</td><td>${nK.toFixed(2)}</td></tr>
-                    <tr style="background:#222;"><td>TOPLAM NET</td><td colspan="3"><strong>${(nY+nK).toFixed(2)} Net</strong></td></tr>
-                    <tr style="background:#ffff00; color:#000;"><td colspan="3"><strong>100 ÜZERİNDEN PUANINIZ</strong></td><td><strong>${p.toFixed(2)}</strong></td></tr>
+                    <tr style="border-bottom: 2px solid white; font-weight: bold;">
+                        <td style="padding: 15px; border-right: 2px solid white;">Genel Yetenek</td>
+                        <td style="padding: 15px; border-right: 2px solid white;">${yD}</td>
+                        <td style="padding: 15px; border-right: 2px solid white;">${yY}</td>
+                        <td style="padding: 15px;">${yNet}</td>
+                    </tr>
+                    <tr style="border-bottom: 3px solid white; font-weight: bold;">
+                        <td style="padding: 15px; border-right: 2px solid white;">Genel Kültür</td>
+                        <td style="padding: 15px; border-right: 2px solid white;">${kD}</td>
+                        <td style="padding: 15px; border-right: 2px solid white;">${kY}</td>
+                        <td style="padding: 15px;">${kNet}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" style="padding: 20px; text-align: center; font-size: 1.8rem; background: #fff; color: #8B0000;">
+                            <strong>TOPLAM PUAN: ${p.toFixed(2)}</strong>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
-            <button class="ana-menu-karti" style="margin-top:20px;" onclick="cevapKagidiYukle()">SINAV KAĞIDINI VE ANALİZİ GÖRÜNTÜLE</button>
-            <button class="nav-buton" onclick="sinaviTemizleVeListeyeDon()">YENİ DENEME SEÇ</button>
+
+            <div class="navigasyon-alani" style="display: flex; flex-direction: column; gap: 10px;">
+                <button class="ana-menu-karti" onclick="cevapKagidiYukle()">DETAYLI ANALİZ VE ÇÖZÜMLER</button>
+                <button class="nav-buton" style="background: #ffff00; color: #000;" onclick="location.reload()">YENİ DENEME SEÇ</button>
+            </div>
         </div>`;
     document.getElementById('res-h').focus();
+    sesliBildiri("Sınav bitti. Puanınız " + p.toFixed(2));
 }
-
 function cevapKagidiYukle() {
-    const { analiz } = sonPuanVerisi;
-    let zayifListe = "", gucluListe = "";
-    Object.keys(analiz).forEach(kon => {
-        if(analiz[kon].y > analiz[kon].d) zayifListe += `<li>${kon} konusunda zayıfsınız.</li>`;
-        else if(analiz[kon].d > 0) gucluListe += `<li>${kon} konusunda güçlüsünüz.</li>`;
+    let listHtml = `<h2 id="kag-h" tabindex="-1">Detaylı Çözümler</h2><div style="text-align:left; max-height:500px; overflow-y:auto; padding:10px;">`;
+    mevcutSorular.forEach((s, i) => {
+        const c = kullaniciCevaplari[i];
+        const durum = c === s.dogru_cevap ? "DOĞRU" : (c === null ? "BOŞ" : "YANLIŞ");
+        listHtml += `
+            <div style="border-bottom:2px solid #444; margin-bottom:15px; padding:10px;">
+                <h3 style="color:#ffff00;">Soru ${i+1} (${durum})</h3>
+                <p><strong>Soru:</strong> ${s.soruKoku || "Matematik/Görsel"}</p>
+                <p>Cevabınız: ${c || "İşaretlenmedi"} | Doğru: ${s.dogru_cevap}</p>
+                <p style="background:#1a1a1a; padding:10px; border-left:4px solid #00ff00; margin-top:5px;">
+                    <strong>Açıklama:</strong> ${s.aciklama || "Ek açıklama bulunmuyor."}
+                </p>
+            </div>`;
     });
-
-    document.getElementById('deneme-govde').innerHTML = `
-        <div class="soru-kutusu">
-            <h2 id="kag-h" tabindex="-1">Sınav Kağıdı, Sorular ve Detaylı Çözümler</h2>
-            <div style="margin-bottom:25px; border:2px solid #fff; padding:15px; background:#1a1a1a;">
-                <h3 style="color:#00ff00;">GÜÇLÜ KONULARINIZ:</h3>
-                <ul style="padding-left:20px;">${gucluListe || "Henüz tespit edilemedi."}</ul>
-                <h3 style="color:#ff0000; margin-top:15px;">ZAYIF KONULARINIZ:</h3>
-                <ul style="padding-left:20px;">${zayifListe || "Henüz tespit edilemedi."}</ul>
-            </div>
-            <hr style="border: 1px solid #444;">
-            ${mevcutSorular.map((s, i) => {
-                const kullaniciSecimi = kullaniciCevaplari[i];
-                const dogruMu = kullaniciSecimi === s.dogru_cevap;
-                const durumMetni = dogruMu ? "✅ Doğru" : (kullaniciSecimi ? "❌ Yanlış" : "⚪ Boş");
-                const bolum = i < 30 ? "Genel Yetenek" : "Genel Kültür";
-                const no = i < 30 ? (i + 1) : (i - 29);
-                return `
-                <div style="border-bottom: 3px solid #444; padding: 25px 0; text-align: left;">
-                    <p style="font-size: 1.2rem; background: #222; padding: 5px;"><strong>${bolum} - Soru ${no}:</strong> ${durumMetni}</p>
-                    <div style="margin: 15px 0; padding: 10px; border-left: 4px solid #007bff;">
-                        <p><strong>Soru Metni:</strong></p>
-                        <p>${s.soruKoku || ""}</p>
-                        ${s.icerik ? `<ul style="list-style-type: none; padding-left: 0;">${s.icerik.map((it, idx) => `<li>(${idx+1}) ${it}</li>`).join('')}</ul>` : ""}
-                    </div>
-                    <div style="margin-left: 15px; margin-bottom: 15px;">
-                        ${["A","B","C","D","E"].map((h, idx) => {
-                            let stil = "margin: 5px 0; padding: 3px;";
-                            let ekBilgi = "";
-                            if (h === s.dogru_cevap) {
-                                stil += "background: rgba(0, 255, 0, 0.2); border: 1px solid #00ff00; font-weight: bold;";
-                                ekBilgi = " (DOĞRU CEVAP)";
-                            } else if (h === kullaniciSecimi) {
-                                stil += "background: rgba(255, 0, 0, 0.2); border: 1px solid #ff0000;";
-                                ekBilgi = " (SİZİN CEVABINIZ)";
-                            }
-                            return `<p style="${stil}">${h}) ${s.secenekler[idx]} ${ekBilgi}</p>`;
-                        }).join('')}
-                    </div>
-                    <div style="background: #1e1e1e; padding: 15px; border: 1px dashed #ffff00; border-radius: 8px;">
-                        <p style="color: #ffff00; font-weight: bold; margin-bottom: 5px;">AÇIKLAMALI ÇÖZÜM:</p>
-                        <p>${s.aciklama}</p>
-                    </div>
-                </div>`;
-            }).join('')}
-            <button class="nav-buton" onclick="sinaviTemizleVeListeyeDon()" style="margin-top:30px; width: 100%; height: 60px; font-size: 1.5rem;">YENİ DENEME SEÇ</button>
-        </div>`;
+    listHtml += `</div><button class="nav-buton" onclick="sonucEkraniGoster()">Geri Dön</button>`;
+    document.getElementById('deneme-govde').innerHTML = listHtml;
     document.getElementById('kag-h').focus();
 }
 
-function sinaviTemizleVeListeyeDon() {
-    clearInterval(timerInterval);
-    sinavBittiMi = false;
-    isOnlyEmptyMode = false;
-    mevcutIndex = 0;
-    kullaniciCevaplari = [];
-    kalanSure = 100 * 60;
-    localStorage.removeItem('aktifOda');
-    localStorage.removeItem('cevaplar');
-    localStorage.removeItem('sonIndex');
-    localStorage.removeItem('kayitZamani');
-    sinavEkrani.style.display = 'none';
-    odaYonetimi.style.display = 'block';
-    denemeListesiGoster();
-}
-// --- 6. SÜRE VE SES ---
+// --- 8. YARDIMCI FONKSİYONLAR ---
 function baslatSayac() {
     if(timerInterval) clearInterval(timerInterval);
     timerInterval = setInterval(() => {
@@ -500,4 +424,10 @@ function baslatSayac() {
     }, 1000);
 }
 
-function sesliBildiri(m) { window.speechSynthesis.cancel(); let ut = new SpeechSynthesisUtterance(m); ut.lang = 'tr-TR'; ut.rate = 1.4; window.speechSynthesis.speak(ut); }
+function kalanSureyiSoyle() { sesliBildiri("Kalan süreniz " + Math.floor(kalanSure / 60) + " dakika."); }
+
+function sesliBildiri(m) { 
+    window.speechSynthesis.cancel(); 
+    let ut = new SpeechSynthesisUtterance(m); ut.lang = 'tr-TR'; ut.rate = 1.2; 
+    window.speechSynthesis.speak(ut); 
+}
