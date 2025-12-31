@@ -24,17 +24,30 @@ let isOnlyEmptyMode = false, sampiyonDuyuruldu = false;
 let secilenHedef = 1;
 
 // --- 1. BAĞLANTI KURTARMA (RECONNECTION) ---
-window.onload = () => {
-    const kaydedilmisOda = localStorage.getItem('aktifOda');
-    const kayitZamani = localStorage.getItem('kayitZamani');
-    if (kaydedilmisOda && (Date.now() - parseInt(kayitZamani) < 300000)) {
-        sesliBildiri("Sınava kaldığınız yerden devam ediyorsunuz.");
-        odaKodu = kaydedilmisOda;
-        secilenDenemeID = localStorage.getItem('secilenDenemeID');
-        testiYukleVeBaslat(secilenDenemeID, true);
-    }
-};
+firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+        const kaydedilmisOda = localStorage.getItem('aktifOda');
+        const kayitZamani = localStorage.getItem('kayitZamani');
+        const kaydedilmisMod = localStorage.getItem('isSinglePlayer');
 
+        if (kaydedilmisOda && (Date.now() - parseInt(kayitZamani) < 300000)) {
+            sesliBildiri("Sınava kaldığınız yerden devam ediyorsunuz.");
+            odaKodu = kaydedilmisOda;
+            isSinglePlayer = kaydedilmisMod === 'true';
+            secilenDenemeID = localStorage.getItem('secilenDenemeID');
+            testiYukleVeBaslat(secilenDenemeID, true);
+        } else {
+            // Eğer aktif bir sınav yoksa ana menüyü göster
+            girisEkrani.style.display = 'none';
+            odaYonetimi.style.display = 'block';
+            anaMenuGoster(user.displayName);
+        }
+    } else {
+        // Kullanıcı giriş yapmamışsa giriş ekranını göster
+        girisEkrani.style.display = 'block';
+        odaYonetimi.style.display = 'none';
+    }
+});
 // --- 2. GİRİŞ VE ANA MENÜ ---
 const btnLogin = document.getElementById('btn-google-login');
 const girisEkrani = document.getElementById('giris-ekrani');
@@ -170,7 +183,7 @@ function testiYukleVeBaslat(dID, isRecover = false) {
         mevcutSorular = data[0].sorular;
         kullaniciCevaplari = isRecover ? JSON.parse(localStorage.getItem('cevaplar')) : new Array(mevcutSorular.length).fill(null);
         localStorage.setItem('aktifOda', odaKodu); localStorage.setItem('secilenDenemeID', dID); localStorage.setItem('kayitZamani', Date.now());
-        
+localStorage.setItem('isSinglePlayer', isSinglePlayer);        
         odaYonetimi.style.display = 'none'; sinavEkrani.style.display = 'block';
         
         sinavEkrani.innerHTML = `
@@ -219,7 +232,6 @@ function testiYukleVeBaslat(dID, isRecover = false) {
         baslatSayac(); 
     });
 }
-
 function soruyuGoster(index) {
     const bolumAdi = index < 30 ? "Genel Yetenek" : "Genel Kültür";
     const ekranNo = index < 30 ? (index + 1) : (index - 29);
@@ -228,7 +240,8 @@ function soruyuGoster(index) {
     else if (mevcutIndex >= 30 && index < 30) sesliBildiri("Genel Yetenek bölümüne geçtiniz.");
 
     mevcutIndex = index;
-    localStorage.setItem('sonIndex', index); localStorage.setItem('cevaplar', JSON.stringify(kullaniciCevaplari));
+    localStorage.setItem('sonIndex', index); 
+    localStorage.setItem('cevaplar', JSON.stringify(kullaniciCevaplari));
     
     const soru = mevcutSorular[index];
     let html = `
@@ -238,7 +251,7 @@ function soruyuGoster(index) {
                 <div class="matematik-alani">
                     <p class="soru-koku-vurgu" aria-hidden="true">${soru.gorselMetin || soru.soruKoku || ""}</p>
                     <button class="nav-buton" style="width:100%; background:#00ff00; color:#000; padding:25px;" 
-                            onclick="matematikAnlat('${soru.konu}', '${(soru.gorselMetin || "").replace(/'/g, "\\'")}', '${(soru.sesliBetimleme || "").replace(/'/g, "\\'")}')">
+                            onclick="matematikAnlat('${soru.konu}', '${(soru.gorselMetin || "").replace(/'/g, "\\\\'").replace(/"/g, '\\"')}', '${(soru.sesliBetimleme || "").replace(/'/g, "\\\\'").replace(/"/g, '\\"')}')">
                         MATEMATİK SORUSUNU KÖRCÜL DİNLE
                     </button>
                 </div>
@@ -251,66 +264,110 @@ function soruyuGoster(index) {
             </div>
             <div class="navigasyon-alani">
                 <button class="nav-buton" onclick="soruyuGoster(${index-1})" ${index===0?'disabled':''}>Geri</button>
-                <button class="nav-buton" onclick="bosBirak()">Boş Bırak</button>
+                <button class="nav-buton" onclick="bosBirak()">Boş Birak</button>
                 <button class="nav-buton" onclick="sonrakiSoru()">İleri</button>
             </div>
         </div>`;
     document.getElementById('deneme-govde').innerHTML = html;
     setTimeout(() => document.getElementById('s-no').focus(), 150);
 }
-
 // --- 6. AKILLI NAVİGASYON ---
 function sonrakiSoru() {
+    const toplamSoru = mevcutSorular.length;
+
+    // MOD 1: SADECE BOŞLARA DÖNÜŞ MODU
     if (isOnlyEmptyMode) {
-        const nextEmpty = kullaniciCevaplari.indexOf(null, mevcutIndex + 1);
-        if (nextEmpty !== -1) soruyuGoster(nextEmpty);
-        else {
-            const firstEmpty = kullaniciCevaplari.indexOf(null);
-            if (firstEmpty !== -1 && firstEmpty < mevcutIndex) soruyuGoster(firstEmpty);
-            else bitisOnayEkrani();
-        }
-    } else {
-        if (mevcutIndex === 29) { 
-            sesliBildiri("Genel Yetenek bitti, Genel Kültür bölümüne geçiliyor.");
-            kalanSureyiSoyle();
-            soruyuGoster(30);
-        } else if (mevcutIndex === 59) {
-            const gyBosMu = kullaniciCevaplari.slice(0, 30).some(c => c === null);
-            if (gyBosMu) {
-                sesliBildiri("Genel Kültür bitti, çözmediğiniz Genel Yetenek sorularına geçiliyor.");
-                kalanSureyiSoyle();
-                soruyuGoster(0);
+        // Önce Genel Yetenek'teki (0-29) boşları tara, sonra Genel Kültür (30-59)
+        let sonrakiBos = kullaniciCevaplari.slice(mevcutIndex + 1).findIndex(c => c === null);
+        
+        if (sonrakiBos !== -1) {
+            // İleride boş var, oraya git
+            const hedefIndex = mevcutIndex + 1 + sonrakiBos;
+            // Bölüm geçiş uyarısı
+            if (mevcutIndex < 30 && hedefIndex >= 30) sesliBildiri("Genel Kültür bölümündeki boş sorularınıza geçiliyor.");
+            soruyuGoster(hedefIndex);
+        } else {
+            // İleride boş yok, peki geride (en başta) kalmış mı?
+            const enBastakiBos = kullaniciCevaplari.indexOf(null);
+            if (enBastakiBos !== -1 && enBastakiBos < mevcutIndex) {
+                sesliBildiri("Listenin başındaki kalan boş sorulara dönülüyor.");
+                soruyuGoster(enBastakiBos);
             } else {
+                // Hiç boş kalmadı!
+                isOnlyEmptyMode = false;
                 bitisOnayEkrani();
             }
-        } else {
-            soruyuGoster(mevcutIndex + 1);
         }
+        return; // Fonksiyondan çık
+    }
+
+    // MOD 2: NORMAL SINAV AKIŞI
+    if (mevcutIndex === 29) { // Genel Yetenek bitti
+        // Eğer Genel Kültür henüz hiç ellenmemişse veya boşlar varsa oraya geç
+        const gkBosVarMi = kullaniciCevaplari.slice(30, 60).some(c => c === null);
+        if (gkBosVarMi) {
+            sesliBildiri("Genel Yetenek bitti. Genel Kültür bölümüne otomatik geçiliyor. Kalan süreniz " + Math.floor(kalanSure / 60) + " dakika.");
+            soruyuGoster(30);
+        } else {
+            bitisOnayEkrani();
+        }
+    } else if (mevcutIndex === 59) { // Genel Kültür bitti
+        // Eğer Genel Yetenek'te boş bırakılan soru varsa oraya dön
+        const gyBosVarMi = kullaniciCevaplari.slice(0, 30).some(c => c === null);
+        if (gyBosVarMi) {
+            sesliBildiri("Genel Kültür bitti. Genel Yetenek bölümündeki boş bıraktığınız sorulara geçiliyor. Kalan süreniz " + Math.floor(kalanSure / 60) + " dakika.");
+            soruyuGoster(kullaniciCevaplari.indexOf(null));
+        } else {
+            bitisOnayEkrani();
+        }
+    } else {
+        // Normal sıralı ilerleme
+        soruyuGoster(mevcutIndex + 1);
     }
 }
-
 function isaretle(h) { kullaniciCevaplari[mevcutIndex] = h; sesliBildiri(h + " işaretlendi."); sonrakiSoru(); }
 function bosBirak() { kullaniciCevaplari[mevcutIndex] = null; sesliBildiri("Boş bırakıldı."); sonrakiSoru(); }
-
 function bitisOnayEkrani() {
-    const b = kullaniciCevaplari.filter(c => c === null).length;
-    document.getElementById('deneme-govde').innerHTML = `
-        <div class="soru-kutusu">
-            <h2 id="bitis-h" tabindex="-1">Sınav Tamamlandı</h2>
-            <p>${b > 0 ? b + " adet boşunuz var." : "Boşunuz yok."}</p>
+    const bosSayisi = kullaniciCevaplari.filter(c => c === null).length;
+    let icerikHtml = "";
+    
+    if (bosSayisi > 0) {
+        icerikHtml = `
+            <h2 id="bitis-h" tabindex="-1">Sınavın İlk Turu Tamamlandı</h2>
+            <p style="font-size:1.5rem; margin-bottom:20px;">Toplam ${bosSayisi} adet boş bıraktığınız soru var.</p>
+            <div class="navigasyon-alani" style="display:flex; flex-direction:column; gap:10px;">
+                <button class="nav-buton" onclick="bosDon()" style="background:#ffff00; color:#000;">BOŞ BIRAKTIĞIM SORULARA DÖN (${bosSayisi} ADET)</button>
+                <button class="nav-buton" style="background:#00ff00; color:#000;" onclick="puanHesapla()">BOŞLARI BIRAK VE SINAVI BİTİR</button>
+            </div>`;
+        sesliBildiri("Sınavın sonuna geldiniz. " + bosSayisi + " adet boşunuz var. Boşlara dönebilir veya bu şekilde bitirebilirsiniz.");
+    } else {
+        icerikHtml = `
+            <h2 id="bitis-h" tabindex="-1">Tebrikler! Tüm Soruları Yanıtladınız.</h2>
             <div class="navigasyon-alani">
-                <button class="nav-buton" onclick="bosDon()">SADECE BOŞLARA DÖN</button>
-                <button class="nav-buton" onclick="puanHesapla()">PUANI HESAPLA</button>
-            </div>
-        </div>`;
-    document.getElementById('bitis-h').focus();
+                <button class="nav-buton" style="width:100%; background:#00ff00; color:#000;" onclick="puanHesapla()">SINAVI BİTİR VE PUANI HESAPLA</button>
+            </div>`;
+        sesliBildiri("Tüm soruları yanıtladınız. Sınavı bitirmeye hazırsınız.");
+    }
+
+    document.getElementById('deneme-govde').innerHTML = `<div class="soru-kutusu">${icerikHtml}</div>`;
+    // NVDA'nın başlığı okuması için odaklanıyoruz
+    setTimeout(() => {
+        const h2 = document.getElementById('bitis-h');
+        if(h2) h2.focus();
+    }, 150);
 }
 
 function bosDon() { 
-    const i = kullaniciCevaplari.indexOf(null); 
-    if (i !== -1) { isOnlyEmptyMode = true; soruyuGoster(i); } else puanHesapla();
+    // Öncelik: Her zaman listenin en başındaki (Genel Yetenek) boş sorudan başla
+    const ilkBos = kullaniciCevaplari.indexOf(null); 
+    if (ilkBos !== -1) { 
+        isOnlyEmptyMode = true; 
+        sesliBildiri("Boş sorularınıza Genel Yetenek'ten başlanarak dönülüyor.");
+        soruyuGoster(ilkBos); 
+    } else {
+        puanHesapla();
+    }
 }
-
 // --- 7. PUANLAMA VE ANALİZ ---
 function puanHesapla() {
     if(sinavBittiMi) return; sinavBittiMi = true; isOnlyEmptyMode = false;
@@ -320,7 +377,7 @@ function puanHesapla() {
         const s = mevcutSorular[i], dMu = (cev === s.dogru_cevap);
         if (i < 30) { if(cev!==null) { if(dMu) yD++; else yY++; } }
         else { if(cev!==null) { if(dMu) kD++; else kY++; } }
-        if (s.tip === "matematik" && cev!==null) { if(dMu) matD++; else matY++; }
+if (i >= 15 && i <= 29 && cev !== null) { if(dMu) matD++; else matY++; }
         if(!analiz[s.konu]) analiz[s.konu]={d:0,y:0};
         if(dMu) analiz[s.konu].d++; else if(cev!==null) analiz[s.konu].y++;
     });
@@ -387,7 +444,7 @@ function sonucEkraniGoster() {
 
             <div class="navigasyon-alani" style="display: flex; flex-direction: column; gap: 10px;">
                 <button class="ana-menu-karti" onclick="cevapKagidiYukle()">DETAYLI ANALİZ VE ÇÖZÜMLER</button>
-                <button class="nav-buton" style="background: #ffff00; color: #000;" onclick="location.reload()">YENİ DENEME SEÇ</button>
+<button class="nav-buton" style="background: #ffff00; color: #000;" onclick="sinaviTemizleVeListeyeDon()">YENİ DENEME SEÇ</button>
             </div>
         </div>`;
     document.getElementById('res-h').focus();
@@ -427,9 +484,46 @@ function baslatSayac() {
 }
 
 function kalanSureyiSoyle() { sesliBildiri("Kalan süreniz " + Math.floor(kalanSure / 60) + " dakika."); }
-
 function sesliBildiri(m) { 
     window.speechSynthesis.cancel(); 
-    let ut = new SpeechSynthesisUtterance(m); ut.lang = 'tr-TR'; ut.rate = 1.2; 
+    let ut = new SpeechSynthesisUtterance(m); 
+    ut.lang = 'tr-TR'; 
+    ut.rate = 1.2; 
     window.speechSynthesis.speak(ut); 
+}
+function sinaviTemizleVeListeyeDon() {
+    // 1. Firebase Dinleyicilerini Kapat
+    if (odaKodu) {
+        db.ref('odalar/' + odaKodu).off();
+        db.ref('odalar/' + odaKodu + '/katilimciListesi').off();
+        db.ref('odalar/' + odaKodu + '/sonuclar').off();
+    }
+
+    // 2. Zamanlayıcıyı Durdur
+    if(timerInterval) clearInterval(timerInterval);
+
+    // 3. Değişkenleri Sıfırla
+    sinavBittiMi = false;
+    isOnlyEmptyMode = false;
+    sampiyonDuyuruldu = false; 
+    mevcutIndex = 0;
+    kullaniciCevaplari = [];
+    kalanSure = 100 * 60;
+
+    // 4. Depolamayı Temizle (NVDA Kullanıcısı için tam temizlik)
+    localStorage.removeItem('aktifOda');
+    localStorage.removeItem('cevaplar');
+    localStorage.removeItem('sonIndex');
+    localStorage.removeItem('kayitZamani');
+    localStorage.removeItem('isSinglePlayer');
+    localStorage.removeItem('secilenDenemeID');
+
+    // 5. Seçim Ekranına (Ana Menüye) Dön
+    sinavEkrani.style.display = 'none';
+    odaYonetimi.style.display = 'block';
+    
+    const user = firebase.auth().currentUser;
+if(user) {
+        anaMenuGoster(user.displayName);
+    }
 }
