@@ -271,78 +271,95 @@ function soruyuGoster(index) {
     document.getElementById('deneme-govde').innerHTML = html;
     setTimeout(() => document.getElementById('s-no').focus(), 150);
 }
-// --- 6. AKILLI NAVİGASYON ---
+// --- 6. AKILLI NAVİGASYON (BÖLÜMLER ARASI AKILLI KÖPRÜ) ---
 function sonrakiSoru() {
     const toplamSoru = mevcutSorular.length;
 
-    // MOD 1: SADECE BOŞLARA DÖNÜŞ MODU
+    // MOD 1: SADECE BOŞLARA ODAKLANMA MODU (Bitiş Onayından Sonra Çalışır)
     if (isOnlyEmptyMode) {
-        // Önce Genel Yetenek'teki (0-29) boşları tara, sonra Genel Kültür (30-59)
-        let sonrakiBos = kullaniciCevaplari.slice(mevcutIndex + 1).findIndex(c => c === null);
-        
-        if (sonrakiBos !== -1) {
-            // İleride boş var, oraya git
-            const hedefIndex = mevcutIndex + 1 + sonrakiBos;
-            // Bölüm geçiş uyarısı
-            if (mevcutIndex < 30 && hedefIndex >= 30) sesliBildiri("Genel Kültür bölümündeki boş sorularınıza geçiliyor.");
-            soruyuGoster(hedefIndex);
-        } else {
-            // İleride boş yok, peki geride (en başta) kalmış mı?
-            const enBastakiBos = kullaniciCevaplari.indexOf(null);
-            if (enBastakiBos !== -1 && enBastakiBos < mevcutIndex) {
-                sesliBildiri("Listenin başındaki kalan boş sorulara dönülüyor.");
-                soruyuGoster(enBastakiBos);
-            } else {
-                // Hiç boş kalmadı!
-                isOnlyEmptyMode = false;
-                bitisOnayEkrani();
+        let sonrakiBosIndex = -1;
+        for (let i = mevcutIndex + 1; i < toplamSoru; i++) {
+            if (kullaniciCevaplari[i] === null) {
+                sonrakiBosIndex = i;
+                break;
             }
         }
-        return; // Fonksiyondan çık
+
+        if (sonrakiBosIndex !== -1) {
+            if (mevcutIndex < 30 && sonrakiBosIndex >= 30) {
+                sesliBildiri("Genel Yetenek boşları bitti. Genel Kültür bölümündeki boş sorularınıza geçiliyor.");
+            }
+            soruyuGoster(sonrakiBosIndex);
+        } else {
+            isOnlyEmptyMode = false;
+            finalBitisEkrani();
+        }
+        return;
     }
 
-    // MOD 2: NORMAL SINAV AKIŞI
-    if (mevcutIndex === 29) { // Genel Yetenek bitti
-        // Eğer Genel Kültür henüz hiç ellenmemişse veya boşlar varsa oraya geç
-        const gkBosVarMi = kullaniciCevaplari.slice(30, 60).some(c => c === null);
-        if (gkBosVarMi) {
-            sesliBildiri("Genel Yetenek bitti. Genel Kültür bölümüne otomatik geçiliyor. Kalan süreniz " + Math.floor(kalanSure / 60) + " dakika.");
+    // MOD 2: NORMAL SINAV AKIŞI (Bölümler Arası Otomatik Geçiş)
+    
+    // Durum A: Genel Yetenek'in sonuna gelindi (30. Soru)
+    if (mevcutIndex === 29) {
+        // Genel Kültür bölümüne hiç dokunulmuş mu bak (tüm sorular hala null mu?)
+        const gkHiçDokunulmadi = kullaniciCevaplari.slice(30, 60).every(c => c === null);
+        
+        if (gkHiçDokunulmadi) {
+            sesliBildiri("Genel Yetenek bitti. Genel Kültür bölümüne otomatik geçiliyor.");
             soruyuGoster(30);
         } else {
+            // Zaten Genel Kültür'den gelmişti veya GK'yı çözmüştü, o zaman onay ekranına git
             bitisOnayEkrani();
         }
-    } else if (mevcutIndex === 59) { // Genel Kültür bitti
-        // Eğer Genel Yetenek'te boş bırakılan soru varsa oraya dön
-        const gyBosVarMi = kullaniciCevaplari.slice(0, 30).some(c => c === null);
-        if (gyBosVarMi) {
-            sesliBildiri("Genel Kültür bitti. Genel Yetenek bölümündeki boş bıraktığınız sorulara geçiliyor. Kalan süreniz " + Math.floor(kalanSure / 60) + " dakika.");
-            soruyuGoster(kullaniciCevaplari.indexOf(null));
+    } 
+    // Durum B: Genel Kültür'ün sonuna gelindi (60. Soru)
+    else if (mevcutIndex === 59) {
+        // Genel Yetenek bölümüne hiç dokunulmuş mu bak (tüm sorular hala null mu?)
+        const gyHiçDokunulmadi = kullaniciCevaplari.slice(0, 30).every(c => c === null);
+        
+        if (gyHiçDokunulmadi) {
+            sesliBildiri("Genel Kültür bitti. Genel Yetenek bölümüne otomatik geçiliyor.");
+            soruyuGoster(0);
         } else {
+            // Zaten Genel Yetenek'i bitirip buraya gelmişti, o zaman onay ekranına git
             bitisOnayEkrani();
         }
-    } else {
-        // Normal sıralı ilerleme
+    } 
+    // Durum C: Bölüm içindeki normal ilerleyiş
+    else {
         soruyuGoster(mevcutIndex + 1);
     }
 }
-function isaretle(h) { kullaniciCevaplari[mevcutIndex] = h; sesliBildiri(h + " işaretlendi."); sonrakiSoru(); }
-function bosBirak() { kullaniciCevaplari[mevcutIndex] = null; sesliBildiri("Boş bırakıldı."); sonrakiSoru(); }
+
+function isaretle(h) { 
+    kullaniciCevaplari[mevcutIndex] = h; 
+    sesliBildiri(h + " işaretlendi."); 
+    sonrakiSoru(); 
+}
+
+function bosBirak() { 
+    kullaniciCevaplari[mevcutIndex] = null; 
+    sesliBildiri("Boş bırakıldı."); 
+    sonrakiSoru(); 
+}
+
 function bitisOnayEkrani() {
     const bosSayisi = kullaniciCevaplari.filter(c => c === null).length;
     let icerikHtml = "";
     
     if (bosSayisi > 0) {
         icerikHtml = `
-            <h2 id="bitis-h" tabindex="-1">Sınavın İlk Turu Tamamlandı</h2>
+            <h2 id="bitis-h" tabindex="-1">Tüm Soruları Gördünüz</h2>
             <p style="font-size:1.5rem; margin-bottom:20px;">Toplam ${bosSayisi} adet boş bıraktığınız soru var.</p>
-            <div class="navigasyon-alani" style="display:flex; flex-direction:column; gap:10px;">
-                <button class="nav-buton" onclick="bosDon()" style="background:#ffff00; color:#000;">BOŞ BIRAKTIĞIM SORULARA DÖN (${bosSayisi} ADET)</button>
-                <button class="nav-buton" style="background:#00ff00; color:#000;" onclick="puanHesapla()">BOŞLARI BIRAK VE SINAVI BİTİR</button>
+            <div class="navigasyon-alani" style="display:flex; flex-direction:column; gap:15px;">
+                <button class="nav-buton" onclick="bosDon()" style="background:#ffff00; color:#000; padding:20px; font-weight:bold;">BOŞ BIRAKTIĞIM SORULARA DÖN</button>
+                <button class="nav-buton" style="background:#00ff00; color:#000; padding:20px;" onclick="puanHesapla()">SINAVI TAMAMEN BİTİR</button>
             </div>`;
-        sesliBildiri("Sınavın sonuna geldiniz. " + bosSayisi + " adet boşunuz var. Boşlara dönebilir veya bu şekilde bitirebilirsiniz.");
+        sesliBildiri("Her iki bölümü de gezdiniz. Toplam " + bosSayisi + " adet boşunuz var. Boşlara dönebilir veya sınavı bitirebilirsiniz.");
     } else {
         icerikHtml = `
-            <h2 id="bitis-h" tabindex="-1">Tebrikler! Tüm Soruları Yanıtladınız.</h2>
+            <h2 id="bitis-h" tabindex="-1">Sınav Tamamlandı</h2>
+            <p style="font-size:1.5rem; margin-bottom:20px;">Tüm soruları yanıtladınız.</p>
             <div class="navigasyon-alani">
                 <button class="nav-buton" style="width:100%; background:#00ff00; color:#000;" onclick="puanHesapla()">SINAVI BİTİR VE PUANI HESAPLA</button>
             </div>`;
@@ -350,23 +367,30 @@ function bitisOnayEkrani() {
     }
 
     document.getElementById('deneme-govde').innerHTML = `<div class="soru-kutusu">${icerikHtml}</div>`;
-    // NVDA'nın başlığı okuması için odaklanıyoruz
-    setTimeout(() => {
-        const h2 = document.getElementById('bitis-h');
-        if(h2) h2.focus();
-    }, 150);
+    setTimeout(() => document.getElementById('bitis-h').focus(), 150);
 }
 
 function bosDon() { 
-    // Öncelik: Her zaman listenin en başındaki (Genel Yetenek) boş sorudan başla
     const ilkBos = kullaniciCevaplari.indexOf(null); 
     if (ilkBos !== -1) { 
         isOnlyEmptyMode = true; 
-        sesliBildiri("Boş sorularınıza Genel Yetenek'ten başlanarak dönülüyor.");
+        sesliBildiri("Boş sorularınıza dönülüyor. Sadece boş bıraktığınız sorular gösterilecek.");
         soruyuGoster(ilkBos); 
     } else {
         puanHesapla();
     }
+}
+
+function finalBitisEkrani() {
+    const icerikHtml = `
+        <h2 id="final-h" tabindex="-1">Boşlar Tamamlandı</h2>
+        <p style="font-size:1.5rem; margin-bottom:20px;">Tüm boş sorularınızı gözden geçirdiniz.</p>
+        <div class="navigasyon-alani">
+            <button class="nav-buton" style="width:100%; background:#00ff00; color:#000; padding:20px; font-weight:bold;" onclick="puanHesapla()">SINAVI BİTİR VE SONUCU GÖR</button>
+        </div>`;
+    sesliBildiri("Boş sorularınız bitti. Sınavı bitir düğmesine basarak sonucunuzu görebilirsiniz.");
+    document.getElementById('deneme-govde').innerHTML = `<div class="soru-kutusu">${icerikHtml}</div>`;
+    setTimeout(() => document.getElementById('final-h').focus(), 150);
 }
 // --- 7. PUANLAMA VE ANALİZ ---
 function puanHesapla() {
