@@ -113,7 +113,8 @@ const hedef = secilenHedef;
         }
         
         if (d.durum === 'basladi' && sinavEkrani.style.display !== 'block') {
-            testiYukleVeBaslat(d.denemeID);
+db.ref('odalar/' + odaKodu).off();
+testiYukleVeBaslat(d.denemeID);
         }
     });
 
@@ -149,7 +150,10 @@ function odaKatilHazirlik() {
             db.ref('odalar/' + odaKodu + '/katilimciListesi/' + auth.currentUser.uid).set(auth.currentUser.email);
             odaRef.transaction(c => { if(c) c.oyuncuSayisi++; return c; });
             odaRef.on('value', (s) => {
-                if (s.val() && s.val().durum === 'basladi') testiYukleVeBaslat(s.val().denemeID);
+if (s.val() && s.val().durum === 'basladi') {
+    odaRef.off();
+    testiYukleVeBaslat(s.val().denemeID);
+}
             });
             sesliBildiri("Odaya girildi, kurucu bekleniyor.");
         });
@@ -179,6 +183,7 @@ function matematikAnlat(konu, metin, hazirBetimleme) {
 // --- 5. SINAV MOTORU ---
 function testiYukleVeBaslat(dID, isRecover = false) {
     secilenDenemeID = dID;
+sinavBittiMi = false;
     fetch(`./data/${dID}.json`).then(res => res.json()).then(data => {
         mevcutSorular = data[0].sorular;
         kullaniciCevaplari = isRecover ? JSON.parse(localStorage.getItem('cevaplar')) : new Array(mevcutSorular.length).fill(null);
@@ -355,7 +360,7 @@ function bitisOnayEkrani() {
                 <button class="nav-buton" onclick="bosDon()" style="background:#ffff00; color:#000; padding:20px; font-weight:bold;">BOŞ BIRAKTIĞIM SORULARA DÖN</button>
                 <button class="nav-buton" style="background:#00ff00; color:#000; padding:20px;" onclick="puanHesapla()">SINAVI TAMAMEN BİTİR</button>
             </div>`;
-        sesliBildiri("Her iki bölümü de gezdiniz. Toplam " + bosSayisi + " adet boşunuz var. Boşlara dönebilir veya sınavı bitirebilirsiniz.");
+        sesliBildiri("Sınavı tamamladınız. Toplam " + bosSayisi + " adet boşunuz var. Boşlara dönebilir veya sınavı bitirebilirsiniz.");
     } else {
         icerikHtml = `
             <h2 id="bitis-h" tabindex="-1">Sınav Tamamlandı</h2>
