@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Test Çöz - EKPSS</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 
@@ -23,7 +24,7 @@
         <div id="gorsel-uyari-alani" class="gorsel-uyari-kutusu" aria-hidden="true" style="display:none;"></div>
 
         <div class="test-ust-bar">
-            <a href="testler.html" class="geri-link" aria-label="Test listesine geri dön">&larr; Geri</a>
+            <a href="#" id="ust-geri-link" class="geri-link" aria-label="Branş listesine geri dön">&larr; Geri</a>
             <span id="soru-sayac" aria-live="polite" aria-atomic="true">Yükleniyor...</span>
         </div>
 
@@ -35,13 +36,13 @@
         <div id="sonuc-alani" class="sonuc-kutusu" style="display: none;" tabindex="-1">
             <h2 style="color:#ffff00;" tabindex="-1">Test Bitti!</h2>
             <div id="puan-detay"></div>
-            <a href="testler.html" class="aksiyon-butonu">Yeni Test Seç</a>
+            <a href="#" id="yeni-test-sec-butonu" class="aksiyon-butonu">Yeni Test Seç</a>
         </div>
 
         <div id="yanlislar-listesi" style="display: none; margin-top:30px;">
             <h3 id="yanlislar-baslik" tabindex="-1" style="color:#f00; border-bottom:1px solid #fff;">Yanlış Cevaplarınız</h3>
             <div id="yanlis-detaylari"></div>
-            <a href="testler.html" class="bitir-butonu" style="text-align:center; text-decoration:none;">Listeye Dön</a>
+            <a href="index.html" class="bitir-butonu" style="text-align:center; text-decoration:none;">Listeye Dön</a>
         </div>
 
         <button id="bitir-buton" class="bitir-butonu" onclick="testiBitir()">Testi Bitir ve Sonucu Gör</button>
