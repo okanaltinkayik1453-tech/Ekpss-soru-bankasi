@@ -200,17 +200,19 @@ let finalHTML = "";
     // 3. Öncüller (Soru Kökünün Altında - Her biri ayrı satır ve ayrı odak noktası)
     if (soruObj.oncul && soruObj.oncul !== "HÜKÜMSÜ?Z" && soruObj.oncul !== "HÜKÜMSÜZ") {
         // Öncülleri varsa <br> etiketlerinden veya yeni satırlardan parçalara ayırıyoruz
-        const onculParcalari = soruObj.oncul.split(/<br\s*\/?>|\n/gi);
+// Öncülleri hem alt satırlardan hem de I. II. gibi işaretlerden bölüyoruz
+        const onculParcalari = soruObj.oncul.split(/(?=[IVX]+\.|\d+\.)|<br\s*\/?>|\n/g);
         
         onculParcalari.forEach(parca => {
             const temizParca = parca.trim();
             if (temizParca.length > 0) {
-                // Her bir öncül satırını ayrı bir div yaparak aşağı ok ile tek tek okunmasını sağlıyoruz
-                finalHTML += `<div class="oncul-satir" tabindex="0" style="border-left: 3px solid #ffff00; padding-left: 10px; margin-bottom:8px; display:block;">${temizParca}</div>`;
+                // tabindex="0" ve display:block ile her öncülü ayrı bir durak yapıyoruz
+                finalHTML += `<div class="oncul-satir" tabindex="0" style="display: block; border-left: 3px solid #ffff00; padding: 10px; margin-bottom:10px; font-size: 1.4rem;">${temizParca}</div>`;
             }
-        });
-    }
+}); // Öncül döngüsünü kapatır
+    } // Öncül kontrolünü (if bloğunu) kapatır (BURASI EKSİKTİ)
 
+    // İçeriği ekrana bas (Bu satır artık tüm sorularda çalışacak)
     soruBaslik.innerHTML = finalHTML;
 // Otomatik Soru Uzunluğu Kontrolü
     const toplamMetinUzunlugu = (soruObj.soru_koku || "").length + (soruObj.oncul || "").length;
