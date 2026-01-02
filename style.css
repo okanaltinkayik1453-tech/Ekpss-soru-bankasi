@@ -219,9 +219,8 @@ a:focus, button:focus, summary:focus, input:focus {
     cursor: pointer; text-align: left; display: flex; align-items: center;
     transition: all 0.2s; min-height: 60px;
 }
-.sik-butonu.dogru { border: 2px solid #00ff00 !important; color: #00ff00 !important; }
-.sik-butonu.yanlis { border: 2px solid #ff0000 !important; color: #ff0000 !important; }
-
+.sik-butonu.dogru { background-color: #008000 !important; color: #fff !important; border: 2px solid #fff !important; }
+.sik-butonu.yanlis { background-color: #b30000 !important; color: #fff !important; border: 2px solid #fff !important; }
 .navigasyon-alani { display: flex; gap: 20px; margin-top: 20px; }
 .nav-buton { flex: 1; padding: 15px; font-size: 1.1rem; font-weight: bold; background-color: #000; color: #fff; border: 1px solid #ffff00; border-radius: 10px; cursor: pointer; }
 
