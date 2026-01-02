@@ -183,24 +183,36 @@ function soruyuGoster(index) {
 
     const soruSayacElement = document.getElementById("soru-sayac");
     soruSayacElement.innerText = `Soru ${index + 1} / ${mevcutSorular.length}`;
-    soruSayacElement.setAttribute("tabindex", "-1");
+soruSayacElement.setAttribute("role", "heading");
+    soruSayacElement.setAttribute("aria-level", "1");
 
     const soruBaslik = document.getElementById("soru-metni");
-    let finalHTML = "";
+let finalHTML = "";
 
-    // 1. Görsel Betimleme (SR-Only: Sadece ekran okuyucu duyar)
+    // 1. Görsel Betimleme (Sadece ekran okuyucu duyar)
     if (soruObj.gorsel_metin && soruObj.gorsel_metin !== "HÜKÜMSÜZ") {
-        finalHTML += `<div class="sr-only" tabindex="0"><strong>Görsel Betimleme:</strong> ${soruObj.gorsel_metin}</div>`;
+        finalHTML += `<div class="sr-only" tabindex="0">Görsel Betimleme: ${soruObj.gorsel_metin}</div>`;
     }
 
-    // 2. Soru Kökü (Sizin isteğiniz üzerine ÜSTTE)
-    finalHTML += `<div class="soru-ana-metin" tabindex="0" role="text" style="margin-bottom:15px; font-weight:bold;">${soruObj.soru_koku}</div>`;
+    // 2. Soru Kökü (En Üstte - Başlık Değil, Düz Metin Odak Noktası)
+    finalHTML += `<div class="soru-ana-metin" tabindex="0" style="margin-bottom:15px; font-weight:bold; display:block;">${soruObj.soru_koku}</div>`;
 
-    // 3. Öncül (Sizin isteğiniz üzerine ALTTA)
-    if (soruObj.oncul && soruObj.oncul !== "HÜKÜMSÜZ") {
-        finalHTML += `<div class="oncul-kapsayici" tabindex="0" role="text" style="border-left: 3px solid #ffff00; padding-left: 10px; margin-bottom:15px;">${soruObj.oncul}</div>`;
+    // 3. Öncüller (Soru Kökünün Altında - Her biri ayrı satır ve ayrı odak noktası)
+    if (soruObj.oncul && soruObj.oncul !== "HÜKÜMSÜ?Z" && soruObj.oncul !== "HÜKÜMSÜZ") {
+        // Öncülleri varsa <br> etiketlerinden veya yeni satırlardan parçalara ayırıyoruz
+        const onculParcalari = soruObj.oncul.split(/<br\s*\/?>|\n/gi);
+        
+        onculParcalari.forEach(parca => {
+            const temizParca = parca.trim();
+            if (temizParca.length > 0) {
+                // Her bir öncül satırını ayrı bir div yaparak aşağı ok ile tek tek okunmasını sağlıyoruz
+                finalHTML += `<div class="oncul-satir" tabindex="0" style="border-left: 3px solid #ffff00; padding-left: 10px; margin-bottom:8px; display:block;">${temizParca}</div>`;
+            }
+        });
     }
-// Uzun soru kontrolü (250 karakterden fazlaysa kaydırma çubuğu ekler)
+
+    soruBaslik.innerHTML = finalHTML;
+// Otomatik Soru Uzunluğu Kontrolü
     const toplamMetinUzunlugu = (soruObj.soru_koku || "").length + (soruObj.oncul || "").length;
     const container = document.querySelector(".container");
     if (toplamMetinUzunlugu > 250) { 
@@ -208,8 +220,6 @@ function soruyuGoster(index) {
     } else {
         container.classList.remove("uzun-soru");
     }
-    soruBaslik.innerHTML = finalHTML;
-
     // Şıklar Alanı
     const siklarKutusu = document.getElementById("siklar-alani");
     siklarKutusu.innerHTML = "";
