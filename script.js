@@ -183,7 +183,7 @@ function soruyuGoster(index) {
 
     const soruSayacElement = document.getElementById("soru-sayac");
 // 1. Yazıyı her zaman güncelle
-    soruSayacElement.innerText = `Soru ${index + 1} / ${mevcutSorular.length}`;
+
 
     // 2. Etiketleri sadece ilk seferde ekle (Tekrarı ve gevezeliği önler)
     if (!soruSayacElement.hasAttribute("role")) {
@@ -295,9 +295,12 @@ let finalHTML = "";
     document.getElementById("btn-sonraki").disabled = (index === mevcutSorular.length - 1);
 setTimeout(() => { 
         if(soruSayacElement) {
+            // Yazıyı TAM ŞİMDİ değiştiriyoruz
+            soruSayacElement.innerText = `Soru ${index + 1} / ${mevcutSorular.length}`;
+            // Ve hemen üzerine odaklanıyoruz
             soruSayacElement.focus(); 
         }
-    }, 300);
+    }, 100);
 }
 // --- 5. CEVAPLAMA VE SESLİ GERİ BİLDİRİM (GÜNCELLENDİ) ---
 async function cevapIsaretle(secilenIndex, btn) {
