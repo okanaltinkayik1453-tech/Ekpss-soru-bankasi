@@ -186,11 +186,6 @@ function soruyuGoster(index) {
 
 
     // 2. Etiketleri sadece ilk seferde ekle (Tekrarı ve gevezeliği önler)
-    if (!soruSayacElement.hasAttribute("role")) {
-        soruSayacElement.setAttribute("tabindex", "-1");
-        soruSayacElement.setAttribute("role", "heading");
-        soruSayacElement.setAttribute("aria-level", "1");
-    }
     const soruBaslik = document.getElementById("soru-metni");
 let finalHTML = "";
 
