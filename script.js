@@ -182,11 +182,15 @@ function soruyuGoster(index) {
     isaretlemeKilitli = false; 
 
     const soruSayacElement = document.getElementById("soru-sayac");
-soruSayacElement.setAttribute("tabindex", "-1");
+// 1. Yazıyı her zaman güncelle
     soruSayacElement.innerText = `Soru ${index + 1} / ${mevcutSorular.length}`;
-soruSayacElement.setAttribute("role", "heading");
-    soruSayacElement.setAttribute("aria-level", "1");
 
+    // 2. Etiketleri sadece ilk seferde ekle (Tekrarı ve gevezeliği önler)
+    if (!soruSayacElement.hasAttribute("role")) {
+        soruSayacElement.setAttribute("tabindex", "-1");
+        soruSayacElement.setAttribute("role", "heading");
+        soruSayacElement.setAttribute("aria-level", "1");
+    }
     const soruBaslik = document.getElementById("soru-metni");
 let finalHTML = "";
 
