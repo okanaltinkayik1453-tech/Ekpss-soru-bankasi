@@ -295,25 +295,41 @@ function soruyuGoster(index) {
                     KÖRCÜL DİNLE (SESLİ)
                 </button>
             </div>`;
-    } else {
-        // TÜRKÇE, TARİH, COĞRAFYA VB.
+} else {
+        // TÜRKÇE, TARİH, COĞRAFYA VB. (AKILLI VE KÖRCÜL DOSTU MOD)
         html += `<p class="soru-koku-vurgu" style="text-align: justify; margin-bottom:10px;">${soru.soruKoku}</p>`;
 
         if (soru.icerik) {
+            let icerikDizisi = [];
+
+            // JSON'dan gelen verinin tipine göre (Dizi veya Düz Metin) içeriği hazırla
             if (Array.isArray(soru.icerik) && soru.icerik.length > 0) {
-                // NUMARALI PARAGRAF SORULARI: Her cümle bir liste öğesi, NVDA her birinde durur.
+                icerikDizisi = soru.icerik;
+            } 
+            else if (typeof soru.icerik === 'string' && soru.icerik.trim() !== "") {
+                // Eğer metin içinde 1. 2. gibi numaralar varsa, bunları kullanarak metni parçala
+                if (/\d+[\.\)]/.test(soru.icerik)) {
+                    icerikDizisi = soru.icerik.split(/\s*\d+[\.\)]\s*/).filter(item => item.trim() !== "");
+                } else {
+                    html += `<p style="text-align: justify; margin-top:10px;">${soru.icerik}</p>`;
+                }
+            }
+
+            // Listeyi oluştururken çift okumayı engellemek için temizlik yap
+            if (icerikDizisi.length > 0) {
                 html += `<ul role="list" aria-label="Soru metni parçaları" style="list-style: none; padding: 0; text-align: justify; margin-top:10px;">
-                    ${soru.icerik.map((it, i) => `
+                    ${icerikDizisi.map((it, i) => {
+                        // Cümle başındaki "1.", "1)", "(1)" gibi mevcut numaraları siler
+                        const temizMetin = it.replace(/^[\(\d\.\)]+\s*/, "").trim();
+                        return `
                         <li role="listitem" tabindex="-1" style="margin-bottom: 12px; line-height: 1.6;">
-                            <strong>(${i+1})</strong> ${it}
-                        </li>`).join('')}
+                            <strong>(${i+1})</strong> ${temizMetin}
+                        </li>`;
+                    }).join('')}
                 </ul>`;
-            } else if (typeof soru.icerik === 'string' && soru.icerik.trim() !== "") {
-                html += `<p style="text-align: justify; margin-top:10px;">${soru.icerik}</p>`;
             }
         }
     }
-
     // ŞIKLAR VE NAVİGASYON (Ortak Alan)
     html += `
             <div class="siklar-grid" role="group" aria-label="Seçenekler">
