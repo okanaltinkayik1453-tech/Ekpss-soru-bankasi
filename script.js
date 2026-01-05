@@ -44,7 +44,15 @@ const SAYFA_ESLESTIRME = {
     "trablusgarp": "testler.html"
 };
 
-
+// Körcül dostu temizleme fonksiyonu
+function metniTemizle(metin) {
+    if (!metin) return "";
+    // 1. "eA şıkkı:", "A şıkkı:" gibi her türlü ön eki siler
+    let sonuc = metin.replace(/.*[A-E]\s?şıkkı:?\s*/i, "");
+    // 2. Kalan kısımdaki "A)" veya "A." gibi işaretleri siler
+    sonuc = sonuc.replace(/^[A-E][\).]\s*/i, "");
+    return sonuc.trim();
+}
 // --- 2. SES MOTORU VE ÖNBELLEKLEME ---
 async function sesleriOnbellegeAl() {
     const sesDosyalari = ['dogru.mp3', 'yanlis.mp3', 'bitis.mp3'];
@@ -264,16 +272,19 @@ finalHTML += `<div class="soru-ana-metin" tabindex="0" style="margin-bottom:15px
     // Şıklar Alanı
     const siklarKutusu = document.getElementById("siklar-alani");
     siklarKutusu.innerHTML = "";
-    
-    soruObj.siklar.forEach((sikMetni, i) => { 
+soruObj.siklar.forEach((sikMetni, i) => { 
         const btn = document.createElement("button");
         const harf = ["A", "B", "C", "D", "E"][i];
-// Başlangıç: Akıllı temizleme ve tek harf ekleme
-        let temizMetin = sikMetni.replace(/^[A-E]\s?şıkkı:\s?([A-E]\)?)?\s?/i, "").replace(/^[A-E]\)\s?/, "").trim();
-        btn.innerText = harf + ") " + temizMetin;
-        // Bitiş
+
+        // Veritabanındaki "eA şıkkı: A)" veya "A şıkkı:" gibi her türlü hatayı temizler
+        const temizIcerik = metniTemizle(sikMetni);
+        
+        // Ekranda sadece "A) Sanat eserleri..." görünmesini sağlar
+        btn.innerText = harf + ") " + temizIcerik;
         btn.className = "sik-butonu";
-        btn.setAttribute("aria-label", `${harf} şıkkı: ${sikMetni}`); 
+
+        // NVDA için tertemiz etiket: "A şıkkı: Sanat eserleri"
+        btn.setAttribute("aria-label", `${harf} şıkkı: ${temizIcerik}`); 
 
         if (kullaniciCevaplari[index] !== null) {
             if (harf === ["A", "B", "C", "D", "E"][kullaniciCevaplari[index]]) {
@@ -283,8 +294,7 @@ finalHTML += `<div class="soru-ana-metin" tabindex="0" style="margin-bottom:15px
         }
         btn.onclick = () => cevapIsaretle(i, btn);
         siklarKutusu.appendChild(btn);
-    });
-
+    });    
     document.getElementById("btn-onceki").disabled = (index === 0);
     document.getElementById("btn-sonraki").disabled = (index === mevcutSorular.length - 1);
 setTimeout(() => { 
@@ -411,7 +421,7 @@ function cevapAnahtariniGoster() {
             // Şıkların listelenmesi
 const siklarListesi = soru.siklar.map((s, i) => {
 const harf = ["A", "B", "C", "D", "E"][i];
-            let temizMetin = s.replace(/^[A-E]\s?şıkkı:\s?([A-E]\)?)?\s?/i, "").replace(/^[A-E]\)\s?/, "").trim();
+let temizMetin = metniTemizle(s);
             const finalSik = harf + ") " + temizMetin;
             return `<div style="margin-left:10px; color:${harf === soru.dogru_cevap ? '#00ff00' : '#ccc'}">${finalSik}</div>`;
 }).join('');
@@ -441,7 +451,7 @@ function gosterTurkceCozum(index, container) {
     
 const siklarListesi = soru.siklar.map((s, i) => {
 const harf = ["A", "B", "C", "D", "E"][i];
-    let temizMetin = s.replace(/^[A-E]\s?şıkkı:\s?([A-E]\)?)?\s?/i, "").replace(/^[A-E]\)\s?/, "").trim();
+let temizMetin = metniTemizle(s);
     const finalSik = harf + ") " + temizMetin;
     return `<div style="margin-left:10px; color:${harf === soru.dogru_cevap ? '#00ff00' : '#ccc'}">${finalSik}</div>`;
 }).join('');
