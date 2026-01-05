@@ -268,7 +268,7 @@ finalHTML += `<div class="soru-ana-metin" tabindex="0" style="margin-bottom:15px
     soruObj.siklar.forEach((sikMetni, i) => { 
         const btn = document.createElement("button");
         const harf = ["A", "B", "C", "D", "E"][i];
-        btn.innerText = harf + ") " + sikMetni;
+btn.innerText = sikMetni.trim().startsWith(harf + ")") ? sikMetni : harf + ") " + sikMetni;
         btn.className = "sik-butonu";
         btn.setAttribute("aria-label", `${harf} şıkkı: ${sikMetni}`); 
 
@@ -406,7 +406,12 @@ function cevapAnahtariniGoster() {
             kart.style.cssText = "border:1px solid #444; padding:15px; margin-top:15px; background:#222; border-radius:8px;";
             
             // Şıkların listelenmesi
-            const siklarListesi = soru.siklar.map((s, i) => `<div style="margin-left:10px; color:${["A","B","C","D","E"][i] === soru.dogru_cevap ? '#00ff00' : '#ccc'}">${["A","B","C","D","E"][i]}) ${s}</div>`).join('');
+const siklarListesi = soru.siklar.map((s, i) => {
+    const harf = ["A", "B", "C", "D", "E"][i];
+    // Eğer şık zaten "A)" ile başlıyorsa olduğu gibi bırak, başlamıyorsa harf ekle
+    const temizSik = s.trim().startsWith(harf + ")") ? s : harf + ") " + s;
+    return `<div style="margin-left:10px; color:${harf === soru.dogru_cevap ? '#00ff00' : '#ccc'}">${temizSik}</div>`;
+}).join('');
 
             kart.innerHTML = `
                 <h3 style="color:#ffff00;" tabindex="0">Soru ${index + 1}</h3>
@@ -431,7 +436,11 @@ function gosterTurkceCozum(index, container) {
     const secilenIndex = kullaniciCevaplari[index];
     const secilenHarf = secilenIndex !== null ? ["A", "B", "C", "D", "E"][secilenIndex] : "BOŞ";
     
-    const siklarListesi = soru.siklar.map((s, i) => `<div style="margin-left:10px; color:${["A","B","C","D","E"][i] === soru.dogru_cevap ? '#00ff00' : '#ccc'}">${["A","B","C","D","E"][i]}) ${s}</div>`).join('');
+const siklarListesi = soru.siklar.map((s, i) => {
+    const harf = ["A", "B", "C", "D", "E"][i];
+    const temizSik = s.trim().startsWith(harf + ")") ? s : harf + ") " + s;
+    return `<div style="margin-left:10px; color:${harf === soru.dogru_cevap ? '#00ff00' : '#ccc'}">${temizSik}</div>`;
+}).join('');
 
     const kart = document.createElement("div");
     kart.style.cssText = "border:1px solid #444; padding:20px; background:#222; border-radius:8px; margin-top:20px;";
