@@ -310,8 +310,7 @@ if (soru.icerik) {
             <div class="siklar-grid" role="group" aria-label="Seçenekler">
                 ${["A","B","C","D","E"].map((h, i) => `
                     <button class="sik-butonu ${kullaniciCevaplari[index]===h?'dogru':''}" 
-                            onclick="isaretle('${h}')" 
-                            aria-label="${h} şıkkı: ${soru.secenekler[i]}">
+        onclick="isaretle('${h}')">
                         ${h}) ${soru.secenekler[i]}
                     </button>`).join('')}
             </div>
