@@ -251,30 +251,71 @@ function soruyuGoster(index) {
     const soru = mevcutSorular[index];
     let html = `
         <div class="soru-kutusu">
-            <h2 id="s-no" tabindex="-1">${bolumAdi} - Soru ${ekranNo}</h2>
-            ${(index >= 15 && index <= 29) ? `
-                <div class="matematik-alani">
-                    <p class="soru-koku-vurgu" aria-hidden="true">${soru.gorselMetin || soru.soruKoku || ""}</p>
-                    <button class="nav-buton" style="width:100%; background:#00ff00; color:#000; padding:25px;" 
-                            onclick="matematikAnlat('${soru.konu}', '${(soru.gorselMetin || "").replace(/'/g, "\\\\'").replace(/"/g, '\\"')}', '${(soru.sesliBetimleme || "").replace(/'/g, "\\\\'").replace(/"/g, '\\"')}')">
-                        MATEMATİK SORUSUNU KÖRCÜL DİNLE
+            <h2 id="s-no" tabindex="-1">${bolumAdi} - Soru ${ekranNo}</h2>`;
+
+    if (index >= 15 && index <= 29) {
+        html += `
+            <div class="matematik-alani" role="region" aria-label="Matematik Sorusu Yardımcı Araçları">
+                <div id="mat-gorsel-alan" aria-hidden="true">
+                    <p class="soru-koku-vurgu" style="background: #1a1a1a; padding: 15px; border-radius: 8px; text-align: justify;">
+                        ${soru.gorselMetin || soru.soruKoku}
+                    </p>
+                </div>
+                <div id="mat-metin-alan" style="display:none;" role="alert" aria-live="assertive">
+                    <p class="soru-koku-vurgu" style="color: #ffff00; background: #000; padding: 15px; border: 2px solid #ffff00; text-align: justify;">
+                        ${soru.sesliBetimleme}
+                    </p>
+                </div>
+                <div class="navigasyon-alani" style="display: flex; gap: 10px; margin-bottom: 15px;">
+                    <button class="nav-buton" id="btn-metne-donustur" style="flex: 1; background: #ffff00; color: #000;" 
+                            aria-label="Görseli Gizle ve Körcül Metne Dönüştür"
+                            onclick="document.getElementById('mat-gorsel-alan').style.display='none'; 
+                                     document.getElementById('mat-metin-alan').style.display='block';
+                                     this.style.display='none'; 
+                                     document.getElementById('btn-gorsele-don').style.display='block';
+                                     sesliBildiri('Formül gizlendi, körcül metin açıldı.');">
+                        METNE DÖNÜŞTÜR
+                    </button>
+                    <button class="nav-buton" id="btn-gorsele-don" style="flex: 1; background: #ffffff; color: #000; display: none;" 
+                            aria-label="Metni Gizle ve Görsele Dön"
+                            onclick="document.getElementById('mat-gorsel-alan').style.display='block'; 
+                                     document.getElementById('mat-metin-alan').style.display='none';
+                                     this.style.display='none'; 
+                                     document.getElementById('btn-metne-donustur').style.display='block';
+                                     sesliBildiri('Metin gizlendi, görsel görünüme dönüldü.');">
+                        GÖRSELE DÖN
                     </button>
                 </div>
-            ` : (soru.tip === "turkce" ? `
-                <p class="soru-koku-vurgu">${soru.soruKoku}</p>
-                <ul role="list">${soru.icerik.map((it, i) => `<li role="listitem">(${i+1}) ${it}</li>`).join('')}</ul>
-            ` : `<p class="soru-koku-vurgu">${soru.soruKoku || ""}</p>`)}
-            <div class="siklar-grid">
-                ${["A","B","C","D","E"].map((h, i) => `<button class="sik-butonu ${kullaniciCevaplari[index]===h?'dogru':''}" onclick="isaretle('${h}')">${h}) ${soru.secenekler[i]}</button>`).join('')}
+                <button class="nav-buton" style="width:100%; background:#00ff00; color:#000; padding:25px; font-weight: bold;" 
+                        aria-label="Sadece Matematik Sorusunun Sesli Betimlemesini Dinle"
+                        onclick="matematikAnlat('${soru.konu}', '', '${soru.sesliBetimleme.replace(/'/g, "\\'").replace(/"/g, '&quot;')}')">
+                    KÖRCÜL DİNLE (SESLİ)
+                </button>
+            </div>`;
+    } else {
+        html += `<p class="soru-koku-vurgu" style="text-align: justify;">${soru.soruKoku}</p>`;
+        if (soru.icerik && soru.icerik.length > 0) {
+            html += `<ul role="list" style="text-align: justify;">${soru.icerik.map((it, i) => `<li role="listitem">(${i+1}) ${it}</li>`).join('')}</ul>`;
+        }
+    }
+
+    html += `
+            <div class="siklar-grid" role="group" aria-label="Seçenekler">
+                ${["A","B","C","D","E"].map((h, i) => `
+                    <button class="sik-butonu ${kullaniciCevaplari[index]===h?'dogru':''}" 
+                            onclick="isaretle('${h}')" 
+                            aria-label="${h} şıkkı: ${soru.secenekler[i]}">
+                        ${h}) ${soru.secenekler[i]}
+                    </button>`).join('')}
             </div>
             <div class="navigasyon-alani">
                 <button class="nav-buton" onclick="soruyuGoster(${index-1})" ${index===0?'disabled':''}>Geri</button>
-                <button class="nav-buton" onclick="bosBirak()">Boş Birak</button>
+                <button class="nav-buton" onclick="bosBirak()">Boş Bırak</button>
                 <button class="nav-buton" onclick="sonrakiSoru()">İleri</button>
             </div>
         </div>`;
     document.getElementById('deneme-govde').innerHTML = html;
-    setTimeout(() => document.getElementById('s-no').focus(), 150);
+    setTimeout(() => { const t = document.getElementById('s-no'); if(t) t.focus(); }, 150);
 }
 // --- 6. AKILLI NAVİGASYON (BÖLÜMLER ARASI AKILLI KÖPRÜ) ---
 function sonrakiSoru() {
