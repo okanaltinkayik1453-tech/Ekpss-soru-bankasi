@@ -37,13 +37,6 @@ const SAYFA_ESLESTIRME = {
 "paragraf1": "turkce.html",
     "paragraf2": "turkce.html",
     "paragraf3": "turkce.html",
-    "paragraf4": "turkce.html",
-    "paragraf5": "turkce.html",
-    "paragraf6": "turkce.html",
-    "paragraf7": "turkce.html",
-    "paragraf8": "turkce.html",
-    "paragraf9": "turkce.html",
-    "paragraf10": "turkce.html",
     "dilbilgisi": "turkce.html",
     "turkcekarisik": "turkce.html",
     "vatandaslik": "vatandaslik.html",
@@ -229,11 +222,7 @@ let finalHTML = "";
                 // EĞER parça rakamla başlıyorsa (Örn: "1. Cümle...")
                 // Bunu yeşil çizgili kutu yap.
                 else {
-                    paragrafHTML += `
-                    <div class="paragraf-cumle" tabindex="0" role="listitem" 
-                         style="display:block; margin-bottom:8px; padding:10px; background:#222; border-left: 5px solid #00ff00; font-size:1.15rem; line-height:1.5; border-radius:5px;">
-                         ${temizParca}
-                    </div>`;
+paragrafHTML += `<div class="paragraf-cumle" tabindex="0" role="listitem" style="display:block; margin-bottom:8px; padding:10px; background:#222; border-left: 5px solid #00ff00; font-size:1.15rem; line-height:1.5; border-radius:5px; text-align: justify;">${temizParca}</div>`;
                 }
             }
         });
@@ -245,7 +234,7 @@ let finalHTML = "";
     } else {
         // --- NORMAL MOD (Tarih, Coğrafya vb.) ---
         // Burası eskisi gibi çalışır.
-        finalHTML += `<div class="soru-ana-metin" tabindex="0" style="margin-bottom:15px; font-weight:bold; display:block;">${soruObj.soru_koku}</div>`;
+finalHTML += `<div class="soru-ana-metin" tabindex="0" style="margin-bottom:15px; font-weight:bold; display:block; text-align: justify;">${soruObj.soru_koku}</div>`;
     }
     // 3. Öncüller (Soru Kökünün Altında - Her biri ayrı satır ve ayrı odak noktası)
     if (soruObj.oncul && soruObj.oncul !== "HÜKÜMSÜ?Z" && soruObj.oncul !== "HÜKÜMSÜZ") {
