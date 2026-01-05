@@ -178,38 +178,38 @@
         "secenekler": ["Açıklama", "Betimleme", "Tartışma", "Karşılaştırma", "Öyküleme"],
         "dogru_cevap": "E",
         "aciklama": "Parçanın genelinde kuşların ekosistemdeki rolleri hakkında bilgi verildiği için 'açıklama'; 1. ve 5. cümlelerdeki 'zarif melodiler', 'ritmik ahenk' ve 'renk cümbüşü' gibi niteleyici ifadelerle görsel ve işitsel bir tablo çizildiği için 'betimleme'; 4. cümlede 'iddia etse de gerçekte' ifadesiyle yerleşik bir kanıya karşı çıkıldığı için 'tartışma'; kuşların farklı işlevleri (korunma ve iletişim) birbiriyle ilişkilendirildiği için 'karşılaştırma' tekniklerine başvurulmuştur. Parçada olaylar bir kişi-zaman-mekan ekseninde, kronolojik bir akış veya hareketlilik (aksiyon) içerisinde verilmediği için 'öyküleme' tekniği kullanılmamıştır. Doğru cevap Edirne."
+  },
+  {
+    "tip": "turkce",
+    "konu": "Paragrafta Ana Düşünce",
+    "soruKoku": "Bu parçaya göre İstanbul'daki modern kentleşme sürecinin yarattığı temel paradoks aşağıdakilerden hangisidir?",
+    "icerik": "İstanbul, tarihsel derinliği ile küresel bir cazibe merkezi olma özelliğini korurken, kontrolsüz genişleyen beton dokusu ve demografik yığılma nedeniyle yaşamsal bir düğüm noktasına dönüşmüştür. Şehrin sunduğu sınırsız sosyo-ekonomik imkanlar, aynı zamanda ulaşım felci, ekolojik tahribat ve bireyin kalabalık içindeki yalnızlaşması gibi yapısal krizleri de beraberinde getirmektedir. Modernleşme adına inşa edilen dikey mimari, estetik bir kimlik sunmaktan ziyade; insan doğasına aykırı, mekanik ve sürdürülebilirliği düşük bir habitata yol açmıştır. Dolayısıyla kentin sunduğu konfor vaadi, bizzat kentin kendi ağırlığı altında ezilerek bir yaşam mücadelesine evrilmektedir.",
+    "secenekler": [
+      "Şehrin tarihi dokusunun teknolojik imkanlarla harmanlanarak turizme kazandırılması",
+      "Kentin sunduğu geniş imkanların, beraberinde getirdiği karmaşa ve yapısal sorunlar nedeniyle yaşamı zorlaştırması",
+      "Dikey mimarinin geleneksel mahalle kültürünü tamamen ortadan kaldırarak güvenliği tehdit etmesi",
+      "Ekonomik büyümenin çevre kirliliği üzerindeki etkisinin yerel yönetimlerce minimize edilmesi",
+      "Nüfus artışının iş gücü piyasasında yarattığı rekabetin eğitim kalitesini düşürmesi"
+    ],
+    "dogru_cevap": "B",
+    "aciklama": "Metin, şehrin sunduğu imkanlar ile yarattığı zorluklar arasındaki çelişkiyi (paradoksu) temel almaktadır."
+  },
+  {
+    "tip": "turkce",
+    "konu": "Paragrafta Yorum",
+    "soruKoku": "Bu parçadan hareketle Hollanda'nın hayvancılık sektöründeki küresel başarısının temel dayanağı hakkında aşağıdakilerden hangisi söylenebilir?",
+    "icerik": "Yüz ölçümü bakımından oldukça sınırlı topraklara sahip olmasına rağmen Hollanda, hayvancılık ve süt ürünleri üretiminde dünya devleri arasında yer almaktadır. Bu başarının sırrı, geleneksel yöntemlerin ötesine geçerek; verimliliği artıran hassas tarım teknolojileri, genetik ıslah çalışmaları ve kooperatifleşme odaklı pazar yönetimidir. Ülkede birim hayvandan alınan süt verimi, sadece otlatma imkanlarıyla değil, veri analitiği ve otomasyon sistemlerinin üretim sürecine entegre edilmesiyle maksimize edilmiştir. Doğa ile teknolojinin bu stratejik uyumu, Hollanda'yı toprak kısıtına rağmen tarımsal ihracatın zirvesine taşımıştır. Bu durum, nitelikli bilginin fiziksel coğrafyayı nasıl dönüştürdüğünün en somut örneğidir.",
+    "secenekler": [
+      "Geniş meraların varlığı sayesinde hayvancılık maliyetlerinin komşu ülkelere göre çok düşük tutulması",
+      "Hükümetin süt ürünleri fiyatlarına müdahale ederek iç piyasada tüketimi zorunlu hale getirmesi",
+      "Bilimsel veri ve teknolojik inovasyonun sınırlı coğrafi alanı verimli kullanarak üretim gücüne dönüştürmesi",
+      "Hayvansal üretimin sadece organik yöntemlerle yapılması sonucunda küresel talebin artması",
+      "İhracat odaklı stratejilerin, iç pazardaki gıda güvenliği ihtiyacını ikinci plana itmesi"
+    ],
+    "dogru_cevap": "C",
+    "aciklama": "Paragraf, teknoloji ve bilginin coğrafi kısıtlamaları aşarak verimliliği nasıl artırdığını vurgulamaktadır."
       },
       {
-        "tip": "turkce",
-        "konu": "Paragrafta Ana Düşünce",
-        "soruKoku": "Bu parçaya göre Antroposen Çağı'nın en belirgin özelliği aşağıdakilerden hangisidir? Antroposen Çağı, insan faaliyetlerinin yerküre üzerinde jeolojik ve biyolojik bir güç haline geldiği yeni bir dönemi ifade eder.",
-        "icerik": [],
-        "secenekler": [
-            "Doğal kaynakların hızla tükenmesi sonucu ekonominin durma noktasına gelmesi",
-            "İnsanın doğa üzerindeki etkisinin jeolojik bir boyuta ulaşarak belirleyici bir güç olması",
-            "Teknolojik gelişmelerin doğadaki tür çeşitliliğini koruma altına alması",
-            "İnsanlığın doğadan tamamen koparak yapay bir yaşam tarzını benimsemesi",
-            "Küresel iklim krizinin sadece belirli coğrafi bölgelerde etkili olması"
-        ],
-        "dogru_cevap": "B",
-        "aciklama": "Metin insanın doğa üzerinde jeolojik bir güç haline gelmesini vurgular."
-      },
-      {
-        "tip": "turkce",
-        "konu": "Paragrafta Yorum",
-        "soruKoku": "Yazarın 'ahlaki ve varoluşsal sorumluluk' ifadesiyle vurgulamak istediği temel düşünce nedir?",
-        "icerik": [],
-        "secenekler": [
-            "İnsanın teknolojik cihazları kullanırken dikkatli olması gerektiği",
-            "Doğadaki değişimlerin insan yaşamını ekonomik olarak kısıtlaması",
-            "İnsanın yerküre üzerindeki baskın rolü nedeniyle doğaya karşı yükümlülük altına girmesi",
-            "Bilimsel çalışmaların sadece insan odaklı yürütülmesinin önemi",
-            "Geçmiş çağlardaki yaşam standartlarına geri dönülmesinin zorunluluğu"
-        ],
-        "dogru_cevap": "C",
-        "aciklama": "İnsanın doğanın kaderini tayin etmesi ona yükümlülük yükler."
-      },
-{
         "tip": "matematik",
         "konu": "Rasyonel Sayılar",
         "sesliBetimleme": "Soru bir kesir hesaplamasıdır. Büyük bir ana kesir çizgisi düşünün. Bu ana kesrin pay kısmında: bir bölü iki artı üç bölü beş işlemleri var. Ana kesrin payda kısmında ise: on bir bölü on ifadesi yer alıyor. Bu işlemin sonucu kaçtır?",
