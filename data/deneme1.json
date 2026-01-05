@@ -134,20 +134,20 @@
         "dogru_cevap": "E",
         "aciklama": "Metinde akademik başarıdan bahsedilmemiştir."
       },
-      {
+{
         "tip": "turkce",
-        "konu": "Yazım Kuralları",
-        "soruKoku": "Aşağıdaki cümlelerin hangisinde 'ki' bağlacının yazımıyla ilgili bir yanlışlık yapılmıştır?",
-        "icerik": [],
-        "secenekler": [
-            "Mademki gelmeyecektin, neden haber vermedin?",
-            "Anladım ki bu iş düşündüğümden daha zormuş.",
-            "Evdeki hesap çarşıya uymadı.",
-            "Öyle bir bağırdıki herkes korktu.",
-            "Belki de bu, bizim için yeni bir başlangıçtır."
+        "konu": "Paragrafta Yapı",
+        "soruKoku": "Bu parçada numaralanmış cümlelerden hangisi düşüncenin akışını bozmaktadır?",
+        "icerik": [
+            "(1) Bozkırın ilk kadın hükümdarı olarak tarihe geçen Tomris Hatun, Pers İmparatorluğu'nun bitmek bilmeyen saldırılarına karşı Saka Türklerini tek bir bayrak altında toplamayı başarmış eşsiz bir liderdir.",
+            "(2) Askerî dehası ve diplomatik manevraları sayesinde bozkırda stratejik bir denge kuran bu güçlü kadın, barışı korumak adına tüm uzlaşmacı yolları denemekten de geri durmamıştır.",
+            "(3) Ancak Pers kralı Büyük Kiros'un Sakaların topraklarını istila etme hırsı ve Tomris'in oğlunu hileyle öldürmesi, bozkırın sessizliğini büyük bir intikam fırtınasına dönüştürmüştür.",
+            "(4) Antik Çağ'da Sakalar; göçebe yaşam tarzları, madencilikteki ustalıkları ve özellikle Bozkırın Kuyumcuları unvanıyla sanat tarihinde derin izler bırakmış bir topluluktur.",
+            "(5) Bu kaçınılmaz çatışmanın sonunda Tomris Hatun, Kiros'u yenilgiye uğratarak halkının bağımsızlığını kanıyla tescillemiş ve adını dünya tarihine altın harflerle yazdırmıştır."
         ],
+        "secenekler": ["1", "2", "3", "4", "5"],
         "dogru_cevap": "D",
-        "aciklama": "Fiilden sonra gelen 'ki' bağlaçtır ve ayrı yazılmalıdır (bağırdı ki)."
+        "aciklama": "Parçanın genelinde Tomris Hatun'un liderliği, Persler ile olan mücadelesi ve tarihsel zaferi anlatılmaktadır. 1, 2, 3 ve 5 numaralı cümleler Tomris Hatun'un biyografik ve askerî sürecine odaklanırken; 4 numaralı cümle konuyu tamamen değiştirerek Saka toplumunun genel sanat özelliklerine ve maden işçiliğine (Bozkırın Kuyumcuları) değinmiştir. 4. cümle, Tomris Hatun merkezli anlatımın bütünlüğünü ve akışını bölen, genel kültür bilgisi veren bir 'araya giriş' cümlesidir. Doğru cevap Denizli."
       },
       {
         "tip": "turkce",
@@ -164,14 +164,20 @@
         "dogru_cevap": "B",
         "aciklama": "Kişinin kendi davranışını olumsuz değerlendirmesi öz eleştiridir."
       },
-      {
+{
         "tip": "turkce",
-        "konu": "Noktalama İşaretleri",
-        "soruKoku": "Bu parçada aşağıdaki noktalama işaretlerinden hangisinin kullanımıyla ilgili bir yanlışlık yapılmıştır? Ankara'dan İstanbul'a gitmek için yola çıktık. Yol boyunca; Bolu, Düzce ve Sakarya'dan geçtik. Molada çayımızı yudumlarken arkadaşım bana döndü: 'Bu yolculuk hiç bitmesin istiyorum,' dedi. Ben de ona gülümseyerek; 'Her güzel şeyin bir sonu vardır.' dedim.",
-        "icerik": [],
-        "secenekler": ["Kesme işareti", "Noktalı virgül", "Tırnak işareti", "Virgül", "İki nokta"],
-        "dogru_cevap": "B",
-        "aciklama": "Alıntılardan önce noktalı virgül kullanılmaz; iki nokta kullanılır veya işaret konmaz."
+        "konu": "Anlatım Teknikleri",
+        "soruKoku": "Bu parçanın anlatımında aşağıdaki anlatım tekniklerinin hangisinden yararlanılmamıştır?",
+        "icerik": [
+            "(1) Güneşin ilk ışıklarıyla birlikte ormanın derinliklerinden yükselen cıvıltılar, doğanın uyanışını müjdeleyen en zarif melodilerdir.",
+            "(2) Gökyüzünün bu sakinleri, sadece estetik bir zevk sunmakla kalmaz; aynı zamanda ekosistemin dengesini koruyan hayati birer dişlidir.",
+            "(3) Örneğin, tohumların yayılması ve böcek popülasyonunun kontrolü büyük oranda kuşların faaliyetlerine bağlıdır.",
+            "(4) Bazı araştırmacılar, şehirleşmenin kuşların ritmini bozmadığını iddia etse de gerçekte beton yığınları onların göç yollarını ve yuvalama alanlarını tehdit etmektedir.",
+            "(5) Kanat çırpışlarındaki o ritmik ahenk, aslında bir hayatta kalma mücadelesinin sessiz çığlığıdır ve tüylerdeki renk cümbüşü türler arası iletişimin temelini oluşturur."
+        ],
+        "secenekler": ["Açıklama", "Betimleme", "Tartışma", "Karşılaştırma", "Öyküleme"],
+        "dogru_cevap": "E",
+        "aciklama": "Parçanın genelinde kuşların ekosistemdeki rolleri hakkında bilgi verildiği için 'açıklama'; 1. ve 5. cümlelerdeki 'zarif melodiler', 'ritmik ahenk' ve 'renk cümbüşü' gibi niteleyici ifadelerle görsel ve işitsel bir tablo çizildiği için 'betimleme'; 4. cümlede 'iddia etse de gerçekte' ifadesiyle yerleşik bir kanıya karşı çıkıldığı için 'tartışma'; kuşların farklı işlevleri (korunma ve iletişim) birbiriyle ilişkilendirildiği için 'karşılaştırma' tekniklerine başvurulmuştur. Parçada olaylar bir kişi-zaman-mekan ekseninde, kronolojik bir akış veya hareketlilik (aksiyon) içerisinde verilmediği için 'öyküleme' tekniği kullanılmamıştır. Doğru cevap Edirne."
       },
       {
         "tip": "turkce",
@@ -203,143 +209,143 @@
         "dogru_cevap": "C",
         "aciklama": "İnsanın doğanın kaderini tayin etmesi ona yükümlülük yükler."
       },
-      {
+{
         "tip": "matematik",
         "konu": "Rasyonel Sayılar",
-        "sesliBetimleme": "Pay kısmında 1 bölü 2 artı 3 bölü 5, payda kısmında ise 11 bölü 10 işleminin sonucu kaçtır?",
+        "sesliBetimleme": "Soru bir kesir hesaplamasıdır. Büyük bir ana kesir çizgisi düşünün. Bu ana kesrin pay kısmında: bir bölü iki artı üç bölü beş işlemleri var. Ana kesrin payda kısmında ise: on bir bölü on ifadesi yer alıyor. Bu işlemin sonucu kaçtır?",
         "gorselMetin": "(1/2 + 3/5) / (11/10) = ?",
         "secenekler": ["1", "2", "1/2", "5/11", "10/11"],
         "dogru_cevap": "A",
-        "aciklama": "Pay kısmı 5/10 + 6/10 = 11/10 eder. 11/10 bölü 11/10 sonucu 1'dir."
+        "aciklama": "Çözüm adımları şöyle: İlk olarak üstteki pay kısmında toplama yapabilmek için paydaları on sayısında eşitliyoruz. Bir bölü iki ifadesini beş ile genişletince beş bölü on olur. Üç bölü beş ifadesini iki ile genişletince altı bölü on olur. Beş bölü on ile altı bölü on toplandığında pay kısmı on bir bölü on bulunur. Şimdi ana kesre dönelim: Payımız on bir bölü on, paydamız da on bir bölü on. Aynı iki değerin birbirine bölümü bir sonucunu verir. Doğru cevap Adana."
       },
       {
         "tip": "matematik",
         "konu": "Ondalık Sayılar",
-        "sesliBetimleme": "0 virgül 48 bölü 0 virgül 12 artı 0 virgül 9 bölü 0 virgül 3 işleminin sonucu kaçtır?",
+        "sesliBetimleme": "İki ayrı bölme işleminin toplamı soruluyor. Birinci işlem: sıfır tam yüzde kırk sekiz bölü sıfır tam yüzde on iki. Artı, ikinci işlem: sıfır tam onda dokuz bölü sıfır tam onda üç. Bu toplamanın sonucu kaçtır?",
         "gorselMetin": "(0.48 / 0.12) + (0.9 / 0.3) = ?",
         "secenekler": ["4", "5", "6", "7", "8"],
         "dogru_cevap": "D",
-        "aciklama": "48/12 = 4 ve 9/3 = 3 eder. 4 + 3 = 7."
+        "aciklama": "Çözüm: Birinci işlemde virgülleri iki basamak sağa kaydırırsak kırk sekiz bölü on iki olur, bunun sonucu dörttür. İkinci işlemde virgülleri bir basamak sağa kaydırırsak dokuz bölü üç olur, bunun sonucu üçtür. Dört ile üçün toplamından sonuç yedi çıkar. Doğru cevap Denizli."
       },
       {
         "tip": "matematik",
         "konu": "Üslü Sayılar",
-        "sesliBetimleme": "Parantez içinde eksi 3'ün parantez dışındaki karesi eksi parantez içinde eksi 1'in parantez dışındaki küpü işleminin sonucu kaçtır?",
+        "sesliBetimleme": "İşlem şöyle: Parantez açılıyor, eksi üç, parantez kapandı, parantezin dışında sağ üstte kuvvet olarak iki yazıyor. Eksi işareti konulmuş ve yeni bir parantez açılmış. Parantez içinde eksi bir, parantez kapandı, parantezin dışında sağ üstte kuvvet olarak üç yazıyor. Bu işlemin sonucu kaçtır?",
         "gorselMetin": "(-3)^2 - (-1)^3 = ?",
         "secenekler": ["8", "9", "10", "eksi 8", "eksi 10"],
         "dogru_cevap": "C",
-        "aciklama": "9 - (-1) = 9 + 1 = 10."
+        "aciklama": "Adım adım gidelim: Eksi üçün karesi demek, eksi üç ile eksi üçü çarpmak demektir, bu artı dokuz eder. Diğer kısımda eksi birin küpü, üç tane eksi birin çarpımıdır ve sonuç eksi bir çıkar. İşlemimiz dokuz eksi, parantez içinde eksi bir halini aldı. İki eksi yan yana geldiği için artıya dönüşür ve dokuz artı bir olur. Sonuç ondur. Doğru cevap Ceyhan."
       },
       {
         "tip": "matematik",
         "konu": "Köklü Sayılar",
-        "sesliBetimleme": "Karekök içinde 72 artı karekök içinde 18 bölü karekök içinde 2 işleminin sonucu kaçtır?",
+        "sesliBetimleme": "Kesirli bir kök işlemi. Pay kısmında: karekök içerisinde yetmiş iki, kök bitti, artı, karekök içerisinde on sekiz, kök bitti. Payda kısmında ise: karekök içerisinde iki ifadesi var. Bu işlemin sonucu kaçtır?",
         "gorselMetin": "(√72 + √18) / √2 = ?",
         "secenekler": ["6", "9", "12", "3 kök 2", "5 kök 2"],
         "dogru_cevap": "B",
-        "aciklama": "6 kök 2 + 3 kök 2 = 9 kök 2. Kök 2'ye bölünce sonuç 9 olur."
+        "aciklama": "Çözüm yolu: Karekök yetmiş iki, altı kök iki olarak dışarı çıkar. Karekök on sekiz ise üç kök iki olarak dışarı çıkar. Pay kısmındaki altı kök iki ile üç kök ikiyi toplarsak dokuz kök iki yapar. Payda kısmında ise kök iki vardı. Dokuz kök ikiyi kök ikiye böldüğümüzde kök ikiler birbirini yok eder ve geriye dokuz kalır. Doğru cevap Bursa."
       },
       {
         "tip": "matematik",
         "konu": "Bölünebilme Kuralları",
-        "sesliBetimleme": "Üç basamaklı 4 A 8 sayısı 3 ile tam bölünebildiğine göre A rakamının alabileceği farklı değerlerin toplamı kaçtır?",
+        "sesliBetimleme": "Üç basamaklı bir sayımız var: yüzler basamağı dört, onlar basamağı büyük A harfi ve birler basamağı sekiz. Bu dört A sekiz sayısı üç ile tam bölünebildiğine göre, A rakamının alabileceği farklı değerlerin toplamı kaçtır?",
         "gorselMetin": "4A8 (3 ile tam bölünürsa) A rakamları toplamı?",
         "secenekler": ["12", "15", "18", "21", "24"],
         "dogru_cevap": "C",
-        "aciklama": "12 + A = 3k olmalı. A = {0, 3, 6, 9} olabilir. Toplamı 18'dir."
+        "aciklama": "Bir sayının üç ile bölünebilmesi için rakamları toplamının üçün katı olması gerekir. Sayının rakamlarını toplayalım: Dört artı sekiz artı A, yani on iki artı A. Bu toplamın üçün katı olması için A yerine sıfır, üç, altı veya dokuz rakamları gelebilir. Bu rakamların toplamı sıfır artı üç artı altı artı dokuzdan on sekiz eder. Doğru cevap Ceyhan."
       },
       {
         "tip": "matematik",
         "konu": "Kümeler",
-        "sesliBetimleme": "A kümesi a b c d e elemanlarından oluşmaktadır. A kümesinin alt kümelerinin kaç tanesinde a elemanı bulunur fakat b elemanı bulunmaz?",
+        "sesliBetimleme": "Bir A kümesi veriliyor. Kümenin elemanları küçük harflerle: a, b, c, d ve e'dir. Bu kümenin alt kümelerinin kaç tanesinde a elemanı bulunur fakat b elemanı bulunmaz?",
         "gorselMetin": "A = {a, b, c, d, e} kümesinde 'a' olan 'b' olmayan alt küme?",
         "secenekler": ["4", "8", "16", "32", "64"],
         "dogru_cevap": "B",
-        "aciklama": "Kalan 3 elemanla 2 üzeri 3 = 8 alt küme yazılır."
+        "aciklama": "Alt küme sorularında bir elemanın bulunması veya bulunmaması isteniyorsa o elemanlar kümeden geçici olarak atılır. 'a' elemanını mutlaka olacağı için kenara ayırdık, 'b' elemanını istemediğimiz için tamamen attık. Geriye c, d ve e olmak üzere üç eleman kaldı. Üç elemanla yazılabilecek alt küme sayısı iki üzeri üçten sekizdir. Bu sekiz kümenin her birine kenara ayırdığımız 'a' harfini eklediğimizde şartı sağlayan sekiz küme elde ederiz. Doğru cevap Bursa."
       },
       {
         "tip": "matematik",
         "konu": "Denklemler",
-        "sesliBetimleme": "Denklemin sol tarafında bir kesir çizgisi var. Bu kesrin pay kısmında 3 çarpı x , eksi 5 , payda kısmında ise 2 yer alıyor. Bu kesir ifadesi , eşittir , x artı 4 olduğuna göre x kaçtır?",
+        "sesliBetimleme": "Bir denklem sorusu. Eşitliğin sol tarafında bir kesir var: pay kısmında üç x eksi beş, payda kısmında ise iki yazıyor. Eşitliğin sağ tarafında ise sadece x artı dört ifadesi var. Buna göre x kaçtır?",
         "gorselMetin": "(3x - 5) / 2 = x + 4",
         "secenekler": ["10", "11", "12", "13", "14"],
         "dogru_cevap": "D",
-        "aciklama": "3x - 5 = 2x + 8 buradan x = 13 bulunur."
+        "aciklama": "Çözüm için içler dışlar çarpımı yapıyoruz. Paydadaki iki sayısını eşitliğin sağındaki x artı dört ile çarpıyoruz. Denklemimiz şöyle oluyor: Üç x eksi beş eşittir, iki çarpı parantez içinde x artı dört. Parantezi açarsak: Üç x eksi beş eşittir iki x artı sekiz olur. İki x'i sola, eksi beşi sağa atarsak: Üç x eksi iki x eşittir sekiz artı beş olur. Buradan x eşittir on üç bulunur. Doğru cevap Denizli."
       },
       {
         "tip": "matematik",
         "konu": "Sayı Problemleri",
-        "sesliBetimleme": "Toplamları 60 olan iki sayıdan biri diğerinin 3 katından 4 fazladır. Buna göre küçük sayı kaçtır?",
+        "sesliBetimleme": "Toplamları altmış olan iki sayı var. Bu sayılardan büyük olanı, küçük olanın üç katından dört fazladır. Buna göre küçük sayı kaçtır?",
         "gorselMetin": "Toplam = 60, B = 3k + 4. k = ?",
         "secenekler": ["12", "14", "16", "18", "20"],
         "dogru_cevap": "B",
-        "aciklama": "4x + 4 = 60 -> 4x = 56 -> x = 14."
+        "aciklama": "Küçük sayıya x diyelim. Bu durumda büyük sayı üç x artı dört olur. İkisinin toplamı x artı üç x artı dört, yani dört x artı dörttür. Bu toplam altmışa eşitmiş. Dört x artı dört eşittir altmış denkleminde, dördü karşıya eksi olarak atarsak dört x eşittir elli altı olur. Elli altıyı dörde böldüğümüzde x'i, yani küçük sayıyı on dört buluruz. Doğru cevap Bursa."
       },
       {
         "tip": "matematik",
         "konu": "Yaş Problemleri",
-        "sesliBetimleme": "Bir babanın yaşı bugün iki çocuğunun yaşları toplamının 3 katıdır. 4 yıl sonra babanın yaşı çocukların yaşları toplamının 2 katı olacağına göre babanın bugünkü yaşı kaçtır?",
+        "sesliBetimleme": "Bir babanın bugünkü yaşı, iki çocuğunun yaşları toplamının tam üç katıdır. Dört yıl sonra ise babanın yaşı, çocukların yaşları toplamının iki katı olacaktır. Buna göre babanın bugünkü yaşı kaçtır?",
         "gorselMetin": "B = 3x. B+4 = 2(x+8). B = ?",
         "secenekler": ["36", "39", "42", "45", "48"],
         "dogru_cevap": "A",
-        "aciklama": "3x + 4 = 2x + 16 -> x = 12. Baba 36 yaşındadır."
+        "aciklama": "Çocukların yaşları toplamına x diyelim. Babanın bugünkü yaşı üç x olur. Dört yıl geçtiğinde baba dört yaş büyür ve üç x artı dört yaşına gelir. İki çocuk olduğu için çocukların yaşları toplamı her yıl ikişer artar, yani dört yıl sonra toplam sekiz artarak x artı sekiz olur. Soruya göre: Üç x artı dört eşittir, iki çarpı parantez içinde x artı sekiz. Parantezi açarsak: Üç x artı dört eşittir iki x artı on altı. Buradan x'i on iki buluruz. Babanın bugünkü yaşı üç x olduğu için, üç çarpı on ikiden sonuç otuz altı çıkar. Doğru cevap Adana."
       },
       {
         "tip": "matematik",
         "konu": "Yüzde Problemleri",
-        "sesliBetimleme": "Yüzde 20 kâr ile 480 TL'ye satılan bir ürünün maliyet fiyatı kaç TL'dir?",
+        "sesliBetimleme": "Yüzde yirmi kâr eklenerek dört yüz seksen Türk Lirasına satılan bir ürünün, kâr eklenmeden önceki maliyet fiyatı kaç Türk Lirasıdır?",
         "gorselMetin": "%20 kâr ile 480 TL ise maliyet?",
         "secenekler": ["380", "400", "420", "440", "450"],
         "dogru_cevap": "B",
-        "aciklama": "1.2 * Maliyet = 480 -> Maliyet = 400 TL."
+        "aciklama": "Maliyet fiyatına yüzde yüz dersek, yüzde yirmi kâr ile satış fiyatı yüzde yüz yirmi olur. Yani malın yüzde yüz yirmisi dört yüz seksen liradır. Yüzde yüzünü bulmak için doğru orantı kurabiliriz veya dört yüz sekseni bir tam onda ikiye bölebiliriz. Dört yüz seksen bölü yüz yirmi çarpı yüz işleminden maliyet dört yüz lira çıkar. Doğru cevap Bursa."
       },
       {
         "tip": "matematik",
         "konu": "Yüzde Problemleri",
-        "sesliBetimleme": "Bir sınıftaki öğrencilerin yüzde 60'ı erkektir. Sınıfa 4 kız öğrenci daha katıldığında kızların sayısı erkeklerin sayısına eşit olduğuna göre başlangıçta sınıfta kaç öğrenci vardır?",
+        "sesliBetimleme": "Bir sınıftaki öğrencilerin yüzde altmışı erkektir. Bu sınıfa dört kız öğrenci daha katıldığında, sınıftaki kızların sayısı erkeklerin sayısına eşitleniyor. Buna göre başlangıçta sınıfta toplam kaç öğrenci vardı?",
         "gorselMetin": "%60 Erkek, +4 Kız -> Kız = Erkek. Toplam ?",
         "secenekler": ["20", "25", "30", "35", "40"],
         "dogru_cevap": "A",
-        "aciklama": "20 kişide 12 erkek 8 kız vardır. 4 kız katılırsa 12 kız olur ve eşitlenir."
+        "aciklama": "Sınıfın tamamına yüz x diyelim. Erkekler altmış x, kızlar kırk x olur. Kızlara dört kişi eklenince, yani kırk x artı dört olunca erkeklere (altmış x) eşit oluyormuş. Kırk x artı dört eşittir altmış x denkleminde, kırk x'i karşıya atarsak yirmi x eşittir dört olur. Sınıfın tamamı yüz x olduğu için, yirmi x'in beş katını alırız. Beş çarpı dört sonucunda sınıf mevcudu yirmi bulunur. Doğru cevap Adana."
       },
       {
         "tip": "matematik",
         "konu": "Hız Problemleri",
-        "sesliBetimleme": "Saatteki hızı 80 km olan bir araç A kentinden B kentine 5 saatte gidiyor. Bu araç hızını saatte 20 km artırırsa aynı yolu kaç saatte döner?",
+        "sesliBetimleme": "Saatteki hızı seksen kilometre olan bir araç, A kentinden B kentine beş saatte gidiyor. Bu araç hızını saatte yirmi kilometre artırırsa, aynı yolu kaç saatte geri döner?",
         "gorselMetin": "Hız=80, T=5. Yeni Hız=100 ise Yeni T=?",
         "secenekler": ["3", "3,5", "4", "4,5", "5"],
         "dogru_cevap": "C",
-        "aciklama": "400 km yolu 100 km hızla 4 saatte alır."
+        "aciklama": "Önce yolun uzunluğunu bulalım: Hız çarpı zaman yolu verir. Seksen çarpı beşten yol dört yüz kilometredir. Araç hızını yirmi kilometre artırırsa yeni hızı seksen artı yirmiden yüz kilometre olur. Dört yüz kilometrelik yolu saatte yüz kilometre hızla, dört yüz bölü yüzden dört saatte alır. Doğru cevap Ceyhan."
       },
       {
         "tip": "matematik",
         "konu": "İşlem",
-        "sesliBetimleme": "Pozitif tam sayılar kümesinde üçgen işlemi x üçgen y eşittir x'in karesi artı 3 y şeklinde tanımlanıyor. Buna göre 4 üçgen 5 işleminin sonucu kaçtır?",
+        "sesliBetimleme": "Pozitif tam sayılar üzerinde bir üçgen işlemi tanımlanmış. x üçgen y eşittir x'in karesi artı üç y. Buna göre dört üçgen beş işleminin sonucu kaçtır?",
         "gorselMetin": "x Δ y = x^2 + 3y. 4 Δ 5 = ?",
         "secenekler": ["25", "28", "31", "34", "37"],
         "dogru_cevap": "C",
-        "aciklama": "4^2 + 3*5 = 16 + 15 = 31."
+        "aciklama": "İşlemde x yerine dört, y yerine beş yazıyoruz. Dördün karesi artı üç çarpı beş. Dördün karesi on altı eder. Üç çarpı beş ise on beş eder. On altı ile on beşin toplamından sonuç otuz bir çıkar. Doğru cevap Ceyhan."
       },
       {
         "tip": "matematik",
         "konu": "Geometri",
-        "sesliBetimleme": "Bir kenar uzunluğu 6 cm olan karenin çevresi ile aynı çevre uzunluğuna sahip bir eşkenar üçgenin bir kenar uzunluğu kaç cm'dir?",
+        "sesliBetimleme": "Bir kenar uzunluğu altı santimetre olan bir karemiz var. Bu karenin çevre uzunluğu ile aynı çevreye sahip bir eşkenar üçgen düşünün. Bu eşkenar üçgenin bir kenar uzunluğu kaç santimetredir?",
         "gorselMetin": "Kare çevre (6) = Üçgen çevre. Üçgen kenar ?",
         "secenekler": ["6", "7", "8", "9", "10"],
         "dogru_cevap": "C",
-        "aciklama": "Çevre 24 cm. Üçgen kenarı 24/3 = 8 cm."
+        "aciklama": "Karenin dört kenarı olduğu için çevresi altı çarpı dörtten yirmi dört santimetredir. Eşkenar üçgenin çevresi de yirmi dört santimetreymiş. Eşkenar üçgenin üç eşit kenarı olduğu için bir kenarını bulmak için yirmi dördü üçe böleriz. Sonuç sekiz santimetre çıkar. Doğru cevap Ceyhan."
       },
       {
         "tip": "matematik",
         "konu": "Geometri",
-        "sesliBetimleme": "Taban yarıçapı 3 cm ve yüksekliği 10 cm olan bir dik silindirin hacmi kaç pi santimetreküptür?",
+        "sesliBetimleme": "Taban yarıçapı üç santimetre ve yüksekliği on santimetre olan bir dik silindirin hacmi kaç pi santimetreküptür? Not: Sonucu pi sembolü cinsinden söyleyiniz.",
         "gorselMetin": "r=3, h=10 olan silindir hacmi (pi cinsinden)?",
         "secenekler": ["30 pi", "60 pi", "90 pi", "120 pi", "150 pi"],
         "dogru_cevap": "C",
-        "aciklama": "pi * r^2 * h = pi * 9 * 10 = 90 pi."
+        "aciklama": "Silindirin hacim formülü: pi çarpı yarıçapın karesi çarpı yüksekliktir. Yarıçap üç olduğu için karesi dokuzdur. Yükseklik de ondur. Pi çarpı dokuz çarpı on işleminin sonucu doksan pi çıkar. Doğru cevap Ceyhan."
       },
       {
-        "tip": "turkce",
+        "tip": "Tarih",
         "konu": "İlk Türk Devletleri",
         "soruKoku": "İslamiyet öncesi Türk devletlerinde toplumsal yapının temelini oluşturan ve 'aile' anlamına gelen birim aşağıdakilerden hangisidir?",
         "icerik": [],
@@ -348,7 +354,7 @@
         "aciklama": "Eski Türklerde toplumsal yapı çekirdek aile olan Oguş ile başlar."
       },
       {
-        "tip": "turkce",
+        "tip": "tarih",
         "konu": "Türk İslam Tarihi",
         "soruKoku": "Karahanlılar döneminde kaleme alınan, Türk-İslam tarihinin ilk siyasetnamesi ve 'mutluluk veren bilgi' anlamına gelen eser hangisidir?",
         "icerik": [],
@@ -357,7 +363,7 @@
         "aciklama": "Yusuf Has Hacip tarafından yazılan Kutadgu Bilig ideal devleti anlatır."
       },
       {
-        "tip": "turkce",
+        "tip": "tarih",
         "konu": "Osmanlı Devleti",
         "soruKoku": "Osmanlı Devleti'nde orduya asker yetiştirmek amacıyla ilk kez I. Murad döneminde uygulanan, savaş esirlerinin beşte birinin orduya alınması sistemine ne ad verilir?",
         "icerik": [],
@@ -366,7 +372,7 @@
         "aciklama": "Pençik sistemi savaş esirlerinin asker yapılmasını sağlar."
       },
       {
-        "tip": "turkce",
+        "tip": "tarih",
         "konu": "Osmanlı Yükselme",
         "soruKoku": "1538 yılında gerçekleşen, Akdeniz'in bir Türk gölü haline gelmesini sağlayan ve Barbaros Hayreddin Paşa komutasında Haçlılara karşı kazanılan savaş hangisidir?",
         "icerik": [],
@@ -375,7 +381,7 @@
         "aciklama": "Preveze Deniz Zaferi Osmanlı'nın denizlerdeki üstünlüğünü kesinleştirmiştir."
       },
       {
-        "tip": "turkce",
+        "tip": "tarih",
         "konu": "Osmanlı Yenileşme",
         "soruKoku": "Osmanlı Devleti'nde 3. Selim döneminde yapılan köklü yeniliklerin tamamına verilen isim ve bu dönemde kurulan Batı tarzı ordunun adı aşağıdakilerden hangisidir?",
         "icerik": [],
@@ -384,7 +390,7 @@
         "aciklama": "III. Selim Nizam-ı Cedit adıyla Batı tarzı askeri birliği kurmuştur."
       },
       {
-        "tip": "turkce",
+        "tip": "tarih",
         "konu": "20. Yüzyıl Savaşları",
         "soruKoku": "1912 yılında İtalya ile imzalanan, Osmanlı'nın Kuzey Afrika'daki son toprak parçasını (Trablusgarp ve Bingazi) kaybettiği antlaşma hangisidir?",
         "icerik": [],
@@ -393,7 +399,7 @@
         "aciklama": "Uşi Antlaşması ile Trablusgarp kaybedilmiştir."
       },
       {
-        "tip": "turkce",
+        "tip": "tarih",
         "konu": "1. Dünya Savaşı",
         "soruKoku": "I. Dünya Savaşı devam ederken İtilaf Devletleri'nin Osmanlı topraklarını paylaşmak için kendi aralarında imzaladıkları gizli antlaşmaları dünya kamuoyuna duyuran devlet hangisidir?",
         "icerik": [],
@@ -402,7 +408,7 @@
         "aciklama": "Sovyet Rusya, Çarlık dönemine ait gizli planları ifşa etmiştir."
       },
       {
-        "tip": "turkce",
+        "tip": "tarih",
         "konu": "Milli Mücadele",
         "soruKoku": "Millî Mücadele'nin gerekçesi, yöntemi ve amacının ilk kez belirtildiği, aynı zamanda millî egemenliğe dayalı yeni bir devletin kurulacağının işaretini veren belge hangisidir?",
         "icerik": [],
@@ -411,7 +417,7 @@
         "aciklama": "Amasya Genelgesi bir ihtilal beyannamesi özelliği taşır."
       },
       {
-        "tip": "turkce",
+        "tip": "tarih",
         "konu": "İnkılap Tarihi",
         "soruKoku": "Kurtuluş Savaşı'nda Batı Cephesi'nde kazanılan I. İnönü Zaferi sonrası, yeni Türk devletinin ilk anayasası olarak kabul edilen belge hangisidir?",
         "icerik": [],
@@ -420,7 +426,7 @@
         "aciklama": "1921 Anayasası (Teşkilat-ı Esasiye) ilk anayasadır."
       },
       {
-        "tip": "turkce",
+        "tip": "tarih",
         "konu": "Atatürk İnkılapları",
         "soruKoku": "3 Mart 1924 tarihinde kabul edilen ve Türkiye'deki tüm eğitim kurumlarının Millî Eğitim Bakanlığı'na bağlanmasını sağlayarak eğitimde ikiliği sona erdiren kanun hangisidir?",
         "icerik": [],
@@ -429,7 +435,7 @@
         "aciklama": "Tevhid-i Tedrisat Kanunu ile eğitimde birlik sağlanmıştır."
       },
       {
-        "tip": "turkce",
+        "tip": "tarih",
         "konu": "Atatürk İlkeleri",
         "soruKoku": "1930'lu yıllarda dünyada yaşanan ekonomik bunalım üzerine Türkiye'nin benimsediği, yatırımların bizzat devlet eliyle yapılmasını öngören ilke hangisidir?",
         "icerik": [],
@@ -438,7 +444,7 @@
         "aciklama": "Devletçilik ilkesi yatırımların devlet tarafından yönetilmesini esas alır."
       },
       {
-        "tip": "turkce",
+        "tip": "tarih",
         "konu": "Dış Politika",
         "soruKoku": "Lozan Barış Antlaşması'nda, Yunanistan'ın Batı Anadolu'da verdiği zararlara karşılık 'Savaş Tazminatı' olarak Türkiye'ye bıraktığı yer aşağıdakilerden hangisidir?",
         "icerik": [],
@@ -447,7 +453,7 @@
         "aciklama": "Karaağaç savaş tazminatı olarak alınmıştır."
       },
       {
-        "tip": "turkce",
+        "tip": "tarih",
         "konu": "Milli Marş",
         "soruKoku": "İstiklâl Marşı'nın yazarı Mehmet Akif Ersoy, TBMM tarafından düzenlenen yarışmadan kazandığı para ödülünü hangi kuruma bağışlamıştır?",
         "icerik": [],
@@ -456,7 +462,7 @@
         "aciklama": "Mehmet Akif ödülü Darü'l-Mesai kurumuna bağışlamıştır."
       },
       {
-        "tip": "turkce",
+        "tip": "cografya",
         "konu": "Türkiye Yer Şekilleri",
         "soruKoku": "Türkiye'nin kuzey ve güney kıyılarında dağların denize paralel uzanmasının sonucu aşağıdakilerden hangisi olamaz?",
         "icerik": [],
@@ -471,7 +477,7 @@
         "aciklama": "Kıyıda girinti çıkıntının çok olması dağların denize dik uzandığı bölgelere aittir."
       },
       {
-        "tip": "turkce",
+        "tip": "cografya",
         "konu": "Türkiye İklimi",
         "soruKoku": "Türkiye'de don olaylarının en az görüldüğü bölge aşağıdakilerden hangisidir?",
         "icerik": [],
@@ -480,7 +486,7 @@
         "aciklama": "Akdeniz kıyıları yüksek kış sıcaklıkları nedeniyle don olayının en az görüldüğü yerdir."
       },
       {
-        "tip": "turkce",
+        "tip": "cografya",
         "konu": "Dış Kuvvetler",
         "soruKoku": "Türkiye'de 'karstik şekillerin' (mağara, obruk, lapa vb.) en yaygın olduğu bölge aşağıdakilerden hangisidir?",
         "icerik": [],
@@ -489,7 +495,7 @@
         "aciklama": "Akdeniz'deki Teke ve Taşeli platoları karstik topoğrafyanın merkezidir."
       },
       {
-        "tip": "turkce",
+        "tip": "cografya",
         "konu": "Türkiye Tarımı",
         "soruKoku": "Türkiye'de modern yöntemlerle (entansif) tarım yapıldığında aşağıdakilerden hangisinin azalması beklenir?",
         "icerik": [],
@@ -498,7 +504,7 @@
         "aciklama": "Modern tarım teknolojisi doğaya ve iklime olan bağımlılığı azaltır."
       },
       {
-        "tip": "turkce",
+        "tip": "cografya",
         "konu": "Madenler",
         "soruKoku": "Aşağıdaki madenlerden hangisinin Türkiye'deki rezervleri dünya sıralamasında ilk sırada yer alır?",
         "icerik": [],
@@ -507,7 +513,7 @@
         "aciklama": "Türkiye dünya bor rezervlerinin %70'inden fazlasına sahiptir."
       },
       {
-        "tip": "turkce",
+        "tip": "anayasa",
         "konu": "Yargı",
         "soruKoku": "1982 Anayasası’na göre Uyuşmazlık Mahkemesi Başkanı aşağıdakilerden hangisi tarafından kendi üyeleri arasından seçilir?",
         "icerik": [],
@@ -516,7 +522,7 @@
         "aciklama": "Uyuşmazlık Mahkemesi Başkanı Anayasa Mahkemesi üyeleri arasından seçilir."
       },
       {
-        "tip": "turkce",
+        "tip": "anayasa",
         "konu": "Anayasa Hukuku",
         "soruKoku": "1982 Anayasası'na göre Türk hukuk sistemindeki norm hiyerarşisinin en tepesinde hangisi yer alır?",
         "icerik": [],
@@ -525,7 +531,7 @@
         "aciklama": "Anayasa hukuk hiyerarşisinin en tepesinde bulunur."
       },
       {
-        "tip": "turkce",
+        "tip": "anayasa",
         "konu": "Yasama",
         "soruKoku": "Türkiye'de bir kişinin milletvekili seçilebilmesi için en az kaç yaşını doldurmuş olması gerekir?",
         "icerik": [],
@@ -534,7 +540,7 @@
         "aciklama": "Milletvekili seçilme yaşı 2017 değişikliği ile 18'e düşürülmüştür."
       },
       {
-        "tip": "turkce",
+        "tip": "anayasa",
         "konu": "İdare Hukuku",
         "soruKoku": "Bir köyün kurulmasına, kaldırılmasına veya adının değiştirilmesine karar verme yetkisi kime aittir?",
         "icerik": [],
@@ -543,7 +549,7 @@
         "aciklama": "Köy tüzel kişiliği İçişleri Bakanlığı kararı ile kurulur."
       },
       {
-        "tip": "turkce",
+        "tip": "anayasa",
         "konu": "Anayasa Mahkemeleri",
         "soruKoku": "Aşağıdakilerden hangisi 1982 Anayasası'nda sayılan bir 'yüksek mahkeme' değildir?",
         "icerik": [],
@@ -552,7 +558,7 @@
         "aciklama": "Sayıştay bir denetim organıdır, yüksek mahkeme sayılmaz."
       },
       {
-        "tip": "turkce",
+        "tip": "anayasa",
         "konu": "İdare Hukuku",
         "soruKoku": "Yerel seçimlerde muhtar seçilebilmek için seçimden önce kaç ay o mahallede ikamet şartı aranır?",
         "icerik": [],
@@ -561,7 +567,7 @@
         "aciklama": "Muhtarlık için en az 6 ay mahallede ikamet şartı vardır."
       },
       {
-        "tip": "turkce",
+        "tip": "guncel bilgi",
         "konu": "Güncel Bilgi",
         "soruKoku": "Özbekistan'da düzenlenen Ekonomik İşbirliği Teşkilatı toplantısında alınan karar ile '2025 EİT Turizm Başkenti' ilan edilen ilimiz hangisidir?",
         "icerik": [],
@@ -570,7 +576,7 @@
         "aciklama": "2025 EİT Turizm Başkenti olarak Erzurum seçilmiştir."
       },
       {
-        "tip": "turkce",
+        "tip": "guncel bilgi",
         "konu": "Güncel Bilgi",
         "soruKoku": "Kazakistan'ın ev sahipliğinde toplanan Türk Dünyası Kültür Başkentleri Birliği tarafından '2025 Türk Dünyası Kültür Başkenti' olarak seçilen şehir aşağıdakilerden hangisidir?",
         "icerik": [],
@@ -579,7 +585,7 @@
         "aciklama": "2025 Türk Dünyası Kültür Başkenti olarak Aktau şehri seçilmiştir."
       },
       {
-        "tip": "turkce",
+        "tip": "guncel bilgi",
         "konu": "Güncel Bilgi",
         "soruKoku": "Türkiye'nin ilk astronotu Alper Gezeravcı'nın Ocak 2024'te Uluslararası Uzay İstasyonu'na (ISS) giderek bilimsel deneyler gerçekleştirdiği misyonun adı nedir?",
         "icerik": [],
@@ -588,7 +594,7 @@
         "aciklama": "Alper Gezeravcı Ax-3 misyonu ile uzay deneylerini tamamlamıştır."
       },
       {
-        "tip": "turkce",
+        "tip": "guncel bilgi",
         "konu": "Güncel Bilgi",
         "soruKoku": "Cumhurbaşkanlığı tarafından yayımlanan genelge ile toplumsal yapının temelini korumak ve güçlendirmek amacıyla Türkiye'de '2025 yılı' ne yılı olarak ilan edilmiştir?",
         "icerik": [],
@@ -597,7 +603,7 @@
         "aciklama": "2025 yılı Türkiye'de Aile Yılı olarak ilan edilmiştir."
       },
       {
-        "tip": "turkce",
+        "tip": "guncel bilgi",
         "konu": "Güncel Bilgi",
         "soruKoku": "2025 yılında 'Yaşamlar İçin Gelecek Toplumunu Tasarlamak' temasıyla düzenlenecek olan dünyanın en büyük sergi organizasyonu EXPO'ya ev sahipliği yapacak şehir hangisidir?",
         "icerik": [],
@@ -606,7 +612,7 @@
         "aciklama": "EXPO 2025 Japonya'nın Osaka şehrinde düzenlenecektir."
       },
       {
-        "tip": "turkce",
+        "tip": "guncel bilgi",
         "konu": "Güncel Bilgi",
         "soruKoku": "2024 yılında hayatını kaybeden, 'Yaseminler Tüter mi Hâlâ?' ve 'Schrödinger'in Kedisi' gibi eserlerin yazarı olan ünlü Türk düşünür ve yazar kimdir?",
         "icerik": [],
