@@ -16,11 +16,11 @@
         "konu": "Deyimler",
         "soruKoku": "Aşağıdaki numaralanmış yerlerin hangisinde, parantez içinde verilen açıklamayla altı çizili sözün anlamı uyuşmamaktadır?",
         "icerik": [
-            "Yazar, son romanında ele aldığı konuyu ilmek ilmek dokumuş (ayrıntılarıyla ve özenle işlemiş).",
-            "Karakterlerin iç dünyasını yansıtırken kılı kırk yaran (çok titizlenen) bir üslup benimsemiş.",
-            "Ancak olay örgüsünde ipe un sermiş (işi yokuşa sürmüş, imkansızlaştırmış) gibi görünen bazı kopukluklar var.",
-            "Yine de okur, yazarın kalem oynattığı (yazı yazdığı, eser verdiği) bu alandaki ustalığını hemen fark ediyor.",
-            "Eser, edebiyat dünyasında ses getirecek (ilgi uyandıracak) bir potansiyele sahip."
+          "Yazar, son romanında ele aldığı konuyu ilmek ilmek dokumuş (ayrıntılarıyla ve özenle işlemiş).",
+          "Karakterlerin iç dünyasını yansıtırken kılı kırk yaran (çok titizlenen) bir üslup benimsemiş.",
+          "Ancak olay örgüsünde ipe un sermiş (işi yokuşa sürmüş, imkansızlaştırmış) gibi görünen bazı kopukluklar var.",
+          "Yine de okur, yazarın kalem oynattığı (yazı yazdığı, eser verdiği) bu alandaki ustalığını hemen fark ediyor.",
+          "Eser, edebiyat dünyasında ses getirecek (ilgi uyandıracak) bir potansiyele sahip."
         ],
         "secenekler": ["Birinci", "İkinci", "Üçüncü", "Dördüncü", "Beşinci"],
         "dogru_cevap": "C",
@@ -31,11 +31,11 @@
         "konu": "Karşılaştırma",
         "soruKoku": "Bu parçada numaralanmış cümlelerin hangisinde 'karşılaştırma' yapılmıştır?",
         "icerik": [
-            "Dijital kütüphaneler, bilgiye erişim konusunda son yıllarda büyük bir devrim yarattı.",
-            "Klasik kütüphanelerin aksine, dijital kütüphaneler zaman ve mekan sınırı olmaksızın hizmet verebiliyor.",
-            "Kullanıcılar, aradıkları bir makaleye veya kitaba saniyeler içinde ulaşmanın konforunu yaşıyor.",
-            "Bu platformlar, genellikle üyelik sistemiyle çalışıyor ve geniş bir veri tabanı sunuyor.",
-            "Araştırmacılar için bu durum, literatür taraması sürecini oldukça hızlandırıyor."
+          "Dijital kütüphaneler, bilgiye erişim konusunda son yıllarda büyük bir devrim yarattı.",
+          "Klasik kütüphanelerin aksine, dijital kütüphaneler zaman ve mekan sınırı olmaksızın hizmet verebiliyor.",
+          "Kullanıcılar, aradıkları bir makaleye veya kitaba saniyeler içinde ulaşmanın konforunu yaşıyor.",
+          "Bu platformlar, genellikle üyelik sistemiyle çalışıyor ve geniş bir veri tabanı sunuyor.",
+          "Araştırmacılar için bu durum, literatür taraması sürecini oldukça hızlandırıyor."
         ],
         "secenekler": ["1", "2", "3", "4", "5"],
         "dogru_cevap": "B",
@@ -47,11 +47,11 @@
         "soruKoku": "Aşağıdaki cümlelerin hangisinde bir anlatım bozukluğu vardır?",
         "icerik": [],
         "secenekler": [
-            "Toplantıda alınan kararların hepsi, çalışanlara tebliğ edildi.",
-            "Bahçedeki çiçekleri her sabah özenle sular, bakımını yapardı.",
-            "Yeni aldığı arabasını çok seviyor, gözü gibi bakıyordu.",
-            "Arkadaşım, bu zor günlerde beni hiç yalnız bırakmadı; hep destek oldu.",
-            "Okuldaki başarısı sayesinde ailesinin ve öğretmenlerinin takdirini kazandı."
+          "Toplantıda alınan kararların hepsi, çalışanlara tebliğ edildi.",
+          "Bahçedeki çiçekleri her sabah özenle sular, bakımını yapardı.",
+          "Yeni aldığı arabasını çok seviyor, gözü gibi bakıyordu.",
+          "Arkadaşım, bu zor günlerde beni hiç yalnız bırakmadı; hep destek oldu.",
+          "Okuldaki başarısı sayesinde ailesinin ve öğretmenlerinin takdirini kazandı."
         ],
         "dogru_cevap": "B",
         "aciklama": "Nesne eksikliği vardır. 'sular, (onların) bakımını yapardı' şeklinde olmalıdır."
@@ -79,12 +79,12 @@
         "konu": "Paragrafta Yapı",
         "soruKoku": "Bu parçada numaralanmış cümlelerden hangisi düşüncenin akışını bozmaktadır?",
         "icerik": [
-            "Anadolu'nun her köşesi ayrı bir hikâye barındırır bağrında.",
-            "Taşlarında, topraklarında binlerce yıllık medeniyetlerin izleri okunur.",
-            "Bu izleri sürmek, tarihin tozlu sayfalarını aralamak gibidir.",
-            "Ancak günümüzde bu tarihi doku, modernleşme adı altında ne yazık ki tahrip ediliyor.",
-            "Turistler genellikle sahil şeridindeki otelleri tercih ediyor.",
-            "Oysa gerçek keşif, beton yığınlarının ötesindeki bu kadim kalıntılarda saklıdır."
+          "Anadolu'nun her köşesi ayrı bir hikâye barındırır bağrında.",
+          "Taşlarında, topraklarında binlerce yıllık medeniyetlerin izleri okunur.",
+          "Bu izleri sürmek, tarihin tozlu sayfalarını aralamak gibidir.",
+          "Ancak günümüzde bu tarihi doku, modernleşme adı altında ne yazık ki tahrip ediliyor.",
+          "Turistler genellikle sahil şeridindeki otelleri tercih ediyor.",
+          "Oysa gerçek keşif, beton yığınlarının ötesindeki bu kadim kalıntılarda saklıdır."
         ],
         "secenekler": ["2", "3", "4", "5", "6"],
         "dogru_cevap": "D",
@@ -105,11 +105,11 @@
         "soruKoku": "Bu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir? Sanatçı, eserini oluştururken toplumdan kopuk yaşayamaz. Çünkü sanat, gücünü hayattan ve insandan alır. Bir ressamın tuvalindeki renkler, bir yazarın romanındaki karakterler, aslında hep o toplumun birer yansımasıdır. Kısacası, ----.",
         "icerik": [],
         "secenekler": [
-            "sanatçı eserlerinde sadece kendi iç dünyasını yansıtmalıdır",
-            "toplumun beklentileri sanatçının özgürlüğünü kısıtlar",
-            "sanatçı, yaşadığı toplumun aynasıdır",
-            "evrensel eserler vermek için yerellikten uzaklaşmak gerekir",
-            "sanatın amacı insanlara ders vermek değildir"
+          "sanatçı eserlerinde sadece kendi iç dünyasını yansıtmalıdır",
+          "toplumun beklentileri sanatçının özgürlüğünü kısıtlar",
+          "sanatçı, yaşadığı toplumun aynasıdır",
+          "evrensel eserler vermek için yerellikten uzaklaşmak gerekir",
+          "sanatın amacı insanlara ders vermek değildir"
         ],
         "dogru_cevap": "C",
         "aciklama": "Metin sanatçının toplumun yansıması olduğunu vurguladığı için C şıkkı en uygundur."
@@ -119,31 +119,31 @@
         "konu": "Paragrafta Yardımcı Düşünce",
         "soruKoku": "Bu parçada 'kitap okuma alışkanlığı' ile ilgili olarak aşağıdakilerden hangisine değinilmemiştir?",
         "icerik": [
-            "Kitap okuma alışkanlığı, bireyin düşünce ufkunu genişleten en önemli eylemlerden biridir.",
-            "Düzenli okuyan kişilerde empati yeteneğinin geliştiği, farklı bakış açılarına daha açık oldukları gözlemlenmiştir.",
-            "Ayrıca okuma, kelime dağarcığını zenginleştirerek kişinin kendisini daha iyi ifade etmesine olanak tanır.",
-            "Ancak günümüzde dijitalleşmenin etkisiyle bu alışkanlığın, özellikle gençler arasında azaldığı görülmektedir."
+          "Kitap okuma alışkanlığı, bireyin düşünce ufkunu genişleten en önemli eylemlerden biridir.",
+          "Düzenli okuyan kişilerde empati yeteneğinin geliştiği, farklı bakış açılarına daha açık oldukları gözlemlenmiştir.",
+          "Ayrıca okuma, kelime dağarcığını zenginleştirerek kişinin kendisini daha iyi ifade etmesine olanak tanır.",
+          "Ancak günümüzde dijitalleşmenin etkisiyle bu alışkanlığın, özellikle gençler arasında azaldığı görülmektedir."
         ],
         "secenekler": [
-            "Bireysel gelişime katkı sağladığına",
-            "İletişim becerilerini güçlendirdiğine",
-            "Teknolojik gelişmelerden olumsuz etkilendiğine",
-            "İnsanları anlamayı kolaylaştırdığına",
-            "Akademik başarıyı doğrudan artırdığına"
+          "Bireysel gelişime katkı sağladığına",
+          "İletişim becerilerini güçlendirdiğine",
+          "Teknolojik gelişmelerden olumsuz etkilendiğine",
+          "İnsanları anlamayı kolaylaştırdığına",
+          "Akademik başarıyı doğrudan artırdığına"
         ],
         "dogru_cevap": "E",
         "aciklama": "Metinde akademik başarıdan bahsedilmemiştir."
       },
-{
+      {
         "tip": "turkce",
         "konu": "Paragrafta Yapı",
         "soruKoku": "Bu parçada numaralanmış cümlelerden hangisi düşüncenin akışını bozmaktadır?",
         "icerik": [
-            "(1) Bozkırın ilk kadın hükümdarı olarak tarihe geçen Tomris Hatun, Pers İmparatorluğu'nun bitmek bilmeyen saldırılarına karşı Saka Türklerini tek bir bayrak altında toplamayı başarmış eşsiz bir liderdir.",
-            "(2) Askerî dehası ve diplomatik manevraları sayesinde bozkırda stratejik bir denge kuran bu güçlü kadın, barışı korumak adına tüm uzlaşmacı yolları denemekten de geri durmamıştır.",
-            "(3) Ancak Pers kralı Büyük Kiros'un Sakaların topraklarını istila etme hırsı ve Tomris'in oğlunu hileyle öldürmesi, bozkırın sessizliğini büyük bir intikam fırtınasına dönüştürmüştür.",
-            "(4) Antik Çağ'da Sakalar; göçebe yaşam tarzları, madencilikteki ustalıkları ve özellikle Bozkırın Kuyumcuları unvanıyla sanat tarihinde derin izler bırakmış bir topluluktur.",
-            "(5) Bu kaçınılmaz çatışmanın sonunda Tomris Hatun, Kiros'u yenilgiye uğratarak halkının bağımsızlığını kanıyla tescillemiş ve adını dünya tarihine altın harflerle yazdırmıştır."
+          "(1) Bozkırın ilk kadın hükümdarı olarak tarihe geçen Tomris Hatun, Pers İmparatorluğu'nun bitmek bilmeyen saldırılarına karşı Saka Türklerini tek bir bayrak altında toplamayı başarmış eşsiz bir liderdir.",
+          "(2) Askerî dehası ve diplomatik manevraları sayesinde bozkırda stratejik bir denge kuran bu güçlü kadın, barışı korumak adına tüm uzlaşmacı yolları denemekten de geri durmamıştır.",
+          "(3) Ancak Pers kralı Büyük Kiros'un Sakaların topraklarını istila etme hırsı ve Tomris'in oğlunu hileyle öldürmesi, bozkırın sessizliğini büyük bir intikam fırtınasına dönüştürmüştür.",
+          "(4) Antik Çağ'da Sakalar; göçebe yaşam tarzları, madencilikteki ustalıkları ve özellikle Bozkırın Kuyumcuları unvanıyla sanat tarihinde derin izler bırakmış bir topluluktur.",
+          "(5) Bu kaçınılmaz çatışmanın sonunda Tomris Hatun, Kiros'u yenilgiye uğratarak halkının bağımsızlığını kanıyla tescillemiş ve adını dünya tarihine altın harflerle yazdırmıştır."
         ],
         "secenekler": ["1", "2", "3", "4", "5"],
         "dogru_cevap": "D",
@@ -155,59 +155,59 @@
         "soruKoku": "Aşağıdaki cümlelerin hangisinde 'öz eleştiri' söz konusudur?",
         "icerik": [],
         "secenekler": [
-            "Bu projeyi zamanında bitirebilmek için ekibimizle gece gündüz çalıştık.",
-            "Yıllar önce ona söylediğim o kırıcı sözler yüzünden hala kendimi affedemiyorum.",
-            "İnsanların çoğu, hatalarını kabul etmek yerine başkalarını suçlamayı tercih eder.",
-            "Senin bu konudaki fikirlerin, bizim için her zaman yol gösterici olmuştur.",
-            "Keşke o gün yanımıza şemsiye alsaydık, sırılsıklam olmazdık."
+          "Bu projeyi zamanında bitirebilmek için ekibimizle gece gündüz çalıştık.",
+          "Yıllar önce ona söylediğim o kırıcı sözler yüzünden hala kendimi affedemiyorum.",
+          "İnsanların çoğu, hatalarını kabul etmek yerine başkalarını suçlamayı tercih eder.",
+          "Senin bu konudaki fikirlerin, bizim için her zaman yol gösterici olmuştur.",
+          "Keşke o gün yanımıza şemsiye alsaydık, sırılsıklam olmazdık."
         ],
         "dogru_cevap": "B",
         "aciklama": "Kişinin kendi davranışını olumsuz değerlendirmesi öz eleştiridir."
       },
-{
+      {
         "tip": "turkce",
         "konu": "Anlatım Teknikleri",
         "soruKoku": "Bu parçanın anlatımında aşağıdaki anlatım tekniklerinin hangisinden yararlanılmamıştır?",
         "icerik": [
-            "(1) Güneşin ilk ışıklarıyla birlikte ormanın derinliklerinden yükselen cıvıltılar, doğanın uyanışını müjdeleyen en zarif melodilerdir.",
-            "(2) Gökyüzünün bu sakinleri, sadece estetik bir zevk sunmakla kalmaz; aynı zamanda ekosistemin dengesini koruyan hayati birer dişlidir.",
-            "(3) Örneğin, tohumların yayılması ve böcek popülasyonunun kontrolü büyük oranda kuşların faaliyetlerine bağlıdır.",
-            "(4) Bazı araştırmacılar, şehirleşmenin kuşların ritmini bozmadığını iddia etse de gerçekte beton yığınları onların göç yollarını ve yuvalama alanlarını tehdit etmektedir.",
-            "(5) Kanat çırpışlarındaki o ritmik ahenk, aslında bir hayatta kalma mücadelesinin sessiz çığlığıdır ve tüylerdeki renk cümbüşü türler arası iletişimin temelini oluşturur."
+          "(1) Güneşin ilk ışıklarıyla birlikte ormanın derinliklerinden yükselen cıvıltılar...",
+          "(2) Gökyüzünün bu sakinleri...",
+          "(3) Örneğin, tohumların yayılması...",
+          "(4) Bazı araştırmacılar...",
+          "(5) Kanat çırpışlarındaki o ritmik ahenk..."
         ],
         "secenekler": ["Açıklama", "Betimleme", "Tartışma", "Karşılaştırma", "Öyküleme"],
         "dogru_cevap": "E",
-        "aciklama": "Parçanın genelinde kuşların ekosistemdeki rolleri hakkında bilgi verildiği için 'açıklama'; 1. ve 5. cümlelerdeki 'zarif melodiler', 'ritmik ahenk' ve 'renk cümbüşü' gibi niteleyici ifadelerle görsel ve işitsel bir tablo çizildiği için 'betimleme'; 4. cümlede 'iddia etse de gerçekte' ifadesiyle yerleşik bir kanıya karşı çıkıldığı için 'tartışma'; kuşların farklı işlevleri (korunma ve iletişim) birbiriyle ilişkilendirildiği için 'karşılaştırma' tekniklerine başvurulmuştur. Parçada olaylar bir kişi-zaman-mekan ekseninde, kronolojik bir akış veya hareketlilik (aksiyon) içerisinde verilmediği için 'öyküleme' tekniği kullanılmamıştır. Doğru cevap Edirne."
-  },
-  {
-    "tip": "turkce",
-    "konu": "Paragrafta Ana Düşünce",
-    "soruKoku": "Bu parçaya göre İstanbul'daki modern kentleşme sürecinin yarattığı temel paradoks aşağıdakilerden hangisidir?",
-    "icerik": "İstanbul, tarihsel derinliği ile küresel bir cazibe merkezi olma özelliğini korurken, kontrolsüz genişleyen beton dokusu ve demografik yığılma nedeniyle yaşamsal bir düğüm noktasına dönüşmüştür. Şehrin sunduğu sınırsız sosyo-ekonomik imkanlar, aynı zamanda ulaşım felci, ekolojik tahribat ve bireyin kalabalık içindeki yalnızlaşması gibi yapısal krizleri de beraberinde getirmektedir. Modernleşme adına inşa edilen dikey mimari, estetik bir kimlik sunmaktan ziyade; insan doğasına aykırı, mekanik ve sürdürülebilirliği düşük bir habitata yol açmıştır. Dolayısıyla kentin sunduğu konfor vaadi, bizzat kentin kendi ağırlığı altında ezilerek bir yaşam mücadelesine evrilmektedir.",
-    "secenekler": [
-      "Şehrin tarihi dokusunun teknolojik imkanlarla harmanlanarak turizme kazandırılması",
-      "Kentin sunduğu geniş imkanların, beraberinde getirdiği karmaşa ve yapısal sorunlar nedeniyle yaşamı zorlaştırması",
-      "Dikey mimarinin geleneksel mahalle kültürünü tamamen ortadan kaldırarak güvenliği tehdit etmesi",
-      "Ekonomik büyümenin çevre kirliliği üzerindeki etkisinin yerel yönetimlerce minimize edilmesi",
-      "Nüfus artışının iş gücü piyasasında yarattığı rekabetin eğitim kalitesini düşürmesi"
-    ],
-    "dogru_cevap": "B",
-    "aciklama": "Metin, şehrin sunduğu imkanlar ile yarattığı zorluklar arasındaki çelişkiyi (paradoksu) temel almaktadır."
-  },
-  {
-    "tip": "turkce",
-    "konu": "Paragrafta Yorum",
-    "soruKoku": "Bu parçadan hareketle Hollanda'nın hayvancılık sektöründeki küresel başarısının temel dayanağı hakkında aşağıdakilerden hangisi söylenebilir?",
-    "icerik": "Yüz ölçümü bakımından oldukça sınırlı topraklara sahip olmasına rağmen Hollanda, hayvancılık ve süt ürünleri üretiminde dünya devleri arasında yer almaktadır. Bu başarının sırrı, geleneksel yöntemlerin ötesine geçerek; verimliliği artıran hassas tarım teknolojileri, genetik ıslah çalışmaları ve kooperatifleşme odaklı pazar yönetimidir. Ülkede birim hayvandan alınan süt verimi, sadece otlatma imkanlarıyla değil, veri analitiği ve otomasyon sistemlerinin üretim sürecine entegre edilmesiyle maksimize edilmiştir. Doğa ile teknolojinin bu stratejik uyumu, Hollanda'yı toprak kısıtına rağmen tarımsal ihracatın zirvesine taşımıştır. Bu durum, nitelikli bilginin fiziksel coğrafyayı nasıl dönüştürdüğünün en somut örneğidir.",
-    "secenekler": [
-      "Geniş meraların varlığı sayesinde hayvancılık maliyetlerinin komşu ülkelere göre çok düşük tutulması",
-      "Hükümetin süt ürünleri fiyatlarına müdahale ederek iç piyasada tüketimi zorunlu hale getirmesi",
-      "Bilimsel veri ve teknolojik inovasyonun sınırlı coğrafi alanı verimli kullanarak üretim gücüne dönüştürmesi",
-      "Hayvansal üretimin sadece organik yöntemlerle yapılması sonucunda küresel talebin artması",
-      "İhracat odaklı stratejilerin, iç pazardaki gıda güvenliği ihtiyacını ikinci plana itmesi"
-    ],
-    "dogru_cevap": "C",
-    "aciklama": "Paragraf, teknoloji ve bilginin coğrafi kısıtlamaları aşarak verimliliği nasıl artırdığını vurgulamaktadır."
+        "aciklama": "Parçada olaylar bir kişi-zaman-mekan ekseninde verilmediği için 'öyküleme' yoktur."
+      },
+      {
+        "tip": "turkce",
+        "konu": "Paragrafta Ana Düşünce",
+        "soruKoku": "Bu parçaya göre İstanbul'daki modern kentleşme sürecinin yarattığı temel paradoks aşağıdakilerden hangisidir?",
+        "icerik": "İstanbul, tarihsel derinliği ile küresel bir cazibe merkezi olma özelliğini korurken...",
+        "secenekler": [
+          "Şehrin tarihi dokusunun teknolojik imkanlarla harmanlanarak turizme kazandırılması",
+          "Kentin sunduğu geniş imkanların, beraberinde getirdiği karmaşa ve yapısal sorunlar nedeniyle yaşamı zorlaştırması",
+          "Dikey mimarinin geleneksel mahalle kültürünü tamamen ortadan kaldırarak güvenliği tehdit etmesi",
+          "Ekonomik büyümenin çevre kirliliği üzerindeki etkisinin yerel yönetimlerce minimize edilmesi",
+          "Nüfus artışının iş gücü piyasasında yarattığı rekabetin eğitim kalitesini düşürmesi"
+        ],
+        "dogru_cevap": "B",
+        "aciklama": "Metin, şehrin sunduğu imkanlar ile yarattığı zorluklar arasındaki çelişkiyi temel almaktadır."
+      },
+      {
+        "tip": "turkce",
+        "konu": "Paragrafta Yorum",
+        "soruKoku": "Bu parçadan hareketle Hollanda'nın hayvancılık sektöründeki küresel başarısının temel dayanağı hakkında aşağıdakilerden hangisi söylenebilir?",
+        "icerik": "Yüz ölçümü bakımından oldukça sınırlı topraklara sahip olmasına rağmen Hollanda...",
+        "secenekler": [
+          "Geniş meraların varlığı sayesinde hayvancılık maliyetlerinin komşu ülkelere göre çok düşük tutulması",
+          "Hükümetin süt ürünleri fiyatlarına müdahale ederek iç piyasada tüketimi zorunlu hale getirmesi",
+          "Bilimsel veri ve teknolojik inovasyonun sınırlı coğrafi alanı verimli kullanarak üretim gücüne dönüştürmesi",
+          "Hayvansal üretimin sadece organik yöntemlerle yapılması sonucunda küresel talebin artması",
+          "İhracat odaklı stratejilerin, iç pazardaki gıda güvenliği ihtiyacını ikinci plana itmesi"
+        ],
+        "dogru_cevap": "C",
+        "aciklama": "Paragraf, teknoloji ve bilginin coğrafi kısıtlamaları aşarak verimliliği nasıl artırdığını vurgulamaktadır."
       },
       {
         "tip": "matematik",
