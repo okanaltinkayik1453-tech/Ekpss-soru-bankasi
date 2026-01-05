@@ -294,9 +294,16 @@ function soruyuGoster(index) {
             </div>`;
     } else {
         html += `<p class="soru-koku-vurgu" style="text-align: justify;">${soru.soruKoku}</p>`;
-        if (soru.icerik && soru.icerik.length > 0) {
-            html += `<ul role="list" style="text-align: justify;">${soru.icerik.map((it, i) => `<li role="listitem">(${i+1}) ${it}</li>`).join('')}</ul>`;
-        }
+// İçerik alanı: Hem liste (Array) hem de düz metin (String) desteği sağlar
+if (soru.icerik) {
+    if (Array.isArray(soru.icerik) && soru.icerik.length > 0) {
+        // Eğer içerik bir diziyse, NVDA için liste (1, 2, 3...) şeklinde basar
+        html += `<ul role="list" style="text-align: justify;">${soru.icerik.map((it, i) => `<li role="listitem">(${i+1}) ${it}</li>`).join('')}</ul>`;
+    } else if (typeof soru.icerik === 'string' && soru.icerik.trim() !== "") {
+        // Eğer içerik düz metinse (14. ve 15. soru gibi), metni paragraf olarak basar
+        html += `<p style="text-align: justify; margin-top:10px;">${soru.icerik}</p>`;
+    }
+}
     }
 
     html += `
