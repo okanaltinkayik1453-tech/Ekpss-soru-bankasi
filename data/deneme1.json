@@ -16,11 +16,11 @@
         "konu": "Deyimler",
         "soruKoku": "Aşağıdaki numaralanmış yerlerin hangisinde, parantez içinde verilen açıklamayla altı çizili sözün anlamı uyuşmamaktadır?",
         "icerik": [
-          "Yazar, son romanında ele aldığı konuyu ilmek ilmek dokumuş (ayrıntılarıyla ve özenle işlemiş).",
-          "Karakterlerin iç dünyasını yansıtırken kılı kırk yaran (çok titizlenen) bir üslup benimsemiş.",
-          "Ancak olay örgüsünde ipe un sermiş (işi yokuşa sürmüş, imkansızlaştırmış) gibi görünen bazı kopukluklar var.",
-          "Yine de okur, yazarın kalem oynattığı (yazı yazdığı, eser verdiği) bu alandaki ustalığını hemen fark ediyor.",
-          "Eser, edebiyat dünyasında ses getirecek (ilgi uyandıracak) bir potansiyele sahip."
+          "1. Yazar, son romanında ele aldığı konuyu ilmek ilmek dokumuş (ayrıntılarıyla ve özenle işlemiş).",
+          "2. Karakteklerin iç dünyasını yansıtırken kılı kırk yaran (çok titizlenen) bir üslup benimsemiş.",
+          "3. Ancak olay örgüsünde ipe un sermiş (işi yokuşa sürmüş, imkansızlaştırmış) gibi görünen bazı kopukluklar var.",
+          "4. Yine de okur, yazarın kalem oynattığı (yazı yazdığı, eser verdiği) bu alandaki ustalığını hemen fark ediyor.",
+          "5. Eser, edebiyat dünyasında ses getirecek (ilgi uyandıracak) bir potansiyele sahip."
         ],
         "secenekler": ["Birinci", "İkinci", "Üçüncü", "Dördüncü", "Beşinci"],
         "dogru_cevap": "C",
@@ -31,11 +31,11 @@
         "konu": "Karşılaştırma",
         "soruKoku": "Bu parçada numaralanmış cümlelerin hangisinde 'karşılaştırma' yapılmıştır?",
         "icerik": [
-          "Dijital kütüphaneler, bilgiye erişim konusunda son yıllarda büyük bir devrim yarattı.",
-          "Klasik kütüphanelerin aksine, dijital kütüphaneler zaman ve mekan sınırı olmaksızın hizmet verebiliyor.",
-          "Kullanıcılar, aradıkları bir makaleye veya kitaba saniyeler içinde ulaşmanın konforunu yaşıyor.",
-          "Bu platformlar, genellikle üyelik sistemiyle çalışıyor ve geniş bir veri tabanı sunuyor.",
-          "Araştırmacılar için bu durum, literatür taraması sürecini oldukça hızlandırıyor."
+          "1. Dijital kütüphaneler, bilgiye erişim konusunda son yıllarda büyük bir devrim yarattı.",
+          "2. Klasik kütüphanelerin aksine, dijital kütüphaneler zaman ve mekan sınırı olmaksızın hizmet verebiliyor.",
+          "3. Kullanıcılar, aradıkları bir makaleye veya kitaba saniyeler içinde ulaşmanın konforunu yaşıyor.",
+          "4. Bu platformlar, genellikle üyelik sistemiyle çalışıyor ve geniş bir veri tabanı sunuyor.",
+          "5. Araştırmacılar için bu durum, literatür taraması sürecini oldukça hızlandırıyor."
         ],
         "secenekler": ["1", "2", "3", "4", "5"],
         "dogru_cevap": "B",
@@ -43,18 +43,12 @@
       },
       {
         "tip": "turkce",
-        "konu": "Anlatım Bozukluğu",
-        "soruKoku": "Aşağıdaki cümlelerin hangisinde bir anlatım bozukluğu vardır?",
-        "icerik": [],
-        "secenekler": [
-          "Toplantıda alınan kararların hepsi, çalışanlara tebliğ edildi.",
-          "Bahçedeki çiçekleri her sabah özenle sular, bakımını yapardı.",
-          "Yeni aldığı arabasını çok seviyor, gözü gibi bakıyordu.",
-          "Arkadaşım, bu zor günlerde beni hiç yalnız bırakmadı; hep destek oldu.",
-          "Okuldaki başarısı sayesinde ailesinin ve öğretmenlerinin takdirini kazandı."
-        ],
-        "dogru_cevap": "B",
-        "aciklama": "Nesne eksikliği vardır. 'sular, (onların) bakımını yapardı' şeklinde olmalıdır."
+        "konu": "Paragrafta Yapı (Çay Üretimi)",
+        "soruKoku": "Bu parça iki paragrafa bölünmek istense ikinci paragraf hangi cümle ile başlardı?",
+        "icerik": "1. Doğu Karadeniz'in sarp yamaçlarında, her daim nemli ve serin rüzgârların kucağında yetişen taze çay filizleri, Türkiye’nin tarımsal kimliğinin en karakteristik ve ekonomik değeri en yüksek olan unsurlarından biridir. 2. Her bahar dönemi taze sürgünler boy verdiğinde, bölge halkı için nesillerdir süregelen, yorulmak bilmez bir hasat telaşı ve geleneksel bir çalışma süreci başlar. 3. Makas seslerinin derin vadilerde yankılandığı bu hummalı süreçte, toplanan taze yapraklar vakit kaybetmeden modern işleme tesislerine ulaştırılarak oksidasyon sürecine dahil edilir. 4. Üretim aşamasında yaprakların hassas bir şekilde soldurulması ve kıvrılması, çayın o kendine has rengini ve aromasını kazanmasındaki en kritik teknik adımdır. 5. Dünyada sudan sonra en çok tüketilen bu kadim içeceğin tarihi, milattan çok önce Çin’in güneybatısındaki balta girmemiş ormanlarda efsanevi bir keşifle başlamıştır. 6. İlk zamanlarda sadece tıbbi bir bitki olarak kaynatılıp tüketilen çay, zamanla Budist keşişlerin meditasyon süreçlerinde zindelik kazanmak için başvurduğu kutsal ve sosyal bir içeceğe dönüşmüştür. 7. İpek Yolu ve deniz aşırı ticaret rotalarıyla Avrupa’ya yayılan bu yapraklar, her toplumun kendi damak tadına ve kültürüne göre farklı sunum şekilleriyle harmanlanmıştır. 8. İngilizlerin sütlü çay seremonilerinden Türklerin ince belli cam bardaktaki tavşan kanı demine kadar çay, artık küresel bir ritüelin ortak ve birleştirici dilidir.",
+        "secenekler": ["3", "4", "5", "6", "7"],
+        "dogru_cevap": "C",
+        "aciklama": "Paragrafın ilk dört cümlesinde Türkiye'deki çay üretimi ve teknik aşamaları anlatılırken, 5. cümleden itibaren çayın dünya tarihindeki kökenine geçilmiştir. Bu yüzden ikinci paragraf 5. cümleyle başlar."
       },
       {
         "tip": "turkce",
@@ -79,12 +73,12 @@
         "konu": "Paragrafta Yapı",
         "soruKoku": "Bu parçada numaralanmış cümlelerden hangisi düşüncenin akışını bozmaktadır?",
         "icerik": [
-          "Anadolu'nun her köşesi ayrı bir hikâye barındırır bağrında.",
-          "Taşlarında, topraklarında binlerce yıllık medeniyetlerin izleri okunur.",
-          "Bu izleri sürmek, tarihin tozlu sayfalarını aralamak gibidir.",
-          "Ancak günümüzde bu tarihi doku, modernleşme adı altında ne yazık ki tahrip ediliyor.",
-          "Turistler genellikle sahil şeridindeki otelleri tercih ediyor.",
-          "Oysa gerçek keşif, beton yığınlarının ötesindeki bu kadim kalıntılarda saklıdır."
+          "1. Anadolu'nun her köşesi ayrı bir hikâye barındırır bağrında.",
+          "2. Taşlarında, topraklarında binlerce yıllık medeniyetlerin izleri okunur.",
+          "3. Bu izleri sürmek, tarihin tozlu sayfalarını aralamak gibidir.",
+          "4. Ancak günümüzde bu tarihi doku, modernleşme adı altında ne yazık ki tahrip ediliyor.",
+          "5. Turistler genellikle sahil şeridindeki otelleri tercih ediyor.",
+          "6. Oysa gerçek keşif, beton yığınlarının ötesindeki bu kadim kalıntılarda saklıdır."
         ],
         "secenekler": ["2", "3", "4", "5", "6"],
         "dogru_cevap": "D",
@@ -119,10 +113,10 @@
         "konu": "Paragrafta Yardımcı Düşünce",
         "soruKoku": "Bu parçada 'kitap okuma alışkanlığı' ile ilgili olarak aşağıdakilerden hangisine değinilmemiştir?",
         "icerik": [
-          "Kitap okuma alışkanlığı, bireyin düşünce ufkunu genişleten en önemli eylemlerden biridir.",
-          "Düzenli okuyan kişilerde empati yeteneğinin geliştiği, farklı bakış açılarına daha açık oldukları gözlemlenmiştir.",
-          "Ayrıca okuma, kelime dağarcığını zenginleştirerek kişinin kendisini daha iyi ifade etmesine olanak tanır.",
-          "Ancak günümüzde dijitalleşmenin etkisiyle bu alışkanlığın, özellikle gençler arasında azaldığı görülmektedir."
+          "1. Kitap okuma alışkanlığı, bireyin düşünce ufkunu genişleten en önemli eylemlerden biridir.",
+          "2. Düzenli okuyan kişilerde empati yeteneğinin geliştiği, farklı bakış açılarına daha açık oldukları gözlemlenmiştir.",
+          "3. Ayrıca okuma, kelime dağarcığını zenginleştirerek kişinin kendisini daha iyi ifade etmesine olanak tanır.",
+          "4. Ancak günümüzde dijitalleşmenin etkisiyle bu alışkanlığın, özellikle gençler arasında azaldığı görülmektedir."
         ],
         "secenekler": [
           "Bireysel gelişime katkı sağladığına",
@@ -139,15 +133,15 @@
         "konu": "Paragrafta Yapı",
         "soruKoku": "Bu parçada numaralanmış cümlelerden hangisi düşüncenin akışını bozmaktadır?",
         "icerik": [
-          "(1) Bozkırın ilk kadın hükümdarı olarak tarihe geçen Tomris Hatun, Pers İmparatorluğu'nun bitmek bilmeyen saldırılarına karşı Saka Türklerini tek bir bayrak altında toplamayı başarmış eşsiz bir liderdir.",
-          "(2) Askerî dehası ve diplomatik manevraları sayesinde bozkırda stratejik bir denge kuran bu güçlü kadın, barışı korumak adına tüm uzlaşmacı yolları denemekten de geri durmamıştır.",
-          "(3) Ancak Pers kralı Büyük Kiros'un Sakaların topraklarını istila etme hırsı ve Tomris'in oğlunu hileyle öldürmesi, bozkırın sessizliğini büyük bir intikam fırtınasına dönüştürmüştür.",
-          "(4) Antik Çağ'da Sakalar; göçebe yaşam tarzları, madencilikteki ustalıkları ve özellikle Bozkırın Kuyumcuları unvanıyla sanat tarihinde derin izler bırakmış bir topluluktur.",
-          "(5) Bu kaçınılmaz çatışmanın sonunda Tomris Hatun, Kiros'u yenilgiye uğratarak halkının bağımsızlığını kanıyla tescillemiş ve adını dünya tarihine altın harflerle yazdırmıştır."
+          "1. Bozkırın ilk kadın hükümdarı olarak tarihe geçen Tomris Hatun, Pers İmparatorluğu'nun bitmek bilmeyen saldırılarına karşı Saka Türklerini tek bir bayrak altında toplamayı başarmış eşsiz bir liderdir.",
+          "2. Askerî dehası ve diplomatik manevraları sayesinde bozkırda stratejik bir denge kuran bu güçlü kadın, barışı korumak adına tüm uzlaşmacı yolları denemekten de geri durmamıştır.",
+          "3. Ancak Pers kralı Büyük Kiros'un Sakaların topraklarını istila etme hırsı ve Tomris'in oğlunu hileyle öldürmesi, bozkırın sessizliğini büyük bir intikam fırtınasına dönüştürmüştür.",
+          "4. Antik Çağ'da Sakalar; göçebe yaşam tarzları, madencilikteki ustalıkları ve özellikle Bozkırın Kuyumcuları unvanıyla sanat tarihinde derin izler bırakmış bir topluluktur.",
+          "5. Bu kaçınılmaz çatışmanın sonunda Tomris Hatun, Kiros'u yenilgiye uğratarak halkının bağımsızlığını kanıyla tescillemiş ve adını dünya tarihine altın harflerle yazdırmıştır."
         ],
         "secenekler": ["1", "2", "3", "4", "5"],
         "dogru_cevap": "D",
-        "aciklama": "Parçanın genelinde Tomris Hatun'un liderliği, Persler ile olan mücadelesi ve tarihsel zaferi anlatılmaktadır. 1, 2, 3 ve 5 numaralı cümleler Tomris Hatun'un biyografik ve askerî sürecine odaklanırken; 4 numaralı cümle konuyu tamamen değiştirerek Saka toplumunun genel sanat özelliklerine ve maden işçiliğine (Bozkırın Kuyumcuları) değinmiştir. 4. cümle, Tomris Hatun merkezli anlatımın bütünlüğünü ve akışını bölen, genel kültür bilgisi veren bir 'araya giriş' cümlesidir. Doğru cevap Denizli."
+        "aciklama": "4 numaralı cümle konuyu tamamen değiştirerek Saka toplumunun genel sanat özelliklerine değindiği için akışı bozar."
       },
       {
         "tip": "turkce",
@@ -166,18 +160,12 @@
       },
       {
         "tip": "turkce",
-        "konu": "Anlatım Teknikleri",
-        "soruKoku": "Bu parçanın anlatımında aşağıdaki anlatım tekniklerinin hangisinden yararlanılmamıştır?",
-        "icerik": [
-          "(1) Güneşin ilk ışıklarıyla birlikte ormanın derinliklerinden yükselen cıvıltılar...",
-          "(2) Gökyüzünün bu sakinleri...",
-          "(3) Örneğin, tohumların yayılması...",
-          "(4) Bazı araştırmacılar...",
-          "(5) Kanat çırpışlarındaki o ritmik ahenk..."
-        ],
-        "secenekler": ["Açıklama", "Betimleme", "Tartışma", "Karşılaştırma", "Öyküleme"],
-        "dogru_cevap": "E",
-        "aciklama": "Parçada olaylar bir kişi-zaman-mekan ekseninde verilmediği için 'öyküleme' yoktur."
+        "konu": "Paragrafta Yapı (Futbol)",
+        "soruKoku": "Numaralanmış cümleler anlamlı bir bütün oluşturacak olsa sıralama nasıl olurdu?",
+        "icerik": "1. Yeşil sahanın büyüsü, sadece topun çizgiyi geçmesiyle değil, o anın arkasındaki muazzam bir kolektif çaba ve stratejik dehanın uyumuyla şekillenir. 2. Tribünleri dolduran binlerce taraftarın tek bir nefes gibi haykırdığı o coşkulu atmosferde, oyuncuların her adımı büyük bir disiplin ve odaklanma gerektirir. 3. Bu disiplin, haftalarca süren ağır antrenmanların ve taktik tahtasında saatlerce üzerinde durulan karmaşık oyun şablonlarının gerçek dünyadaki yansımasıdır. 4. Maçın son düdüğü çaldığında, skor tabelasındaki rakamlar neyi gösterirse göstersin, asıl kazananın sporun o birleştirici gücü olduğu gerçeği hafızalarda yer eder. 5. İşte futbolu milyarlarca insanı birbirine bağlayan devasa bir fenomene dönüştüren de, bu derin sosyolojik katmanlar ve sahadaki mücadelenin estetikle olan o eşsiz buluşmasıdır.",
+        "secenekler": ["1-2-3-4-5", "2-1-3-5-4", "1-3-2-5-4", "3-2-1-4-5", "5-1-2-3-4"],
+        "dogru_cevap": "A",
+        "aciklama": "Cümleler genelden özele, disiplinden sonuca doğru mantıklı bir akışla sıralanmıştır. Stratejiyle başlar, saha içi disipline ve antrenmana değinir, son düdükle bitip genel bir değerlendirme yapar."
       },
       {
         "tip": "turkce",
