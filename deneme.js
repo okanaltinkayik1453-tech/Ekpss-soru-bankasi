@@ -117,7 +117,7 @@ function odaKurHazirlik(dID) {
         }
     });
 
-const kurucuRef = db.ref('odalar/' + odaKodu + '/katilimciListesi/' + auth.currentUser.uid);
+    const kurucuRef = db.ref('odalar/' + odaKodu + '/katilimciListesi/' + auth.currentUser.uid);
     kurucuRef.set(auth.currentUser.email);
     kurucuRef.onDisconnect().remove();
     db.ref('odalar/' + odaKodu + '/oyuncuSayisi').onDisconnect().set(firebase.database.ServerValue.increment(-1));
@@ -141,7 +141,7 @@ function odaKatilHazirlik() {
     document.getElementById('katil-baslik').focus();
 
     document.getElementById('btn-katil-onay').onclick = () => {
-odaKodu = document.getElementById('oda-kodu-input').value;
+        odaKodu = document.getElementById('oda-kodu-input').value;
         isSinglePlayer = false;
         const odaRef = db.ref('odalar/' + odaKodu);
         
@@ -150,7 +150,7 @@ odaKodu = document.getElementById('oda-kodu-input').value;
                 sesliBildiri("Hatalı oda kodu girdiniz.");
                 return;
             }
-const katilimciRef = db.ref('odalar/' + odaKodu + '/katilimciListesi/' + auth.currentUser.uid);
+            const katilimciRef = db.ref('odalar/' + odaKodu + '/katilimciListesi/' + auth.currentUser.uid);
             katilimciRef.set(auth.currentUser.email);
             katilimciRef.onDisconnect().remove();
             odaRef.child('oyuncuSayisi').onDisconnect().set(firebase.database.ServerValue.increment(-1));
@@ -188,9 +188,18 @@ function matematikAnlat(konu, metin, hazirBetimleme) {
 
 // --- SINAV MOTORU ---
 function testiYukleVeBaslat(dID, isRecover = false) {
-sesliBildiri(" "); // Tarayıcının ses motorunu boş bir fısıltıyla uyandırıyoruz.
+    sesliBildiri(" "); // Tarayıcının ses motorunu boş bir fısıltıyla uyandırıyoruz.
     secilenDenemeID = dID;
     sinavBittiMi = false;
+    sampiyonDuyuruldu = false; 
+
+    if (!isSinglePlayer && odaKodu) {
+        const userRef = db.ref('odalar/' + odaKodu + '/katilimciListesi/' + auth.currentUser.uid);
+        userRef.set(auth.currentUser.email);
+        userRef.onDisconnect().remove();
+        db.ref('odalar/' + odaKodu + '/oyuncuSayisi').onDisconnect().set(firebase.database.ServerValue.increment(-1));
+    }
+
     fetch(`./data/${dID}.json`).then(res => res.json()).then(data => {
         mevcutSorular = data[0].sorular;
         kullaniciCevaplari = isRecover ? JSON.parse(localStorage.getItem('cevaplar')) : new Array(mevcutSorular.length).fill(null);
@@ -218,7 +227,8 @@ sesliBildiri(" "); // Tarayıcının ses motorunu boş bir fısıltıyla uyandı
                 const listeHtml = Object.values(liste).map(email => `<li role="listitem">${email}</li>`).join('');
                 if(document.getElementById('canli-liste')) document.getElementById('canli-liste').innerHTML = listeHtml;
             });
-db.ref('odalar/' + odaKodu + '/sonuclar').on('value', sSnap => {
+
+            db.ref('odalar/' + odaKodu + '/sonuclar').on('value', sSnap => {
                 const sonuclar = sSnap.val();
                 if (!sonuclar || sampiyonDuyuruldu) return;
 
@@ -233,7 +243,7 @@ db.ref('odalar/' + odaKodu + '/sonuclar').on('value', sSnap => {
                     }
                 });
             });
-}
+        }
         const rIndex = isRecover ? (parseInt(localStorage.getItem('sonIndex')) || 0) : null;
         if(rIndex !== null) soruyuGoster(rIndex);
         else {
@@ -268,7 +278,6 @@ function soruyuGoster(index) {
         <div class="soru-kutusu">
             <h2 id="s-no" tabindex="-1">${bolumAdi} - Soru ${ekranNo}</h2>`;
 
-    // MATEMATİK SORULARI (15-29 ARASI)
     if (index >= 15 && index <= 29) {
         html += `
             <div class="matematik-alani" role="region" aria-label="Matematik Sorusu Yardımcı Araçları">
@@ -305,31 +314,24 @@ function soruyuGoster(index) {
                     KÖRCÜL DİNLE (SESLİ)
                 </button>
             </div>`;
-} else {
-        // TÜRKÇE, TARİH, COĞRAFYA VB. (AKILLI VE KÖRCÜL DOSTU MOD)
+    } else {
         html += `<p class="soru-koku-vurgu" style="text-align: justify; margin-bottom:10px;">${soru.soruKoku}</p>`;
 
         if (soru.icerik) {
             let icerikDizisi = [];
-
-            // JSON'dan gelen verinin tipine göre (Dizi veya Düz Metin) içeriği hazırla
             if (Array.isArray(soru.icerik) && soru.icerik.length > 0) {
                 icerikDizisi = soru.icerik;
             } 
             else if (typeof soru.icerik === 'string' && soru.icerik.trim() !== "") {
-                // Eğer metin içinde 1. 2. gibi numaralar varsa, bunları kullanarak metni parçala
                 if (/\d+[\.\)]/.test(soru.icerik)) {
                     icerikDizisi = soru.icerik.split(/\s*\d+[\.\)]\s*/).filter(item => item.trim() !== "");
                 } else {
                     html += `<p style="text-align: justify; margin-top:10px;">${soru.icerik}</p>`;
                 }
             }
-
-            // Listeyi oluştururken çift okumayı engellemek için temizlik yap
             if (icerikDizisi.length > 0) {
                 html += `<ul role="list" aria-label="Soru metni parçaları" style="list-style: none; padding: 0; text-align: justify; margin-top:10px;">
                     ${icerikDizisi.map((it, i) => {
-                        // Cümle başındaki "1.", "1)", "(1)" gibi mevcut numaraları siler
                         const temizMetin = it.replace(/^[\(\d\.\)]+\s*/, "").trim();
                         return `
                         <li role="listitem" tabindex="-1" style="margin-bottom: 12px; line-height: 1.6;">
@@ -340,7 +342,6 @@ function soruyuGoster(index) {
             }
         }
     }
-    // ŞIKLAR VE NAVİGASYON (Ortak Alan)
     html += `
             <div class="siklar-grid" role="group" aria-label="Seçenekler">
                 ${["A","B","C","D","E"].map((h, i) => `
@@ -357,8 +358,6 @@ function soruyuGoster(index) {
         </div>`;
 
     document.getElementById('deneme-govde').innerHTML = html;
-
-    // KÖRCÜL ODAKLANMA: Sadece soru numarasını oku ve dur
     setTimeout(() => { 
         const t = document.getElementById('s-no'); 
         if(t) {
@@ -368,10 +367,8 @@ function soruyuGoster(index) {
     }, 150);
 }
 
-// --- AKILLI NAVİGASYON ---
 function sonrakiSoru() {
     const toplamSoru = mevcutSorular.length;
-
     if (isOnlyEmptyMode) {
         let sonrakiBosIndex = -1;
         for (let i = mevcutIndex + 1; i < toplamSoru; i++) {
@@ -380,7 +377,6 @@ function sonrakiSoru() {
                 break;
             }
         }
-
         if (sonrakiBosIndex !== -1) {
             if (mevcutIndex < 30 && sonrakiBosIndex >= 30) {
                 sesliBildiri("Genel Yetenek boşları bitti. Genel Kültür boşlarına geçiliyor.");
@@ -429,7 +425,6 @@ function bosBirak() {
 function bitisOnayEkrani() {
     const bosSayisi = kullaniciCevaplari.filter(c => c === null).length;
     let icerikHtml = "";
-    
     if (bosSayisi > 0) {
         icerikHtml = `
             <h2 id="bitis-h" tabindex="-1">Tüm Soruları Gördünüz</h2>
@@ -448,7 +443,6 @@ function bitisOnayEkrani() {
             </div>`;
         sesliBildiri("Tüm soruları yanıtladınız. Sınavı bitirebilirsiniz.");
     }
-
     document.getElementById('deneme-govde').innerHTML = `<div class="soru-kutusu">${icerikHtml}</div>`;
     setTimeout(() => document.getElementById('bitis-h').focus(), 150);
 }
@@ -475,11 +469,9 @@ function finalBitisEkrani() {
     setTimeout(() => document.getElementById('final-h').focus(), 150);
 }
 
-// --- PUANLAMA VE ANALİZ ---
 function puanHesapla() {
     if(sinavBittiMi) return; sinavBittiMi = true; isOnlyEmptyMode = false;
     let yD=0, yY=0, kD=0, kY=0, analiz={}, matD=0, matY=0;
-
     kullaniciCevaplari.forEach((cev, i) => {
         const s = mevcutSorular[i], dMu = (cev === s.dogru_cevap);
         if (i < 30) { if(cev!==null) { if(dMu) yD++; else yY++; } }
@@ -488,7 +480,6 @@ function puanHesapla() {
         if(!analiz[s.konu]) analiz[s.konu]={d:0,y:0};
         if(dMu) analiz[s.konu].d++; else if(cev!==null) analiz[s.konu].y++;
     });
-    
     const matNet = matD - (matY / 4);
     const toplamYanlis = yY + kY;
     const toplamNet = (yD + kD) - (toplamYanlis / 4);
@@ -502,20 +493,17 @@ function puanHesapla() {
     if (toplamYanlis > 0 && p >= 100) { p = 99.75; }
     if (p > 100) p = 100;
     if (p < 0) p = 0;
-    
     sonPuanVerisi = { yD, yY, kD, kY, n: toplamNet, p: p, analiz };
     const isim = auth.currentUser.displayName || "Aday";
     db.ref('kullanicilar/' + auth.currentUser.uid + '/cozulenDenemeler/' + secilenDenemeID).set({ puan: p.toFixed(2), net: toplamNet.toFixed(2), tarih: Date.now() });
-
     if (!isSinglePlayer) db.ref('odalar/' + odaKodu + '/sonuclar/' + auth.currentUser.uid).set({ isim, net: toplamNet });
     sonucEkraniGoster();
 }
 
 function sonucEkraniGoster() {
-    const { yD, yY, kD, kY, n, p } = sonPuanVerisi;
+    const { yD, yY, kD, kY, p } = sonPuanVerisi;
     const yNet = (yD - (yY / 4)).toFixed(2);
     const kNet = (kD - (kY / 4)).toFixed(2);
-
     document.getElementById('deneme-govde').innerHTML = `
         <div class="soru-kutusu">
             <h2 id="res-h" tabindex="-1">Sınav Sonucunuz</h2>
@@ -577,7 +565,6 @@ function cevapKagidiYukle() {
     document.getElementById('kag-h').focus();
 }
 
-// --- YARDIMCI FONKSİYONLAR ---
 function baslatSayac() {
     if(timerInterval) clearInterval(timerInterval);
     timerInterval = setInterval(() => {
@@ -593,19 +580,16 @@ function baslatSayac() {
 function kalanSureyiSoyle() { sesliBildiri("Kalan süreniz " + Math.floor(kalanSure / 60) + " dakika."); }
 function sesliBildiri(m) { 
     if (!m || m.trim() === "") {
-        // Boş mesaj gelirse sadece motoru tetikle ama konuşma
         const bosUt = new SpeechSynthesisUtterance("");
         window.speechSynthesis.speak(bosUt);
         return;
     }
-
     window.speechSynthesis.cancel(); 
     let ut = new SpeechSynthesisUtterance(m); 
-    ut.lang = 'tr-TR'; 
-    ut.rate = 1.3; // Mobilde daha net anlaşılması için hafif yavaşlatıldı
-    ut.pitch = 1.0;
+    ut.lang = 'tr-TR'; ut.rate = 1.3; ut.pitch = 1.0;
     window.speechSynthesis.speak(ut); 
 }
+
 function sinaviTemizleVeListeyeDon() {
     if (odaKodu) {
         db.ref('odalar/' + odaKodu).off();
@@ -615,14 +599,12 @@ function sinaviTemizleVeListeyeDon() {
     if(timerInterval) clearInterval(timerInterval);
     sinavBittiMi = false; isOnlyEmptyMode = false; sampiyonDuyuruldu = false; 
     mevcutIndex = 0; kullaniciCevaplari = []; kalanSure = 100 * 60;
-
     localStorage.removeItem('aktifOda');
     localStorage.removeItem('cevaplar');
     localStorage.removeItem('sonIndex');
     localStorage.removeItem('kayitZamani');
     localStorage.removeItem('isSinglePlayer');
     localStorage.removeItem('secilenDenemeID');
-
     sinavEkrani.style.display = 'none';
     odaYonetimi.style.display = 'block';
     const user = firebase.auth().currentUser;
