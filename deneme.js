@@ -70,7 +70,7 @@ function anaMenuGoster(isim) {
         <div class="sol-sutun-butonlari">
             <div style="margin-bottom:15px; border:1px solid #444; padding:15px; background:#1a1a1a;">
                 <label for="hedef-oyuncu-input">Toplam Katılımcı Sayısı:</label>
-                <input type="number" id="hedef-oyuncu-input" value="1" min="1" max="10" style="width:100%; padding:10px; margin-top:5px; background:#000; color:#fff; border:1px solid #ffff00;">
+                <input type="number" id="hedef-oyuncu-input" value="1" min="1" max="100" style="width:100%; padding:10px; margin-top:5px; background:#000; color:#fff; border:1px solid #ffff00;">
                 <button class="ana-menu-karti" onclick="denemeListesiGoster(false)" style="margin-top:10px;">ÇOKLU SINAV KUR (ODA SAHİBİ)</button>
             </div>
             <button class="ana-menu-karti" onclick="odaKatilHazirlik()">ÇOKLU SINAVA GİR (KOD İLE)</button>
@@ -117,7 +117,10 @@ function odaKurHazirlik(dID) {
         }
     });
 
-    db.ref('odalar/' + odaKodu + '/katilimciListesi/' + auth.currentUser.uid).set(auth.currentUser.email);    
+const pRef = db.ref('odalar/' + odaKodu + '/katilimciListesi/' + auth.currentUser.uid);
+    pRef.set(auth.currentUser.email);
+    pRef.onDisconnect().remove();
+    db.ref('odalar/' + odaKodu + '/oyuncuSayisi').onDisconnect().transaction(c => (c > 0) ? c - 1 : 0);
     odaYonetimi.innerHTML = `
         <h2 id="oda-kur-baslik" tabindex="-1">Oda Kuruldu. Kod: ${odaKodu}</h2>
         <div id="oda-islem-alani">
@@ -146,7 +149,10 @@ function odaKatilHazirlik() {
                 sesliBildiri("Hatalı oda kodu girdiniz.");
                 return;
             }
-            db.ref('odalar/' + odaKodu + '/katilimciListesi/' + auth.currentUser.uid).set(auth.currentUser.email);
+const pRef = db.ref('odalar/' + odaKodu + '/katilimciListesi/' + auth.currentUser.uid);
+    pRef.set(auth.currentUser.email);
+    pRef.onDisconnect().remove();
+    db.ref('odalar/' + odaKodu + '/oyuncuSayisi').onDisconnect().transaction(c => (c > 0) ? c - 1 : 0);
             odaRef.transaction(c => { if(c) c.oyuncuSayisi++; return c; });
             odaRef.on('value', (s) => {
                 if (s.val() && s.val().durum === 'basladi') {
@@ -214,7 +220,7 @@ sesliBildiri(" "); // Tarayıcının ses motorunu boş bir fısıltıyla uyandı
 
             db.ref('odalar/' + odaKodu + '/sonuclar').on('value', snap => {
                 const sonuclar = snap.val(); if(!sonuclar || sampiyonDuyuruldu) return;
-                db.ref('odalar/' + odaKodu + '/hedefOyuncu').once('value', hSnap => {
+db.ref('odalar/' + odaKodu + '/oyuncuSayisi').once('value', hSnap => {
                     if (Object.values(sonuclar).length >= hSnap.val()) {
                         sampiyonDuyuruldu = true;
                         let lider = Object.values(sonuclar).reduce((prev, curr) => (prev.net > curr.net) ? prev : curr);
