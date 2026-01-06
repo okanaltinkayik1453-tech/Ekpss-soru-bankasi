@@ -233,6 +233,7 @@ db.ref('odalar/' + odaKodu + '/sampiyon_ilani').on('value', sSnap => {
                 }
             });
         });
+}
         const rIndex = isRecover ? (parseInt(localStorage.getItem('sonIndex')) || 0) : null;
         if(rIndex !== null) soruyuGoster(rIndex);
         else {
@@ -247,7 +248,7 @@ db.ref('odalar/' + odaKodu + '/sampiyon_ilani').on('value', sSnap => {
             sesliBildiri("Süreniz başladı. Lütfen çözmek istediğiniz bölümü seçin.");
             setTimeout(() => document.getElementById('b-baslik').focus(), 150);
         }
-        baslatSayac(); 
+baslatSayac(); 
     });
 }
 
