@@ -101,7 +101,7 @@ function odaKurHazirlik(dID) {
     
     db.ref('odalar/' + odaKodu).on('value', snap => {
         const d = snap.val(); if (!d) return;
-        odaKatilimciSayisi = d.oyuncuSayisi;
+odaKatilimciSayisi = d.katilimciListesi ? Object.keys(d.katilimciListesi).length : 1;
         const btn = document.getElementById('btn-onay');
         
         if (odaKatilimciSayisi >= d.hedefOyuncu && btn && btn.disabled) {
@@ -120,7 +120,6 @@ function odaKurHazirlik(dID) {
 const pRef = db.ref('odalar/' + odaKodu + '/katilimciListesi/' + auth.currentUser.uid);
     pRef.set(auth.currentUser.email);
     pRef.onDisconnect().remove();
-    db.ref('odalar/' + odaKodu + '/oyuncuSayisi').onDisconnect().transaction(c => (c > 0) ? c - 1 : 0);
     odaYonetimi.innerHTML = `
         <h2 id="oda-kur-baslik" tabindex="-1">Oda Kuruldu. Kod: ${odaKodu}</h2>
         <div id="oda-islem-alani">
@@ -152,8 +151,6 @@ function odaKatilHazirlik() {
 const pRef = db.ref('odalar/' + odaKodu + '/katilimciListesi/' + auth.currentUser.uid);
     pRef.set(auth.currentUser.email);
     pRef.onDisconnect().remove();
-    db.ref('odalar/' + odaKodu + '/oyuncuSayisi').onDisconnect().transaction(c => (c > 0) ? c - 1 : 0);
-            odaRef.transaction(c => { if(c) c.oyuncuSayisi++; return c; });
             odaRef.on('value', (s) => {
                 if (s.val() && s.val().durum === 'basladi') {
                     odaRef.off();
@@ -220,8 +217,8 @@ sesliBildiri(" "); // Tarayıcının ses motorunu boş bir fısıltıyla uyandı
 
             db.ref('odalar/' + odaKodu + '/sonuclar').on('value', snap => {
                 const sonuclar = snap.val(); if(!sonuclar || sampiyonDuyuruldu) return;
-db.ref('odalar/' + odaKodu + '/oyuncuSayisi').once('value', hSnap => {
-                    if (Object.values(sonuclar).length >= hSnap.val()) {
+db.ref('odalar/' + odaKodu + '/katilimciListesi').once('value', hSnap => {
+if (Object.values(sonuclar).length >= (hSnap.val() ? Object.keys(hSnap.val()).length : 1)) {
                         sampiyonDuyuruldu = true;
                         let lider = Object.values(sonuclar).reduce((prev, curr) => (prev.net > curr.net) ? prev : curr);
                         sesliBildiri("Dikkat! Tüm adaylar bitirdi. Şampiyon: " + lider.isim + ". Net: " + lider.net.toFixed(2));
