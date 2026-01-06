@@ -30,7 +30,7 @@ firebase.auth().onAuthStateChanged((user) => {
         const kayitZamani = localStorage.getItem('kayitZamani');
         const kaydedilmisMod = localStorage.getItem('isSinglePlayer');
 
-        if (kaydedilmisOda && (Date.now() - parseInt(kayitZamani) < 7200000)) {
+        if (kaydedilmisOda && (Date.now() - parseInt(kayitZamani) < 300000)) {
             sesliBildiri("Sınava kaldığınız yerden devam ediyorsunuz.");
             odaKodu = kaydedilmisOda;
             isSinglePlayer = kaydedilmisMod === 'true';
@@ -63,6 +63,7 @@ if(btnLogin) {
         });
     };
 }
+
 function anaMenuGoster(isim) {
     odaYonetimi.innerHTML = `
         <h2 id="menu-baslik" tabindex="-1">Hoş geldin, ${isim}</h2>
@@ -100,7 +101,7 @@ function odaKurHazirlik(dID) {
     
     db.ref('odalar/' + odaKodu).on('value', snap => {
         const d = snap.val(); if (!d) return;
-odaKatilimciSayisi = d.katilimciListesi ? Object.keys(d.katilimciListesi).length : 1;
+        odaKatilimciSayisi = d.oyuncuSayisi;
         const btn = document.getElementById('btn-onay');
         
         if (odaKatilimciSayisi >= d.hedefOyuncu && btn && btn.disabled) {
@@ -116,9 +117,10 @@ odaKatilimciSayisi = d.katilimciListesi ? Object.keys(d.katilimciListesi).length
         }
     });
 
-const pRef = db.ref('odalar/' + odaKodu + '/katilimciListesi/' + auth.currentUser.uid);
-    pRef.set(auth.currentUser.email);
-    pRef.onDisconnect().remove();
+const kurucuRef = db.ref('odalar/' + odaKodu + '/katilimciListesi/' + auth.currentUser.uid);
+    kurucuRef.set(auth.currentUser.email);
+    kurucuRef.onDisconnect().remove();
+    db.ref('odalar/' + odaKodu + '/oyuncuSayisi').onDisconnect().set(firebase.database.ServerValue.increment(-1));
     odaYonetimi.innerHTML = `
         <h2 id="oda-kur-baslik" tabindex="-1">Oda Kuruldu. Kod: ${odaKodu}</h2>
         <div id="oda-islem-alani">
@@ -147,9 +149,11 @@ function odaKatilHazirlik() {
                 sesliBildiri("Hatalı oda kodu girdiniz.");
                 return;
             }
-const pRef = db.ref('odalar/' + odaKodu + '/katilimciListesi/' + auth.currentUser.uid);
-    pRef.set(auth.currentUser.email);
-    pRef.onDisconnect().remove();
+const katilimciRef = db.ref('odalar/' + odaKodu + '/katilimciListesi/' + auth.currentUser.uid);
+            katilimciRef.set(auth.currentUser.email);
+            katilimciRef.onDisconnect().remove();
+            odaRef.child('oyuncuSayisi').onDisconnect().set(firebase.database.ServerValue.increment(-1));
+            odaRef.transaction(c => { if(c) c.oyuncuSayisi++; return c; });
             odaRef.on('value', (s) => {
                 if (s.val() && s.val().durum === 'basladi') {
                     odaRef.off();
@@ -208,31 +212,26 @@ sesliBildiri(" "); // Tarayıcının ses motorunu boş bir fısıltıyla uyandı
             </div>`;
 
         if (!isSinglePlayer) {
-// 2. ŞAMPİYON DİNLEYİCİ: Veritabanında şampiyon ilanı çıktığı an herkes duyar
-db.ref('odalar/' + odaKodu + '/sampiyon_ilani').on('value', sSnap => {
-    const s = sSnap.val();
-    if (s && !sampiyonDuyuruldu) {
-        sampiyonDuyuruldu = true;
-        sesliBildiri("Dikkat! Sınav bitti. Şampiyon: " + s.isim + ". Net: " + s.net);
-    }
-});
-
             db.ref('odalar/' + odaKodu + '/katilimciListesi').on('value', snap => {
                 const liste = snap.val(); if(!liste) return;
                 const listeHtml = Object.values(liste).map(email => `<li role="listitem">${email}</li>`).join('');
                 if(document.getElementById('canli-liste')) document.getElementById('canli-liste').innerHTML = listeHtml;
             });
-// 1. ŞAMPİYON YAZICI: Herkes bittiğinde lideri belirleyip odaya yazar
-        db.ref('odalar/' + odaKodu + '/sonuclar').on('value', snap => {
-            const sonuclar = snap.val(); if(!sonuclar) return;
-            db.ref('odalar/' + odaKodu + '/katilimciListesi').once('value', hSnap => {
-                const aktifSayi = hSnap.val() ? Object.keys(hSnap.val()).length : 1;
-                if (Object.values(sonuclar).length >= aktifSayi) {
-                    let lider = Object.values(sonuclar).reduce((prev, curr) => (prev.net > curr.net) ? prev : curr);
-                    db.ref('odalar/' + odaKodu + '/sampiyon_ilani').set({ isim: lider.isim, net: lider.net.toFixed(2) });
-                }
+db.ref('odalar/' + odaKodu + '/sonuclar').on('value', sSnap => {
+                const sonuclar = sSnap.val();
+                if (!sonuclar || sampiyonDuyuruldu) return;
+
+                db.ref('odalar/' + odaKodu + '/katilimciListesi').once('value', kSnap => {
+                    const aktifOyuncuSayisi = kSnap.exists() ? Object.keys(kSnap.val()).length : 0;
+                    const bitirenSayisi = Object.keys(sonuclar).length;
+
+                    if (bitirenSayisi >= aktifOyuncuSayisi && aktifOyuncuSayisi > 0) {
+                        sampiyonDuyuruldu = true;
+                        let lider = Object.values(sonuclar).reduce((prev, curr) => (prev.net > curr.net) ? prev : curr);
+                        sesliBildiri("Dikkat! Tüm adaylar bitirdi. Şampiyon: " + lider.isim + ". Net: " + lider.net.toFixed(2));
+                    }
+                });
             });
-        });
 }
         const rIndex = isRecover ? (parseInt(localStorage.getItem('sonIndex')) || 0) : null;
         if(rIndex !== null) soruyuGoster(rIndex);
@@ -248,7 +247,7 @@ db.ref('odalar/' + odaKodu + '/sampiyon_ilani').on('value', sSnap => {
             sesliBildiri("Süreniz başladı. Lütfen çözmek istediğiniz bölümü seçin.");
             setTimeout(() => document.getElementById('b-baslik').focus(), 150);
         }
-baslatSayac(); 
+        baslatSayac(); 
     });
 }
 
@@ -624,9 +623,6 @@ function sinaviTemizleVeListeyeDon() {
     localStorage.removeItem('secilenDenemeID');
 
     sinavEkrani.style.display = 'none';
-sinavEkrani.innerHTML = '';
-    odaYonetimi.innerHTML = '';
-    document.getElementById('deneme-govde').innerHTML = '';
     odaYonetimi.style.display = 'block';
     const user = firebase.auth().currentUser;
     if(user) anaMenuGoster(user.displayName);
