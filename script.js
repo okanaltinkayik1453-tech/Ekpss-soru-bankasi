@@ -232,7 +232,7 @@ let finalHTML = "";
 
     } else {
         // --- NORMAL MOD (Hizalama ve Soru Kökünü Üste Alma Buraya Eklendi) ---
-        const ayiricilar = ["Bu parçada", "Bu parçaya göre", "Buna göre", "Aşağıdakilerden hangisi", "Bu cümlede"];
+        const ayiricilar = ["Bu parçada", "Bu parçaya göre", "Buna göre", "Aşağıdakilerden hangisi", "Bu parçanın konusu", "Bu cümlede"];
         let kesmeNoktasi = -1;
 
         // Metnin sonundaki soru kökünü arar
