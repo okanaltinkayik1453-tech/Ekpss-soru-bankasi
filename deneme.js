@@ -141,7 +141,8 @@ function odaKatilHazirlik() {
     document.getElementById('katil-baslik').focus();
 
     document.getElementById('btn-katil-onay').onclick = () => {
-        odaKodu = document.getElementById('oda-kodu-input').value;
+odaKodu = document.getElementById('oda-kodu-input').value;
+        isSinglePlayer = false;
         const odaRef = db.ref('odalar/' + odaKodu);
         
         odaRef.once('value').then(snap => {
