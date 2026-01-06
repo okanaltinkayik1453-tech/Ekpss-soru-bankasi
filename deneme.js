@@ -30,7 +30,7 @@ firebase.auth().onAuthStateChanged((user) => {
         const kayitZamani = localStorage.getItem('kayitZamani');
         const kaydedilmisMod = localStorage.getItem('isSinglePlayer');
 
-        if (kaydedilmisOda && (Date.now() - parseInt(kayitZamani) < 300000)) {
+        if (kaydedilmisOda && (Date.now() - parseInt(kayitZamani) < 7200000)) {
             sesliBildiri("Sınava kaldığınız yerden devam ediyorsunuz.");
             odaKodu = kaydedilmisOda;
             isSinglePlayer = kaydedilmisMod === 'true';
@@ -63,7 +63,6 @@ if(btnLogin) {
         });
     };
 }
-
 function anaMenuGoster(isim) {
     odaYonetimi.innerHTML = `
         <h2 id="menu-baslik" tabindex="-1">Hoş geldin, ${isim}</h2>
@@ -209,24 +208,31 @@ sesliBildiri(" "); // Tarayıcının ses motorunu boş bir fısıltıyla uyandı
             </div>`;
 
         if (!isSinglePlayer) {
+// 2. ŞAMPİYON DİNLEYİCİ: Veritabanında şampiyon ilanı çıktığı an herkes duyar
+db.ref('odalar/' + odaKodu + '/sampiyon_ilani').on('value', sSnap => {
+    const s = sSnap.val();
+    if (s && !sampiyonDuyuruldu) {
+        sampiyonDuyuruldu = true;
+        sesliBildiri("Dikkat! Sınav bitti. Şampiyon: " + s.isim + ". Net: " + s.net);
+    }
+});
+
             db.ref('odalar/' + odaKodu + '/katilimciListesi').on('value', snap => {
                 const liste = snap.val(); if(!liste) return;
                 const listeHtml = Object.values(liste).map(email => `<li role="listitem">${email}</li>`).join('');
                 if(document.getElementById('canli-liste')) document.getElementById('canli-liste').innerHTML = listeHtml;
             });
-
-            db.ref('odalar/' + odaKodu + '/sonuclar').on('value', snap => {
-                const sonuclar = snap.val(); if(!sonuclar || sampiyonDuyuruldu) return;
-db.ref('odalar/' + odaKodu + '/katilimciListesi').once('value', hSnap => {
-if (Object.values(sonuclar).length >= (hSnap.val() ? Object.keys(hSnap.val()).length : 1)) {
-                        sampiyonDuyuruldu = true;
-                        let lider = Object.values(sonuclar).reduce((prev, curr) => (prev.net > curr.net) ? prev : curr);
-                        sesliBildiri("Dikkat! Tüm adaylar bitirdi. Şampiyon: " + lider.isim + ". Net: " + lider.net.toFixed(2));
-                    }
-                });
+// 1. ŞAMPİYON YAZICI: Herkes bittiğinde lideri belirleyip odaya yazar
+        db.ref('odalar/' + odaKodu + '/sonuclar').on('value', snap => {
+            const sonuclar = snap.val(); if(!sonuclar) return;
+            db.ref('odalar/' + odaKodu + '/katilimciListesi').once('value', hSnap => {
+                const aktifSayi = hSnap.val() ? Object.keys(hSnap.val()).length : 1;
+                if (Object.values(sonuclar).length >= aktifSayi) {
+                    let lider = Object.values(sonuclar).reduce((prev, curr) => (prev.net > curr.net) ? prev : curr);
+                    db.ref('odalar/' + odaKodu + '/sampiyon_ilani').set({ isim: lider.isim, net: lider.net.toFixed(2) });
+                }
             });
-        }
-
+        });
         const rIndex = isRecover ? (parseInt(localStorage.getItem('sonIndex')) || 0) : null;
         if(rIndex !== null) soruyuGoster(rIndex);
         else {
@@ -617,6 +623,9 @@ function sinaviTemizleVeListeyeDon() {
     localStorage.removeItem('secilenDenemeID');
 
     sinavEkrani.style.display = 'none';
+sinavEkrani.innerHTML = '';
+    odaYonetimi.innerHTML = '';
+    document.getElementById('deneme-govde').innerHTML = '';
     odaYonetimi.style.display = 'block';
     const user = firebase.auth().currentUser;
     if(user) anaMenuGoster(user.displayName);
