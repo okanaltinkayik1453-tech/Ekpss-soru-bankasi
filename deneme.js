@@ -148,15 +148,15 @@ bKatil.onclick = () => {
         sesliBildiri("Oda kontrol ediliyor...");
         odaKodu = girilenKod;
         const odaRef = db.ref('odalar/' + odaKodu);
-        
         let denemeSayisi = 0;
         const odayaBaglanmayiDene = () => {
-            odaRef.get().then(snap => {
+            // get() yerine once('value') kullanmak bazı bağlantılarda daha stabildir
+            odaRef.once('value').then(snap => {
                 if(!snap.exists()) {
                     if (denemeSayisi < 3) {
                         denemeSayisi++;
-                        sesliBildiri("Oda henüz hazır değil, tekrar deneniyor...");
-                        setTimeout(odayaBaglanmayiDene, 1500);
+                        sesliBildiri("Oda henüz kurulmamış olabilir, tekrar deneniyor...");
+                        setTimeout(odayaBaglanmayiDene, 2000); // 2 saniye bekleyip tekrar dene
                     } else {
                         bKatil.disabled = false;
                         sesliBildiri("Hatalı oda kodu girdiniz. Lütfen kodun doğruluğundan emin olun.");
@@ -164,6 +164,7 @@ bKatil.onclick = () => {
                     return;
                 }
                 
+                // BAŞARILI GİRİŞ DURUMU
                 sesliBildiri("Odaya başarıyla bağlandınız, sınavın başlaması bekleniyor.");
                 db.ref('odalar/' + odaKodu + '/katilimciListesi/' + auth.currentUser.uid).set(auth.currentUser.email);
                 db.ref('odalar/' + odaKodu + '/katilimciListesi/' + auth.currentUser.uid).onDisconnect().remove();
@@ -177,8 +178,15 @@ bKatil.onclick = () => {
                     }
                 });
             }).catch(err => {
-                bKatil.disabled = false;
-                sesliBildiri("Bağlantı hatası oluştu. Lütfen internetinizi kontrol edin.");
+                // BAĞLANTI HATASI DURUMU (Catch Bloğu)
+                if (denemeSayisi < 3) {
+                    denemeSayisi++;
+                    sesliBildiri("Bağlantı zayıf, tekrar deneniyor...");
+                    setTimeout(odayaBaglanmayiDene, 2000); 
+                } else {
+                    bKatil.disabled = false;
+                    sesliBildiri("Bağlantı kurulamadı. Lütfen internetinizi kontrol edin.");
+                }
             });
         };
         odayaBaglanmayiDene();
