@@ -191,32 +191,46 @@ sesliBildiri(" "); // Tarayıcının ses motorunu boş bir fısıltıyla uyandı
         localStorage.setItem('secilenDenemeID', dID); 
         localStorage.setItem('kayitZamani', Date.now());
         localStorage.setItem('isSinglePlayer', isSinglePlayer);        
-if (!isSinglePlayer) {
-db.ref('odalar/' + odaKodu + '/katilimciListesi/' + auth.currentUser.uid).set(auth.currentUser.email);
-            // 1. Bağlantı koparsa katılımcı listesinden otomatik sil
-            db.ref('odalar/' + odaKodu + '/katilimciListesi/' + auth.currentUser.uid).onDisconnect().remove();
+        
+        odaYonetimi.style.display = 'none'; 
+        sinavEkrani.style.display = 'block';
+        
+        sinavEkrani.innerHTML = `
+            <button id="timer-kutusu" class="timer-dikdortgen" onclick="kalanSureyiSoyle()" aria-label="Kalan süreyi belirt">
+                <span id="dakika">100</span>:<span id="saniye">00</span>
+            </button>
+            <div id="deneme-govde"></div>
+            <div id="katilimci-takip" style="border-top:2px solid #444; margin-top:30px; padding:10px;">
+                <p style="color:#ffff00; font-weight:bold;">Sınavdaki Oyuncular:</p>
+                <ul id="canli-liste" role="list" style="list-style:none; padding:0; color:#aaa;"></ul>
+            </div>`;
 
-            // 2. Canlı katılımcı listesini (sağ panel/liste) güncelle
+        if (!isSinglePlayer) {
             db.ref('odalar/' + odaKodu + '/katilimciListesi').on('value', snap => {
                 const liste = snap.val(); if(!liste) return;
                 const listeHtml = Object.values(liste).map(email => `<li role="listitem">${email}</li>`).join('');
                 if(document.getElementById('canli-liste')) document.getElementById('canli-liste').innerHTML = listeHtml;
             });
+// ŞAMPİYON DUYURUSU - KATILIMCI SAYISINA GÖRE DİNAMİK KONTROL
+        db.ref('odalar/' + odaKodu + '/sonuclar').on('value', snap => {
+            const sonuclar = snap.val(); 
+            if(!sonuclar || sampiyonDuyuruldu) return;
 
-            // 3. Sınav bitiş kontrolü (Kalan aktif oyuncu sayısına göre dinamik kontrol)
-            db.ref('odalar/' + odaKodu + '/sonuclar').on('value', snap => {
-                const sonuclar = snap.val(); if(!sonuclar || sampiyonDuyuruldu) return;
-                
-                db.ref('odalar/' + odaKodu + '/katilimciListesi').once('value', kSnap => {
-                    const aktifKatilimciSayisi = kSnap.numChildren();
-                    if (Object.values(sonuclar).length >= aktifKatilimciSayisi) {
-                        sampiyonDuyuruldu = true;
-                        let lider = Object.values(sonuclar).reduce((prev, curr) => (prev.net > curr.net) ? prev : curr);
-                        sesliBildiri("Dikkat! Odadaki tüm adaylar sınavı bitirdi. Şampiyon: " + lider.isim + ". Net: " + lider.net.toFixed(2));
-                    }
-                });
+            // Sabit hedef yerine o anki gerçek katılımcı listesini kontrol eder
+            db.ref('odalar/' + odaKodu + '/katilimciListesi').once('value', kSnap => {
+                const katilimciListesi = kSnap.val() || {};
+                const bitirenSayisi = Object.keys(sonuclar).length;
+                const toplamGirenSayisi = Object.keys(katilimciListesi).length;
+
+                if (bitirenSayisi >= toplamGirenSayisi) {
+                    sampiyonDuyuruldu = true;
+                    let lider = Object.values(sonuclar).reduce((prev, curr) => (prev.net > curr.net) ? prev : curr);
+                    sesliBildiri("Dikkat! Sınava giren tüm adaylar bitirdi. Şampiyon: " + lider.isim + ". Net: " + lider.net.toFixed(2));
+                }
+            });
             });
         }
+
         const rIndex = isRecover ? (parseInt(localStorage.getItem('sonIndex')) || 0) : null;
         if(rIndex !== null) soruyuGoster(rIndex);
         else {
@@ -605,7 +619,8 @@ function sinaviTemizleVeListeyeDon() {
     localStorage.removeItem('kayitZamani');
     localStorage.removeItem('isSinglePlayer');
     localStorage.removeItem('secilenDenemeID');
-sinavEkrani.style.display = 'none';
+
+    sinavEkrani.style.display = 'none';
     odaYonetimi.style.display = 'block';
     const user = firebase.auth().currentUser;
     if(user) anaMenuGoster(user.displayName);
