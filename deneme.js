@@ -217,36 +217,23 @@ sesliBildiri(" "); // Tarayıcının ses motorunu boş bir fısıltıyla uyandı
                 const listeHtml = Object.values(liste).map(email => `<li role="listitem">${email}</li>`).join('');
                 if(document.getElementById('canli-liste')) document.getElementById('canli-liste').innerHTML = listeHtml;
             });
-// ŞAMPİYONLUK VE SIRALAMA MANTIĞI (GÜNCELLENDİ)
 db.ref('odalar/' + odaKodu + '/sonuclar').on('value', snap => {
-    const sonuclar = snap.val(); 
-    if(!sonuclar || sampiyonDuyuruldu || sinavBittiMi === false) return;
+            const sonuclar = snap.val(); 
+            if(!sonuclar || !sinavBittiMi) return;
 
-    db.ref('odalar/' + odaKodu + '/katilimciListesi').once('value', kSnap => {
-        const aktifKatilimcilar = kSnap.val() || {};
-        const bitirenIdler = Object.keys(sonuclar);
-        const aktifIdler = Object.keys(aktifKatilimcilar);
+            db.ref('odalar/' + odaKodu + '/katilimciListesi').once('value', kSnap => {
+                const aktifKatilimcilar = kSnap.val() || {};
+                const bitirenIdler = Object.keys(sonuclar);
+                const aktifIdler = Object.keys(aktifKatilimcilar);
 
-        // Sadece odada aktif olanlar bitirdi mi?
-        const herkesBitirdiMi = aktifIdler.every(id => bitirenIdler.includes(id));
+                const herkesBitirdiMi = aktifIdler.every(id => bitirenIdler.includes(id));
 
-        if (herkesBitirdiMi && aktifIdler.length > 0) {
-            sampiyonDuyuruldu = true;
-            
-            // Çok Kriterli Sıralama: 1. Puan, 2. Matematik Doğru, 3. Güncel Doğru
-            let liste = Object.values(sonuclar).sort((a, b) => {
-                if (b.p !== a.p) return b.p - a.p;
-                if (b.mD !== a.mD) return b.mD - a.mD;
-                return b.gD - a.gD;
+                if (herkesBitirdiMi && aktifIdler.length > 0) {
+                    sesliBildiri("Sınav sonuçları açıklandı. Genel sıralama tablosu sayfanın altına eklendi.");
+                    genelSiralamayiOlustur(sonuclar);
+                }
             });
-
-            const enYuksekPuan = liste[0].p;
-            setTimeout(() => {
-                sesliBildiri("Dikkat! Tüm katılımcılar sınavı tamamladı. Bu sınavda ulaşılan en yüksek puan " + enYuksekPuan.toFixed(2));
-            }, 5500);
-        }
-    });
-});
+        });
         }
 
         const rIndex = isRecover ? (parseInt(localStorage.getItem('sonIndex')) || 0) : null;
@@ -563,8 +550,9 @@ function sonucEkraniGoster() {
                             <strong>TOPLAM PUAN: ${p.toFixed(2)}</strong>
                         </td>
                     </tr>
-                </tbody>
+</tbody>
             </table>
+            <div id="dinamik-siralama-alani"></div>
             <div class="navigasyon-alani">
                 <button class="ana-menu-karti" onclick="cevapKagidiYukle()">DETAYLI ANALİZ VE ÇÖZÜMLER</button>
                 <button class="nav-buton" style="background: #ffff00; color: #000;" onclick="sinaviTemizleVeListeyeDon()">YENİ DENEME SEÇ</button>
@@ -643,5 +631,46 @@ function sinaviTemizleVeListeyeDon() {
     sinavEkrani.style.display = 'none';
     odaYonetimi.style.display = 'block';
     const user = firebase.auth().currentUser;
-    if(user) anaMenuGoster(user.displayName);
+if(user) anaMenuGoster(user.displayName);
+}
+
+function genelSiralamayiOlustur(sonuclar) {
+    const hedefAlan = document.getElementById('dinamik-siralama-alani');
+    if (!hedefAlan) return;
+    
+    let liste = Object.values(sonuclar).sort((a, b) => {
+        if (b.p !== a.p) return b.p - a.p;
+        if (b.mD !== a.mD) return b.mD - a.mD;
+        return b.gD - a.gD;
+    });
+
+    let tabloHtml = `
+        <div class="genel-siralama-kapsayici">
+            <h3 id="siralama-h" class="siralama-baslik" tabindex="-1">GENEL SIRALAMA</h3>
+            <table class="siralama-tablosu" role="grid">
+                <thead>
+                    <tr>
+                        <th scope="col">Sıra</th>
+                        <th scope="col">Puan</th>
+                        <th scope="col">Net</th>
+                    </tr>
+                </thead>
+                <tbody>`;
+
+    liste.forEach((kayit, i) => {
+        tabloHtml += `
+            <tr>
+                <td>${i + 1}.</td>
+                <td>${kayit.p.toFixed(2)}</td>
+                <td>${kayit.net.toFixed(2)}</td>
+            </tr>`;
+    });
+
+    tabloHtml += `</tbody></table></div>`;
+    hedefAlan.innerHTML = tabloHtml;
+    
+    setTimeout(() => {
+        const h = document.getElementById('siralama-h');
+        if(h) h.focus();
+    }, 500);
 }
