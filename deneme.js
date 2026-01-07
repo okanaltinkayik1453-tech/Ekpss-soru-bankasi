@@ -225,7 +225,10 @@ sesliBildiri(" "); // Tarayıcının ses motorunu boş bir fısıltıyla uyandı
                 if (bitirenSayisi >= toplamGirenSayisi) {
                     sampiyonDuyuruldu = true;
                     let lider = Object.values(sonuclar).reduce((prev, curr) => (prev.net > curr.net) ? prev : curr);
-                    sesliBildiri("Dikkat! Sınava giren tüm adaylar bitirdi. Şampiyon: " + lider.isim + ". Net: " + lider.net.toFixed(2));
+// Şampiyon duyurusunu 5.5  saniye geciktiriyoruz ki puan sesiyle çakışmasın
+setTimeout(() => {
+    sesliBildiri("Dikkat! Sınava giren tüm adaylar bitirdi. Şampiyon: " + lider.isim + ". Net: " + lider.net.toFixed(2));
+}, 5500);
                 }
             });
             });
