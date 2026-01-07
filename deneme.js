@@ -20,7 +20,7 @@ let mevcutSorular = [], mevcutIndex = 0, kullaniciCevaplari = [];
 let kalanSure = 100 * 60, timerInterval, odaKodu = "";
 let isSinglePlayer = false, secilenDenemeID = "", odaKatilimciSayisi = 0;
 let sonPuanVerisi = null, sinavBittiMi = false;
-let isOnlyEmptyMode = false, sampiyonDuyuruldu = false;
+let isOnlyEmptyMode = false;
 let secilenHedef = 1;
 
 // --- BAĞLANTI KURTARMA (RECONNECTION) ---
@@ -226,10 +226,11 @@ db.ref('odalar/' + odaKodu + '/sonuclar').on('value', snap => {
                 const bitirenIdler = Object.keys(sonuclar);
                 const aktifIdler = Object.keys(aktifKatilimcilar);
 
+                // Sadece odada aktif olan (bağlantısı kopmamış) herkes bitirdi mi?
                 const herkesBitirdiMi = aktifIdler.every(id => bitirenIdler.includes(id));
 
                 if (herkesBitirdiMi && aktifIdler.length > 0) {
-                    sesliBildiri("Sınav sonuçları açıklandı. Genel sıralama tablosu sayfanın altına eklendi.");
+                    sesliBildiri("Tüm katılımcılar sınavı tamamladı. Genel sıralama tablosu oluşturuldu.");
                     genelSiralamayiOlustur(sonuclar);
                 }
             });
@@ -618,7 +619,7 @@ function sinaviTemizleVeListeyeDon() {
         db.ref('odalar/' + odaKodu + '/sonuclar').off();
     }
     if(timerInterval) clearInterval(timerInterval);
-    sinavBittiMi = false; isOnlyEmptyMode = false; sampiyonDuyuruldu = false; 
+    sinavBittiMi = false; isOnlyEmptyMode = false;
     mevcutIndex = 0; kullaniciCevaplari = []; kalanSure = 100 * 60;
 
     localStorage.removeItem('aktifOda');
