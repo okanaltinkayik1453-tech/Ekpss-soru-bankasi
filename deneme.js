@@ -29,14 +29,15 @@ firebase.auth().onAuthStateChanged((user) => {
         const kaydedilmisOda = localStorage.getItem('aktifOda');
         const kayitZamani = localStorage.getItem('kayitZamani');
         const kaydedilmisMod = localStorage.getItem('isSinglePlayer');
+const sinavBittiMiLokal = localStorage.getItem('sinavTamamlandi');
 
-        if (kaydedilmisOda && (Date.now() - parseInt(kayitZamani) < 300000)) {
-            sesliBildiri("Sınava kaldığınız yerden devam ediyorsunuz.");
-            odaKodu = kaydedilmisOda;
-            isSinglePlayer = kaydedilmisMod === 'true';
-            secilenDenemeID = localStorage.getItem('secilenDenemeID');
-            testiYukleVeBaslat(secilenDenemeID, true);
-        } else {
+if (kaydedilmisOda && (Date.now() - parseInt(kayitZamani) < 300000) && !sinavBittiMiLokal) {
+    sesliBildiri("Sınava kaldığınız yerden devam ediyorsunuz.");
+    odaKodu = kaydedilmisOda;
+    isSinglePlayer = kaydedilmisMod === 'true';
+    secilenDenemeID = localStorage.getItem('secilenDenemeID');
+    testiYukleVeBaslat(secilenDenemeID, true);
+} else {
             girisEkrani.style.display = 'none';
             odaYonetimi.style.display = 'block';
             anaMenuGoster(user.displayName);
@@ -118,6 +119,7 @@ function odaKurHazirlik(dID) {
     });
 
     db.ref('odalar/' + odaKodu + '/katilimciListesi/' + auth.currentUser.uid).set(auth.currentUser.email);    
+db.ref('odalar/' + odaKodu + '/katilimciListesi/' + auth.currentUser.uid).onDisconnect().remove();
     odaYonetimi.innerHTML = `
         <h2 id="oda-kur-baslik" tabindex="-1">Oda Kuruldu. Kod: ${odaKodu}</h2>
         <div id="oda-islem-alani">
@@ -136,17 +138,21 @@ function odaKatilHazirlik() {
         <button class="nav-buton" onclick="location.reload()" style="margin-top:10px;">GERİ</button>`;
     
     document.getElementById('katil-baslik').focus();
-
-    document.getElementById('btn-katil-onay').onclick = () => {
+const bKatil = document.getElementById('btn-katil-onay');
+    bKatil.onclick = () => {
+        bKatil.disabled = true; 
+        sesliBildiri("Odaya giriş yapılıyor, lütfen bekleyin.");
         odaKodu = document.getElementById('oda-kodu-input').value;
         const odaRef = db.ref('odalar/' + odaKodu);
         
         odaRef.once('value').then(snap => {
             if(!snap.exists()) {
+                bKatil.disabled = false;
                 sesliBildiri("Hatalı oda kodu girdiniz.");
                 return;
             }
             db.ref('odalar/' + odaKodu + '/katilimciListesi/' + auth.currentUser.uid).set(auth.currentUser.email);
+db.ref('odalar/' + odaKodu + '/katilimciListesi/' + auth.currentUser.uid).onDisconnect().remove();
             odaRef.transaction(c => { if(c) c.oyuncuSayisi++; return c; });
             odaRef.on('value', (s) => {
                 if (s.val() && s.val().durum === 'basladi') {
@@ -211,27 +217,36 @@ sesliBildiri(" "); // Tarayıcının ses motorunu boş bir fısıltıyla uyandı
                 const listeHtml = Object.values(liste).map(email => `<li role="listitem">${email}</li>`).join('');
                 if(document.getElementById('canli-liste')) document.getElementById('canli-liste').innerHTML = listeHtml;
             });
-// ŞAMPİYON DUYURUSU - KATILIMCI SAYISINA GÖRE DİNAMİK KONTROL
-        db.ref('odalar/' + odaKodu + '/sonuclar').on('value', snap => {
-            const sonuclar = snap.val(); 
-            if(!sonuclar || sampiyonDuyuruldu) return;
+// ŞAMPİYONLUK VE SIRALAMA MANTIĞI (GÜNCELLENDİ)
+db.ref('odalar/' + odaKodu + '/sonuclar').on('value', snap => {
+    const sonuclar = snap.val(); 
+    if(!sonuclar || sampiyonDuyuruldu || sinavBittiMi === false) return;
 
-            // Sabit hedef yerine o anki gerçek katılımcı listesini kontrol eder
-            db.ref('odalar/' + odaKodu + '/katilimciListesi').once('value', kSnap => {
-                const katilimciListesi = kSnap.val() || {};
-                const bitirenSayisi = Object.keys(sonuclar).length;
-                const toplamGirenSayisi = Object.keys(katilimciListesi).length;
+    db.ref('odalar/' + odaKodu + '/katilimciListesi').once('value', kSnap => {
+        const aktifKatilimcilar = kSnap.val() || {};
+        const bitirenIdler = Object.keys(sonuclar);
+        const aktifIdler = Object.keys(aktifKatilimcilar);
 
-                if (bitirenSayisi >= toplamGirenSayisi) {
-                    sampiyonDuyuruldu = true;
-                    let lider = Object.values(sonuclar).reduce((prev, curr) => (prev.net > curr.net) ? prev : curr);
-// Şampiyon duyurusunu 5.5  saniye geciktiriyoruz ki puan sesiyle çakışmasın
-setTimeout(() => {
-    sesliBildiri("Dikkat! Sınava giren tüm adaylar bitirdi. Şampiyon: " + lider.isim + ". Net: " + lider.net.toFixed(2));
-}, 5500);
-                }
+        // Sadece odada aktif olanlar bitirdi mi?
+        const herkesBitirdiMi = aktifIdler.every(id => bitirenIdler.includes(id));
+
+        if (herkesBitirdiMi && aktifIdler.length > 0) {
+            sampiyonDuyuruldu = true;
+            
+            // Çok Kriterli Sıralama: 1. Puan, 2. Matematik Doğru, 3. Güncel Doğru
+            let liste = Object.values(sonuclar).sort((a, b) => {
+                if (b.p !== a.p) return b.p - a.p;
+                if (b.mD !== a.mD) return b.mD - a.mD;
+                return b.gD - a.gD;
             });
-            });
+
+            const enYuksekPuan = liste[0].p;
+            setTimeout(() => {
+                sesliBildiri("Dikkat! Tüm katılımcılar sınavı tamamladı. Bu sınavda ulaşılan en yüksek puan " + enYuksekPuan.toFixed(2));
+            }, 5500);
+        }
+    });
+});
         }
 
         const rIndex = isRecover ? (parseInt(localStorage.getItem('sonIndex')) || 0) : null;
@@ -478,13 +493,14 @@ function finalBitisEkrani() {
 // --- PUANLAMA VE ANALİZ ---
 function puanHesapla() {
     if(sinavBittiMi) return; sinavBittiMi = true; isOnlyEmptyMode = false;
-    let yD=0, yY=0, kD=0, kY=0, analiz={}, matD=0, matY=0;
+let yD=0, yY=0, kD=0, kY=0, analiz={}, matD=0, matY=0, gD=0;
 
     kullaniciCevaplari.forEach((cev, i) => {
         const s = mevcutSorular[i], dMu = (cev === s.dogru_cevap);
         if (i < 30) { if(cev!==null) { if(dMu) yD++; else yY++; } }
         else { if(cev!==null) { if(dMu) kD++; else kY++; } }
         if (i >= 15 && i <= 29 && cev !== null) { if(dMu) matD++; else matY++; }
+if (i >= 54 && i <= 59 && cev !== null && dMu) { gD++; }
         if(!analiz[s.konu]) analiz[s.konu]={d:0,y:0};
         if(dMu) analiz[s.konu].d++; else if(cev!==null) analiz[s.konu].y++;
     });
@@ -507,7 +523,8 @@ function puanHesapla() {
     const isim = auth.currentUser.displayName || "Aday";
     db.ref('kullanicilar/' + auth.currentUser.uid + '/cozulenDenemeler/' + secilenDenemeID).set({ puan: p.toFixed(2), net: toplamNet.toFixed(2), tarih: Date.now() });
 
-    if (!isSinglePlayer) db.ref('odalar/' + odaKodu + '/sonuclar/' + auth.currentUser.uid).set({ isim, net: toplamNet });
+if (!isSinglePlayer) db.ref('odalar/' + odaKodu + '/sonuclar/' + auth.currentUser.uid).set({ isim, net: toplamNet, p: p, mD: matD, gD: gD });
+localStorage.setItem('sinavTamamlandi', 'true');
     sonucEkraniGoster();
 }
 
