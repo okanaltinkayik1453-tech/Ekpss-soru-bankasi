@@ -70,7 +70,7 @@ function anaMenuGoster(isim) {
         <div class="sol-sutun-butonlari">
             <div style="margin-bottom:15px; border:1px solid #444; padding:15px; background:#1a1a1a;">
                 <label for="hedef-oyuncu-input">Toplam Katılımcı Sayısı:</label>
-                <input type="number" id="hedef-oyuncu-input" value="1" min="1" max="100" style="width:100%; padding:10px; margin-top:5px; background:#000; color:#fff; border:1px solid #ffff00;">
+                <input type="number" id="hedef-oyuncu-input" value="1" min="1" max="10" style="width:100%; padding:10px; margin-top:5px; background:#000; color:#fff; border:1px solid #ffff00;">
                 <button class="ana-menu-karti" onclick="denemeListesiGoster(false)" style="margin-top:10px;">ÇOKLU SINAV KUR (ODA SAHİBİ)</button>
             </div>
             <button class="ana-menu-karti" onclick="odaKatilHazirlik()">ÇOKLU SINAVA GİR (KOD İLE)</button>
@@ -117,10 +117,7 @@ function odaKurHazirlik(dID) {
         }
     });
 
-    const kurucuRef = db.ref('odalar/' + odaKodu + '/katilimciListesi/' + auth.currentUser.uid);
-    kurucuRef.set(auth.currentUser.email);
-    kurucuRef.onDisconnect().remove();
-    db.ref('odalar/' + odaKodu + '/oyuncuSayisi').onDisconnect().set(firebase.database.ServerValue.increment(-1));
+    db.ref('odalar/' + odaKodu + '/katilimciListesi/' + auth.currentUser.uid).set(auth.currentUser.email);    
     odaYonetimi.innerHTML = `
         <h2 id="oda-kur-baslik" tabindex="-1">Oda Kuruldu. Kod: ${odaKodu}</h2>
         <div id="oda-islem-alani">
@@ -142,7 +139,6 @@ function odaKatilHazirlik() {
 
     document.getElementById('btn-katil-onay').onclick = () => {
         odaKodu = document.getElementById('oda-kodu-input').value;
-        isSinglePlayer = false;
         const odaRef = db.ref('odalar/' + odaKodu);
         
         odaRef.once('value').then(snap => {
@@ -150,10 +146,7 @@ function odaKatilHazirlik() {
                 sesliBildiri("Hatalı oda kodu girdiniz.");
                 return;
             }
-            const katilimciRef = db.ref('odalar/' + odaKodu + '/katilimciListesi/' + auth.currentUser.uid);
-            katilimciRef.set(auth.currentUser.email);
-            katilimciRef.onDisconnect().remove();
-            odaRef.child('oyuncuSayisi').onDisconnect().set(firebase.database.ServerValue.increment(-1));
+            db.ref('odalar/' + odaKodu + '/katilimciListesi/' + auth.currentUser.uid).set(auth.currentUser.email);
             odaRef.transaction(c => { if(c) c.oyuncuSayisi++; return c; });
             odaRef.on('value', (s) => {
                 if (s.val() && s.val().durum === 'basladi') {
@@ -188,18 +181,9 @@ function matematikAnlat(konu, metin, hazirBetimleme) {
 
 // --- SINAV MOTORU ---
 function testiYukleVeBaslat(dID, isRecover = false) {
-    sesliBildiri(" "); // Tarayıcının ses motorunu boş bir fısıltıyla uyandırıyoruz.
+sesliBildiri(" "); // Tarayıcının ses motorunu boş bir fısıltıyla uyandırıyoruz.
     secilenDenemeID = dID;
     sinavBittiMi = false;
-    sampiyonDuyuruldu = false; 
-
-    if (!isSinglePlayer && odaKodu) {
-        const userRef = db.ref('odalar/' + odaKodu + '/katilimciListesi/' + auth.currentUser.uid);
-        userRef.set(auth.currentUser.email);
-        userRef.onDisconnect().remove();
-        db.ref('odalar/' + odaKodu + '/oyuncuSayisi').onDisconnect().set(firebase.database.ServerValue.increment(-1));
-    }
-
     fetch(`./data/${dID}.json`).then(res => res.json()).then(data => {
         mevcutSorular = data[0].sorular;
         kullaniciCevaplari = isRecover ? JSON.parse(localStorage.getItem('cevaplar')) : new Array(mevcutSorular.length).fill(null);
@@ -207,39 +191,28 @@ function testiYukleVeBaslat(dID, isRecover = false) {
         localStorage.setItem('secilenDenemeID', dID); 
         localStorage.setItem('kayitZamani', Date.now());
         localStorage.setItem('isSinglePlayer', isSinglePlayer);        
-        
-        odaYonetimi.style.display = 'none'; 
-        sinavEkrani.style.display = 'block';
-        
-        sinavEkrani.innerHTML = `
-            <button id="timer-kutusu" class="timer-dikdortgen" onclick="kalanSureyiSoyle()" aria-label="Kalan süreyi belirt">
-                <span id="dakika">100</span>:<span id="saniye">00</span>
-            </button>
-            <div id="deneme-govde"></div>
-            <div id="katilimci-takip" style="border-top:2px solid #444; margin-top:30px; padding:10px;">
-                <p style="color:#ffff00; font-weight:bold;">Sınavdaki Oyuncular:</p>
-                <ul id="canli-liste" role="list" style="list-style:none; padding:0; color:#aaa;"></ul>
-            </div>`;
+if (!isSinglePlayer) {
+db.ref('odalar/' + odaKodu + '/katilimciListesi/' + auth.currentUser.uid).set(auth.currentUser.email);
+            // 1. Bağlantı koparsa katılımcı listesinden otomatik sil
+            db.ref('odalar/' + odaKodu + '/katilimciListesi/' + auth.currentUser.uid).onDisconnect().remove();
 
-        if (!isSinglePlayer) {
+            // 2. Canlı katılımcı listesini (sağ panel/liste) güncelle
             db.ref('odalar/' + odaKodu + '/katilimciListesi').on('value', snap => {
                 const liste = snap.val(); if(!liste) return;
                 const listeHtml = Object.values(liste).map(email => `<li role="listitem">${email}</li>`).join('');
                 if(document.getElementById('canli-liste')) document.getElementById('canli-liste').innerHTML = listeHtml;
             });
 
-            db.ref('odalar/' + odaKodu + '/sonuclar').on('value', sSnap => {
-                const sonuclar = sSnap.val();
-                if (!sonuclar || sampiyonDuyuruldu) return;
-
+            // 3. Sınav bitiş kontrolü (Kalan aktif oyuncu sayısına göre dinamik kontrol)
+            db.ref('odalar/' + odaKodu + '/sonuclar').on('value', snap => {
+                const sonuclar = snap.val(); if(!sonuclar || sampiyonDuyuruldu) return;
+                
                 db.ref('odalar/' + odaKodu + '/katilimciListesi').once('value', kSnap => {
-                    const aktifOyuncuSayisi = kSnap.exists() ? Object.keys(kSnap.val()).length : 0;
-                    const bitirenSayisi = Object.keys(sonuclar).length;
-
-                    if (bitirenSayisi >= aktifOyuncuSayisi && aktifOyuncuSayisi > 0) {
+                    const aktifKatilimciSayisi = kSnap.numChildren();
+                    if (Object.values(sonuclar).length >= aktifKatilimciSayisi) {
                         sampiyonDuyuruldu = true;
                         let lider = Object.values(sonuclar).reduce((prev, curr) => (prev.net > curr.net) ? prev : curr);
-                        sesliBildiri("Dikkat! Tüm adaylar bitirdi. Şampiyon: " + lider.isim + ". Net: " + lider.net.toFixed(2));
+                        sesliBildiri("Dikkat! Odadaki tüm adaylar sınavı bitirdi. Şampiyon: " + lider.isim + ". Net: " + lider.net.toFixed(2));
                     }
                 });
             });
@@ -278,6 +251,7 @@ function soruyuGoster(index) {
         <div class="soru-kutusu">
             <h2 id="s-no" tabindex="-1">${bolumAdi} - Soru ${ekranNo}</h2>`;
 
+    // MATEMATİK SORULARI (15-29 ARASI)
     if (index >= 15 && index <= 29) {
         html += `
             <div class="matematik-alani" role="region" aria-label="Matematik Sorusu Yardımcı Araçları">
@@ -314,24 +288,31 @@ function soruyuGoster(index) {
                     KÖRCÜL DİNLE (SESLİ)
                 </button>
             </div>`;
-    } else {
+} else {
+        // TÜRKÇE, TARİH, COĞRAFYA VB. (AKILLI VE KÖRCÜL DOSTU MOD)
         html += `<p class="soru-koku-vurgu" style="text-align: justify; margin-bottom:10px;">${soru.soruKoku}</p>`;
 
         if (soru.icerik) {
             let icerikDizisi = [];
+
+            // JSON'dan gelen verinin tipine göre (Dizi veya Düz Metin) içeriği hazırla
             if (Array.isArray(soru.icerik) && soru.icerik.length > 0) {
                 icerikDizisi = soru.icerik;
             } 
             else if (typeof soru.icerik === 'string' && soru.icerik.trim() !== "") {
+                // Eğer metin içinde 1. 2. gibi numaralar varsa, bunları kullanarak metni parçala
                 if (/\d+[\.\)]/.test(soru.icerik)) {
                     icerikDizisi = soru.icerik.split(/\s*\d+[\.\)]\s*/).filter(item => item.trim() !== "");
                 } else {
                     html += `<p style="text-align: justify; margin-top:10px;">${soru.icerik}</p>`;
                 }
             }
+
+            // Listeyi oluştururken çift okumayı engellemek için temizlik yap
             if (icerikDizisi.length > 0) {
                 html += `<ul role="list" aria-label="Soru metni parçaları" style="list-style: none; padding: 0; text-align: justify; margin-top:10px;">
                     ${icerikDizisi.map((it, i) => {
+                        // Cümle başındaki "1.", "1)", "(1)" gibi mevcut numaraları siler
                         const temizMetin = it.replace(/^[\(\d\.\)]+\s*/, "").trim();
                         return `
                         <li role="listitem" tabindex="-1" style="margin-bottom: 12px; line-height: 1.6;">
@@ -342,6 +323,7 @@ function soruyuGoster(index) {
             }
         }
     }
+    // ŞIKLAR VE NAVİGASYON (Ortak Alan)
     html += `
             <div class="siklar-grid" role="group" aria-label="Seçenekler">
                 ${["A","B","C","D","E"].map((h, i) => `
@@ -358,6 +340,8 @@ function soruyuGoster(index) {
         </div>`;
 
     document.getElementById('deneme-govde').innerHTML = html;
+
+    // KÖRCÜL ODAKLANMA: Sadece soru numarasını oku ve dur
     setTimeout(() => { 
         const t = document.getElementById('s-no'); 
         if(t) {
@@ -367,8 +351,10 @@ function soruyuGoster(index) {
     }, 150);
 }
 
+// --- AKILLI NAVİGASYON ---
 function sonrakiSoru() {
     const toplamSoru = mevcutSorular.length;
+
     if (isOnlyEmptyMode) {
         let sonrakiBosIndex = -1;
         for (let i = mevcutIndex + 1; i < toplamSoru; i++) {
@@ -377,6 +363,7 @@ function sonrakiSoru() {
                 break;
             }
         }
+
         if (sonrakiBosIndex !== -1) {
             if (mevcutIndex < 30 && sonrakiBosIndex >= 30) {
                 sesliBildiri("Genel Yetenek boşları bitti. Genel Kültür boşlarına geçiliyor.");
@@ -425,6 +412,7 @@ function bosBirak() {
 function bitisOnayEkrani() {
     const bosSayisi = kullaniciCevaplari.filter(c => c === null).length;
     let icerikHtml = "";
+    
     if (bosSayisi > 0) {
         icerikHtml = `
             <h2 id="bitis-h" tabindex="-1">Tüm Soruları Gördünüz</h2>
@@ -443,6 +431,7 @@ function bitisOnayEkrani() {
             </div>`;
         sesliBildiri("Tüm soruları yanıtladınız. Sınavı bitirebilirsiniz.");
     }
+
     document.getElementById('deneme-govde').innerHTML = `<div class="soru-kutusu">${icerikHtml}</div>`;
     setTimeout(() => document.getElementById('bitis-h').focus(), 150);
 }
@@ -469,9 +458,11 @@ function finalBitisEkrani() {
     setTimeout(() => document.getElementById('final-h').focus(), 150);
 }
 
+// --- PUANLAMA VE ANALİZ ---
 function puanHesapla() {
     if(sinavBittiMi) return; sinavBittiMi = true; isOnlyEmptyMode = false;
     let yD=0, yY=0, kD=0, kY=0, analiz={}, matD=0, matY=0;
+
     kullaniciCevaplari.forEach((cev, i) => {
         const s = mevcutSorular[i], dMu = (cev === s.dogru_cevap);
         if (i < 30) { if(cev!==null) { if(dMu) yD++; else yY++; } }
@@ -480,6 +471,7 @@ function puanHesapla() {
         if(!analiz[s.konu]) analiz[s.konu]={d:0,y:0};
         if(dMu) analiz[s.konu].d++; else if(cev!==null) analiz[s.konu].y++;
     });
+    
     const matNet = matD - (matY / 4);
     const toplamYanlis = yY + kY;
     const toplamNet = (yD + kD) - (toplamYanlis / 4);
@@ -493,17 +485,20 @@ function puanHesapla() {
     if (toplamYanlis > 0 && p >= 100) { p = 99.75; }
     if (p > 100) p = 100;
     if (p < 0) p = 0;
+    
     sonPuanVerisi = { yD, yY, kD, kY, n: toplamNet, p: p, analiz };
     const isim = auth.currentUser.displayName || "Aday";
     db.ref('kullanicilar/' + auth.currentUser.uid + '/cozulenDenemeler/' + secilenDenemeID).set({ puan: p.toFixed(2), net: toplamNet.toFixed(2), tarih: Date.now() });
+
     if (!isSinglePlayer) db.ref('odalar/' + odaKodu + '/sonuclar/' + auth.currentUser.uid).set({ isim, net: toplamNet });
     sonucEkraniGoster();
 }
 
 function sonucEkraniGoster() {
-    const { yD, yY, kD, kY, p } = sonPuanVerisi;
+    const { yD, yY, kD, kY, n, p } = sonPuanVerisi;
     const yNet = (yD - (yY / 4)).toFixed(2);
     const kNet = (kD - (kY / 4)).toFixed(2);
+
     document.getElementById('deneme-govde').innerHTML = `
         <div class="soru-kutusu">
             <h2 id="res-h" tabindex="-1">Sınav Sonucunuz</h2>
@@ -565,6 +560,7 @@ function cevapKagidiYukle() {
     document.getElementById('kag-h').focus();
 }
 
+// --- YARDIMCI FONKSİYONLAR ---
 function baslatSayac() {
     if(timerInterval) clearInterval(timerInterval);
     timerInterval = setInterval(() => {
@@ -580,16 +576,19 @@ function baslatSayac() {
 function kalanSureyiSoyle() { sesliBildiri("Kalan süreniz " + Math.floor(kalanSure / 60) + " dakika."); }
 function sesliBildiri(m) { 
     if (!m || m.trim() === "") {
+        // Boş mesaj gelirse sadece motoru tetikle ama konuşma
         const bosUt = new SpeechSynthesisUtterance("");
         window.speechSynthesis.speak(bosUt);
         return;
     }
+
     window.speechSynthesis.cancel(); 
     let ut = new SpeechSynthesisUtterance(m); 
-    ut.lang = 'tr-TR'; ut.rate = 1.3; ut.pitch = 1.0;
+    ut.lang = 'tr-TR'; 
+    ut.rate = 1.3; // Mobilde daha net anlaşılması için hafif yavaşlatıldı
+    ut.pitch = 1.0;
     window.speechSynthesis.speak(ut); 
 }
-
 function sinaviTemizleVeListeyeDon() {
     if (odaKodu) {
         db.ref('odalar/' + odaKodu).off();
@@ -599,13 +598,14 @@ function sinaviTemizleVeListeyeDon() {
     if(timerInterval) clearInterval(timerInterval);
     sinavBittiMi = false; isOnlyEmptyMode = false; sampiyonDuyuruldu = false; 
     mevcutIndex = 0; kullaniciCevaplari = []; kalanSure = 100 * 60;
+
     localStorage.removeItem('aktifOda');
     localStorage.removeItem('cevaplar');
     localStorage.removeItem('sonIndex');
     localStorage.removeItem('kayitZamani');
     localStorage.removeItem('isSinglePlayer');
     localStorage.removeItem('secilenDenemeID');
-    sinavEkrani.style.display = 'none';
+sinavEkrani.style.display = 'none';
     odaYonetimi.style.display = 'block';
     const user = firebase.auth().currentUser;
     if(user) anaMenuGoster(user.displayName);
