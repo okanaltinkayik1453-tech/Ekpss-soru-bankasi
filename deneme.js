@@ -234,16 +234,16 @@ function testiYukleVeBaslat(dID, isRecover = false) {
                 <span id="dakika">100</span>:<span id="saniye">00</span>
             </button>
             <div id="deneme-govde"></div>
-            <div id="katilimci-takip" style="border-top:2px solid #444; margin-top:30px; padding:10px;">
-                <p style="color:#ffff00; font-weight:bold;">Sınavdaki Oyuncular:</p>
-                <ul id="canli-liste" role="list" style="list-style:none; padding:0; color:#aaa;"></ul>
+<div id="canli-sayac-alani" style="position:fixed; top:10px; left:10px; z-index:9999; color:#00ff00; background:rgba(0,0,0,0.8); padding:10px; border-radius:10px; border:2px solid #444;">
+                <span id="kisi-sayisi" style="font-size:32pt; font-weight:bold;">1</span>
+                <span style="font-size:24pt; margin-left:10px;">çevrim içi</span>
             </div>`;
-
         if (!isSinglePlayer) {
             db.ref('odalar/' + odaKodu + '/katilimciListesi').on('value', snap => {
                 const liste = snap.val(); if(!liste) return;
-                const listeHtml = Object.values(liste).map(email => `<li role="listitem">${email}</li>`).join('');
-                if(document.getElementById('canli-liste')) document.getElementById('canli-liste').innerHTML = listeHtml;
+const sayi = Object.keys(liste).length;
+                const sEl = document.getElementById('kisi-sayisi');
+                if(sEl) sEl.innerText = sayi;
             });
 // Sınav sonuçlarını dinle: Biri bitirdiğinde sıralamayı anında güncelle
             db.ref('odalar/' + odaKodu + '/sonuclar').on('value', snap => {
