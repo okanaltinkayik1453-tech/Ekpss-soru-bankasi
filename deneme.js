@@ -140,41 +140,50 @@ function odaKatilHazirlik() {
     
     document.getElementById('katil-baslik').focus();
     const bKatil = document.getElementById('btn-katil-onay');
-    
-    bKatil.onclick = () => {
-        const girilenKod = document.getElementById('oda-kodu-input').value;
+bKatil.onclick = () => {
+        const girilenKod = document.getElementById('oda-kodu-input').value.trim();
         if(!girilenKod) return;
         
         bKatil.disabled = true; 
-        sesliBildiri("Odaya giriş yapılıyor, lütfen bekleyin.");
+        sesliBildiri("Oda kontrol ediliyor...");
         odaKodu = girilenKod;
         const odaRef = db.ref('odalar/' + odaKodu);
         
-        odaRef.once('value').then(snap => {
-            if(!snap.exists()) {
-                bKatil.disabled = false;
-                sesliBildiri("Hatalı oda kodu girdiniz.");
-                return;
-            }
-            db.ref('odalar/' + odaKodu + '/katilimciListesi/' + auth.currentUser.uid).set(auth.currentUser.email);
-            db.ref('odalar/' + odaKodu + '/katilimciListesi/' + auth.currentUser.uid).onDisconnect().remove();
-            odaRef.transaction(c => { if(c) c.oyuncuSayisi++; return c; });
-
-            odaRef.on('value', (s) => {
-                const data = s.val();
-                if (data && data.durum === 'basladi') {
-                    odaRef.off(); 
-                    sesliBildiri("Sınav kurucu tarafından başlatıldı. Sorular yükleniyor.");
-                    testiYukleVeBaslat(data.denemeID);
+        let denemeSayisi = 0;
+        const odayaBaglanmayiDene = () => {
+            odaRef.get().then(snap => {
+                if(!snap.exists()) {
+                    if (denemeSayisi < 3) {
+                        denemeSayisi++;
+                        sesliBildiri("Oda henüz hazır değil, tekrar deneniyor...");
+                        setTimeout(odayaBaglanmayiDene, 1500);
+                    } else {
+                        bKatil.disabled = false;
+                        sesliBildiri("Hatalı oda kodu girdiniz. Lütfen kodun doğruluğundan emin olun.");
+                    }
+                    return;
                 }
-            });
-        }).catch(err => {
-            bKatil.disabled = false;
-            sesliBildiri("Bağlantı hatası oluştu.");
-        });
-    };
-}
+                
+                sesliBildiri("Odaya başarıyla bağlandınız, sınavın başlaması bekleniyor.");
+                db.ref('odalar/' + odaKodu + '/katilimciListesi/' + auth.currentUser.uid).set(auth.currentUser.email);
+                db.ref('odalar/' + odaKodu + '/katilimciListesi/' + auth.currentUser.uid).onDisconnect().remove();
+                odaRef.transaction(c => { if(c) c.oyuncuSayisi++; return c; });
 
+                odaRef.on('value', (s) => {
+                    const data = s.val();
+                    if (data && data.durum === 'basladi') {
+                        odaRef.off(); 
+                        testiYukleVeBaslat(data.denemeID);
+                    }
+                });
+            }).catch(err => {
+                bKatil.disabled = false;
+                sesliBildiri("Bağlantı hatası oluştu. Lütfen internetinizi kontrol edin.");
+            });
+        };
+        odayaBaglanmayiDene();
+    };    
+}
 // --- MATEMATİK BETİMLEME MOTORU ---
 function matematikAnlat(konu, metin, hazirBetimleme) {
     if (!metin && !hazirBetimleme) return;
@@ -230,11 +239,10 @@ function testiYukleVeBaslat(dID, isRecover = false) {
             });
 // Sınav sonuçlarını dinle: Biri bitirdiğinde sıralamayı anında güncelle
             db.ref('odalar/' + odaKodu + '/sonuclar').on('value', snap => {
-                const sonuclar = snap.val(); 
+const sonuclar = snap.val(); 
+                // ÖNEMLİ: Kullanıcı sınavı bitirmediyse tabloyu çizme ve sesli uyarı verme
                 if (!sonuclar || !sinavBittiMi) return;
 
-                // Herkesin bitirmesini bekleme şartını sildik. 
-                // Artık sınavı bitiren her kişi tabloya anında eklenir.
                 sesliBildiri("Sıralama güncellendi.");
                 genelSiralamayiOlustur(sonuclar);
             });
@@ -537,8 +545,13 @@ function sonucEkraniGoster() {
         </div>`;
     setTimeout(() => { if(document.getElementById('res-h')) document.getElementById('res-h').focus(); }, 150);
     sesliBildiri("Sınav bitti. Puanınız " + p.toFixed(2));
-}
+if (!isSinglePlayer) {
+        db.ref('odalar/' + odaKodu + '/sonuclar').get().then(snap => {
+            if(snap.exists()) genelSiralamayiOlustur(snap.val());
+        });
+    }
 
+}
 function cevapKagidiYukle() {
     let listHtml = `<h2 id="kag-h" tabindex="-1">Detaylı Çözümler</h2><div style="text-align:left; max-height:500px; overflow-y:auto; padding:10px;">`;
     mevcutSorular.forEach((s, i) => {
@@ -645,9 +658,10 @@ function genelSiralamayiOlustur(sonuclar) {
 
     tabloHtml += `</tbody></table></div>`;
     hedefAlan.innerHTML = tabloHtml;
-    
-    setTimeout(() => {
-        const h = document.getElementById('siralama-h');
-        if(h) h.focus();
-    }, 500);
+if (sinavBittiMi) {
+        setTimeout(() => {
+            const h = document.getElementById('siralama-h');
+            if(h) h.focus();
+        }, 500);
+    }    
 }
