@@ -15,7 +15,7 @@ const auth = firebase.auth();
 const db = firebase.database();
 
 // --- AYARLAR VE DEĞİŞKENLER ---
-const TOPLAM_DENEME_SAYISI = 1; 
+const TOPLAM_DENEME_SAYISI = 2; 
 let mevcutSorular = [], mevcutIndex = 0, kullaniciCevaplari = [];
 let kalanSure = 100 * 60, timerInterval, odaKodu = "";
 let isSinglePlayer = false, secilenDenemeID = "", odaKatilimciSayisi = 0;
@@ -71,7 +71,7 @@ function anaMenuGoster(isim) {
         <div class="sol-sutun-butonlari">
             <div style="margin-bottom:15px; border:1px solid #444; padding:15px; background:#1a1a1a;">
                 <label for="hedef-oyuncu-input">Toplam Katılımcı Sayısı:</label>
-                <input type="number" id="hedef-oyuncu-input" value="1" min="1" max="10" style="width:100%; padding:10px; margin-top:5px; background:#000; color:#fff; border:1px solid #ffff00;">
+                <input type="number" id="hedef-oyuncu-input" value="1" min="1" max="75" style="width:100%; padding:10px; margin-top:5px; background:#000; color:#fff; border:1px solid #ffff00;">
                 <button class="ana-menu-karti" onclick="denemeListesiGoster(false)" style="margin-top:10px;">ÇOKLU SINAV KUR (ODA SAHİBİ)</button>
             </div>
             <button class="ana-menu-karti" onclick="odaKatilHazirlik()">ÇOKLU SINAVA GİR (KOD İLE)</button>
@@ -105,13 +105,19 @@ function odaKurHazirlik(dID) {
         odaKatilimciSayisi = d.oyuncuSayisi;
         const btn = document.getElementById('btn-onay');
         
-        if (odaKatilimciSayisi >= d.hedefOyuncu && btn && btn.disabled) {
-            sesliBildiri("Hedef oyuncu sayısına ulaşıldı, sınavı şimdi başlatabilirsin.");
-            btn.disabled = false; btn.innerText = "SINAVI ŞİMDİ BAŞLAT"; btn.style.background = "#00ff00"; btn.style.color = "#000";
-        } else if (btn) {
-            btn.innerText = `OYUNCULAR BEKLENİYOR (${odaKatilimciSayisi}/${d.hedefOyuncu})`;
-        }
-        
+if (btn) {
+            // Buton her zaman aktif kalacak
+            btn.disabled = false; 
+            btn.style.background = "#00ff00"; 
+            btn.style.color = "#000";
+            // Metin hem mevcut sayıyı hem hedefi gösterecek
+            btn.innerText = `SINAVI ŞİMDİ BAŞLAT (${odaKatilimciSayisi}/${d.hedefOyuncu})`;
+            
+            // Sadece hedef sayıya tam ulaşıldığında bir kez sesli bildirim ver
+            if (odaKatilimciSayisi === d.hedefOyuncu) {
+                sesliBildiri("Hedef oyuncu sayısına ulaşıldı.");
+            }
+        }        
         if (d.durum === 'basladi' && sinavEkrani.style.display !== 'block') {
             db.ref('odalar/' + odaKodu).off();
             testiYukleVeBaslat(d.denemeID);
@@ -124,7 +130,7 @@ function odaKurHazirlik(dID) {
     odaYonetimi.innerHTML = `
         <h2 id="oda-kur-baslik" tabindex="-1">Oda Kuruldu. Kod: ${odaKodu}</h2>
         <div id="oda-islem-alani">
-            <button id="btn-onay" class="nav-buton" style="width:100%;" disabled>OYUNCULAR BEKLENİYOR...</button>
+<button id="btn-onay" class="nav-buton" style="width:100%;">OYUNCULAR BEKLENİYOR...</button>
         </div>`;
     document.getElementById('btn-onay').onclick = () => db.ref('odalar/' + odaKodu).update({ durum: 'basladi' });
     sesliBildiri("Oda kuruldu. Paylaşmanız gereken şifre " + odaKodu.split('').join(' '));
@@ -163,18 +169,24 @@ bKatil.onclick = () => {
                     }
                     return;
                 }
-                
-                // BAŞARILI GİRİŞ DURUMU
+// BAŞARILI GİRİŞ DURUMU
+                const data = snap.val();
+                if (data && data.durum === 'basladi') {
+                    bKatil.disabled = false;
+                    sesliBildiri("Bu sınav çoktan başlamış, geç kaldınız.");
+                    return;
+                }
+
                 sesliBildiri("Odaya başarıyla bağlandınız, sınavın başlaması bekleniyor.");
                 db.ref('odalar/' + odaKodu + '/katilimciListesi/' + auth.currentUser.uid).set(auth.currentUser.email);
                 db.ref('odalar/' + odaKodu + '/katilimciListesi/' + auth.currentUser.uid).onDisconnect().remove();
                 odaRef.transaction(c => { if(c) c.oyuncuSayisi++; return c; });
 
                 odaRef.on('value', (s) => {
-                    const data = s.val();
-                    if (data && data.durum === 'basladi') {
+                    const d = s.val();
+                    if (d && d.durum === 'basladi') {
                         odaRef.off(); 
-                        testiYukleVeBaslat(data.denemeID);
+                        testiYukleVeBaslat(d.denemeID);
                     }
                 });
             }).catch(err => {
