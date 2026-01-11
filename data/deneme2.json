@@ -1,0 +1,666 @@
+[
+  {
+    "denemeID": "deneme2",
+    "sorular": [
+      {
+        "tip": "turkce",
+        "konu": "Cümlede Anlam",
+        "soruKoku": "Edebiyatımızda roman türünün gelişimi, başlangıçta Batı'dan yapılan çevirilerle şekillenmiş; ancak zamanla yazarlarımız kendi kültürlerinden beslenerek ---- eserler ortaya koymaya başlamışlardır. Aşağıdaki parçada boş bırakılan yere, hangisi getirilirse cümlenin anlam bütünlüğü sağlanmış olur?",
+        "icerik": [],
+        "secenekler": ["taklitçi", "sıradan", "özgün", "karmaşık", "çeviri"],
+        "dogru_cevap": "C",
+        "aciklama": "Cümledeki 'ancak' bağlacı bir değişim olduğunu gösterir. Başlangıçta yapılan çevirilerin aksine, kendi kültüründen beslenen yazarların kendine has yani 'özgün' eserler vermesi beklenir."
+      },
+      {
+        "tip": "turkce",
+        "konu": "Cümle Yorumu (Aşamalılık)",
+        "soruKoku": "Aşağıdaki cümlelerin hangisinde eylemin veya durumun süreç içerisinde kademeli bir değişim gösterdiğini belirten 'aşamalılık' anlamı mevcuttur?",
+        "icerik": [],
+        "secenekler": [
+          "Modern edebiyatın önde gelen temsilcileri, toplumsal değişimleri eserlerinde estetik bir kaygıyla ve titizlikle ele almaktadır.",
+          "Yapılan son bilimsel araştırmalar, küresel ısınmanın kutuplardaki buzullar üzerindeki yıkıcı etkisinin her geçen gün biraz daha belirginleştiğini ortaya koyuyor.",
+          "Genç sporcu, şampiyonada sergilediği üstün performans sayesinde izleyicilerin ve otoritelerin takdirini kazanmayı başardı.",
+          "Proje koordinatörü, ekibin çalışma motivasyonunu artırmak amacıyla yıl sonunda kapsamlı bir değerlendirme toplantısı yapacaklarını duyurdu.",
+          "Şehrin tarihi dokusunu korumak için başlatılan restorasyon çalışmaları, uzman mimarlar ve sanat tarihçileri eşliğinde büyük bir özenle yürütülüyor."
+        ],
+        "dogru_cevap": "B",
+        "aciklama": "'Aşamalılık' bildiren cümlelerde bir durumun bir andan ziyade, zaman içinde kademe kademe, derece derece değiştiği ifade edilir. B seçeneğinde yer alan 'her geçen gün biraz daha' ifadesi, buzullardaki etkinin zamanla ve artarak ilerlediğini, yani bir süreç dahilinde kademeli olarak değiştiğini gösterdiği için tipik bir aşamalılık örneğidir."
+      },
+      {
+        "tip": "turkce",
+        "konu": "Paragrafta Yapı",
+        "soruKoku": "Bu parçada numaralanmış cümlelerden hangisi düşüncenin akışını bozmaktadır?",
+        "icerik": [
+          "1. Çay, Türk kültüründe sadece bir içecek değil, bir sohbet aracıdır.",
+          "2. Sabah kahvaltılarında, akşam oturmalarında, dost meclislerinde başköşededir.",
+          "3. Türkiye, dünyada kişi başına en çok çay tüketen ülkelerden biridir.",
+          "4. İnce belli bardakta sunulması, çayın rengini ve sıcaklığını koruması açısından önemlidir.",
+          "5. Çay bitkisi, nemli ve yağışlı iklimleri sever, bu yüzden Karadeniz'de yetişir."
+        ],
+        "secenekler": ["1", "2", "3", "4", "5"],
+        "dogru_cevap": "E",
+        "aciklama": "Paragraf boyunca çayın Türk kültüründeki sosyal ve kültürel yerinden bahsedilmiştir. Ancak 5. cümlede çayın tarımsal yetiştirilme koşullarına geçilmesi konu bütünlüğünü bozmuştur."
+      },
+      {
+        "tip": "turkce",
+        "konu": "Anlatım Bozuklukları (Dolaylama)",
+        "soruKoku": "Aşağıdaki cümlelerin hangisinde, tek bir sözcükle anlatılabilecek bir kavramın birden fazla sözcükle ifade edilmesi yoluyla gerçekleştirilen 'dolaylama' örneğine yer verilmiştir?",
+        "icerik": [],
+        "secenekler": [
+          "Ünlü yazarın kaleminden çıkan son eser, toplumsal değerlerin değişimini lirik bir dille ele alırken okuyucuyu derin bir muhasebeye sürüklüyor.",
+          "Ülke ekonomisinin kalkınmasında stratejik bir öneme sahip olan bacasız sanayi, yapılan yeni yatırımlar ve tanıtım çalışmalarıyla birlikte altın çağını yaşıyor.",
+          "Modern mimarinin en çarpıcı örneklerinden biri olan bu yapı, sürdürülebilir enerji kaynaklarını kullanarak çevre dostu bir yaşam alanı sunuyor.",
+          "Şehrin batı yakasında başlatılan kentsel dönüşüm projesi çerçevesinde, eski binaların yıkımı uzman ekiplerin gözetiminde titizlikle sürdürülüyor.",
+          "Teknolojik gelişmelerin hız kazanmasıyla birlikte geleneksel üretim yöntemleri, yerini tam otomasyonlu ve yapay zeka destekli sistemlere bırakıyor."
+        ],
+        "dogru_cevap": "B",
+        "aciklama": "Dolaylama; anlatımı daha etkili kılmak veya kavrama estetik bir derinlik kazandırmak amacıyla, tek bir kelimeyle (Turizm, Kıbrıs, Kaleci vb.) ifade edilebilecek bir varlığı veya kavramı birden fazla kelimeyle anlatma sanatıdır. B seçeneğinde geçen 'bacasız sanayi' ifadesi, tek bir sözcük olan 'turizm' kavramını karşıladığı için tipik bir dolaylama örneğidir."
+      },
+      {
+        "tip": "turkce",
+        "konu": "Paragrafı İkiye Bölme",
+        "soruKoku": "Bu parça iki paragrafa ayrılmak istense ikinci paragraf numaralanmış cümlelerin hangisiyle başlar?",
+        "icerik": [
+          "1. Denizler, dünya yüzeyinin büyük bir kısmını kaplayan ve hala tam olarak keşfedilememiş gizemli bir dünyadır.",
+          "2. Bu mavi derinliklerde mikroskobik planktonlardan dev balinalara kadar sayısız canlı türü bir arada yaşar.",
+          "3. Okyanusların ekolojik dengesi, bu canlı çeşitliliğinin korunmasına bağlıdır.",
+          "4. Derin deniz balıklarının yaşam koşulları ise yüzeydeki canlılardan oldukça farklıdır.",
+          "5. Işığın hiç ulaşmadığı bu karanlık bölgelerde yaşayan türler, kendi ışıklarını üretebilme yeteneği geliştirmiştir.",
+          "6. Biyolüminesans adı verilen bu özellik sayesinde avlarını kendilerine çeker veya eşlerini bulurlar."
+        ],
+        "secenekler": ["2", "3", "4", "5", "6"],
+        "dogru_cevap": "C",
+        "aciklama": "İlk üç cümle denizlerin genel canlı çeşitliliğinden bahsederken, 4. cümleden itibaren konu özelleşerek 'derin deniz balıkları ve onların adaptasyon özelliklerine' geçmiştir."
+      },
+      {
+        "tip": "turkce",
+        "konu": "Ses Bilgisi (Ünlü Türemesi)",
+        "soruKoku": "Türkçede bazı sözcükler '-cık / -cik' küçültme ekini aldıklarında veya bazı sıfatlar pekiştirme yoluyla kurulduklarında, sözcüğün kökü ile ek/pekiştirme unsuru arasında aslen kökte bulunmayan bir ünlünün ortaya çıktığı görülür; bu ses olayına 'ünlü türemesi' adı verilir. Buna göre aşağıdaki cümlelerin hangisinde ünlü türemesine örnek teşkil eden bir kullanım söz konusudur?",
+        "icerik": [],
+        "secenekler": [
+          "Şirketin finansal tablolarında görülen küçük sapmalar, muhasebe departmanının titiz çalışmaları neticesinde kısa sürede kontrol altına alındı.",
+          "Şehrin en kalabalık meydanında, herkesin gözü önünde güpegündüz gerçekleşen bu ilginç sanatsal performans, çevredeki vatandaşlar tarafından hayretle izlendi.",
+          "Edebiyat dünyasına yeni adım atan genç yazarın üslubundaki akıcılık, eleştirmenler tarafından geleceğin büyük kalemlerinden biri olacağı şeklinde yorumlandı.",
+          "Eski mahallenin Arnavut kaldırımlı ve dar sokaklarında yankılanan çocuk sesleri, geçmişin o huzurlu günlerini hatırlatması bakımından oldukça kıymetliydi.",
+          "Bilimsel araştırmalar, düzenli uykunun ve dengeli beslenmenin bireylerin zihinsel performansını doğrudan etkilediğini defalarca ortaya koymuştur."
+        ],
+        "dogru_cevap": "B",
+        "aciklama": "Ünlü türemesi iki şekilde gerçekleşebilir: Birincisi, 'az-ı-cık', 'bir-i-cik', 'genç-e-cik' gibi örneklerde görüldüğü üzere '-cık' ekiyle; ikincisi ise 'güpe-gündüz', 'sapa-sağlam', 'epe-evre' gibi örneklerde görüldüğü üzere pekiştirme esnasında. B seçeneğinde yer alan 'güpegündüz' kelimesi, 'gündüz' sözcüğünün pekiştirilmiş halidir. Aradaki 'e' ünlüsü türemedir."
+      },
+      {
+        "tip": "turkce",
+        "konu": "Paragrafta Anlam",
+        "soruKoku": "Bu parçadan havacılık sektörüyle ilgili aşağıdakilerden hangisine ulaşılabilir?",
+        "icerik": "Havacılık sektörü, son yüzyılda katettiği mesafeyle dünyayı küresel bir köye dönüştürdü. Eskiden aylar süren yolculuklar artık saatlere sığdırılıyor. Ancak bu hızlı büyüme, güvenlik protokollerinin de aynı hızla gelişmesini zorunlu kıldı. Günümüzde uçaklar, en güvenli ulaşım aracı olarak kabul edilse de bu güven, havayolu şirketlerinin uluslararası standartlara sıkı sıkıya bağlı kalması ve teknolojiyi sürekli güncellemeleri sayesinde korunabiliyor. Sektördeki en ufak bir ihmal, telafisi imkansız sonuçlar doğurabileceği için denetim mekanizmaları diğer tüm sektörlerden daha katı işliyor.",
+        "secenekler": [
+          "Havacılık sektörü sadece hız odaklı çalıştığı için konforu ikinci plana atmaktadır.",
+          "Uçak yolculuklarının güvenliği, sürekli güncellenen teknoloji ve sıkı denetimlere bağlıdır.",
+          "Uluslararası standartlar her ülkede farklı uygulandığı için güvenlik açıkları oluşmaktadır.",
+          "Havacılık sektörü, diğer ulaşım sektörlerine göre daha az maliyetli bir yapıya sahiptir.",
+          "Yolculuk sürelerinin kısalması, yolcuların güvenlik endişelerini tamamen ortadan kaldırmıştır."
+        ],
+        "dogru_cevap": "B",
+        "aciklama": "Parçada güvenliğin, standartlara bağlılık ve teknolojik güncellemeler sayesinde korunduğu açıkça belirtilmiştir."
+      },
+      {
+        "tip": "turkce",
+        "konu": "Paragrafta Yapı",
+        "soruKoku": "Bu parçada numaralanmış cümlelerden hangisi, kendisinden önceki cümlede belirtilen iki eseri ortak bir yargıya bağlamaktadır?",
+        "icerik": [
+          "(1) Mimar Sinan, Osmanlı mimarisinin en büyük ustasıdır. (2) Onun eserleri, yüzyıllardır ayakta kalarak zamana meydan okumaktadır.",
+          "(3) Süleymaniye Camii, İstanbul'un siluetini süsleyen en önemli yapıtlarından biridir. (4) Edirne'deki Selimiye Camii ise ustalığının zirvesi olarak kabul edilir.",
+          "(5) Mimar Sinan'ın hayatı hakkında pek çok kitap yazılmıştır. (6) Her iki cami de hem estetik hem de mühendislik harikasıdır."
+        ],
+        "secenekler": ["3", "4", "5", "6", "2"],
+        "dogru_cevap": "D",
+        "aciklama": "3. cümlede Süleymaniye, 4. cümlede Selimiye anlatılmış; 6. cümlede ise 'Her iki cami de...' denilerek bu iki eser ortak bir yargıda buluşturulmuştur."
+      },
+      {
+        "tip": "turkce",
+        "konu": "Paragrafta Yardımcı Düşünce",
+        "soruKoku": "Bu parçada aşağıdakilerden hangisine değinilmemiştir?",
+        "icerik": "Zeytinyağı, Akdeniz mutfağının vazgeçilmezidir. Sağlığa olan faydaları saymakla bitmez. Kalp sağlığını korur, sindirimi düzenler ve cildi güzelleştirir. Ayrıca E vitamini açısından oldukça zengindir. Zeytinyağının kalitesi, zeytinin toplanma şekline ve sıkılma süresine göre değişir.",
+        "secenekler": [
+          "Hangi mutfak kültürüne ait olduğuna",
+          "Hangi vitaminleri içerdiğine",
+          "Kalp sağlığı üzerindeki etkisine",
+          "Kalitesini belirleyen faktörlere",
+          "Dünyada en çok hangi ülkede üretildiğine"
+        ],
+        "dogru_cevap": "E",
+        "aciklama": "Metinde üretim kalitesi, sağlık faydaları ve mutfak kültürü gibi detaylar verilmiştir ancak hangi ülkenin en çok üretimi yaptığına dair bilgi yoktur."
+      },
+      {
+        "tip": "turkce",
+        "konu": "Cümleler Arası İlişkiler (Amaç-Sonuç)",
+        "soruKoku": "Aşağıdaki cümlelerin hangisinde, eylemin hangi hedefi gerçekleştirmeye yönelik yapıldığını belirten 'amaç-sonuç' ilişkisi söz konusudur?",
+        "icerik": [],
+        "secenekler": [
+          "Küresel ekonomik daralmanın etkisiyle birçok teknoloji devinin işten çıkarma süreçlerini hızlandırması, bilişim sektöründe çalışan personelin geleceğe dair kaygılarını artırdı.",
+          "Kurum içi iletişimi daha verimli hale getirmek ve çalışanların motivasyonunu en üst seviyeye çıkarmak gayesiyle önümüzdeki ay geniş kapsamlı bir sosyal sorumluluk projesi hayata geçirilecek.",
+          "Şehrin tarihi bölgesindeki restorasyon çalışmalarının planlanandan yavaş ilerlemesi sebebiyle, turizm sezonu öncesinde açılması beklenen müze ziyarete açılamadı.",
+          "Dijital platformların sunduğu imkanlar eğitim süreçlerine doğru bir biçimde entegre edilirse, öğrencilerin öğrenme hızında ve kalitesinde gözle görülür bir artış yaşanacaktır.",
+          "Akademik camiadaki tanınırlığına ve yayınladığı onlarca bilimsel makaleye rağmen, yeni geliştirilen kuram hakkındaki tartışmalarda sessiz kalmayı yeğledi."
+        ],
+        "dogru_cevap": "B",
+        "aciklama": "Amaç-sonuç cümleleri, bir eylemin yapılma gerekçesinin henüz gerçekleşmemiş bir 'hedef' veya 'ideal' olduğu cümlelerdir. B seçeneğinde, sosyal sorumluluk projesinin hayata geçirilme eylemi; 'iletişimi verimli hale getirmek' ve 'motivasyonu artırmak' amaçlarına yöneliktir."
+      },
+      {
+        "tip": "turkce",
+        "konu": "Cümlede Anlam (Yakınma)",
+        "soruKoku": "Bu parçadaki numaralanmış cümlelerin hangisinde bir 'yakınma' (şikâyet) anlamı mevcuttur?",
+        "icerik": [
+          "(1) Modern çağın getirdiği hız tutkusu, edebi eserlerin üretim ve tüketim süreçlerini de kökten bir değişime uğratmış durumda.",
+          "(2) Eskiden aylar süren titiz araştırmalar ve dil işçiliğiyle yoğrulan o derinlikli eserler, yerini popüler kültürün anlık taleplerini karşılayan sığ metinlere bıraktı.",
+          "(3) Okuyucu kitlesinin nitelikli olandan ziyade 'kolay tüketilebilir' olana yönelmesi, yayıncılık dünyasının önceliklerini de sanatsal değerlerden ziyade ticari kaygılara indirgedi.",
+          "(4) Hayatımıza yön veren eleştirmenlerin, bu sanatsal yozlaşma karşısında sessiz kalıp sadece güncel olanı övmekle yetinen birer halkla ilişkiler uzmanı gibi davranmalarını kabullenmek mümkün değil.",
+          "(5) Nitelikli edebiyatın sessizce köşesine çekildiği bu kaotik ortamda, gerçek yeteneklerin kendilerini ifade edebilecekleri bir mecra bulamamaları geleceğin sanat dünyası adına büyük bir talihsizliktir."
+        ],
+        "secenekler": ["1", "2", "3", "4", "5"],
+        "dogru_cevap": "D",
+        "aciklama": "4. cümlede yazar, eleştirmenlerin tutumuna dair duyduğu rahatsızlığı 'kabullenmek mümkün değil' ifadesiyle dile getirerek net bir yakınma (şikayet) ortaya koymuştur."
+      },
+      {
+        "tip": "turkce",
+        "konu": "Cümlede Anlam",
+        "soruKoku": "Bu parçadaki numaralanmış cümlelerin hangisinde 'bir durumun veya olayın gerçekleşmesinin çok yakın olduğu' anlamı vardır?",
+        "icerik": [
+          "(1) Edebiyat eleştirmenleri, yazarın son yapıtında kullandığı metaforik dilin okur üzerinde sarsıcı bir etki bıraktığı konusunda birleşiyor.",
+          "(2) Ancak bu eserin asıl başarısı, toplumsal bir dönüşümün eşiğinde duran bireyin içsel sancılarını tüm çıplaklığıyla yansıtmasıdır.",
+          "(3) Yazarın betimlemelerindeki o yoğun atmosferden anlaşıldığı üzere, anlatılan hikâyedeki büyük hesaplaşmanın eli kulağındadır.",
+          "(4) Okuyucu, her sayfada bu kaçınılmaz sona doğru yaklaştığını hissederken kendi varoluşunu da sorgulamaya başlar.",
+          "(5) Nihayetinde eser, sadece bir son sunmakla kalmaz; yeni başlangıçlar için de kapı aralar."
+        ],
+        "secenekler": ["1", "2", "3", "4", "5"],
+        "dogru_cevap": "C",
+        "aciklama": "Parçanın 3. cümlesinde geçen 'eli kulağında' deyimi, sözü edilen durumun gerçekleşmesinin çok yakın olduğunu ve her an yaşanabileceğini belirtmektedir."
+      },
+      {
+        "tip": "turkce",
+        "konu": "Paragrafta Ana Düşünce",
+        "soruKoku": "Bu parçadan hareketle başarıya dair aşağıdakilerden hangisine ulaşılabilir?",
+        "icerik": "Başarı, sadece yetenekle elde edilen bir sonuç değildir. Yetenek, bir tohum gibidir; ekilmez, sulanmaz ve bakılmazsa filizlenmez. Çalışmak, azmetmek ve disiplinli olmak, bu tohumu yeşerten unsurlardır. Tarih, çok yetenekli olup da çalışmadığı için silinip giden isimlerle doludur.",
+        "secenekler": [
+          "Doğuştan gelen potansiyel kabiliyetlerin, sistemli bir irade ve disiplinle desteklenmediği sürece somut bir başarıya evrilmesi mümkün değildir.",
+          "Tarihsel süreçte kalıcı izler bırakan şahsiyetlerin en belirgin ortak paydası, yeteneklerini dışsal faktörlerin yardımıyla başarıya dönüştürmüş olmalarıdır.",
+          "Disiplinli ve azimli bir çalışma temposu, doğuştan gelen herhangi bir yeteneği olmayan bireylerin dahi mutlak başarıya ulaşmasını garanti altına alır.",
+          "Başarıyı belirleyen temel unsurun yetenek olduğu gerçeği, çalışmanın önemini ikincil bir konuma iterek başarısızlığın temel gerekçesini oluşturur.",
+          "Yetenekli bireylerin toplum hafızasından silinip gitmelerinin temel sebebi, karşılaştıkları engeller karşısında gerekli dışsal desteği bulamamış olmalarıdır."
+        ],
+        "dogru_cevap": "A",
+        "aciklama": "Parçada yetenek bir 'tohum'a benzetilerek onun sadece bir potansiyel olduğu vurgulanmıştır. A seçeneğinde kullanılan 'doğuştan gelen potansiyelin sistemli iradeyle desteklenmesi' ifadesi metindeki düşünceyi tam karşılar."
+      },
+      {
+        "tip": "turkce",
+        "konu": "Paragrafta Anlam",
+        "soruKoku": "Bu parçadan hareketle 'nöroplastisite' ile ilgili aşağıdakilerden hangisine ulaşılabilir?",
+        "icerik": "Nöroplastisite, beynin deneyimler ve öğrenme yoluyla yapısal ve işlevsel olarak kendini yeniden düzenleme yeteneğidir; bu yetenek sayesinde zihin, statik bir yapı olmaktan çıkıp sürekli gelişen dinamik bir organizmaya dönüşür. Yeni bir dil öğrenmek veya bir enstrüman çalmak, beyindeki nöral bağları güçlendirerek bilişsel rezervi artırırken yaşlılıkta görülen zihinsel gerilemeyi de yavaşlatır. Ancak bu süreç, sadece bilgi edinmekle değil, bu bilginin pratikle derinleştirilmesi ve duyusal deneyimlerle harmanlanmasıyla gerçek potansiyeline ulaşır.",
+        "secenekler": [
+          "Sadece çocukluk döneminde aktif olan ve yaşla birlikte tamamen kaybolan bir özelliktir",
+          "Beynin dış uyaranlara kapalı, sabit ve değişmez bir yapıya sahip olduğunu kanıtlar",
+          "Yeni beceriler edinmenin ve öğrenme sürecinin beynin yapısını dönüştürücü bir etkisi vardır",
+          "Zihinsel kapasitenin sadece genetik faktörler tarafından belirlendiğini ortaya koyar",
+          "Teknolojik araçların kullanımıyla nöroplastisite yeteneğinin tamamen durduğu gözlemlenmiştir"
+        ],
+        "dogru_cevap": "C",
+        "aciklama": "Metinde nöroplastisite, beynin deneyim ve öğrenme yoluyla kendini yeniden düzenleme yeteneği olarak tanımlanmış, yeni öğrenmelerin beyin yapısını değiştirdiği vurgulanmıştır."
+      },
+      {
+        "tip": "turkce",
+        "konu": "Paragrafta Anlam",
+        "soruKoku": "Beyindeki gelişim sürecinin 'gerçek potansiyeline' ulaşması aşağıdakilerden hangisine bağlıdır?",
+        "icerik": "Nöroplastisite, beynin deneyimler ve öğrenme yoluyla yapısal ve işlevsel olarak kendini yeniden düzenleme yeteneğidir; bu yetenek sayesinde zihin, statik bir yapı olmaktan çıkıp sürekli gelişen dinamik bir organizmaya dönüşür. Yeni bir dil öğrenmek veya bir enstrüman çalmak, beyindeki nöral bağları güçlendirerek bilişsel rezervi artırırken yaşlılıkta görülen zihinsel gerilemeyi de yavaşlatır. Ancak bu süreç, sadece bilgi edinmekle değil, bu bilginin pratikle derinleştirilmesi ve duyusal deneyimlerle harmanlanmasıyla gerçek potansiyeline ulaşır.",
+        "secenekler": [
+          "Genetik mirasın çok güçlü bir temele dayanmasına",
+          "Bilginin sadece teorik olarak hafızada tutulmasına",
+          "Edinilen bilgilerin uygulama ve duyusal deneyimlerle pekiştirilmesine",
+          "Yaşlılık dönemine kadar herhangi bir zihinsel aktivite yapılmamasına",
+          "Beynin sadece rutin ve alışılmış işlerle meşgul edilmesine"
+        ],
+        "dogru_cevap": "C",
+        "aciklama": "Parçanın sonunda nöroplastisite sürecinin, bilginin pratikle derinleştirilmesi ve duyusal deneyimlerle harmanlanması sayesinde gerçek potansiyeline ulaştığı ifade edilmiştir."
+      },
+      {
+        "tip": "matematik",
+        "konu": "Rasyonel Sayılar",
+        "sesliBetimleme": "Soru bir kesir hesaplamasıdır. Büyük bir ana kesir çizgisi düşünün. Bu ana kesrin pay kısmında: bir bölü iki artı üç bölü beş işlemleri var. Ana kesrin payda kısmında ise: on bir bölü on ifadesi yer alıyor. Bu işlemin sonucu kaçtır?",
+        "gorselMetin": "(1/2 + 3/5) / (11/10) = ?",
+        "secenekler": ["1", "2", "1/2", "5/11", "10/11"],
+        "dogru_cevap": "A",
+        "aciklama": "İlk olarak üstteki pay kısmında toplama yapabilmek için paydaları on sayısında eşitliyoruz. Bir bölü iki ifadesini beş ile genişletince beş bölü on olur. Üç bölü beş ifadesini iki ile genişletince altı bölü on olur. Beş bölü on ile altı bölü on toplandığında pay kısmı on bir bölü on bulunur. Payımız on bir bölü on, paydamız da on bir bölü on olduğu için sonuç birdir."
+      },
+      {
+        "tip": "matematik",
+        "konu": "Ondalık Sayılar",
+        "sesliBetimleme": "İki ayrı bölme işleminin toplamı soruluyor. Birinci işlem: sıfır virgül kırk sekiz bölü sıfır virgül on iki. Artı, ikinci işlem: sıfır virgül dokuz bölü sıfır virgül üç. Bu toplamanın sonucu kaçtır?",
+        "gorselMetin": "(0,48 / 0,12) + (0,9 / 0,3) = ?",
+        "secenekler": ["4", "5", "6", "7", "8"],
+        "dogru_cevap": "D",
+        "aciklama": "Birinci işlemde virgülleri iki basamak sağa kaydırırsak kırk sekiz bölü on iki olur, bunun sonucu dörttür. İkinci işlemde virgülleri bir basamak sağa kaydırırsak dokuz bölü üç olur, bunun sonucu üçtür. Dört ile üçün toplamından sonuç yedi çıkar."
+      },
+      {
+        "tip": "matematik",
+        "konu": "Üslü Sayılar",
+        "sesliBetimleme": "İşlem şöyle: Parantez açılıyor, eksi üç, parantez kapandı, parantezin dışında sağ üstte kuvvet olarak iki yazıyor. Eksi işareti konulmuş ve yeni bir parantez açılmış. Parantez içinde eksi bir, parantez kapandı, parantezin dışında sağ üstte kuvvet olarak üç yazıyor. Sonuç nedir?",
+        "gorselMetin": "(-3)^2 - (-1)^3 = ?",
+        "secenekler": ["8", "9", "10", "-8", "-10"],
+        "dogru_cevap": "C",
+        "aciklama": "Eksi üçün karesi demek, eksi üç ile eksi üçü çarpmak demektir, bu artı dokuz eder. Diğer kısımda eksi birin küpü, üç tane eksi birin çarpımıdır ve sonuç eksi bir çıkar. Dokuz eksi eksi bir işlemi dokuz artı bir olur ve sonuç ondur."
+      },
+      {
+        "tip": "matematik",
+        "konu": "Köklü Sayılar",
+        "sesliBetimleme": "Kesirli bir kök işlemi. Pay kısmında: karekök içerisinde yetmiş iki artı karekök içerisinde on sekiz. Payda kısmında ise: karekök içerisinde iki ifadesi var. Bu işlemin sonucu kaçtır?",
+        "gorselMetin": "(√72 + √18) / √2 = ?",
+        "secenekler": ["6", "9", "12", "3√2", "5√2"],
+        "dogru_cevap": "B",
+        "aciklama": "Karekök yetmiş iki, altı kök iki olarak dışarı çıkar. Karekök on sekiz ise üç kök iki olarak dışarı çıkar. Pay kısmındaki altı kök iki ile üç kök ikiyi toplarsak dokuz kök iki yapar. Dokuz kök ikiyi paydadaki kök ikiye böldüğümüzde dokuz kalır."
+      },
+      {
+        "tip": "matematik",
+        "konu": "Bölünebilme Kuralları",
+        "sesliBetimleme": "Üç basamaklı dört A sekiz doğal sayısı üç ile tam bölünebildiğine göre, A rakamının alabileceği değerlerin toplamı kaçtır?",
+        "gorselMetin": "4A8 sayısı 3 ile tam bölünebiliyor. A rakamları toplamı?",
+        "secenekler": ["12", "15", "18", "21", "24"],
+        "dogru_cevap": "C",
+        "aciklama": "Bir sayının üç ile bölünebilmesi için rakamları toplamının üçün katı olması gerekir. Rakamları toplayalım: 4 + 8 + A = 12 + A. Bu toplamın üçün katı olması için A yerine 0, 3, 6 veya 9 rakamları gelebilir. Toplamları 18 eder."
+      },
+      {
+        "tip": "matematik",
+        "konu": "Kümeler",
+        "sesliBetimleme": "Bir A kümesi veriliyor. Kümenin elemanları küçük harflerle: a, b, c, d ve e'dir. Bu kümenin alt kümelerinin kaç tanesinde a elemanı bulunur fakat b elemanı bulunmaz?",
+        "gorselMetin": "A = {a, b, c, d, e}",
+        "secenekler": ["4", "8", "16", "32", "64"],
+        "dogru_cevap": "B",
+        "aciklama": "Alt küme sorularında bir elemanın bulunması veya bulunmaması isteniyorsa o elemanlar kümeden geçici olarak atılır. 'a' ve 'b'yi çıkardığımızda geriye c, d ve e olmak üzere üç eleman kalır. 2 üzeri 3'ten sonuç 8'dir."
+      },
+      {
+        "tip": "matematik",
+        "konu": "Denklemler",
+        "sesliBetimleme": "Bir denklem sorusu. Eşitliğin sol tarafında bir kesir var: pay kısmında üç x eksi beş, payda kısmında ise iki yazıyor. Eşitliğin sağ tarafında ise sadece x artı dört ifadesi var. Buna göre x kaçtır?",
+        "gorselMetin": "(3x - 5) / 2 = x + 4",
+        "secenekler": ["10", "11", "12", "13", "14"],
+        "dogru_cevap": "D",
+        "aciklama": "Çözüm için içler dışlar çarpımı yapıyoruz. 2 sayısını karşıdaki x+4 ile çarparız. 3x - 5 = 2x + 8 olur. Buradan x = 13 bulunur."
+      },
+      {
+        "tip": "matematik",
+        "konu": "Sayı Problemleri",
+        "sesliBetimleme": "Toplamları altmış olan iki sayıdan büyük olan sayı, küçük olan sayının üç katından dört fazladır. Buna göre küçük sayı kaçtır?",
+        "gorselMetin": "x + y = 60, y = 3x + 4",
+        "secenekler": ["12", "14", "16", "18", "20"],
+        "dogru_cevap": "B",
+        "aciklama": "Küçük sayıya x dersek büyük sayı 3x + 4 olur. Toplamları 4x + 4 = 60 olur. 4x = 56'dan x = 14 bulunur."
+      },
+      {
+        "tip": "matematik",
+        "konu": "Yaş Problemleri",
+        "sesliBetimleme": "Bir babanın bugünkü yaşı, iki çocuğunun yaşları toplamının 3 katıdır. Dört yıl sonra ise babanın yaşı, çocukların yaşları toplamının iki katı olacaktır. Buna göre babanın bugünkü yaşı kaçtır?",
+        "gorselMetin": "Baba = 3 * (Çocuklar Toplamı). 4 yıl sonra B = 2*(Ç+8)",
+        "secenekler": ["36", "39", "42", "45", "48"],
+        "dogru_cevap": "A",
+        "aciklama": "Çocukların yaşları toplamına x dersek Babanın yaşı 3x olur. Dört yıl sonra B=3x+4, Ç=x+8 olur (2 çocuk olduğu için). 3x+4 = 2(x+8) denkleminden x=12 bulunur. Babanın yaşı 3x = 36'dır."
+      },
+      {
+        "tip": "matematik",
+        "konu": "Yüzde Problemleri",
+        "sesliBetimleme": "Yüzde yirmi kâr eklenerek dört yüz seksen Türk Lirasına satılan bir ürünün, kâr eklenmeden önceki maliyet fiyatı kaç Türk Lirasıdır?",
+        "gorselMetin": "%20 kâr ile Satış Fiyatı = 480 TL ise maliyet?",
+        "secenekler": ["380", "400", "420", "440", "450"],
+        "dogru_cevap": "B",
+        "aciklama": "Yüzde yirmi kâr ile satış fiyatı yüzde yüz yirmi olur. Yüzde 120'si 480 lira ise, yüzde 100'ü 400 lira çıkar."
+      },
+      {
+        "tip": "matematik",
+        "konu": "Yüzde Problemleri",
+        "sesliBetimleme": "Bir sınıftaki öğrencilerin yüzde altmışı erkektir. Bu sınıfa dört kız öğrenci daha katıldığında, sınıftaki kızların sayısı erkeklerin sayısına eşitleniyor. Buna göre başlangıçta sınıfta toplam kaç öğrenci vardı?",
+        "gorselMetin": "%60 Erkek, Kız + 4 = Erkek ise toplam?",
+        "secenekler": ["20", "25", "30", "35", "40"],
+        "dogru_cevap": "A",
+        "aciklama": "Sınıfın tamamına 100x dersek erkekler 60x, kızlar 40x olur. 40x + 4 = 60x denkleminden 20x = 4 bulunur. 100x ise bunun 5 katı olan 20'dir."
+      },
+      {
+        "tip": "matematik",
+        "konu": "Hız Problemleri",
+        "sesliBetimleme": "Saatteki hızı seksen kilometre olan bir araç, A kentinden B kentine beş saatte gidiyor. Bu araç hızını saatte yirmi kilometre artırırsa, aynı yolu kaç saatte geri döner?",
+        "gorselMetin": "Hız = 80, Süre = 5. Yeni Hız = 100 ise Süre = ?",
+        "secenekler": ["3", "3,5", "4", "4,5", "5"],
+        "dogru_cevap": "C",
+        "aciklama": "Yolun uzunluğu 80 x 5 = 400 km. Yeni hız 100 km/s olur. 400 / 100 işleminden süre 4 saat bulunur."
+      },
+      {
+        "tip": "matematik",
+        "konu": "İşlem",
+        "sesliBetimleme": "Pozitif tam sayılar kümesi üzerinde bir üçgen işlemi. x üçgen y eşittir iks kare, artı, üç y, biçiminde tanımlanıyor. Buna göre dört üçgen beş işleminin sonucu kaçtır?",
+        "gorselMetin": "x ∆ y = x^2 + 3y => 4 ∆ 5 = ?",
+        "secenekler": ["25", "28", "31", "34", "37"],
+        "dogru_cevap": "C",
+        "aciklama": "x yerine 4, y yerine 5 yazarız. 4'ün karesi 16, 3 x 5 = 15. 16 + 15 = 31 sonucunu verir."
+      },
+      {
+        "tip": "matematik",
+        "konu": "Geometri",
+        "sesliBetimleme": "Bir kenar uzunluğu altı santimetre olan bir karemiz var. Bu karenin çevre uzunluğu ile aynı çevreye sahip bir eşkenar üçgen düşünün. Bu eşkenar üçgenın bir kenar uzunluğu kaç santimetredir?",
+        "gorselMetin": "Karenin Çevresi = Eşkenar Üçgenin Çevresi",
+        "secenekler": ["6", "7", "8", "9", "10"],
+        "dogru_cevap": "C",
+        "aciklama": "Karenin çevresi 6 x 4 = 24 santimetredir. Üçgenin çevresi de 24 olduğuna göre bir kenarı 24 / 3 = 8 santimetredir."
+      },
+      {
+        "tip": "matematik",
+        "konu": "Geometri (Silindir)",
+        "sesliBetimleme": "Taban yarıçapı üç santimetre ve yüksekliği on santimetre olan bir dik silindirin hacmi kaç pi santimetreküptür? Not: Sonucu pi sembolü cinsinden söyleyiniz.",
+        "gorselMetin": "V = π . r^2 . h (r=3, h=10)",
+        "secenekler": ["30π", "60π", "90π", "120π", "150π"],
+        "dogru_cevap": "C",
+        "aciklama": "Hacim formülü pi.r^2.h'tır. Yarıçapın karesi 9, yükseklik 10 olduğu için 90 pi çıkar."
+      },
+      {
+        "tip": "tarih",
+        "konu": "İslamiyet Öncesi Türk Tarihi",
+        "soruKoku": "İslamiyet öncesi Türk kültüründe ölen savaşçıların kurgan adı verilen mezarlarının çevresine dikilen, kişinin sağlığında etkisiz hale getirdiği düşmanları simgeleyen ve ahiret inancının sanatsal bir dışa vurumu kabul edilen yontulara ne ad verilir?",
+        "icerik": [],
+        "secenekler": ["Kurgan", "Balbal", "Yuğ", "Şaman", "Kam"],
+        "dogru_cevap": "B",
+        "aciklama": "Balballar, Türklerde ölümden sonraki yaşama inanıldığının en somut göstergelerinden biridir; zira bu heykelciklerin temsil ettiği kişilerin öbür dünyada kahramana hizmet edeceğine inanılmıştır."
+      },
+      {
+        "tip": "tarih",
+        "konu": "Büyük Selçuklu Devleti",
+        "soruKoku": "Büyük Selçuklu Devleti'nin kuruluş sürecinde Sultan Alparslan tarafından uygulamaya konulan, fethedilen bölgenin yönetimini fetheden komutana bırakarak Anadolu'nun Türkleşmesini hızlandıran ancak merkezi otoriteyi zayıflatma riski barındıran politika aşağıdakilerden hangisidir?",
+        "icerik": [],
+        "secenekler": ["İskân Politikası", "Kılıç Hakkı", "İstimalet Anlayışı", "Müdara Siyaseti", "Gulam Sistemi"],
+        "dogru_cevap": "B",
+        "aciklama": "Kılıç hakkı, fetihleri teşvik ederek Saltuklular ve Danişmentliler gibi Birinci Dönem Anadolu Beyliklerinin kurulmasına zemin hazırlamıştır."
+      },
+      {
+        "tip": "tarih",
+        "konu": "Osmanlı Devleti (Sosyal Kurumlar)",
+        "soruKoku": "Osmanlı Devleti'nde 2. Abdülhamid döneminde Batılı anlamda 'sosyal devlet' ve 'sosyal yardım' kurumlarının kurumsallaşması amacıyla açılan; din, dil ve ırk ayrımı gözetmeksizin düşkünleri ve kimsesizleri himaye eden kurum hangisidir?",
+        "icerik": [],
+        "secenekler": ["Darülaceze", "Darüşşafaka", "Darülelhan", "Darülbedayi", "Hilal-i Ahmer"],
+        "dogru_cevap": "A",
+        "aciklama": "1895'te kurulan Darülaceze, modern yardım anlayışının öncüsüdür."
+      },
+      {
+        "tip": "tarih",
+        "konu": "Osmanlı Tarihi (İç Olaylar)",
+        "soruKoku": "2. Bayezid döneminde patlak veren, başlangıçta bir hanedan çekişmesi ve iç siyaset sorunu iken Rodos Şövalyeleri ve Papalık gibi dış güçlerin müdahalesiyle uluslararası bir krize dönüşerek Osmanlı fetihlerini yavaşlatan gelişme hangisidir?",
+        "icerik": [],
+        "secenekler": ["Şahkulu İsyanı", "Cem Sultan Olayı", "Patrona Halil İsyanı", "Kuleli Vakası", "Edirne Olayı"],
+        "dogru_cevap": "B",
+        "aciklama": "Cem Sultan'ın Avrupa'ya sığınması, Osmanlı Devleti'ni Batı karşısında pasif bir savunma durumuna itmiş ve fetihleri duraksatmıştır."
+      },
+      {
+        "tip": "tarih",
+        "konu": "Osmanlı Islahatları",
+        "soruKoku": "Osmanlı askeri teşkilatında bozulan ve devletin önünde engel teşkil eden Yeniçeri Ocağı'nı 1826 yılında 'Vaka-i Hayriye' olarak adlandırılan hamle ile kaldıran 2. Mahmud'un, bu ordunun yerine kurduğu modern birliklerin ismi nedir?",
+        "icerik": [],
+        "secenekler": ["Sekban-ı Cedid", "Asakir-i Mansure-i Muhammediye", "Eşkinci Ocağı", "Nizam-ı Cedid", "Hamidiye Alayları"],
+        "dogru_cevap": "B",
+        "aciklama": "Yeniçeri Ocağı'nın kaldırılması padişahın merkezi otoritesini mutlak hale getirmiş, kurulan yeni ordu ise modernleşme hareketlerinin askeri ayağını oluşturmuştur."
+      },
+      {
+        "tip": "tarih",
+        "konu": "Osmanlı Tarihi (20. Yüzyıl)",
+        "soruKoku": "2. Meşrutiyet'in ilanından sonra İstanbul'da çıkan, mevcut anayasal düzeni ve parlamenter sistemi hedef alarak Osmanlı tarihindeki 'rejimi değiştirmeye yönelik ilk isyan' olarak nitelendirilen olay aşağıdakilerden hangisidir?",
+        "icerik": [],
+        "secenekler": ["31 Mart Vakası", "Kuleli Olayı", "Bab-ı Ali Baskını", "Menemen Olayı", "Şeyh Sait İsyanı"],
+        "dogru_cevap": "A",
+        "aciklama": "1909 yılında çıkan bu isyan Mustafa Kemal'in de yer aldığı Hareket Ordusu tarafından bastırılmıştır."
+      },
+      {
+        "tip": "tarih",
+        "konu": "1. Dünya Savaşı",
+        "soruKoku": "1. Dünya Savaşı'nda Osmanlı Devleti'nin stratejik savunma başarısı elde ettiği, itilaf devletlerinin Rusya'ya yardım ulaştırmasını engelleyen ve Mustafa Kemal'in askeri dehasının dünya kamuoyunca tanınmasına vesile olan cephe hangisidir?",
+        "icerik": [],
+        "secenekler": ["Kafkas Cephesi", "Irak Cephesi", "Çanakkale Cephesi", "Suriye-Filistin Cephesi", "Hicaz-Yemen Cephesi"],
+        "dogru_cevap": "C",
+        "aciklama": "Çanakkale'deki başarılar, Milli Mücadele'nin liderlik kadrosunun güven kazanmasını sağlamış ve Rusya'da ihtilal çıkmasına zemin hazırlamıştır."
+      },
+      {
+        "tip": "tarih",
+        "konu": "Kurtuluş Savaşı (Kongreler)",
+        "soruKoku": "Toplanma biçimiyle bölgesel olmasına rağmen aldığı kararlarda 'Milli sınırlar içinde vatan bir bütündür' ilkesini benimseyerek ulusal bir nitelik kazanan ve Temsil Heyeti'nin temellerinin atıldığı ilk kongre aşağıdakilerden hangisidir?",
+        "icerik": [],
+        "secenekler": ["Sivas Kongresi", "Erzurum Kongresi", "Alaşehir Kongresi", "Balıkesir Kongresi", "Nazilli Kongresi"],
+        "dogru_cevap": "B",
+        "aciklama": "Erzurum Kongresi'nde manda ve himaye fikri ilk kez reddedilmiş ve Temsil Heyeti oluşturulmuştur."
+      },
+      {
+        "tip": "tarih",
+        "konu": "Milli Mücadele (Antlaşmalar)",
+        "soruKoku": "Sakarya Meydan Muharebesi'nin ardından 1921 yılında Fransa ile imzalanan, Güney Cephesi'ndeki askeri çatışmaları sona erdirirken Misak-ı Milli'den Hatay konusunda taviz verilmesine yol açan antlaşma aşağıdakilerden hangisidir?",
+        "icerik": [],
+        "secenekler": ["Gümrü Antlaşması", "Ankara Antlaşması", "Moskova Antlaşması", "Kars Antlaşması", "Lozan Antlaşması"],
+        "dogru_cevap": "B",
+        "aciklama": "1921 Ankara Antlaşması ile Fransa TBMM'yi tanıyan ilk büyük Batılı devlet olmuş ancak Hatay sınırlar dışında kalarak taviz verilmiştir."
+      },
+      {
+        "tip": "tarih",
+        "konu": "Atatürk İnkılapları",
+        "soruKoku": "1925 yılında yürürlüğe giren ve toplumsal hayattaki ayrıcalık ifade eden dini unvanların kullanılmasını yasaklayarak, sınıf ayrımı olmayan eşitlikçi bir toplum yapısı kurmayı hedefleyen yasal düzenleme aşağıdakilerden hangisidir?",
+        "icerik": [],
+        "secenekler": ["Şapka Kanunu", "Tekke, Zaviye ve Türbelerin Kapatılması", "Soyadı Kanunu", "Türk Medeni Kanunu", "Miladi Takvimin Kabulü"],
+        "dogru_cevap": "B",
+        "aciklama": "Bu kanunla şeyhlik, dervişlik gibi unvanlar yasaklanarak sosyal hayatın laikleşmesi amaçlanmıştır."
+      },
+      {
+        "tip": "tarih",
+        "konu": "Atatürk İlkeleri",
+        "soruKoku": "Atatürk'ün akılcılığı ve bilimi temel alan 'Hayatta en hakiki mürşit ilimdir' sözü; devlet yönetiminde dogmaların yerine rasyonel kuralların geçirilmesini öngören hangi temel ilke ile doğrudan ilişkilidir?",
+        "icerik": [],
+        "secenekler": ["Cumhuriyetçilik", "Milliyetçilik", "Laiklik", "Halkçılık", "Devletçilik"],
+        "dogru_cevap": "C",
+        "aciklama": "Laiklik ilkesi eğitimin, hukukun ve sosyal yaşamın akıl ve bilim rehberliğinde şekillenmesini zorunlu kılar."
+      },
+      {
+        "tip": "tarih",
+        "konu": "Cumhuriyet Dönemi Dış Politika",
+        "soruKoku": "İki dünya savaşı arasındaki dönemde Türkiye'nin 'Yurtta Sulh, Cihanda Sulh' ilkesi doğrultusunda, Sovyet Rusya ile ilişkilerini korumak ve dünya barışına katkı sunmak amacıyla 1929'da katıldığı belge aşağıdakilerden hangisidir?",
+        "icerik": [],
+        "secenekler": ["Litvinov Protokolü", "Locarno Antlaşması", "Akdeniz Paktı", "Nyon Konferansı", "Briand-Kellogg Paktı"],
+        "dogru_cevap": "A",
+        "aciklama": "Litvinov Protokolü ile Türkiye kuzey ve doğu sınırlarının güvenliğini diplomatik yolla pekiştirmiştir."
+      },
+      {
+        "tip": "tarih",
+        "konu": "Milli Mücadele Edebiyatı",
+        "soruKoku": "Milli Mücadele döneminin ruhunu yansıtan, bizzat savaşın içinde görev alan Halide Edip Adıvar'ın kaleme aldığı ve Türk edebiyatında Kurtuluş Savaşı'nı konu edinen ilk roman olma özelliği taşıyan eser hangisidir?",
+        "icerik": [],
+        "secenekler": ["Ateşten Gömlek", "Yaban", "Küçük Ağa", "Türkün Ateşle İmtihanı", "Sodom ve Gomore"],
+        "dogru_cevap": "A",
+        "aciklama": "Ateşten Gömlek, 1922 yılında yayımlanmış olup cephe gerisindeki mücadelenin anlatıldığı tarihsel belge niteliğinde bir eserdir."
+      },
+      {
+        "tip": "cografya",
+        "konu": "Türkiye Yer Şekilleri",
+        "soruKoku": "Türkiye’de özellikle bitki örtüsünün tahrip edildiği, sağanak yağışların etkili olduğu ve eğimli yamaçların bulunduğu sahalarda akarsuların ve sel sularının etkisiyle oluşan, tarımsal açıdan verimsiz 'badlands' (kırgıbayır) arazilerine rastlanmaktadır. Bu yer şeklinin oluşumunda hangisi diğerlerine göre daha belirleyicidir?",
+        "icerik": [],
+        "secenekler": [
+          "Tektonik hareketlerin şiddetli olması",
+          "Buzul aşındırmasının etkili olması",
+          "Litolojik yapının aşınmaya karşı dirençsiz olması",
+          "Bölgedeki bağıl nem oranının yüksek olması",
+          "Ortalama yükseltinin deniz seviyesine yakın olması"
+        ],
+        "dogru_cevap": "C",
+        "aciklama": "Kırgıbayır oluşumu için tüf, marn, kil gibi aşınmaya karşı dayanıksız bir litolojik yapının olması gerekir."
+      },
+      {
+        "tip": "cografya",
+        "konu": "Jeolojik Zamanlar",
+        "soruKoku": "Anadolu’nun jeolojik geçmişinde Birinci Jeolojik Zaman’da (Paleozoic) oluşan, zamanla şiddetli aşınma ve metamorfizma süreçlerinden geçerek sertleşen 'masif kütleler', çevrelerine göre daha durağan ve eski kara parçalarıdır. Aşağıdakilerden hangisi bu masif alanlardan biri kabul edilemez?",
+        "icerik": [],
+        "secenekler": [
+          "Istranca (Yıldız Dağları) Kütlesi",
+          "Kırşehir Masifi",
+          "Menteşe-Saruhan Kütlesi",
+          "Aladağlar-Bolkar Kütlesi",
+          "Mardin-Eşik Kütlesi"
+        ],
+        "dogru_cevap": "D",
+        "aciklama": "Aladağlar ve Bolkar Dağları, Üçüncü Jeolojik Zaman’da (Tersiyer) meydana gelen Alp-Himalaya kıvrımlanmasına bağlı oluşmuş genç dağlardır."
+      },
+      {
+        "tip": "cografya",
+        "konu": "Türkiye Platoları",
+        "soruKoku": "Türkiye’deki bazı platolar, karstik (eriyebilen) kayaç yapısı nedeniyle yüzey suları bakımından fakir, yer şekilleri bakımından ise oldukça engebelidir. Aşağıdaki platoların hangisinde 'karstik yapı ve engebe' nedeniyle nüfus yoğunluğu diğerlerine göre daha azdır?",
+        "icerik": [],
+        "secenekler": ["Haymana Platosu", "Teke Platosu", "Uzunyayla Platosu", "Şanlıurfa Platosu", "Cihanbeyli Platosu"],
+        "dogru_cevap": "B",
+        "aciklama": "Teke ve Taşeli platoları karstik yapı nedeniyle yüzeyin kurak kaldığı ve yer şekillerinin engebeli olduğu seyrek nüfuslu alanlardır."
+      },
+      {
+        "tip": "cografya",
+        "konu": "Türkiye'nin Enerji Kaynakları",
+        "soruKoku": "Türkiye’nin enerji potansiyeli ile ilgili aşağıdaki ifadelerden hangisi yanlıştır?",
+        "icerik": [],
+        "secenekler": [
+          "Yer şekillerinin engebeli ve akarsu yatak eğimlerinin fazla olması hidroelektrik potansiyelini artırmaktadır.",
+          "Batı Anadolu, genç oluşumlu yapısı ve fay hatlarının yoğunluğu nedeniyle jeotermal enerji açısından zengindir.",
+          "Güneydoğu Anadolu ve Akdeniz bölgeleri, güneşlenme süresinin uzun olmasıyla fotovoltaik enerji üretimine uygundur.",
+          "Kıyı Ege ve Marmara (Güney Marmara), basınç farklarına bağlı rüzgar koridorları sayesinde rüzgar enerjisi üretiminde ön plandadır.",
+          "Türkiye’de gelgit (med-cezir) genliği çok yüksek olduğu için deniz seviyesi değişimlerinden elektrik üretimi en önemli paya sahiptir."
+        ],
+        "dogru_cevap": "E",
+        "aciklama": "Türkiye iç denizlere kıyısı olan bir ülke olduğu için gelgit genliği düşüktür; bu enerji türü Türkiye için önemli bir kaynak değildir."
+      },
+      {
+        "tip": "cografya",
+        "konu": "Türkiye'de Ulaşım ve Şehirler",
+        "soruKoku": "Aşağıdaki şehirlerden hangisinin gelişiminde ulaşım fonksiyonunun etkisi diğerlerine göre daha azdır?",
+        "icerik": [],
+        "secenekler": ["Afyonkarahisar", "Kayseri", "Gaziantep", "Bilecik", "Hakkâri"],
+        "dogru_cevap": "E",
+        "aciklama": "Hakkâri, sarp dağlık yapısı ve ana ulaşım koridorlarına sapa kalan konumu nedeniyle ulaşım fonksiyonuyla gelişememiştir."
+      },
+      {
+        "tip": "anayasa",
+        "konu": "Hukukun Temel Kavramları",
+        "soruKoku": "Kişinin gerek kendisinin gerek başkasının şahıs veya mal varlığına yönelik, ağır ve muhakkak bir tehlikeden kurtulmak amacıyla, bu tehlikeyle ilgisi olmayan üçüncü bir kişinin mal varlığına zarar vermesi durumu hangisiyle ifade edilir?",
+        "icerik": [],
+        "secenekler": [
+          "Meşru Müdafaa (Haklı Savunma)",
+          "Cebir ve Şiddet",
+          "Hata (Yanılma)",
+          "Zaruret Hali (Iztirar Hali)",
+          "Kanun Hükmünü İcra"
+        ],
+        "dogru_cevap": "D",
+        "aciklama": "Zaruret Hali, bir tehlikeden korunmak için olayla bağı olmayan üçüncü kişiye zarar vermektir. Zararın saldırgana verildiği meşru müdafaadan farkı budur."
+      },
+      {
+        "tip": "anayasa",
+        "konu": "İdare Hukuku (DDK)",
+        "soruKoku": "1982 Anayasası’na göre, Cumhurbaşkanlığına bağlı bir anayasal kurum olan Devlet Denetleme Kurulu (DDK), aşağıda belirtilen kurum ve kuruluşların hangisinde denetim, inceleme ve soruşturma yapma yetkisine sahip değildir?",
+        "icerik": [],
+        "secenekler": [
+          "Adli ve İdari Yargı Organları",
+          "İşçi ve İşveren Sendikaları",
+          "Türk Silahlı Kuvvetleri",
+          "Kamu İktisadi Teşebbüsleri",
+          "Kamu Kurumu Niteliğindeki Meslek Kuruluşları"
+        ],
+        "dogru_cevap": "A",
+        "aciklama": "Yargı bağımsızlığı ilkesi gereği, yargı organları (mahkemeler) DDK'nın denetim alanı dışındaki tek istisnadır."
+      },
+      {
+        "tip": "anayasa",
+        "konu": "Yargı",
+        "soruKoku": "2017 Anayasa değişikliği ile Türk yargı sisteminden tamamen çıkartılan ve yalnızca savaş dönemlerinde disiplin mahkemesi olarak kurulabilmesine imkan tanınan yargı kolu hangisidir?",
+        "icerik": [],
+        "secenekler": ["Vergi Yargısı", "İdari Yargı", "Anayasa Yargısı", "Askeri Yargı", "Uyuşmazlık Yargısı"],
+        "dogru_cevap": "D",
+        "aciklama": "2017 Anayasa değişikliği ile Askeri Yargıtay ve AYİM kapatılarak Askeri Yargı düzeni tamamen kaldırılmıştır."
+      },
+      {
+        "tip": "anayasa",
+        "konu": "Yasama",
+        "soruKoku": "Yasama organı üyelerinin, Meclis çalışmalarındaki sözlerinden dolayı Meclis dışında hukuki veya cezai takibata uğramamalarını ifade eden, vekillik bitse de devam eden hak hangisidir?",
+        "icerik": [],
+        "secenekler": [
+          "Yasama Sorumsuzluğu",
+          "Yasama Dokunulmazlığı",
+          "Yasama Bağımsızlığı",
+          "Parlamento Kararı",
+          "Temsilde Adalet"
+        ],
+        "dogru_cevap": "A",
+        "aciklama": "Yasama Sorumsuzluğu (Kürsü Dokunulmazlığı) mutlak bir koruma sağlar ve milletvekilliği bitse bile devam eder."
+      },
+      {
+        "tip": "anayasa",
+        "konu": "İdari Yargı",
+        "soruKoku": "Türkiye Cumhuriyeti idari teşkilat yapısı içerisinde idari işlemlerin yargısal denetimini yapan ve en üst dereceli temyiz merci olan anayasal mahkeme hangisidir?",
+        "icerik": [],
+        "secenekler": ["Yargıtay", "Sayıştay", "Danıştay", "Bölge İdare Mahkemesi", "Anayasa Mahkemesi"],
+        "dogru_cevap": "C",
+        "aciklama": "Danıştay, idari yargı kolunun zirvesidir. Yargıtay ise adli yargının en üst mercidir."
+      },
+      {
+        "tip": "anayasa",
+        "konu": "Yürütme",
+        "soruKoku": "1982 Anayasası ve ilgili Cumhurbaşkanlığı kararnameleri uyarınca; Türkiye’deki devlet ve vakıf üniversitelerine rektör atama yetkisi kime verilmiştir?",
+        "icerik": [],
+        "secenekler": ["TBMM Başkanı", "YÖK Başkanı", "Milli Eğitim Bakanı", "Cumhurbaşkanı", "Üniversitelerarası Kurul"],
+        "dogru_cevap": "D",
+        "aciklama": "Anayasa'nın 130. maddesi gereği, üniversite rektörlerini atama yetkisi doğrudan Cumhurbaşkanı'na aittir."
+      },
+      {
+        "tip": "guncel bilgi",
+        "konu": "Genel Kültür",
+        "soruKoku": "2024 yılı 'Avrupa Kültür Başkenti' unvanını taşıyan ve Avusturya'da yer alan şehir aşağıdakilerden hangisidir?",
+        "icerik": [],
+        "secenekler": ["Bad Ischl", "Viyana", "Salzburg", "Graz", "Linz"],
+        "dogru_cevap": "A",
+        "aciklama": "Avusturya'nın Bad Ischl kasabası 2024 Avrupa Kültür Başkentlerinden biri seçilmiştir."
+      },
+      {
+        "tip": "guncel bilgi",
+        "konu": "Genel Kültür",
+        "soruKoku": "Dünyanın yedi harikasından biri kabul edilen ve günümüzde Muğla ilinin Bodrum ilçesinde kalıntıları bulunan devasa anıt mezar hangisidir?",
+        "icerik": [],
+        "secenekler": ["Artemis Tapınağı", "Halikarnas Mozolesi", "Zeus Heykeli", "İskenderiye Feneri", "Rodos Heykeli"],
+        "dogru_cevap": "B",
+        "aciklama": "Karya Kralı Maussollos adına yaptırılan Halikarnas Mozolesi, antik dünyanın yedi harikasından biridir."
+      },
+      {
+        "tip": "guncel bilgi",
+        "konu": "Genel Kültür",
+        "soruKoku": "2025 yılı itibarıyla Türkiye Cumhuriyeti'nin Avrupa İnsan Hakları Mahkemesi'ndeki (AİHM) görevli hakimi aşağıdakilerden hangisidir?",
+        "icerik": [],
+        "secenekler": ["Zühtü Arslan", "Kadir Özkaya", "Saadet Yüksel", "Mehmet Erten", "Ayşe Işık"],
+        "dogru_cevap": "C",
+        "aciklama": "Doç. Dr. Saadet Yüksel, 2019 yılından itibaren Türkiye'nin AİHM'deki hakimi olarak görev yapmaktadır."
+      },
+      {
+        "tip": "guncel bilgi",
+        "konu": "Genel Kültür",
+        "soruKoku": "Türk Devletleri Teşkilatı'nın (TDT) idari ve operasyonel süreçlerinin yönetildiği Genel Sekreterlik merkezi hangi şehirdedir?",
+        "icerik": [],
+        "secenekler": ["Ankara", "Bakü", "Astana", "İstanbul", "Taşkent"],
+        "dogru_cevap": "D",
+        "aciklama": "Türk devletleri arasındaki iş birliğini koordine eden teşkilatın genel sekreterlik binası İstanbul'da bulunmaktadır."
+      },
+      {
+        "tip": "guncel bilgi",
+        "konu": "Genel Kültür",
+        "soruKoku": "Kırım Savaşı sırasında hijyen standartlarını yükselten, sağlık istatistiğinin öncüsü olan ve 'Lambalı Kadın' lakabıyla anılan modern hemşireliğin kurucusu kimdir?",
+        "icerik": [],
+        "secenekler": ["Elizabeth Blackwell", "Marie Curie", "Clara Barton", "Rosalind Franklin", "Florence Nightingale"],
+        "dogru_cevap": "E",
+        "aciklama": "Florence Nightingale, modern hemşireliğin kurucusudur. Doğum günü olan 12 Mayıs dünya genelinde Hemşireler Günü olarak kutlanır."
+      },
+      {
+        "tip": "guncel bilgi",
+        "konu": "Genel Kültür",
+        "soruKoku": "Büyük Okyanus'ta yer alan, yaklaşık 11.000 metre derinliği ile dünyanın en derin noktası olarak kabul edilen yer hangisidir?",
+        "icerik": [],
+        "secenekler": ["Java Çukuru", "Tonga Çukuru", "Porto Riko Çukuru", "Şili Çukuru", "Mariana Çukuru"],
+        "dogru_cevap": "E",
+        "aciklama": "Mariana Çukuru, yerkabuğunun bilinen en derin noktasıdır ve Pasifik Okyanusu'nun batısında yer alır."
+      }
+    ]
+  }
+]
