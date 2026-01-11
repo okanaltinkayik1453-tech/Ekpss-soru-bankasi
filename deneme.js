@@ -105,14 +105,11 @@ function odaKurHazirlik(dID) {
         odaKatilimciSayisi = d.oyuncuSayisi;
         const btn = document.getElementById('btn-onay');
         
-        // ÖZELLİK: Sayı hedefe ulaşınca bildiri verir ama buton her zaman aktiftir
-        if (btn) {
-            btn.innerText = "SINAVI BAŞLAT (" + odaKatilimciSayisi + "/" + d.hedefOyuncu + ")";
-            // Hedef sayıya ulaşıldığında NVDA ile duyulacak uyarı
-            if (odaKatilimciSayisi >= d.hedefOyuncu && !btn.dataset.warned) {
-                sesliBildiri("Hedef oyuncu sayısına ulaşıldı.");
-                btn.dataset.warned = "true";
-            }
+        if (odaKatilimciSayisi >= d.hedefOyuncu && btn && btn.disabled) {
+            sesliBildiri("Hedef oyuncu sayısına ulaşıldı, sınavı şimdi başlatabilirsin.");
+            btn.disabled = false; btn.innerText = "SINAVI ŞİMDİ BAŞLAT"; btn.style.background = "#00ff00"; btn.style.color = "#000";
+        } else if (btn) {
+            btn.innerText = `OYUNCULAR BEKLENİYOR (${odaKatilimciSayisi}/${d.hedefOyuncu})`;
         }
         
         if (d.durum === 'basladi' && sinavEkrani.style.display !== 'block') {
@@ -127,7 +124,7 @@ function odaKurHazirlik(dID) {
     odaYonetimi.innerHTML = `
         <h2 id="oda-kur-baslik" tabindex="-1">Oda Kuruldu. Kod: ${odaKodu}</h2>
         <div id="oda-islem-alani">
-            <button id="btn-onay" class="nav-buton" style="width:100%; background:#00ff00; color:#000;">SINAVI BAŞLAT</button>
+            <button id="btn-onay" class="nav-buton" style="width:100%;" disabled>OYUNCULAR BEKLENİYOR...</button>
         </div>`;
     document.getElementById('btn-onay').onclick = () => db.ref('odalar/' + odaKodu).update({ durum: 'basladi' });
     sesliBildiri("Oda kuruldu. Paylaşmanız gereken şifre " + odaKodu.split('').join(' '));
@@ -143,41 +140,32 @@ function odaKatilHazirlik() {
     
     document.getElementById('katil-baslik').focus();
     const bKatil = document.getElementById('btn-katil-onay');
-    bKatil.onclick = () => {
+bKatil.onclick = () => {
         const girilenKod = document.getElementById('oda-kodu-input').value.trim();
         if(!girilenKod) return;
-        if(!auth.currentUser) { sesliBildiri("Hata: Önce giriş yapmalısınız."); return; }
         
         bKatil.disabled = true; 
         sesliBildiri("Oda kontrol ediliyor...");
         odaKodu = girilenKod;
         const odaRef = db.ref('odalar/' + odaKodu);
         let denemeSayisi = 0;
-
         const odayaBaglanmayiDene = () => {
+            // get() yerine once('value') kullanmak bazı bağlantılarda daha stabildir
             odaRef.once('value').then(snap => {
-                const odaVerisi = snap.val();
-                if(!snap.exists() || !odaVerisi) {
+                if(!snap.exists()) {
                     if (denemeSayisi < 3) {
                         denemeSayisi++;
                         sesliBildiri("Oda henüz kurulmamış olabilir, tekrar deneniyor...");
-                        setTimeout(odayaBaglanmayiDene, 2000);
+                        setTimeout(odayaBaglanmayiDene, 2000); // 2 saniye bekleyip tekrar dene
                     } else {
                         bKatil.disabled = false;
-                        sesliBildiri("Hatalı oda kodu girdiniz.");
+                        sesliBildiri("Hatalı oda kodu girdiniz. Lütfen kodun doğruluğundan emin olun.");
                     }
                     return;
                 }
-
-                // ÖZELLİK: Sınav başladıysa girişi engelle
-                if (odaVerisi.durum === 'basladi') {
-                    sesliBildiri("Bu sınav zaten başlamış. Giriş kapalı.");
-                    bKatil.disabled = false;
-                    return;
-                }
-
-                // Başarılı giriş
-                sesliBildiri("Odaya başarıyla bağlandınız.");
+                
+                // BAŞARILI GİRİŞ DURUMU
+                sesliBildiri("Odaya başarıyla bağlandınız, sınavın başlaması bekleniyor.");
                 db.ref('odalar/' + odaKodu + '/katilimciListesi/' + auth.currentUser.uid).set(auth.currentUser.email);
                 db.ref('odalar/' + odaKodu + '/katilimciListesi/' + auth.currentUser.uid).onDisconnect().remove();
                 odaRef.transaction(c => { if(c) c.oyuncuSayisi++; return c; });
@@ -190,14 +178,20 @@ function odaKatilHazirlik() {
                     }
                 });
             }).catch(err => {
-                bKatil.disabled = false;
-                sesliBildiri("Bağlantı hatası oluştu. Lütfen tekrar deneyin.");
+                // BAĞLANTI HATASI DURUMU (Catch Bloğu)
+                if (denemeSayisi < 3) {
+                    denemeSayisi++;
+                    sesliBildiri("Bağlantı zayıf, tekrar deneniyor...");
+                    setTimeout(odayaBaglanmayiDene, 2000); 
+                } else {
+                    bKatil.disabled = false;
+                    sesliBildiri("Bağlantı kurulamadı. Lütfen internetinizi kontrol edin.");
+                }
             });
         };
         odayaBaglanmayiDene();
     };    
 }
-
 // --- MATEMATİK BETİMLEME MOTORU ---
 function matematikAnlat(konu, metin, hazirBetimleme) {
     if (!metin && !hazirBetimleme) return;
@@ -240,20 +234,23 @@ function testiYukleVeBaslat(dID, isRecover = false) {
                 <span id="dakika">100</span>:<span id="saniye">00</span>
             </button>
             <div id="deneme-govde"></div>
-            <div id="canli-sayac-alani" style="position:fixed; top:10px; left:10px; z-index:9999; color:#00ff00; background:rgba(0,0,0,0.8); padding:10px; border-radius:10px; border:2px solid #444;">
+<div id="canli-sayac-alani" style="position:fixed; top:10px; left:10px; z-index:9999; color:#00ff00; background:rgba(0,0,0,0.8); padding:10px; border-radius:10px; border:2px solid #444;">
                 <span id="kisi-sayisi" style="font-size:32pt; font-weight:bold;">1</span>
                 <span style="font-size:24pt; margin-left:10px;">çevrim içi</span>
             </div>`;
         if (!isSinglePlayer) {
             db.ref('odalar/' + odaKodu + '/katilimciListesi').on('value', snap => {
                 const liste = snap.val(); if(!liste) return;
-                const sayi = Object.keys(liste).length;
+const sayi = Object.keys(liste).length;
                 const sEl = document.getElementById('kisi-sayisi');
                 if(sEl) sEl.innerText = sayi;
             });
+// Sınav sonuçlarını dinle: Biri bitirdiğinde sıralamayı anında güncelle
             db.ref('odalar/' + odaKodu + '/sonuclar').on('value', snap => {
-                const sonuclar = snap.val(); 
+const sonuclar = snap.val(); 
+                // ÖNEMLİ: Kullanıcı sınavı bitirmediyse tabloyu çizme ve sesli uyarı verme
                 if (!sonuclar || !sinavBittiMi) return;
+
                 sesliBildiri("Sıralama güncellendi.");
                 genelSiralamayiOlustur(sonuclar);
             });
@@ -556,13 +553,13 @@ function sonucEkraniGoster() {
         </div>`;
     setTimeout(() => { if(document.getElementById('res-h')) document.getElementById('res-h').focus(); }, 150);
     sesliBildiri("Sınav bitti. Puanınız " + p.toFixed(2));
-    if (!isSinglePlayer) {
+if (!isSinglePlayer) {
         db.ref('odalar/' + odaKodu + '/sonuclar').get().then(snap => {
             if(snap.exists()) genelSiralamayiOlustur(snap.val());
         });
     }
-}
 
+}
 function cevapKagidiYukle() {
     let listHtml = `<h2 id="kag-h" tabindex="-1">Detaylı Çözümler</h2><div style="text-align:left; max-height:500px; overflow-y:auto; padding:10px;">`;
     mevcutSorular.forEach((s, i) => {
@@ -669,7 +666,7 @@ function genelSiralamayiOlustur(sonuclar) {
 
     tabloHtml += `</tbody></table></div>`;
     hedefAlan.innerHTML = tabloHtml;
-    if (sinavBittiMi) {
+if (sinavBittiMi) {
         setTimeout(() => {
             const h = document.getElementById('siralama-h');
             if(h) h.focus();
