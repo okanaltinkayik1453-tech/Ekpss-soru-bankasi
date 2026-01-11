@@ -137,6 +137,9 @@ if (btn) {
     document.getElementById('oda-kur-baslik').focus();
 }
 function odaKatilHazirlik() {
+    // Önceki denemelerden kalan kilitleri temizle
+    localStorage.removeItem('baglantiOnayi');
+
     odaYonetimi.innerHTML = `
         <h2 id="katil-baslik" tabindex="-1">Odaya Katıl</h2>
         <input type="number" id="oda-kodu-input" placeholder="4 Haneli Şifre" style="width:100%; padding:15px; font-size:1.5rem; background:#000; color:#fff; border:1px solid #ffff00;">
@@ -154,61 +157,66 @@ function odaKatilHazirlik() {
         }
         
         bKatil.disabled = true; 
-        bKatil.innerText = "BAĞLANILIYOR...";
-        sesliBildiri("Oda kontrol ediliyor...");
+        bKatil.innerText = "KONTROL EDİLİYOR...";
+        sesliBildiri("Oda aranıyor...");
+        
         odaKodu = girilenKod;
         const odaRef = db.ref('odalar/' + odaKodu);
 
-        // TEK VE CANLI DİNLEYİCİ: En garanti yöntem budur.
-        odaRef.on('value', function dinle(snap) {
-            const data = snap.val();
-
-            // 1. Durum: Oda hiç yoksa
+        // ADIM 1: Önce oda var mı diye bir kez bak (Orijinal mantık)
+        odaRef.once('value').then(snap => {
             if (!snap.exists()) {
-                odaRef.off('value', dinle); // Dinleyiciyi kapat
-                bKatil.disabled = false;
-                bKatil.innerText = "ODAYA GİR VE BEKLE";
-                sesliBildiri("Hatalı oda kodu. Böyle bir oda bulunamadı.");
-                return;
+                throw new Error("ODA_YOK");
             }
-
-            // 2. Durum: Sınav zaten başlamışsa (Geç kalanlar için)
-            if (data.durum === 'basladi' && sinavEkrani.style.display !== 'block') {
-                odaRef.off('value', dinle); // Dinleyiciyi kapat
-                bKatil.disabled = false;
-                bKatil.innerText = "ODAYA GİR VE BEKLE";
-                sesliBildiri("Bu sınav çoktan başlamış, maalesef giriş yapamazsınız.");
-                return;
-            }
-
-            // 3. Durum: Oda uygun (bekliyor) ve biz henüz dahil olmadık
-            // Bu blok sadece odaya ilk girişte bir kez çalışır
-            if (data.durum === 'bekliyor' && !localStorage.getItem('baglantiOnayi')) {
-                localStorage.setItem('baglantiOnayi', 'true'); // Mükerrer girişi engelle
-                
-                sesliBildiri("Odaya başarıyla bağlandınız, sınavın başlaması bekleniyor.");
-                
-                // Katılımcı listesine ekle
-                db.ref('odalar/' + odaKodu + '/katilimciListesi/' + auth.currentUser.uid).set(auth.currentUser.email);
-                db.ref('odalar/' + odaKodu + '/katilimciListesi/' + auth.currentUser.uid).onDisconnect().remove();
-                
-                // Oyuncu sayısını güvenli şekilde artır
-                odaRef.transaction(currentData => {
-                    if (currentData) currentData.oyuncuSayisi++;
-                    return currentData;
-                });
-            }
-
-            // 4. Durum: Biz içerdeyiz ve Host sınavı başlattı
+            const data = snap.val();
             if (data.durum === 'basladi') {
-                localStorage.removeItem('baglantiOnayi'); // Temizlik
-                odaRef.off('value', dinle); // Dinlemeyi bitir
-                testiYukleVeBaslat(data.denemeID);
+                throw new Error("SINAV_BASLAMIS");
             }
-        }, (error) => {
-            // Bağlantı kopması veya Firebase hatası durumunda
+
+            // ADIM 2: Oda bulunduysa şimdi canlı dinlemeye geç
+            sesliBildiri("Oda bulundu, giriş yapılıyor.");
+            bKatil.innerText = "BEKLENİYOR...";
+
+            odaRef.on('value', function dinle(s) {
+                const güncelVeri = s.val();
+                if (!güncelVeri) return;
+
+                // Odaya ilk giriş kaydı
+                if (!localStorage.getItem('baglantiOnayi')) {
+                    localStorage.setItem('baglantiOnayi', 'true');
+                    
+                    // Katılımcı bilgilerini yaz
+                    if(auth.currentUser) {
+                        db.ref('odalar/' + odaKodu + '/katilimciListesi/' + auth.currentUser.uid).set(auth.currentUser.email);
+                        db.ref('odalar/' + odaKodu + '/katilimciListesi/' + auth.currentUser.uid).onDisconnect().remove();
+                        
+                        odaRef.transaction(c => {
+                            if (c) c.oyuncuSayisi++;
+                            return c;
+                        });
+                        sesliBildiri("Sınavın başlaması bekleniyor.");
+                    }
+                }
+
+                // Sınav başlama kontrolü
+                if (güncelVeri.durum === 'basladi') {
+                    localStorage.removeItem('baglantiOnayi');
+                    odaRef.off('value', dinle);
+                    testiYukleVeBaslat(güncelVeri.denemeID);
+                }
+            });
+
+        }).catch(err => {
             bKatil.disabled = false;
-            sesliBildiri("Bağlantı hatası oluştu. Lütfen internetinizi kontrol edin.");
+            bKatil.innerText = "ODAYA GİR VE BEKLE";
+            if (err.message === "ODA_YOK") {
+                sesliBildiri("Hatalı kod. Bu şifreye ait bir oda bulunamadı.");
+            } else if (err.message === "SINAV_BASLAMIS") {
+                sesliBildiri("Bu sınav zaten başlamış. Geç kaldınız.");
+            } else {
+                sesliBildiri("Bağlantı hatası. Lütfen sayfayı yenileyip tekrar deneyin.");
+                console.error(err);
+            }
         });
     };    
 }
