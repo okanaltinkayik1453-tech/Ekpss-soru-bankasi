@@ -104,13 +104,18 @@ function odaKurHazirlik(dID) {
         const d = snap.val(); if (!d) return;
         odaKatilimciSayisi = d.oyuncuSayisi;
         const btn = document.getElementById('btn-onay');
-        
-        if (odaKatilimciSayisi >= d.hedefOyuncu && btn && btn.disabled) {
-            sesliBildiri("Hedef oyuncu sayısına ulaşıldı, sınavı şimdi başlatabilirsin.");
-            btn.disabled = false; btn.innerText = "SINAVI ŞİMDİ BAŞLAT"; btn.style.background = "#00ff00"; btn.style.color = "#000";
-        } else if (btn) {
-            btn.innerText = `OYUNCULAR BEKLENİYOR (${odaKatilimciSayisi}/${d.hedefOyuncu})`;
-        }
+// Sayı ne olursa olsun buton tıklanabilir kalır, sadece bilgi güncellenir
+        if (btn) {
+            btn.disabled = false; 
+            btn.style.background = "#00ff00"; 
+            btn.style.color = "#000";
+            btn.innerText = `SINAVI BAŞLAT (${odaKatilimciSayisi}/${d.hedefOyuncu} KİŞİ)`;
+            
+            // Hedef sayıya ulaşıldığında sadece bir kez sesli uyarı verir
+            if (odaKatilimciSayisi === d.hedefOyuncu) {
+                sesliBildiri("Hedef oyuncu sayısına ulaşıldı.");
+            }
+        }        
         
         if (d.durum === 'basladi' && sinavEkrani.style.display !== 'block') {
             db.ref('odalar/' + odaKodu).off();
@@ -152,18 +157,25 @@ bKatil.onclick = () => {
         const odayaBaglanmayiDene = () => {
             // get() yerine once('value') kullanmak bazı bağlantılarda daha stabildir
             odaRef.once('value').then(snap => {
-                if(!snap.exists()) {
+if(!snap.exists()) {
                     if (denemeSayisi < 3) {
                         denemeSayisi++;
-                        sesliBildiri("Oda henüz kurulmamış olabilir, tekrar deneniyor...");
-                        setTimeout(odayaBaglanmayiDene, 2000); // 2 saniye bekleyip tekrar dene
+                        sesliBildiri("Oda aranıyor...");
+                        setTimeout(odayaBaglanmayiDene, 2000);
                     } else {
                         bKatil.disabled = false;
-                        sesliBildiri("Hatalı oda kodu girdiniz. Lütfen kodun doğruluğundan emin olun.");
+                        sesliBildiri("Oda bulunamadı.");
                     }
                     return;
                 }
-                
+
+                // KOD ÖLDÜRME: Eğer sınav başlamışsa odaya girişi engelle
+                const odaVerisi = snap.val();
+                if (odaVerisi.durum !== 'bekliyor') {
+                    bKatil.disabled = false;
+                    sesliBildiri("Bu sınav zaten başlamış, yeni katılımcı kabul edilmiyor.");
+                    return;
+                }                
                 // BAŞARILI GİRİŞ DURUMU
                 sesliBildiri("Odaya başarıyla bağlandınız, sınavın başlaması bekleniyor.");
                 db.ref('odalar/' + odaKodu + '/katilimciListesi/' + auth.currentUser.uid).set(auth.currentUser.email);
