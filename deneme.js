@@ -104,13 +104,7 @@ function odaKurHazirlik(dID) {
         const d = snap.val(); if (!d) return;
         odaKatilimciSayisi = d.oyuncuSayisi;
         const btn = document.getElementById('btn-onay');
-if (odaKatilimciSayisi >= 2 && btn && btn.disabled) {
-            sesliBildiri("Sınavı şimdi başlatabilirsin.");
-            btn.disabled = false; btn.innerText = "SINAVI ŞİMDİ BAŞLAT"; btn.style.background = "#00ff00"; btn.style.color = "#000";
-        } else if (btn && btn.disabled) {
-            btn.innerText = `OYUNCULAR BEKLENİYOR (${odaKatilimciSayisi}/${d.hedefOyuncu})`;
-        }        
-        
+if (btn) btn.innerText = "SINAVI BAŞLAT (" + odaKatilimciSayisi + "/" + d.hedefOyuncu + ")";
         if (d.durum === 'basladi' && sinavEkrani.style.display !== 'block') {
             db.ref('odalar/' + odaKodu).off();
             testiYukleVeBaslat(d.denemeID);
@@ -123,7 +117,7 @@ if (odaKatilimciSayisi >= 2 && btn && btn.disabled) {
     odaYonetimi.innerHTML = `
         <h2 id="oda-kur-baslik" tabindex="-1">Oda Kuruldu. Kod: ${odaKodu}</h2>
         <div id="oda-islem-alani">
-            <button id="btn-onay" class="nav-buton" style="width:100%;" disabled>OYUNCULAR BEKLENİYOR...</button>
+<button id="btn-onay" class="nav-buton" style="width:100%; background:#00ff00; color:#000;">SINAVI BAŞLAT</button>
         </div>`;
     document.getElementById('btn-onay').onclick = () => db.ref('odalar/' + odaKodu).update({ durum: 'basladi' });
     sesliBildiri("Oda kuruldu. Paylaşmanız gereken şifre " + odaKodu.split('').join(' '));
