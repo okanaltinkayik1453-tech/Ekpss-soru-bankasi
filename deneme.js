@@ -104,20 +104,13 @@ function odaKurHazirlik(dID) {
         const d = snap.val(); if (!d) return;
         odaKatilimciSayisi = d.oyuncuSayisi;
         const btn = document.getElementById('btn-onay');
-        
-if (btn) {
-            // Buton her zaman aktif kalacak
-            btn.disabled = false; 
-            btn.style.background = "#00ff00"; 
-            btn.style.color = "#000";
-            // Metin hem mevcut sayıyı hem hedefi gösterecek
-            btn.innerText = `SINAVI ŞİMDİ BAŞLAT (${odaKatilimciSayisi}/${d.hedefOyuncu})`;
-            
-            // Sadece hedef sayıya tam ulaşıldığında bir kez sesli bildirim ver
-            if (odaKatilimciSayisi === d.hedefOyuncu) {
-                sesliBildiri("Hedef oyuncu sayısına ulaşıldı.");
-            }
+if (odaKatilimciSayisi >= 2 && btn && btn.disabled) {
+            sesliBildiri("Sınavı şimdi başlatabilirsin.");
+            btn.disabled = false; btn.innerText = "SINAVI ŞİMDİ BAŞLAT"; btn.style.background = "#00ff00"; btn.style.color = "#000";
+        } else if (btn && btn.disabled) {
+            btn.innerText = `OYUNCULAR BEKLENİYOR (${odaKatilimciSayisi}/${d.hedefOyuncu})`;
         }        
+        
         if (d.durum === 'basladi' && sinavEkrani.style.display !== 'block') {
             db.ref('odalar/' + odaKodu).off();
             testiYukleVeBaslat(d.denemeID);
@@ -130,16 +123,14 @@ if (btn) {
     odaYonetimi.innerHTML = `
         <h2 id="oda-kur-baslik" tabindex="-1">Oda Kuruldu. Kod: ${odaKodu}</h2>
         <div id="oda-islem-alani">
-<button id="btn-onay" class="nav-buton" style="width:100%;">OYUNCULAR BEKLENİYOR...</button>
+            <button id="btn-onay" class="nav-buton" style="width:100%;" disabled>OYUNCULAR BEKLENİYOR...</button>
         </div>`;
     document.getElementById('btn-onay').onclick = () => db.ref('odalar/' + odaKodu).update({ durum: 'basladi' });
     sesliBildiri("Oda kuruldu. Paylaşmanız gereken şifre " + odaKodu.split('').join(' '));
     document.getElementById('oda-kur-baslik').focus();
 }
-function odaKatilHazirlik() {
-    // Hafızayı temizle
-    localStorage.removeItem('baglantiOnayi');
 
+function odaKatilHazirlik() {
     odaYonetimi.innerHTML = `
         <h2 id="katil-baslik" tabindex="-1">Odaya Katıl</h2>
         <input type="number" id="oda-kodu-input" placeholder="4 Haneli Şifre" style="width:100%; padding:15px; font-size:1.5rem; background:#000; color:#fff; border:1px solid #ffff00;">
@@ -148,61 +139,60 @@ function odaKatilHazirlik() {
     
     document.getElementById('katil-baslik').focus();
     const bKatil = document.getElementById('btn-katil-onay');
-
-    bKatil.onclick = () => {
+bKatil.onclick = () => {
         const girilenKod = document.getElementById('oda-kodu-input').value.trim();
-        if(!girilenKod) {
-            sesliBildiri("Lütfen şifreyi giriniz.");
-            return;
-        }
+        if(!girilenKod) return;
         
         bKatil.disabled = true; 
-        bKatil.innerText = "BAĞLANILIYOR...";
-        sesliBildiri("Odaya bağlanılıyor...");
-        
+        sesliBildiri("Oda kontrol ediliyor...");
         odaKodu = girilenKod;
         const odaRef = db.ref('odalar/' + odaKodu);
-
-        // EN GARANTİ YÖNTEM: Tek bir canlı dinleyici (on)
-        odaRef.on('value', function dinle(snap) {
-            const data = snap.val();
-
-            // Durum 1: Oda veritabanında yoksa
-            if (!snap.exists()) {
-                bKatil.disabled = false;
-                bKatil.innerText = "ODAYA GİR VE BEKLE";
-                sesliBildiri("Hatalı kod, oda bulunamadı.");
-                odaRef.off('value', dinle); // Yanlış kodda dinlemeyi durdur
-                return;
-            }
-
-            // Durum 2: Oda var, şimdi kayıt işlemlerini yap (Sınav başlasa bile içeri al)
-            if (!localStorage.getItem('baglantiOnayi')) {
-                localStorage.setItem('baglantiOnayi', 'true');
-                
-                // Katılımcı listesini güncelle
+        let denemeSayisi = 0;
+        const odayaBaglanmayiDene = () => {
+            // get() yerine once('value') kullanmak bazı bağlantılarda daha stabildir
+            odaRef.once('value').then(snap => {
+                if(!snap.exists()) {
+                    if (denemeSayisi < 3) {
+                        denemeSayisi++;
+                        sesliBildiri("Oda henüz kurulmamış olabilir, tekrar deneniyor...");
+                        setTimeout(odayaBaglanmayiDene, 2000); // 2 saniye bekleyip tekrar dene
+                    } else {
+                        bKatil.disabled = false;
+                        sesliBildiri("Hatalı oda kodu girdiniz. Lütfen kodun doğruluğundan emin olun.");
+                    }
+                    return;
+                }
+                if (snap.val().durum === 'basladi') {
+                    sesliBildiri("Bu sınav zaten başlamış. Giriş kapalı.");
+                    bKatil.disabled = false;
+                    return;
+                }
+                // BAŞARILI GİRİŞ DURUMU
+                sesliBildiri("Odaya başarıyla bağlandınız, sınavın başlaması bekleniyor.");
                 db.ref('odalar/' + odaKodu + '/katilimciListesi/' + auth.currentUser.uid).set(auth.currentUser.email);
                 db.ref('odalar/' + odaKodu + '/katilimciListesi/' + auth.currentUser.uid).onDisconnect().remove();
-                
-                // Sayıyı güvenli artır
-                odaRef.transaction(c => {
-                    if (c) c.oyuncuSayisi++;
-                    return c;
-                });
-                
-                sesliBildiri("Odaya başarıyla girildi.");
-            }
+                odaRef.transaction(c => { if(c) c.oyuncuSayisi++; return c; });
 
-            // Durum 3: Eğer sınav zaten başlamışsa veya o an başlarsa hemen testi başlat
-            if (data.durum === 'basladi') {
-                localStorage.removeItem('baglantiOnayi');
-                odaRef.off('value', dinle); // Dinlemeyi kapat ve sınava geç
-                testiYukleVeBaslat(data.denemeID);
-            }
-        }, (error) => {
-            bKatil.disabled = false;
-            sesliBildiri("Bağlantı zayıf, lütfen tekrar deneyin.");
-        });
+                odaRef.on('value', (s) => {
+                    const data = s.val();
+                    if (data && data.durum === 'basladi') {
+                        odaRef.off(); 
+                        testiYukleVeBaslat(data.denemeID);
+                    }
+                });
+            }).catch(err => {
+                // BAĞLANTI HATASI DURUMU (Catch Bloğu)
+                if (denemeSayisi < 3) {
+                    denemeSayisi++;
+                    sesliBildiri("Bağlantı zayıf, tekrar deneniyor...");
+                    setTimeout(odayaBaglanmayiDene, 2000); 
+                } else {
+                    bKatil.disabled = false;
+                    sesliBildiri("Bağlantı kurulamadı. Lütfen internetinizi kontrol edin.");
+                }
+            });
+        };
+        odayaBaglanmayiDene();
     };    
 }
 // --- MATEMATİK BETİMLEME MOTORU ---
