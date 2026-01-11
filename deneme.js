@@ -104,7 +104,8 @@ function odaKurHazirlik(dID) {
         const d = snap.val(); if (!d) return;
         odaKatilimciSayisi = d.oyuncuSayisi;
         const btn = document.getElementById('btn-onay');
-if (btn) btn.innerText = "SINAVI BAŞLAT (" + odaKatilimciSayisi + "/" + d.hedefOyuncu + ")";
+if (btn) btn.innerText = "SINAVI BAŞLAT (" + odaKatilimciSayisi + "/" + d.hedefOyuncu + ")";        
+        
         if (d.durum === 'basladi' && sinavEkrani.style.display !== 'block') {
             db.ref('odalar/' + odaKodu).off();
             testiYukleVeBaslat(d.denemeID);
@@ -156,12 +157,7 @@ bKatil.onclick = () => {
                     }
                     return;
                 }
-const odaVerisi = snap.val();
-                if (odaVerisi && odaVerisi.durum === 'basladi') {
-                    sesliBildiri("Bu sınav zaten başlamış. Giriş kapalı.");
-                    bKatil.disabled = false;
-                    return;
-                }
+                
                 // BAŞARILI GİRİŞ DURUMU
                 sesliBildiri("Odaya başarıyla bağlandınız, sınavın başlaması bekleniyor.");
                 db.ref('odalar/' + odaKodu + '/katilimciListesi/' + auth.currentUser.uid).set(auth.currentUser.email);
