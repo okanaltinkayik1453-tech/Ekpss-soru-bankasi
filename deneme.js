@@ -156,7 +156,8 @@ bKatil.onclick = () => {
                     }
                     return;
                 }
-                if (snap.val().durum === 'basladi') {
+const odaVerisi = snap.val();
+                if (odaVerisi && odaVerisi.durum === 'basladi') {
                     sesliBildiri("Bu sınav zaten başlamış. Giriş kapalı.");
                     bKatil.disabled = false;
                     return;
