@@ -5,7 +5,7 @@
       {
         "tip": "turkce",
         "konu": "Cümlede Anlam",
-        "soruKoku": "Aşağıdaki parçada boş bırakılan yere, hangisi getirilirse cümlenin anlam bütünlüğü sağlanmış olur?Edebiyatımızda roman türünün gelişimi, başlangıçta Batı'dan yapılan çevirilerle şekillenmiş; ancak zamanla yazarlarımız kendi kültürlerinden beslenerek ---- eserler ortaya koymaya başlamışlardır.",
+        "soruKoku": "Aşağıdaki parçada boş bırakılan yere, hangisi getirilirse cümlenin anlam bütünlüğü sağlanmış olur? Edebiyatımızda roman türünün gelişimi, başlangıçta Batı'dan yapılan çevirilerle şekillenmiş; ancak zamanla yazarlarımız kendi kültürlerinden beslenerek ---- eserler ortaya koymaya başlamışlardır.",
         "icerik": [],
         "secenekler": ["taklitçi", "sıradan", "özgün", "karmaşık", "çeviri"],
         "dogru_cevap": "C",
