@@ -256,23 +256,22 @@ footer { text-align: center; padding: 20px; border-top: 1px solid #333; font-siz
         gap: 10px; 
     }
 }
-
 /* MOBİL UYUM */
 @media screen and (max-width: 768px) {
-    /* Testler Listesi Mobilde Tek Sütun */
-    .konu-listesi-kapsayici { grid-template-columns: 1fr; }
-    
-    /* Şıklar Mobilde Tek Sütun */
-    .siklar-grid { grid-template-columns: 1fr; }
+    /* 1. SARI ŞERİDİ YOK EDER: Ortadaki çizgiyi mobilde gizleyen satır budur */
+    .dikey-ayrac { display: none !important; }
 
-    /* Ana Sayfa Mobilde Tek Sütun */
-    .site-header { height: auto; padding: 10px 0; }
-    .bayrak-tam-kapsam { flex: 0 0 80px; }
-    .bolum-yazi h1, .site-linki { font-size: 18pt; }
-.ana-izgara-sistemi { grid-template-columns: 1fr; gap: 15px; }
-    .dikey-kart { flex-direction: row; height: auto; padding: 20px; }
-    .gorsel-dikey-yazi br { display: none; }
-    .gorsel-dikey-yazi { letter-spacing: 1px; }
+    /* 2. OKANHOCA YAZISINI DÜZELTİR: Başlık kutusunu mobilde serbest bırakan satır budur */
+    .modern-header {
+        height: auto !important; 
+        flex-direction: column !important; 
+        padding: 15px !important;
+    }
+    
+    /* 3. ALT ALTA SIRALAMA: Linklerin ve şıkların üst üste binmemesi için gerekli satır */
+    .ana-izgara-sistemi, .konu-listesi-kapsayici, .siklar-grid { 
+        grid-template-columns: 1fr !important; 
+    }
 }
 /* --- GENEL SIRALAMA TABLOSU (KÖRCÜL DOSTU) --- */
 .genel-siralama-kapsayici {
