@@ -22,7 +22,20 @@ let isSinglePlayer = false, secilenDenemeID = "", odaKatilimciSayisi = 0;
 let sonPuanVerisi = null, sinavBittiMi = false;
 let isOnlyEmptyMode = false;
 let secilenHedef = 1;
-
+// Yanlışlıkla çıkışı engelleme
+window.onbeforeunload = function() {
+    if (sinavEkrani.style.display === 'block' && !sinavBittiMi) {
+        return "Sınavınız devam ediyor. Ayrılırsanız ilerlemeniz kaybolabilir!";
+    }
+};
+// Mobil Geri Tuşu Koruması
+history.pushState(null, null, location.href);
+window.onpopstate = function() {
+    if (sinavEkrani.style.display === 'block' && !sinavBittiMi) {
+        history.pushState(null, null, location.href);
+        sesliBildiri("Sınav sırasında geri tuşu kullanılamaz. Lütfen soru butonlarını kullanın.");
+    }
+};
 // --- BAĞLANTI KURTARMA (RECONNECTION) ---
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
@@ -31,7 +44,7 @@ firebase.auth().onAuthStateChanged((user) => {
         const kaydedilmisMod = localStorage.getItem('isSinglePlayer');
         const sinavBittiMiLokal = localStorage.getItem('sinavTamamlandi');
 
-        if (kaydedilmisOda && (Date.now() - parseInt(kayitZamani) < 300000) && !sinavBittiMiLokal) {
+if (kaydedilmisOda && (Date.now() - parseInt(kayitZamani) < 7200000) && !sinavBittiMiLokal) {
             sesliBildiri("Sınava kaldığınız yerden devam ediyorsunuz.");
             odaKodu = kaydedilmisOda;
             isSinglePlayer = kaydedilmisMod === 'true';
@@ -64,20 +77,49 @@ if(btnLogin) {
         });
     };
 }
-
 function anaMenuGoster(isim) {
+    // Sayfanın en üstüne sabit şerit ve içerik alanı
     odaYonetimi.innerHTML = `
-        <h2 id="menu-baslik" tabindex="-1">Hoş geldin, ${isim}</h2>
-        <div class="sol-sutun-butonlari">
-            <div style="margin-bottom:15px; border:1px solid #444; padding:15px; background:#1a1a1a;">
-                <label for="hedef-oyuncu-input">Toplam Katılımcı Sayısı:</label>
-                <input type="number" id="hedef-oyuncu-input" value="1" min="1" max="75" style="width:100%; padding:10px; margin-top:5px; background:#000; color:#fff; border:1px solid #ffff00;">
-                <button class="ana-menu-karti" onclick="denemeListesiGoster(false)" style="margin-top:10px;">ÇOKLU SINAV KUR (ODA SAHİBİ)</button>
+        <div style="position: fixed; top: 0; left: 0; width: 100%; height: 80px; background-color: #cc0000; display: flex; align-items: center; justify-content: center; z-index: 9999; border-bottom: 4px solid #ffffff; box-shadow: 0 4px 10px rgba(0,0,0,0.5);">
+            <h1 style="color: #ffffff; font-size: 3.5rem; font-weight: 900; margin: 0; letter-spacing: 10px; width: 100%; text-align: center;">DENEME</h1>
+        </div>
+
+        <div style="padding-top: 100px; background-color: #8B0000; min-height: 100vh; color: #ffffff; text-align: center; display: flex; flex-direction: column; align-items: center; width: 100%;">
+            
+            <p style="color: rgba(255,255,255,0.9); font-size: 1.4rem; font-weight: bold; margin-bottom: 30px; white-space: nowrap;">Bütün sınavlarınızda en güzel sonuçları almanızı dileriz.</p>
+
+            <div style="width: 95%; max-width: 900px;">
+                
+                <div style="border: 4px solid #ffff00; padding: 20px; border-radius: 15px; margin-bottom: 30px; background: rgba(0,0,0,0.2);">
+                    <label for="hedef-oyuncu-input" style="display: block; font-size: 1.3rem; font-weight: bold; margin-bottom: 15px; color: #ffff00;">TOPLAM KATILIMCI SAYISI BELİRLEYİN:</label>
+                    <input type="number" id="hedef-oyuncu-input" value="1" min="1" max="75" 
+                        style="width: 150px; padding: 10px; font-size: 1.8rem; text-align: center; background: transparent; color: #ffffff; border: 3px solid #ffff00; border-radius: 8px; font-weight: bold;">
+                </div>
+
+                <div style="display: flex; gap: 20px; margin-bottom: 20px;">
+                    <button class="ana-menu-karti" onclick="denemeListesiGoster(false)" 
+                        style="flex: 1; background-color: transparent; color: #ffffff; border: 4px solid #ffff00; padding: 30px 10px; font-size: 1.2rem; font-weight: 900; border-radius: 12px; cursor: pointer; transition: 0.3s;">
+                        ÇOKLU SINAV KUR (ODA SAHİBİ)
+                    </button>
+                    
+                    <button class="ana-menu-karti" onclick="odaKatilHazirlik()" 
+                        style="flex: 1; background-color: transparent; color: #ffffff; border: 4px solid #ffff00; padding: 30px 10px; font-size: 1.2rem; font-weight: 900; border-radius: 12px; cursor: pointer; transition: 0.3s;">
+                        ÇOKLU SINAVA GİR (KOD İLE)
+                    </button>
+                </div>
+
+                <button class="ana-menu-karti" onclick="denemeListesiGoster(true)" 
+                    style="width: 100%; background-color: transparent; color: #ffffff; border: 4px solid #ffff00; padding: 30px; font-size: 1.5rem; font-weight: 900; border-radius: 12px; cursor: pointer; transition: 0.3s;">
+                    TEK KİŞİLİK SINAV BAŞLAT
+                </button>
+
             </div>
-            <button class="ana-menu-karti" onclick="odaKatilHazirlik()">ÇOKLU SINAVA GİR (KOD İLE)</button>
-            <button class="ana-menu-karti" onclick="denemeListesiGoster(true)" style="background:#ffff00; color:#000;">TEK KİŞİLİK SINAV BAŞLAT</button>
         </div>`;
-    document.getElementById('menu-baslik').focus();
+
+    setTimeout(() => {
+        const input = document.getElementById('hedef-oyuncu-input');
+        if(input) input.focus();
+    }, 150);
 }
 
 function denemeListesiGoster(tekliMi) {
@@ -234,13 +276,33 @@ function testiYukleVeBaslat(dID, isRecover = false) {
 
     fetch(`./data/${dID}.json`).then(res => res.json()).then(data => {
         mevcutSorular = data[0].sorular;
+// Cevapları ve süreyi yükleme/başlatma mantığı
         kullaniciCevaplari = isRecover ? JSON.parse(localStorage.getItem('cevaplar')) : new Array(mevcutSorular.length).fill(null);
         
+        const toplamSureMs = 100 * 60 * 1000; // 100 dakikanın milisaniye karşılığı
+        
+        if (isRecover) {
+            // Eğer sistem kopup geri gelmişse:
+            const baslangicZamani = parseInt(localStorage.getItem('kayitZamani'));
+            const suAnkiZaman = Date.now();
+            const gecenSureMs = suAnkiZaman - baslangicZamani;
+            
+            // Kalan süreyi hesapla: (Toplam Süre - Geçen Süre)
+            const hesaplananKalanSure = Math.floor((toplamSureMs - gecenSureMs) / 1000);
+            
+            // Süre bitmişse 0 yap, bitmemişse kalan saniyeyi ata
+            kalanSure = hesaplananKalanSure > 0 ? hesaplananKalanSure : 0;
+            sesliBildiri("Kalan süreniz: " + Math.floor(kalanSure / 60) + " dakika.");
+        } else {
+            // Eğer sınav ilk kez başlıyorsa:
+            kalanSure = 100 * 60; 
+            localStorage.setItem('kayitZamani', Date.now());
+        }
+
+        // Diğer verileri tarayıcıya kaydet
         localStorage.setItem('aktifOda', odaKodu); 
         localStorage.setItem('secilenDenemeID', dID); 
-        localStorage.setItem('kayitZamani', Date.now());
-        localStorage.setItem('isSinglePlayer', isSinglePlayer);        
-        
+        localStorage.setItem('isSinglePlayer', isSinglePlayer);
         sinavEkrani.innerHTML = `
             <button id="timer-kutusu" class="timer-dikdortgen" onclick="kalanSureyiSoyle()" aria-label="Kalan süreyi belirt">
                 <span id="dakika">100</span>:<span id="saniye">00</span>
