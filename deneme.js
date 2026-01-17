@@ -15,7 +15,7 @@ const auth = firebase.auth();
 const db = firebase.database();
 
 // --- AYARLAR VE DEĞİŞKENLER ---
-const TOPLAM_DENEME_SAYISI = 2; 
+const TOPLAM_DENEME_SAYISI = 3; 
 let mevcutSorular = [], mevcutIndex = 0, kullaniciCevaplari = [];
 let kalanSure = 100 * 60, timerInterval, odaKodu = "";
 let isSinglePlayer = false, secilenDenemeID = "", odaKatilimciSayisi = 0;
@@ -78,10 +78,11 @@ if(btnLogin) {
     };
 }
 function anaMenuGoster(isim) {
+if(document.querySelector('.site-header')) document.querySelector('.site-header').remove();
     // Sayfanın en üstüne sabit şerit ve içerik alanı
     odaYonetimi.innerHTML = `
         <div style="position: fixed; top: 0; left: 0; width: 100%; height: 80px; background-color: #cc0000; display: flex; align-items: center; justify-content: center; z-index: 9999; border-bottom: 4px solid #ffffff; box-shadow: 0 4px 10px rgba(0,0,0,0.5);">
-            <h1 style="color: #ffffff; font-size: 3.5rem; font-weight: 900; margin: 0; letter-spacing: 10px; width: 100%; text-align: center;">DENEME</h1>
+            <h1 style="color: #ffffff; font-size: 3.5rem; font-weight: 900; margin: 0; letter-spacing: 10px; width: 100%; text-align: center;">DENEMEYE</h1>
         </div>
 
         <div style="padding-top: 100px; background-color: #8B0000; min-height: 100vh; color: #ffffff; text-align: center; display: flex; flex-direction: column; align-items: center; width: 100%;">
@@ -219,7 +220,7 @@ if(!snap.exists()) {
                     return;
                 }                
                 // BAŞARILI GİRİŞ DURUMU
-                sesliBildiri("Odaya başarıyla bağlandınız, sınavın başlaması bekleniyor.");
+                sesliBildiri("Odaya başarıyla bağlandınız, lütfen sınav başkanının sınavı başlatmasını bekleyiniz.");
                 db.ref('odalar/' + odaKodu + '/katilimciListesi/' + auth.currentUser.uid).set(auth.currentUser.email);
                 db.ref('odalar/' + odaKodu + '/katilimciListesi/' + auth.currentUser.uid).onDisconnect().remove();
                 odaRef.transaction(c => { if(c) c.oyuncuSayisi++; return c; });
