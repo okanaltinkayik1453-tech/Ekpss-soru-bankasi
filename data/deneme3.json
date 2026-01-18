@@ -5,18 +5,30 @@
       {
         "tip": "turkce",
         "konu": "Cümlede Anlam (Boşluk Doldurma)",
-        "soruKoku": "Bu parçada boş bırakılan yerlere, düşüncenin akışına göre aşağıdakilerden hangisi sırasıyla getirilmelidir? Paragrafta iki ayrı yer boş bırakılmıştır ve buralara sırasıyla gelmesi gereken kelime çifti sorulmaktadır. Birinci boşluk yansımaları sözcüğünden sonra, ikinci boşluk algısına sözcüğünden sonradır.",
+        "soruKoku": "Paragrafta iki ayrı yer boş bırakılmıştır ve buralara sırasıyla gelmesi gereken kelime çifti sorulmaktadır. Birinci boşluk yansımaları sözcüğünden sonra, ikinci boşluk algısına sözcüğünden sonradır. Bu parçada boş bırakılan yerlere, düşüncenin akışına göre aşağıdakilerinin hangisi sırasıyla getirilmelidir?",
         "icerik": "Ahmet Hamdi Tanpınar, 'Beş Şehir' adlı eserinde Erzurum'u anlatırken şehrin köklü tarihi mirasıyla kendi iç dünyasındaki yansımaları ..... bir entelektüel derinlikle harmanlar. Yazar, kolektif hafızayı bireysel duyarlılığıyla yoğururken okuyucuyu alışılmışın dışında bir zaman algısına ......",
-        "secenekler": ["girift / sevk eder", "yadsınamaz / zorlar", "yalın / sürükler", "müphem / iter", "kusursuz / hapseder"],
-        "dogru_cevap": "A",
+        "secenekler": [
+          "yadsınamaz / zorlar",
+          "girift / sevk eder",
+          "yalın / sürükler",
+          "müphem / iter",
+          "kusursuz / hapseder"
+        ],
+        "dogru_cevap": "B",
         "aciklama": "Tanpınar'ın üslubu 'girift' (karmaşık, iç içe geçmiş) bir yapıdadır; tarihi mirasla kişisel dünyayı birleştirmesi bu karmaşıklığı karşılar. İkinci boşlukta ise okuyucunun bir algıya yönlendirilmesi 'sevk etmek' fiiliyle en doğru ve nitelikli biçimde ifade edilir."
       },
       {
         "tip": "turkce",
         "konu": "Söz Öbeğinde Anlam",
-        "soruKoku": "Bu cümledeki altı çizili sözle anlatılmak istenen aşağıdakilerden hangisidir? Altı çizili sözcük 'ete kemiğe bürünmüş'.",
+        "soruKoku": "Bu cümledeki altı çizili sözle anlatılmak istenen aşağıdakilerden hangisidir? Altı çizili sözcük ete kemiğe bürünmüş.",
         "icerik": "Yazarın son romanındaki karakterler, 'ete kemiğe bürünmüş' birer varlık olarak zihnimizde yer ediyor; onların trajedilerini ve tinsel devinimlerini neredeyse somut bir gerçeklik düzleminde duyumsuyoruz.",
-        "secenekler": ["Karakterlerin fiziksel özelliklerini ayrıntılı tasvirlerle okura sunmak", "Kurgusal yapıdan sıyrılarak inandırıcılık ve canlılık kazanmak", "Eserin iletisini doğrudan karakterlerin söylemleri üzerinden aktarmak", "Evrensel insan tipolojilerini yerel bir anlatı içinde eritmek", "Okurun beklentilerini aşan, şaşırtıcı ve aykırı tipler oluşturmak"],
+        "secenekler": [
+          "Karakterlerin fiziksel özelliklerini ayrıntılı tasvirlerle okura sunmak",
+          "Kurgusal yapıdan sıyrılarak inandırıcılık ve canlılık kazanmak",
+          "Eserin iletisini doğrudan karakterlerin söylemleri üzerinden aktarmak",
+          "Evrensel insan tipolojilerini yerel bir anlatı içinde eritmek",
+          "Okurun beklentilerini aşan, şaşırtıcı ve aykırı tipler oluşturmak"
+        ],
         "dogru_cevap": "B",
         "aciklama": "'Ete kemiğe bürünmek' deyimi, soyut bir düşüncenin veya kurgusal bir karakterin canlı, kanlı, gerçek ve somut bir hale gelmesini ifade eder. Metindeki 'somut bir gerçeklik düzleminde duyumsamak' ifadesi bu anlamı pekiştirmektedir."
       },
@@ -25,18 +37,30 @@
         "konu": "Paragrafta Ana Konu",
         "soruKoku": "Aşağıdaki parçanın ana konusu şıklarda verilen seçeneklerden hangisidir?",
         "icerik": "Elektrikli araçların küresel otomotiv endüstrisindeki yükselişi, sadece bir teknoloji değişimi değil, aynı zamanda çevresel sürdürülebilirlik paradigmasında köklü bir dönüşümü temsil etmektedir. İçten yanmalı motorların karbon salınımı üzerindeki olumsuz etkileri, devletleri ve üreticileri alternatif enerji kaynaklarına yönlendirirken elektrikli motorlar bu sürecin merkezine yerleşmiştir. EA’ların hayatımıza girmesiyle birlikte, yakıt maliyetlerindeki belirgin düşüş ve sessiz sürüş konforu gibi avantajlar kullanıcı deneyimini zenginleştirmektedir. Ayrıca, mekanik parçaların azalması servis maliyetlerini düşürerek ekonomik bir rahatlama sağlamaktadır. Ancak bu teknolojik devrim, kendi içinde ciddi meydan okumaları da barındırmaktadır. Menzil kaygısı (range anxiety) hâlâ aşılması gereken bir psikolojik ve teknik bariyer olarak dururken, şarj istasyonlarının homojen olmayan dağılımı kırsal bölgelerde ulaşımı zorlaştırmaktadır. Batı teknolojilerinin bu hıza yetişme çabası, lityum-iyon pillerin ham madde teminindeki jeopolitik riskleri ve batarya geri dönüşümünün ekolojik maliyetlerini de gündeme taşımaktadır. Dolayısıyla elektrikli araçlar, vaat ettiği temiz gelecek ile üretimindeki zorluklar arasında hassas bir dengede ilerlemektedir.",
-        "secenekler": ["İçten yanmalı motorlara göre sağladığı teknolojik üstünlükler", "Küresel iklim kriziyle mücadelede elektrikli araç kullanımının kaçınılmazlığı", "Elektrikli araçların yaygınlaşma sürecindeki olumlu getirileri ve karşılaşılan engeller", "Batarya teknolojilerindeki maliyetlerin otomobil fiyatlarına doğrudan yansıması", "Enerji dönüşümünün jeopolitik dengeler üzerinde yarattığı köklü değişimler"],
+        "secenekler": [
+          "Elektrikli araçların içten yanmalı motorlara göre sağladığı teknolojik üstünlükler",
+          "Küresel iklim kriziyle mücadelede elektrikli araç kullanımının kaçınılmazlığı",
+          "Elektrikli araçların yaygınlaşma sürecindeki olumlu getirileri ve karşılaşılan engeller",
+          "Batarya teknolojilerindeki maliyetlerin otomobil fiyatlarına doğrudan yansıması",
+          "Enerji dönüşümünün jeopolitik dengeler üzerinde yarattığı köklü değişimler"
+        ],
         "dogru_cevap": "C",
         "aciklama": "Paragrafın genelinde elektrikli araçların hem getirdiği kolaylıklar ve avantajlar (sessizlik, maliyet) hem de dezavantajları/zorlukları (menzil, şarj, hammadde) dengeli bir şekilde ele alınmıştır."
       },
       {
         "tip": "turkce",
         "konu": "Yazım ve Ses Bilgisi (Ünlü Düşmesi)",
-        "soruKoku": "Aşağıdaki cümlelerin hangisinde bu kurala (ünlü kaybı) örnek teşkil eden bir kullanım yoktur?",
-        "icerik": "Türkçede bazı sözcükler birleşirken ya da ek alırken ünlü kaybına uğrayabilir; bu durum yazım ve ses bilgisi kuralları açısından dikkatle takip edilmelidir.",
-        "secenekler": ["Şehrin dar sokaklarında yürürken vaktin nasıl geçtiğini anlamamıştı.", "Tasvir ettiği her karakterin ruh dünyası, olay örgüsüne ustaca aksetmiş.", "Yanlış kararların faturasını ağır ödeyen genç adam, derin bir iç çekti.", "Toplantıda sunulan veriler, şirketin geleceği hakkında umut vericiydi.", "Uykusuz geçen gecelerin sonunda, beklediği ilham nihayet kapısını çaldı."],
-        "dogru_cevap": "D",
-        "aciklama": "A'da 'Şehrin' (şehir), B'de 'aksetmiş' (akis), C'de 'Yanlış' (yanıl-), E'de 'Uykusuz' (uyu-kusu) kelimelerinde ünlü düşmesi vardır. D seçeneğinde ünlü düşmesine uğrayan bir sözcük bulunmamaktadır."
+        "soruKoku": "Türkçede bazı sözcükler birleşirken ya da ek alırken ünlü kaybına uğrayabilir; bu durum yazım ve ses bilgisi kuralları açısından dikkatle takip edilmelidir. Aşağıdaki cümlelerin hangisinde bu kurala örnek teşkil eden bir kullanım yoktur?",
+        "icerik": "",
+        "secenekler": [
+          "Şehrin dar sokaklarında yürürken vaktin nasıl geçtiğini anlamamıştı.",
+          "Tasvir ettiği her karakterin ruh dünyası, olay örgüsüne ustaca aksetmiş.",
+          "Yanlış kararların faturasını ağır ödeyen genç adam, derin bir iç çekti.",
+          "Uykusuz geçen gecelerin sonunda, beklediği ilham nihayet kapısını çaldı.",
+          "Toplantıda sunulan veriler, şirketin geleceği hakkında umut vericiydi."
+        ],
+        "dogru_cevap": "E",
+        "aciklama": "A'da 'Şehrin' (şehir), B'de 'aksetmiş' (akis), C'de 'Yanlış' (yanıl-), D'de 'Uykusuz' (uyu-kusu) kelimelerinde ünlü düşmesi vardır. E seçeneğinde ünlü düşmesine uğrayan bir sözcük bulunmamaktadır."
       },
       {
         "tip": "turkce",
@@ -50,25 +74,43 @@
           "(5) Turizmin ekonomik getirisinin yanında getirdiği fiziksel yıpranma, restorasyon çalışmalarının sürdürülebilir bir bütçeyle yönetilmesini zorunlu kılan en önemli faktördür.",
           "(6) UNESCO Dünya Miras Listesi’nde en çok esere sahip ülke olması, bu sorumluluğun boyutlarını daha da artırmaktadır. Devletin kültür politikaları, bu mirası sadece turizm nesnesi olarak değil, bir insanlık mirası olarak korumayı amaçlamaktadır."
         ],
-        "secenekler": ["2", "4", "5", "6", "3"],
-        "dogru_cevap": "E",
-        "aciklama": "Parçanın giriş kısmında (1. ve 2. cümleler) İtalya'nın tarihi, turistik ve sanatsal değerlerinden bahsedilirken; 3 numaralı cümleden itibaren konu değişmiş; turizm yönetimi ve karşılaşılan güncel zorluklar ele alınmaya başlanmıştır."
+        "secenekler": [
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ],
+        "dogru_cevap": "B",
+        "aciklama": "Parçanın giriş kısmında (1. ve 2. cümleler) İtalya'nın tarihi, turistik ve sanatsal değerlerinden bahsedilirken; 3 numaralı cümleden ('Günümüzde İtalya’da turizm yönetimi...') itibaren konu değişmiş; turizm yönetimi, koruma politikaları ve karşılaşılan güncel zorluklar ele alınmaya başlanmıştır."
       },
       {
         "tip": "turkce",
         "konu": "Anlatım Teknikleri",
         "soruKoku": "Bu parçanın anlatımında aşağıdakilerden hangisine başvurulmamıştır?",
         "icerik": "Cumhuriyet tarihimizin en önemli mimari yapılarından biri olan Anıtkabir, sadece bir anıt mezar değil; bağımsızlık mücadelesinin ve modern Türkiye'nin inşa sürecinin taşlaşmış bir manifestosudur. İkinci Ulusal Mimarlık Dönemi'nin izlerini taşıyan yapı, Emin Onat ve Orhan Arda’nın imzasını taşımaktadır. İnşasında kullanılan ve Anadolu'nun dört bir yanından getirilen travertenler ile mermerler, yapının toprağa sıkı sıkıya bağlılığını ve milli birliği simgeler. Aslanlı Yol’un iki yanına dizilen yirmi dört aslan heykeli, Hitit sanatının üslubuyla işlenmiş olup Türk boylarının gücünü ve barışçıl duruşunu temsil etmektedir. Şeref Holü’nün tavanındaki mozaik süslemeler, geleneksel Türk halı ve kilim desenlerinden süzülerek modern bir estetikle harmanlanmıştır. Bu muazzam yapının her bir kulesi (Hürriyet, İstiklal, Barış), isminden de anlaşılacağı üzere Cumhuriyet'in temel değerlerini simgeleyen kabartmalarla donatılmıştır. Yapının sadeliği içindeki haşmet, ziyaretçide hem saygı uyandıran bir huşu hem de tarihin canlılığına dair sarsılmaz bir inanç yaratır.",
-        "secenekler": ["Tanıklardan doğrudan alıntı yapmaya", "Betimleyici ögelere", "Sayısal verilerden yararlanmaya", "Örneklendirmelere", "Karşılaştırmaya"],
-        "dogru_cevap": "A",
-        "aciklama": "Metinde aslan sayısı (24) gibi sayısal veriler, örneklendirmeler ve betimlemeler mevcuttur. Ancak herhangi bir kişinin sözünden doğrudan alıntı (tanık gösterme) yapılmamıştır."
+        "secenekler": [
+          "Betimleyici ögelere",
+          "Sayısal verilerden yararlanmaya",
+          "Tanıklardan doğrudan alıntı yapmaya",
+          "Örneklendirmelere",
+          "Karşılaştırmaya"
+        ],
+        "dogru_cevap": "C",
+        "aciklama": "Metinde aslan sayısı (24) gibi sayısal veriler, yapıların isimleri ve özellikleri gibi örneklendirmeler, mimari detayların betimlenmesi ve dönemsel kıyaslamalar (İkinci Ulusal Mimarlık Dönemi gibi) mevcuttur. Ancak herhangi bir kişinin sözünden doğrudan alıntı (tanık gösterme) yapılmamıştır."
       },
       {
         "tip": "turkce",
         "konu": "Paragrafta Ana Düşünce",
         "soruKoku": "Bu parçanın ana düşüncesi aşağıdakilerden hangisidir?",
         "icerik": "Türk okçuluğu, tarihi süreçte sadece bir muharebe enstrümanı olmanın ötesine geçerek estetik bir disiplin, manevi bir terbiye ve toplumsal hiyerarşiyi belirleyen kültürel bir kuruma dönüşmüştür. Selçuklu ve Osmanlı sultanlarının imza niteliğindeki tuğralarında yer alan yay ve ok imgeleri, bu araçların siyasi meşruiyet ve egemenlik temsili olduğunu kanıtlar. 'Kemankeş' sıfatını kazanabilmek için tekkelerde yıllarca süren riyazet ve talim süreci, okçuluğun bedensel bir aktivite değil, ruhu incelten bir yaşam felsefesi olduğunu gösterir.",
-        "secenekler": ["Savaşlardaki stratejik üstünlüğü sağlayan temel unsurlar olduğu", "Türk okçuluğunun, teknik becerinin ötesinde siyasi, manevi ve kültürel boyutları olan bütüncül bir sistem teşkil ettiği", "Tekkelerin en önemli işlevinin sporcu yetiştirmek olduğu", "Devlet adamlarının egemenliklerini pekiştirmek için sembolleri araçsallaştırdıkları", "Okçuluğun bireyin statüsünü belirleyen tek ölçüt olarak kabul edildiği"],
+        "secenekler": [
+          "Türk tarihinde ok ve yayın savaşlardaki stratejik üstünlüğü sağlayan temel unsurlar olduğu",
+          "Türk okçuluğunun, teknik becerinin ötesinde siyasi, manevi ve kültürel boyutları olan bütüncül bir sistem teşkil ettiği",
+          "Geleneksel eğitim kurumları olan tekkelerin en önemli işlevinin sporcu yetiştirmek olduğu",
+          "Devlet adamlarının egemenliklerini pekiştirmek için sanatsal sembolleri araçsallaştırdıkları",
+          "Okçuluğun, Türk toplumunda bireyin statüsünü belirleyen tek ölçüt olarak kabul edildiği"
+        ],
         "dogru_cevap": "B",
         "aciklama": "Paragrafta okçuluğun sadece savaşla ilgili olmadığı; siyaset (egemenlik), maneviyat (terbiye) ve kültürle harmanlanmış geniş bir yapı olduğu vurgulanmaktadır."
       },
@@ -77,18 +119,30 @@
         "konu": "Paragrafta Yardımcı Düşünce",
         "soruKoku": "Bu parçada Piri Reis Haritası ile ilgili aşağıdakilerden hangisine değinilmemiştir?",
         "icerik": "1513 tarihli Piri Reis Haritası, Kristof Kolomb'un kayıp haritalarından süzülen verileri içermesi ve dönemine göre imkansız görünen coğrafi projeksiyonları barındırmasıyla dünya kartografya tarihinin en muammalı belgelerinden biri sayılmaktadır. Ceylan derisi üzerine büyük bir titizlikle resmedilen bu eser, Güney Amerika kıyıları ile Afrika’nın batı sahil şeridini şaşırtıcı bir geometrik doğrulukla betimler. Haritanın kenarlarına düşülen haşiyelerde Piri Reis, yararlandığı yabancı kaynakları dürüstçe zikrederek bilimsel ahlakın erken dönem örneklerinden birini vermiştir.",
-        "secenekler": ["Materyalin niteliğine", "Coğrafi koordinatların doğruluğuna", "Çizimde kullanılan teknik ekipmanların detaylarına", "Çalışma yöntemindeki bilimsel dürüstlüğe", "Evrensel haritacılık mirası içindeki gizemli konumuna"],
-        "dogru_cevap": "C",
-        "aciklama": "Metinde ceylan derisi (A), coğrafi bölgeler (B), kaynak belirtme (C) ve gizem/önem (E) vurgulanmıştır. Ancak haritanın hangi aletlerle çizildiğine dair bilgi yoktur."
+        "secenekler": [
+          "Hazırlanmasında kullanılan materyalin niteliğine",
+          "İçeriğinde yer alan belirli coğrafi koordinatların doğruluğuna",
+          "Piri Reis'in çalışma yöntemindeki bilimsel dürüstlüğe",
+          "Haritanın çiziminde kullanılan teknik ekipmanların detaylarına",
+          "Evrensel haritacılık mirası içindeki gizemli konumuna"
+        ],
+        "dogru_cevap": "D",
+        "aciklama": "Metinde ceylan derisi (A), coğrafi bölgeler (B), kaynak belirtme (C) ve gizem/önem (E) vurgulanmıştır. Ancak haritanın hangi aletlerle veya teknik ekipmanlarla çizildiğine dair bir bilgi yoktur."
       },
       {
         "tip": "turkce",
         "konu": "Paragrafta Yardımcı Düşünce (Ulaşılamaz)",
         "soruKoku": "Bu parçadan 'paranın icadı' ile ilgili aşağıdakilerden hangisine ulaşılamaz?",
-        "icerik": "Batı Anadolu’nun verimli havzalarında hüküm süren Lidyalılar, MÖ 7. yüzyılda parayı icat ederek ticaretteki arkaik takas usulünü tarihe gömmüş ve ekonomik ilişkilerde yeni bir çağ başlatmışlardır. Altın ve gümüşın doğal alaşımı olan 'elektrum' madeninden darp edilen bu ilk paralar, üzerlerindeki krallık mührü olan aslan figürüyle devlet garantisini temsil ediyordu. Paranın dolaşıma girmesi, sadece ticari hızı artırmakla kalmamış; aynı zamanda servetin depolanabilir hale gelmesini ve ekonomik gücün matematiksel olarak ölçülmesini sağlamıştır. Başkent Sardes, bu finansal devrim sayesinde dönemin en parlak metropolislerinden birine dönüşürken Kral Yolu üzerinden Doğu ile Batı arasında bir köprü olmuştur.",
-        "secenekler": ["Ticari işlemlerdeki geleneksel yöntemlerin değişmesine yol açtığına", "Ekonomik değerlerin somut ve biriktirilebilir bir yapı kazanmasını sağladığına", "Paraların üzerinde devlet otoritesini simgeleyen görsellerin bulunduğuna", "Lidya Devleti'nin siyasi sınırlarının para kullanımıyla birlikte genişlediğine", "Başkentin ticari ve kültürel bir cazibe merkezi haline gelmesine katkı sunduğuna"],
-        "dogru_cevap": "D",
-        "aciklama": "Metinde paranın ticareti hızlandırdığı, servet biriktirmeyi sağladığı ve Sardes'i zenginleştirdiği anlatılmıştır ancak siyasi sınırların genişlediğine dair bir çıkarım yapılamaz."
+        "icerik": "Batı Anadolu’nun verimli havzalarında hüküm süren Lidyalılar, MÖ 7. yüzyılda parayı icat ederek ticaretteki arkaik takas usulünü tarihe gömmüş ve ekonomik ilişkilerde yeni bir çağ başlatmışlardır. Altın ve gümüşün doğal alaşımı olan 'elektrum' madeninden darp edilen bu ilk paralar, üzerlerindeki krallık mührü olan aslan figürüyle devlet garantisini temsil ediyordu. Paranın dolaşıma girmesi, sadece ticari hızı artırmakla kalmamış; aynı zamanda servetin depolanabilir hale gelmesini ve ekonomik gücün matematiksel olarak ölçülmesini sağlamıştır. Başkent Sardes, bu finansal devrim sayesinde dönemin en parlak metropolislerinden birine dönüşürken Kral Yolu üzerinden Doğu ile Batı arasında bir köprü olmuştur.",
+        "secenekler": [
+          "Ticari işlemlerdeki geleneksel yöntemlerin değişmesine yol açtığına",
+          "Ekonomik değerlerin somut ve biriktirilebilir bir yapı kazanmasını sağladığına",
+          "Lidya Devleti'nin siyasi sınırlarının para kullanımıyla birlikte genişlediğine",
+          "Paraların üzerinde devlet otoritesini simgeleyen görsellerin bulunduğuna",
+          "Başkentin ticari ve kültürel bir cazibe merkezi haline gelmesine katkı sunduğuna"
+        ],
+        "dogru_cevap": "C",
+        "aciklama": "Metinde paranın ticareti hızlandırdığı, servet biriktirmeyi sağladığı, Sardes'i zenginleştirdiği ve üzerindeki figürler anlatılmıştır. Ancak paranın icadının Lidya'nın 'siyasi sınırlarını genişlettiğine' dair bir çıkarım yapılamaz."
       },
       {
         "tip": "turkce",
@@ -101,418 +155,688 @@
           "(4) Geleneksel sanatlarda kullanılan malzemelerin temini, günümüzde modern üretim teknikleri nedeniyle giderek zorlaşmaktadır.",
           "(5) Osmanlı döneminde özellikle resmi belgelerin zeminine yapılan ebrular, sadece estetik bir kaygı değil, tahrifatı önleyen bir güvenlik unsuru olarak da işlev görmüştür."
         ],
-        "secenekler": ["1", "2", "3", "4", "5"],
-        "dogru_cevap": "E",
-        "aciklama": "Paragrafın tamamında Ebru sanatının tanımı, kökeni, malzemesi ve işlevi (güvenlik) anlatılırken, 4. cümlede konu genel bir 'geleneksel sanatlarda malzeme temini sorunu'na kaymıştır."
+        "secenekler": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "dogru_cevap": "D",
+        "aciklama": "Paragrafın tamamında Ebru sanatının tanımı, kökeni, malzemesi ve işlevi (güvenlik) anlatılırken, 4. cümlede konu genel bir 'geleneksel sanatlarda malzeme temini sorunu'na kayarak bütünlüğü bozmuştur."
       },
       {
         "tip": "turkce",
         "konu": "Cümle Oluşturma",
-        "soruKoku": "Yukarıdaki sözcükler ve söz öbekleri ile kurallı ve anlamlı bir cümle oluşturulduğunda sıralama aşağıdakilerden hangisi olur?",
-        "icerik": "1. yansıtan 2. en önemli 3. kültürünü 4. bir milletin 5. aynadır 6. dil.",
-        "secenekler": ["6 - 4 - 3 - 1 - 2 - 5", "4 - 3 - 1 - 6 - 2 - 5", "6 - 2 - 5 - 4 - 3 - 1", "4 - 3 - 2 - 5 - 6 - 1", "6 - 1 - 4 - 3 - 2 - 5"],
+        "soruKoku": "1. yansıtan 2. en önemli 3. kültürünü 4. bir milletin 5. aynadır 6. dil. Yukarıdaki sözcükler ve söz öbekleri ile kurallı ve anlamlı bir cümle oluşturulduğunda sıralama aşağıdakilerden hangisi olur?",
+        "icerik": "",
+        "secenekler": [
+          "6 - 4 - 3 - 1 - 2 - 5",
+          "4 - 3 - 1 - 6 - 2 - 5",
+          "6 - 2 - 5 - 4 - 3 - 1",
+          "4 - 3 - 2 - 5 - 6 - 1",
+          "6 - 1 - 4 - 3 - 2 - 5"
+        ],
         "dogru_cevap": "A",
-        "aciklama": "Cümle: 'Dil (6), bir milletin (4) kültürünü (3) yansıtan (1) en önemli (2) aynadır (5).' şeklinde kurulur."
+        "aciklama": "'Dil (6), bir milletin (4) kültürünü (3) yansıtan (1) en önemli (2) aynadır (5).' şeklinde kurulan cümle hem yapıca kurallı hem de anlamca bütündür."
       },
       {
         "tip": "turkce",
         "konu": "Kesin Yargı",
         "soruKoku": "Bu cümleden kesin olarak çıkarılabilecek yargı aşağıdakilerden hangisidir?",
         "icerik": "Nobel ödüllü yazarımız Orhan Pamuk'un 'Kara Kitap' adlı romanı, Doğu’nun binbir gece masallarından süzülen anlatı geleneği ile Batı’nın postmodern tekniklerini ustaca harmanlayan bir yapıya sahip olup Türk edebiyatında üstkurmaca tekniğinin en sofistike örneklerinden biri olarak kabul edilir.",
-        "secenekler": ["Kara Kitap, uluslararası alanda en çok takdir edilen eserdir.", "Orhan Pamuk, eserinde farklı edebi geleneklerden gelen unsurları sentezlemiştir.", "Üstkurmaca tekniğini kullanan tek postmodern eser Kara Kitap'tır.", "Nobel Edebiyat Ödülü'nü almasındaki temel etkendir.", "Postmodern teknikler sadece bu romanda birleşmiştir."],
-        "dogru_cevap": "B",
-        "aciklama": "Cümlede geçen 'Doğu... geleneği ile Batı... tekniklerini ustaca harmanlayan' ifadesi, yazarın farklı edebi gelenekleri sentezlediğini kanıtlar."
+        "secenekler": [
+          "Kara Kitap, Orhan Pamuk'un uluslararası alanda en çok takdir edilen eseridir.",
+          "Türk edebiyatında üstkurmaca tekniğini kullanan tek postmodern eser Kara Kitap'tır.",
+          "Orhan Pamuk, eserinde farklı edebi geleneklerden gelen unsurları sentezlemiştir.",
+          "Kara Kitap romanı, yazarın Nobel Edebiyat Ödülü'nü almasındaki temel etkendir.",
+          "Doğu edebiyatı gelenekleri, postmodern tekniklerle sadece bu romanda birleşmiştir."
+        ],
+        "dogru_cevap": "C",
+        "aciklama": "Cümlede geçen 'Doğu... geleneği ile Batı... tekniklerini ustaca harmanlayan' ifadesi, yazarın farklı edebi gelenekleri sentezlediğini kesin olarak kanıtlar."
       },
       {
         "tip": "turkce",
         "konu": "Paragraf Yorumlama (Yeşilçam)",
-        "soruKoku": "Parçaya göre Türk sinemasının 'Yeşilçam' dönemini niteleyen temel özellik aşağıdakilerden hangisidir?",
-        "icerik": "Türk sineması, 1914 yılında Fuat Uzkınay tarafından kaydedilen 'Ayastefanos'taki Rus Abidesinin Yıkılışı' adlı belge filmle başlattığı serüveninde, toplumsal ve siyasal dönüşümlerin aynası olmuştur. Cumhuriyet'in ilk evrelerinde Muhsin Ertuğrul’un tiyatro kökenli estetik anlayışıyla şekillenen sinemamız, 1950’li yıllarda 'Yeşilçam' olarak adlandırılan, kendine has anlatım kalıpları ve yıldız sistemiyle halkın geniş kitlelerine hitap eden özgün bir endüstriye dönüşmüştür. 1960 ve 70’li yıllar, yıllık film üretim sayısının rekor seviyelere ulaştığı ve sinemanın en temel eğlence aracı olduğu 'Altın Çağ' olarak tarihe geçmiştir. Ancak 1980’li yıllar itibarıyla televizyonun evlere girmesi, video kaset furyası ve değişen sosyo-politik konjonktür, Yeşilçam'ın o klasik yapısını sarsarak sinemayı derin bir kriz ve ardından gelen bireysel arayışlar dönemine sokmuştur.",
-        "secenekler": ["Tiyatro disiplininden gelen oyuncuların baskın olduğu bir yapı sergilemesi", "Sadece toplumsal sorunları ele alan gerçekçi bir sinema anlayışını gütmesi", "Geniş halk kitlelerince benimsenen özgün bir endüstriyel dil ve sistem yaratması", "Batı sinemasının teknik imkanlarını yerel hikayelerle birleştirmesi", "Devlet destekli projelerle film üretim sayısını artırmayı hedeflemesi"],
+        "soruKoku": "13, 14 ve 15. soruları aşağıdaki paragrafa göre cevaplayınız. Parçaya göre Türk sinemasının 'Yeşilçam' dönemini niteleyen temel özellik aşağıdakilerden hangisidir?",
+        "icerik": "Türk sineması, 1914 yılında Fuat Uzkınay tarafından kaydedilen 'Ayastefanos'taki Rus Abidesinin Yıkılışı' adlı belge filmle başlattığı serüveninde, toplumsal ve siyasal dönüşümlerin aynası olmuştur. Cumhuriyet'in ilk evrelerinde Muhsin Ertuğrul’un tiyatro kökenli estetik anlayışıyla şekillenen sinemamız, 1950’li yıllarda 'Yeşilçam' olarak adlandırılan, kendine has anlatım kalıpları ve yıldız sistemiyle halkın geniş kitlelerine hitap eden özgün bir endüstriye dönüşmüştür. 1960 ve 70’li yıllar, yıllık film üretim sayısının rekor seviyelere ulaştığı ve sinemanın en temel eğlence aracı olduğu 'Altın Çağ' olarak tarihe geçmiştir. Ancak 1980’li yıllar itibarıyla televizyonun evlere girmesi, video kaset furyası ve değişen sosyo-politik konjonktür, Yeşilçam'ın o klasik yapısını sarsarak sinemayı derin bir kriz and ardından gelen bireysel arayışlar dönemine sokmuştur.",
+        "secenekler": [
+          "Batı sinemasının teknik imkanlarını yerel hikayelerle birleştirmesi",
+          "Tiyatro disiplininden gelen oyuncuların baskın olduğu bir yapı sergilemesi",
+          "Geniş halk kitlelerince benimsenen özgün bir endüstriyel dil and sistem yaratması",
+          "Sadece toplumsal sorunları ele alan gerçekçi bir sinema anlayışını gütmesi",
+          "Devlet destekli projelerle film üretim sayısını artırmayı hedeflemesi"
+        ],
         "dogru_cevap": "C",
         "aciklama": "Metinde Yeşilçam için 'halkın geniş kitlelerine hitap eden özgün bir endüstriye dönüşmüştür' ifadesi bu şıkkı doğrular."
       },
       {
         "tip": "turkce",
         "konu": "Paragraf Yorumlama (Başlangıç)",
-        "soruKoku": "Parçadan hareketle Türk sinemasının başlangıç evresiyle ilgili aşağıdakilerden hangisi söylenebilir?",
-        "icerik": "Türk sineması, 1914 yılında Fuat Uzkınay tarafından kaydedilen 'Ayastefanos'taki Rus Abidesinin Yıkılışı' adlı belge filmle başlattığı serüveninde, toplumsal ve siyasal dönüşümlerin aynası olmuştur.",
-        "secenekler": ["İlk yönetmenlerin tamamının yurt dışında eğitim almış isimler olduğu", "Sinemanın başlangıçta sadece elit bir tabaka tarafından takip edildiği", "Belgesel sinemanın etkisinin Yeşilçam dönemine kadar baskın kaldığı", "İlk ürünlerin kurgusal bir hikayeden ziyade tanıklık niteliği taşıdığı", "Cumhuriyet ideolojisini yaymak amacıyla sinemanın araçsallaştırıldığı"],
-        "dogru_cevap": "D",
+        "soruKoku": "13, 14 ve 15. soruları aşağıdaki paragrafa göre cevaplayınız. Parçadan hareketle Türk sinemasının başlangıç evresiyle ilgili aşağıdakilerden hangisi söylenebilir?",
+        "icerik": "Türk sineması, 1914 yılında Fuat Uzkınay tarafından kaydedilen 'Ayastefanos'taki Rus Abidesinin Yıkılışı' adlı belge filmle başlattığı serüveninde, toplumsal ve siyasal dönüşümlerin aynası olmuştur. Cumhuriyet'in ilk evrelerinde Muhsin Ertuğrul’un tiyatro kökenli estetik anlayışıyla şekillenen sinemamız, 1950’li yıllarda 'Yeşilçam' olarak adlandırılan, kendine has anlatım kalıpları ve yıldız sistemiyle halkın geniş kitlelerine hitap eden özgün bir endüstriye dönüşmüştür. 1960 ve 70’li yıllar, yıllık film üretim sayısının rekor seviyelere ulaştığı ve sinemanın en temel eğlence aracı olduğu 'Altın Çağ' olarak tarihe geçmiştir. Ancak 1980’li yıllar itibarıyla televizyonun evlere girmesi, video kaset furyası ve değişen sosyo-politik konjonktür, Yeşilçam'ın o klasik yapısını sarsarak sinemayı derin bir kriz and ardından gelen bireysel arayışlar dönemine sokmuştur.",
+        "secenekler": [
+          "İlk ürünlerin kurgusal bir hikayeden ziyade tanıklık niteliği taşıdığı",
+          "Cumhuriyet ideolojisini yaymak amacıyla sinemanın araçsallaştırıldığı",
+          "İlk yönetmenlerin tamamının yurt dışında eğitim almış isimler olduğu",
+          "Sinemanın başlangıçta sadece elit bir tabaka tarafından takip edildiği",
+          "Belgesel sinemanın etkisinin Yeşilçam dönemine kadar baskın kaldığı"
+        ],
+        "dogru_cevap": "A",
         "aciklama": "'Ayastefanos'taki Rus Abidesinin Yıkılışı' bir 'belge film'dir (belgesel). Belgeseller kurgusal hikayeden ziyade bir olaya tanıklık ederler."
       },
       {
         "tip": "turkce",
         "konu": "Paragraf Yorumlama (Kriz)",
-        "soruKoku": "Parçada sözü edilen 1980 sonrası 'kriz ve değişim' sürecinin tetikleyici unsurları arasında aşağıdakilerden hangisine yer verilmemiştir?",
-        "icerik": "Ancak 1980’li yıllar itibarıyla televizyonun evlere girmesi, video kaset furyası ve değişen sosyo-politik konjonktür, Yeşilçam'ın o klasik yapısını sarsarak sinemayı derin bir kriz ve ardından gelen bireysel arayışlar dönemine sokmuştur.",
-        "secenekler": ["Teknolojik değişimlere", "Toplumsal ve siyasal yapıdaki farklılaşmalara", "Sinema dışı eğlence alternatiflerinin artmasına", "Yeşilçam’ın geleneksel anlatı modelinin sarsılmasına", "Sinema salonlarının teknik altyapısının yetersiz kalmasına"],
-        "dogru_cevap": "E",
-        "aciklama": "Metinde televizyon, video kaset ve sosyo-politik konjonktür sayılmıştır. Ancak 'sinema salonlarının teknik altyapısı' hakkında bilgi verilmemiştir."
+        "soruKoku": "13, 14 ve 15. soruları aşağıdaki paragrafa göre cevaplayınız. Parçada sözü edilen 1980 sonrası 'kriz and değişim' sürecinin tetikleyici unsurları arasında aşağıdakilerden hangisine yer verilmemiştir?",
+        "icerik": "Türk sineması, 1914 yılında Fuat Uzkınay tarafından kaydedilen 'Ayastefanos'taki Rus Abidesinin Yıkılışı' adlı belge filmle başlattığı serüveninde, toplumsal ve siyasal dönüşümlerin aynası olmuştur. Cumhuriyet'in ilk evrelerinde Muhsin Ertuğrul’un tiyatro kökenli estetik anlayışıyla şekillenen sinemamız, 1950’li yıllarda 'Yeşilçam' olarak adlandırılan, kendine has anlatım kalıpları ve yıldız sistemiyle halkın geniş kitlelerine hitap eden özgün bir endüstriye dönüşmüştür. 1960 ve 70’li yıllar, yıllık film üretim sayısının rekor seviyelere ulaştığı ve sinemanın en temel eğlence aracı olduğu 'Altın Çağ' olarak tarihe geçmiştir. Ancak 1980’li yıllar itibarıyla televizyonun evlere girmesi, video kaset furyası ve değişen sosyo-politik konjonktür, Yeşilçam'ın o klasik yapısını sarsarak sinemayı derin bir kriz and ardından gelen bireysel arayışlar dönemine sokmuştur.",
+        "secenekler": [
+          "Kitle iletişim araçlarındaki teknolojik değişimlere",
+          "Toplumun siyasal and sosyal yapısındaki farklılaşmalara",
+          "Sinema dışı eğlence and izleme alternatiflerinin artmasına",
+          "Sinema salonlarının teknik altyapısının yetersiz kalmasına",
+          "Yeşilçam’ın geleneksel üretim and anlatı modelinin sarsılmasına"
+        ],
+        "dogru_cevap": "D",
+        "aciklama": "Metinde televizyon, video kaset (teknolojik değişim) and sosyo-politik konjonktür (siyasal yapı) sayılmıştır. Ancak 'sinema salonlarının teknik altyapısı' hakkında bir bilgi verilmemiştir."
       },
       {
         "tip": "matematik",
         "konu": "Rasyonel Sayılar",
-        "soruKoku": "Bu işlemin sonucu kaçtır? (Soru 16)",
-        "sesliBetimleme": "Soru on altı. İşlem şöyle: Kesir; payında parantez içinde, iki eksi, bir bölü üç, parantez bitti. Paydasında parantez içinde, bir artı, bir bölü dört, parantez bitti. Kesir bitti. Çarpı, üç bölü dört.",
+        "soruKoku": "Bu işlemin sonucu kaçtır?",
+        "sesliBetimleme": "Soru on altı. İşlem şöyle: Kesir; payında parantez içinde, iki eksi, bir bölü üç, parantez bitti. Paydasında parantez içinde, bir artı, bir bölü dört, parantez bitti. Kesir bitti. Çarpı, üç bölü dört. Bu işlemin sonucu kaçtır?",
         "gorselMetin": "((2 - 1/3) / (1 + 1/4)) * 3/4",
-        "secenekler": ["1", "1/2", "3/4", "5/4", "3/2"],
-        "dogru_cevap": "A",
-        "aciklama": "Pay: 2 - 1/3 = 5/3. Payda: 1 + 1/4 = 5/4. (5/3) / (5/4) = 4/3. Sonuç: (4/3) * (3/4) = 1."
+        "secenekler": [
+          "1/2",
+          "3/4",
+          "1",
+          "5/4",
+          "3/2"
+        ],
+        "dogru_cevap": "C",
+        "aciklama": "Paydaki işlem: İki eksi bir bölü üç, eşittir, beş bölü üç. Paydadaki işlem: Bir artı bir bölü dört, eşittir, beş bölü dört. Birinci kesri aynen yazıp ikinciyi ters çevirip çarparsak: Beş bölü üç, çarpı, dört bölü beş. Burada beşler sadeleşir ve dört bölü üç kalır. Bu sonucu, dışarıdaki üç bölü dört ile çarptığımızda; dörtler ve üçler birbirini götürür, sonuç bir olur."
       },
       {
         "tip": "matematik",
         "konu": "Üslü Sayılar",
-        "soruKoku": "Bu işlemin sonucu kaçtır? (Soru 17)",
-        "sesliBetimleme": "Soru on yedi. İşlem şöyle: Kesir; payında, üçün küpü çarpı ikinin dördüncü kuvveti. Paydasında, on ikinin karesi. Kesir bitti.",
+        "soruKoku": "Bu işlemin sonucu kaçtır?",
+        "sesliBetimleme": "Soru on yedi. İşlem şöyle: Kesir; payında, üçün küpü çarpı ikinin dördüncü kuvveti. Paydasında, on ikinin karesi. Kesir bitti. Bu işlemin sonucu kaçtır?",
         "gorselMetin": "(3^3 * 2^4) / 12^2",
-        "secenekler": ["1", "3", "2", "4", "6"],
-        "dogru_cevap": "B",
-        "aciklama": "Pay: 27 * 16 = 432. Payda: 12^2 = 144. 432 / 144 = 3 çıkar."
+        "secenekler": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "6"
+        ],
+        "dogru_cevap": "C",
+        "aciklama": "Pay kısmında; üçün küpü yirmi yedi, ikinin dördüncü kuvveti on altı eder. Pay: Yirmi yedi çarpı on altı, eşittir, dört yüz otuz iki. Payda kısmında; on ikinin karesi yüz kırk dört eder. Dört yüz otuz ikiyi, yüz kırk dörde böldüğümüzde sonuç üç çıkar."
       },
       {
         "tip": "matematik",
         "konu": "Köklü Sayılar",
-        "soruKoku": "Bu işlemin sonucu kaçtır? (Soru 18)",
-        "sesliBetimleme": "Soru on sekiz. İşlem şöyle: Kesir; payında, karekök içinde yirmi, artı, karekök içinde kırk beş. Paydasında, karekök içinde beş. Kesir bitti.",
+        "soruKoku": "Bu işlemin sonucu kaçtır?",
+        "sesliBetimleme": "Soru on sekiz. İşlem şöyle: Kesir; payında, karekök içinde yirmi, artı, karekök içinde kırk beş. Paydasında, karekök içinde beş. Kesir bitti. Bu işlemin sonucu kaçtır?",
         "gorselMetin": "(√20 + √45) / √5",
-        "secenekler": ["3", "4", "5", "6", "7"],
+        "secenekler": [
+          "3",
+          "4",
+          "5",
+          "6",
+          "7"
+        ],
         "dogru_cevap": "C",
-        "aciklama": "√20 = 2√5, √45 = 3√5. Toplam = 5√5. (5√5) / √5 = 5."
+        "aciklama": "Karekök yirmi sayısı, iki kök beş olarak; karekök kırk beş sayısı ise, üç kök beş olarak kök dışına çıkar. Payın toplamı: İki kök beş artı üç kök beş, eşittir, beş kök beş olur. Beş kök beşi, paydadaki kök beşe böldüğümüzde; kök beşler sadeleşir ve sonuç beş kalır."
       },
       {
         "tip": "matematik",
-        "konu": "Denklemler",
-        "soruKoku": "Bu denklemi sağlayan x kaçtır? (Soru 19)",
-        "sesliBetimleme": "Soru on dokuz. Denklem şöyle: x, eksi, kesir; payında x eksi iki, paydasında üç, kesir bitti. Eşittir dört.",
+        "konu": "Birinci Dereceden Denklemler",
+        "soruKoku": "Bu denklemi sağlayan x kaçtır?",
+        "sesliBetimleme": "Soru on dokuz. Denklem şöyle: x, eksi, kesir; payında x eksi iki, paydasında üç, kesir bitti. Eşittir dört. Bu denklemi sağlayan x kaçtır?",
         "gorselMetin": "x - (x-2)/3 = 4",
-        "secenekler": ["4", "6", "7", "5", "8"],
-        "dogru_cevap": "D",
-        "aciklama": "Payda eşitleme ile (3x - x + 2) / 3 = 4. 2x + 2 = 12. 2x = 10, x = 5."
+        "secenekler": [
+          "4",
+          "5",
+          "6",
+          "7",
+          "8"
+        ],
+        "dogru_cevap": "B",
+        "aciklama": "Payda eşitlemek için x ifadesini, üç x bölü üç olarak düşünelim. Ortak paydada yazarsak: Pay kısmında, üç x, eksi, parantez içinde x eksi iki. Payda kısmında ise üç olur. Eşittir dört. Payı düzenlediğimizde; eksi içeri dağılır ve iki x artı iki elde edilir. İki x artı iki, bölü üç, eşittir dört işleminde içler dışlar çarpımı yaparsak: İki x artı iki, eşittir, on iki olur. İkiyi karşıya negatif olarak atarsak; iki x eşittir on, buradan x eşittir beş bulunur."
       },
       {
         "tip": "matematik",
         "konu": "Eşitsizlikler",
-        "soruKoku": "Bu eşitsizliği sağlayan kaç farklı pozitif tam sayı değeri vardır? (Soru 20)",
-        "sesliBetimleme": "Soru yirmi. Eşitsizlik şöyle: Dört x eksi on, küçük eşittir, iki x artı altı.",
+        "soruKoku": "Bu eşitsizliği sağlayan kaç farklı pozitif tam sayı değeri vardır?",
+        "sesliBetimleme": "Soru yirmi. Eşitsizlik şöyle: Dört x eksi on, küçük eşittir, iki x artı altı. Bu eşitsizliği sağlayan kaç farklı pozitif tam sayı değeri vardır?",
         "gorselMetin": "4x - 10 ≤ 2x + 6",
-        "secenekler": ["6", "7", "9", "10", "8"],
-        "dogru_cevap": "E",
-        "aciklama": "2x ≤ 16, x ≤ 8. Pozitif tam sayılar: {1, 2, 3, 4, 5, 6, 7, 8} olmak üzere 8 tanedir."
+        "secenekler": [
+          "6",
+          "7",
+          "8",
+          "9",
+          "10"
+        ],
+        "dogru_cevap": "C",
+        "aciklama": "Bilinenleri bir tarafa, bilinmeyenleri diğer tarafa toplayalım. İki x'i sola negatif, negatif on sayısını sağa pozitif olarak atarsak: İki x, küçük eşittir, on altı olur. Her iki tarafı ikiye böldüğümüzde; x, küçük eşittir, sekiz sonucuna ulaşırız. Bu şartı sağlayan pozitif tam sayılar: Bir, iki, üç, dört, beş, altı, yedi ve sekiz olmak üzere toplam sekiz tanedir."
       },
       {
         "tip": "matematik",
         "konu": "Fonksiyonlar",
-        "soruKoku": "f bileşke g, parantez içinde bir, ifadesinin değeri kaçtır? (Soru 21)",
-        "sesliBetimleme": "Soru yirmi bir. f x fonksiyonu eşittir, üç x eksi bir. g x fonksiyonu eşittir, x artı iki.",
-        "gorselMetin": "(f o g)(1)",
-        "secenekler": ["8", "6", "7", "9", "10"],
-        "dogru_cevap": "A",
-        "aciklama": "g(1) = 1 + 2 = 3. f(3) = 3*3 - 1 = 8."
-      },
-      {
-        "tip": "matematik",
-        "konu": "İşlemler",
-        "soruKoku": "Beş üçgen üç işleminin sonucu kaçtır? (Soru 22)",
-        "sesliBetimleme": "Soru yirmi iki. Pozitif sayılarda a üçgen b işlemi şöyle tanımlanıyor: Kesir; payında a artı b, paydasında a eksi b, kesir bitti.",
-        "gorselMetin": "a ∆ b = (a+b)/(a-b)",
-        "secenekler": ["1", "4", "3", "2", "5"],
-        "dogru_cevap": "B",
-        "aciklama": "a=5, b=3. (5+3) / (5-3) = 8 / 2 = 4."
-      },
-      {
-        "tip": "matematik",
-        "konu": "Bölünebilme",
-        "soruKoku": "A rakamının alabileceği farklı değerlerin toplamı kaçtır? (Soru 23)",
-        "sesliBetimleme": "Soru yirmi üç. Dört basamaklı; üç, A, iki, B sayısı, hem on ile hem de üç ile tam bölünebilmektedir.",
-        "gorselMetin": "3A2B sayısı 10 ve 3 ile bölünür.",
-        "secenekler": ["9", "10", "12", "15", "18"],
+        "soruKoku": "f bileşke g, parantez içinde bir, ifadesinin değeri kaçtır?",
+        "sesliBetimleme": "Soru yirmi bir. f x fonksiyonu eşittir, üç x eksi bir. g x fonksiyonu eşittir, x artı iki. Buna göre, f bileşke g, parantez içinde bir, ifadesinin değeri kaçtır?",
+        "gorselMetin": "f(x)=3x-1, g(x)=x+2, (f o g)(1)=?",
+        "secenekler": [
+          "6",
+          "7",
+          "8",
+          "9",
+          "10"
+        ],
         "dogru_cevap": "C",
-        "aciklama": "10 ile bölme için B=0. 3 ile bölme için 3+A+2+0 = 5+A üçün katı olmalı. A={1,4,7}. Toplam=12."
+        "aciklama": "Bileşke işleminde önce içteki g bir değerini bulmalıyız. g fonksiyonunda x yerine bir yazarsak: Bir artı iki, eşittir, üç olur. Şimdi bulduğumuz bu üç değerini f fonksiyonunda yerine yazalım: f üç, eşittir, üç çarpı üç, eksi bir. Buradan dokuz eksi bir, eşittir, sekiz elde edilir."
       },
       {
         "tip": "matematik",
-        "konu": "Basamak Kavramı",
-        "soruKoku": "Bu koşulu sağlayan kaç farklı AB sayısı vardır? (Soru 24)",
-        "sesliBetimleme": "Soru yirmi dört. İki basamaklı AB doğal sayısı şuna eşittir: Dört çarpı, parantez içinde A artı B.",
-        "gorselMetin": "AB = 4(A+B)",
-        "secenekler": ["1", "2", "3", "4", "5"],
+        "konu": "Tanımlı İşlemler",
+        "soruKoku": "Beş üçgen üç işleminin sonucu kaçtır?",
+        "sesliBetimleme": "Soru yirmi iki. Pozitif sayılarda a üçgen b işlemi şöyle tanımlanıyor: Kesir; payında a artı b, paydasında a eksi b, kesir bitti. Buna göre, beş üçgen üç işleminin sonucu kaçtır?",
+        "gorselMetin": "a ∆ b = (a+b)/(a-b)",
+        "secenekler": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
         "dogru_cevap": "D",
-        "aciklama": "10A+B = 4A+4B => 6A=3B => 2A=B. İkililer: (1,2), (2,4), (3,6), (4,8). 4 farklı sayı."
+        "aciklama": "İşlem tanımında a yerine beş, b yerine üç yazalım. Pay kısmı: Beş artı üç, eşittir, sekiz. Payda kısmı: Beş eksi üç, eşittir, iki. Sekiz bölü iki, işleminin sonucu dört olur."
+      },
+      {
+        "tip": "matematik",
+        "konu": "Bölünebilme Kuralları",
+        "soruKoku": "A rakamının alabileceği farklı değerlerin toplamı kaçtır?",
+        "sesliBetimleme": "Soru yirmi üç. Dört basamaklı; üç, A, iki, B sayısı, hem on ile hem de üç ile tam bölünebilmektedir. Buna göre A rakamının alabileceği farklı değerlerin toplamı kaçtır?",
+        "gorselMetin": "3A2B sayısı 10 ve 3 ile tam bölünür.",
+        "secenekler": [
+          "9",
+          "10",
+          "12",
+          "15",
+          "18"
+        ],
+        "dogru_cevap": "C",
+        "aciklama": "Bir sayının on ile tam bölünmesi için birler basamağı sıfır olmalıdır. Bu durumda B eşittir sıfır olur. Sayımız; üç, A, iki, sıfır şeklini alır. Üç ile bölünme kuralı ise rakamlar toplamının üçün katı olmasıdır: Üç, artı, A, artı, iki, artı, sıfır, eşittir, beş artı A. Bu toplamın üçün katı olması için A yerine bir, dört veya yedi rakamları gelebilir. Bu değerlerin toplamı: Bir artı dört artı yedi, eşittir, on iki eder."
+      },
+      {
+        "tip": "matematik",
+        "konu": "Sayı Basamakları",
+        "soruKoku": "Bu koşulu sağlayan kaç farklı AB sayısı vardır?",
+        "sesliBetimleme": "Soru yirmi dört. İki basamaklı AB doğal sayısı şuna eşittir: Dört çarpı, parantez içinde A artı B. Bu koşulu sağlayan kaç farklı AB sayısı vardır?",
+        "gorselMetin": "AB = 4(A+B)",
+        "secenekler": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "dogru_cevap": "D",
+        "aciklama": "AB sayısını çözümlersek: On A artı B, eşittir, dört A artı dört B olur. A'ları bir tarafa, B'leri diğer tarafa toplarsak: Altı A, eşittir, üç B elde edilir. Sadeleştirme yaparsak; iki A, eşittir, bir B olur. A ve B rakam olduğuna göre bu eşitliği sağlayan ikililer: A bir için B iki, A iki için B dört, A üç için B altı ve A dört için B sekizdir. Toplam dört farklı sayı yazılabilir."
       },
       {
         "tip": "matematik",
         "konu": "Yüzde Problemleri",
-        "soruKoku": "Malın maliyeti kaç liradır? (Soru 25)",
-        "sesliBetimleme": "Soru yirmi beş. Maliyeti yüz x olan bir malın, önce yüzde elli kârla satış fiyatı belirleniyor. Sonra bu fiyat üzerinden yüzde yirmi indirim, ardından yeni fiyat üzerinden yüzde on indirim daha yapılıyor. Son satış fiyatı iki yüz on altı lira.",
-        "gorselMetin": "100x maliyet, %50 kar, %20 indirim, %10 indirim = 216",
-        "secenekler": ["180", "220", "240", "250", "200"],
-        "dogru_cevap": "E",
-        "aciklama": "100x -> 150x -> 120x -> 108x = 216. x=2. Maliyet=100*2=200."
+        "soruKoku": "Malın maliyeti kaç liradır?",
+        "sesliBetimleme": "Soru yirmi beş. Maliyeti yüz x olan bir malın, önce yüzde elli kârla satış fiyatı belirleniyor. Sonra bu fiyat üzerinden yüzde yirmi indirim, ardından yeni fiyat üzerinden yüzde on indirim daha yapılıyor. Son satış fiyatı iki yüz on altı lira olduğuna göre, malın maliyeti kaç liradır?",
+        "gorselMetin": "100x -> %50 kar -> %20 indirim -> %10 indirim = 216",
+        "secenekler": [
+          "180",
+          "200",
+          "220",
+          "240",
+          "250"
+        ],
+        "dogru_cevap": "B",
+        "aciklama": "Adım adım hesaplayalım: Yüz x maliyetin yüzde elli kârlı hali yüz elli x olur. Yüz elli x üzerinden yüzde yirmi indirim yapılırsa; yüz ellinin yüzde yirmisi otuzdur, yüz elliden otuz çıkarsa yüz yirmi x kalır. Yüz yirmi x üzerinden yüzde on indirim yapılırsa; yüz yirminin yüzde onu on ikidir, yüz yirmiden on iki çıkarsa yüz sekiz x kalır. Yüz sekiz x, eşittir, iki yüz on altı ise, x buradan iki bulunur. Maliyet yüz x olduğundan; yüz çarpı iki, eşittir, iki yüz liradır."
       },
       {
         "tip": "matematik",
         "konu": "Yaş Problemleri",
-        "soruKoku": "Babanın bugünkü yaşı kaçtır? (Soru 26)",
-        "sesliBetimleme": "Soru yirmi altı. Bir babanın bugünkü yaşı, üç çocuğunun bugünkü yaşları toplamının iki katıdır. Beş yıl sonra babanın yaşı, çocukların yaşları toplamından on fazla olacaktır.",
-        "gorselMetin": "B=2T, B+5=(T+15)+10",
-        "secenekler": ["40", "32", "36", "44", "48"],
-        "dogru_cevap": "A",
-        "aciklama": "2T+5 = T+25. T=20. B=2*20=40."
+        "soruKoku": "Babanın bugünkü yaşı kaçtır?",
+        "sesliBetimleme": "Soru yirmi altı. Bir babanın bugünkü yaşı, üç çocuğunun bugünkü yaşları toplamının iki katıdır. Beş yıl sonra babanın yaşı, çocukların yaşları toplamından on fazla olacaktır. Babanın bugünkü yaşı kaçtır?",
+        "gorselMetin": "Baba = 2 * (C1+C2+C3), B+5 = (C1+5+C2+5+C3+5)+10",
+        "secenekler": [
+          "32",
+          "36",
+          "40",
+          "44",
+          "48"
+        ],
+        "dogru_cevap": "C",
+        "aciklama": "Babanın yaşı B, çocukların toplamı T olsun. İlk denklem: B eşittir iki T. Beş yıl sonra baba B artı beş yaşında olur. Üç çocuk olduğu için toplamları on beş artar ve T artı on beş olur. İkinci denklem: B artı beş, eşittir, T artı on beş, artı on. Buradan B artı beş, eşittir, T artı yirmi beş olur. B yerine iki T yazarsak: İki T artı beş, eşittir, T artı yirmi beş. Buradan T eşittir yirmi bulunur. B eşittir iki çarpı yirmi, eşittir kırk."
       },
       {
         "tip": "matematik",
         "konu": "Hız Problemleri",
-        "soruKoku": "A ve B kentleri arası kaç kilometredir? (Soru 27)",
-        "sesliBetimleme": "Soru yirmi yedi. Saatte altmış kilometre hızla giden bir otobüs hareketinden iki saat sonra, aynınoktadan saatte doksan kilometre hızla bir otomobil yola çıkıyor. Otomobil, B kentine yüz kilometre kala otobüse yetişiyor.",
-        "gorselMetin": "60t = 90(t-2)",
-        "secenekler": ["360", "460", "400", "420", "500"],
-        "dogru_cevap": "B",
-        "aciklama": "30t=180, t=6 saat. Yol = (60*6)+100 = 460 km."
-      },
-      {
-        "tip": "matematik",
-        "konu": "İstatistik",
-        "soruKoku": "Yeni sınıfta matematiği sevenlerin oranı yüzde kaç olur? (Soru 28)",
-        "sesliBetimleme": "Soru yirmi sekiz. Kırk kişilik bir sınıftaki öğrencilerin yüzde yetmişi matematiği, yüzde ellisi Türkçeyi sevmektedir. Bu sınıfa sadece Türkçeyi seven on yeni öğrenci katılırsa...",
-        "gorselMetin": "40 kişinin %70'i mat sever. +10 Türkçe seven kişi eklendi.",
-        "secenekler": ["48", "52", "56", "60", "64"],
-        "dogru_cevap": "C",
-        "aciklama": "Mat seven: 28 kişi. Yeni mevcut: 50. 50'de 28 ise 100'de 56."
-      },
-      {
-        "tip": "matematik",
-        "konu": "Geometri",
-        "soruKoku": "Bu üçgenın alanı kaç birimkaredir? (Soru 29)",
-        "sesliBetimleme": "Soru yirmi dokuz. Bir dik üçgenın hipotenüs uzunluğu on üç birim, dik kenarlarından birinin uzunluğu beş birimdir.",
-        "gorselMetin": "Hipotenüs=13, Kenar=5",
-        "secenekler": ["24", "36", "42", "30", "60"],
+        "soruKoku": "A ve B kentleri arası kaç kilometredir?",
+        "sesliBetimleme": "Soru yirmi yedi. Saatte altmış kilometre hızla giden bir otobüs hareketinden iki saat sonra, aynı noktadan saatte doksan kilometre hızla bir otomobil yola çıkıyor. Otomobil, B kentine yüz kilometre kala otobüse yetişiyor. A ve B kentleri arası kaç kilometredir?",
+        "gorselMetin": "V1=60, V2=90, t2 = t1-2, Mesafe = Yol + 100",
+        "secenekler": [
+          "360",
+          "400",
+          "420",
+          "460",
+          "500"
+        ],
         "dogru_cevap": "D",
-        "aciklama": "Diğer kenar 12. Alan = (5*12)/2 = 30."
+        "aciklama": "Otobüs t saat yol alsın, otomobil t eksi iki saat yol alır. Yetiştikleri noktaya kadar aldıkları yollar eşittir: Altmış çarpı t, eşittir, doksan çarpı parantez içinde t eksi iki. Buradan altmış t, eşittir, doksan t eksi yüz seksen. Otuz t, eşittir, yüz seksen ve t eşittir altı saat bulunur. Yetiştikleri mesafe: Altmış çarpı altı, eşittir, üç yüz altmış kilometredir. Yolun bitimine yüz kilometre daha olduğu için; üç yüz altmış artı yüz, eşittir, dört yüz altmış kilometre toplam yoldur."
+      },
+      {
+        "tip": "matematik",
+        "konu": "Yüzde ve İstatistik Problemleri",
+        "soruKoku": "Yeni sınıfta matematiği sevenlerin oranı yüzde kaç olur?",
+        "sesliBetimleme": "Soru yirmi sekiz. Kırk kişilik bir sınıftaki öğrencilerin yüzde yetmişi matematiği, yüzde ellisi Türkçeyi sevmektedir. Bu sınıfa sadece Türkçeyi seven on yeni öğrenci katılırsa, yeni sınıfta matematiği sevenlerin oranı yüzde kaç olur?",
+        "gorselMetin": "40 öğrenci, %70 Mat, %50 Türkçe. +10 Türkçe seven eklenirse yeni Mat %?",
+        "secenekler": [
+          "48",
+          "52",
+          "56",
+          "60",
+          "64"
+        ],
+        "dogru_cevap": "C",
+        "aciklama": "İlk durumda matematik sevenlerin sayısı: Kırkın yüzde yetmişi, yani yirmi sekiz kişidir. Sınıfa on kişi eklenince yeni mevcut: Kırk artı on, eşittir, elli olur. Matematik sevenlerin sayısı değişmediği için; elli kişilik sınıfta hala yirmi sekiz kişi matematiği sevmektedir. Bu oranı yüzdeye vurursak: Elli kişide yirmi sekiz ise, yüz kişide elli altı olur."
+      },
+      {
+        "tip": "matematik",
+        "konu": "Geometri - Üçgenler",
+        "soruKoku": "Bu üçgenin alanı kaç birimkaredir?",
+        "sesliBetimleme": "Soru yirmi dokuz. Bir dik üçgenin hipotenüs uzunluğu on üç birim, dik kenarlarından birinin uzunluğu beş birimdir. Bu üçgenin alanı kaç birimkaredir?",
+        "gorselMetin": "Dik üçgen, hipotenüs=13, kenar=5, Alan=?",
+        "secenekler": [
+          "24",
+          "30",
+          "36",
+          "42",
+          "60"
+        ],
+        "dogru_cevap": "B",
+        "aciklama": "Dik üçgende Pisagor bağıntısı veya beş, on iki, on üç özel üçgeni gereği, diğer dik kenar uzunluğu on iki birim olarak bulunur. Dik üçgenin alanı, dik kenarların çarpımının yarısıdır: Beş çarpı on iki, bölü iki. Altmış bölü iki, eşittir, otuz birimkare bulunur."
       },
       {
         "tip": "matematik",
         "konu": "Analitik Geometri",
-        "soruKoku": "Bu doğru, parantez içinde bir virgül beş noktasından geçtiğine göre, k değeri kaçtır? (Soru 30)",
-        "sesliBetimleme": "Soru otuz. Analitik düzlemde denklem şöyle: İki x, eksi, y, artı, k, eşittir, sıfır.",
+        "soruKoku": "Bu doğru, parantez içinde bir virgül beş noktasından geçtiğine göre, k değeri kaçtır?",
+        "sesliBetimleme": "Soru otuz. Analitik düzlemde denklem şöyle: İki x, eksi, y, artı, k, eşittir, sıfır. Bu doğru, parantez içinde bir virgül beş noktasından geçtiğine göre, k değeri kaçtır?",
         "gorselMetin": "2x - y + k = 0, Nokta=(1,5)",
-        "secenekler": ["1", "2", "4", "5", "3"],
-        "dogru_cevap": "E",
-        "aciklama": "2(1) - 5 + k = 0 => -3 + k = 0. k=3."
+        "secenekler": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "dogru_cevap": "C",
+        "aciklama": "Doğru üzerindeki bir nokta, doğru denklemini sağlamak zorundadır. Denklemde x yerine bir, y yerine beş yazalım: İki çarpı bir, eksi, beş, artı, k, eşittir, sıfır. İki eksi beşten, negatif üç, artı, k, eşittir, sıfır olur. Negatif üçü karşıya atarsak k eşittir üç bulunur."
       },
       {
         "tip": "tarih",
         "konu": "İslamiyet Öncesi Türk Tarihi",
-        "soruKoku": "Uygurların bozkır kültüründen uzaklaşarak yerleşik hayata geçmelerinde ve askerî karakterlerinin değişiminde belirleyici olan inanç sistemi aşağıdakilerden hangisidir? Bögü Kağan döneminde benimsenen Maniheizm; hayvansal gıdayı ve savaşı yasaklamasıyla Uygurları tarım ve mimariye yönlendirirken savaşçılık yeteneklerinin zayıflamasına yol açmıştır.",
-        "icerik": [],
-        "secenekler": ["Maniheizm", "Budizm", "Musevilik", "Hristiyanlık", "Şamanizm"],
+        "soruKoku": "Uygurların bozkır kültüründen uzaklaşarak yerleşik hayata geçmelerinde ve askerî karakterlerinin değişiminde belirleyici olan inanç sistemi aşağıdakilerden hangisidir?",
+        "icerik": "",
+        "secenekler": [
+          "Maniheizm",
+          "Budizm",
+          "Musevilik",
+          "Hristiyanlık",
+          "Şamanizm"
+        ],
         "dogru_cevap": "A",
-        "aciklama": "Uygurlar Bögü Kağan döneminde Maniheizm'i benimsemiş ve yerleşik hayata geçmişlerdir."
+        "aciklama": "Bögü Kağan döneminde benimsenen Maniheizm; hayvansal gıdayı ve savaşı yasaklamasıyla Uygurları tarım ve mimariye yönlendirirken savaşçılık yeteneklerinin zayıflamasına yol açmıştır."
       },
       {
         "tip": "tarih",
         "konu": "Anadolu Selçuklu",
         "soruKoku": "Anadolu Selçuklu Devleti'nde esnaf ve zanaatkârlar arasında mesleki dayanışmayı tesis eden, üretim kalitesini denetleyen ve fütüvvetname esaslarına göre işleyen teşkilat aşağıdakilerden hangisidir?",
-        "icerik": [],
-        "secenekler": ["İkta", "Ahilik", "Lonca", "Gulam", "Vakıf"],
+        "icerik": "",
+        "secenekler": [
+          "İkta",
+          "Ahilik",
+          "Lonca",
+          "Gulam",
+          "Vakıf"
+        ],
         "dogru_cevap": "B",
-        "aciklama": "Ahi Evran tarafından kurulan Ahilik, mesleki eğitim ve denetim sağlayan kurumdur."
+        "aciklama": "Ahi Evran tarafından temelleri atılan Ahilik teşkilatı, esnafa mesleki eğitim vermesinin yanı sıra narh sistemiyle fiyatları kontrol ederek hem tüketiciyi hem de üreticiyi koruyan sosyo-ekonomik bir kurumdur."
       },
       {
         "tip": "tarih",
         "konu": "Osmanlı Eğitimi",
         "soruKoku": "Osmanlı Devleti'nde devşirme kökenli yetenekli çocukların sadrazamlığa kadar yükselebildiği, saray bünyesinde yer alan ve üst düzey bürokrat yetiştiren eğitim kurumu aşağıdakilerden hangisidir?",
-        "icerik": [],
-        "secenekler": ["Medrese", "Rüştiye", "İdadi", "Enderun", "Sıbyan Mektebi"],
-        "dogru_cevap": "D",
-        "aciklama": "Enderun Mektebi, Osmanlı'nın mülki ve askerî idari kadrosunu yetiştiren saray okuludur."
+        "icerik": "",
+        "secenekler": [
+          "Medrese",
+          "Enderun",
+          "Rüştiye",
+          "İdadi",
+          "Sıbyan Mektebi"
+        ],
+        "dogru_cevap": "B",
+        "aciklama": "2. Murat döneminde kurulan ve Fatih Sultan Mehmet ile sistemleşen Enderun Mektebi, devletin mülki ve askerî idari kadrosunu yetiştiren 'iç saray' okuludur."
       },
       {
         "tip": "tarih",
         "konu": "Hint Deniz Seferleri",
         "soruKoku": "16. yüzyılda Coğrafi Keşifler neticesinde ticaret yollarının yön değiştirmesi üzerine Osmanlı Devleti'nin Portekiz'in Hint Okyanusu'ndaki hegemonyasını sonlandırmak ve bölgedeki Müslüman devletlere askeri destek ulaştırmak amacıyla gerçekleştirdiği seferler aşağıdakilerden hangisidir?",
-        "icerik": [],
-        "secenekler": ["Akdeniz Hâkimiyet Seferleri", "Batı Deniz Seferleri", "Venedik Deniz Seferleri", "Kızıldeniz Seferleri", "Hint Deniz Seferleri"],
-        "dogru_cevap": "E",
-        "aciklama": "Piri Reis gibi denizcilerin katıldığı Hint Deniz Seferleri Baharat Yolu'nu canlandırmayı hedeflemiştir."
+        "icerik": "",
+        "secenekler": [
+          "Hint Deniz Seferleri",
+          "Kızıldeniz Seferleri",
+          "Akdeniz Hâkimiyet Seferleri",
+          "Batı Deniz Seferleri.",
+          "Venedik Deniz Seferleri."
+        ],
+        "dogru_cevap": "A",
+        "aciklama": "Piri Reis, Seydi Ali Reis ve Hadım Süleyman Paşa gibi önemli denizcilerin liderlik ettiği Hint Deniz Seferleri; Portekiz'in bölgedeki etkinliğini kırmayı ve Baharat Yolu'nu yeniden canlandırmayı hedeflemiş olsa da kesin başarıya ulaşılamamıştır."
       },
       {
         "tip": "tarih",
         "konu": "Tanzimat Fermanı",
         "soruKoku": "Osmanlı Devleti'nde padişahın yetkilerini kendi isteğiyle sınırlandırdığı, kanun üstünlüğü ilkesinin ilk kez kabul edildiği ve anayasalcılık sürecinin başlangıcı sayılan belge aşağıdakilerden hangisidir?",
-        "icerik": [],
-        "secenekler": ["Tanzimat Fermanı", "Sened-i İttifak", "Islahat Fermanı", "Kanun-i Esasi", "Vilayet Nizamnamesi"],
-        "dogru_cevap": "A",
-        "aciklama": "Sultan Abdülmecid dönemindeki Tanzimat Fermanı ile hukuk devleti yolunda adım atılmıştır."
+        "icerik": "",
+        "secenekler": [
+          "Sened-i İttifak",
+          "Tanzimat Fermanı",
+          "Islahat Fermanı",
+          "Kanun-i Esasi",
+          "Vilayet Nizamnamesi"
+        ],
+        "dogru_cevap": "B",
+        "aciklama": "Sultan Abdülmecid döneminde ilan edilen Tanzimat Fermanı ile hukuk devleti yolunda en önemli adım atılmış, tüm vatandaşların can, mal ve namus güvenliği devlet güvencesine alınmıştır."
       },
       {
         "tip": "tarih",
         "konu": "Çok Partili Hayat",
         "soruKoku": "2. Meşrutiyet'in ilanıyla (1908) birlikte 1909 anayasa değişiklikleri sonucunda Türk siyasi hayatında ilk kez görülen gelişme aşağıdakilerden hangisidir?",
-        "icerik": [],
-        "secenekler": ["Cumhuriyetin ilanı", "Çok partili hayata geçilmesi", "Kadınlara seçme hakkı", "Saltanatın kaldırılması", "Meclisin açılması"],
+        "icerik": "",
+        "secenekler": [
+          "Cumhuriyetin ilanı",
+          "Çok partili hayata geçilmesi",
+          "Kadınlara seçme hakkı verilmesi",
+          "Saltanatın kaldırılması",
+          "Meclis-i Mebusanın açılması"
+        ],
         "dogru_cevap": "B",
-        "aciklama": "2. Meşrutiyet dönemi çok partili demokratik hayatın başlangıcı olmuştur."
+        "aciklama": "2. Meşrutiyet dönemi; İttihat ve Terakki ile Hürriyet ve İtilaf gibi fırkaların kurulmasıyla Türk tarihinde parlamenter ve demokratik çok partili dönemin başlangıcı olmuştur."
       },
       {
         "tip": "tarih",
         "konu": "Kanal Cephesi",
         "soruKoku": "Osmanlı Devleti'nin 1. Dünya Savaşı'nda İngiltere'nin sömürgeleriyle olan bağlantısını kesmek ve 1882'de kaybettiği Mısır'ı geri almak amacıyla açtığı taarruz cephesi aşağıdakilerden hangisidir?",
-        "icerik": [],
-        "secenekler": ["Kafkas Cephesi", "Hicaz-Yemen Cephesi", "Kanal Cephesi", "Suriye-Filistin Cephesi", "Irak Cephesi"],
-        "dogru_cevap": "C",
-        "aciklama": "Alman desteğiyle açılan Kanal Cephesi Mısır'ı geri almayı amaçlayan bir taarruz cephesidir."
+        "icerik": "",
+        "secenekler": [
+          "Kafkas Cephesi",
+          "Kanal Cephesi",
+          "Hicaz-Yemen Cephesi",
+          "Suriye-Filistin Cephesi",
+          "Irak Cephesi"
+        ],
+        "dogru_cevap": "B",
+        "aciklama": "Almanların stratejik desteğiyle açılan Kanal Cephesi, lojistik yetersizlikler ve bölge şartları nedeniyle başarısızlıkla sonuçlanan bir taarruz harekatıdır."
       },
       {
         "tip": "tarih",
         "konu": "Misak-ı Millî",
         "soruKoku": "Son Osmanlı Mebusan Meclisi'nde kabul edilen ve Millî Mücadele'nin siyasi programı niteliğinde olan, tam bağımsızlık hedefini belirleyen belge aşağıdakilerden hangisidir?",
-        "icerik": [],
-        "secenekler": ["Teşkilat-ı Esasiye", "Amasya Genelgesi", "Erzurum Kongresi", "Misak-ı Millî", "Mudanya Mütarekesi"],
-        "dogru_cevap": "D",
-        "aciklama": "28 Ocak 1920'de kabul edilen Misak-ı Millî vatan sınırlarını çizmiştir."
+        "icerik": "",
+        "secenekler": [
+          "Misak-ı Millî",
+          "Teşkilat-ı Esasiye",
+          "Amasya Genelgesi",
+          "Erzurum Kongresi",
+          "Mudanya Mütarekesi"
+        ],
+        "dogru_cevap": "A",
+        "aciklama": "28 Ocak 1920'de kabul edilen Misak-ı Millî kararları, Türk vatanının sınırlarını çizmiş ve bu kararlar İstanbul'un İtilaf Devletleri tarafından resmen işgaline zemin hazırlamıştır."
       },
       {
         "tip": "tarih",
         "konu": "Sakarya Meydan Muharebesi",
         "soruKoku": "Mustafa Kemal Paşa'nın 'Hattı müdafaa yoktur, sathı müdafaa vardır. O satıh bütün vatandır.' emrini vererek topyekûn savaş stratejisini uyguladığı Millî Mücadele savaşı aşağıdakilerden hangisidir?",
-        "icerik": [],
-        "secenekler": ["1. İnönü Muharebesi", "2. İnönü Muharebesi", "Kütahya-Eskişehir", "Büyük Taarruz", "Sakarya Meydan Muharebesi"],
-        "dogru_cevap": "E",
-        "aciklama": "Sakarya Zaferi ile Türk ordusunun geri çekilişi durmuş ve üstünlük sağlanmıştır."
+        "icerik": "",
+        "secenekler": [
+          "1. İnönü Muharebesi",
+          "2. İnönü Muharebesi",
+          "Kütahya-Eskişehir Muharebesi",
+          "Sakarya Meydan Muharebesi",
+          "Büyük Taarruz"
+        ],
+        "dogru_cevap": "D",
+        "aciklama": "Sakarya Meydan Muharebesi, Türk ordusunun 2. Viyana Kuşatması'ndan beri süregelen geri çekilişini durduran ve askerî üstünlüğün Türk tarafına geçmesini sağlayan kritik bir zaferdir."
       },
       {
         "tip": "tarih",
         "konu": "Türk Medeni Kanunu",
         "soruKoku": "17 Şubat 1926 tarihinde yürürlüğe giren Türk Medeni Kanunu'nun, hukuk sistemindeki çok başlılığı sona erdirerek toplumsal yapıda sağladığı en temel dönüşüm aşağıdakilerden hangisidir?",
-        "icerik": [],
-        "secenekler": ["Hukuk birliğinin sağlanmasıyla laik esaslara göre düzenlenme", "Kadınların seçimlere girmesi", "Patrikhane yetkilerinin artması", "Şer'iyye Vekaletinin kurulması", "Eğitim birliğinin sağlanması"],
-        "dogru_cevap": "A",
-        "aciklama": "Medeni Kanun ile hukukta ikilik sona ermiş ve laik esaslar kabul edilmiştir."
+        "icerik": "",
+        "secenekler": [
+          "Kadınların genel seçimlerde oy kullanma ve aday olma hakkını elde etmesi",
+          "Hukuk birliğinin sağlanmasıyla aile ve toplum hayatının laik esaslara göre düzenlenmesi",
+          "Patrikhaneye bağlı mahkemelerin yetkilerinin artırılarak azınlık haklarının korunması",
+          "Şer’iyye ve Evkaf Vekâletinin kurulmasıyla dini kurumların devlet denetimine alınması",
+          "Medreselerin kapatılarak eğitim ve öğretim birliğinin yasal güvenceye kavuşturulması"
+        ],
+        "dogru_cevap": "B",
+        "aciklama": "Türk Medeni Kanunu ile Mecelle yürürlükten kaldırılarak hukukta ikilik sona erdirilmiş, laik esaslara göre aile hayatı düzenlenmiştir."
       },
       {
         "tip": "tarih",
         "konu": "Atatürk İlkeleri",
         "soruKoku": "Atatürk'ün 'Türkiye Cumhuriyeti'ni kuran Türkiye halkına Türk milleti denir.' sözüyle ifade edilen ve ırkçılığı reddederek millî birlik ve beraberliği esas alan ilkesi aşağıdakilerden hangisidir?",
-        "icerik": [],
-        "secenekler": ["Cumhuriyetçilik", "Milliyetçilik", "Halkçılık", "Laiklik", "Devletçilik"],
+        "icerik": "",
+        "secenekler": [
+          "Cumhuriyetçilik",
+          "Milliyetçilik",
+          "Halkçılık",
+          "Laiklik",
+          "Devletçilik"
+        ],
         "dogru_cevap": "B",
-        "aciklama": "Atatürk Milliyetçiliği ortak kültür etrafında birleşen kapsayıcı bir anlayıştır."
+        "aciklama": "Atatürk Milliyetçiliği; din veya ırk ayrımı gözetmeksizin ortak bir ülkü ve kültür etrafında birleşen, birleştirici ve kapsayıcı bir anlayışı savunur."
       },
       {
         "tip": "tarih",
         "konu": "Sadabat Paktı",
         "soruKoku": "Türkiye'nin 1937 yılında İtalya'nın Orta Doğu'daki yayılmacı politikalarına karşı Doğu sınırlarının güvenliğini sağlamak amacıyla İran, Irak ve Afganistan ile imzaladığı bölgesel ittifak aşağıdakilerden hangisidir?",
-        "icerik": [],
-        "secenekler": ["Balkan Antantı", "Bağdat Paktı", "Sadabat Paktı", "Ankara Antlaşması", "Montrö Sözleşmesi"],
-        "dogru_cevap": "C",
-        "aciklama": "Sadabat Paktı ile doğu sınırları diplomatik yolla güvence altına alınmıştır."
+        "icerik": "",
+        "secenekler": [
+          "Balkan Antantı",
+          "Sadabat Paktı",
+          "Bağdat Paktı",
+          "Ankara Antlaşması",
+          "Montrö Boğazlar Sözleşmesi"
+        ],
+        "dogru_cevap": "B",
+        "aciklama": "Tahran'da imzalanan Sadabat Paktı, bölge barışına katkı sunmuş ve Türkiye'nin İkinci Dünya Savaşı öncesinde doğu sınırlarını diplomatik yolla güvence altına almasını sağlamıştır."
       },
       {
         "tip": "tarih",
         "konu": "Türk Dünyası",
         "soruKoku": "Kırım'da çıkardığı Tercüman gazetesi aracılığıyla 'Dilde, fikirde, işte birlik' şiarını savunan ve Türk dünyasında eğitim modernleşmesini başlatan düşünür aşağıdakilerden hangisidir?",
-        "icerik": [],
-        "secenekler": ["Ziya Gökalp", "Yusuf Akçura", "Mehmet Emin Yurdakul", "İsmail Gaspıralı", "Ömer Seyfettin"],
-        "dogru_cevap": "D",
-        "aciklama": "İsmail Gaspıralı dilde ve fikirde birlik için Usul-i Cedid eğitimini başlatmıştır."
+        "icerik": "",
+        "secenekler": [
+          "Ziya Gökalp",
+          "Yusuf Akçura",
+          "İsmail Gaspıralı",
+          "Mehmet Emin Yurdakul",
+          "Ömer Seyfettin"
+        ],
+        "dogru_cevap": "C",
+        "aciklama": "İsmail Gaspıralı, Türk toplulukları arasında kültürel birliğin sağlanması ve eğitimin çağdaşlaşması adına yaptığı çalışmalarla Türk dünyasının en önemli fikir adamlarından biridir."
       },
       {
         "tip": "cografya",
         "konu": "Yer Şekilleri",
         "soruKoku": "Türkiye’nin tektonik oluşumu ve dış kuvvetlerin yer şekilleri üzerindeki etkisi düşünüldüğünde, aşağıdaki ovalardan hangisi 'akarsu biriktirmesi' sonucu oluşan bir delta ovası olmayıp, 'fay hattına bağlı çöküntü' sonucu oluşan bir tektonik ovadır?",
-        "icerik": [],
-        "secenekler": ["Çarşamba", "Bafra", "Silifke", "Balat", "Erbaa"],
-        "dogru_cevap": "E",
-        "aciklama": "Erbaa Ovası Kuzey Anadolu Fay Hattı üzerindeki bir tektonik çöküntüdür."
+        "icerik": "",
+        "secenekler": [
+          "Çarşamba",
+          "Bafra",
+          "Silifke",
+          "Erbaa",
+          "Balat"
+        ],
+        "dogru_cevap": "D",
+        "aciklama": "Çarşamba, Bafra, Silifke ve Balat ovaları delta ovaları iken; Erbaa Ovası, Kuzey Anadolu Fay Hattı (KAF) üzerinde yer alan tektonik bir çöküntü alanıdır."
       },
       {
         "tip": "cografya",
         "konu": "İklim ve Toprak",
         "soruKoku": "Türkiye’de iklimin toprak ve bitki örtüsü üzerindeki belirleyici etkisi dikkate alındığında; kış ılıklığı isteyen, kırmızı renkli ve kalker (kireç taşı) üzerinde gelişen 'Terra-Rossa' topraklarının yaygın olduğu bir yörede aşağıdaki ağaç türlerinden hangisinin doğal olarak yetişmesi beklenir?",
-        "icerik": [],
-        "secenekler": ["Zeytin", "Sarıçam", "Ladin", "Kayın", "Sığla"],
-        "dogru_cevap": "A",
-        "aciklama": "Terra-Rossa Akdeniz iklimi toprağıdır ve zeytin bu iklimin bitkisidir."
+        "icerik": "",
+        "secenekler": [
+          "Sarıçam",
+          "Ladin",
+          "Zeytin",
+          "Kayın",
+          "Sığla"
+        ],
+        "dogru_cevap": "C",
+        "aciklama": "Terra-Rossa toprakları Akdeniz iklim bölgesinin karakteristik toprağıdır ve bu iklimin bitki örtüsü olan zeytin bu toprak tipinde ideal yetişme ortamını bulur."
       },
       {
         "tip": "cografya",
         "konu": "Kırsal Yerleşmeler",
         "soruKoku": "Temel ekonomik faaliyetinin tarım olması nedeniyle genellikle 'kalıcı' yerleşme statüsünde bulunan kırsal yerleşme birimi aşağıdakilerden hangisidir?",
-        "icerik": [],
-        "secenekler": ["Yayla", "Mezra", "Oba", "Kom", "Ağıl"],
-        "dogru_cevap": "B",
-        "aciklama": "Mezra yerleşmelerinde temel faaliyet tarım olduğu için kalıcıdırlar."
+        "icerik": "",
+        "secenekler": [
+          "Yayla",
+          "Oba",
+          "Mezra",
+          "Kom",
+          "Ağıl"
+        ],
+        "dogru_cevap": "C",
+        "aciklama": "Yayla, Oba, Kom ve Ağıl gibi yerleşmeler hayvancılık nedeniyle 'geçici' iken; Mezra yerleşmelerinde temel geçim kaynağı tarım olduğu için 'kalıcı' yerleşmelerdir."
       },
       {
         "tip": "cografya",
         "konu": "Tarım",
         "soruKoku": "Aşağıdaki ürünlerden hangisinin ekim alanının belirlenmesinde 'sanayi tesisine (fabrikaya) yakınlık' en temel belirleyici unsurdur?",
-        "icerik": [],
-        "secenekler": ["Pamuk", "Zeytin", "Şeker Pancarı", "Buğday", "Fındık"],
-        "dogru_cevap": "C",
-        "aciklama": "Şeker pancarı çabuk bozulduğu için fabrikalara yakın yerlerde ekilir."
+        "icerik": "",
+        "secenekler": [
+          "Pamuk",
+          "Şeker Pancarı",
+          "Zeytin",
+          "Buğday",
+          "Fındık"
+        ],
+        "dogru_cevap": "B",
+        "aciklama": "Şeker pancarı söküldükten kısa süre sonra işlenmesi gereken bozulabilir bir üründür; bu nedenle tarımı mutlaka şeker fabrikalarının çevresinde yapılır."
       },
       {
         "tip": "cografya",
         "konu": "Turizm",
         "soruKoku": "2021 yılında UNESCO listesine dahil edilen, kerpiç saray mimarisi ve bürokrasiye dair en eski devlet modelinin izlerini taşıyan 'Arslantepe Höyüğü' aşağıdaki illerimizin hangisinde yer almaktadır?",
-        "icerik": [],
-        "secenekler": ["Şanlıurfa", "Çorum", "Gaziantep", "Malatya", "Nevşehir"],
-        "dogru_cevap": "D",
-        "aciklama": "Arslantepe Höyüğü Malatya'da bulunur ve 2021'de UNESCO listesine girmiştir."
+        "icerik": "",
+        "secenekler": [
+          "Şanlıurfa",
+          "Çorum",
+          "Malatya",
+          "Gaziantep",
+          "Nevşehir"
+        ],
+        "dogru_cevap": "C",
+        "aciklama": "Arslantepe Höyüğü, Malatya sınırları içerisinde yer alan ve 2021 yılında UNESCO Dünya Miras Listesi'ne giren çok önemli bir kültürel varlıktır."
       },
       {
         "tip": "anayasa",
         "konu": "Yürütme",
-        "soruKoku": "Cumhurbaşkanı aşağıdaki konulardan hangisinde olağan dönemlerde bir Cumhurbaşkanlığı kararnamesi ile düzenleme yapabilir?",
-        "icerik": [],
-        "secenekler": ["Temel haklar", "Kişi hakları", "Siyasi haklar", "Kanunla düzenlenen konular", "Yürütme yetkisine ilişkin konular"],
-        "dogru_cevap": "E",
-        "aciklama": "Cumhurbaşkanı olağan dönemde sadece yürütme yetkisine dair kararnameler çıkarabilir."
+        "soruKoku": "1982 Anayasası’nda 2017 değişikliğiyle düzenlenen 'Cumhurbaşkanlığı Kararnamesi' yetkisiyle ilgili olarak; Cumhurbaşkanı aşağıdaki konulardan hangisinde olağan dönemlerde bir Cumhurbaşkanlığı kararnamesi ile düzenleme yapabilir?",
+        "icerik": "",
+        "secenekler": [
+          "Temel haklar ve ödevler",
+          "Kişi hakları ve ödevleri",
+          "Siyasi haklar ve ödevler",
+          "Yürütme yetkisine ilişkin konular",
+          "Anayasa’da münhasıran kanunla düzenlenmesi öngörülen konular"
+        ],
+        "dogru_cevap": "D",
+        "aciklama": "2017 değişikliğine göre Cumhurbaşkanı, yürütme yetkisine ilişkin konularda kararname çıkarabilir; ancak temel, kişi ve siyasi haklar (olağan dönemde) düzenlenemez."
       },
       {
         "tip": "anayasa",
         "konu": "Cumhurbaşkanı Vekilliği",
-        "soruKoku": "1982 Anayasası’na göre, Cumhurbaşkanlığı makamının herhangi bir nedenle boşalması halinde (ölüm, istifa vb.), yenisi seçilene kadar Cumhurbaşkanlığına aşağıdakilerden hangisi vekalet eder?",
-        "icerik": [],
-        "secenekler": ["Cumhurbaşkanı Yardımcısı", "TBMM Başkanı", "En yaşlı yardımcı", "Anayasa Mahkemesi Başkanı", "İçişleri Bakanı"],
-        "dogru_cevap": "A",
-        "aciklama": "Makalın boşalması halinde vekalet yetkisi Cumhurbaşkanı Yardımcısı'na geçer."
+        "soruKoku": "1982 Anayasası’na göre, Cumhurbaşkanlığı makamının herhangi bir nedenle boşalması halinde (ölüm, istifa vb.), yenisi seçilene kadar Cumhurbaşkanlığına aşağıdakilerden hangisi vekalet eder ve Cumhurbaşkanına ait yetkileri kullanır?",
+        "icerik": "",
+        "secenekler": [
+          "Türkiye Büyük Millet Meclisi Başkanı",
+          "En yaşlı Cumhurbaşkanı Yardımcısı",
+          "Cumhurbaşkanının görevlendireceği bir bakan",
+          "Anayasa Mahkemesi Başkanı",
+          "Cumhurbaşkanı Yardımcısı"
+        ],
+        "dogru_cevap": "E",
+        "aciklama": "2017 değişikliği ile Cumhurbaşkanlığı makamının boşalması hallerinde vekalet görevi ve yetki kullanımı doğrudan 'Cumhurbaşkanı Yardımcısı'na geçmiştir."
       },
       {
         "tip": "anayasa",
         "konu": "Bütçe",
-        "soruKoku": "'Merkezi Yönetim Bütçe Kanun Teklifi' aşağıdakilerden hangisi tarafından, mali yılbaşından en az kaç gün önce Türkiye Büyük Millet Meclisi’ne sunulur?",
-        "icerik": [],
-        "secenekler": ["Hazine Bakanı - 60 gün", "Cumhurbaşkanı - 75 gün", "Strateji Başkanı - 75 gün", "Bütçe Başkanı - 75 gün", "Yardımcı - 45 gün"],
+        "soruKoku": "1982 Anayasası’na göre, 'Merkezi Yönetim Bütçe Kanun Teklifi' aşağıdakilerden hangisi tarafından, mali yılbaşından en az kaç gün önce Türkiye Büyük Millet Meclisi’ne sunulur?",
+        "icerik": "",
+        "secenekler": [
+          "Hazine ve Maliye Bakanı - 60 gün",
+          "Cumhurbaşkanı - 75 gün",
+          "Cumhurbaşkanı Yardımcısı - 75 gün",
+          "Strateji ve Bütçe Başkanı - 75 gün",
+          "Çalışma ve sosyal güvenlik bakanlığı - 45 gün"
+        ],
         "dogru_cevap": "B",
-        "aciklama": "Bütçeyi sunma görevi Cumhurbaşkanı'ndadır ve süre mali yıldan 75 gün öncedir."
+        "aciklama": "2017 değişikliğiyle bütçeyi hazırlama ve Meclis'e sunma görevi Cumhurbaşkanı'na verilmiştir; süre ise mali yılbaşından en az 75 gün öncesidir."
       },
       {
         "tip": "anayasa",
         "konu": "OHAL",
-        "soruKoku": "Olağanüstü Hal (OHAL) ilan etme yetkisi aşağıdakilerden hangisine aittir?",
-        "icerik": [],
-        "secenekler": ["MGK", "TBMM", "Cumhurbaşkanı", "İçişleri Bakanı", "Genelkurmay Başkanı"],
+        "soruKoku": "1982 Anayasası’na göre, 'Olağanüstü Hal (OHAL)' ilan etme yetkisi aşağıdakilerden hangisine aittir?",
+        "icerik": "",
+        "secenekler": [
+          "Milli Güvenlik Kurulu",
+          "Türkiye Büyük Millet Meclisi",
+          "Cumhurbaşkanı",
+          "İçişleri Bakanı",
+          "Genelkurmay Başkanı"
+        ],
         "dogru_cevap": "C",
-        "aciklama": "OHAL ilan etme yetkisi 2017 değişikliği ile Cumhurbaşkanı'na verilmiştir."
+        "aciklama": "2017 değişikliği ile Bakanlar Kurulu kaldırıldığı için OHAL ilan etme yetkisi doğrudan Cumhurbaşkanı'na verilmiştir."
       },
       {
         "tip": "anayasa",
         "konu": "İdare",
         "soruKoku": "5393 sayılı Belediye Kanunu’na göre, belediye idaresinin kurulmasıyla ilgili aşağıdaki durumlardan hangisinde belediye kurulması zorunluluk arz eder?",
-        "icerik": [],
-        "secenekler": ["Tüm köylerde", "Uzak mahallelerde", "Nüfusu 5.000 yerlerde", "İl merkezlerinde", "En az 2.000 nüfusta"],
-        "dogru_cevap": "D",
-        "aciklama": "İl ve ilçe merkezlerinde nüfusa bakılmaksızın belediye kurulması zorunludur."
+        "icerik": "",
+        "secenekler": [
+          "Nüfusu en az 2.000 olan yerleşim birimlerinde",
+          "Büyükşehir belediyesi bulunmayan illerin tüm köylerinde",
+          "İl merkezlerinde",
+          "En yakın belediyeye uzaklığı en az 25 km olan mahallelerde",
+          "Nüfusu 5.000 ve üzeri olan tüm yerleşim yerlerinde"
+        ],
+        "dogru_cevap": "C",
+        "aciklama": "5393 sayılı Kanun uyarınca genel olarak nüfusun 5.000 olması şartı aranırken, il ve ilçe merkezlerinde nüfusa bakılmaksızın belediye kurulması zorunludur."
       },
       {
         "tip": "anayasa",
         "konu": "HSK",
         "soruKoku": "1982 Anayasası'na göre Hâkimler ve Savcılar Kurulu (HSK) toplam kaç üyeden oluşur?",
-        "icerik": [],
-        "secenekler": ["7", "11", "15", "22", "13"],
+        "icerik": "",
+        "secenekler": [
+          "7",
+          "11",
+          "15",
+          "22",
+          "13"
+        ],
         "dogru_cevap": "E",
         "aciklama": "HSK 13 üyeden oluşur ve başkanı Adalet Bakanıdır."
       },
@@ -520,55 +844,91 @@
         "tip": "guncel bilgi",
         "konu": "EURO 2024",
         "soruKoku": "2024 yılında Almanya'da düzenlenen Avrupa Futbol Şampiyonası (EURO 2024) finalinde İngiltere'yi yenerek şampiyon olan ülke hangisidir?",
-        "icerik": [],
-        "secenekler": ["İspanya", "Fransa", "Hollanda", "Portekiz", "İtalya"],
+        "icerik": "",
+        "secenekler": [
+          "İspanya",
+          "Fransa",
+          "Hollanda",
+          "Portekiz",
+          "İtalya"
+        ],
         "dogru_cevap": "A",
-        "aciklama": "İspanya finalde İngiltere'yi 2-1 yenerek 4. şampiyonluğunu almıştır."
+        "aciklama": "İspanya milli takımı, final maçını 2-1 kazanarak tarihinin 4. Avrupa şampiyonluğuna ulaşmıştır."
       },
       {
         "tip": "guncel bilgi",
         "konu": "Nobel",
-        "soruKoku": "2024 Nobel Edebiyat Ödülü'nü kazanan, 'şiirsel düzyazısı ile tarihsel travmalarla yüzleştiği' belirtilen ilk Güney Koreli yazar hangisidir?",
-        "icerik": [],
-        "secenekler": ["Haruki Murakami", "Han Kang", "Mo Yan", "Jon Fosse", "Kazuo Ishiguro"],
+        "soruKoku": "2024 Nobel Edebiyat Ödülü'nü kazanan, 'şiirsel düzyazısı ile tarihsel travmalarla yüzleştiği' belirtilen ilk Güney Koreli yazar aşağıdakilerden hangisidir?",
+        "icerik": "",
+        "secenekler": [
+          "Haruki Murakami",
+          "Han Kang",
+          "Mo Yan",
+          "Jon Fosse",
+          "Kazuo Ishiguro"
+        ],
         "dogru_cevap": "B",
-        "aciklama": "Han Kang 2024 Nobel Edebiyat Ödülü'ne layık görülmüştür."
+        "aciklama": "Han Kang, 'Vejetaryen' gibi eserleriyle dünya çapında tanınan bir yazar olup 2024 Nobel ödülüne layık görülmüştür."
       },
       {
         "tip": "guncel bilgi",
         "konu": "UNESCO",
         "soruKoku": "UNESCO tarafından, kuantum fiziğinin keşfinin 100. yılı olması vesilesiyle dünya genelinde '2025 yılı' ne yılı ilan edilmiştir?",
-        "icerik": [],
-        "secenekler": ["Uzay Yılı", "Yapay Zeka Yılı", "Uluslararası Kuantum Bilimi ve Teknolojisi Yılı", "Matematik Yılı", "Sürdürülebilirlik Yılı"],
+        "icerik": "",
+        "secenekler": [
+          "Uzay Teknolojileri Yılı",
+          "Yapay Zeka Yılı",
+          "Uluslararası Kuantum Bilimi ve Teknolojisi Yılı",
+          "Matematik Yılı",
+          "Sürdürülebilirlik Yılı"
+        ],
         "dogru_cevap": "C",
-        "aciklama": "2025 yılı kuantum biliminin önemine adanmıştır."
+        "aciklama": "UNESCO, bilimsel farkındalığı artırmak için 2025'i kuantum biliminin önemine adamıştır."
       },
       {
         "tip": "guncel bilgi",
         "konu": "G20",
         "soruKoku": "2025 yılı G20 dönem başkanlığını yürütecek olan ve zirveye ev sahipliği yapacak olan ülke aşağıdakilerden hangisidir?",
-        "icerik": [],
-        "secenekler": ["Brezilya", "Hindistan", "Türkiye", "Güney Afrika", "Avustralya"],
+        "icerik": "",
+        "secenekler": [
+          "Brezilya",
+          "Hindistan",
+          "Türkiye",
+          "Güney Afrika",
+          "Avustralya"
+        ],
         "dogru_cevap": "D",
-        "aciklama": "2025 G20 zirvesine Güney Afrika ev sahipliği yapacaktır."
+        "aciklama": "G20 zirvesi 2025 yılında Güney Afrika Cumhuriyeti'nin ev sahipliğinde gerçekleştirilecektir."
       },
       {
         "tip": "guncel bilgi",
         "konu": "Ulaşım",
         "soruKoku": "Van Gölü üzerinde çalışan, 50 vagon taşıma kapasitesine sahip ve Türkiye'nin en büyük feribotu olma özelliğini taşıyan geminin adı nedir?",
-        "icerik": [],
-        "secenekler": ["Bitlisi", "Fatih Mehmet", "Yavuz Selim", "Barbaros", "Sultan Alparslan"],
+        "icerik": "",
+        "secenekler": [
+          "İdris-i Bitlisi",
+          "Fatih Sultan Mehmet",
+          "Yavuz Sultan Selim",
+          "Barbaros Hayrettin",
+          "Sultan Alparslan"
+        ],
         "dogru_cevap": "E",
-        "aciklama": "Sultan Alparslan feribotu Türkiye'nin en büyük kapasiteli feribotudur."
+        "aciklama": "Sultan Alparslan feribotu, Van-Tatvan arasındaki demiryolu bağlantısını sağlayan devasa bir ulaşım aracıdır."
       },
       {
         "tip": "guncel bilgi",
         "konu": "Türkolog",
         "soruKoku": "2024 yılında İstanbul'da vefat eden, Türk dünyası ve Dede Korkut üzerine yaptığı bilimsel çalışmalarla tanınan ünlü Azerbaycanlı Türkolog kimdir?",
-        "icerik": [],
-        "secenekler": ["Kamil Veli Nerimanoğlu", "Bahtiyar Vahapzade", "Anar Rızayev", "Elçin Efendiyev", "Ramiz Rövşen"],
-        "dogru_cevap": "A",
-        "aciklama": "Prof. Dr. Kamil Veli Nerimanoğlu ünlü bir Azerbaycanlı Türkologdur."
+        "icerik": "",
+        "secenekler": [
+          "Bahtiyar Vahapzade",
+          "Anar Rızayev",
+          "Elçin Efendiyev",
+          "Ramiz Rövşen",
+          "Kamil Veli Nerimanoğlu"
+        ],
+        "dogru_cevap": "E",
+        "aciklama": "Prof. Dr. Kamil Veli Nerimanoğlu, Türk dili ve edebiyatına yaptığı katkılarla hatırlanan çok değerli bir bilim insanıdır."
       }
     ]
   }
