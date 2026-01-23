@@ -15,7 +15,7 @@ const auth = firebase.auth();
 const db = firebase.database();
 
 // --- AYARLAR VE DEĞİŞKENLER ---
-const TOPLAM_DENEME_SAYISI = 3; 
+const TOPLAM_DENEME_SAYISI = 4; 
 let mevcutSorular = [], mevcutIndex = 0, kullaniciCevaplari = [];
 let kalanSure = 100 * 60, timerInterval, odaKodu = "";
 let isSinglePlayer = false, secilenDenemeID = "", odaKatilimciSayisi = 0;
