@@ -1,0 +1,934 @@
+[
+  {
+    "denemeID": "deneme4",
+    "sorular": [
+      {
+        "tip": "turkce",
+        "konu": "Sözcükte Anlam (Boşluk Doldurma)",
+        "soruKoku": "Bu cümlede boş bırakılan yere, düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+        "icerik": "Bilim insanları, doğadaki kusursuz işleyişi ve biyolojik sistemleri taklit ederek teknolojik sorunlara inovatif çözümler üretme yöntemine 'biyomimikri' adını veriyorlar. Örneğin yüksek hızlı trenlerin aerodinamik tasarımı, suya dalarken gürültü kirliliğine yol açmayan yalıçapkını kuşunun gagasından ---- yapılmıştır.",
+        "secenekler": [
+          "esinlenilerek",
+          "kopya edilerek",
+          "uzaklaşılarak",
+          "şüphelenilerek",
+          "korunarak"
+        ],
+        "dogru_cevap": "A",
+        "aciklama": "Bilimsel bir tasarımın doğadaki bir örnekten ilham alınarak hayata geçirilmesi durumunda terminolojik olarak 'esinlenmek' fiili kullanılır."
+      },
+      {
+        "tip": "turkce",
+        "konu": "Cümlede Anlam (Neden-Sonuç)",
+        "soruKoku": "Aşağıdaki cümlelerin hangisinde neden-sonuç (sebep-sonuç) ilişkisi söz konusudur?",
+        "icerik": "",
+        "secenekler": [
+          "Küresel ısınmanın etkilerini minimize etmek için fosil yakıt kullanımını radikal bir biçimde azaltmalıyız.",
+          "Atmosferdeki sera gazlarının yoğunluğu arttığı için dünya yüzeyindeki ortalama sıcaklıklar giderek yükseliyor.",
+          "Orman yangınları, ekosistemi ve biyoçeşitliliği tehdit eden en büyük unsurlar arasında yer almaktadır.",
+          "Yarın hava meteorolojik verilere göre güneşli olursa hep birlikte piknik organizasyonuna gideceğiz.",
+          "Güneş enerjisi panellerinin kurulumunu gerçekleştirmek üzere binanın çatısına çıktı."
+        ],
+        "dogru_cevap": "B",
+        "aciklama": "B seçeneğinde sera gazlarının artması 'gerçekleşmiş bir neden', dünyanın ısınması ise bu durumun 'sonucu'dur."
+      },
+      {
+        "tip": "turkce",
+        "konu": "Sözcük Yapısı (Kök Bilgisi)",
+        "soruKoku": "'Sürdürülebilirlik' sözcüğünün anlamsal ve yapısal olarak en küçük birimi (kökü) aşağıdakilerden hangisidir?",
+        "icerik": "",
+        "secenekler": [
+          "Sürü",
+          "Sürem",
+          "Sür-",
+          "Sürdür-",
+          "Sürüm"
+        ],
+        "dogru_cevap": "C",
+        "aciklama": "Sözcüğün en küçük anlamlı parçası 'devam etmek, devam ettirmek' anlamındaki 'sür-' fiil köküdür."
+      },
+      {
+        "tip": "turkce",
+        "konu": "Cümlenin Ögeleri",
+        "soruKoku": "'Nanoteknoloji; maddelerin atomik, moleküler ve supramoleküler boyutlarda işlenmesini sağlayan devrimsel bir bilim dalıdır.' Bu cümlenin öge dizilişi aşağıdakilerin hangisinde doğru verilmiştir?",
+        "icerik": "",
+        "secenekler": [
+          "Özne - Nesne - Yüklem",
+          "Zarf Tümleci - Özne - Yüklem",
+          "Nesne - Yüklem",
+          "Özne - Yüklem",
+          "Özne - Dolaylı Tümleç - Yüklem"
+        ],
+        "dogru_cevap": "D",
+        "aciklama": "'Nanoteknoloji' özne; geri kalan kısmın tamamı bir sıfat tamlaması grubu olduğu için bölünemez bir yüklemdir."
+      },
+      {
+        "tip": "turkce",
+        "konu": "Ses Bilgisi (Ünsüz Benzeşmesi)",
+        "soruKoku": "Aşağıdaki cümlelerin hangisinde ünsüz benzeşmesine (sertleşmesine) örnek teşkil eden bir kullanım vardır?",
+        "icerik": "",
+        "secenekler": [
+          "Evin kapısı rüzgardan dolayı tüm gece açık kalmış.",
+          "Bahçedeki kırmızı güller susuzluktan kurumuş.",
+          "Deniz bugün düne göre çok daha dalgalı görünüyor.",
+          "Yarın sabah erkenden okula gitmek için hazırlanacağım.",
+          "Ağaçta kuşlar cıvıldayarak baharın gelişini müjdeliyordu."
+        ],
+        "dogru_cevap": "E",
+        "aciklama": "'Ağaç' kelimesi sert ünsüzle (ç) bitmiştir; üzerine gelen '-da' eki sertleşerek '-ta' olmuştur."
+      },
+      {
+        "tip": "turkce",
+        "konu": "Paragrafta Yapı (Akışı Bozan Cümle)",
+        "soruKoku": "Bu parçada numaralanmış cümlelerden hangisi düşüncenin akışını bozmaktadır?",
+        "icerik": [
+          "(1) Mikroplastikler, 5 milimetreden daha küçük olan plastik parçacıkları olarak tanımlanmaktadır.",
+          "(2) Bu parçacıklar, deniz canlıları tarafından yanlışlıkla besin sanılarak yutulmaktadır.",
+          "(3) Plastik üretimi, son elli yılda sanayi devrimiyle birlikte küresel çapta inanılmaz boyutlara ulaşmıştır.",
+          "(4) Balıkların bünyesine giren bu mikroplastikler, besin zinciri yoluyla nihai olarak insanlara kadar ulaşır.",
+          "(5) Bu durum, insan biyolojisi üzerinde henüz tam olarak keşfedilmemiş uzun vadeli kronik riskler oluşturmaktadır."
+        ],
+        "secenekler": [
+          "3",
+          "1",
+          "2",
+          "4",
+          "5"
+        ],
+        "dogru_cevap": "A",
+        "aciklama": "Parçanın bütünü mikroplastiklerin tanımı ve besin zincirindeki tehlikelerine odaklanmışken, 3. cümlede genel plastik üretimi tarihinden bahsedilmesi tematik bütünlüğü bozmaktadır."
+      },
+      {
+        "tip": "turkce",
+        "konu": "Paragraf Yorumlama (Yapay Zeka)",
+        "soruKoku": "Bu parçaya göre yapay zekâ teknolojisiyle ilgili vurgulanan temel endişe kaynağı aşağıdakilerden hangisidir?",
+        "icerik": "Yapay zekâ, insan bilişsel süreçlerini taklit eden algoritmalar bütünüdür. Ancak bu teknolojinin gelişimi beraberinde ciddi etik sorunları da getirmektedir. Örneğin, otonom bir aracın kaza anında kimi kurtaracağına nasıl karar vereceği veya işe alım algoritmalarının adaylar arasında cinsiyet veya ırk ayrımcılığı yapıp yapmayacağı büyük tartışma konusudur. Bu nedenle, geliştiricilerin sadece teknik kodlama becerisine değil, aynı zamanda ahlaki sorumluluk bilincine de sahip olması gerekmektedir.",
+        "secenekler": [
+          "İnsanlardan daha yüksek bir zekâ seviyesine ulaşarak dünyayı yönetmesi",
+          "Etik ve ahlaki karar verme süreçlerindeki belirsizlikler ile olası algoritmik önyargılar",
+          "Geliştirme süreçlerinin çok yüksek maliyetli olması nedeniyle teknolojik eşitsizlik yaratması",
+          "Yüksek enerji tüketimi gereksinimi sebebiyle çevresel sürdürülebilirliğe zarar vermesi",
+          "İnsan iş gücünün yerini alarak kitlesel işsizlik ve ekonomik krizlere yol açması"
+        ],
+        "dogru_cevap": "B",
+        "aciklama": "Metinde otonom araçların kaza kararları ve algoritmaların ayrımcılık riski üzerinden etik belirsizliklerin temel sorun olduğu vurgulanmıştır."
+      },
+      {
+        "tip": "turkce",
+        "konu": "Paragrafta Ana Düşünce",
+        "soruKoku": "Bu parçadan hareketle teknoloji ve ahlak ilişkisi bağlamında aşağıdakilerden hangisine ulaşılabilir?",
+        "icerik": "Yapay zekâ, insan zekâsını taklit eden algoritmalar bütünüdür. Ancak bu teknolojinin gelişimi beraberinde ciddi etik sorunları da getirmektedir. Örneğin, otonom bir aracın kaza anında kimi kurtaracağına nasıl karar vereceği veya işe alım algoritmalarının adaylar arasında cinsiyet veya ırk ayrımcılığı yapıp yapmayacağı büyük tartışma konusudur. Bu nedenle, yapay zekâ geliştiricilerinin sadece teknik kodlama becerisine değil, aynı zamanda ahlaki sorumluluk bilincine de sahip olması gerekmektedir.",
+        "secenekler": [
+          "Yapay zekâ gelişimi etik standartlar belirlenene kadar derhal durdurulmalıdır.",
+          "Otonom araçların trafikte yarattığı riskler nedeniyle kullanımı yasaklanmalıdır.",
+          "Teknolojik ilerlemeler, ahlaki ve toplumsal değerler bütününden bağımsız olarak değerlendirilemez.",
+          "Yazılım algoritmaları her koşulda insanlardan daha rasyonel ve tarafsız kararlar verir.",
+          "Yapay zekâ etiği konusu sadece teorik felsefecilerin ilgi alanına giren bir tartışmadır."
+        ],
+        "dogru_cevap": "C",
+        "aciklama": "Metin, teknik becerinin yanında ahlaki sorumluluğun da olması gerektiğini belirterek teknolojinin değerlerle iç içe olması gerektiğini savunur."
+      },
+      {
+        "tip": "turkce",
+        "konu": "Paragrafta Yapı (Cümle Tamamlama)",
+        "soruKoku": "Bu parçada boş bırakılan yere, düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+        "icerik": "Yörüngedeki ömrünü tamamlamış uydu çöpleri ve roket parçaları, 'uzay kirliliği' adı verilen ciddi bir soruna yol açmaktadır. Saatte binlerce kilometre hızla dönen bu parçalar, aktif uydular ve Uluslararası Uzay İstasyonu için büyük tehlike oluşturur. ----. Bu zincirleme çarpışma reaksiyonuna bilim literatüründe 'Kessler Sendromu' adı verilir.",
+        "secenekler": [
+          "Uzay ajansları kirliliğe rağmen ticari kaygılarla yeni uydular fırlatmaya devam ediyor.",
+          "Uzay çöplerini toplamak için son yıllarda dev mıknatıslar ve ağ sistemleri önerilmiştir.",
+          "Mars yolculuğu planları yörüngedeki bu yoğun kirlilik nedeniyle belirsiz bir tarihe ertelenmiştir.",
+          "Küçük bir vida bile yörüngedeki yüksek hızı nedeniyle çarpışma anında bir bomba etkisi yaratarak binlerce yeni çöp parçası oluşturabilir.",
+          "Atmosfere giren çöplerin büyük bir kısmı sürtünme etkisiyle yanarak tamamen yok olur."
+        ],
+        "dogru_cevap": "D",
+        "aciklama": "Boşluktan sonraki 'zincirleme çarpışma reaksiyonu' ifadesi, çarpışan parçaların yeni çöpler oluşturmasını tanımlayan D seçeneğiyle mantıksal olarak tamamlanır."
+      },
+      {
+        "tip": "turkce",
+        "konu": "Yazım Kuralları",
+        "soruKoku": "Aşağıdaki cümlelerin hangisinde bir yazım yanlışı yapılmıştır?",
+        "icerik": "",
+        "secenekler": [
+          "Pazardan kış çayı hazırlamak amacıyla yarım kilo kuşburnu aldık.",
+          "Şehirden uzaklaşıp gökyüzünde Samanyolu'nu izlemek çok keyifliydi.",
+          "Akşam yemeğinde annemin özel tarifiyle yaptığı imambayıldı yemeğini yedik.",
+          "Yaz gecelerinde bahçede bir sürü ateş böceği parıldayarak uçardı.",
+          "Belgeselde bu bölgedeki mercan resiflerinde çok fazla köpekbalığı görüldüğü anlatıldı."
+        ],
+        "dogru_cevap": "E",
+        "aciklama": "'Köpek balığı' ifadesinde ikinci kelime olan 'balık' anlamını koruduğu için bu birleşik kelimenin ayrı yazılması gerekir."
+      },
+      {
+        "tip": "turkce",
+        "konu": "Paragraf Yorumlama (Hafıza ve Uyku)",
+        "soruKoku": "Parçaya göre uykunun bilişsel süreçler ve öğrenme üzerindeki temel işlevi nedir?",
+        "icerik": "Yeni bir bilgi edindikten sonra uyumak, beynin bu bilgiyi geçici hafızadan kalıcı hafızaya aktarmasını kolaylaştırır. Araştırmalar, uykunun özellikle 'REM' evresinde, gün içinde öğrenilenlerin işlendiğini ve nöronlar arası sinaptik bağların güçlendiğini göstermektedir. Uykusuz kalan bireylerde dikkat eksikliği ve öğrenme güçlüğü görülmesinin temel nedeni, beynin bu 'temizlik ve düzenleme' işlemini yapamamasıdır.",
+        "secenekler": [
+          "Vücudu fiziksel olarak dinlendirerek kas dokusunun yenilenmesini sağlamak",
+          "Rüyalar yoluyla bilinçaltındaki bastırılmış sanatsal yaratıcılığı artırmak",
+          "Bilgiyi nörolojik düzeyde işleyerek ve pekiştirerek kalıcı hafızaya aktarmak",
+          "Unutkanlık sorununu ileri yaşlılık dönemine kadar tamamen engellemek",
+          "Beynin hacimsel olarak büyümesini sağlayarak işlem kapasitesini geliştirmek"
+        ],
+        "dogru_cevap": "C",
+        "aciklama": "Metinde uykunun bilgileri geçici hafızadan kalıcı hafızaya aktardığı ve bağları güçlendirdiği açıkça ifade edilmiştir."
+      },
+      {
+        "tip": "turkce",
+        "konu": "Paragraftan Çıkarım Yapma",
+        "soruKoku": "Parçadan hareketle kronik uykusuzlukla ilgili aşağıdakilerin hangisine ulaşılamaz?",
+        "icerik": "Yeni bir bilgi edindikten sonra uyumak, beynin bu bilgiyi geçici hafızadan kalıcı hafızaya aktarmasını kolaylaştırır. Araştırmalar, uykunun özellikle 'REM' evresinde, gün içinde öğrenilenlerin işlendiğini ve nöronlar arası sinaptik bağların güçlendiğini göstermektedir. Uykusuz kalan bireylerde dikkat eksikliği ve öğrenme güçlüğü görülmesinin temel nedeni, beynin bu 'temizlik ve düzenleme' işlemini yapamamasıdır.",
+        "secenekler": [
+          "Bireyin odaklanma yeteneği üzerinde negatif bir korelasyon yaratır.",
+          "Beynin verileri organize etme ve pekiştirme mekanizmalarını sekteye uğratır.",
+          "Öğrenilen yeni bilgilerin kalıcı hale gelme sürecini olumsuz etkiler.",
+          "Bilişsel performansın düşmesine bağlı olarak öğrenme güçlüğü doğurur.",
+          "REM evresini normalden daha fazla uzatarak rüya görme sıklığını artırır."
+        ],
+        "dogru_cevap": "B",
+        "aciklama": "Uykusuzluğun bilişsel süreçleri bozduğu anlatılmıştır ancak REM evresini uzattığına dair bir bilgi yoktur. (Dağılım için B seçilmiştir)"
+      },
+      {
+        "tip": "turkce",
+        "konu": "Noktalama İşaretleri",
+        "soruKoku": "Bu parçada parantezle belirtilen yerlere sırasıyla aşağıdaki noktalama işaretlerinden hangileri getirilmelidir?",
+        "icerik": "Bilim insanları şu konuda hemfikir ( ) İklim değişikliği ( ) sadece doğayı değil ( ) ekonomiyi ( ) sağlığı ve sosyal yaşamı da tehdit ediyor ( )",
+        "secenekler": [
+          "(:) (,) (;) (,) (.)",
+          "(;) (,) (,) (,) (.)",
+          "(:) (,) (,) (,) (.)",
+          "(:) (;) (,) (,) (.)",
+          "(.) (,) (;) (,) (...)"
+        ],
+        "dogru_cevap": "C",
+        "aciklama": "Açıklama cümlesinden önce iki nokta, eş görevli sözcükleri ayırmak için virgül ve cümlenin sonuna nokta konmalıdır."
+      },
+      {
+        "tip": "turkce",
+        "konu": "Anlatım Bozukluğu",
+        "soruKoku": "'Hiç kimse toplantıya iştirak etmedi, bahçede bekledi.' Bu cümledeki anlatım bozukluğunun temel nedeni aşağıdakilerden hangisidir?",
+        "icerik": "",
+        "secenekler": [
+          "Nesne eksikliği nedeniyle cümlenin anlamsızlaşması",
+          "Zarf tümleci eksikliği ve dolaylı tümleç uyuşmazlığı",
+          "Yüklem eksikliği ve kip uyuşmazlığı bulunması",
+          "Özne eksikliği (Özne-Yüklem uyumsuzluğu)",
+          "Tamlama yanlışlığı ve çatı uyuşmazlığı görülmesi"
+        ],
+        "dogru_cevap": "D",
+        "aciklama": "İlk cümledeki 'Hiç kimse' olumsuz öznesi ikinci cümledeki 'bekledi' olumlu yüklemine uymamaktadır. İkinci cümleye 'herkes' öznesi eklenmelidir."
+      },
+      {
+        "tip": "turkce",
+        "konu": "Akışı Bozan Cümle (Psikoloji)",
+        "soruKoku": "Bu parçada numaralanmış cümlelerden hangisi düşüncenin akışını bozmaktadır?",
+        "icerik": [
+          "(1) Renklerin insan psikolojisi ve algısı üzerindeki etkisi pazarlama dünyasında stratejik bir araç olarak kullanılır.",
+          "(2) Örneğin kırmızı renk açlık hissini tetiklediği için gastronomi sektörü logolarında sıkça tercih edilir.",
+          "(3) Mavi renk ise güven ve sakinlik telkin ettiği için kurumsal bankacılık sektörünün favori rengidir.",
+          "(4) Renk körlüğü, erkeklerde kadınlara oranla istatistiksel olarak daha sık görülen genetik bir durumdur.",
+          "(5) Yeşil renk, doğallığı ve tazeliği çağrıştırdığı için organik gıda ve sağlık sektörlerinde baskın olarak kullanılır."
+        ],
+        "secenekler": [
+          "1",
+          "2",
+          "3",
+          "5",
+          "4"
+        ],
+        "dogru_cevap": "E",
+        "aciklama": "Paragrafın konusu renklerin pazarlama üzerindeki etkisidir. 4. cümlede renk körlüğü gibi tıbbi bir konuya girilmesi akışı bozmaktadır."
+      },
+      {
+        "tip": "matematik",
+        "konu": "Rasyonel Sayılar",
+        "soruKoku": "Bu işlemin sonucu kaçtır?",
+        "sesliBetimleme": "Soru on altı. İşlem şöyle: Bir ana kesir çizgisi düşünün. Üst tarafta yani pay kısmında; bir, artı, bir alt kesir. Bu alt kesrin payı iki, paydası; bir eksi, bir bölü üç. Ana kesir çizgisinin alt tarafında yani paydada ise sıfır virgül sekiz sayısı bulunmaktadır. Bu işlemin sonucu kaçtır?",
+        "gorselMetin": "(1 + (2 / (1 - 1/3))) / 0.8",
+        "secenekler": [
+          "5",
+          "3",
+          "4",
+          "6",
+          "8"
+        ],
+        "dogru_cevap": "A",
+        "aciklama": "En alttaki işlemden başlayalım: 1 - 1/3 = 2/3. Üstteki 2'yi 2/3'e bölersek; 2 * 3/2 = 3 olur. Pay kısmındaki 1 ile 3'ü toplarsak 4 elde ederiz. Paydadaki 0,8 ise 4/5'tir. 4 / (4/5) = 4 * 5/4 = 5 bulunur."
+      },
+      {
+        "tip": "matematik",
+        "konu": "Üslü Sayılar",
+        "soruKoku": "Bu işlemin sonucu kaçtır?",
+        "sesliBetimleme": "Soru on yedi. İşlem şöyle: Bir kesir ifadesi. Pay kısmında; iki üzeri on iki, artı, iki üzeri on bir, artı, iki üzeri on. Payda kısmında ise; iki üzeri dokuz, eksi, iki üzeri sekiz. Bu işlemin sonucu kaçtır?",
+        "gorselMetin": "(2^12 + 2^11 + 2^10) / (2^9 - 2^8)",
+        "secenekler": [
+          "14",
+          "28",
+          "42",
+          "56",
+          "64"
+        ],
+        "dogru_cevap": "B",
+        "aciklama": "Payı 2 üzeri 10 parantezine alırsak: 2 üzeri 10 çarpı (4 + 2 + 1) = 7 * 2 üzeri 10 olur. Paydayı 2 üzeri 8 parantezine alırsak: 2 üzeri 8 çarpı (2 - 1) = 1 * 2 üzeri 8 olur. Bölme işleminde 7 * 2'nin karesi kalır. 7 * 4 = 28 bulunur."
+      },
+      {
+        "tip": "matematik",
+        "konu": "Köklü Sayılar",
+        "soruKoku": "Bu işlemin sonucu kaçtır?",
+        "sesliBetimleme": "Soru on sekiz. İşlem şöyle: Parantez içinde; bir bölü, payda kısmında karekök üç eksi karekök iki. Parantezi kapatın. Bu ifadeden karekök üç çıkarılıyor. Sonuç kaçtır?",
+        "gorselMetin": "(1 / (√3 - √2)) - √3",
+        "secenekler": [
+          "negatif karekök iki",
+          "negatif karekök üç",
+          "karekök iki",
+          "sıfır",
+          "karekök üç"
+        ],
+        "dogru_cevap": "C",
+        "aciklama": "Kesrin paydasını eşleniği olan (√3 + √2) ile genişletelim. Payda 3 - 2 = 1 olur. İfade: √3 + √2 - √3 haline gelir. √3'ler birbirini yok eder, sonuç √2 kalır."
+      },
+      {
+        "tip": "matematik",
+        "konu": "Mutlak Değer",
+        "soruKoku": "Bu denklemi sağlayan x değerlerinin toplamı kaçtır?",
+        "sesliBetimleme": "Soru on dokuz. Denklem şöyle: En dışta bir mutlak değer var. İçerisinde; iki x, eksi, mutlak değer içinde negatif sekiz. Bu ifade on sayısına eşittir. x değerlerinin toplamı kaçtır?",
+        "gorselMetin": "|2x - |-8|| = 10",
+        "secenekler": [
+          "4",
+          "10",
+          "12",
+          "8",
+          "16"
+        ],
+        "dogru_cevap": "D",
+        "aciklama": "|-8| dışarı 8 olarak çıkar. |2x - 8| = 10 olur. 2x - 8 = 10 ise x = 9. 2x - 8 = -10 ise x = -1. Toplamları 9 + (-1) = 8 bulunur."
+      },
+      {
+        "tip": "matematik",
+        "konu": "Çarpanlara Ayırma",
+        "soruKoku": "x bir gerçel sayı olmak üzere; x kare eksi altı x artı dokuz eşittir sıfır olduğuna göre, x küp eksi yirmi yedi ifadesinin değeri kaçtır?",
+        "sesliBetimleme": "Soru yirmi. Bir denklem verilmiş: x'in karesi, eksi, altı x, artı, dokuz, eşittir sıfır. Buna göre; x'in küpü, eksi, yirmi yedi ifadesinin sonucu kaçtır?",
+        "gorselMetin": "x^2 - 6x + 9 = 0 => x^3 - 27 = ?",
+        "secenekler": [
+          "negatif sekiz",
+          "yirmi yedi",
+          "elli dört",
+          "sekiz",
+          "sıfır"
+        ],
+        "dogru_cevap": "E",
+        "aciklama": "x^2 - 6x + 9 ifadesi (x-3) sayısının karesidir. (x-3)^2 = 0 ise x = 3 bulunur. Sorulan ifadede yerine yazarsak: 3'ün küpü - 27 = 27 - 27 = 0 olur."
+      },
+      {
+        "tip": "matematik",
+        "konu": "Küme Problemleri",
+        "soruKoku": "İngilizce ve Fransızca dillerinden en az birini bilenlerin bulunduğu 32 kişilik bir grupta; İngilizce bilenlerin sayısı, sadece Fransızca bilenlerin sayısının üç katıdır. Her iki dili bilen 3 kişi olduğuna göre, sadece İngilizce bilenlerin sayısı kaçtır?",
+        "sesliBetimleme": "Soru yirmi bir. İki kesişen küme hayal edin. Toplam mevcut otuz iki. İngilizce kümesinin tamamı, sadece Fransızca bilen bölgenin üç katı. Kesişimde üç kişi var. Sadece İngilizce bilenleri bulun.",
+        "gorselMetin": "Mevcut=32, s(İ)=3*s(Sadece F), s(İ ∩ F)=3, s(Sadece İ)=?",
+        "secenekler": [
+          "21",
+          "15",
+          "17",
+          "19",
+          "23"
+        ],
+        "dogru_cevap": "A",
+        "aciklama": "Sadece F bilenlere x diyelim. İngilizce bilenler 3x olur. Toplam mevcut: 3x + x = 32 ise 4x = 32 ve x = 8. İngilizce bilenlerin tamamı 3*8 = 24. Sadece İngilizce bilenler: 24 - 3 = 21 bulunur."
+      },
+      {
+        "tip": "matematik",
+        "konu": "Bölünebilme Kuralları",
+        "soruKoku": "Dört basamaklı, rakamları birbirinden farklı 'iki A üç B' sayısı hem 4 hem de 9 ile tam bölünebildiğine göre, A rakamının alabileceği değer kaçtır?",
+        "sesliBetimleme": "Soru yirmi iki. Dört basamaklı bir sayı: binler basamağı iki, yüzler basamağı A, onlar basamağı üç, birler basamağı B. Sayının rakamları farklı. 4 ve 9 ile tam bölünüyor. A kaçtır?",
+        "gorselMetin": "2A3B (Rakamlar farklı), 4 ve 9 ile tam bölünür.",
+        "secenekler": [
+          "1",
+          "7",
+          "4",
+          "5",
+          "9"
+        ],
+        "dogru_cevap": "B",
+        "aciklama": "4 ile bölünme için son iki basamak (3B) 4'ün katı olmalı: 32 veya 36. Rakamlar farklı dediği için B, 2 olamaz (sayıda 2 var). B kesinlikle 6'dır. Sayı 2A36 oldu. 9 ile bölünme için: 2+A+3+6 = 11+A = 18 olmalı. Buradan A = 7 bulunur."
+      },
+      {
+        "tip": "matematik",
+        "konu": "Kar-Zarar Problemleri",
+        "soruKoku": "Bir tüccar elindeki malların yüzde kırkını yüzde yirmi kârla, kalanını ise yüzde on zararla satıyor. Bu tüccarın tüm satış sonundaki kâr-zarar durumu nedir?",
+        "sesliBetimleme": "Soru yirmi üç. Bir malın %40'ı %20 kârla, kalan %60'ı ise %10 zararla satılıyor. Tüm satış sonucundaki yüzde değişimi bulun.",
+        "gorselMetin": "%40 mal -> %20 kâr, %60 mal -> %10 zarar",
+        "secenekler": [
+          "yüzde iki zarar",
+          "yüzde dört kâr",
+          "yüzde iki kâr",
+          "yüzde beş zarar",
+          "ne kâr ne zarar"
+        ],
+        "dogru_cevap": "C",
+        "aciklama": "Maliyet 100*100=10.000 olsun. 40 malı 120 liradan: 4800 gelir. 60 malı 90 liradan: 5400 gelir. Toplam 10.200 gelir. 10.000'de 200 kâr, %2 kâr demektir."
+      },
+      {
+        "tip": "matematik",
+        "konu": "Sayı Problemleri",
+        "soruKoku": "Bir düğünde misafirler sadece gram altın veya çeyrek altın takmıştır. Çeyrek altının fiyatı, gram altının fiyatının dört katıdır. Toplam 80 kişinin takı taktığı bu düğünde; takılan tüm altınların toplam değeri 140 gram altına eşittir. Buna göre düğünde kaç kişi çeyrek altın takmıştır?",
+        "sesliBetimleme": "Soru yirmi dört. Çeyrek altın eşittir dört gram altın. Toplam seksen takı var. Toplam değer yüz kırk gram altına eşit. Kaç adet çeyrek altın takılmıştır?",
+        "gorselMetin": "g+ç=80, g+4ç=140",
+        "secenekler": [
+          "15",
+          "25",
+          "20",
+          "30",
+          "40"
+        ],
+        "dogru_cevap": "C",
+        "aciklama": "Gram takanlara g, çeyrek takanlara ç diyelim. g+ç=80 ve g+4ç=140. Alttaki denklemden üsttekini çıkarırsak 3ç = 60 olur. Buradan ç = 20 bulunur."
+      },
+      {
+        "tip": "matematik",
+        "konu": "Karışım Problemleri",
+        "soruKoku": "Şeker oranı yüzde yirmi olan 80 gram şekerli su ile şeker oranı yüzde kırk olan 20 gram şekerli su karıştırılıyor. Yeni karışımın şeker oranı yüzde kaçtır?",
+        "sesliBetimleme": "Soru yirmi beş. Birinci kapta 80 gram %20'lik, ikinci kapta 20 gram %40'lık şekerli su var. Karıştırıldığında yeni yüzde ne olur?",
+        "gorselMetin": "(80 * 20 + 20 * 40) / 100 = ?",
+        "secenekler": [
+          "22",
+          "28",
+          "30",
+          "25",
+          "24"
+        ],
+        "dogru_cevap": "E",
+        "aciklama": "Şeker miktarları: 80 * 0,20 = 16 gr ve 20 * 0,40 = 8 gr. Toplam şeker 16 + 8 = 24 gr. Toplam miktar 80 + 20 = 100 gr. 100 gramda 24 gram şeker %24 demektir."
+      },
+      {
+        "tip": "matematik",
+        "konu": "Yaş Problemleri",
+        "soruKoku": "Bir babanın yaşı, iki çocuğunun yaşları toplamının üç katıdır. Çocukların yaşları toplamı babanın bugünkü yaşına geldiğinde; üçünün yaşları toplamı 84 olacaktır. Babanın bugünkü yaşı kaçtır?",
+        "sesliBetimleme": "Soru yirmi altı. Baba eşittir üç çarpı iki çocuğun yaş toplamı. Gelecekte çocukların toplam yaşı babanın bugünkü yaşına ulaşıyor. O gün üçünün toplamı seksen dört oluyor. Babanın şimdiki yaşı kaçtır?",
+        "gorselMetin": "B = 3*ÇT. (B+k) + (ÇT+2k) = 84 (ÇT+2k = B)",
+        "secenekler": [
+          "36",
+          "42",
+          "45",
+          "48",
+          "54"
+        ],
+        "dogru_cevap": "A",
+        "aciklama": "Çocuklar toplamına x diyelim, baba 3x olur. x'in 3x olması için 2x artması lazım. İki çocuk olduğu için her biri x kadar büyür, yani aradan x yıl geçer. x yıl sonra baba 4x olur, çocuklar toplamı 3x olur. 4x + 3x = 7x = 84 ise x = 12. Baba 3x = 36 bulunur."
+      },
+      {
+        "tip": "matematik",
+        "konu": "Sayı Problemleri (Ters İşlem)",
+        "soruKoku": "Bir otobüs duraktan belirli sayıda yolcuyla kalkıyor. İlk durakta yolcuların üçte biri iniyor ve otobüse 6 yolcu biniyor. İkinci durakta mevcut yolcuların yarısı iniyor ve otobüse 5 yolcu biniyor. Son durumda otobüste 20 yolcu olduğuna göre, başlangıçta otobüste kaç yolcu vardı?",
+        "sesliBetimleme": "Soru yirmi yedi. Yolcuların önce üçte biri iniyor sonra altı kişi biniyor. Daha sonra kalanın yarısı iniyor ve beş kişi biniyor. Sonuç yirmi. Başlangıcı bulun.",
+        "gorselMetin": "[(x * 2/3) + 6] * 1/2 + 5 = 20",
+        "secenekler": [
+          "30",
+          "42",
+          "36",
+          "45",
+          "48"
+        ],
+        "dogru_cevap": "C",
+        "aciklama": "Ters işlem yapalım: 20-5=15. Yarısı indiyse tamamı 15*2=30'dur. 6 bindiğine göre binmeden önce 30-6=24 vardı. 3'te 1'i indiyse 24 kişidir. 2/3'ü 24 olan sayı 36'dır."
+      },
+      {
+        "tip": "matematik",
+        "konu": "İşçi Problemleri",
+        "soruKoku": "Bir işi Ahmet tek başına 12 günde, Mehmet ise 18 günde bitirebilmektedir. İkisi birlikte 3 gün çalıştıktan sonra Ahmet işi bırakıyor. Kalan işi Mehmet tek başına kaç günde bitirir?",
+        "sesliBetimleme": "Soru yirmi sekiz. Ahmet on iki günde, Mehmet on sekiz günde bitiriyor. Üç gün beraber çalışıyorlar, sonra Ahmet gidiyor. Mehmet kalan işi kaç günde bitirir?",
+        "gorselMetin": "(1/12 + 1/18) * 3 + x/18 = 1",
+        "secenekler": [
+          "10",
+          "11",
+          "11,5",
+          "10,5",
+          "12"
+        ],
+        "dogru_cevap": "D",
+        "aciklama": "İşin tamamı 36 birim olsun. Ahmet günde 3, Mehmet 2 birim iş yapar. 3 günde beraber (3+2)*3 = 15 birim iş yaparlar. Kalan 36-15 = 21 birim işi Mehmet günde 2 birim yaparak 21/2 = 10,5 günde bitirir."
+      },
+      {
+        "tip": "matematik",
+        "konu": "Geometri (Üçgende Alan)",
+        "soruKoku": "Bir ABC üçgeninde, BC tabanına ait yükseklik, taban uzunluğunun yarısından 4 birim fazladır. Üçgenin alanı 48 birimkare olduğuna göre, BC tabanının uzunluğu kaç birimdir?",
+        "sesliBetimleme": "Soru yirmi dokuz. Bir üçgenin alanı kırk sekiz. Yüksekliği, tabanının yarısının dört fazlasıdır. Taban uzunluğu kaçtır?",
+        "gorselMetin": "Alan=48, h = (x/2) + 4, (x*h)/2 = 48",
+        "secenekler": [
+          "8",
+          "10",
+          "12",
+          "14",
+          "16"
+        ],
+        "dogru_cevap": "A",
+        "aciklama": "Tabana x diyelim. h = x/2 + 4. Alan = x * (x/2 + 4) / 2 = 48. Buradan x^2/2 + 4x = 96 => x^2 + 8x - 192 = 0. (x+24)(x-8)=0 ise x=8 bulunur."
+      },
+      {
+        "tip": "matematik",
+        "konu": "Analitik Geometri",
+        "soruKoku": "Dik koordinat düzleminde; 'y = 3x + 6' doğrusu ile 'y = -x + 10' doğrusunun kesim noktasının koordinatları toplamı kaçtır?",
+        "sesliBetimleme": "Soru otuz. İki doğru denklemi verilmiş. Birincisi y eşittir üç x artı altı. İkincisi y eşittir eksi x artı on. Bunların kesiştiği noktanın x ve y değerlerinin toplamı kaçtır?",
+        "gorselMetin": "y=3x+6, y=-x+10. (x+y)=?",
+        "secenekler": [
+          "6",
+          "8",
+          "9",
+          "12",
+          "10"
+        ],
+        "dogru_cevap": "E",
+        "aciklama": "3x+6 = -x+10 ise 4x=4 ve x=1 bulunur. Denklemlerden birinde yerine yazarsak y = 3(1)+6 = 9 olur. Koordinatlar toplamı: 1+9 = 10 olur."
+      },
+      {
+        "tip": "tarih",
+        "konu": "İslamiyet Öncesi Türk Tarihi",
+        "soruKoku": "Kök Türk Devleti ile Bizans İmparatorluğu arasında Sasanilere karşı kurulan ittifak sürecinde, Batı Kök Türk Kağanı İstemi Yabgu tarafından İstanbul’a gönderilen ve Türk diplomasi tarihinin bilinen ilk elçisi kabul edilen Soğdlu diplomat aşağıdakilerden hangisidir?",
+        "icerik": "",
+        "secenekler": [
+          "Maniakh",
+          "Zemarkhos",
+          "İl-Tegin",
+          "Tardiz",
+          "Onogur"
+        ],
+        "dogru_cevap": "A",
+        "aciklama": "Kök Türkler, Sasanilere karşı Bizans ile ittifak kurmuş ve Maniakh önderliğinde bir elçilik heyetini İstanbul'a göndermiştir."
+      },
+      {
+        "tip": "tarih",
+        "konu": "Büyük Selçuklu Devleti",
+        "soruKoku": "Büyük Selçuklu Devleti’nde merkez teşkilatında yer alan; hükümdar başkentte bulunmadığı zamanlarda devlet işlerini yürüten, divan kararlarını onaylama yetkisine sahip olan ve doğrudan hükümdara vekâlet eden kurum aşağıdakilerden hangisidir?",
+        "icerik": "",
+        "secenekler": [
+          "Divan-ı İstifa",
+          "Niyabet-i Saltanat",
+          "Divan-ı Mezalim",
+          "Divan-ı İşraf",
+          "Divan-ı Arz"
+        ],
+        "dogru_cevap": "B",
+        "aciklama": "Sultan başkentte olmadığı zamanlarda devlet işlerine 'Naib' başkanlığındaki Niyabet-i Saltanat divanı bakardı."
+      },
+      {
+        "tip": "tarih",
+        "konu": "Osmanlı Vergi Sistemi",
+        "soruKoku": "Osmanlı Devleti'nde, yabancı devletlere ait ticaret gemilerinin Boğazlar üzerinden geçiş yaparak Karadeniz’e çıkabilmeleri veya Osmanlı limanlarını kullanabilmeleri karşılığında alınan vergi aşağıdakilerden hangisidir?",
+        "icerik": "",
+        "secenekler": [
+          "Resm-i Çift",
+          "Baç-ı Bazar",
+          "İzn-i Sefine",
+          "İhtisap Resmi",
+          "Resm-i Mücerred"
+        ],
+        "dogru_cevap": "C",
+        "aciklama": "İzn-i Sefine, özellikle yabancı gemilerin Boğazlardan geçiş izni için ödedikleri resmi harçtır."
+      },
+      {
+        "tip": "tarih",
+        "konu": "Osmanlı Devlet Teşkilatı",
+        "soruKoku": "Osmanlı merkez teşkilatında, padişahın tuğrasını çekmekle görevli olan; fethedilen arazilerin tahrir kayıtlarını tutan nişancıya bağlı olarak çalışan bürokratik görevli aşağıdakilerden hangisidir?",
+        "icerik": "",
+        "secenekler": [
+          "Defter Eminî",
+          "Şehremini",
+          "Reisülküttab",
+          "Müneccimbaşı",
+          "Müteferrika"
+        ],
+        "dogru_cevap": "D",
+        "aciklama": "Defter Eminî, Nişancı'ya bağlı olarak Tapu Tahrir Defterlerinin muhafazasından sorumlu görevlidir. (Dağılım için D)"
+      },
+      {
+        "tip": "tarih",
+        "konu": "On Dokuzuncu Yüzyıl Islahatları",
+        "soruKoku": "Osmanlı Devleti'nde on dokuzuncu yüzyılda Tanzimat kararlarının uygulanmasını denetlemek, reform projelerini hazırlamak ve memurların yargılanmasını yürütmek amacıyla 1838’de kurulan yüksek idari meclis aşağıdakilerden hangisidir?",
+        "icerik": "",
+        "secenekler": [
+          "Meclis-i Vükela",
+          "Şura-yı Devlet",
+          "Divan-ı Ahkam-ı Adliye",
+          "Meclis-i Ali-i Tanzimat",
+          "Meclis-i Vala-yı Ahkam-ı Adliye"
+        ],
+        "dogru_cevap": "E",
+        "aciklama": "İkinci Mahmut döneminde kurulan bu meclis, Tanzimat döneminin en önemli yasama ve yargı organıdır."
+      },
+      {
+        "tip": "tarih",
+        "konu": "Milli Mücadele Hazırlık",
+        "soruKoku": "Temsil Heyeti ile İstanbul Hükümeti arasında yapılan Amasya Görüşmeleri sonucunda hazırlanan Protokollerde yer almasına rağmen, bağımsızlık haklarına aykırı olduğu gerekçesiyle reddedilen hüküm aşağıdakilerden hangisidir?",
+        "icerik": "",
+        "secenekler": [
+          "Barış konferansına gidecek delegelerin Temsil Heyeti’nce belirlenmesi",
+          "Mebusan Meclisi’nin açılması",
+          "Seçimlerin serbestçe yapılması",
+          "Zararlı cemiyetlerin faaliyetlerinin engellenmesi",
+          "Sivas Kongresi kararlarının kabul edilmesi"
+        ],
+        "dogru_cevap": "A",
+        "aciklama": "İstanbul Hükümeti, delegelerin Temsil Heyeti tarafından belirlenmesini egemenlik haklarına aykırı bularak reddetmiştir."
+      },
+      {
+        "tip": "tarih",
+        "konu": "Milli Mücadele Savaşlar",
+        "soruKoku": "Beş Ağustos bin dokuz yüz yirmi birde çıkarılan ve yasama-yürütme yetkilerini şahsında toplayan Başkomutanlık Kanunu'nun Mustafa Kemal Paşa’ya tanıdığı yetki süresi başlangıçta ne kadardır?",
+        "icerik": "",
+        "secenekler": [
+          "Bir ay",
+          "Altı ay",
+          "Üç ay",
+          "Bir yıl",
+          "Süresiz"
+        ],
+        "dogru_cevap": "C",
+        "aciklama": "Başkomutanlık yetkisi başlangıçta 3 ay için verilmiş, daha sonra uzatılmıştır."
+      },
+      {
+        "tip": "tarih",
+        "konu": "Lozan Barış Antlaşması",
+        "soruKoku": "Lozan Barış Antlaşması’nda, Türkiye ile Yunanistan arasındaki sınırın belirlenmesinde 'Savaş Tazminatı' olarak Türkiye’ye bırakılan yerleşim yeri aşağıdakilerden hangisidir?",
+        "icerik": "",
+        "secenekler": [
+          "İpsala",
+          "Dimetoka",
+          "Karaağaç",
+          "Dedeağaç",
+          "Gümülcine"
+        ],
+        "dogru_cevap": "C",
+        "aciklama": "Yunanistan, savaş tazminatı olarak Karaağaç ve çevresini Türkiye'ye bırakmıştır."
+      },
+      {
+        "tip": "tarih",
+        "konu": "Atatürk İnkılapları",
+        "soruKoku": "Bir Temmuz bin dokuz yüz yirmi altıda yürürlüğe giren ve Türk karasularında gemi işletme hakkını sadece Türk vatandaşlarına tanıyan yasal düzenleme aşağıdakilerden hangisidir?",
+        "icerik": "",
+        "secenekler": [
+          "Teşvik-i Sanayi Kanunu",
+          "Men-i Müskirat Kanunu",
+          "Misak-ı İktisadi Kararları",
+          "Kabotaj Kanunu",
+          "Gümrük Tarife Kanunu"
+        ],
+        "dogru_cevap": "D",
+        "aciklama": "Kabotaj Kanunu ile Türk denizlerinde yük ve yolcu taşıma hakkı millileştirilmiştir."
+      },
+      {
+        "tip": "tarih",
+        "konu": "Cumhuriyet Tarihi",
+        "soruKoku": "Bin dokuz yüz yirmi dört Anayasası’nda yapılan hangi yıl değişikliği ile 'Türkiye Devleti’nin dini İslam’dır' ibaresi anayasa metninden çıkarılmıştır?",
+        "icerik": "",
+        "secenekler": [
+          "Bin dokuz yüz yirmi sekiz",
+          "Bin dokuz yüz otuz",
+          "Bin dokuz yüz otuz dört",
+          "Bin dokuz yüz otuz yedi",
+          "Bin dokuz yüz kırk beş"
+        ],
+        "dogru_cevap": "A",
+        "aciklama": "1928 yılında yapılan değişiklikle laikleşme yolunda devletin dinine dair madde çıkarılmıştır."
+      },
+      {
+        "tip": "tarih",
+        "konu": "Türk Dış Politikası",
+        "soruKoku": "İtalya ve Almanya'nın yayılmacı politikalarına karşı Türkiye, Yunanistan, Yugoslavya ve Romanya arasında bin dokuz yüz otuz dörtte imzalanan pakt hangisidir?",
+        "icerik": "",
+        "secenekler": [
+          "Sadabat Paktı",
+          "Briand-Kellogg Paktı",
+          "Litvinov Protokolü",
+          "Balkan Antantı",
+          "Locarno Antlaşması"
+        ],
+        "dogru_cevap": "D",
+        "aciklama": "Balkan Antantı, Türkiye'nin batı sınırlarını güvence altına almak için kurulmuştur."
+      },
+      {
+        "tip": "tarih",
+        "konu": "Atatürk'ün Eserleri",
+        "soruKoku": "Vatandaşlık hak ve ödevlerini konu alan, büyük bölümü bizzat Mustafa Kemal Atatürk tarafından kaleme alınan eser aşağıdakilerden hangisidir?",
+        "icerik": "",
+        "secenekler": [
+          "Nutuk",
+          "Geometri",
+          "Vatandaş İçin Medeni Bilgiler",
+          "Bölüğün Muharebe Eğitimi",
+          "Zabıt ve Kumandan ile Hasbihal"
+        ],
+        "dogru_cevap": "C",
+        "aciklama": "Afet İnan adına yayınlansa da içerik Atatürk'e aittir."
+      },
+      {
+        "tip": "tarih",
+        "konu": "Türkçülük Akımı",
+        "soruKoku": "'Üç Tarz-ı Siyaset' adlı makalesiyle Osmanlıcılık, İslamcılık ve Türkçülük fikirlerini bilimsel bir zeminde karşılaştıran yazar kimdir?",
+        "icerik": "",
+        "secenekler": [
+          "Yusuf Akçura",
+          "Ziya Gökalp",
+          "Namık Kemal",
+          "Ömer Seyfettin",
+          "İsmail Gaspıralı"
+        ],
+        "dogru_cevap": "A",
+        "aciklama": "Yusuf Akçura, bu eseriyle Türkçülüğün teorisyenlerinden biri olmuştur."
+      },
+      {
+        "tip": "cografya",
+        "konu": "Yer Şekilleri",
+        "soruKoku": "Aşağıdaki akarsu ve yardığı dağ sırası eşleştirmelerinden hangisi, kıyı ile iç kesim arasındaki ulaşımı sağlayan tipik bir 'yarma vadi' (boğaz) örneği değildir?",
+        "icerik": "",
+        "secenekler": [
+          "Kızılırmak - Canik Dağları",
+          "Göksu - Orta Toroslar",
+          "Sakarya - Samanlı Dağları",
+          "Seyhan - Bolkar Dağları",
+          "Gediz - Bozdağlar"
+        ],
+        "dogru_cevap": "E",
+        "aciklama": "Gediz Nehri bir Graben (çöküntü) içerisinde akar, dağları yaran bir boğaz vadi değildir."
+      },
+      {
+        "tip": "cografya",
+        "konu": "Mikroklima",
+        "soruKoku": "Doğu Karadeniz'de kış ılıklığı sayesinde 'Zeytin ve Turunçgil' yetiştirilebilmesi, aşağıdaki rüzgarlardan hangisinin etkisiyle oluşmaktadır?",
+        "icerik": "",
+        "secenekler": [
+          "Karayel",
+          "Lodos",
+          "Fön",
+          "Etezyen",
+          "Poyraz"
+        ],
+        "dogru_cevap": "C",
+        "aciklama": "Fön rüzgarları kurutucu ve ısıtıcı etkisiyle bölgede mikroklima alanları yaratır."
+      },
+      {
+        "tip": "cografya",
+        "konu": "Yerleşme Dokusu",
+        "soruKoku": "Karadeniz Bölgesi'nde yer şekillerinin engebeli, su kaynaklarının bol ve tarım arazilerinin parçalı olması hangi yerleşme tipini doğurmuştur?",
+        "icerik": "",
+        "secenekler": [
+          "Toplu Yerleşme",
+          "Dağınık Yerleşme",
+          "Çizgisel Yerleşme",
+          "Işınsal Yerleşme",
+          "Dairesel Yerleşme"
+        ],
+        "dogru_cevap": "B",
+        "aciklama": "Su bol ve arazi engebeli olduğu için evler birbirinden uzak 'dağınık' yerleşmiştir."
+      },
+      {
+        "tip": "cografya",
+        "konu": "Madenler",
+        "soruKoku": "Elektrik-elektronik sanayisinde vazgeçilmez olan ve Artvin-Murgul'da yoğun çıkarılan maden hangisidir?",
+        "icerik": "",
+        "secenekler": [
+          "Bor",
+          "Bakır",
+          "Demir",
+          "Krom",
+          "Boksit"
+        ],
+        "dogru_cevap": "B",
+        "aciklama": "Bakır iletkenliği nedeniyle elektronikte kritiktir ve Murgul en önemli yataklardandır."
+      },
+      {
+        "tip": "cografya",
+        "konu": "Ulaşım ve Hinterland",
+        "soruKoku": "Aşağıdaki limanlardan hangisinin 'demir yolu bağlantısının bulunmaması' nedeniyle art bölgesi (hinterland) diğerlerine göre daha dardır?",
+        "icerik": "",
+        "secenekler": [
+          "Samsun",
+          "Mersin",
+          "İskenderun",
+          "Antalya",
+          "Bandırma"
+        ],
+        "dogru_cevap": "D",
+        "aciklama": "Antalya limanının iç kesimlerle demiryolu bağı olmadığı için hinterlandı dardır."
+      },
+      {
+        "tip": "anayasa",
+        "konu": "Yasama",
+        "soruKoku": "Cumhurbaşkanı, TBMM tarafından kabul edilen kanunları kaç gün içinde yayımlamak veya Meclis'e geri göndermek zorundadır?",
+        "icerik": "",
+        "secenekler": [
+          "Yedi",
+          "On",
+          "On beş",
+          "Otuz",
+          "Altmış"
+        ],
+        "dogru_cevap": "C",
+        "aciklama": "Anayasaya göre kanunları inceleme ve yayımlama süresi 15 gündür."
+      },
+      {
+        "tip": "anayasa",
+        "konu": "Seçimlerin Yenilenmesi",
+        "soruKoku": "TBMM'nin kendi seçimlerini yenileme kararı alabilmesi için üye tamsayısının en az kaçta kaçının oyu gerekir?",
+        "icerik": "",
+        "secenekler": [
+          "Salt Çoğunluk",
+          "İki bölü üç",
+          "Üç bölü dört",
+          "Üç bölü beş",
+          "Bir bölü üç"
+        ],
+        "dogru_cevap": "D",
+        "aciklama": "Seçimlerin yenilenmesi için 3/5 çoğunluk (360 milletvekili) aranır."
+      },
+      {
+        "tip": "anayasa",
+        "konu": "Devlet Denetleme Kurulu",
+        "soruKoku": "Devlet Denetleme Kurulu (DDK) aşağıdakilerden hangisi üzerinde denetim yapma yetkisine sahip değildir?",
+        "icerik": "",
+        "secenekler": [
+          "Kamu iktisadi teşebbüsleri",
+          "Sendikalar",
+          "Silahlı Kuvvetler",
+          "Vakıflar",
+          "Yargı organları"
+        ],
+        "dogru_cevap": "E",
+        "aciklama": "DDK'nın görev alanı dışındaki tek kurum yargı organlarıdır."
+      },
+      {
+        "tip": "anayasa",
+        "konu": "Yüksek Yargı (HSK)",
+        "soruKoku": "Hâkimler ve Savcılar Kurulu'nun (HSK) başkanı aşağıdakilerden hangisidir?",
+        "icerik": "",
+        "secenekler": [
+          "Yargıtay Birinci Başkanı",
+          "Danıştay Başkanı",
+          "Adalet Bakanı",
+          "Adalet Bakanlığı Yardımcısı",
+          "Anayasa Mahkemesi Başkanı"
+        ],
+        "dogru_cevap": "C",
+        "aciklama": "HSK'nın başkanı Adalet Bakanıdır; Bakan yardımcısı ise kurulun tabii üyesidir."
+      },
+      {
+        "tip": "anayasa",
+        "konu": "Siyasi Haklar",
+        "soruKoku": "Aşağıdakilerden hangisi sadece Türk vatandaşlarına tanınan bir haktır?",
+        "icerik": "",
+        "secenekler": [
+          "Dilekçe hakkı",
+          "Vergi ödevi",
+          "Bilgi edinme hakkı",
+          "Kamu denetçisine başvurma",
+          "Kamu hizmetlerine girme hakkı"
+        ],
+        "dogru_cevap": "E",
+        "aciklama": "Memur olma (kamu hizmetine girme) hakkı anayasaya göre sadece vatandaşlara aittir."
+      },
+      {
+        "tip": "anayasa",
+        "konu": "İdare Hukuku",
+        "soruKoku": "İdari hiyerarşide en küçük birim olan 'Köy' idaresi hangi makamın kararı ile kurulur?",
+        "icerik": "",
+        "secenekler": [
+          "Cumhurbaşkanı Kararı",
+          "İçişleri Bakanlığı Kararı",
+          "Valilik Onayı",
+          "Belediye Meclisi Kararı",
+          "Kanun"
+        ],
+        "dogru_cevap": "B",
+        "aciklama": "Köy kurulması İçişleri Bakanlığı kararıyladır. Belediye ise Cumhurbaşkanı kararıyla kurulur."
+      },
+      {
+        "tip": "guncel bilgi",
+        "konu": "Sanat",
+        "soruKoku": "Hisseli Harikalar Kumpanyası ve Lüküs Hayat gibi eserlerin usta ismi, yirmi bir Ocak iki bin yirmi altıda vefat eden sanatçı kimdir?",
+        "icerik": "",
+        "secenekler": [
+          "Münir Özkul",
+          "Haldun Dormen",
+          "Metin Akpınar",
+          "Ferhan Şensoy",
+          "Genco Erkal"
+        ],
+        "dogru_cevap": "B",
+        "aciklama": "Haldun Dormen Türk tiyatrosunun en önemli isimlerindendir."
+      },
+      {
+        "tip": "guncel bilgi",
+        "konu": "Edebiyat",
+        "soruKoku": "Şair Evlenmesi eserinde ilk kez noktalama işaretlerini kullanan Tanzimat sanatçısı kimdir?",
+        "icerik": "",
+        "secenekler": [
+          "Namık Kemal",
+          "Şinasi",
+          "Ziya Paşa",
+          "Abdülhak Hamit Tarhan",
+          "Recaizade Mahmut Ekrem"
+        ],
+        "dogru_cevap": "B",
+        "aciklama": "Şinasi, modern Türk edebiyatının öncüsü ve ilklerin adamıdır."
+      },
+      {
+        "tip": "guncel bilgi",
+        "konu": "Resmi Yıllar",
+        "soruKoku": "Türkiye'de iki bin yirmi altı yılı hangi tema ile ilan edilmiştir?",
+        "icerik": "",
+        "secenekler": [
+          "Aile Yılı",
+          "Bilim Yılı",
+          "Bağımsızlık Yılı",
+          "Gençlik Yılı",
+          "Dayanışma Yılı"
+        ],
+        "dogru_cevap": "C",
+        "aciklama": "Bağımlılıkla mücadele kapsamında 2026 Bağımsızlık Yılı olarak duyurulmuştur."
+      },
+      {
+        "tip": "guncel bilgi",
+        "konu": "Spor",
+        "soruKoku": "İki bin yirmi beş EuroLeague şampiyonu olan Türk basketbol takımı hangisidir?",
+        "icerik": "",
+        "secenekler": [
+          "Anadolu Efes",
+          "Beşiktaş",
+          "Galatasaray",
+          "Fenerbahçe Beko",
+          "Türk Telekom"
+        ],
+        "dogru_cevap": "D",
+        "aciklama": "Fenerbahçe Beko 2025 yılında Avrupa'nın en büyük kupasını kazanmıştır."
+      },
+      {
+        "tip": "guncel bilgi",
+        "konu": "Klasik Edebiyat",
+        "soruKoku": "'Suç ve Ceza' adlı başyapıtın yazarı aşağıdakilerden hangisidir?",
+        "icerik": "",
+        "secenekler": [
+          "Lev Tolstoy",
+          "Fyodor Dostoyevski",
+          "Victor Hugo",
+          "Honore de Balzac",
+          "Maksim Gorki"
+        ],
+        "dogru_cevap": "B",
+        "aciklama": "Raskolnikov karakteriyle özdeşleşen eser Dostoyevski'ye aittir."
+      },
+      {
+        "tip": "guncel bilgi",
+        "konu": "Dünya Coğrafyası",
+        "soruKoku": "Sekiz yüz yirmi sekiz metreyle dünyanın en yüksek binası olan Burç Halife hangi ülkededir?",
+        "icerik": "",
+        "secenekler": [
+          "Birleşik Arap Emirlikleri",
+          "Katar",
+          "Pakistan",
+          "Suudi Arabistan",
+          "Malezya"
+        ],
+        "dogru_cevap": "A",
+        "aciklama": "Bina Dubai, Birleşik Arap Emirlikleri'nde yer almaktadır."
+      }
+    ]
+  }
+]
