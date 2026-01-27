@@ -1,3 +1,6 @@
+const supabaseUrl = 'https://fiaqhmyeypypqtlfovhr.supabase.co';
+const supabaseKey = 'sb_publishable_qe6IvL-AD4S69b5STp_lEw_zj2DCFb5';
+const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
 // --- FIREBASE VE ANALİTİK YAPILANDIRMASI ---
 const firebaseConfig = {
   apiKey: "AIzaSyB3E9P2FOLLrLr89fLAYYLJqBRuiFPfVGs",
@@ -269,86 +272,70 @@ function matematikAnlat(konu, metin, hazirBetimleme) {
 
 // --- SINAV MOTORU ---
 function testiYukleVeBaslat(dID, isRecover = false) {
-    sesliBildiri(" "); 
+    sesliBildiri("Sınav hazırlanıyor, lütfen bekleyiniz."); 
     odaYonetimi.style.display = 'none'; 
     sinavEkrani.style.display = 'block';
     secilenDenemeID = dID;
     sinavBittiMi = false;
 
-    fetch(`./data/${dID}.json`).then(res => res.json()).then(data => {
-        mevcutSorular = data[0].sorular;
-// Cevapları ve süreyi yükleme/başlatma mantığı
-        kullaniciCevaplari = isRecover ? JSON.parse(localStorage.getItem('cevaplar')) : new Array(mevcutSorular.length).fill(null);
-        
-        const toplamSureMs = 100 * 60 * 1000; // 100 dakikanın milisaniye karşılığı
-        
-        if (isRecover) {
-            // Eğer sistem kopup geri gelmişse:
-            const baslangicZamani = parseInt(localStorage.getItem('kayitZamani'));
-            const suAnkiZaman = Date.now();
-            const gecenSureMs = suAnkiZaman - baslangicZamani;
-            
-            // Kalan süreyi hesapla: (Toplam Süre - Geçen Süre)
-            const hesaplananKalanSure = Math.floor((toplamSureMs - gecenSureMs) / 1000);
-            
-            // Süre bitmişse 0 yap, bitmemişse kalan saniyeyi ata
-            kalanSure = hesaplananKalanSure > 0 ? hesaplananKalanSure : 0;
-            sesliBildiri("Kalan süreniz: " + Math.floor(kalanSure / 60) + " dakika.");
-        } else {
-            // Eğer sınav ilk kez başlıyorsa:
-            kalanSure = 100 * 60; 
-            localStorage.setItem('kayitZamani', Date.now());
-        }
+    // Supabase'den soruları çekiyoruz
+    supabaseClient
+        .from('denemeler')
+        .select('*')
+        .eq('deneme_id', dID)
+        .order('soru_no', { ascending: true })
+        .then(({ data, error }) => {
+            if (error) {
+                console.error("Supabase Hatası:", error.message);
+                sesliBildiri("Sorular yüklenirken hata oluştu.");
+                return;
+            }
 
-        // Diğer verileri tarayıcıya kaydet
-        localStorage.setItem('aktifOda', odaKodu); 
-        localStorage.setItem('secilenDenemeID', dID); 
-        localStorage.setItem('isSinglePlayer', isSinglePlayer);
-        sinavEkrani.innerHTML = `
-            <button id="timer-kutusu" class="timer-dikdortgen" onclick="kalanSureyiSoyle()" aria-label="Kalan süreyi belirt">
-                <span id="dakika">100</span>:<span id="saniye">00</span>
-            </button>
-            <div id="deneme-govde"></div>
-<div id="canli-sayac-alani" style="position:fixed; top:10px; left:10px; z-index:9999; color:#00ff00; background:rgba(0,0,0,0.8); padding:10px; border-radius:10px; border:2px solid #444;">
-                <span id="kisi-sayisi" style="font-size:32pt; font-weight:bold;">1</span>
-                <span style="font-size:24pt; margin-left:10px;">çevrim içi</span>
-            </div>`;
-        if (!isSinglePlayer) {
-            db.ref('odalar/' + odaKodu + '/katilimciListesi').on('value', snap => {
-                const liste = snap.val(); if(!liste) return;
-const sayi = Object.keys(liste).length;
-                const sEl = document.getElementById('kisi-sayisi');
-                if(sEl) sEl.innerText = sayi;
-            });
-// Sınav sonuçlarını dinle: Biri bitirdiğinde sıralamayı anında güncelle
-            db.ref('odalar/' + odaKodu + '/sonuclar').on('value', snap => {
-const sonuclar = snap.val(); 
-                // ÖNEMLİ: Kullanıcı sınavı bitirmediyse tabloyu çizme ve sesli uyarı verme
-                if (!sonuclar || !sinavBittiMi) return;
+            // ÖNEMLİ: Veritabanındaki alt tireli isimleri kodun içindeki isimlere burada bağlıyoruz
+            mevcutSorular = data.map(s => ({
+                tip: s.tip,
+                konu: s.konu,
+                soruKoku: s.soru_koku, // Veritabanı: soru_koku -> Kod: soruKoku
+                icerik: s.icerik, 
+                secenekler: s.secenekler,
+                dogru_cevap: s.dogru_cevap,
+                aciklama: s.aciklama, // Analiz ekranı için burası kritik
+                sesliBetimleme: s.sesli_betimleme, // Erişilebilirlik alanı
+                gorselMetin: s.gorsel_metin // Matematik formül alanı
+            }));
 
-                sesliBildiri("Sıralama güncellendi.");
-                genelSiralamayiOlustur(sonuclar);
-            });
-        }
-        const rIndex = isRecover ? (parseInt(localStorage.getItem('sonIndex')) || 0) : null;
-        if(rIndex !== null) {
-            soruyuGoster(rIndex);
-        } else {
-            document.getElementById('deneme-govde').innerHTML = `
-                <div class="soru-kutusu">
-                    <h2 id="b-baslik" tabindex="-1">Sınav Başladı. Bölüm Seçiniz.</h2>
-                    <div class="navigasyon-alani">
-                        <button class="nav-buton" onclick="soruyuGoster(0)">GENEL YETENEK</button>
-                        <button class="nav-buton" onclick="soruyuGoster(30)">GENEL KÜLTÜR</button>
-                    </div>
-                </div>`;
-            sesliBildiri("Süreniz başladı. Lütfen çözmek istediğiniz bölümü seçin.");
-            setTimeout(() => { if(document.getElementById('b-baslik')) document.getElementById('b-baslik').focus(); }, 150);
-        }
-        baslatSayac(); 
-    });
+            if (mevcutSorular.length === 0) {
+                sesliBildiri("Bu denemede soru bulunamadı.");
+                return;
+            }
+
+            kullaniciCevaplari = isRecover ? JSON.parse(localStorage.getItem('cevaplar')) : new Array(mevcutSorular.length).fill(null);
+            
+            if (isRecover) {
+                const baslangicZamani = parseInt(localStorage.getItem('kayitZamani'));
+                const gecenSureMs = Date.now() - baslangicZamani;
+                kalanSure = Math.floor((6000000 - gecenSureMs) / 1000); // 100 dakika
+            } else {
+                kalanSure = 100 * 60; 
+                localStorage.setItem('kayitZamani', Date.now());
+            }
+
+            localStorage.setItem('aktifOda', odaKodu); 
+            localStorage.setItem('secilenDenemeID', dID); 
+            
+            // Sınavın ana gövdesini şimdi oluşturuyoruz (Veri geldikten sonra)
+            sinavEkrani.innerHTML = `
+                <button id="timer-kutusu" class="timer-dikdortgen" onclick="kalanSureyiSoyle()" aria-label="Kalan süreyi duymak için basın">
+                    <span id="dakika">100</span>:<span id="saniye">00</span>
+                </button>
+                <div id="deneme-govde"></div>`;
+
+            baslatSayac(); // Sayacı çalıştır
+            
+            const rIndex = isRecover ? (parseInt(localStorage.getItem('sonIndex')) || 0) : 0;
+            soruyuGoster(rIndex); // İlk soruyu aç
+        });
 }
-
 function soruyuGoster(index) {
     const bolumAdi = index < 30 ? "Genel Yetenek" : "Genel Kültür";
     const ekranNo = index < 30 ? (index + 1) : (index - 29);
