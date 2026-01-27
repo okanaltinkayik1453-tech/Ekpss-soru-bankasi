@@ -25,58 +25,78 @@ let isSinglePlayer = false, secilenDenemeID = "", odaKatilimciSayisi = 0;
 let sonPuanVerisi = null, sinavBittiMi = false;
 let isOnlyEmptyMode = false;
 let secilenHedef = 1;
-// Yanlışlıkla çıkışı engelleme
-window.onbeforeunload = function() {
+history.pushState(null, null, location.href);
+
+window.onpopstate = function () {
     if (sinavEkrani.style.display === 'block' && !sinavBittiMi) {
-        return "Sınavınız devam ediyor. Ayrılırsanız ilerlemeniz kaybolabilir!";
+        // Geri tuşuna basıldığında geçmişi hemen geri yükle ki döngü bozulmasın
+        history.pushState(null, null, location.href);
+        
+        // Kullanıcıya Onay Sor
+        const onay = confirm("Sınavdan çıkmak istiyor musunuz? İlerlemeniz silinebilir.");
+        if (onay) {
+            // Evet derse ana menüye dön
+            location.reload(); 
+        } else {
+            // Hayır derse sınavda kal ve NVDA'ya bilgi ver
+            sesliBildiri("Sınava devam ediliyor.");
+        }
     }
 };
-// Mobil Geri Tuşu Koruması
-history.pushState(null, null, location.href);
-window.onpopstate = function() {
+
+// Bilgisayar için Sekme Kapatma Koruması
+window.onbeforeunload = function() {
     if (sinavEkrani.style.display === 'block' && !sinavBittiMi) {
-        history.pushState(null, null, location.href);
-        sesliBildiri("Sınav sırasında geri tuşu kullanılamaz. Lütfen soru butonlarını kullanın.");
+        return "Sınavınız devam ediyor, ayrılmak istediğinize emin misiniz?";
     }
 };
 // --- BAĞLANTI KURTARMA (RECONNECTION) ---
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
+        // Kullanıcı bulundu: Giriş ekranını hemen gizle, buton bir daha görünmesin
+        girisEkrani.style.display = 'none';
+        odaYonetimi.style.display = 'block';
+
         const kaydedilmisOda = localStorage.getItem('aktifOda');
         const kayitZamani = localStorage.getItem('kayitZamani');
         const kaydedilmisMod = localStorage.getItem('isSinglePlayer');
         const sinavBittiMiLokal = localStorage.getItem('sinavTamamlandi');
 
-if (kaydedilmisOda && (Date.now() - parseInt(kayitZamani) < 7200000) && !sinavBittiMiLokal) {
-            sesliBildiri("Sınava kaldığınız yerden devam ediyorsunuz.");
+        if (kaydedilmisOda && (Date.now() - parseInt(kayitZamani) < 7200000) && !sinavBittiMiLokal) {
+            sesliBildiri("Sisteme giriş yapıldı. Sınava kaldığınız yerden devam ediyorsunuz.");
             odaKodu = kaydedilmisOda;
             isSinglePlayer = kaydedilmisMod === 'true';
             secilenDenemeID = localStorage.getItem('secilenDenemeID');
             testiYukleVeBaslat(secilenDenemeID, true);
         } else {
-            girisEkrani.style.display = 'none';
-            odaYonetimi.style.display = 'block';
+            // Sınav ortasında değilse direkt ana menüye odaklan
             anaMenuGoster(user.displayName);
         }
     } else {
+        // Kullanıcı yoksa giriş ekranını göster
         girisEkrani.style.display = 'block';
         odaYonetimi.style.display = 'none';
     }
 });
-
 // --- GİRİŞ VE ANA MENÜ ---
 const btnLogin = document.getElementById('btn-google-login');
 const girisEkrani = document.getElementById('giris-ekrani');
 const odaYonetimi = document.getElementById('oda-yonetimi');
 const sinavEkrani = document.getElementById('sinav-ekrani');
-
 if(btnLogin) {
     btnLogin.onclick = () => {
         const provider = new firebase.auth.GoogleAuthProvider();
+        // Cihazda kayıtlı hesapları hatırlaması için:
+        provider.setCustomParameters({ prompt: 'select_account' });
+        
         auth.signInWithPopup(provider).then((res) => {
+            sesliBildiri("Hoş geldiniz " + res.user.displayName);
+            // Giriş başarılı olunca ekranları değiştir
             girisEkrani.style.display = 'none';
             odaYonetimi.style.display = 'block';
             anaMenuGoster(res.user.displayName);
+        }).catch((error) => {
+            sesliBildiri("Giriş iptal edildi veya bir hata oluştu.");
         });
     };
 }
@@ -328,11 +348,26 @@ localStorage.setItem('isSinglePlayer', isSinglePlayer);
                 <span id="dakika">100</span>:<span id="saniye">00</span>
             </button>
             <div id="deneme-govde"></div>
-            <div id="canli-sayac-alani" style="position:fixed; top:10px; left:10px; z-index:9999; color:#00ff00; background:rgba(0,0,0,0.8); padding:10px; border-radius:10px; border:2px solid #444;">
-                <span id="kisi-sayisi" style="font-size:32pt; font-weight:bold;">1</span>
-                <span style="font-size:24pt; margin-left:10px;">çevrim içi</span>
-            </div>`;
+<div id="canli-sayac-yeni" 
+     role="status" 
+     aria-live="polite"
+     style="position: fixed; top: 15px; right: 15px; z-index: 9999; background: #1a1a1a; color: #00ff00; padding: 10px 20px; border-radius: 30px; border: 2px solid #00ff00; box-shadow: 0 4px 10px rgba(0,0,0,0.5); font-family: Arial, sans-serif; font-weight: bold; display: flex; align-items: center; gap: 8px;">
+    <span style="width: 12px; height: 12px; background: #00ff00; border-radius: 50%; box-shadow: 0 0 8px #00ff00;"></span>
+    <span>Aktif: <span id="kisi-sayisi">1</span> Kişi</span>
+</div>
 
+<style>
+    /* Mobilde sayacın soruların üstüne binmemesi için alta alıyoruz */
+    @media (max-width: 600px) {
+        #canli-sayac-yeni {
+            top: auto;
+            bottom: 20px;
+            right: 20px;
+            font-size: 14px;
+            padding: 8px 15px;
+        }
+    }
+</style>`; 
         if (!isSinglePlayer) {
             db.ref('odalar/' + odaKodu + '/katilimciListesi').on('value', snap => {
                 const liste = snap.val(); if(!liste) return;
