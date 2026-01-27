@@ -5,18 +5,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hakkında - EKPSS 2026</title>
     <link rel="stylesheet" href="style.css">
+<style>
+    /* 1. ARKA PLAN VE GENEL: Zifiri siyah */
+    body { background-color: #000000 !important; color: #ffffff !important; }
+
+    /* 2. HEADER: Kan kırmızısı şerit ve HAKKINDA başlığı */
+    .ana-baslik-kutusu {
+        background-color: #800000 !important;
+        border-bottom: 5px solid #ffffff !important;
+        padding: 25px !important;
+        text-align: center;
+    }
+
+    /* 3. NAVİGASYON: Sadece Ana Sayfa Butonu */
+    .ozel-nav-grid {
+        display: block;
+        margin: 20px auto;
+        max-width: 800px;
+        padding: 0 15px;
+    }
+
+    .nav-buton {
+        background-color: #111111;
+        border: 2px solid #ffffff;
+        color: #ffffff;
+        display: block;
+        padding: 18px;
+        text-align: center;
+        text-decoration: none;
+        font-weight: 900;
+        font-size: 1.4rem;
+        border-radius: 10px;
+    }
+
+    /* 4. İÇERİK ALANI: Bilgilendirme metni kutusu */
+    .bilgi-kutusu {
+        background-color: #000000;
+        border: 2px solid #333333;
+        padding: 30px;
+        border-radius: 15px;
+        margin-top: 20px;
+        line-height: 1.8;
+    }
+
+    /* 5. NVDA ODAKLANMA VE NETLIFY BAĞLANTISI */
+    .nav-buton:focus, .nav-buton:hover, .netlify-linki:focus, .netlify-linki:hover {
+        background-color: #ff0000 !important;
+        color: #000000 !important;
+        outline: 6px solid #ffffff !important;
+    }
+
+    .netlify-linki {
+        color: #ff0000;
+        font-weight: bold;
+        text-decoration: underline;
+    }
+
+    .container { max-width: 800px; margin: 0 auto; padding: 0 15px; }
+</style>
 </head>
 <body>
 
     <a href="#ana-icerik" class="skip-link">Doğrudan ana içeriğe atla</a>
-
-    <header role="banner" class="ana-baslik-kutusu">
-        <h1>EKPSS <span class="yil-etiketi">2026</span></h1>
-        <nav class="ana-menu" style="margin-top:15px; text-align:center;">
-            <a href="index.html" style="color:#fff; text-decoration:none; margin:0 10px; font-weight:bold; font-size:1.2rem;">Ana Sayfa</a>
-            <a href="hakkinda.html" aria-current="page" style="color:#ffff00; text-decoration:none; margin:0 10px; font-weight:bold; font-size:1.2rem; border-bottom: 2px solid #ffff00;">Hakkında</a>
-        </nav>
+<header role="banner" class="ana-baslik-kutusu">
+        <h1 style="color: white; margin: 0;">HAKKINDA <span style="background: white; color: #800000; padding: 2px 8px; border-radius: 4px;">2026</span></h1>
     </header>
+
+    <nav class="ozel-nav-grid">
+        <a href="index.html" class="nav-buton">ANA SAYFAYA DÖN</a>
+    </nav>
 
     <main id="ana-icerik">
         <div class="container" style="text-align: left; background-color: #000; padding: 40px; border: 1px solid #fff; border-radius: 10px;">
@@ -73,10 +130,15 @@
             </section>
         </div>
     </main>
-
-    <footer>
-        <p>&copy; 2025 EKPSS Soru Kütüphanesi</p>
-    </footer>
+<footer style="text-align: center; padding: 40px; border-top: 1px solid #333; margin-top: 50px;">
+    <p style="margin-bottom: 15px;">&copy; 2026 EKPSS Soru Kütüphanesi</p>
+    
+    <p style="font-size: 0.95rem; color: #bbb;">
+        We would like to thank 
+        <a href="https://www.netlify.com" class="netlify-linki" target="_blank" rel="noopener noreferrer">Netlify</a> 
+        for their continuous support in hosting this project.
+    </p>
+</footer>
 
 </body>
 </html>
