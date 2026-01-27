@@ -5,8 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EKPSS 2026 - Soru Bankası</title>
     <link rel="stylesheet" href="style.css">
+<style>
+    /* 1. ARKA PLAN VE ANA RENKLER: Sayfayı tamamen karartıp, kırmızıyı ana vurgu yapıyoruz */
+    body { 
+        background-color: #000000 !important; 
+        color: #ffffff !important; 
+    }
+
+    /* 2. ÜST BİLGİ (HEADER): Üst kısmı kan kırmızısı yapıp altını kalın beyazla çiziyoruz */
+    .modern-header {
+        background-color: #800000 !important; /* Koyu Kan Kırmızısı */
+        border-bottom: 5px solid #ffffff !important;
+        height: 120px !important;
+    }
+
+    /* 3. BUTONLARIN YENİ HALİ: Siyah zemin üzerine kalın kırmızı çerçeveler */
+    .ana-menu-karti {
+        background-color: #111111 !important; /* Çok koyu gri/siyah */
+        border: 3px solid #800000 !important; /* Kan kırmızısı çerçeve */
+        color: #ffffff !important;
+        padding: 30px !important;
+        margin-bottom: 15px;
+        border-radius: 15px !important;
+        font-size: 1.6rem !important;
+        box-shadow: 0 5px 15px rgba(128, 0, 0, 0.4); /* Kırmızı hafif parlama */
+    }
+
+    /* 4. NVDA ODAKLANMA VE MOUSE ÜZERİNE GELME: Buton alev alacak! */
+    .ana-menu-karti:focus, .ana-menu-karti:hover {
+        background-color: #ff0000 !important; /* Parlak kırmızı zemin */
+        color: #000000 !important; /* Yazı simsiyah olur, çok net okunur */
+        outline: 6px solid #ffffff !important; /* Beyaz kalın dış çerçeve */
+        transform: scale(1.02); /* Buton hafifçe büyür */
+    }
+
+    /* 5. DİKEY ÇİZGİ: Ortadaki sarı çizgiyi, temaya uyması için kırmızının koyusuna çekiyoruz */
+    .dikey-ayrac {
+        background-color: #4a0000 !important;
+        width: 2px !important;
+    }
+</style>
 </head>
-<body class="ana-sayfa-body"> <a href="#ana-icerik" class="skip-link">Doğrudan ana içeriğe atla</a>
+<body> <a href="#ana-icerik" class="skip-link">Doğrudan ana içeriğe atla</a>
 
     <header role="banner" class="modern-header">
         <div class="header-sabit-sol" aria-hidden="true">EKPSS</div>
