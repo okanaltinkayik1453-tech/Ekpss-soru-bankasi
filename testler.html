@@ -6,23 +6,83 @@
     <title>Tarih Dokümanları - EKPSS</title>
     <link rel="stylesheet" href="style.css">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+    /* 1. ARKA PLAN: Zifiri siyah */
+    body { background-color: #000000 !important; color: #ffffff !important; }
+
+    /* 2. HEADER: Kan kırmızısı ve kalın beyaz çizgi */
+    .ana-baslik-kutusu {
+        background-color: #800000 !important;
+        border-bottom: 5px solid #ffffff !important;
+        padding: 20px !important;
+    }
+
+    /* 3. NAVİGASYON: Ana Sayfa ve Hakkında butonları */
+    .ozel-nav-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        margin: 20px auto;
+        max-width: 1100px;
+        padding: 0 15px;
+    }
+
+    .nav-buton {
+        background-color: #111111;
+        border: 2px solid #ffffff;
+        color: #ffffff;
+        padding: 15px;
+        text-align: center;
+        text-decoration: none;
+        font-weight: 900;
+        font-size: 1.4rem;
+        border-radius: 10px;
+    }
+
+    /* 4. KONU VE TEST BUTONLARI: Siyah zemin üzerine kırmızı çerçeve */
+    .konu-baslik-butonu, .test-link {
+        background-color: #111111 !important;
+        border: 2px solid #800000 !important;
+        color: #ffffff !important;
+        display: block;
+        padding: 20px !important;
+        margin-bottom: 10px !important;
+        text-decoration: none;
+        border-radius: 10px;
+        font-weight: bold;
+        font-size: 1.3rem !important;
+    }
+
+    /* 5. NVDA ODAKLANMA: Ana sayfa ile %100 aynı efekt */
+    .konu-baslik-butonu:focus, .test-link:focus, .nav-buton:focus {
+        background-color: #ff0000 !important;
+        color: #000000 !important;
+        outline: 6px solid #ffffff !important;
+        transform: scale(1.02);
+    }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 15px; }
+    .alt-baslik { color: #ffffff !important; text-align: center; }
+</style>
 </head>
 <body>
     <a href="#test-listesi" class="skip-link">Test listesine atla</a>
-
-    <header role="banner" class="ana-baslik-kutusu">
-        <h1>EKPSS <span class="yil-etiketi">2026</span></h1>
-        <nav class="ana-menu" style="margin-top:15px; text-align:center;">
-            <a href="index.html" style="color:#fff; text-decoration:none; margin:0 10px; font-weight:bold; font-size:1.2rem; border-bottom:1px solid #fff;">Ana Sayfa</a>
-            <a href="hakkinda.html" style="color:#fff; text-decoration:none; margin:0 10px; font-weight:bold; font-size:1.2rem;">Hakkında</a>
-        </nav>
-    </header>
-
+<header role="banner" class="ana-baslik-kutusu">
+    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 1100px; margin: 0 auto;">
+        <div style="font-weight: 900; opacity: 0.5;">EKPSS</div>
+        <div style="text-align: center;">
+            <h1 style="margin: 0; font-size: 2.5rem; letter-spacing: 2px;">TARİH</h1>
+            <div style="font-size: 1.1rem; opacity: 0.9;">www.okanhoca.com</div>
+        </div>
+        <div style="font-weight: 900; opacity: 0.5;">2026</div>
+    </div>
+</header>
+<div class="ozel-nav-grid">
+    <a href="index.html" class="nav-buton">ANA SAYFA</a>
+    <a href="hakkinda.html" class="nav-buton">HAKKINDA</a>
+</div>
     <main id="test-listesi">
         <div class="container">
-            <div style="text-align: left; margin-bottom: 20px;">
-                <a href="index.html" class="geri-link" style="color:#fff; text-decoration:none; font-size:1.2rem; border-bottom:1px solid #fff;">&larr; Ana Sayfa</a>
-            </div>
 
             <h2 class="alt-baslik" style="color:#ffff00;">Konu Seçiniz</h2>
             <p style="text-align:center; font-size:1.2rem; margin-bottom:30px;">Testlerini çözmek istediğiniz konunun üzerine tıklayarak listeyi açabilirsiniz.</p>
@@ -120,13 +180,13 @@
                 <details class="acilir-menu">
                     <summary class="konu-baslik-butonu">İnkılap Tarihi (1. Dünya ve Kurtuluş Savaşı)</summary>
                     <div class="test-linkleri-alani">
-                        <div style="text-align:center; color:#000; margin:10px 0; font-weight:bold; text-decoration: underline;">--- 1. Dünya Savaşı ---</div>
+<div style="text-align:center; color:#ffffff; margin:10px 0; font-weight:bold; text-decoration: underline;">--- 1. Dünya Savaşı ---</div>
                         <a href="test-coz.html?id=inkilap_test1" class="test-link">Test 1 Çöz</a>
                         <a href="test-coz.html?id=inkilap_test2" class="test-link">Test 2 Çöz</a>
                         <a href="test-coz.html?id=inkilap_test3" class="test-link">Test 3 Çöz</a>
                         <a href="test-coz.html?id=inkilap_test4" class="test-link">Test 4 Çöz</a>
                         
-                        <div style="text-align:center; color:#000; margin:20px 0 10px 0; font-weight:bold; text-decoration: underline;">--- Kurtuluş Savaşı ---</div>
+<div style="text-align:center; color:#ffffff; margin:20px 0 10px 0; font-weight:bold; text-decoration: underline;">--- Kurtuluş Savaşı ---</div>
                         <a href="test-coz.html?id=inkilap_test5" class="test-link">Test 5 Çöz</a>
                         <a href="test-coz.html?id=inkilap_test6" class="test-link">Test 6 Çöz</a>
                         <a href="test-coz.html?id=inkilap_test7" class="test-link">Test 7 Çöz</a>
