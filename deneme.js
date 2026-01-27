@@ -322,18 +322,48 @@ function testiYukleVeBaslat(dID, isRecover = false) {
 
             localStorage.setItem('aktifOda', odaKodu); 
             localStorage.setItem('secilenDenemeID', dID); 
-            
-            // Sınavın ana gövdesini şimdi oluşturuyoruz (Veri geldikten sonra)
-            sinavEkrani.innerHTML = `
-                <button id="timer-kutusu" class="timer-dikdortgen" onclick="kalanSureyiSoyle()" aria-label="Kalan süreyi duymak için basın">
-                    <span id="dakika">100</span>:<span id="saniye">00</span>
-                </button>
-                <div id="deneme-govde"></div>`;
+localStorage.setItem('isSinglePlayer', isSinglePlayer);
+        sinavEkrani.innerHTML = `
+            <button id="timer-kutusu" class="timer-dikdortgen" onclick="kalanSureyiSoyle()" aria-label="Kalan süreyi belirt">
+                <span id="dakika">100</span>:<span id="saniye">00</span>
+            </button>
+            <div id="deneme-govde"></div>
+            <div id="canli-sayac-alani" style="position:fixed; top:10px; left:10px; z-index:9999; color:#00ff00; background:rgba(0,0,0,0.8); padding:10px; border-radius:10px; border:2px solid #444;">
+                <span id="kisi-sayisi" style="font-size:32pt; font-weight:bold;">1</span>
+                <span style="font-size:24pt; margin-left:10px;">çevrim içi</span>
+            </div>`;
+
+        if (!isSinglePlayer) {
+            db.ref('odalar/' + odaKodu + '/katilimciListesi').on('value', snap => {
+                const liste = snap.val(); if(!liste) return;
+                const sayi = Object.keys(liste).length;
+                const sEl = document.getElementById('kisi-sayisi');
+                if(sEl) sEl.innerText = sayi;
+            });
+            db.ref('odalar/' + odaKodu + '/sonuclar').on('value', snap => {
+                const sonuclar = snap.val(); 
+                if (!sonuclar || !sinavBittiMi) return;
+                sesliBildiri("Sıralama güncellendi.");
+                genelSiralamayiOlustur(sonuclar);
+            });
+        }            
 
             baslatSayac(); // Sayacı çalıştır
-            
-            const rIndex = isRecover ? (parseInt(localStorage.getItem('sonIndex')) || 0) : 0;
-            soruyuGoster(rIndex); // İlk soruyu aç
+const rIndex = isRecover ? (parseInt(localStorage.getItem('sonIndex')) || 0) : null;
+            if(rIndex !== null) {
+                soruyuGoster(rIndex);
+            } else {
+                document.getElementById('deneme-govde').innerHTML = `
+                    <div class="soru-kutusu">
+                        <h2 id="b-baslik" tabindex="-1">Sınav Başladı. Bölüm Seçiniz.</h2>
+                        <div class="navigasyon-alani">
+                            <button class="nav-buton" onclick="soruyuGoster(0)">GENEL YETENEK</button>
+                            <button class="nav-buton" onclick="soruyuGoster(30)">GENEL KÜLTÜR</button>
+                        </div>
+                    </div>`;
+                sesliBildiri("Süreniz başladı. Lütfen çözmek istediğiniz bölümü seçin.");
+                setTimeout(() => { if(document.getElementById('b-baslik')) document.getElementById('b-baslik').focus(); }, 150);
+            }            
         });
 }
 function soruyuGoster(index) {
@@ -405,7 +435,7 @@ function soruyuGoster(index) {
                 html += `<ul role="list" aria-label="Soru metni parçaları" style="list-style: none; padding: 0; text-align: justify; margin-top:10px;">
                     ${icerikDizisi.map((it, i) => {
                         const temizMetin = it.replace(/^[\(\d\.\)]+\s*/, "").trim();
-                        return `<li role="listitem" tabindex="-1" style="margin-bottom: 12px; line-height: 1.6;"><strong>(${i+1})</strong> ${temizMetin}</li>`;
+return `<li role="listitem" tabindex="-1" aria-label="Cümle ${i+1}" style="margin-bottom: 12px; line-height: 1.6;"><strong>(${i+1})</strong> ${temizMetin}</li>`;
                     }).join('')}
                 </ul>`;
             }
