@@ -62,12 +62,15 @@
     }
 
     /* 5. NVDA ODAKLANMA EFEKTİ */
-    .nav-buton:focus, .test-link:focus {
-        background-color: #ff0000 !important;
-        color: #000000 !important;
-        outline: 6px solid #ffffff !important;
-        transform: scale(1.02);
-    }
+/* Hem Tab ile gelince (focus) hem fare ile gelince (hover) alev alır */
+.nav-buton:focus, .test-link:focus, 
+.nav-buton:hover, .test-link:hover {
+    background-color: #ff0000 !important;
+    color: #000000 !important;
+    outline: 6px solid #ffffff !important;
+    transform: scale(1.02);
+    cursor: pointer;
+}
 
     .container { max-width: 1100px; margin: 0 auto; padding: 0 15px; }
     .alt-baslik { color: #ffffff !important; text-align: center; margin-bottom: 20px; }
