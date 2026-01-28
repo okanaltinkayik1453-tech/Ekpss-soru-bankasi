@@ -97,14 +97,31 @@ function sesCalBekle(tur) {
         } else { resolve(); }
     });
 }
-
 function metniOkuBekle(metin) {
     return new Promise((resolve) => {
-        window.speechSynthesis.cancel();
+        // NVDA ve tarayıcı çakışmasını önlemek için önceki sesleri durdur ama tamamen iptal etme
+        window.speechSynthesis.pause();
+        window.speechSynthesis.resume();
+        
         let utterance = new SpeechSynthesisUtterance(metin);
         utterance.lang = 'tr-TR';
-        utterance.rate = 1.4; 
-        utterance.onend = () => { resolve(); };
+        utterance.rate = 1.4;
+
+        // Emniyet Kemeri: Ses motoru takılırsa 5 saniye sonra zorla sonraki soruya geç
+        const emniyetZamanlayici = setTimeout(() => {
+            resolve();
+        }, 5000);
+
+        utterance.onend = () => {
+            clearTimeout(emniyetZamanlayici);
+            resolve();
+        };
+
+        utterance.onerror = () => {
+            clearTimeout(emniyetZamanlayici);
+            resolve();
+        };
+
         window.speechSynthesis.speak(utterance);
     });
 }
@@ -344,10 +361,10 @@ async function cevapIsaretle(secilenIndex, btn) {
 
     // 2. Ses Dosyası Kontrolü (Telefonda veya TTS kapalıyken davranışı ayarla)
     // Masaüstündeysek ses çalarız. Mobilde ses çalmayıp direkt konuşmaya geçeriz.
-    if (!isMobile) {
-        await sesCalBekle(dogruMu ? 'dogru' : 'yanlis');
+if (!isMobile) {
+        // Bilgisayarda mp3 sesinin bitmesini beklemiyoruz, hemen arkasından konuşma başlasın
+        sesUret(dogruMu ? 'dogru' : 'yanlis');
     }
-
     // 3. Mesaj Oluşturma (Şıkkın içeriğini de ekledik)
     let msg = "";
     if (dogruMu) {
