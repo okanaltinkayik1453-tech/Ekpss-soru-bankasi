@@ -99,25 +99,29 @@ function sesCalBekle(tur) {
 }
 function metniOkuBekle(metin) {
     return new Promise((resolve) => {
-        // NVDA ve tarayıcı çakışmasını önlemek için önceki sesleri durdur ama tamamen iptal etme
-        window.speechSynthesis.pause();
-        window.speechSynthesis.resume();
+        // Motoru tamamen temizle ve sıfırla
+        window.speechSynthesis.cancel(); 
         
         let utterance = new SpeechSynthesisUtterance(metin);
         utterance.lang = 'tr-TR';
         utterance.rate = 1.4;
 
-        // Emniyet Kemeri: Ses motoru takılırsa 5 saniye sonra zorla sonraki soruya geç
+        // NVDA odağını bozmamak için kısa bir bekleme
         const emniyetZamanlayici = setTimeout(() => {
             resolve();
-        }, 5000);
+        }, 6000); // Süreyi biraz artırdık
+
+        utterance.onstart = () => {
+            // Konuşma başladığında zamanlayıcıyı güncel tut
+        };
 
         utterance.onend = () => {
             clearTimeout(emniyetZamanlayici);
             resolve();
         };
 
-        utterance.onerror = () => {
+        utterance.onerror = (event) => {
+            console.error("TTS Hatası:", event);
             clearTimeout(emniyetZamanlayici);
             resolve();
         };
@@ -125,7 +129,6 @@ function metniOkuBekle(metin) {
         window.speechSynthesis.speak(utterance);
     });
 }
-
 // --- 3. TEST YÜKLEME (SORUBANKASI TABLOSU) ---
 document.addEventListener("DOMContentLoaded", () => {
 sesleriOnbellegeAl();
@@ -347,6 +350,9 @@ async function cevapIsaretle(secilenIndex, btn) {
     const dogruMetinRaw = soruObj.siklar[["A","B","C","D","E"].indexOf(dogruHarf)];
     const dogruMetinTemiz = metniTemizle(dogruMetinRaw);
 
+    // NVDA'nın şıkkın üzerindeki etiketi okumasını bitirmesi için 300ms bekleyelim
+    await new Promise(r => setTimeout(r, 300));
+
     if (dogruMu) {
         btn.classList.add("dogru");
     } else {
@@ -359,24 +365,27 @@ async function cevapIsaretle(secilenIndex, btn) {
     const ttsKapali = document.getElementById("tts-kapat-onay")?.checked;
     const isMobile = window.innerWidth < 768;
 
-    // Önce MP3 sesinin bitmesini bekliyoruz
+    // 1. Önce MP3 efekti
     if (!isMobile) {
         await sesCalBekle(dogruMu ? 'dogru' : 'yanlis');
     }
 
+    // 2. Mesaj (NVDA zaten şıkkı okuduğu için burada doğrudan sonuca odaklanıyoruz)
     let msg = "";
     if (dogruMu) {
-        msg = `${harf} şıkkı işaretlendi. Doğru.`;
+        msg = `Doğru.`; // "A şıkkı işaretlendi" demesine gerek yok, NVDA zaten "A şıkkı" diyor.
     } else {
-        msg = `${harf} şıkkı işaretlendi. Yanlış. Doğru cevap ${dogruHarf} şıkkı: ${dogruMetinTemiz}`;
+        msg = `Yanlış. Doğru cevap ${dogruHarf} şıkkı: ${dogruMetinTemiz}`;
     }
 
+    // 3. Konuşma ve Bekleme
     if (!ttsKapali) {
         await metniOkuBekle(msg);
     } else {
         await new Promise(r => setTimeout(r, 1000));
     }
 
+    // 4. Geçiş
     if (mevcutSoruIndex < mevcutSorular.length - 1) {
         sonrakiSoru();
     } else {
