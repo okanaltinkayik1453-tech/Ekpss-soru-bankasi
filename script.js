@@ -343,10 +343,10 @@ async function cevapIsaretle(secilenIndex, btn) {
     const harf = ["A", "B", "C", "D", "E"][secilenIndex];
     const dogruHarf = soruObj.dogru_cevap; 
     const dogruMu = (harf === dogruHarf);
-    const secilenMetin = soruObj.siklar[secilenIndex];
-    const dogruMetin = soruObj.siklar[["A","B","C","D","E"].indexOf(dogruHarf)];
+    
+    const dogruMetinRaw = soruObj.siklar[["A","B","C","D","E"].indexOf(dogruHarf)];
+    const dogruMetinTemiz = metniTemizle(dogruMetinRaw);
 
-    // 1. Görsel Geri Bildirim (Hemen Renklendir)
     if (dogruMu) {
         btn.classList.add("dogru");
     } else {
@@ -359,30 +359,24 @@ async function cevapIsaretle(secilenIndex, btn) {
     const ttsKapali = document.getElementById("tts-kapat-onay")?.checked;
     const isMobile = window.innerWidth < 768;
 
-    // 2. Ses Dosyası Kontrolü (Telefonda veya TTS kapalıyken davranışı ayarla)
-    // Masaüstündeysek ses çalarız. Mobilde ses çalmayıp direkt konuşmaya geçeriz.
-if (!isMobile) {
-        // Bilgisayarda mp3 sesinin bitmesini beklemiyoruz, hemen arkasından konuşma başlasın
-        sesUret(dogruMu ? 'dogru' : 'yanlis');
-    }
-    // 3. Mesaj Oluşturma (Şıkkın içeriğini de ekledik)
-    let msg = "";
-    if (dogruMu) {
-        msg = `Doğru! ${harf} şıkkını işaretlediniz: ${secilenMetin}.`;
-    } else {
-        msg = `Yanlış. ${harf} şıkkını işaretlediniz: ${secilenMetin}. Doğru cevap ${dogruHarf}: ${dogruMetin}.`;
+    // Önce MP3 sesinin bitmesini bekliyoruz
+    if (!isMobile) {
+        await sesCalBekle(dogruMu ? 'dogru' : 'yanlis');
     }
 
-    // 4. Konuşma ve Geçiş Mantığı
+    let msg = "";
+    if (dogruMu) {
+        msg = `${harf} şıkkı işaretlendi. Doğru.`;
+    } else {
+        msg = `${harf} şıkkı işaretlendi. Yanlış. Doğru cevap ${dogruHarf} şıkkı: ${dogruMetinTemiz}`;
+    }
+
     if (!ttsKapali) {
-        // TTS açık: Mesaj bitene kadar bekle (await)
         await metniOkuBekle(msg);
-    } else if (!isMobile) {
-        // TTS kapalı ama bilgisayardaysak: Kısa bir bekleme süresi koyalım (1 saniye)
+    } else {
         await new Promise(r => setTimeout(r, 1000));
     }
 
-    // 5. Diğer Soruya Geçiş (Konuşma bittikten sonra buraya gelir)
     if (mevcutSoruIndex < mevcutSorular.length - 1) {
         sonrakiSoru();
     } else {
