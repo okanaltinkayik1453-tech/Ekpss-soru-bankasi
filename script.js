@@ -335,6 +335,11 @@ setTimeout(() => {
     }, 100);
 }
 // --- 5. CEVAPLAMA VE SESLİ GERİ BİLDİRİM (GÜNCELLENDİ) ---
+// Yardımcı fonksiyon: Kodun belirli bir süre donmasını sağlar
+function bekle(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 async function cevapIsaretle(secilenIndex, btn) {
     if (isaretlemeKilitli) return;
     isaretlemeKilitli = true; 
@@ -345,12 +350,12 @@ async function cevapIsaretle(secilenIndex, btn) {
     const dogruHarf = soruObj.dogru_cevap; 
     const dogruMu = (harf === dogruHarf);
     
-    // Eski JS'deki gibi içerikleri alıyoruz (Mobil için)
-    const secilenMetin = soruObj.siklar[secilenIndex];
+    // Şık içeriklerini al ve temizle
+    const temizSecilenMetin = metniTemizle(soruObj.siklar[secilenIndex]);
     const dogruMetinRaw = soruObj.siklar[["A","B","C","D","E"].indexOf(dogruHarf)];
-    const dogruMetinTemiz = metniTemizle(dogruMetinRaw);
+    const dogruMetinTemiz = metniTemizle(dogruMetinRaw);    
 
-    // Renklendirme
+    // Görsel Renklendirme
     if (dogruMu) {
         btn.classList.add("dogru");
     } else {
@@ -363,27 +368,85 @@ async function cevapIsaretle(secilenIndex, btn) {
     const ttsKapali = document.getElementById("tts-kapat-onay")?.checked;
     const isMobile = window.innerWidth < 768;
 
-    if (!isMobile) {
-        // --- BİLGİSAYAR SIRALAMASI ---
-        // 1. Şık işaretlendi uyarısı
-        await metniOkuBekle(`${harf} şıkkı işaretlendi.`);
-        // 2. Doğru/Yanlış Sesi (MP3)
-        await sesCalBekle(dogruMu ? 'dogru' : 'yanlis');
-        // 3. Sonuç Duyurusu (Kısa ve öz)
-        let sonucMsg = dogruMu ? "Doğru." : `Yanlış. Doğru cevap ${dogruHarf} şıkkı: ${dogruMetinTemiz}`;
-        if (!ttsKapali) await metniOkuBekle(sonucMsg);
-    } else {
-        // --- MOBİL SIRALAMASI (Eski.js Mantığı) ---
-        let msg = dogruMu 
-            ? `Doğru! ${harf} şıkkını işaretlediniz: ${secilenMetin}.` 
-            : `Yanlış. ${harf} şıkkını işaretlediniz: ${secilenMetin}. Doğru cevap ${dogruHarf}: ${dogruMetinTemiz}.`;
+    // --- SENARYO 1: MOBİL (Eski JS ile %100 Aynı Mantık) ---
+    if (isMobile) {
+        // Mobilde ses çalınmaz, direkt TTS konuşur (Eski JS yapısı)
+        let msg = "";
+        if (dogruMu) {
+            msg = `Doğru! ${harf} şıkkını işaretlediniz: ${temizSecilenMetin}.`;
+        } else {
+            msg = `Yanlış. ${harf} şıkkını işaretlediniz: ${temizSecilenMetin}. Doğru cevap ${dogruHarf}: ${dogruMetinTemiz}.`;
+        }
         
-        if (!ttsKapali) await metniOkuBekle(msg);
-    }
+        if (!ttsKapali) {
+            await metniOkuBekle(msg);
+        }
+        // Mobilde bekleme süresi kısa tutulur
+        setTimeout(() => siradakiSoruyaGec(), 500);
+    } 
+    
+    // --- SENARYO 2: BİLGİSAYAR / NVDA (Gelişmiş Sıralı Sistem) ---
+    else {
+        const duyuruElementi = document.getElementById("ekran-okuyucu-duyuru");
+        
+        // ADIM 1: "A şıkkı işaretlendi" (MP3 çalmadan önce bunu duymalıyız)
+        if (duyuruElementi) {
+            duyuruElementi.textContent = ""; // Önce temizle
+            await bekle(50);
+            duyuruElementi.textContent = `${harf} şıkkı işaretlendi.`;
+            // NVDA'nın bunu okuması için yaklaşık 1.2 saniye net bekleme
+            await bekle(1200); 
+        }
 
-    // Bekleme ve Geçiş
+        // ADIM 2: MP3 Sesi (Doğru/Yanlış Sesi)
+        // Ses bitene kadar kod burada bekler, aşağıya inmez.
+        await sesCalBekle(dogruMu ? 'dogru' : 'yanlis');
+
+        // ADIM 3: Sonuç Açıklaması (Sadece Doğru Cevap İçeriği)
+        if (!ttsKapali) {
+            let sonucMesaji = "";
+            if (dogruMu) {
+                sonucMesaji = `Doğru! ${dogruMetinTemiz}`;
+            } else {
+                // Yanlış yaptıysa, seçtiği şıkkı tekrar okumuyoruz. Sadece doğruyu söylüyoruz.
+                sonucMesaji = `Yanlış. Doğru cevap ${dogruHarf} şıkkı: ${dogruMetinTemiz}`;
+            }
+
+            if (duyuruElementi) {
+                duyuruElementi.textContent = ""; 
+                await bekle(50);
+                duyuruElementi.textContent = sonucMesaji;
+
+                // ADIM 4: Akıllı Süre Hesaplama (Uzun sorular için önlem)
+                // Karakter sayısı ne kadar çoksa o kadar uzun bekleyeceğiz.
+                const karakterSayisi = sonucMesaji.length;
+                let okumaSuresi = 0;
+
+                if (karakterSayisi > 100) {
+                    // Uzun paragraflar için karakter başı 80ms (Daha yavaş/uzun pay)
+                    okumaSuresi = (karakterSayisi * 80) + 1500; 
+                } else {
+                    // Kısa cümleler için karakter başı 60ms
+                    okumaSuresi = (karakterSayisi * 60) + 1000;
+                }
+                
+                // Hesaplanan süre kadar bekle (Soru değişmeden önce)
+                await bekle(okumaSuresi);
+            }
+        } else {
+            // TTS kapalıysa bile, ses dosyasından sonra azıcık bekleyelim ki ani geçiş olmasın
+            await bekle(1000);
+        }
+
+        // ADIM 5: Her şey bitti, şimdi geçiş yap
+        siradakiSoruyaGec();
+    }
+}
+
+// Ortak Geçiş Fonksiyonu
+function siradakiSoruyaGec() {
     if (mevcutSoruIndex < mevcutSorular.length - 1) {
-        setTimeout(() => sonrakiSoru(), 500);
+        sonrakiSoru();
     } else {
         testiBitir();
     }
