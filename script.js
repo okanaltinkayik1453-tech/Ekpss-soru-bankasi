@@ -394,11 +394,9 @@ async function cevapIsaretle(secilenIndex, btn) {
             // Ekstra kısa bir es ver (1 saniye) ki kafa karışmasın
             await bekle(1000);
         }
-
-        // ADIM 4: Her şey bitti, şimdi diğer soruya geç
+// ADIM 4: Her şey bitti, şimdi diğer soruya geç
         siradakiSoruyaGec();
     }
-}
 }
 
 // Ortak Geçiş Fonksiyonu
