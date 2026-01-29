@@ -14,12 +14,6 @@ let mevcutCozumIndex = 0;
 let kullaniciCevaplari = [];
 let isaretlemeKilitli = false;
 let akilliGeriDonSayfasi = "index.html";
-// NVDA/JAWS için dinamik duyuru alanı oluşturma
-const duyuruAlani = document.createElement("div");
-duyuruAlani.id = "ekran-okuyucu-duyuru";
-duyuruAlani.setAttribute("aria-live", "assertive");
-duyuruAlani.style.cssText = "position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;";
-document.body.appendChild(duyuruAlani);
 // Branş-Sayfa Eşleştirmesi (NVDA için doğru navigasyon sağlar)
 const SAYFA_ESLESTIRME = {
     "cografya": "cografya.html",
@@ -103,28 +97,21 @@ function sesCalBekle(tur) {
     });
 }
 function metniOkuBekle(metin) {
-    const isMobile = window.innerWidth < 768;
     return new Promise((resolve) => {
-        if (isMobile) {
-            // MOBİL: Eski sistem (Tarayıcı TTS) devam ediyor
-            window.speechSynthesis.cancel();
-            let utterance = new SpeechSynthesisUtterance(metin);
-            utterance.lang = 'tr-TR';
-            utterance.rate = 1.4;
-            utterance.onend = () => resolve();
-            utterance.onerror = () => resolve();
-            window.speechSynthesis.speak(utterance);
-        } else {
-            // BİLGİSAYAR: NVDA/JAWS Konuşturma (Aria-Live)
-            const el = document.getElementById("ekran-okuyucu-duyuru");
-            el.textContent = ""; // Önce temizle
-            setTimeout(() => {
-                el.textContent = metin; // NVDA burayı okuyacak
-                // Metin uzunluğuna göre bekleme süresi (karakter başı 100ms + 1sn sabit)
-                const beklemeSuresi = (metin.length * 70) + 1000;
-                setTimeout(resolve, beklemeSuresi);
-            }, 50);
-        }
+        // Tarayıcının kendi konuşma motorunu kullanıyoruz (Eski.js gibi kesin çalışır)
+        // Bu yöntem NVDA'dan bağımsız olduğu için sesin çıkmama ihtimali yoktur.
+        window.speechSynthesis.cancel();
+        let utterance = new SpeechSynthesisUtterance(metin);
+        utterance.lang = 'tr-TR';
+        // Bilgisayarda daha anlaşılır, mobilde seri olması için hız ayarı
+        utterance.rate = window.innerWidth < 768 ? 1.4 : 1.1; 
+        
+        // Konuşma bittiğinde "Tamam bitti" sinyali gönderir
+        utterance.onend = () => resolve();
+        // Hata olsa bile sistemi kilitlememesi için önlem
+        utterance.onerror = () => resolve(); 
+        
+        window.speechSynthesis.speak(utterance);
     });
 }
 // --- 3. TEST YÜKLEME (SORUBANKASI TABLOSU) ---
@@ -339,7 +326,6 @@ setTimeout(() => {
 function bekle(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
-
 async function cevapIsaretle(secilenIndex, btn) {
     if (isaretlemeKilitli) return;
     isaretlemeKilitli = true; 
@@ -350,7 +336,7 @@ async function cevapIsaretle(secilenIndex, btn) {
     const dogruHarf = soruObj.dogru_cevap; 
     const dogruMu = (harf === dogruHarf);
     
-    // Şık içeriklerini al ve temizle
+    // Metin temizliği
     const temizSecilenMetin = metniTemizle(soruObj.siklar[secilenIndex]);
     const dogruMetinRaw = soruObj.siklar[["A","B","C","D","E"].indexOf(dogruHarf)];
     const dogruMetinTemiz = metniTemizle(dogruMetinRaw);    
@@ -368,9 +354,8 @@ async function cevapIsaretle(secilenIndex, btn) {
     const ttsKapali = document.getElementById("tts-kapat-onay")?.checked;
     const isMobile = window.innerWidth < 768;
 
-    // --- SENARYO 1: MOBİL (Eski JS ile %100 Aynı Mantık) ---
+    // --- SENARYO 1: MOBİL (Seri Geçiş) ---
     if (isMobile) {
-        // Mobilde ses çalınmaz, direkt TTS konuşur (Eski JS yapısı)
         let msg = "";
         if (dogruMu) {
             msg = `Doğru! ${harf} şıkkını işaretlediniz: ${temizSecilenMetin}.`;
@@ -381,66 +366,39 @@ async function cevapIsaretle(secilenIndex, btn) {
         if (!ttsKapali) {
             await metniOkuBekle(msg);
         }
-        // Mobilde bekleme süresi kısa tutulur
         setTimeout(() => siradakiSoruyaGec(), 500);
     } 
     
-    // --- SENARYO 2: BİLGİSAYAR / NVDA (Gelişmiş Sıralı Sistem) ---
+    // --- SENARYO 2: BİLGİSAYAR / NVDA (Adım Adım Garantili Ses) ---
     else {
-        const duyuruElementi = document.getElementById("ekran-okuyucu-duyuru");
-        
-        // ADIM 1: "A şıkkı işaretlendi" (MP3 çalmadan önce bunu duymalıyız)
-        if (duyuruElementi) {
-            duyuruElementi.textContent = ""; // Önce temizle
-            await bekle(50);
-            duyuruElementi.textContent = `${harf} şıkkı işaretlendi.`;
-            // NVDA'nın bunu okuması için yaklaşık 1.2 saniye net bekleme
-            await bekle(1200); 
-        }
+        // ADIM 1: Önce ne işaretlendiğini sesli oku ve BEKLE
+        // Bu ses bitmeden aşağıya inmez.
+        await metniOkuBekle(`${harf} şıkkı işaretlendi.`);
 
         // ADIM 2: MP3 Sesi (Doğru/Yanlış Sesi)
-        // Ses bitene kadar kod burada bekler, aşağıya inmez.
+        // MP3 bitmeden aşağıya inmez.
         await sesCalBekle(dogruMu ? 'dogru' : 'yanlis');
 
-        // ADIM 3: Sonuç Açıklaması (Sadece Doğru Cevap İçeriği)
+        // ADIM 3: Sonuç Açıklaması
         if (!ttsKapali) {
             let sonucMesaji = "";
             if (dogruMu) {
                 sonucMesaji = `Doğru! ${dogruMetinTemiz}`;
             } else {
-                // Yanlış yaptıysa, seçtiği şıkkı tekrar okumuyoruz. Sadece doğruyu söylüyoruz.
                 sonucMesaji = `Yanlış. Doğru cevap ${dogruHarf} şıkkı: ${dogruMetinTemiz}`;
             }
 
-            if (duyuruElementi) {
-                duyuruElementi.textContent = ""; 
-                await bekle(50);
-                duyuruElementi.textContent = sonucMesaji;
-
-                // ADIM 4: Akıllı Süre Hesaplama (Uzun sorular için önlem)
-                // Karakter sayısı ne kadar çoksa o kadar uzun bekleyeceğiz.
-                const karakterSayisi = sonucMesaji.length;
-                let okumaSuresi = 0;
-
-                if (karakterSayisi > 100) {
-                    // Uzun paragraflar için karakter başı 80ms (Daha yavaş/uzun pay)
-                    okumaSuresi = (karakterSayisi * 80) + 1500; 
-                } else {
-                    // Kısa cümleler için karakter başı 60ms
-                    okumaSuresi = (karakterSayisi * 60) + 1000;
-                }
-                
-                // Hesaplanan süre kadar bekle (Soru değişmeden önce)
-                await bekle(okumaSuresi);
-            }
-        } else {
-            // TTS kapalıysa bile, ses dosyasından sonra azıcık bekleyelim ki ani geçiş olmasın
+            // Sonucu oku ve BEKLE (Uzunsa uzun bekler)
+            await metniOkuBekle(sonucMesaji);
+            
+            // Ekstra kısa bir es ver (1 saniye) ki kafa karışmasın
             await bekle(1000);
         }
 
-        // ADIM 5: Her şey bitti, şimdi geçiş yap
+        // ADIM 4: Her şey bitti, şimdi diğer soruya geç
         siradakiSoruyaGec();
     }
+}
 }
 
 // Ortak Geçiş Fonksiyonu
