@@ -14,7 +14,12 @@ let mevcutCozumIndex = 0;
 let kullaniciCevaplari = [];
 let isaretlemeKilitli = false;
 let akilliGeriDonSayfasi = "index.html";
-
+// NVDA/JAWS için dinamik duyuru alanı oluşturma
+const duyuruAlani = document.createElement("div");
+duyuruAlani.id = "ekran-okuyucu-duyuru";
+duyuruAlani.setAttribute("aria-live", "assertive");
+duyuruAlani.style.cssText = "position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;";
+document.body.appendChild(duyuruAlani);
 // Branş-Sayfa Eşleştirmesi (NVDA için doğru navigasyon sağlar)
 const SAYFA_ESLESTIRME = {
     "cografya": "cografya.html",
@@ -98,35 +103,28 @@ function sesCalBekle(tur) {
     });
 }
 function metniOkuBekle(metin) {
+    const isMobile = window.innerWidth < 768;
     return new Promise((resolve) => {
-        // Motoru tamamen temizle ve sıfırla
-        window.speechSynthesis.cancel(); 
-        
-        let utterance = new SpeechSynthesisUtterance(metin);
-        utterance.lang = 'tr-TR';
-        utterance.rate = 1.4;
-
-        // NVDA odağını bozmamak için kısa bir bekleme
-        const emniyetZamanlayici = setTimeout(() => {
-            resolve();
-        }, 6000); // Süreyi biraz artırdık
-
-        utterance.onstart = () => {
-            // Konuşma başladığında zamanlayıcıyı güncel tut
-        };
-
-        utterance.onend = () => {
-            clearTimeout(emniyetZamanlayici);
-            resolve();
-        };
-
-        utterance.onerror = (event) => {
-            console.error("TTS Hatası:", event);
-            clearTimeout(emniyetZamanlayici);
-            resolve();
-        };
-
-        window.speechSynthesis.speak(utterance);
+        if (isMobile) {
+            // MOBİL: Eski sistem (Tarayıcı TTS) devam ediyor
+            window.speechSynthesis.cancel();
+            let utterance = new SpeechSynthesisUtterance(metin);
+            utterance.lang = 'tr-TR';
+            utterance.rate = 1.4;
+            utterance.onend = () => resolve();
+            utterance.onerror = () => resolve();
+            window.speechSynthesis.speak(utterance);
+        } else {
+            // BİLGİSAYAR: NVDA/JAWS Konuşturma (Aria-Live)
+            const el = document.getElementById("ekran-okuyucu-duyuru");
+            el.textContent = ""; // Önce temizle
+            setTimeout(() => {
+                el.textContent = metin; // NVDA burayı okuyacak
+                // Metin uzunluğuna göre bekleme süresi (karakter başı 100ms + 1sn sabit)
+                const beklemeSuresi = (metin.length * 70) + 1000;
+                setTimeout(resolve, beklemeSuresi);
+            }, 50);
+        }
     });
 }
 // --- 3. TEST YÜKLEME (SORUBANKASI TABLOSU) ---
@@ -347,12 +345,12 @@ async function cevapIsaretle(secilenIndex, btn) {
     const dogruHarf = soruObj.dogru_cevap; 
     const dogruMu = (harf === dogruHarf);
     
+    // Eski JS'deki gibi içerikleri alıyoruz (Mobil için)
+    const secilenMetin = soruObj.siklar[secilenIndex];
     const dogruMetinRaw = soruObj.siklar[["A","B","C","D","E"].indexOf(dogruHarf)];
     const dogruMetinTemiz = metniTemizle(dogruMetinRaw);
 
-    // NVDA'nın şıkkın üzerindeki etiketi okumasını bitirmesi için 300ms bekleyelim
-    await new Promise(r => setTimeout(r, 300));
-
+    // Renklendirme
     if (dogruMu) {
         btn.classList.add("dogru");
     } else {
@@ -365,29 +363,27 @@ async function cevapIsaretle(secilenIndex, btn) {
     const ttsKapali = document.getElementById("tts-kapat-onay")?.checked;
     const isMobile = window.innerWidth < 768;
 
-    // 1. Önce MP3 efekti
     if (!isMobile) {
+        // --- BİLGİSAYAR SIRALAMASI ---
+        // 1. Şık işaretlendi uyarısı
+        await metniOkuBekle(`${harf} şıkkı işaretlendi.`);
+        // 2. Doğru/Yanlış Sesi (MP3)
         await sesCalBekle(dogruMu ? 'dogru' : 'yanlis');
-    }
-
-    // 2. Mesaj (NVDA zaten şıkkı okuduğu için burada doğrudan sonuca odaklanıyoruz)
-    let msg = "";
-    if (dogruMu) {
-        msg = `Doğru.`; // "A şıkkı işaretlendi" demesine gerek yok, NVDA zaten "A şıkkı" diyor.
+        // 3. Sonuç Duyurusu (Kısa ve öz)
+        let sonucMsg = dogruMu ? "Doğru." : `Yanlış. Doğru cevap ${dogruHarf} şıkkı: ${dogruMetinTemiz}`;
+        if (!ttsKapali) await metniOkuBekle(sonucMsg);
     } else {
-        msg = `Yanlış. Doğru cevap ${dogruHarf} şıkkı: ${dogruMetinTemiz}`;
+        // --- MOBİL SIRALAMASI (Eski.js Mantığı) ---
+        let msg = dogruMu 
+            ? `Doğru! ${harf} şıkkını işaretlediniz: ${secilenMetin}.` 
+            : `Yanlış. ${harf} şıkkını işaretlediniz: ${secilenMetin}. Doğru cevap ${dogruHarf}: ${dogruMetinTemiz}.`;
+        
+        if (!ttsKapali) await metniOkuBekle(msg);
     }
 
-    // 3. Konuşma ve Bekleme
-    if (!ttsKapali) {
-        await metniOkuBekle(msg);
-    } else {
-        await new Promise(r => setTimeout(r, 1000));
-    }
-
-    // 4. Geçiş
+    // Bekleme ve Geçiş
     if (mevcutSoruIndex < mevcutSorular.length - 1) {
-        sonrakiSoru();
+        setTimeout(() => sonrakiSoru(), 500);
     } else {
         testiBitir();
     }
